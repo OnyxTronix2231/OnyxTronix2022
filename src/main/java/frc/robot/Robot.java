@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
         }
 
         new DriverOi();
+        new DeputyOi();
 
         new DriversShuffleboard();
     }
