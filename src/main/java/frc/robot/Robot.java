@@ -9,9 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.exampleSubsystem.BasicExampleSubsystemComponents;
-import frc.robot.exampleSubsystem.ExampleSubsystem;
-import frc.robot.exampleSubsystem.ExampleSubsystemComponents;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,25 +18,20 @@ import frc.robot.exampleSubsystem.ExampleSubsystemComponents;
  */
 public class Robot extends TimedRobot {
 
-    ExampleSubsystem exampleSubsystem;
-
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
     @Override
     public void robotInit() {
-        ExampleSubsystemComponents exampleSubsystemComponents;
 
         if (Robot.isReal()) {
-            exampleSubsystemComponents = new BasicExampleSubsystemComponents();
         } else {
-            exampleSubsystemComponents = null;
         }
 
-        exampleSubsystem = new ExampleSubsystem(exampleSubsystemComponents);
+        new DriverOi();
 
-        new DriverOi().withExampleSubsystem(exampleSubsystem);
+        new DriversShuffleboard();
     }
 
     /**
