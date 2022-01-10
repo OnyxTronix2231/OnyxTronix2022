@@ -11,9 +11,13 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(0);
+        leftMasterMotor.configFactoryDefault();
         leftSlaveMotor = new WPI_TalonFX(0);
+        leftSlaveMotor.follow(leftMasterMotor);
         rightMasterMotor = new WPI_TalonFX(0);
+        rightMasterMotor.configFactoryDefault();
         rightSlaveMotor = new WPI_TalonFX(0);
+        rightSlaveMotor.follow(rightMasterMotor);
     }
 
     @Override
