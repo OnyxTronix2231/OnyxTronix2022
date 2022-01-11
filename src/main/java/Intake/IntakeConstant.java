@@ -1,6 +1,7 @@
-package frc.robot.Intake;
+package Intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 
 public class IntakeConstant {
 

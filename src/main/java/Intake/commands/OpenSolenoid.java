@@ -1,6 +1,6 @@
-package frc.robot.Intake.commands;
+package Intake.commands;
 
-import frc.robot.Intake.Intake;
+import Intake.Intake;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class OpenSolenoid extends InstantCommand {
