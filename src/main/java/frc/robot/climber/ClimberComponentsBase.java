@@ -5,14 +5,18 @@ import static frc.robot.climber.ClimberConstants.ClimberConstantsA.FORWARD_CHANN
 
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import sensors.Switch.Microswitch;
 
 public class ClimberComponentsBase implements ClimberComponents {
 
     private WPI_TalonFX masterMotor;
     private WPI_TalonFX slaveMotor;
     private DoubleSolenoid solenoid;
+    private Microswitch outerMicroSwitch;
+    private Microswitch innerMicroSwitch;
 
     public ClimberComponentsBase() {
         masterMotor = new WPI_TalonFX(0);
@@ -23,6 +27,8 @@ public class ClimberComponentsBase implements ClimberComponents {
         slaveMotor.follow(masterMotor);
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
+
+        outerMicroSwitch = new Microswitch()
     }
 
     @Override
@@ -38,6 +44,16 @@ public class ClimberComponentsBase implements ClimberComponents {
     @Override
     public DoubleSolenoid getSolenoid() {
         return solenoid;
+    }
+
+    @Override
+    public Microswitch getOuterMicroSwitch() {
+        return null;
+    }
+
+    @Override
+    public Microswitch getInnerMicroSwitch() {
+        return null;
     }
 
 }

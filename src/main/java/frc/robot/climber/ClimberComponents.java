@@ -3,6 +3,7 @@ package frc.robot.climber;
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import sensors.Switch.Microswitch;
 
 public interface ClimberComponents {
 
@@ -11,5 +12,8 @@ public interface ClimberComponents {
     IMotorController getSlaveMotor();
 
     DoubleSolenoid getSolenoid();
-    
+
+    Microswitch getOuterMicroSwitch();
+
+    Microswitch getInnerMicroSwitch();
 }
