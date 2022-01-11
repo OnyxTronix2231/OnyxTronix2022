@@ -1,4 +1,4 @@
-package frc.robot.clinber;
+package frc.robot.climber;
 
 public class ClimberConstants {
 
