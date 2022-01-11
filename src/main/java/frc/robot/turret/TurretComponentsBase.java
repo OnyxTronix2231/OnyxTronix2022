@@ -1,20 +1,43 @@
 package frc.robot.turret;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import pid.CtreMotionMagicController;
+import pid.PIDFTerms;
+import sensors.counter.CtreEncoder;
+
+import java.beans.Encoder;
 
 import static frc.robot.turret.TurretConstants.*;
 
 public class TurretComponentsBase implements TurretComponents    {
 
-    private WPI_TalonFX masterMotor;
+    private WPI_TalonFX motor;
+    private CtreEncoder encoder;
+    private CtreMotionMagicController controller;
 
     public TurretComponentsBase(){
-        masterMotor = new WPI_TalonFX(TURRET_MOTOR_PORT);
-        masterMotor.configFactoryDefault();
+        motor = new WPI_TalonFX(TURRET_MOTOR_PORT);
+        motor.configFactoryDefault();
+
+        motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+
+        encoder = new CtreEncoder(motor);
+        controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(K_P, K_I, K_D, K_F), MAX_ACC, CRUISE_VELOCITY, ACC_SMOTHING);
     }
 
+    @Override
     public WPI_TalonFX getMotor(){
-        return masterMotor;
+        return motor;
+    }
+
+    @Override
+    public CtreEncoder getEncoder() {
+        return encoder;
+    }
+
+    @Override
+    public CtreMotionMagicController getController() {
+        return controller;
     }
 }
