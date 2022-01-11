@@ -8,7 +8,7 @@ public class Turret extends SubsystemBase {
     public Turret(TurretComponents turretComponents) {this.turretComponents = turretComponents;}
 
     public void setspeed(double speed) {
-        turretComponents.getMasterMotor().set(speed);
+        turretComponents.getMotor().set(speed);
     }
 
     public void stop(){
