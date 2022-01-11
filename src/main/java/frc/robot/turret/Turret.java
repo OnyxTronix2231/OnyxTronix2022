@@ -9,6 +9,11 @@ public class Turret extends SubsystemBase {
 
     public Turret(TurretComponents turretComponents) {
         this.components = turretComponents;
+
+        this.components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
+        this.components.getMotor().configForwardSoftLimitEnable(true);
+        this.components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
+        this.components.getMotor().configReverseSoftLimitEnable(true);
     }
 
     public void setspeed(double speed) {
@@ -22,6 +27,15 @@ public class Turret extends SubsystemBase {
 
     public double degToEnc(double deg){
         return (deg * ENCODER_UNITS_IN_ROTATION) / (CONVERSION_RATE * DEG_IN_ROTATION);
+    }
+
+    public double fixDeg(double deg){
+        double fixed = deg % DEG_IN_ROTATION;
+        if (fixed > MAX_DEG){
+            fixed -= DEG_IN_ROTATION;
+        } else if (fixed < MIN_DEG){
+            fixed += DEG_IN_ROTATION;
+        } return fixed;
     }
 
     public void initMoveByDegree(double deg){

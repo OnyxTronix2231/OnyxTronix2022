@@ -21,6 +21,7 @@ public class TurretComponentsBase implements TurretComponents    {
         motor.configFactoryDefault();
 
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+        motor.setSelectedSensorPosition( motor.getSensorCollection().getIntegratedSensorAbsolutePosition() , 0, 0);
 
         encoder = new CtreEncoder(motor);
         controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(K_P, K_I, K_D, K_F), MAX_ACC, CRUISE_VELOCITY, ACC_SMOTHING);
