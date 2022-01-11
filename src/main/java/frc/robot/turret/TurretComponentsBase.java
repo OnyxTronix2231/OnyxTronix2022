@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
+import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 
 import java.beans.Encoder;
@@ -33,7 +34,7 @@ public class TurretComponentsBase implements TurretComponents    {
     }
 
     @Override
-    public CtreEncoder getEncoder() {
+    public Counter getEncoder() {
         return encoder;
     }
 
