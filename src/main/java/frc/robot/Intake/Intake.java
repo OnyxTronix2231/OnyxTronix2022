@@ -1,10 +1,9 @@
-package Intake;
+package frc.robot.Intake;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static Intake.IntakeConstant.SOLENOID_CLOSE;
-import static Intake.IntakeConstant.SOLENOID_OPEN;
+import static frc.robot.Intake.IntakeConstant.SOLENOID_CLOSE;
+import static frc.robot.Intake.IntakeConstant.SOLENOID_OPEN;
 
 
 public class Intake extends SubsystemBase {
