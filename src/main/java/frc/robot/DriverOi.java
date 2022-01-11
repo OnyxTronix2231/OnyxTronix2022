@@ -2,7 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 
-import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
+import static Constants.DRIVE_JOYSTICK_PORT;
 
 public class DriverOi {
 

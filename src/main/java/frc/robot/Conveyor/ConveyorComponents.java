@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.Conveyor;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
