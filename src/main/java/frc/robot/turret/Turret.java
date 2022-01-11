@@ -16,34 +16,50 @@ public class Turret extends SubsystemBase {
         this.components.getMotor().configReverseSoftLimitEnable(true);
     }
 
-    public void setspeed(double speed) {
-        components.getMotor().set(speed);
+    public double getCurrentAngle(){
+        return fixDeg(encToDeg(components.getEncoder().getCount()));
     }
 
-    public void stop(){
-        setspeed(0);
+    public void stop() {
+        setSpeed(0);
         components.getController().disable();
     }
 
-    public double degToEnc(double deg){
+    public void setSpeed(double speed) {
+        components.getMotor().set(speed);
+    }
+
+    public void initMoveByDegree(double deg) {
+        initMoveToDegree(getCurrentAngle() + deg);
+    }
+
+    public void updateMoveByDegree(double deg) {
+        updateMoveToDegree(getCurrentAngle() + deg);
+    }
+
+    public void initMoveToDegree(double deg) {
+        components.getController().setSetpoint(degToEnc(fixDeg(deg)));
+        components.getController().enable();
+    }
+
+    public void updateMoveToDegree(double deg) {
+        components.getController().update(degToEnc(fixDeg(deg)));
+    }
+
+    public double degToEnc(double deg) {
         return (deg * ENCODER_UNITS_IN_ROTATION) / (CONVERSION_RATE * DEG_IN_ROTATION);
     }
 
-    public double fixDeg(double deg){
+    public double encToDeg(double enc) {
+        return (enc * CONVERSION_RATE * DEG_IN_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+    }
+
+    public double fixDeg(double deg) {
         double fixed = deg % DEG_IN_ROTATION;
         if (fixed > MAX_DEG){
             fixed -= DEG_IN_ROTATION;
         } else if (fixed < MIN_DEG){
             fixed += DEG_IN_ROTATION;
         } return fixed;
-    }
-
-    public void initMoveByDegree(double deg){
-        components.getController().setSetpoint(degToEnc(deg));
-        components.getController().enable();
-    }
-
-    public void updateMoveByDegree(double deg){
-        components.getController().update(degToEnc(deg));
     }
 }
