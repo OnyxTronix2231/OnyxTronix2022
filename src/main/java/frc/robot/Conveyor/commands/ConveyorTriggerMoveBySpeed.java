@@ -1,9 +1,14 @@
 package frc.robot.Conveyor.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import 
+import frc.robot.Conveyor.Conveyor;
+
+import java.util.function.DoubleSupplier;
 
 public class ConveyorTriggerMoveBySpeed extends CommandBase {
+    
+    private  Conveyor conveyor;
+    private  DoubleSupplier doubleSupplier;
 
     @Override
     public void initialize() {
@@ -12,11 +17,11 @@ public class ConveyorTriggerMoveBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        triggerBySpeed();
+        conveyor.triggerBySpeed(doubleSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        super.end(interrupted);
+        conveyor.stop();
     }
 }
