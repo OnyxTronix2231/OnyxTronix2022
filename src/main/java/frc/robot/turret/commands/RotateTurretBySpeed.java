@@ -12,6 +12,7 @@ public class RotateTurretBySpeed extends CommandBase {
     public RotateTurretBySpeed(Turret turret, DoubleSupplier speed) {
         this.turret = turret;
         this.speed = speed;
+        addRequirements(turret);
     }
 
     @Override
