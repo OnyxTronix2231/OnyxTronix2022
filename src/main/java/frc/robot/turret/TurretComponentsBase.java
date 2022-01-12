@@ -7,11 +7,9 @@ import pid.PIDFTerms;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 
-import java.beans.Encoder;
-
 import static frc.robot.turret.TurretConstants.*;
 
-public class TurretComponentsBase implements TurretComponents    {
+public class TurretComponentsBase implements TurretComponents {
 
     private WPI_TalonFX motor;
     private CtreEncoder encoder;
@@ -29,7 +27,7 @@ public class TurretComponentsBase implements TurretComponents    {
     }
 
     @Override
-    public WPI_TalonFX getMotor(){
+    public WPI_TalonFX getMotor() {
         return motor;
     }
 
