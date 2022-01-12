@@ -7,5 +7,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 public interface IntakeComponents {
 
     WPI_TalonSRX getMotor();
+
     DoubleSolenoid getSolenoid();
 }

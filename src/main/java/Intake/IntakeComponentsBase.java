@@ -7,18 +7,15 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 import static Intake.IntakeConstant.*;
 
-public class IntakeComponentsBase implements IntakeComponents{
-
-
-    private WPI_TalonSRX motor;
-    private DoubleSolenoid solenoid;
-
+public class IntakeComponentsBase implements IntakeComponents {
+    private final WPI_TalonSRX motor;
+    private final DoubleSolenoid solenoid;
 
     public IntakeComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
 
-        solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,SOLENOID_FORWARD_CHANNEL,SOLENOID_REVERSE_CHANNEL);
+        solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, SOLENOID_FORWARD_CHANNEL, SOLENOID_REVERSE_CHANNEL);
     }
 
     @Override
@@ -29,6 +26,5 @@ public class IntakeComponentsBase implements IntakeComponents{
     @Override
     public DoubleSolenoid getSolenoid() {
         return solenoid;
-
     }
 }

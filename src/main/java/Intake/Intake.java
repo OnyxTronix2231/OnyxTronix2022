@@ -30,6 +30,4 @@ public class Intake extends SubsystemBase {
     public void closeSolenoid(){
         components.getSolenoid().set(SOLENOID_CLOSE);
     }
-
-
 }
