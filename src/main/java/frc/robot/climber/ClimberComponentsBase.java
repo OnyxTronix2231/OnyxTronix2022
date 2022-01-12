@@ -1,7 +1,7 @@
 package frc.robot.climber;
 
-import static frc.robot.climber.ClimberConstants.ClimberConstantsA.BACKWARD_CHANNEL;
-import static frc.robot.climber.ClimberConstants.ClimberConstantsA.FORWARD_CHANNEL;
+import static frc.robot.climber.ClimberConstants.BACKWARD_CHANNEL;
+import static frc.robot.climber.ClimberConstants.FORWARD_CHANNEL;
 
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -28,7 +28,9 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
-        outerMicroSwitch = new Microswitch()
+        outerMicroSwitch = new Microswitch(new DigitalInput(0));
+
+        innerMicroSwitch = new Microswitch(new DigitalInput(1));
     }
 
     @Override
@@ -48,12 +50,12 @@ public class ClimberComponentsBase implements ClimberComponents {
 
     @Override
     public Microswitch getOuterMicroSwitch() {
-        return null;
+        return outerMicroSwitch;
     }
 
     @Override
     public Microswitch getInnerMicroSwitch() {
-        return null;
+        return innerMicroSwitch;
     }
 
 }

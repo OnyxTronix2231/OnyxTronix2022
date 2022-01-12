@@ -18,4 +18,12 @@ public class Climber extends SubsystemBase {
     public void stopMotors() {
         moveBySpeed(0);
     }
+
+    public boolean isInnerMicroSwitchOpen() {
+        return components.getInnerMicroSwitch().isOpen();
+    }
+
+    public boolean isOuterMicroSwitchOpen() {
+        return components.getOuterMicroSwitch().isOpen();
+    }
 }
