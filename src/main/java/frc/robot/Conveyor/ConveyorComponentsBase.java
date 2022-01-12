@@ -6,25 +6,23 @@ import static frc.robot.Conveyor.Constants.SECOND_MOTOR_ID;
 
 
 public class ConveyorComponentsBase implements ConveyorComponents {
-        private WPI_TalonFX firstMotor;
+        private WPI_TalonFX triggerMotor;
         private WPI_TalonFX secondMotor;
 
 
     public ConveyorComponentsBase(WPI_TalonFX firstMotor, WPI_TalonFX secondMotor) {
-        firstMotor = new WPI_TalonFX(FIRST_MOTOR_ID);
-        firstMotor.configFactoryDefault();
+        triggerMotor = new WPI_TalonFX(FIRST_MOTOR_ID);
+        triggerMotor.configFactoryDefault();
         secondMotor = new WPI_TalonFX(SECOND_MOTOR_ID);
         secondMotor.configFactoryDefault();
     }
 
 
     @Override
-    public WPI_TalonFX getFirstMotor() {
-        return firstMotor;
-    }
+    public WPI_TalonFX getTriggerMotor() {return triggerMotor;}
 
     @Override
-    public WPI_TalonFX getSecondMotor() {
+    public WPI_TalonFX getFloorMotor() {
         return secondMotor;
     }
 }

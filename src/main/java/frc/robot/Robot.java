@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Conveyor.ConveyorDeputeOiBinder;
+import frc.robot.Conveyor.Shuffleboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,10 +31,10 @@ public class Robot extends TimedRobot {
         } else {
         }
 
-        new DriverOi();
-        new DeputyOi();
+        new ConveyorDeputeOiBinder();
+        new ConveyorDeputeOiBinder();
 
-        new DriversShuffleboard();
+        new Shuffleboard();
     }
 
     /**
