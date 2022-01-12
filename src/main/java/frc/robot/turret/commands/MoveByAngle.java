@@ -6,14 +6,14 @@ import frc.robot.turret.Turret;
 import java.util.function.DoubleSupplier;
 
 public class MoveByAngle extends CommandBase {
+
     private Turret turret;
     private DoubleSupplier angleSupplier;
 
     public MoveByAngle(Turret turret, DoubleSupplier angleSupplier) {
         this.turret = turret;
         this.angleSupplier = angleSupplier;
-
-
+        addRequirements(turret);
     }
 
     @Override
