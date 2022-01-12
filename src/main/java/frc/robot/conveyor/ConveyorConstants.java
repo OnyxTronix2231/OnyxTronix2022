@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.Conveyor;
+package frc.robot.conveyor;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -15,10 +15,8 @@ package frc.robot.Conveyor;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class ConveyorConstants {
 
-    public static final int DRIVE_JOYSTICK_PORT = 0;
-    public static final int Deputy_JOYSTICK_PORT = 1;
     public static final int FIRST_MOTOR_ID = 0;
     public static final int SECOND_MOTOR_ID = 0;
 }

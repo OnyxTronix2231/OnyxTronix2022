@@ -29,23 +29,6 @@ public final class Main {
         RobotBase.startRobot(Robot::new);
     }
 
-    public static class ConveyorConstants {
-
-        public static final class ConveyorConstantsBase {
-            static final int FIRST_MOTOR_ID = 0;
-            static final int SECOND_MOTOR_ID = 0;
-        }
-
-        public static class Conveyor extends SubsystemBase {
-
-            private final Conveyor conveyor;
-
-            public Conveyor(Conveyor conveyor) {
-                this.conveyor = conveyor;
-            }
 
 
-
-        }
-    }
 }
