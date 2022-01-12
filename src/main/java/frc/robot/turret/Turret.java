@@ -1,10 +1,10 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static frc.robot.turret.TurretConstants.*;
 
 public class Turret extends SubsystemBase {
+
     private TurretComponents components;
 
     public Turret(TurretComponents turretComponents) {
@@ -58,7 +58,7 @@ public class Turret extends SubsystemBase {
         double fixed = deg % DEG_IN_ROTATION;
         if (fixed > MAX_DEG){
             fixed -= DEG_IN_ROTATION;
-        } else if (fixed < MIN_DEG){
+        } if (fixed < MIN_DEG){
             fixed += DEG_IN_ROTATION;
         } return fixed;
     }
