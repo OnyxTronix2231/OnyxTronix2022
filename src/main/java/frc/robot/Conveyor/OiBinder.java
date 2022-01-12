@@ -1,14 +1,13 @@
-package frc.robot;
+package frc.robot.Conveyor;
 
 import edu.wpi.first.wpilibj.XboxController;
+import static frc.robot.Conveyor.Constants.DRIVE_JOYSTICK_PORT;
 
-import static Constants.DRIVE_JOYSTICK_PORT;
-
-public class DriverOi {
+public class OiBinder {
 
     final XboxController xboxController;
 
-    public DriverOi() {
+    public OiBinder() {
         xboxController = new XboxController(DRIVE_JOYSTICK_PORT);
     }
 }
