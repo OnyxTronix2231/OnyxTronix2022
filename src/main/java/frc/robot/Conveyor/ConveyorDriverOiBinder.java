@@ -9,5 +9,7 @@ public class ConveyorDriverOiBinder {
 
     final XboxController xboxController;
 
-    public ConveyorDriverOiBinder() {xboxController = new XboxController(Deputy_JOYSTICK_PORT);}
+    public ConveyorDriverOiBinder() {
+        xboxController = new XboxController(Deputy_JOYSTICK_PORT);
+    }
 }

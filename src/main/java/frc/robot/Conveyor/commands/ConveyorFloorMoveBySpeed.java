@@ -5,15 +5,14 @@ import frc.robot.Conveyor.Conveyor;
 
 import java.util.function.DoubleSupplier;
 
-public class ConveyorTriggerMoveBySpeed extends CommandBase {
+public class ConveyorFloorMoveBySpeed extends CommandBase {
 
     private Conveyor conveyor;
     private DoubleSupplier doubleSupplier;
 
-
     @Override
     public void execute() {
-        conveyor.triggerBySpeed(doubleSupplier.getAsDouble());
+        conveyor.floorBySpeed(doubleSupplier.getAsDouble());
     }
 
     @Override

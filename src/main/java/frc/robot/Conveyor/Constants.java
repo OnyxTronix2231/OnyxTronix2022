@@ -19,6 +19,6 @@ public final class Constants {
 
     public static final int DRIVE_JOYSTICK_PORT = 0;
     public static final int Deputy_JOYSTICK_PORT = 1;
-    public static final int FIRST_MOTOR_ID=0;
-    public static final int SECOND_MOTOR_ID=0;
+    public static final int FIRST_MOTOR_ID = 0;
+    public static final int SECOND_MOTOR_ID = 0;
 }
