@@ -7,9 +7,10 @@ import sensors.Switch.Microswitch;
 
 public interface ClimberComponents {
 
-    WPI_TalonFX getMasterMotor();
 
-    IMotorController getSlaveMotor();
+    WPI_TalonFX getRailMotor();
+
+    WPI_TalonFX getArmMotor();
 
     DoubleSolenoid getSolenoid();
 

@@ -3,7 +3,6 @@ package frc.robot.climber;
 import static frc.robot.climber.ClimberConstants.BACKWARD_CHANNEL;
 import static frc.robot.climber.ClimberConstants.FORWARD_CHANNEL;
 
-import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -12,19 +11,18 @@ import sensors.Switch.Microswitch;
 
 public class ClimberComponentsBase implements ClimberComponents {
 
-    private WPI_TalonFX masterMotor;
-    private WPI_TalonFX slaveMotor;
+    private WPI_TalonFX railMotor;
+    private WPI_TalonFX armMotor;
     private DoubleSolenoid solenoid;
     private Microswitch outerMicroSwitch;
     private Microswitch innerMicroSwitch;
 
     public ClimberComponentsBase() {
-        masterMotor = new WPI_TalonFX(0);
-        masterMotor.configFactoryDefault();
+        railMotor = new WPI_TalonFX(0);
+        railMotor.configFactoryDefault();
 
-        slaveMotor = new WPI_TalonFX(1);
-        slaveMotor.configFactoryDefault();
-        slaveMotor.follow(masterMotor);
+        armMotor = new WPI_TalonFX(1);
+        armMotor.configFactoryDefault();
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
@@ -34,13 +32,13 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public WPI_TalonFX getMasterMotor() {
-        return masterMotor;
+    public WPI_TalonFX getRailMotor() {
+        return railMotor;
     }
 
     @Override
-    public IMotorController getSlaveMotor() {
-        return slaveMotor;
+    public WPI_TalonFX getArmMotor() {
+        return armMotor;
     }
 
     @Override

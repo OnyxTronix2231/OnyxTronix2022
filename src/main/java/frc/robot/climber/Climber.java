@@ -1,6 +1,5 @@
 package frc.robot.climber;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
@@ -11,12 +10,20 @@ public class Climber extends SubsystemBase {
         this.components = components;
     }
 
-    public void moveBySpeed(double speed) {
-        components.getMasterMotor().set(speed);
+    public void moveRailBySpeed(double speed) {
+        components.getRailMotor().set(speed);
     }
 
-    public void stopMotors() {
-        moveBySpeed(0);
+    public void stopRailMotor() {
+        moveRailBySpeed(0);
+    }
+
+    public void moveArmBySpeed(double speed) {
+        components.getArmMotor().set(speed);
+    }
+
+    public void stopArmMotor() {
+        moveArmBySpeed(0);
     }
 
     public boolean isInnerMicroSwitchOpen() {

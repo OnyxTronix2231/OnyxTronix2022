@@ -4,14 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.climber.Climber;
 
 import java.util.function.DoubleSupplier;
-// imports
 
-public class MoveClimberBySpeed extends CommandBase {
+public class MoveArmBySpeed extends CommandBase {
 
-    private final Climber climber; // הגדרת תכונות
+    private final Climber climber;
     private final DoubleSupplier speedSupplier;
 
-    public MoveClimberBySpeed(Climber climber, DoubleSupplier speedSupplier) {// constructor
+    public MoveArmBySpeed(Climber climber, DoubleSupplier speedSupplier) {
         this.climber = climber;
         this.speedSupplier = speedSupplier;
         addRequirements(climber);
@@ -19,11 +18,13 @@ public class MoveClimberBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        climber.moveBySpeed(speedSupplier.getAsDouble()); // when the command is executed the climber(rail) moves
+        climber.moveArmBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopMotors(); // when the command end, the motors should stop
+        climber.stopArmMotor();
     }
 }
+
+
