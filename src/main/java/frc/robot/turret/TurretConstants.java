@@ -13,10 +13,10 @@ public final class TurretConstants {
     public static final double MIN_DEG = 0; //TODO: Correct the number
 
     /*PID values*/
-    public static final int K_P = 0; //TODO: calibrate
-    public static final int K_I = 0; //TODO: calibrate
-    public static final int K_D = 0; //TODO: calibrate
-    public static final int K_F = 0; //TODO: calibrate
+    public static final int KP = 0; //TODO: calibrate
+    public static final int KI = 0; //TODO: calibrate
+    public static final int KD = 0; //TODO: calibrate
+    public static final int KF = 0; //TODO: calibrate
     public static final int MAX_ACC = 0; //TODO: calibrate
     public static final int CRUISE_VELOCITY = 0; //TODO: calibrate
     public static final int ACC_SMOTHING = 0; //TODO: calibrate
