@@ -1,7 +1,6 @@
-package Intake.commands;
+package frc.robot.Intake.commands;
 
-import Intake.Intake;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Intake.Intake;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import java.util.function.DoubleSupplier;
