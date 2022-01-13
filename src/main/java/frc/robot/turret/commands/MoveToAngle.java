@@ -6,8 +6,8 @@ import java.util.function.DoubleSupplier;
 
 public class MoveToAngle extends CommandBase {
 
-    private Turret turret;
-    private DoubleSupplier angleSupplier;
+    private final Turret turret;
+    private final DoubleSupplier angleSupplier;
 
     public MoveToAngle(Turret turret, DoubleSupplier angleSupplier) {
         this.turret = turret;
