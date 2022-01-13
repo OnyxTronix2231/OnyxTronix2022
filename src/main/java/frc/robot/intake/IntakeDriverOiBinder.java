@@ -1,4 +1,4 @@
-package frc.robot.Intake;
+package frc.robot.intake;
 
 public class IntakeDriverOiBinder {
 
