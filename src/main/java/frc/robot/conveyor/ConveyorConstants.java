@@ -17,6 +17,6 @@ package frc.robot.conveyor;
  */
 public final class ConveyorConstants {
 
-    public static final int FIRST_MOTOR_ID = 0;
-    public static final int SECOND_MOTOR_ID = 0;
+    public static final int TRIGGER_MOTOR_ID = 0;
+    public static final int LOADER_MOTOR_ID = 0;
 }

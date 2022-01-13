@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
 
-    private ConveyorComponents components;
+    private final ConveyorComponents components;
 
     public Conveyor(ConveyorComponents components) {
         this.components = components;
@@ -15,7 +15,7 @@ public class Conveyor extends SubsystemBase {
     }
 
     public void moveLoaderBySpeed(double speed) {
-        components.getFloorMotor().set(speed);
+        components.getLoaderMotor().set(speed);
     }
 
     public void stop() {
