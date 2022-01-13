@@ -11,9 +11,9 @@ import static frc.robot.turret.TurretConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {
 
-    private WPI_TalonFX motor;
-    private CtreEncoder encoder;
-    private CtreMotionMagicController controller;
+    private final WPI_TalonFX motor;
+    private final CtreEncoder encoder;
+    private final CtreMotionMagicController controller;
 
     public TurretComponentsBase(){
         motor = new WPI_TalonFX(TURRET_MOTOR_PORT);
@@ -23,7 +23,7 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setSelectedSensorPosition( motor.getSensorCollection().getIntegratedSensorAbsolutePosition() , 0, 0);
 
         encoder = new CtreEncoder(motor);
-        controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(K_P, K_I, K_D, K_F), MAX_ACC, CRUISE_VELOCITY, ACC_SMOTHING);
+        controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOTHING);
     }
 
     @Override

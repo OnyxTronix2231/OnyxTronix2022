@@ -7,6 +7,8 @@ import sensors.counter.Counter;
 public interface TurretComponents {
 
     WPI_TalonFX getMotor();
+
     Counter getEncoder();
+
     CtreMotionMagicController getController();
 }

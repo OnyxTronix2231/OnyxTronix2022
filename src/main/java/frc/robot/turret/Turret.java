@@ -5,7 +5,7 @@ import static frc.robot.turret.TurretConstants.*;
 
 public class Turret extends SubsystemBase {
 
-    private TurretComponents components;
+    private final TurretComponents components;
 
     public Turret(TurretComponents turretComponents) {
         this.components = turretComponents;
