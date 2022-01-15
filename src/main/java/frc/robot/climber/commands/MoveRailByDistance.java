@@ -7,10 +7,11 @@ import java.util.function.DoubleSupplier;
 
 
 public class MoveRailByDistance extends CommandBase {
+
     private final Climber climber;
     private final DoubleSupplier distanceSupplier;
 
-    public MoveRailByDistance(Climber climber,DoubleSupplier distanceSupplier) {
+    public MoveRailByDistance(Climber climber, DoubleSupplier distanceSupplier) {
         this.climber = climber;
         this.distanceSupplier = distanceSupplier;
         addRequirements(this.climber);
