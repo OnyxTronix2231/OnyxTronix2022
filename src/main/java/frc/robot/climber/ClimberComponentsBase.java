@@ -1,13 +1,17 @@
 package frc.robot.climber;
 
-import static frc.robot.climber.ClimberConstants.BACKWARD_CHANNEL;
-import static frc.robot.climber.ClimberConstants.FORWARD_CHANNEL;
-
+import com.ctre.phoenix.motorcontrol.can.MotControllerJNI;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import pid.CtreMotionMagicController;
+import pid.PIDFTerms;
 import sensors.Switch.Microswitch;
+import sensors.counter.Counter;
+import sensors.counter.CtreEncoder;
+
+import static frc.robot.climber.ClimberConstants.*;
 
 public class ClimberComponentsBase implements ClimberComponents {
 
@@ -16,6 +20,8 @@ public class ClimberComponentsBase implements ClimberComponents {
     private DoubleSolenoid solenoid;
     private Microswitch outerMicroSwitch;
     private Microswitch innerMicroSwitch;
+    private CtreMotionMagicController motionMagicController;
+    private CtreEncoder encoder;
 
     public ClimberComponentsBase() {
         railMotor = new WPI_TalonFX(0);
@@ -29,6 +35,22 @@ public class ClimberComponentsBase implements ClimberComponents {
         outerMicroSwitch = new Microswitch(new DigitalInput(0));
 
         innerMicroSwitch = new Microswitch(new DigitalInput(1));
+
+        encoder = new CtreEncoder(armMotor);
+
+        motionMagicController = new CtreMotionMagicController(armMotor, encoder, new PIDFTerms(kP,kI,kD,kF),ACCELERATION,
+                CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
+
+    }
+
+    @Override
+    public CtreMotionMagicController getMotionMagicController() {
+        return motionMagicController;
+    }
+
+    @Override
+    public Counter getCounter() {
+        return encoder;
     }
 
     @Override
