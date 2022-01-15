@@ -1,23 +1,45 @@
 package frc.robot.turret;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.turret.TurretConstants.*;
 
 public class Turret extends SubsystemBase {
 
     private final TurretComponents components;
+    private final NetworkTableEntry kP;
+    private final NetworkTableEntry kI;
+    private final NetworkTableEntry kD;
+    private final NetworkTableEntry kF;
 
     public Turret(TurretComponents turretComponents) {
         this.components = turretComponents;
 
-        this.components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
-        this.components.getMotor().configForwardSoftLimitEnable(true);
-        this.components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
-        this.components.getMotor().configReverseSoftLimitEnable(true);
+        components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
+        components.getMotor().configForwardSoftLimitEnable(true);
+        components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
+        components.getMotor().configReverseSoftLimitEnable(true);
+
+        Shuffleboard.getTab("Turret").addNumber("number", this::getCurrentAngle); //שופל בורד.
+        kP = Shuffleboard.getTab("Turret").add("set kP", components.getController().getPIDFTerms().getKp()).getEntry();
+        kI = Shuffleboard.getTab("Turret").add("set kI", components.getController().getPIDFTerms().getKi()).getEntry();
+        kD = Shuffleboard.getTab("Turret").add("set kD", components.getController().getPIDFTerms().getKd()).getEntry();
+        kF = Shuffleboard.getTab("Turret").add("set kF", components.getController().getPIDFTerms().getKf()).getEntry();
+
+    }
+
+    @Override
+    public void periodic() {
+        components.getController().setPIDFTerms(
+                kP.getDouble(components.getController().getPIDFTerms().getKp()),
+                kI.getDouble(components.getController().getPIDFTerms().getKi()),
+                kD.getDouble(components.getController().getPIDFTerms().getKd()),
+                kF.getDouble(components.getController().getPIDFTerms().getKf()));
     }
 
     public double getCurrentAngle(){
-        return fixDeg(encToDeg(components.getEncoder().getCount()));
+        return encToDeg(components.getEncoder().getCount());
     }
 
     public void stop() {
@@ -64,6 +86,6 @@ public class Turret extends SubsystemBase {
     }
 
     public boolean IsOnTarget(){
-        return components.getController().isOnTarget(encToDeg(TOLERANCE_DEGREE));
+        return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
     }
 }

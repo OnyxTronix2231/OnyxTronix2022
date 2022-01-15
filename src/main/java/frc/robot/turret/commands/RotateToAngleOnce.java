@@ -4,19 +4,14 @@ import frc.robot.turret.Turret;
 
 import java.util.function.DoubleSupplier;
 
-public class MoveToAngleOnce extends MoveToAngle{
+public class RotateToAngleOnce extends RotateToAngle {
 
-    public MoveToAngleOnce(Turret turret, DoubleSupplier angleSupplier) {
+    public RotateToAngleOnce(Turret turret, DoubleSupplier angleSupplier) {
         super(turret, angleSupplier);
     }
 
     @Override
     public boolean isFinished() {
         return turret.IsOnTarget();
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        super.end(interrupted);
     }
 }

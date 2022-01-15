@@ -10,8 +10,8 @@ public final class TurretConstants {
     public static final int TURRET_MOTOR_PORT = 0; //TODO: Correct the number
     public static final int CONVERSION_RATE = 1; //TODO: Correct the number
     public static final double MAX_DEG = 0; //TODO: Correct the number
-    public static final double MIN_DEG = 0;
-    static final double TOLERANCE_DEGREE = 1;
+    public static final double MIN_DEG = 0; //TODO: Correct the number
+    static final double TOLERANCE_DEGREE = 1; //TODO: Correct the number
 
     /*PID values*/
     public static final int KP = 0; //TODO: calibrate
@@ -21,4 +21,8 @@ public final class TurretConstants {
     public static final int MAX_ACC = 0; //TODO: calibrate
     public static final int CRUISE_VELOCITY = 0; //TODO: calibrate
     public static final int ACC_SMOTHING = 0; //TODO: calibrate
+
+    /*system settings*/
+    public static final double ROTATION_SETBACK=0.3;
+
 }
