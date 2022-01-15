@@ -1,5 +1,7 @@
 package frc.robot.climber.commands;
 
+import static frc.robot.climber.commands.ClimberCommandConstants.DISCONNECT_DISTANCE;
+
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import frc.robot.climber.Climber;
 
@@ -15,7 +17,8 @@ public class ClimbByPhase extends ConditionalCommand {
                 andThen(new MoveArmByDistance(climber, secondDistanceSupplier)),
                 new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterMicroSwitchOpen).
                         andThen(new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
-                                climber::isInnerMicroSwitchOpen)), () -> phase == 0);
+                                climber::isInnerMicroSwitchOpen)).andThen(new MoveRailByDistance(climber,
+                                () ->DISCONNECT_DISTANCE)), () -> phase == 0);
     }
 
     @Override
