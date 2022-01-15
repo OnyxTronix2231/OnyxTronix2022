@@ -62,4 +62,8 @@ public class Turret extends SubsystemBase {
             fixed += DEG_IN_ROTATION;
         } return fixed;
     }
+
+    public boolean IsOnTarget(){
+        return components.getController().isOnTarget(encToDeg(TOLERANCE_DEGREE));
+    }
 }
