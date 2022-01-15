@@ -11,9 +11,13 @@ import sensors.counter.Counter;
 
 public interface ClimberComponents {
 
-    CtreMotionMagicController getMotionMagicController();
+    CtreMotionMagicController getArmMotionMagicController();
 
-    Counter getCounter();
+    CtreMotionMagicController getRailMotionMagicController();
+
+    Counter getArmCounter();
+
+    Counter getRailCounter();
 
     WPI_TalonFX getRailMotor();
 

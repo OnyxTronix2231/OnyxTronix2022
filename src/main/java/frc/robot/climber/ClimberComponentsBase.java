@@ -1,6 +1,5 @@
 package frc.robot.climber;
 
-import com.ctre.phoenix.motorcontrol.can.MotControllerJNI;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -20,9 +19,10 @@ public class ClimberComponentsBase implements ClimberComponents {
     private DoubleSolenoid solenoid;
     private Microswitch outerMicroSwitch;
     private Microswitch innerMicroSwitch;
-    private CtreMotionMagicController motionMagicController;
-    private CtreEncoder encoder;
-
+    private CtreMotionMagicController armMotionMagicController;
+    private CtreMotionMagicController railMotionMagicController;
+    private CtreEncoder armEncoder;
+    private CtreEncoder railEncoder;
     public ClimberComponentsBase() {
         railMotor = new WPI_TalonFX(0);
         railMotor.configFactoryDefault();
@@ -36,23 +36,34 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         innerMicroSwitch = new Microswitch(new DigitalInput(1));
 
-        encoder = new CtreEncoder(armMotor);
+        armEncoder = new CtreEncoder(armMotor);
 
-        motionMagicController = new CtreMotionMagicController(armMotor, encoder, new PIDFTerms(kP,kI,kD,kF),ACCELERATION,
-                CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
+        railEncoder = new CtreEncoder(railMotor);
 
+        armMotionMagicController = new CtreMotionMagicController(armMotor, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
+                ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
+        railMotionMagicController = new CtreMotionMagicController(railMotor, railEncoder, new PIDFTerms(RAIL_kP,RAIL_kI,RAIL_kD,RAIL_kF), RAIL_ACCELERATION,
+                RAIL_CRUISE_VELOCITY,RAIL_ACCELERATION_SMOOTHING);
     }
 
     @Override
-    public CtreMotionMagicController getMotionMagicController() {
-        return motionMagicController;
+    public CtreMotionMagicController getArmMotionMagicController() {
+        return armMotionMagicController;
     }
 
     @Override
-    public Counter getCounter() {
-        return encoder;
+    public CtreMotionMagicController getRailMotionMagicController() {
+        return railMotionMagicController;
     }
 
+    @Override
+    public Counter getArmCounter() {
+        return armEncoder;
+    }
+    @Override
+    public Counter getRailCounter() {
+        return railEncoder;
+    }
     @Override
     public WPI_TalonFX getRailMotor() {
         return railMotor;

@@ -5,12 +5,12 @@ import frc.robot.climber.Climber;
 
 import java.util.function.DoubleSupplier;
 
-public class MoveArmByDistance extends CommandBase {
 
+public class MoveRailByDistance extends CommandBase {
     private final Climber climber;
     private final DoubleSupplier distanceSupplier;
 
-    public MoveArmByDistance(Climber climber, DoubleSupplier distanceSupplier) {
+    public MoveRailByDistance(Climber climber,DoubleSupplier distanceSupplier) {
         this.climber = climber;
         this.distanceSupplier = distanceSupplier;
         addRequirements(this.climber);
@@ -18,17 +18,16 @@ public class MoveArmByDistance extends CommandBase {
 
     @Override
     public void initialize() {
-        climber.initMoveArmByDistance(distanceSupplier.getAsDouble());
+        climber.initMoveRailByDistance(distanceSupplier.getAsDouble());
     }
 
     @Override
     public void execute() {
-        climber.updateMoveArmByDistance(distanceSupplier.getAsDouble());
+        climber.updateMoveRailByDistance(distanceSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopArmMotor();
+        climber.stopRailMotor();
     }
 }
-
