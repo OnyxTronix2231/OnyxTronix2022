@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
 import java.util.function.DoubleSupplier;
 
-public class MoveToAngle extends CommandBase {
+public class RotateToAngle extends CommandBase {
 
     protected final Turret turret;
     protected final DoubleSupplier angleSupplier;
 
-    public MoveToAngle(Turret turret, DoubleSupplier angleSupplier) {
+    public RotateToAngle(Turret turret, DoubleSupplier angleSupplier) {
         this.turret = turret;
         this.angleSupplier = angleSupplier;
         addRequirements(turret);
