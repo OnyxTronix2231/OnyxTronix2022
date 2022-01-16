@@ -2,6 +2,7 @@ package frc.robot.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import pid.CtreMotionMagicController;
 
 public interface DriveTrainComponents {
 
@@ -14,4 +15,5 @@ public interface DriveTrainComponents {
     WPI_TalonFX getRightSlaveMotor();
 
     DifferentialDrive getDifferentialDrive();
+
 }

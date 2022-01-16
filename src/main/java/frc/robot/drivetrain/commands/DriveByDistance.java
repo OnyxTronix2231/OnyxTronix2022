@@ -1,9 +1,10 @@
 package frc.robot.drivetrain.commands;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.drivetrain.DriveTrain;
 
-public class DriveByDistance extends InstantCommand {
+public class DriveByDistance extends CommandBase {
 
     private final double distance;
     private final DriveTrain driveTrain;

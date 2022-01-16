@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import pid.CtreMotionMagicController;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
@@ -43,6 +44,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configOpenloopRamp(RAMP_TIME);
+
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
     }
