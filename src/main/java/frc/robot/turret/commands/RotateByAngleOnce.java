@@ -11,6 +11,6 @@ public class RotateByAngleOnce extends RotateByAngle {
 
     @Override
     public boolean isFinished() {
-        return turret.IsOnTarget();
+        return turret.isOnTarget();
     }
 }
