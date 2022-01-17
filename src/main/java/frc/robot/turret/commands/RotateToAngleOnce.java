@@ -1,7 +1,6 @@
 package frc.robot.turret.commands;
 
 import frc.robot.turret.Turret;
-
 import java.util.function.DoubleSupplier;
 
 public class RotateToAngleOnce extends RotateToAngle {
@@ -12,6 +11,6 @@ public class RotateToAngleOnce extends RotateToAngle {
 
     @Override
     public boolean isFinished() {
-        return turret.IsOnTarget();
+        return turret.isOnTarget();
     }
 }
