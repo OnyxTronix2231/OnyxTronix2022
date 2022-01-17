@@ -6,9 +6,7 @@ import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
-
 import static frc.robot.turret.TurretConstants.*;
-
 public class TurretComponentsBase implements TurretComponents {
 
     private final WPI_TalonFX motor;
@@ -18,7 +16,6 @@ public class TurretComponentsBase implements TurretComponents {
     public TurretComponentsBase(){
         motor = new WPI_TalonFX(TURRET_MOTOR_PORT);
         motor.configFactoryDefault();
-
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
         motor.setSelectedSensorPosition( motor.getSensorCollection().getIntegratedSensorAbsolutePosition() , 0, 0);
 

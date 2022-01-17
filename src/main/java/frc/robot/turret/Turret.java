@@ -14,14 +14,10 @@ public class Turret extends SubsystemBase {
     private final NetworkTableEntry kF;
 
     public Turret(TurretComponents turretComponents) {
-        this.components = turretComponents;
+        components = turretComponents;
+        configMotorLimits();
 
-        components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
-        components.getMotor().configForwardSoftLimitEnable(true);
-        components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
-        components.getMotor().configReverseSoftLimitEnable(true);
-
-        Shuffleboard.getTab("Turret").addNumber("number", this::getCurrentAngle); //שופל בורד.
+        Shuffleboard.getTab("Turret").addNumber("number", this::getCurrentAngle);
         kP = Shuffleboard.getTab("Turret").add("set kP", components.getController().getPIDFTerms().getKp()).getEntry();
         kI = Shuffleboard.getTab("Turret").add("set kI", components.getController().getPIDFTerms().getKi()).getEntry();
         kD = Shuffleboard.getTab("Turret").add("set kD", components.getController().getPIDFTerms().getKd()).getEntry();
@@ -36,6 +32,13 @@ public class Turret extends SubsystemBase {
                 kI.getDouble(components.getController().getPIDFTerms().getKi()),
                 kD.getDouble(components.getController().getPIDFTerms().getKd()),
                 kF.getDouble(components.getController().getPIDFTerms().getKf()));
+    }
+
+    public void configMotorLimits(){
+        components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
+        components.getMotor().configForwardSoftLimitEnable(true);
+        components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
+        components.getMotor().configReverseSoftLimitEnable(true);
     }
 
     public double getCurrentAngle(){
