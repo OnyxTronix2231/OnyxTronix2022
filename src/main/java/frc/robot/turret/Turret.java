@@ -34,14 +34,14 @@ public class Turret extends SubsystemBase {
                 kF.getDouble(components.getController().getPIDFTerms().getKf()));
     }
 
-    public void configMotorLimits(){
+    public void configMotorLimits() {
         components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
         components.getMotor().configForwardSoftLimitEnable(true);
         components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
         components.getMotor().configReverseSoftLimitEnable(true);
     }
 
-    public double getCurrentAngle(){
+    public double getCurrentAngle() {
         return encToDeg(components.getEncoder().getCount());
     }
 
@@ -88,7 +88,7 @@ public class Turret extends SubsystemBase {
         } return fixed;
     }
 
-    public boolean IsOnTarget(){
+    public boolean isOnTarget() {
         return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
     }
 }
