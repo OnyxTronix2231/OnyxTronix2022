@@ -28,27 +28,27 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     CtreEncoder rightEncoder;
 
     public DriveTrainComponentsBase() {
-        leftMasterMotor = new WPI_TalonFX(0);
+        leftMasterMotor = new WPI_TalonFX(3);
         leftMasterMotor.configFactoryDefault();
         leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
         leftMasterMotor.configOpenloopRamp(RAMP_TIME);
 
-        leftSlaveMotor = new WPI_TalonFX(0);
+        leftSlaveMotor = new WPI_TalonFX(4);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configAllSettings(getFalconConfiguration());
         leftSlaveMotor.setNeutralMode(NeutralMode.Brake);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
-        rightMasterMotor = new WPI_TalonFX(0);
+        rightMasterMotor = new WPI_TalonFX(1);
         rightMasterMotor.configFactoryDefault();
         rightMasterMotor.configAllSettings(getFalconConfiguration());
         rightMasterMotor.setInverted(true);
         rightMasterMotor.setNeutralMode(NeutralMode.Brake);
         rightMasterMotor.configOpenloopRamp(RAMP_TIME);
 
-        rightSlaveMotor = new WPI_TalonFX(0);
+        rightSlaveMotor = new WPI_TalonFX(2);
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configAllSettings(getFalconConfiguration());
         rightSlaveMotor.setInverted(true);
@@ -62,6 +62,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         pigeonIMU = new NormalizedPigeonIMU(PIGEON_PORT);
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
+        differentialDrive.setSafetyEnabled(false);
 
         leftEncoder = new CtreEncoder(leftMasterMotor);
         rightEncoder = new CtreEncoder(rightMasterMotor);
@@ -129,12 +130,12 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
 
     private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.peakOutputForward = MAX_OUTPUT_FORWARD;
-        config.peakOutputReverse = MAX_OUTPUT_REVERSE;
-        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
-        config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
-        config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
-        config.supplyCurrLimit.enable = false;
+//        config.peakOutputForward = MAX_OUTPUT_FORWARD;
+//        config.peakOutputReverse = MAX_OUTPUT_REVERSE;
+//        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
+//        config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
+//        config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
+//        config.supplyCurrLimit.enable = false;
         return config;
     }
 }

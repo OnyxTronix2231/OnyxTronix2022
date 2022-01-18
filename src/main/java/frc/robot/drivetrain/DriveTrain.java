@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 import static frc.robot.drivetrain.DriveTrainConstants.PERIMETER_METER;
-import static frc.robot.drivetrain.DriveTrainConstants.ENCODER_CPR;
+import static frc.robot.drivetrain.DriveTrainConstants.ENCODER_UNITS_PER_ROTATION;
 
 public class DriveTrain extends SubsystemBase {
 
@@ -21,6 +21,7 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
+        System.out.println("contractor");
     }
 
     public void arcadeDrive(double speed, double rotation) {
@@ -55,6 +56,7 @@ public class DriveTrain extends SubsystemBase {
 
     public void inItMoveByEncoderUnits(double encoderUnits){
         driveTrainComponents.getLeftController().setSetpoint(encoderUnits);
+        System.out.println(encoderUnits);
         driveTrainComponents.getRightController().setSetpoint(encoderUnits);
         driveTrainComponents.getLeftController().enable();
         driveTrainComponents.getRightController().enable();
@@ -73,13 +75,13 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getOdometry().getPoseMeters();
     }
 
-    @Override
-    public void periodic() {
-        driveTrainComponents.getOdometry().update(
-                Rotation2d.fromDegrees(getHeading()),
-                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
-    }
+//    @Override
+//    public void periodic() {
+//        driveTrainComponents.getOdometry().update(
+//                Rotation2d.fromDegrees(getHeading()),
+//                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+//                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
+//    }
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(encoderUnitsDeciSecToMetersSec(
@@ -88,7 +90,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     private double encoderUnitsToMeters(double units) {
-        return units * PERIMETER_METER / ENCODER_CPR;
+        return units * PERIMETER_METER / ENCODER_UNITS_PER_ROTATION;
     }
 
     private double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {

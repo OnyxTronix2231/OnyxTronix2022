@@ -11,7 +11,7 @@ public class DriveBySpeed extends CommandBase {
     private final DoubleSupplier rotationSupplier;
     private final DriveTrain driveTrain;
 
-    public DriveBySpeed(DoubleSupplier speedSupplier, DoubleSupplier rotationSupplier, DriveTrain driveTrain) {
+    public DriveBySpeed(DriveTrain driveTrain, DoubleSupplier speedSupplier, DoubleSupplier rotationSupplier) {
         this.speedSupplier = speedSupplier;
         this.rotationSupplier = rotationSupplier;
         this.driveTrain = driveTrain;

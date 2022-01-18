@@ -13,7 +13,7 @@ public final class DriveTrainConstants {
     public static final double RAMP_TIME = 0.3;
     static final int DECISECOND_IN_SECOND = 10;
     static final int ENCODER_UNITS = 2048;
-    static final double CONVERSION_RATE = 0; //
+    static final double CONVERSION_RATE = 1;
     public static final double ENCODER_UNITS_TO_METER = 1;
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
@@ -29,7 +29,7 @@ public final class DriveTrainConstants {
     static final double tolerance = 0.05;
 
     public static final double TRAJECTORY_P = 0;
-    public static final double ENCODER_CPR = ENCODER_UNITS * CONVERSION_RATE;
+    public static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
     public static final double MAX_SPEED_METERS_PER_SECOND = 0;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 0;
     public static final double TRACKWIDTH_METERS = 0;
@@ -43,12 +43,12 @@ public final class DriveTrainConstants {
 
     public static final class Calculations {
 
-        public static double encoderUnitsToMeter(double encoderUnites){
-            return 0.0;
+        static double encoderUnitsToMeter(double encodeUnits){
+            return (encodeUnits / ENCODER_UNITS_PER_ROTATION) * WHEEL_DIAMETER_METER * Math.PI;
         }
 
-        public static double meterToEncoderUnits(double meters){
-            return 0.0;
+        static double meterToEncoderUnits(double meters){
+            return meters * ENCODER_UNITS_PER_ROTATION;
         }
 
     }
