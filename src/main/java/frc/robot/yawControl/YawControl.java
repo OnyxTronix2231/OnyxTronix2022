@@ -12,11 +12,11 @@ public class YawControl extends Turret {
         this.driveTrain = driveTrain;
     }
     public double getTurretAngleRTF () {
-        return Math.abs(getCurrentAngle() - driveTrain.getRobotAngle());
+        return Math.abs(getCurrentAngle() - driveTrain.getHedding());
     }
 
     public double getAngleRTRToFixAngleRTF( double angleRTF) {
         // this func is correct if both systems enlarge the angle by rotating to the same side
-        return angleRTF - driveTrain.getRobotAngle();
+        return angleRTF - driveTrain.getHedding();
     }
 }
