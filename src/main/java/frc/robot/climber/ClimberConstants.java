@@ -21,7 +21,9 @@ public class ClimberConstants {
     static final int RAIL_CRUISE_VELOCITY = 0;
     static final int RAIL_ACCELERATION_SMOOTHING = 0;
     static final int RAIL_METERS_PER_ROUND = 1;
-
+    static final double ARM_DISTANCE = 1;
+    static final double ARM_DISTANCE_2 = 1;
+    static final double PERCENT_OUTPUT = 0.8;
     static class Calculations {
 
         static double armEncoderUnitsToMeter(double encoderUnits) {
