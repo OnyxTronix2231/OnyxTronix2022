@@ -23,6 +23,7 @@ public class ClimberComponentsBase implements ClimberComponents {
     private CtreMotionMagicController railMotionMagicController;
     private CtreEncoder armEncoder;
     private CtreEncoder railEncoder;
+
     public ClimberComponentsBase() {
         railMotor = new WPI_TalonFX(0);
         railMotor.configFactoryDefault();
@@ -42,8 +43,8 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         armMotionMagicController = new CtreMotionMagicController(armMotor, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        railMotionMagicController = new CtreMotionMagicController(railMotor, railEncoder, new PIDFTerms(RAIL_kP,RAIL_kI,RAIL_kD,RAIL_kF), RAIL_ACCELERATION,
-                RAIL_CRUISE_VELOCITY,RAIL_ACCELERATION_SMOOTHING);
+        railMotionMagicController = new CtreMotionMagicController(railMotor, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
+                RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
     }
 
     @Override
@@ -60,10 +61,12 @@ public class ClimberComponentsBase implements ClimberComponents {
     public Counter getArmCounter() {
         return armEncoder;
     }
+
     @Override
     public Counter getRailCounter() {
         return railEncoder;
     }
+
     @Override
     public WPI_TalonFX getRailMotor() {
         return railMotor;
@@ -88,5 +91,4 @@ public class ClimberComponentsBase implements ClimberComponents {
     public Microswitch getInnerMicroSwitch() {
         return innerMicroSwitch;
     }
-
 }

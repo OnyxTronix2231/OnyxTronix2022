@@ -33,6 +33,7 @@ public class ClimberConstants {
         static double armMeterToEncoderUnits(double meters) {
             return (meters / ARM_METERS_PER_ROUND) * ENCODER_UNITS_PER_ROUND;
         }
+
         static double railEncoderUnitsToMeter(double encoderUnits) {
             return (encoderUnits / ENCODER_UNITS_PER_ROUND) * RAIL_METERS_PER_ROUND;
         }

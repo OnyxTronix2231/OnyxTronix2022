@@ -2,7 +2,8 @@ package frc.robot.climber;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.climber.ClimberConstants.Calculations.*;
+import static frc.robot.climber.ClimberConstants.Calculations.armMeterToEncoderUnits;
+import static frc.robot.climber.ClimberConstants.Calculations.railMeterToEncoderUnits;
 
 public class Climber extends SubsystemBase {
 
@@ -21,6 +22,7 @@ public class Climber extends SubsystemBase {
     public void updateMoveArmByDistance(double distance) {
         components.getArmMotionMagicController().update(armMeterToEncoderUnits(distance));
     }
+
     public void initMoveRailByDistance(double distance) {
         components.getRailMotionMagicController().setSetpoint(railMeterToEncoderUnits(distance));
         components.getRailMotionMagicController().enable();
