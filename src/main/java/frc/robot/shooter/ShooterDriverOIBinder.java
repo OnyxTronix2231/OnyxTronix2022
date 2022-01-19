@@ -10,7 +10,7 @@ public class ShooterDriverOIBinder {
 
     public ShooterDriverOIBinder(Shooter shooter, Trigger shooterTrigger){
         shooterTrigger.whileActiveContinuous(new ShootBySpeed(shooter,SPEED));
-        shooterTrigger.whileActiveContinuous(new ShootByRPM_PID(shooter,))
+        shooterTrigger.whileActiveContinuous(new ShootByRPM_PID(shooter,SPEED));
     }
 
 }
