@@ -7,5 +7,6 @@ public class LocateVision extends ConditionalCommand {
 
     public LocateVision(Turret turret, Vision vision) {
         super(new RotateByVision(turret, vision), new RotateToUnseenVision(turret), ()-> vision.hasTarget());
+        addRequirements(turret, vision);
     }
 }

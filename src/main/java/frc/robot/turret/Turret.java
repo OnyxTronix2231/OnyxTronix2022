@@ -18,10 +18,14 @@ public class Turret extends SubsystemBase {
         configMotorLimits();
 
         Shuffleboard.getTab("Turret").addNumber("number", this::getCurrentAngle);
-        kP = Shuffleboard.getTab("Turret").add("set kP", components.getController().getPIDFTerms().getKp()).getEntry();
-        kI = Shuffleboard.getTab("Turret").add("set kI", components.getController().getPIDFTerms().getKi()).getEntry();
-        kD = Shuffleboard.getTab("Turret").add("set kD", components.getController().getPIDFTerms().getKd()).getEntry();
-        kF = Shuffleboard.getTab("Turret").add("set kF", components.getController().getPIDFTerms().getKf()).getEntry();
+        kP = Shuffleboard.getTab("Turret").add("set kP",
+                components.getController().getPIDFTerms().getKp()).getEntry();
+        kI = Shuffleboard.getTab("Turret").add("set kI",
+                components.getController().getPIDFTerms().getKi()).getEntry();
+        kD = Shuffleboard.getTab("Turret").add("set kD",
+                components.getController().getPIDFTerms().getKd()).getEntry();
+        kF = Shuffleboard.getTab("Turret").add("set kF",
+                components.getController().getPIDFTerms().getKf()).getEntry();
 
     }
 
