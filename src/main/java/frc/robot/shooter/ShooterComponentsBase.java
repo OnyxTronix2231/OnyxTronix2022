@@ -1,7 +1,6 @@
 package frc.robot.shooter;
 
 import com.ctre.phoenix.motorcontrol.IMotorController;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
@@ -14,25 +13,25 @@ import static frc.robot.shooter.ShooterConstants.*;
 
 public class ShooterComponentsBase implements ShooterComponents{
 
-    private WPI_TalonFX masterMotor;
-    private WPI_TalonFX slaveMotor;
+    private WPI_TalonSRX masterMotor;
+    private WPI_TalonSRX slaveMotor;
     private CtreEncoder encoder;
     private CtrePIDController controller;
 
     public ShooterComponentsBase(){
-        masterMotor = new WPI_TalonFX(MASTER_MOTOR_ID);
+        masterMotor = new WPI_TalonSRX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
-        slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
+        slaveMotor = new WPI_TalonSRX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
         encoder = new CtreEncoder(masterMotor);
         controller = new CtrePIDController(masterMotor, encoder,
-                new PIDFTerms(PIDF_P,PIDF_I,PIDF_D,PIDF_F), PIDControlMode.Velocity);
+                new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
     }
 
     @Override
-    public WPI_TalonFX getMasterMotor() {
+    public WPI_TalonSRX getMasterMotor() {
         return masterMotor;
     }
 

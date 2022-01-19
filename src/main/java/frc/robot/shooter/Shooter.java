@@ -2,8 +2,8 @@ package frc.robot.shooter;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.shooter.ShooterConstants.DECISECONDSPERMINUTE;
-import static frc.robot.shooter.ShooterConstants.ENCODERUNITSPERROUND;
+import static frc.robot.shooter.ShooterConstants.DECI_SECONDS_PER_MINUTE;
+import static frc.robot.shooter.ShooterConstants.ENCODER_UNITS_PER_ROUND;
 
 public class Shooter extends SubsystemBase {
 
@@ -18,7 +18,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public double rpmToEncoderUnitsInDecisecond(double rpm){
-        return (rpm*ENCODERUNITSPERROUND)/DECISECONDSPERMINUTE;
+        return (rpm* ENCODER_UNITS_PER_ROUND)/ DECI_SECONDS_PER_MINUTE;
     }
 
     public void initSetPIDSpeed(double rpm){
