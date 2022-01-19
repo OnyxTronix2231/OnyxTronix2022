@@ -22,6 +22,8 @@ public class RotateToUnseenVision extends CommandBase {
         } else if (angle <= (MAX_DEG - DEG_IN_ROTATION)) {
             currentGoal = CurrentGoal.gotoMax;
         }
+
+        addRequirements(turret);
     }
 
     @Override
@@ -65,19 +67,5 @@ public class RotateToUnseenVision extends CommandBase {
                     turret.updateMoveToDegree(MIN_DEG);
                 }
         }
-    }
-}
-
-enum CurrentGoal {
-
-    goto180(1),
-    goto180m(2),
-    gotoMax(3),
-    gotoMin(4);
-
-    final int value;
-
-    CurrentGoal(int value) {
-        this.value = value;
     }
 }
