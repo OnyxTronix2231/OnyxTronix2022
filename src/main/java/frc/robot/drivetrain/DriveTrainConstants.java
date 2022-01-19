@@ -13,16 +13,19 @@ public final class DriveTrainConstants {
     public static final double RAMP_TIME = 0.3;
     static final int DECISECOND_IN_SECOND = 10;
     static final int ENCODER_UNITS = 2048;
+    static final int DECISECOND_PER_MINUTE = 600;
     static final double CONVERSION_RATE = 1;
     public static final double ENCODER_UNITS_TO_METER = 1;
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
     public static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final int PIGEON_PORT = 0;
+    static final double MAX_VELOCITY = 18000;
+    static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
     static final double kP = 0;
     static final double kI = 0;
     static final double kD = 0;
-    static final double kF = 0;
+    static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
     static final int acceleration = 0;
     static final int cruiseVelocity = 0;
     static final int accelerationSmoothing = 0;
@@ -33,12 +36,12 @@ public final class DriveTrainConstants {
     public static final double MAX_SPEED_METERS_PER_SECOND = 0;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 0;
     public static final double TRACKWIDTH_METERS = 0;
-    private static final double KS = 0;
-    private static final double KV = 0;
-    private static final double KA = 0;
+    private static final double kS = 0;
+    private static final double kV = 0;
+    private static final double kA = 0;
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
-    public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
+    public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(kS, kV, kA);
 
 
     public static final class Calculations {

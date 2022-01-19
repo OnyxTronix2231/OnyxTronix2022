@@ -7,6 +7,8 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -19,9 +21,16 @@ public class DriveTrain extends SubsystemBase {
 
     private final DriveTrainComponents driveTrainComponents;
 
+
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         System.out.println("contractor");
+        Shuffleboard.getTab("Drivetrain")
+                .addNumber("LEFT DRIVE ENCODER",
+                        () -> driveTrainComponents.getLeftEncoder().getRate());
+        Shuffleboard.getTab("Drivetrain")
+                .addNumber("RIGHT DRIVE ENCODER",
+                        () -> driveTrainComponents.getRightEncoder().getRate());
     }
 
     public void arcadeDrive(double speed, double rotation) {
@@ -67,6 +76,7 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getRightController().update(encoderUnits);
     }
 
+
     public boolean isOnTarget(){
         return driveTrainComponents.getRightController().isOnTarget(tolerance);
     }
@@ -95,6 +105,10 @@ public class DriveTrain extends SubsystemBase {
 
     private double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
         return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
+    }
+    private double robotAcceleration(double time) {
+        return MAX_VELOCITY/time;
+
     }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {
