@@ -1,15 +1,15 @@
 package frc.robot.ShooterWood.Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Shooter.Shooter;
+import frc.robot.ShooterWood.ShooterWood;
 
 import java.util.function.DoubleSupplier;
 
-public class ShootBySpeed extends CommandBase {
-    private Shooter shooter;
+public class ShootBySpeedWood extends CommandBase {
+    private ShooterWood shooter;
     private double speed;
 
-    public ShootBySpeed(Shooter shooter, double speed) {
+    public ShootBySpeedWood(ShooterWood shooter, double speed) {
         this.shooter = shooter;
         this.speed = speed;
     }

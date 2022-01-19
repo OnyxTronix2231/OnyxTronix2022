@@ -2,9 +2,9 @@ package frc.robot.ShooterWood;
 
 import java.util.function.DoubleSupplier;
 
-public class ShooterConstants {
+public class ShooterWoodConstants {
 
-    static final double SPEED = 0.5;
+    static final double SPEED = 0.9;
     static final double ENCODER_UNITS_PER_ROUND = 2048;
     static final double DECISECONDS_PER_MIN = 600;
     static final double PIDF_P = 1;
