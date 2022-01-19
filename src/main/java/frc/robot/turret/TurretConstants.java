@@ -5,6 +5,7 @@ public final class TurretConstants {
     /*fixed values*/
     public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: confirm
     public static final int DEG_IN_ROTATION = 360;
+    public static final int HALF_ROTATION = 180;
 
     /*mechanic values*/
     public static final int TURRET_MOTOR_PORT = 0; //TODO: Correct the number
@@ -24,5 +25,5 @@ public final class TurretConstants {
 
     /*system settings*/
     public static final double ROTATION_SETBACK=0.3;
-
+    public static final int MIDDLE_ANGLE = 0;
 }
