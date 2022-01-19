@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.intake.Intake;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
 
+    IntakeComponents intakeComponents = new IntakeComponentsBase();
+
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -25,11 +30,13 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        Intake intake = new Intake(intakeComponents);
+
         if (Robot.isReal()) {
         } else {
         }
 
-        new DriverOi();
+        new DriverOi().morningWoodTest(intake);
         new DeputyOi();
 
         new DriversShuffleboard();
