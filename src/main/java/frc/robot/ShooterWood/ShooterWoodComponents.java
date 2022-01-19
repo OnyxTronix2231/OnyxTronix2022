@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import pid.CtrePIDController;
 import sensors.counter.CtreEncoder;
 
-public interface ShooterComponents {
+public interface ShooterWoodComponents {
 
         WPI_TalonSRX getMasterMotor();
 

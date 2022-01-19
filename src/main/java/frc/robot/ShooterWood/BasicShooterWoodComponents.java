@@ -7,16 +7,16 @@ import pid.PIDControlMode;
 import pid.PIDFTerms;
 import sensors.counter.CtreEncoder;
 
-import static frc.robot.Shooter.ShooterConstants.*;
+import static frc.robot.ShooterWood.ShooterWoodConstants.*;
 
-public class BasicShooterComponents implements ShooterComponents {
+public class BasicShooterWoodComponents implements ShooterWoodComponents {
 
     private WPI_TalonSRX masterMotor;
     private WPI_VictorSPX slaveMotor;
     private CtreEncoder encoder;
     private CtrePIDController controller;
 
-    public BasicShooterComponents() {
+    public BasicShooterWoodComponents() {
         masterMotor = new WPI_TalonSRX(7);
         masterMotor.configFactoryDefault();
         encoder = new CtreEncoder(masterMotor);
