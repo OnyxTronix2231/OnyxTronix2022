@@ -3,21 +3,23 @@ package frc.robot.ShooterWood.Commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ShooterWood.ShooterWood;
 
+import java.util.function.DoubleSupplier;
+
 public class ShootByRPMWood extends CommandBase {
 
     private ShooterWood shooterWood;
-    private double speed;
+    private DoubleSupplier rpm;
 
-    public ShootByRPMWood(ShooterWood shooterWood, double speed) {
+    public ShootByRPMWood(ShooterWood shooterWood, DoubleSupplier rpm) {
         this.shooterWood = shooterWood;
-        this.speed = speed;
+        this.rpm = rpm;
     }
     public void initialize(){
-        shooterWood.initMoveByRPM(speed);
+        shooterWood.initMoveByRPM(rpm.getAsDouble());
     }
 
     public void execute(){
-        shooterWood.updateMoveByRPM(speed);
+        shooterWood.updateMoveByRPM(rpm.getAsDouble());
     }
 
     @Override
