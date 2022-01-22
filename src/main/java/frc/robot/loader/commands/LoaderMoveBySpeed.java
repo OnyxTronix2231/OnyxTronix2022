@@ -1,16 +1,16 @@
-package frc.robot.conveyor.commands;
+package frc.robot.loader.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.conveyor.Conveyor;
+import frc.robot.loader.Loader;
 
 import java.util.function.DoubleSupplier;
 
-public class ConveyorLoaderMoveBySpeed extends CommandBase {
+public class LoaderMoveBySpeed extends CommandBase {
 
-    private final Conveyor conveyor;
+    private final Loader conveyor;
     private final DoubleSupplier doubleSupplier;
 
-    public ConveyorLoaderMoveBySpeed(Conveyor conveyor, DoubleSupplier doubleSupplier) {
+    public LoaderMoveBySpeed(Loader conveyor, DoubleSupplier doubleSupplier) {
         this.conveyor = conveyor;
         this.doubleSupplier = doubleSupplier;
         addRequirements(conveyor);

@@ -9,9 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.conveyor.Conveyor;
-import frc.robot.conveyor.ConveyorComponents;
-import frc.robot.conveyor.ConveyorComponentsBase;
+import frc.robot.loader.Loader;
+import frc.robot.loader.LoaderComponents;
+import frc.robot.loader.LoaderComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,7 +20,7 @@ import frc.robot.conveyor.ConveyorComponentsBase;
  * project.
  */
 public class Robot extends TimedRobot {
-    ConveyorComponents conveyorComponents = new ConveyorComponentsBase();
+    LoaderComponents conveyorComponents = new LoaderComponentsBase();
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        Conveyor conveyor = new Conveyor(conveyorComponents);
+        Loader conveyor = new Loader(conveyorComponents);
 
         if (Robot.isReal()) {
         } else {
