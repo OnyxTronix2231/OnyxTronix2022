@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.ShooterWood.ShooterWood;
 import frc.robot.ShooterWood.ShooterWoodDriverOiBinder;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterDriverOIBinder;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -20,6 +22,11 @@ public class DriverOi {
         Trigger shooterTrigger = new JoystickButton(xboxController, XboxController.Button.kA.value);
         new ShooterWoodDriverOiBinder(shooter, shooterTrigger);
         return this;
+    }
 
+    public DriverOi withShooter (Shooter shooter){
+        Trigger shooterTrigger = new JoystickButton(xboxController, XboxController.Button.kB.value);
+        new ShooterDriverOIBinder(shooter, shooterTrigger);
+        return this;
     }
 }

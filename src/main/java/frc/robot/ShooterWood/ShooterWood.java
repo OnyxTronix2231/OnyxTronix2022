@@ -20,18 +20,17 @@ public class ShooterWood extends SubsystemBase {
     public ShooterWood(ShooterWoodComponents shooterWoodComponents) {
         this.shooterWoodComponents = shooterWoodComponents;
         Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encoderUnitsInDecisecondToRPM(shooterWoodComponents
-                .getEncoder().getRate()));
+                .getCounter().getRate()));
         percentageOutput = Shuffleboard.getTab("Shooter").add("percentageOutput", 0).getEntry();
-        kP = Shuffleboard.getTab("Shooter").add("kP", 0).getEntry();
-        kI = Shuffleboard.getTab("Shooter").add("kI", 0).getEntry();
-        kD = Shuffleboard.getTab("Shooter").add("kD", 0).getEntry();
+        kP = Shuffleboard.getTab("Shooter").add("kP", shooterWoodComponents.getController().getPIDFTerms().getKp()).getEntry();
+        kI = Shuffleboard.getTab("Shooter").add("kI", shooterWoodComponents.getController().getPIDFTerms().getKi()).getEntry();
+        kD = Shuffleboard.getTab("Shooter").add("kD", shooterWoodComponents.getController().getPIDFTerms().getKd()).getEntry();
     }
 
     @Override
     public void periodic() {
         speed = percentageOutput.getDouble(0);
         shooterWoodComponents.getController().setPIDFTerms(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), PIDF_F);
-        System.out.println(kP.getDouble(0) + " " + kD.getDouble(0) + " " + percentageOutput.getDouble(0));
     }
 
     public void setSpeed(double speed) {
@@ -40,6 +39,7 @@ public class ShooterWood extends SubsystemBase {
 
     public void stop() {
         setSpeed(0);
+        shooterWoodComponents.getController().disable();
     }
 
     public double getSpeed() {
