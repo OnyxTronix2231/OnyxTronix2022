@@ -6,6 +6,7 @@ import frc.robot.ShooterWood.ShooterWood;
 import java.util.function.DoubleSupplier;
 
 public class ShootBySpeedWood extends CommandBase {
+
     private ShooterWood shooter;
     private DoubleSupplier speed;
 
