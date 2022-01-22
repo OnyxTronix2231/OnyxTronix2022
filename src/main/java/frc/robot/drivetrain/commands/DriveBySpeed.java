@@ -21,8 +21,6 @@ public class DriveBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        System.out.println(driveTrain.getPose());
-        System.out.println(driveTrain.getHeading());
         driveTrain.arcadeDrive(speedSupplier.getAsDouble(), rotationSupplier.getAsDouble());
     }
 

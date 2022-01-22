@@ -42,11 +42,6 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getRightMasterMotor().stopMotor();
     }
 
-    public void driveByDistance(double distance) {
-        driveTrainComponents.getLeftMasterMotor().set(ControlMode.MotionMagic, distance * ENCODER_UNITS_TO_METER);
-        driveTrainComponents.getRightMasterMotor().set(ControlMode.MotionMagic, distance * ENCODER_UNITS_TO_METER);
-    }
-
     public void stopDrive() {
         driveTrainComponents.getLeftMasterMotor().stopMotor();
         driveTrainComponents.getRightMasterMotor().stopMotor();
@@ -85,13 +80,13 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getOdometry().getPoseMeters();
     }
 
-//    @Override
-//    public void periodic() {
-//        driveTrainComponents.getOdometry().update(
-//                Rotation2d.fromDegrees(getHeading()),
-//                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-//                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
-//    }
+    @Override
+    public void periodic() {
+        System.out.println(driveTrainComponents.getOdometry().update(
+                Rotation2d.fromDegrees(getHeading()),
+                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition())));
+    }
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(encoderUnitsDeciSecToMetersSec(
