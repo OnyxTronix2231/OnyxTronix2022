@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
         if (Robot.isReal()) {
             shooterWoodComponents = new BasicShooterWoodComponents();
         } else {
-            shooterWoodComponents = null;
+            shooterWoodComponents = new BasicShooterWoodComponents();
         }
 
         shooterWood = new ShooterWood(shooterWoodComponents);
