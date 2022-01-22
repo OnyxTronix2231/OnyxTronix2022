@@ -12,6 +12,9 @@ public class ShooterWood extends SubsystemBase {
 
     private ShooterWoodComponents shooterWoodComponents;
     private NetworkTableEntry percentageOutput;
+    private NetworkTableEntry kP;
+    private NetworkTableEntry kI;
+    private NetworkTableEntry kD;
     private double speed;
 
     public ShooterWood(ShooterWoodComponents shooterWoodComponents) {
@@ -19,12 +22,16 @@ public class ShooterWood extends SubsystemBase {
         Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encoderUnitsInDecisecondToRPM(shooterWoodComponents
                 .getEncoder().getRate()));
         percentageOutput = Shuffleboard.getTab("Shooter").add("percentageOutput", 0).getEntry();
+        kP = Shuffleboard.getTab("Shooter").add("kP", 0).getEntry();
+        kI = Shuffleboard.getTab("Shooter").add("kI", 0).getEntry();
+        kD = Shuffleboard.getTab("Shooter").add("kD", 0).getEntry();
     }
 
     @Override
     public void periodic() {
         speed = percentageOutput.getDouble(0);
-        System.out.println(percentageOutput.getDouble(0));
+        shooterWoodComponents.getController().setPIDFTerms(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), PIDF_F);
+        System.out.println(kP.getDouble(0) + " " + kD.getDouble(0) + " " + percentageOutput.getDouble(0));
     }
 
     public void setSpeed(double speed) {
@@ -35,9 +42,10 @@ public class ShooterWood extends SubsystemBase {
         setSpeed(0);
     }
 
-    public double getSpeed(){
+    public double getSpeed() {
         return speed;
     }
+
 
     public double RPMToEncoderUnitsInDecisecond(double rpm) {
         return (rpm * ENCODER_UNITS_PER_ROUND) / DECISECONDS_PER_MIN;
