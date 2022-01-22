@@ -1,8 +1,8 @@
-package frc.robot.intake;
+package frc.robot.intakeBack;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class IntakeConstant {
+public class IntakeBackConstant {
 
    public static final DoubleSolenoid.Value SOLENOID_OPEN = DoubleSolenoid.Value.kForward;
    public static final DoubleSolenoid.Value SOLENOID_CLOSE = DoubleSolenoid.Value.kReverse;

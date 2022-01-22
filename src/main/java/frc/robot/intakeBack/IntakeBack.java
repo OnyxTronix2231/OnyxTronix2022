@@ -1,16 +1,16 @@
-package frc.robot.intake;
+package frc.robot.intakeBack;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.intake.IntakeConstant.SOLENOID_CLOSE;
-import static frc.robot.intake.IntakeConstant.SOLENOID_OPEN;
+import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_CLOSE;
+import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_OPEN;
 
 
-public class Intake extends SubsystemBase {
+public class IntakeBack extends SubsystemBase {
 
-    private final IntakeComponents components;
+    private final IntakeBackComponents components;
 
-    public Intake(IntakeComponents components) {
+    public IntakeBack(IntakeBackComponents components) {
         this.components = components;
     }
 

@@ -1,16 +1,16 @@
-package frc.robot.intake;
+package frc.robot.intakeBack;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-import static frc.robot.intake.IntakeConstant.*;
+import static frc.robot.intakeBack.IntakeBackConstant.*;
 
-public class IntakeComponentsBase implements IntakeComponents {
+public class IntakeBackComponentsBase implements IntakeBackComponents {
     private final WPI_TalonSRX motor;
     private final DoubleSolenoid solenoid;
 
-    public IntakeComponentsBase() {
+    public IntakeBackComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
 
