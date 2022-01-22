@@ -9,7 +9,6 @@ import static frc.robot.shooter.ShooterConstants.SPEED;
 public class ShooterDriverOIBinder {
 
     public ShooterDriverOIBinder(Shooter shooter, Trigger shooterTrigger){
-        shooterTrigger.whileActiveContinuous(new ShootBySpeed(shooter,SPEED));
         shooterTrigger.whileActiveContinuous(new ShootByRPM_PID(shooter,SPEED));
     }
 
