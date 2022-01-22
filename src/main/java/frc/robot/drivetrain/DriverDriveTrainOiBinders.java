@@ -9,8 +9,10 @@ import onyxTronix.JoystickAxis;
 
 public class DriverDriveTrainOiBinders {
 
-    public DriverDriveTrainOiBinders(DriveTrain driveTrain, JoystickAxis rightJoystick, JoystickAxis leftJoystick){
+    public DriverDriveTrainOiBinders(DriveTrain driveTrain, JoystickAxis rightJoystick, JoystickAxis leftJoystick, Trigger button){
         driveTrain.setDefaultCommand(new DriveBySpeed(driveTrain, rightJoystick::getRawAxis, leftJoystick::getRawAxis));
+        button.whenActive(new DriveByDistance(driveTrain, ()-> 1.0));
     }
+
 
 }
