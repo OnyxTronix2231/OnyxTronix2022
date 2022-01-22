@@ -19,8 +19,10 @@ public class DriverOi {
     }
 
     public DriverOi morningWoodTest(Intake intake){
-        JoystickButton openAndIntake = new JoystickButton(xboxController,XboxController.Button.kY.value);
-        new IntakeOiBinder(intake, openAndIntake);
+        JoystickButton intakeBySpeed = new JoystickButton(xboxController,XboxController.Button.kY.value);
+        JoystickButton openAndIntake = new JoystickButton(xboxController,XboxController.Button.kA.value );
+        JoystickButton closeSolenoid = new JoystickButton(xboxController,XboxController.Button.kX.value);
+        new IntakeOiBinder(intake,intakeBySpeed,openAndIntake,closeSolenoid);
         return this;
     }
 
