@@ -43,8 +43,7 @@ public class Vision {
         horizontalAngle = this::getHorizontalAngelLimelightToTarget;
     }
 
-    public boolean hasTarget(boolean hasTarget) {
-        hasTarget = limelight.targetFound();
-        return hasTarget;
+    public boolean hasTarget() {
+        return limelight.targetFound();
     }
 }
