@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
-import sensors.Switch.Microswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 
@@ -17,8 +16,8 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX railMotor;
     private WPI_TalonFX armMotor;
     private DoubleSolenoid solenoid;
-    private Microswitch outerMicroSwitch;
-    private Microswitch innerMicroSwitch;
+    private DigitalInput outerHallEffect;
+    private DigitalInput innerHallEffect;
     private CtreMotionMagicController armMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
     private CtreEncoder armEncoder;
@@ -33,9 +32,9 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
-        outerMicroSwitch = new Microswitch(new DigitalInput(0));
+        outerHallEffect = new DigitalInput(0);
 
-        innerMicroSwitch = new Microswitch(new DigitalInput(1));
+        innerHallEffect = new DigitalInput(1);
 
         armEncoder = new CtreEncoder(armMotor);
 
@@ -83,12 +82,12 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public Microswitch getOuterMicroSwitch() {
-        return outerMicroSwitch;
+    public DigitalInput getOuterHallEffect() {
+        return outerHallEffect;
     }
 
     @Override
-    public Microswitch getInnerMicroSwitch() {
-        return innerMicroSwitch;
+    public DigitalInput getInnerHallEffect() {
+        return innerHallEffect;
     }
 }

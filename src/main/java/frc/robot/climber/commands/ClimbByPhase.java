@@ -15,9 +15,9 @@ public class ClimbByPhase extends ConditionalCommand {
                         DoubleSupplier speedSupplier) {
         super(new MoveArmByDistance(climber, distanceSupplier).
                         andThen(new MoveArmByDistance(climber, secondDistanceSupplier)),
-                new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterMicroSwitchPressed).
+                new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterHallEffectClosed).
                         andThen(new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
-                                climber::isInnerMicroSwitchPressed)).andThen(new MoveRailByDistance(climber,
+                                climber::isInnerHallEffectClosed)).andThen(new MoveRailByDistance(climber,
                                 () -> DISCONNECT_DISTANCE)), () -> phase == 0);
     }
 

@@ -8,10 +8,10 @@ import static frc.robot.climber.commands.ClimberCommandConstants.CLIMBER_SPEED;
 public class ClimbingSequence extends SequentialCommandGroup {
 
     public ClimbingSequence(Climber climber) {
-        super(new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterMicroSwitchPressed),
-                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerMicroSwitchPressed),
-                new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterMicroSwitchPressed),
-                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerMicroSwitchPressed),
-                new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterMicroSwitchPressed));
+        super(new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterHallEffectClosed),
+                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed),
+                new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterHallEffectClosed),
+                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed),
+                new MoveRailUntilConditions(climber, () -> CLIMBER_SPEED, climber::isOuterHallEffectClosed));
     }
 }
