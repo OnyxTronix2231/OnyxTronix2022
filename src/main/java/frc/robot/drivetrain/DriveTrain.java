@@ -73,7 +73,7 @@ public class DriveTrain extends SubsystemBase {
 
 
     public boolean isOnTarget(){
-        return driveTrainComponents.getRightController().isOnTarget(tolerance);
+        return driveTrainComponents.getLeftController().isOnTarget(tolerance) && driveTrainComponents.getRightController().isOnTarget(tolerance);
     }
 
     public Pose2d getPose() {
