@@ -34,6 +34,7 @@ public class OnyxRGB extends SubsystemBase {
     }
 
     public void onStop(){
+        turnOffRGB();
         canifier.enablePWMOutput(kMotorControllerCh.value, false);
     }
 
