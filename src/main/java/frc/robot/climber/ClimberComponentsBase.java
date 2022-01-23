@@ -16,7 +16,7 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX railMotor;
     private WPI_TalonFX armMotor;
     private DoubleSolenoid solenoid;
-    private DigitalInput outerHallEffect;
+//    private DigitalInput outerHallEffect;
     private DigitalInput innerHallEffect;
     private CtreMotionMagicController armMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
@@ -32,7 +32,7 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
-        outerHallEffect = new DigitalInput(0);
+//        outerHallEffect = new DigitalInput(0);
 
         innerHallEffect = new DigitalInput(1);
 
@@ -81,10 +81,10 @@ public class ClimberComponentsBase implements ClimberComponents {
         return solenoid;
     }
 
-    @Override
-    public DigitalInput getOuterHallEffect() {
-        return outerHallEffect;
-    }
+//    @Override
+//    public DigitalInput getOuterHallEffect() {
+//        return outerHallEffect;
+//    }
 
     @Override
     public DigitalInput getInnerHallEffect() {

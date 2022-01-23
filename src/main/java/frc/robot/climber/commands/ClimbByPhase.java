@@ -6,16 +6,17 @@ import frc.robot.climber.Climber;
 import java.util.function.DoubleSupplier;
 
 import static frc.robot.climber.commands.ClimberCommandConstants.DISCONNECT_DISTANCE;
+import static frc.robot.climber.commands.ClimberCommandConstants.DISTANCE_BETWEEN_BEAMS;
 
 public class ClimbByPhase extends ConditionalCommand {
 
     public static int phase = 0;
 
-    public ClimbByPhase(Climber climber, DoubleSupplier distanceSupplier, DoubleSupplier secondDistanceSupplier,
+    public ClimbByPhase(Climber climber, DoubleSupplier distanceSupplier, DoubleSupplier closingDistanceSupplier,
                         DoubleSupplier speedSupplier) {
         super(new MoveArmByDistance(climber, distanceSupplier).
-                        andThen(new MoveArmByDistance(climber, secondDistanceSupplier)),
-                new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterHallEffectClosed).
+                        andThen(new MoveArmByDistance(climber, closingDistanceSupplier)),
+                new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS).
                         andThen(new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
                                 climber::isInnerHallEffectClosed)).andThen(new MoveRailByDistance(climber,
                                 () -> DISCONNECT_DISTANCE)), () -> phase == 0);

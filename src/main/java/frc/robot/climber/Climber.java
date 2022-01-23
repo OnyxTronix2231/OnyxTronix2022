@@ -52,7 +52,7 @@ public class Climber extends SubsystemBase {
         return components.getInnerHallEffect().get();
     }
 
-    public boolean isOuterHallEffectClosed() {
-        return components.getOuterHallEffect().get();
-    }
+//    public boolean isOuterHallEffectClosed() {
+//        return components.getOuterHallEffect().get();
+//    }
 }

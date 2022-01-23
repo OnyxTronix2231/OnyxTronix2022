@@ -23,7 +23,7 @@ public interface ClimberComponents {
 
     DoubleSolenoid getSolenoid();
 
-    DigitalInput getOuterHallEffect();
+//    DigitalInput getOuterHallEffect();
 
     DigitalInput getInnerHallEffect();
 }

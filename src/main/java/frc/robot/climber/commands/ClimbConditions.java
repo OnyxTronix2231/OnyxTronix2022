@@ -10,7 +10,7 @@ import static frc.robot.climber.commands.ClimberCommandConstants.CLIMBER_DELAY_T
 
 public class ClimbConditions extends SequentialCommandGroup {
     public ClimbConditions(BooleanSupplier isMicroSwitchPressed) {
-        super(new WaitUntilCommand(isMicroSwitchPressed), new WaitUntilCommand(() -> !isMicroSwitchPressed.getAsBoolean()),
+        super(new WaitUntilCommand(() -> !isMicroSwitchPressed.getAsBoolean()), new WaitUntilCommand(isMicroSwitchPressed),
                 new WaitCommand(CLIMBER_DELAY_TIME));
     }
 }
