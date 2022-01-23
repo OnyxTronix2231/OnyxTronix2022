@@ -9,8 +9,8 @@ import java.util.function.BooleanSupplier;
 import static frc.robot.climber.commands.ClimberCommandConstants.CLIMBER_DELAY_TIME;
 
 public class ClimbConditions extends SequentialCommandGroup {
-    public ClimbConditions(BooleanSupplier isMicroSwitchOpen) {
-        super(new WaitUntilCommand(() -> !isMicroSwitchOpen.getAsBoolean()), new WaitUntilCommand(isMicroSwitchOpen),
+    public ClimbConditions(BooleanSupplier isMicroSwitchPressed) {
+        super(new WaitUntilCommand(isMicroSwitchPressed), new WaitUntilCommand(() -> !isMicroSwitchPressed.getAsBoolean()),
                 new WaitCommand(CLIMBER_DELAY_TIME));
     }
 }
