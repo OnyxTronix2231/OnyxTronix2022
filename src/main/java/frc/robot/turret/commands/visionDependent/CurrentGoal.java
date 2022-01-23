@@ -1,4 +1,4 @@
-package frc.robot.turret.commands;
+package frc.robot.turret.commands.visionDependent;
 
 public enum CurrentGoal {
 

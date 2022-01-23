@@ -1,7 +1,9 @@
-package frc.robot.turret.commands;
+package frc.robot.turret.commands.visionDependent;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
+import frc.robot.turret.commands.visionDependent.CurrentGoal;
+
 import static frc.robot.turret.TurretConstants.*;
 
 public class RotateToUnseenVision extends CommandBase {

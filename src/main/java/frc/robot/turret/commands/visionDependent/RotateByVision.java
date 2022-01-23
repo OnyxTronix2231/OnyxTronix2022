@@ -1,6 +1,7 @@
-package frc.robot.turret.commands;
+package frc.robot.turret.commands.visionDependent;
 
 import frc.robot.turret.Turret;
+import frc.robot.turret.commands.RotateByAngle;
 
 public class RotateByVision extends RotateByAngle {
 

@@ -1,11 +1,15 @@
 package frc.robot.turret;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+
 public final class TurretConstants {
 
     /*fixed values*/
     public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: confirm
     public static final int DEG_IN_ROTATION = 360;
     public static final int HALF_ROTATION = 180;
+    public static final Pose2d TARGET_POS = new Pose2d(0,0,new Rotation2d()); //TODO: confirm
 
     /*mechanic values*/
     public static final int TURRET_MOTOR_ID = 0; //TODO: Correct the number
