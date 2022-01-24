@@ -26,7 +26,6 @@ public class Turret extends SubsystemBase {
                 components.getController().getPIDFTerms().getKd()).getEntry();
         kF = Shuffleboard.getTab("Turret").add("set kF",
                 components.getController().getPIDFTerms().getKf()).getEntry();
-
     }
 
     @Override
@@ -76,19 +75,19 @@ public class Turret extends SubsystemBase {
     }
 
     public double degToEnc(double deg) {
-        return (deg * ENCODER_UNITS_IN_ROTATION) / (CONVERSION_RATE * DEG_IN_ROTATION);
+        return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
     }
 
     public double encToDeg(double enc) {
-        return (enc * CONVERSION_RATE * DEG_IN_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+        return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
     }
 
     public double fixDeg(double deg) {
-        double fixed = deg % DEG_IN_ROTATION;
+        double fixed = deg % DEG_IN_CIRCLE;
         if (fixed > MAX_DEG){
-            fixed -= DEG_IN_ROTATION;
+            fixed -= DEG_IN_CIRCLE;
         } if (fixed < MIN_DEG){
-            fixed += DEG_IN_ROTATION;
+            fixed += DEG_IN_CIRCLE;
         } return fixed;
     }
 
