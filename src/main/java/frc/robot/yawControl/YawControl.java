@@ -7,13 +7,14 @@ import static frc.robot.turret.TurretConstants.*;
 
 public class YawControl extends Turret {
 
-    private DriveTrain driveTrain;
+    private final DriveTrain driveTrain;
 
     public YawControl(TurretComponents turretComponents, DriveTrain driveTrain) {
         super(turretComponents);
         this.driveTrain = driveTrain;
     }
-    public double getTurretAngleRTF () {
+
+    public double getTurretAngleRTF() {
         return Math.abs(getCurrentAngle() - driveTrain.getHeading());
     }
 

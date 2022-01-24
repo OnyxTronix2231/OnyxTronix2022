@@ -2,26 +2,25 @@ package frc.robot.turret.commands.visionDependent;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
-import frc.robot.turret.commands.visionDependent.CurrentGoal;
 
 import static frc.robot.turret.TurretConstants.*;
 
 public class RotateToUnseenVision extends CommandBase {
 
-    private Turret turret;
+    private final Turret turret;
     private CurrentGoal currentGoal;
 
     public RotateToUnseenVision(Turret turret) {
         this.turret = turret;
 
         double angle = turret.getCurrentAngle();
-        if (angle > MIDDLE_ANGLE && angle <= (MIN_DEG + DEG_IN_ROTATION)) {
+        if (angle > MIDDLE_ANGLE && angle <= (MIN_DEG + DEG_IN_CIRCLE)) {
             currentGoal = CurrentGoal.goto180;
-        } else if (angle <= MIDDLE_ANGLE && angle >= (MAX_DEG - DEG_IN_ROTATION)) {
+        } else if (angle <= MIDDLE_ANGLE && angle >= (MAX_DEG - DEG_IN_CIRCLE)) {
             currentGoal = CurrentGoal.goto180m;
-        } else if (angle >= (MIN_DEG + DEG_IN_ROTATION)) {
+        } else if (angle >= (MIN_DEG + DEG_IN_CIRCLE)) {
             currentGoal = CurrentGoal.gotoMin;
-        } else if (angle <= (MAX_DEG - DEG_IN_ROTATION)) {
+        } else if (angle <= (MAX_DEG - DEG_IN_CIRCLE)) {
             currentGoal = CurrentGoal.gotoMax;
         }
 
@@ -47,21 +46,18 @@ public class RotateToUnseenVision extends CommandBase {
                 } else {
                     turret.updateMoveToDegree(HALF_ROTATION);
                 }
-
             case goto180m:
                 if ((Math.abs(turret.getCurrentAngle()) + HALF_ROTATION) <= TOLERANCE_DEGREE) {
                     currentGoal = CurrentGoal.gotoMax;
                 } else {
                     turret.updateMoveByDegree(-HALF_ROTATION);
                 }
-
             case gotoMax:
                 if (Math.abs(turret.getCurrentAngle() - MAX_DEG) <= TOLERANCE_DEGREE) {
                     currentGoal = CurrentGoal.gotoMin;
                 } else {
                     turret.updateMoveToDegree(MAX_DEG);
                 }
-
             case gotoMin:
                 if (Math.abs(turret.getCurrentAngle() - MIN_DEG) <= TOLERANCE_DEGREE) {
                     currentGoal = CurrentGoal.gotoMax;
