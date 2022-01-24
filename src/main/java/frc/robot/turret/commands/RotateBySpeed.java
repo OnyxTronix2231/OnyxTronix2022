@@ -4,20 +4,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
 import java.util.function.DoubleSupplier;
 
-public class RotateTurretBySpeed extends CommandBase {
+public class RotateBySpeed extends CommandBase {
 
     private final Turret turret;
-    private final DoubleSupplier speed;
+    private final DoubleSupplier speedSupplier;
 
-    public RotateTurretBySpeed(Turret turret, DoubleSupplier speed) {
+    public RotateBySpeed(Turret turret, DoubleSupplier speed) {
         this.turret = turret;
-        this.speed = speed;
+        this.speedSupplier = speed;
         addRequirements(turret);
     }
 
     @Override
     public void execute() {
-        turret.setSpeed(speed.getAsDouble());
+        turret.setSpeed(speedSupplier.getAsDouble());
     }
 
     @Override
