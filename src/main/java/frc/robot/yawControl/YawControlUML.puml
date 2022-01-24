@@ -5,16 +5,16 @@ abstract class SubsystemBase
 abstract class CommandBase
 abstract class ConditionalCommand
 
-TurretComponentsBase --|> TurretComponents
+TurretComponentsBase ----|> TurretComponents
 TurretComponentsBase --* Turret
-Turret --|> SubsystemBase
+Turret ---|> SubsystemBase
 RotateByAngle --|> CommandBase
 RotateToAngle --|> CommandBase
 RotateByAngleOnce --|> RotateByAngle
 RotateToAngleOnce --|> RotateToAngle
 Turret --o RotateByAngle
 Turret --o RotateToAngle
-Turret --o RotateBySpeed
+Turret ---o RotateBySpeed
 RotateByVision --|> RotateByAngle
 
 YawControl --|> Turret
@@ -22,7 +22,7 @@ RotateToAngleRTF --|> RotateToAngle
 RotateToAngleRTFOnce --|> RotateToAngleRTF
 RotateByPos --|> RotateToAngleRTF
 YawControl --o RotateToAngleRTF
-LocateTargetByCalculating --|> ConditionalCommand
+LocateTargetByCalculating ---|> ConditionalCommand
 RotateByPos --o LocateTargetByCalculating
 RotateByVision --o LocateTargetByCalculating
 
