@@ -31,7 +31,6 @@ public class Robot extends TimedRobot {
 
     private Vision vision;
 
-    @Override
     public void robotInit() {
 
         if (Robot.isReal()) {
@@ -39,6 +38,7 @@ public class Robot extends TimedRobot {
             vision = new Vision();
         } else {
             driveTrainComponents = null;
+            vision = null;
         }
 
         DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
