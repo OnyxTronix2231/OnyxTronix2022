@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.CtreEncoder;
@@ -26,6 +27,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     CtreMotionMagicController rightController;
     CtreEncoder leftEncoder;
     CtreEncoder rightEncoder;
+    Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(3);
@@ -71,6 +73,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
                 acceleration, cruiseVelocity, accelerationSmoothing);
         rightController = new CtreMotionMagicController(rightMasterMotor, rightEncoder, new PIDFTerms(kP, kI, kD, kF),
                 acceleration, cruiseVelocity, accelerationSmoothing);
+
+        field2d = new Field2d();
     }
 
     @Override
@@ -126,6 +130,11 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     @Override
     public CtreMotionMagicController getRightController() {
         return rightController;
+    }
+
+    @Override
+    public Field2d getField() {
+        return field2d;
     }
 
     private TalonFXConfiguration getFalconConfiguration() {

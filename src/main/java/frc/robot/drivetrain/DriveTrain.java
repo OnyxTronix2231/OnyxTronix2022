@@ -9,6 +9,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -31,6 +32,18 @@ public class DriveTrain extends SubsystemBase {
         Shuffleboard.getTab("Drivetrain")
                 .addNumber("RIGHT DRIVE ENCODER",
                         () -> driveTrainComponents.getRightEncoder().getRate());
+        SmartDashboard.putData(driveTrainComponents.getField());
+        driveTrainComponents.getField().setRobotPose(new Pose2d(7,10,new Rotation2d(80)));
+    }
+
+    @Override
+    public void periodic() {
+        driveTrainComponents.getOdometry().update(
+                Rotation2d.fromDegrees(getHeading()),
+                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
+        driveTrainComponents.getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
+        SmartDashboard.updateValues();
     }
 
     public void arcadeDrive(double speed, double rotation) {
@@ -78,14 +91,6 @@ public class DriveTrain extends SubsystemBase {
 
     public Pose2d getPose() {
         return driveTrainComponents.getOdometry().getPoseMeters();
-    }
-
-    @Override
-    public void periodic() {
-        System.out.println(driveTrainComponents.getOdometry().update(
-                Rotation2d.fromDegrees(getHeading()),
-                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition())));
     }
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
