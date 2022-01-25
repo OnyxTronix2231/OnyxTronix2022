@@ -1,7 +1,7 @@
 package frc.robot.trigger.commands;
 
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.loader.Loader;
 import frc.robot.trigger.Trigger;
 
 import java.util.function.DoubleSupplier;

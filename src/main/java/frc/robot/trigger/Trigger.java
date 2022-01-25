@@ -23,4 +23,5 @@ public class Trigger extends SubsystemBase {
         return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
         //in one side is geting amper and other is checking amper he he ha ha yeahhhhhhh
     }
+
 }
