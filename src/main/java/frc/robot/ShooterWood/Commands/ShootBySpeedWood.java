@@ -7,21 +7,21 @@ import java.util.function.DoubleSupplier;
 
 public class ShootBySpeedWood extends CommandBase {
 
-    private ShooterWood shooter;
+    private ShooterWood shooterWood;
     private DoubleSupplier speed;
 
-    public ShootBySpeedWood(ShooterWood shooter, DoubleSupplier speed) {
-        this.shooter = shooter;
+    public ShootBySpeedWood(ShooterWood shooterWood, DoubleSupplier speed) {
+        this.shooterWood = shooterWood;
         this.speed = speed;
     }
 
     public void execute() {
-        shooter.setSpeed(speed.getAsDouble());
+        shooterWood.setSpeed(speed.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        shooter.stop();
+        shooterWood.stop();
     }
 
 }

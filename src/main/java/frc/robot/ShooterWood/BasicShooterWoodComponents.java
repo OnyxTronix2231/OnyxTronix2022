@@ -27,6 +27,7 @@ public class BasicShooterWoodComponents implements ShooterWoodComponents {
         encoder = new CtreEncoder(masterMotor);
         slaveMotor = new WPI_VictorSPX(8);
         slaveMotor.follow(masterMotor);
+        slaveMotor.setInverted(true);
         controller = new CtrePIDController(masterMotor, encoder,
                 new PIDFTerms(PIDF_P,PIDF_I,PIDF_D,PIDF_F), PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
