@@ -20,7 +20,6 @@ public class BasicShooterWoodComponents implements ShooterWoodComponents {
     private WPI_VictorSPX slaveMotor;
     private CtreEncoder encoder;
     private CtrePIDController controller;
-    private FlywheelSim flywheelSim;
 
     public BasicShooterWoodComponents() {
         masterMotor = new WPI_TalonSRX(7);

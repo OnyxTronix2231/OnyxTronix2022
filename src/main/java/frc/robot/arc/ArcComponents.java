@@ -5,12 +5,9 @@ import pid.interfaces.MotionMagicController;
 import sensors.Switch.TalonSrxForwardMicroswitch;
 import sensors.Switch.TalonSrxReverseMicroswitch;
 import sensors.counter.Counter;
+import sensors.linearServo.LinearServo;
 
 public interface ArcComponents {
-    WPI_TalonSRX getMotor();
-    Counter getCounter();
-    MotionMagicController getController();
-    TalonSrxReverseMicroswitch getReverseLimitSwitch();
-    TalonSrxForwardMicroswitch getForwardLimitSwitch();
+    LinearServo getLinearServo();
 
 }
