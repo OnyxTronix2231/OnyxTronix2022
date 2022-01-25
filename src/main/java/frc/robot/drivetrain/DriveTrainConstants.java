@@ -2,7 +2,12 @@ package frc.robot.drivetrain;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.trajectory.constraint.CentripetalAccelerationConstraint;
+import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
+
+import java.util.List;
 
 public final class DriveTrainConstants {
     public static final double MAX_OUTPUT_FORWARD = 0;
@@ -53,6 +58,17 @@ public final class DriveTrainConstants {
         static double meterToEncoderUnits(double meters){
             return meters * ENCODER_UNITS_PER_ROTATION;
         }
+
+    }
+
+    public static final class Paths {
+
+        public static final Path ONE_METER_FORWARD = new Path(
+            new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+            List.of(),
+            new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
+            new CentripetalAccelerationConstraint(2),
+            new MaxVelocityConstraint(2));
 
     }
 }
