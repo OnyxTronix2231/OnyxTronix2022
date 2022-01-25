@@ -2,6 +2,8 @@ package frc.robot.shooter;
 
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
 import pid.PIDFTerms;
@@ -17,6 +19,7 @@ public class ShooterComponentsBase implements ShooterComponents{
     private WPI_TalonSRX slaveMotor;
     private CtreEncoder encoder;
     private CtrePIDController controller;
+    private FlywheelSim flywheelSim;
 
     public ShooterComponentsBase(){
         masterMotor = new WPI_TalonSRX(MASTER_MOTOR_ID);
@@ -28,6 +31,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         controller = new CtrePIDController(masterMotor, encoder,
                 new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
+        flywheelSim = new FlywheelSim(DCMotor.getFalcon500(2), 1, 0.01 );
     }
 
     @Override

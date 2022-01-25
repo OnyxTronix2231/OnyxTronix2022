@@ -17,4 +17,7 @@ public class ArcConstents {
     public static final double OFFSET = 0;
     public static final double TOLERANCE_ANGLE= 0;
     public static final int TIME_OUT = 0;
+    public static final int ARCH_CHANNEL = 8;
+    public static final int ARCH_MAX_LENGTH = 50;
+    public static final int ARC_MAX_SPEED = 32;
 }
