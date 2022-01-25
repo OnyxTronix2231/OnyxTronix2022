@@ -11,6 +11,17 @@ public class TriggerMoveBySpeed extends CommandBase {
     private final Trigger trigger;
     private final DoubleSupplier doubleSupplier;
 
+    @Override
+    public void initialize() {
+        trigger.stop();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return trigger.isGood();
+
+    }
+
     public TriggerMoveBySpeed(Trigger trigger, DoubleSupplier doubleSupplier) {
         this.trigger = trigger;
         this.doubleSupplier = doubleSupplier;

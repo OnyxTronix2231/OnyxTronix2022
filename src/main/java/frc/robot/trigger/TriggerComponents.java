@@ -6,6 +6,6 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 public interface TriggerComponents {
 
     WPI_TalonFX getTriggerMotor();
-    Ultrasonic getSensor();
+    Ultrasonic getUltraSonic();
 
 }

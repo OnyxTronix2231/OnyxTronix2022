@@ -3,6 +3,7 @@ package frc.robot.trigger;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.loader.LoaderConstants.NORMAL_AMP;
+import static frc.robot.trigger.TriggerConstants.DISTANCE_TO_STOP_IN_MM;
 
 public class Trigger extends SubsystemBase {
 
@@ -16,7 +17,12 @@ public class Trigger extends SubsystemBase {
         triggerComponents.getTriggerMotor().set(speed);
     }
 
-    public void stop() {
+    public boolean isGood() {
+       return triggerComponents.getUltraSonic().getRangeMM() > DISTANCE_TO_STOP_IN_MM;
+
+
+    }
+    public void stop(){
         moveTriggerBySpeed(0);
     }
     public boolean isStuck() {
