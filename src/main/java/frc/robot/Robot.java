@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
         if (Robot.isReal()) {
             vision = new Vision();
         } else {
+            vision = null;
         }
 
         new DriverOi();

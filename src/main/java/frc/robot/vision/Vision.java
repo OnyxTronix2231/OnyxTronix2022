@@ -13,13 +13,12 @@ import static frc.robot.vision.VisionConstants.LIMELIGHT_TO_TARGET_CM;
 public class Vision {
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
-    private DoubleSupplier horizontalAngle;
-    private DoubleSupplier distance;
+    private DoubleSupplier horizontalAngle = ()-> 0;
 
     public Vision() {
         this.limelight = Limelight.getInstance();
         Shuffleboard.getTab("Vision").addNumber("Horizontal Angle", horizontalAngle);
-        Shuffleboard.getTab("Vision").addNumber("Distance", distance);
+        Shuffleboard.getTab("Vision").addNumber("Distance", this::getDistanceFromTarget);
     }
 
     public double getDistanceFromTarget() {
@@ -39,7 +38,6 @@ public class Vision {
 
     public void update() {
         this.limelightTarget = limelight.getTarget();
-        distance = this::getDistanceFromTarget;
         horizontalAngle = this::getHorizontalAngelLimelightToTarget;
     }
 
