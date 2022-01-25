@@ -7,8 +7,6 @@ public class Constants {
 
     public final static double DUTY_CYCLES = 0;
 
-    public final static int DEFAULT_COLOR_VALUE = 0;
-
     public final static int RGB_ARRAY_SIZE = 3;
     public final static int R = 0;
     public final static int G = 1;

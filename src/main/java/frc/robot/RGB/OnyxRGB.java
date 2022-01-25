@@ -16,6 +16,7 @@ public class OnyxRGB extends SubsystemBase {
     private static float[] RGB = new float[RGB_ARRAY_SIZE];
     public static CANifier canifier;
     private final ColorNameToRGB colorNameToRGB;
+    private int cyclesLeft;
 
     public OnyxRGB(int deviceID){
         canifier = new CANifier(deviceID);
@@ -23,14 +24,21 @@ public class OnyxRGB extends SubsystemBase {
         canifier.enablePWMOutput(kMotorControllerCh.value, true);
 
         colorNameToRGB = new ColorNameToRGB();
-        Arrays.fill(RGB, DEFAULT_COLOR_VALUE);
+        turnOffRGB();
+        cyclesLeft = 0;
     }
 
     @Override
     public void periodic(){
-        canifier.setLEDOutput(RGB[R], CANifier.LEDChannel.LEDChannelA);
-        canifier.setLEDOutput(RGB[G], CANifier.LEDChannel.LEDChannelB);
-        canifier.setLEDOutput(RGB[B], CANifier.LEDChannel.LEDChannelC);
+        if (cyclesLeft > 0) {
+            canifier.setLEDOutput(RGB[R], CANifier.LEDChannel.LEDChannelA);
+            canifier.setLEDOutput(RGB[G], CANifier.LEDChannel.LEDChannelB);
+            canifier.setLEDOutput(RGB[B], CANifier.LEDChannel.LEDChannelC);
+            cyclesLeft--;
+        }
+        else if (!(isRGBOff())){
+            turnOffRGB();
+        }
     }
 
     public void onStop(){
@@ -38,11 +46,11 @@ public class OnyxRGB extends SubsystemBase {
         canifier.enablePWMOutput(kMotorControllerCh.value, false);
     }
 
-    public void setColorByName(Colors color){
+    private void setColorByName(Colors color){
         RGB = colorNameToRGB.getColorNameToRGB(color).clone();
     }
 
-    public void setColorByRGB(int r, int g, int b){
+    private void setColorByRGB(int r, int g, int b){
         r = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, r));
         g = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, g));
         b = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, b));
@@ -54,5 +62,19 @@ public class OnyxRGB extends SubsystemBase {
 
     public void turnOffRGB(){
         setColorByName(Colors.Black);
+    }
+
+    public boolean isRGBOff(){
+        return Arrays.equals(RGB, colorNameToRGB.getColorNameToRGB(Colors.Black));
+    }
+
+    public void setColorForAmountOfCycles(Colors color, int cycles){
+        setColorByName(color);
+        cyclesLeft = cycles;
+    }
+
+    public void setColorForAmountOfCycles(int r, int g, int b, int cycles){
+        setColorByRGB(r, g, b);
+        cyclesLeft = cycles;
     }
 }
