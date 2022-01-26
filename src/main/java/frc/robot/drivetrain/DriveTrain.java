@@ -31,6 +31,13 @@ public class DriveTrain extends SubsystemBase {
         Shuffleboard.getTab("Drivetrain")
                 .addNumber("RIGHT DRIVE ENCODER",
                         () -> driveTrainComponents.getRightEncoder().getRate());
+        resetSensors();
+    }
+
+    public void resetSensors(){
+        driveTrainComponents.getLeftEncoder().reset();
+        driveTrainComponents.getRightEncoder().reset();
+        driveTrainComponents.getNormelizedPigeonIMU().setYaw(0);
     }
 
     public void arcadeDrive(double speed, double rotation) {
@@ -82,10 +89,11 @@ public class DriveTrain extends SubsystemBase {
 
     @Override
     public void periodic() {
-        System.out.println(driveTrainComponents.getOdometry().update(
-                Rotation2d.fromDegrees(getHeading()),
-                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition())));
+        System.out.println(this.getPose());
+        driveTrainComponents.getOdometry().update(
+            Rotation2d.fromDegrees(getHeading()),
+            encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+            encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
     }
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
