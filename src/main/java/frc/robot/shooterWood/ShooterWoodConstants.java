@@ -1,6 +1,4 @@
-package frc.robot.ShooterWood;
-
-import java.util.function.DoubleSupplier;
+package frc.robot.shooterWood;
 
 public class ShooterWoodConstants {
 

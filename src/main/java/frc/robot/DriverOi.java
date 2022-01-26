@@ -3,8 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.ShooterWood.ShooterWood;
-import frc.robot.ShooterWood.ShooterWoodDriverOiBinder;
+import frc.robot.shooterWood.ShooterWood;
+import frc.robot.shooterWood.ShooterWoodDriverOiBinder;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterDriverOIBinder;
 
