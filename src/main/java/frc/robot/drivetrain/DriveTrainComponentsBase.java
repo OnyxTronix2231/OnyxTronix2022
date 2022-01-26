@@ -130,12 +130,12 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
 
     private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-//        config.peakOutputForward = MAX_OUTPUT_FORWARD;
-//        config.peakOutputReverse = MAX_OUTPUT_REVERSE;
-//        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
-//        config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
-//        config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
-//        config.supplyCurrLimit.enable = false;
+        config.peakOutputForward = MAX_OUTPUT_FORWARD;
+        config.peakOutputReverse = MAX_OUTPUT_REVERSE;
+        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
+        config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
+        config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
+        config.supplyCurrLimit.enable = false;
         return config;
     }
 }
