@@ -14,7 +14,7 @@ import sensors.linearServo.LinearServo;
 
 import static frc.robot.arc.ArcConstents.*;
 
-public class ArcComponentsBase implements ArcComponents{
+public class ArcComponentsBase implements ArcComponents {
 
     private LinearServo linearServo;
 
@@ -26,4 +26,8 @@ public class ArcComponentsBase implements ArcComponents{
     public LinearServo getLinearServo() {
         return linearServo;
     }
+
+
+
+
 }

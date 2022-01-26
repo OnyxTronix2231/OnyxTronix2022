@@ -8,6 +8,7 @@ import sensors.counter.Counter;
 import sensors.linearServo.LinearServo;
 
 public interface ArcComponents {
+
     LinearServo getLinearServo();
 
 }

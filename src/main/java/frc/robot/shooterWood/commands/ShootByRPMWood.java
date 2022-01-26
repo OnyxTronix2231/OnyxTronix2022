@@ -1,7 +1,7 @@
-package frc.robot.ShooterWood.Commands;
+package frc.robot.shooterWood.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.ShooterWood.ShooterWood;
+import frc.robot.shooterWood.ShooterWood;
 
 import java.util.function.DoubleSupplier;
 

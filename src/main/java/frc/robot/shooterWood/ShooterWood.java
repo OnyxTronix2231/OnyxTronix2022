@@ -1,14 +1,10 @@
-package frc.robot.ShooterWood;
+package frc.robot.shooterWood;
 
-import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import java.util.function.DoubleSupplier;
-
-import static frc.robot.ShooterWood.ShooterWoodConstants.*;
+import static frc.robot.shooterWood.ShooterWoodConstants.*;
 
 public class ShooterWood extends SubsystemBase {
 
@@ -24,15 +20,19 @@ public class ShooterWood extends SubsystemBase {
         Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encoderUnitsInDecisecondToRPM(shooterWoodComponents
                 .getCounter().getRate()));
         percentageOutput = Shuffleboard.getTab("Shooter").add("percentageOutput", 0).getEntry();
-        kP = Shuffleboard.getTab("Shooter").add("kP", shooterWoodComponents.getController().getPIDFTerms().getKp()).getEntry();
-        kI = Shuffleboard.getTab("Shooter").add("kI", shooterWoodComponents.getController().getPIDFTerms().getKi()).getEntry();
-        kD = Shuffleboard.getTab("Shooter").add("kD", shooterWoodComponents.getController().getPIDFTerms().getKd()).getEntry();
+        kP = Shuffleboard.getTab("Shooter").add("kP", shooterWoodComponents.getController().getPIDFTerms().
+                getKp()).getEntry();
+        kI = Shuffleboard.getTab("Shooter").add("kI", shooterWoodComponents.getController().getPIDFTerms().
+                getKi()).getEntry();
+        kD = Shuffleboard.getTab("Shooter").add("kD", shooterWoodComponents.getController().getPIDFTerms().
+                getKd()).getEntry();
     }
 
     @Override
     public void periodic() {
         speed = percentageOutput.getDouble(0);
-        shooterWoodComponents.getController().setPIDFTerms(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), PIDF_F);
+        shooterWoodComponents.getController().setPIDFTerms(kP.getDouble(0), kI.getDouble(0),
+                kD.getDouble(0), PIDF_F);
     }
 
     public void setSpeed(double speed) {

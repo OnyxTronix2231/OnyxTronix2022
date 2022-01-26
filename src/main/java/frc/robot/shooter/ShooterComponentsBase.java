@@ -3,6 +3,7 @@ package frc.robot.shooter;
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
@@ -18,6 +19,7 @@ public class ShooterComponentsBase implements ShooterComponents{
     private WPI_TalonSRX masterMotor;
     private WPI_TalonSRX slaveMotor;
     private CtreEncoder encoder;
+    private EncoderSim simEncoder;
     private CtrePIDController controller;
     private FlywheelSim flywheelSim;
 
