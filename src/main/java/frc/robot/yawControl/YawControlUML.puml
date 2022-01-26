@@ -27,19 +27,19 @@ RotateByPos --o LocateTargetByCalculating
 RotateByVision --o LocateTargetByCalculating
 
 
-interface TurretComponents{
+interface TurretComponents {
     WPI_TalonFX getMotor()
     Counter getEncoder()
     CtreMotionMagicController getController()
 }
 
-class TurretComponentsBase{
+class TurretComponentsBase {
     WPI_TalonFX motor
     CtreEncoder encoder
     CtreMotionMagicController controller
 }
 
-class Turret{
+class Turret {
     TurretComponents components
     void periodic()
     void configMotorLimits()
@@ -55,7 +55,7 @@ class Turret{
     boolean isOnTarget()
 }
 
-class RotateByAngle{
+class RotateByAngle {
     Turret turret
     DoubleSupplier angleSupplier
     void initialize()
@@ -63,7 +63,7 @@ class RotateByAngle{
     void end()
 }
 
-class RotateToAngle{
+class RotateToAngle {
     Turret turret
     DoubleSupplier angleSupplier
     void initialize()
@@ -71,20 +71,20 @@ class RotateToAngle{
     void end()
 }
 
-class RotateByVision{
+class RotateByVision {
     Vision vision
     Turret turret
 }
 
-class RotateByAngleOnce{
+class RotateByAngleOnce {
     void isFinished()
 }
 
-class RotateToAngleOnce{
+class RotateToAngleOnce {
     void isFinished()
 }
 
-class RotateBySpeed{
+class RotateBySpeed {
     Turret turret
     DoubleSupplier speedSupplier
     void initialize()
@@ -92,26 +92,26 @@ class RotateBySpeed{
     void end()
 }
 
-class YawControl{
+class YawControl {
     DriveTrain driveTrain
     double getTurretAngleRTF()
     double getAngleRTRToFixAngleRTF()
     double getAngleToTargetRTF()
 }
 
-class RotateToAngleRTF{
+class RotateToAngleRTF {
     YawControl yawControl
 }
 
-class RotateToAngleRTFOnce{
+class RotateToAngleRTFOnce {
 }
 
-class RotateByPos{
+class RotateByPos {
     YawControl yawControl
     Pose2d currentPos
 }
 
-class LocateTargetByCalculating{
+class LocateTargetByCalculating {
     RotateToAngleRTF trueCommand
     RotateByPos falseCommand
     Vision vision

@@ -1,6 +1,7 @@
 package frc.robot.turret;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
@@ -20,6 +21,7 @@ public class TurretComponentsBase implements TurretComponents {
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
         motor.setSelectedSensorPosition(
                 motor.getSensorCollection().getIntegratedSensorAbsolutePosition() , 0, 0);
+        motor.setNeutralMode(NeutralMode.Brake);
 
         encoder = new CtreEncoder(motor);
         controller = new CtreMotionMagicController(

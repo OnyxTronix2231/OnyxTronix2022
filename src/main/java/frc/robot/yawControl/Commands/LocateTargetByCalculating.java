@@ -7,8 +7,8 @@ import frc.robot.yawControl.YawControl;
 
 public class LocateTargetByCalculating extends ConditionalCommand {
 
-    public LocateTargetByCalculating(YawControl yawControl, Vision vision, Pose2d currentPos) {
+   public LocateTargetByCalculating(YawControl yawControl, Vision vision, Pose2d currentPos) {
         super(new RotateByVision(yawControl, vision), new RotateByPos(yawControl, currentPos), ()-> vision.hasTarget());
         addRequirements(yawControl, vision);
-    }
+   }
 }

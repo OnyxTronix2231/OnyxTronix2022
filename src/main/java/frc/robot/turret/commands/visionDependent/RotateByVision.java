@@ -5,8 +5,8 @@ import frc.robot.turret.commands.RotateByAngle;
 
 public class RotateByVision extends RotateByAngle {
 
-    public RotateByVision(Turret turret, Vision vision) {
+   public RotateByVision(Turret turret, Vision vision) {
        super(turret, vision.vision()); //add vision commands, By Dan Or and Eyal.
        addRequirements(turret);
-    }
+   }
 }
