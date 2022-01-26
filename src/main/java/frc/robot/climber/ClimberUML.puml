@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/class-diagram
+!includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
+
+abstract class SubsystemBase
+abstract class CommandBase
+abstract class ConditionalCommand
+abstract class SequentialCommandGroup
+abstract class ParallelDeadlineGroup
+
+CommandBase --|> ConditionalCommand
+CommandBase --|> SequentialCommandGroup
+CommandBase --|> ParallelDeadlineGroup
+ClimberComponents --|> ClimberComponentsBase
+ClimberComponents --* Climber
+SubsystemBase --|> Climber
+Climber --o ClimbByPhase
+ConditionalCommand --|> ClimbByPhase
+Climber --o ClimbConditions
+SequentialCommandGroup --|> ClimbConditions
+MoveRailUntilCondition --o ClimbByPhase
+SequentialCommandGroup --|> ClimbingSequence
+Climber --o ClimbingSequence
+MoveRailUntilCondition --o ClimbingSequence
+Climber --o MoveArmByDistance
+CommandBase --|> MoveArmByDistance
+CommandBase --|> MoveArmBySpeed
+Climber --o MoveArmBySpeed
+CommandBase --|> MoveRailByDistance
+Climber --o MoveRailByDistance
+CommandBase --|> MoveRailBySpeed
+Climber --o MoveRailBySpeed
+ParallelDeadlineGroup --|> MoveRailUntilCondition
+Climber --o MoveRailUntilCondition
+MoveRailBySpeed --o MoveRailUntilCondition
+ClimbConditions --o MoveRailUntilCondition
+MoveRailByDistance --o ClimbByPhase
+MoveRailByDistance --o ClimbingSequence
+MoveArmByDistance --o ClimbByPhase
+
+
+class Climber{
+    void initMoveArmByDistance()
+    void updateMoveArmByDistance()
+    void initMoveRailByDistance()
+    void updateMoveRailByDistance()
+    void moveRailBySpeed()
+    void stopRailMotor()
+    void moveArmBySpeed()
+    void stopArmMotor()
+    boolean isInnerHallEffectClosed()
+}
+
+class ClimberComponentsBase{
+    private WPI_TalonFX railMotor
+    private WPI_TalonFX armMotor
+    private DoubleSolenoid solenoid
+    private DigitalInput outerHallEffect
+    private DigitalInput innerHallEffect
+    private CtreMotionMagicController armMotionMagicController
+    private CtreMotionMagicController railMotionMagicController
+    private CtreEncoder armEncoder
+    private CtreEncoder railEncoder
+}
+
+interface ClimberComponents{
+    CtreMotionMagicController getArmMotionMagicController()
+    CtreMotionMagicController getRailMotionMagicController()
+    Counter getArmCounter()
+    Counter getRailCounter()
+    WPI_TalonFX getRailMotor()
+    WPI_TalonFX getArmMotor()
+    DoubleSolenoid getSolenoid()
+    DigitalInput getInnerHallEffect()
+}
+
+
+
+@enduml
