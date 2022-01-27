@@ -7,4 +7,7 @@ public final class VisionConstants {
     public static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 16.8;
     public static final double LIMELIGHT_TO_TARGET_CM =
             OUTER_TARGET_HEIGHT_CM - LIMELIGHT_HEIGHT_TO_FLOOR_CM;
+
+    public static final double MID_TARGET_X_RTF = 0;  // TODO: check and change
+    public static final double MID_TARGET_Y_RTF = 0;  // TODO: check and change
 }
