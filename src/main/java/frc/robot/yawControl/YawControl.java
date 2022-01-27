@@ -24,7 +24,7 @@ public class YawControl extends Turret {
     }
 
     public double getAngleToTargetRTF(Pose2d currentPos) {
-        double angle = Math.toDegrees(Math.atan((currentPos.getY() - TARGET_POS.getY())/
+        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POS.getY())/
                 (currentPos.getX() - TARGET_POS.getX())));
         if (currentPos.getX() > TARGET_POS.getX())
             angle += 180;
