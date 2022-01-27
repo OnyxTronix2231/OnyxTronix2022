@@ -1,7 +1,7 @@
 package frc.robot.intakeBack;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import static frc.robot.Constants.REGULAR_AMP;
 import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_CLOSE;
 import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_OPEN;
 
@@ -28,5 +28,9 @@ public class IntakeBack extends SubsystemBase {
 
     public void closeSolenoid(){
         components.getSolenoid().set(SOLENOID_CLOSE);
+    }
+
+    public boolean isAdded(){
+        return components.getMotor().getSupplyCurrent() >  REGULAR_AMP;
     }
 }

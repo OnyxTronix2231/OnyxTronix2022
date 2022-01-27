@@ -26,4 +26,5 @@ public class IntakeBackComponentsBase implements IntakeBackComponents {
     public DoubleSolenoid getSolenoid() {
         return solenoid;
     }
+
 }
