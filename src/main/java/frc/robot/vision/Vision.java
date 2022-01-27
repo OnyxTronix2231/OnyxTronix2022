@@ -6,8 +6,7 @@ import vision.limelight.target.LimelightTarget;
 
 import java.util.function.DoubleSupplier;
 
-import static frc.robot.vision.VisionConstants.LIMELIGHT_ANGLE_TO_HORIZON_DEG;
-import static frc.robot.vision.VisionConstants.LIMELIGHT_TO_TARGET_CM;
+import static frc.robot.vision.VisionConstants.*;
 
 
 public class Vision {
@@ -43,5 +42,13 @@ public class Vision {
 
     public boolean hasTarget() {
         return limelight.targetFound();
+    }
+
+    public double getRobotXByVision(){
+        return MID_TARGET_X_RTF - getDistanceFromTarget() * Math.cos(Math.toRadians(TURRET_ANGLE_RTF));
+    }
+
+    public double getRobotYByVision(){
+        return MID_TARGET_Y_RTF - getDistanceFromTarget() * Math.sin(Math.toRadians(TURRET_ANGLE_RTF));
     }
 }
