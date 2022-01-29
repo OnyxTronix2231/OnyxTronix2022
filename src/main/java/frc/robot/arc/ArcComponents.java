@@ -10,5 +10,4 @@ import sensors.linearServo.LinearServo;
 public interface ArcComponents {
 
     LinearServo getLinearServo();
-
 }

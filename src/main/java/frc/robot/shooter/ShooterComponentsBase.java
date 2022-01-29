@@ -23,7 +23,7 @@ public class ShooterComponentsBase implements ShooterComponents{
     private CtrePIDController controller;
     private FlywheelSim flywheelSim;
 
-    public ShooterComponentsBase(){
+    public ShooterComponentsBase() {
         masterMotor = new WPI_TalonSRX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
         slaveMotor = new WPI_TalonSRX(SLAVE_MOTOR_ID);

@@ -14,5 +14,4 @@ public interface ShooterWoodComponents {
         Counter getCounter();
 
         CtrePIDController getController();
-
 }

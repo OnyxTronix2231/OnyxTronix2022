@@ -1,18 +1,8 @@
 package frc.robot.arc;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import pid.CtreMotionMagicController;
-import pid.PIDFTerms;
-import pid.interfaces.MotionMagicController;
-import sensors.Switch.TalonSrxForwardMicroswitch;
-import sensors.Switch.TalonSrxReverseMicroswitch;
-import sensors.counter.Counter;
-import sensors.counter.CtreEncoder;
 import sensors.linearServo.LinearServo;
 
-import static frc.robot.arc.ArcConstents.*;
+import static frc.robot.arc.ArcConstants.*;
 
 public class ArcComponentsBase implements ArcComponents {
 
@@ -26,8 +16,4 @@ public class ArcComponentsBase implements ArcComponents {
     public LinearServo getLinearServo() {
         return linearServo;
     }
-
-
-
-
 }
