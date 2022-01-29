@@ -23,7 +23,8 @@ public class YawControl extends Turret {
         return angleRTF - driveTrain.getHedding();
     }
 
-    public double getAngleToTargetByPose(Pose2d currentPos) {
+    public double getAngleToTargetByPose() {
+        Pose2d currentPos = driveTrain.getPose();
         double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POS.getY())/
                 (currentPos.getX() - TARGET_POS.getX())));
         if (currentPos.getX() > TARGET_POS.getX())
@@ -32,11 +33,9 @@ public class YawControl extends Turret {
     }
 
     public double getAngleNoVisionDependent( Vision vision){
-        if( vision.hasTarget()){
-            return vision.getAngleToTarget();
-        }
-        else
-            return getAngleToTargetByPose(driveTrain.getPose());
+        if( vision.hasTarget())
+            return vision.getAngleToTarget() + driveTrain.getHedding();
+        return getAngleToTargetByPose();
      }
 }
 
