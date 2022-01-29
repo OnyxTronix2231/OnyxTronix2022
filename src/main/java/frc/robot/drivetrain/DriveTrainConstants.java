@@ -68,6 +68,7 @@ public final class DriveTrainConstants {
             new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
             List.of(new Translation2d(2, 0), new Translation2d(2,2)),
             new Pose2d(4, 2, Rotation2d.fromDegrees(0)),
+            false,
             new CentripetalAccelerationConstraint(1),
             new MaxVelocityConstraint(1));
 

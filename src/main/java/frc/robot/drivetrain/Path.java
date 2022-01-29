@@ -19,14 +19,14 @@ public class Path {
     private final Pose2d endPose;
     private final TrajectoryConfig config;
 
-    public Path(Pose2d startPose, List<Translation2d> middlePoints, Pose2d endPose,
+    public Path(Pose2d startPose, List<Translation2d> middlePoints, Pose2d endPose, Boolean reversed,
                 TrajectoryConstraint... constraints) {
         this.startPose = startPose;
         this.middlePoints = middlePoints;
         this.endPose = endPose;
         this.config = new TrajectoryConfig(MAX_SPEED_METERS_PER_SECOND, MAX_ACCELERATION_METERS_PER_SECOND_SQUARED)
                 .setKinematics(DRIVE_KINEMATICS)
-                .addConstraints(Arrays.asList(constraints));
+                .addConstraints(Arrays.asList(constraints)).setReversed(reversed);
     }
 
     public Pose2d getStartPose() {

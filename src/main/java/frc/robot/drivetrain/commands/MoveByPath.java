@@ -12,18 +12,21 @@ import frc.robot.drivetrain.Path;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 public class MoveByPath extends CommandBase {
-    private final DriveTrain driveTrain;
-    private final Trajectory trajectory;
+    private DriveTrain driveTrain;
+    private Trajectory trajectory;
     private RamseteCommand command;
+    private Path currentPath;
 
     public MoveByPath(DriveTrain driveTrain, Path path) {
         this.driveTrain = driveTrain;
-        trajectory = path.toTrajectory(driveTrain.getPose());
+        currentPath = path;
+        trajectory = currentPath.toTrajectory(driveTrain.getPose());
         addRequirements(driveTrain);
     }
 
     @Override
     public void initialize() {
+        trajectory = currentPath.toTrajectory(driveTrain.getPose());
         command = new RamseteCommand(
                 trajectory,
                 driveTrain::getPose,
