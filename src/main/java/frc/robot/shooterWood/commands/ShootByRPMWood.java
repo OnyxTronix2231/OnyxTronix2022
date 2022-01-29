@@ -14,11 +14,12 @@ public class ShootByRPMWood extends CommandBase {
         this.shooterWood = shooterWood;
         this.rpm = rpm;
     }
-    public void initialize(){
+
+    public void initialize() {
         shooterWood.initMoveByRPM(rpm.getAsDouble());
     }
 
-    public void execute(){
+    public void execute() {
         shooterWood.updateMoveByRPM(rpm.getAsDouble());
     }
 

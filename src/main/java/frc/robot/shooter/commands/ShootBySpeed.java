@@ -6,10 +6,11 @@ import frc.robot.shooter.Shooter;
 import java.util.function.DoubleSupplier;
 
 public class ShootBySpeed extends CommandBase {
+
     private Shooter shooter;
     private DoubleSupplier speed;
 
-    public ShootBySpeed(Shooter shooter, DoubleSupplier speed){
+    public ShootBySpeed(Shooter shooter, DoubleSupplier speed) {
         this.shooter = shooter;
         this.speed = speed;
     }

@@ -6,10 +6,11 @@ import frc.robot.shooter.Shooter;
 import java.util.function.DoubleSupplier;
 
 public class ShootByRPM_PID extends CommandBase {
+
     private Shooter shooter;
     private DoubleSupplier rpm;
 
-    public ShootByRPM_PID(Shooter shooter, DoubleSupplier rpm){
+    public ShootByRPM_PID(Shooter shooter, DoubleSupplier rpm) {
         this.shooter = shooter;
         this.rpm = rpm;
     }
@@ -28,5 +29,4 @@ public class ShootByRPM_PID extends CommandBase {
     public void end(boolean interrupted) {
         shooter.stop();
     }
-
 }

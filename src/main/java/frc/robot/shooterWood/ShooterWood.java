@@ -62,7 +62,7 @@ public class ShooterWood extends SubsystemBase {
         shooterWoodComponents.getController().enable();
     }
 
-    public void updateMoveByRPM(double rpm){
+    public void updateMoveByRPM(double rpm) {
         shooterWoodComponents.getController().setSetpoint(RPMToEncoderUnitsInDecisecond(rpm));
     }
 }

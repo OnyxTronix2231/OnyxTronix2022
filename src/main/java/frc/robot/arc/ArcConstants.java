@@ -1,6 +1,7 @@
 package frc.robot.arc;
 
-public class ArcConstents {
+public class ArcConstants {
+
     public static final int MOTOR_ID = 0;
     public static final double KP = 0;
     public static final double KI = 0;

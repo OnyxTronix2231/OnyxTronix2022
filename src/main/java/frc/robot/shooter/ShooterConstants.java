@@ -13,5 +13,5 @@ public class ShooterConstants {
     static final double KI = 1;
     static final double KD = 1;
     static final double KF = 1;
-
+    static final double SHOOTER_MOTOR_RADIUS = 0;
 }

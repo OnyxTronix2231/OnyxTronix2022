@@ -23,5 +23,4 @@ public class ShootBySpeedWood extends CommandBase {
     public void end(boolean interrupted) {
         shooterWood.stop();
     }
-
 }

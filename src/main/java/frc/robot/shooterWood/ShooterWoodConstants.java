@@ -10,5 +10,4 @@ public class ShooterWoodConstants {
     static final double PIDF_I = 0;
     static final double PIDF_D = 15;
     static final double PIDF_F = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
-
 }
