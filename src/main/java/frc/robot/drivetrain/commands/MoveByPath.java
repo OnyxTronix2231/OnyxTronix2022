@@ -31,6 +31,7 @@ public class MoveByPath extends CommandBase {
 
     @Override
     public void initialize() {
+        trajectory = currentPath.toTrajectory(driveTrain.getPose());
         command = new RamseteCommand(
                 trajectory,
                 driveTrain::getPose,

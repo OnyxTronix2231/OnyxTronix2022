@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.Calculations.meterToEncoderUnits;
 import static frc.robot.drivetrain.DriveTrainConstants.PERIMETER_METER;
 import static frc.robot.drivetrain.DriveTrainConstants.ENCODER_UNITS_PER_ROTATION;
 
@@ -58,11 +59,11 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void inItDriveByDistance(double distance) {
-        inItMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
+        inItMoveByEncoderUnits(meterToEncoderUnits(distance));
     }
 
     public void updateDriveByDistance(double distance){
-        updateMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
+        updateMoveByEncoderUnits(meterToEncoderUnits(distance));
     }
 
     public void inItMoveByEncoderUnits(double encoderUnits){
@@ -109,10 +110,7 @@ public class DriveTrain extends SubsystemBase {
     private double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
         return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
     }
-    private double robotAcceleration(double time) {
-        return MAX_VELOCITY/time;
 
-    }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {
         if (Robot.isReal()) {
