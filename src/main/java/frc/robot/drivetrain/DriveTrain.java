@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -32,8 +33,15 @@ public class DriveTrain extends SubsystemBase {
         Shuffleboard.getTab("Drivetrain")
                 .addNumber("RIGHT DRIVE ENCODER",
                         () -> driveTrainComponents.getRightEncoder().getRate());
+        resetEncoders();
         SmartDashboard.putData(driveTrainComponents.getField());
         driveTrainComponents.getField().setRobotPose(new Pose2d(7,10,new Rotation2d(80)));
+    }
+
+    public void resetEncoders(){
+        driveTrainComponents.getLeftEncoder().reset();
+        driveTrainComponents.getRightEncoder().reset();
+        driveTrainComponents.getNormelizedPigeonIMU().setYaw(0);
     }
 
     @Override
@@ -121,6 +129,13 @@ public class DriveTrain extends SubsystemBase {
 
     public double getHeading() {
         return driveTrainComponents.getNormelizedPigeonIMU().getRawYaw();
+    }
+
+    public void resetOdometryToPose(Translation2d translation) {
+        resetEncoders();
+        Pose2d targetPose = new Pose2d(translation, this.getPose().getRotation());
+        driveTrainComponents.getOdometry().resetPosition(targetPose, targetPose.getRotation());
+        driveTrainComponents.getNormelizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
     }
     
 }
