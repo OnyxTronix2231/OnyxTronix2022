@@ -67,7 +67,6 @@ public final class DriveTrainConstants {
         static double meterToEncoderUnits(double meters){
             return meters * ENCODER_UNITS_PER_ROTATION;
         }
-
     }
 
     public static final class Paths {
