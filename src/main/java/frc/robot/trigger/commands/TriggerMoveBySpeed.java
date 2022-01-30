@@ -1,6 +1,5 @@
 package frc.robot.trigger.commands;
 
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.trigger.Trigger;
 
@@ -18,8 +17,7 @@ public class TriggerMoveBySpeed extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return trigger.isGood();
-
+        return trigger.isLoadedV2();
     }
 
     public TriggerMoveBySpeed(Trigger trigger, DoubleSupplier doubleSupplier) {
