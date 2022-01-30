@@ -11,12 +11,19 @@ import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
 import java.util.List;
 
 public final class DriveTrainConstants {
+    public static final int LEFT_MASTER_MOTOR_PORT = 3;
+    public static final int LEFT_SLAVE_MOTOR_PORT = 4;
+    public static final int RIGHT_MASTER_MOTOR_PORT = 1;
+    public static final int RIGHT_SLAVE_MOTOR_PORT = 2;
+    public static final int PIGEON_PORT = 0;
+
     public static final double MAX_OUTPUT_FORWARD = 1;
     public static final double MAX_OUTPUT_REVERSE = -1;
     public static final double CURRENT_LIMIT = 40;
     public static final double TRIGGER_THRESHOLD_CURRENT = 40;
     public static final double TRIGGER_THRESHOLD_TIME = 0.03;
     public static final double RAMP_TIME = 0.3;
+
     static final int DECISECOND_IN_SECOND = 10;
     static final int ENCODER_UNITS = 2048;
     static final int DECISECOND_PER_MINUTE = 600;
@@ -25,30 +32,31 @@ public final class DriveTrainConstants {
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
     public static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
-    static final int PIGEON_PORT = 0;
-    static final double MAX_VELOCITY = 18000;
-    static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
-    static final double kP = 0;
-    static final double kI = 0;
-    static final double kD = 0;
-    static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
-    static final int acceleration = 0;
-    static final int cruiseVelocity = 0;
-    static final int accelerationSmoothing = 0;
-    static final double tolerance = 0.5;
-
-    public static final double TRAJECTORY_P = 0;
     public static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
+
+    public static final double MAX_VELOCITY = 18000;
+    public static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
+    public static final double tolerance = 0.5;
+
+    public static final int acceleration = 0;
+    public static final int cruiseVelocity = 0;
+    public static final int accelerationSmoothing = 0;
+
     public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
     public static final double TRACKWIDTH_METERS = 0.69;
-    private static final double KS = 0;
-    private static final double KV = 0;
-    private static final double KA = 0;
+    public static final double TRAJECTORY_P = 0;
+    public static final double KS = 0;
+    public static final double KV = 0;
+    public static final double KA = 0;
+
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
-
 
     public static final class Calculations {
 

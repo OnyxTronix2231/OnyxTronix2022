@@ -11,11 +11,7 @@ public interface DriveTrainComponents {
 
     WPI_TalonFX getLeftMasterMotor();
 
-    WPI_TalonFX getLeftSlaveMotor();
-
     WPI_TalonFX getRightMasterMotor();
-
-    WPI_TalonFX getRightSlaveMotor();
 
     DifferentialDrive getDifferentialDrive();
 

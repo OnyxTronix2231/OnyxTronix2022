@@ -23,7 +23,6 @@ public class DriveTrain extends SubsystemBase {
 
     private final DriveTrainComponents driveTrainComponents;
 
-
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         System.out.println("contractor");
@@ -38,7 +37,7 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getField().setRobotPose(new Pose2d(7,10,new Rotation2d(80)));
     }
 
-    public void resetEncoders(){
+    public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
         driveTrainComponents.getNormelizedPigeonIMU().setYaw(0);
@@ -46,6 +45,7 @@ public class DriveTrain extends SubsystemBase {
 
     @Override
     public void periodic() {
+        System.out.println(this.getPose());
         driveTrainComponents.getOdometry().update(
                 Rotation2d.fromDegrees(getHeading()),
                 encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
@@ -75,19 +75,18 @@ public class DriveTrain extends SubsystemBase {
         inItMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
     }
 
-    public void updateDriveByDistance(double distance){
+    public void updateDriveByDistance(double distance) {
         updateMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
     }
 
-    public void inItMoveByEncoderUnits(double encoderUnits){
+    public void inItMoveByEncoderUnits(double encoderUnits) {
         driveTrainComponents.getLeftController().setSetpoint(encoderUnits);
-        System.out.println(encoderUnits);
         driveTrainComponents.getRightController().setSetpoint(encoderUnits);
         driveTrainComponents.getLeftController().enable();
         driveTrainComponents.getRightController().enable();
     }
 
-    public void updateMoveByEncoderUnits(double encoderUnits){
+    public void updateMoveByEncoderUnits(double encoderUnits) {
         driveTrainComponents.getLeftController().update(encoderUnits);
         driveTrainComponents.getRightController().update(encoderUnits);
     }
@@ -116,7 +115,6 @@ public class DriveTrain extends SubsystemBase {
     }
     private double robotAcceleration(double time) {
         return MAX_VELOCITY/time;
-
     }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -137,5 +135,4 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getOdometry().resetPosition(targetPose, targetPose.getRotation());
         driveTrainComponents.getNormelizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
     }
-    
 }

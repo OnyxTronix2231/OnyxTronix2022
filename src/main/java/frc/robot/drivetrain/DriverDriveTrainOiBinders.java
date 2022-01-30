@@ -16,6 +16,4 @@ public class DriverDriveTrainOiBinders {
         buttonA.whenActive(new TestCommand(driveTrain));
         buttonB.whenActive(new ResetOdometryToPose(driveTrain, new Translation2d(2, 2)));
     }
-
-
 }

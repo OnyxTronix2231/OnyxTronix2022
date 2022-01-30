@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.drivetrain.DriveTrain;
 
 public class ResetOdometryToPose extends InstantCommand {
-    public ResetOdometryToPose(DriveTrain driveTrain, Translation2d translation){
+    public ResetOdometryToPose(DriveTrain driveTrain, Translation2d translation) {
         super(() -> driveTrain.resetOdometryToPose(translation));
     }
 }
