@@ -1,7 +1,6 @@
 package frc.robot.arc;
 
 import sensors.linearServo.LinearServo;
-
 import static frc.robot.arc.ArcConstants.*;
 
 public class ArcComponentsBase implements ArcComponents {

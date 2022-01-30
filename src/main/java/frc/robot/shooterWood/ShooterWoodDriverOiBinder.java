@@ -6,6 +6,6 @@ import frc.robot.shooterWood.commands.ShootByRPMWood;
 public class ShooterWoodDriverOiBinder {
 
             public ShooterWoodDriverOiBinder(ShooterWood shooterWood, Trigger shootBySpeed) {
-                shootBySpeed.whileActiveContinuous(new ShootByRPMWood(shooterWood, () -> shooterWood.getSpeed()));
+                shootBySpeed.whileActiveContinuous(new ShootByRPMWood(shooterWood, ()-> shooterWood.getSpeed()));
     }
 }

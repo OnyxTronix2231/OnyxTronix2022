@@ -17,11 +17,11 @@ public class Shooter extends SubsystemBase {
     }
 
     public double rpmToEncoderUnitsInDecisecond(double rpm) {
-        return (rpm* ENCODER_UNITS_PER_ROUND)/ DECI_SECONDS_PER_MINUTE;
+        return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
     }
 
     public double rpmToMetersPerSec(double rpm) {
-        return ((2* Math.PI * SHOOTER_MOTOR_RADIUS)/60 * rpm);
+        return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * rpm);
     }
 
     public void initSetPIDSpeed(double rpm) {

@@ -8,15 +8,16 @@ import java.util.function.DoubleSupplier;
 public class ShootBySpeedWood extends CommandBase {
 
     private ShooterWood shooterWood;
-    private DoubleSupplier speed;
+    private DoubleSupplier speedSupplier;
 
     public ShootBySpeedWood(ShooterWood shooterWood, DoubleSupplier speed) {
         this.shooterWood = shooterWood;
-        this.speed = speed;
+        this.speedSupplier = speed;
     }
 
+    @Override
     public void execute() {
-        shooterWood.setSpeed(speed.getAsDouble());
+        shooterWood.setSpeed(speedSupplier.getAsDouble());
     }
 
     @Override

@@ -25,18 +25,13 @@ public class ShooterWoodComponentsBase implements ShooterWoodComponents {
         slaveMotor.follow(masterMotor);
         slaveMotor.setInverted(true);
         controller = new CtrePIDController(masterMotor, encoder,
-                new PIDFTerms(PIDF_P,PIDF_I,PIDF_D,PIDF_F), PIDControlMode.Velocity);
+                new PIDFTerms(PIDF_P , PIDF_I , PIDF_D , PIDF_F) , PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
     }
 
     @Override
     public WPI_TalonSRX getMasterMotor() {
         return masterMotor;
-    }
-
-    @Override
-    public WPI_VictorSPX getSlaveMotor() {
-        return slaveMotor;
     }
 
     @Override
