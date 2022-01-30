@@ -9,8 +9,6 @@ public interface ShooterWoodComponents {
 
         WPI_TalonSRX getMasterMotor();
 
-        WPI_VictorSPX getSlaveMotor();
-
         Counter getCounter();
 
         CtrePIDController getController();

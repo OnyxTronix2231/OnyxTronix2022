@@ -1,7 +1,5 @@
 package frc.robot.shooter;
 
-import java.util.function.DoubleSupplier;
-
 public class ShooterConstants {
 
     static final int MASTER_MOTOR_ID = 1;
@@ -14,4 +12,5 @@ public class ShooterConstants {
     static final double KD = 0; //TODO calibrate value
     static final double KF = 0; //TODO calibrate value
     static final double SHOOTER_MOTOR_RADIUS = 0; //TODO check with mechanics
+    public static final int SEC_IN_MIN = 60;
 }

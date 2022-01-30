@@ -2,7 +2,6 @@ package frc.robot.shooterWood.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.shooterWood.ShooterWood;
-
 import java.util.function.DoubleSupplier;
 
 public class ShootByRPMWood extends CommandBase {
