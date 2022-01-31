@@ -85,5 +85,12 @@ public final class DriveTrainConstants {
                 new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
                 false,
                 new MaxVelocityConstraint(1.5));
+
+        public static final Path ONE_METER_BACKWARD = new Path(
+                new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+                true,
+                new MaxVelocityConstraint(1.5));
     }
 }
