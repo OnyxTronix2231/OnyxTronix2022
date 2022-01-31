@@ -20,10 +20,10 @@ RotateByVision --|> RotateByAngle
 YawControl --|> Turret
 RotateToAngleRTF --|> RotateToAngle
 RotateToAngleRTFOnce --|> RotateToAngleRTF
-RotateByPos --|> RotateToAngleRTF
+frc.robot.yawControl.Commands.RotateByPos --|> RotateToAngleRTF
 YawControl --o RotateToAngleRTF
 LocateTargetByCalculating ---|> ConditionalCommand
-RotateByPos --o LocateTargetByCalculating
+frc.robot.yawControl.Commands.RotateByPos --o LocateTargetByCalculating
 RotateByVision --o LocateTargetByCalculating
 
 
@@ -106,14 +106,14 @@ class RotateToAngleRTF {
 class RotateToAngleRTFOnce {
 }
 
-class RotateByPos {
+class frc.robot.yawControl.Commands.RotateByPos {
     YawControl yawControl
     Pose2d currentPos
 }
 
 class LocateTargetByCalculating {
     RotateToAngleRTF trueCommand
-    RotateByPos falseCommand
+    frc.robot.yawControl.Commands.RotateByPos falseCommand
     Vision vision
     Pose2d currentPos
 }
