@@ -38,5 +38,7 @@ public class YawControl extends Turret {
         else
         return getAngleToTargetByPose();
      }
+
+    }
 }
 
