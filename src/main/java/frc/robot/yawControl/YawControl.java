@@ -35,6 +35,7 @@ public class YawControl extends Turret {
     public double getAngleNoVisionDependent( Vision vision){
         if( vision.hasTarget())
             return vision.getAngleToTarget() + driveTrain.getHedding();
+        else
         return getAngleToTargetByPose();
      }
 }
