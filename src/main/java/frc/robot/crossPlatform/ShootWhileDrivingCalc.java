@@ -53,7 +53,7 @@ public class ShootWhileDrivingCalc {
         * angle -> turret's direction*/
 
         double size = getShooterOnly2DVector().x;
-        double angle = yawControl.getAngleNoVisionDependent(vision);
+        double angle = yawControl.getAngleNonVisionDependent(vision);
         double x = size * Math.cos(Math.toRadians(angle));
         double y = size * Math.sin(Math.toRadians(angle));
         return new Vector2d(x, y);

@@ -5,7 +5,7 @@ import frc.robot.yawControl.YawControl;
 public class LocateTargetByCalculating extends RotateToAngleRTF {
 
    public LocateTargetByCalculating(YawControl yawControl, Vision vision) {
-       super(yawControl, ()-> yawControl.getAngleNoVisionDependent(vision) );
+       super(yawControl, ()-> yawControl.getAngleNonVisionDependent(vision) );
        addRequirements(yawControl, vision);
    }
 }
