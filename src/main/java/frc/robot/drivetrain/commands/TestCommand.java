@@ -8,6 +8,6 @@ import static frc.robot.drivetrain.DriveTrainConstants.Paths.*;
 public class TestCommand extends SequentialCommandGroup {
 
      public TestCommand(DriveTrain driveTrain) {
-         super(new MoveByPath(driveTrain, PATH_1));
+         super(new MoveByPath(driveTrain, ONE_METER_FORWARD));
      }
 }

@@ -79,5 +79,11 @@ public final class DriveTrainConstants {
             new CentripetalAccelerationConstraint(1),
             new MaxVelocityConstraint(1));
 
+        public static final Path ONE_METER_FORWARD = new Path(
+                new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5));
     }
 }
