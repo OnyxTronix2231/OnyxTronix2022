@@ -7,9 +7,9 @@ import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_OPEN;
 
 public class IntakeForward extends SubsystemBase {
 
-    private final IntakeForwardComponents forwardComponents;
+    private final IntakeComponents forwardComponents;
 
-    public IntakeForward(frc.robot.intakeForward.IntakeForwardComponents forwardComponents) {
+    public IntakeForward(IntakeComponents forwardComponents) {
         this.forwardComponents = forwardComponents;
     }
 

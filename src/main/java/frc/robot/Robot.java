@@ -11,11 +11,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.intakeBack.IntakeBack;
 import frc.robot.intakeForward.IntakeForward;
-import frc.robot.intakeForward.IntakeForwardComponents;
+import frc.robot.intakeForward.IntakeComponents;
 import frc.robot.intakeForward.IntakeForwardComponentsBase;
 import frc.robot.intakeBack.IntakeBackComponents;
 import frc.robot.intakeBack.IntakeBackComponentsBase;
-import frc.robot.intakeBack.IntakeBack;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,9 +24,9 @@ import frc.robot.intakeBack.IntakeBack;
  */
 public class Robot extends TimedRobot {
 
-    IntakeForwardComponents intakeForwardComponents = new IntakeForwardComponentsBase() {
+    IntakeComponents intakeForwardComponents = new IntakeForwardComponentsBase() {
     };
-    IntakeBackComponents intakeBackComponents = new IntakeBackComponentsBase(){
+    IntakeComponents intakeBackComponents = new IntakeBackComponentsBase(){
     };
 
     /**

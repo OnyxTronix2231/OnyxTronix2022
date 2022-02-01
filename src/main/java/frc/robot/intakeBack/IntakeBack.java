@@ -1,6 +1,8 @@
 package frc.robot.intakeBack;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.intakeForward.IntakeComponents;
+
 import static frc.robot.Constants.REGULAR_AMP;
 import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_CLOSE;
 import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_OPEN;
@@ -8,9 +10,9 @@ import static frc.robot.intakeForward.IntakeForwardConstant.SOLENOID_OPEN;
 
 public class IntakeBack extends SubsystemBase {
 
-    private final IntakeBackComponents components;
+    private final IntakeComponents components;
 
-    public IntakeBack(IntakeBackComponents components) {
+    public IntakeBack(IntakeComponents components) {
         this.components = components;
     }
 
