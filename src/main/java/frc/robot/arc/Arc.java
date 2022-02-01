@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arc extends SubsystemBase {
 
-    private ArcComponents arcComponents;
+    private final ArcComponents arcComponents;
 
     public Arc(ArcComponents arcComponents) {
         this.arcComponents = arcComponents;

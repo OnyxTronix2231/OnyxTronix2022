@@ -7,8 +7,8 @@ import java.util.function.DoubleSupplier;
 
 public class ShootByRPM_PID extends CommandBase {
 
-    private Shooter shooter;
-    private DoubleSupplier rpm;
+    private final Shooter shooter;
+    private final DoubleSupplier rpm;
 
     public ShootByRPM_PID(Shooter shooter, DoubleSupplier rpm) {
         this.shooter = shooter;

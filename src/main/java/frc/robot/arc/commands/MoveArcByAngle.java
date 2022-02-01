@@ -16,7 +16,6 @@ public class MoveArcByAngle extends CommandBase {
         addRequirements(arc);
     }
 
-
     public void end(boolean interrupted) {
         arc.stop();
     }

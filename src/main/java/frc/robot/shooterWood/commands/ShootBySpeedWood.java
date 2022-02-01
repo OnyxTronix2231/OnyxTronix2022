@@ -2,21 +2,20 @@ package frc.robot.shooterWood.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.shooterWood.ShooterWood;
-
 import java.util.function.DoubleSupplier;
 
 public class ShootBySpeedWood extends CommandBase {
 
-    private ShooterWood shooterWood;
-    private DoubleSupplier speed;
+    private final ShooterWood shooterWood;
+    private final DoubleSupplier speedSupplier;
 
     public ShootBySpeedWood(ShooterWood shooterWood, DoubleSupplier speed) {
         this.shooterWood = shooterWood;
-        this.speed = speed;
+        this.speedSupplier = speed;
     }
 
     public void execute() {
-        shooterWood.setSpeed(speed.getAsDouble());
+        shooterWood.setSpeed(speedSupplier.getAsDouble());
     }
 
     @Override
