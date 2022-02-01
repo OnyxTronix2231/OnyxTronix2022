@@ -1,9 +1,8 @@
 package frc.robot.shooter;
 
-import java.util.function.DoubleSupplier;
-
 public class ShooterConstants {
 
+    public static final int SEC_IN_MIN = 60;
     static final int MASTER_MOTOR_ID = 1;
     static final int SLAVE_MOTOR_ID = 1;
     static final double ENCODER_UNITS_PER_ROUND = 1;

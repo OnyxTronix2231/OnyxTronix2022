@@ -17,7 +17,7 @@ public class ShooterWood extends SubsystemBase {
 
     public ShooterWood(ShooterWoodComponents shooterWoodComponents) {
         this.shooterWoodComponents = shooterWoodComponents;
-        Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encoderUnitsInDecisecondToRPM(shooterWoodComponents
+        Shuffleboard.getTab("Shooter").addNumber("RPM", ()-> encoderUnitsInDecisecondToRPM(shooterWoodComponents
                 .getCounter().getRate()));
         percentageOutput = Shuffleboard.getTab("Shooter").add("percentageOutput", 0).getEntry();
 //        kP = Shuffleboard.getTab("Shooter").add("kP", shooterWoodComponents.getController().getPIDFTerms().
@@ -48,13 +48,12 @@ public class ShooterWood extends SubsystemBase {
         return speed;
     }
 
-
     public double RPMToEncoderUnitsInDecisecond(double rpm) {
         return (rpm * ENCODER_UNITS_PER_ROUND) / DECISECONDS_PER_MIN;
     }
 
     public double encoderUnitsInDecisecondToRPM(double encoderUnits) {
-        return (encoderUnits * DECISECONDS_PER_MIN)/ENCODER_UNITS_PER_ROUND;
+        return (encoderUnits * DECISECONDS_PER_MIN) / ENCODER_UNITS_PER_ROUND;
     }
 
     public void initMoveByRPM(double rpm) {

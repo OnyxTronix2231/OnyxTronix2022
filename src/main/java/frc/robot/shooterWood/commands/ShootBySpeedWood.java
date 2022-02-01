@@ -14,6 +14,7 @@ public class ShootBySpeedWood extends CommandBase {
         this.speedSupplier = speed;
     }
 
+    @Override
     public void execute() {
         shooterWood.setSpeed(speedSupplier.getAsDouble());
     }

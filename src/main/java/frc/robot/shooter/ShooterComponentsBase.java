@@ -28,23 +28,22 @@ public class ShooterComponentsBase implements ShooterComponents{
         masterMotor = new WPI_TalonFX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
+
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
+
         encoder = new CtreEncoder(masterMotor);
+
         controller = new CtrePIDController(masterMotor, encoder,
                 new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
+
         flywheelSim = new FlywheelSim(DCMotor.getFalcon500(2), 1, 0.01 );
     }
 
     @Override
     public WPI_TalonFX getMasterMotor() {
         return masterMotor;
-    }
-
-    @Override
-    public IMotorController getSlaveMotor() {
-        return slaveMotor;
     }
 
     @Override
