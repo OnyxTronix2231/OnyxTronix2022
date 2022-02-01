@@ -8,11 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.loader.Loader;
-import frc.robot.loader.LoaderComponents;
-import frc.robot.loader.LoaderComponentsBase;
+import frc.robot.trigger.TriggerComponents;
+import frc.robot.trigger.TriggerComponentsBase;
+import frc.robot.trigger.TriggerSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,7 +20,7 @@ import frc.robot.loader.LoaderComponentsBase;
  * project.
  */
 public class Robot extends TimedRobot {
-    LoaderComponents conveyorComponents = new LoaderComponentsBase();
+    TriggerComponents triggerComponents = new TriggerComponentsBase();
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -29,14 +28,14 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        Loader conveyor = new Loader(conveyorComponents);
-        Ultrasonic.setAutomaticMode(true);
+        TriggerSub triggerSub = new TriggerSub(triggerComponents);
+        //Ultrasonic.setAutomaticMode(true);
 
         if (Robot.isReal()) {
         } else {
         }
 
-        new DriverOi().woodTest(conveyor);
+        new DriverOi().triggerTest(triggerSub);
         new DeputyOi();
 
         new DriversShuffleboard();
