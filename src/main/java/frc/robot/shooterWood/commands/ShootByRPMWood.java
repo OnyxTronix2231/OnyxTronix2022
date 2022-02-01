@@ -7,20 +7,22 @@ import java.util.function.DoubleSupplier;
 
 public class ShootByRPMWood extends CommandBase {
 
-    private ShooterWood shooterWood;
-    private DoubleSupplier rpm;
+    private final ShooterWood shooterWood;
+    private final DoubleSupplier speedSupplier;
 
     public ShootByRPMWood(ShooterWood shooterWood, DoubleSupplier rpm) {
         this.shooterWood = shooterWood;
-        this.rpm = rpm;
+        this.speedSupplier = rpm;
     }
 
+    @Override
     public void initialize() {
-        shooterWood.initMoveByRPM(rpm.getAsDouble());
+        shooterWood.initMoveByRPM(speedSupplier.getAsDouble());
     }
 
+    @Override
     public void execute() {
-        shooterWood.updateMoveByRPM(rpm.getAsDouble());
+        shooterWood.updateMoveByRPM(speedSupplier.getAsDouble());
     }
 
     @Override

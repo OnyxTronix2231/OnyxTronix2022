@@ -9,7 +9,7 @@ import sensors.counter.Counter;
 
 public interface ShooterComponents {
 
-    WPI_TalonSRX getMasterMotor();
+    WPI_TalonFX getMasterMotor();
 
     IMotorController getSlaveMotor();
 

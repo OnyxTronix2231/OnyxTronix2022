@@ -6,7 +6,7 @@ import static frc.robot.arc.ArcConstants.*;
 
 public class ArcComponentsBase implements ArcComponents {
 
-    private LinearServo linearServo;
+    private final LinearServo linearServo;
 
     public ArcComponentsBase() {
         linearServo = new LinearServo(ARCH_CHANNEL, ARCH_MAX_LENGTH, ARC_MAX_SPEED);

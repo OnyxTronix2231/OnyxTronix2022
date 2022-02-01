@@ -6,7 +6,7 @@ import static frc.robot.shooter.ShooterConstants.*;
 
 public class Shooter extends SubsystemBase {
 
-    private ShooterComponents shooterComponents;
+    private final ShooterComponents shooterComponents;
 
     public Shooter(ShooterComponents shooterComponents) {
         this.shooterComponents = shooterComponents;
