@@ -74,14 +74,6 @@ public class Turret extends SubsystemBase {
         components.getController().update(degToEnc(fixDeg(deg)));
     }
 
-    public double degToEnc(double deg) {
-        return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
-    }
-
-    public double encToDeg(double enc) {
-        return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
-    }
-
     public double fixDeg(double deg) {
         double fixed = deg % DEG_IN_CIRCLE;
         if (fixed > MAX_DEG){
