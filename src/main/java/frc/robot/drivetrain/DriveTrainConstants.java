@@ -24,10 +24,10 @@ public final class DriveTrainConstants {
     public static final double TRIGGER_THRESHOLD_TIME = 0.03;
     public static final double RAMP_TIME = 0.3;
 
-    static final int DECISECOND_IN_SECOND = 10;
-    static final int ENCODER_UNITS = 2048;
-    static final int DECISECOND_PER_MINUTE = 600;
-    static final double CONVERSION_RATE = 9;
+    public static final int DECISECOND_IN_SECOND = 10;
+    public static final int ENCODER_UNITS = 2048;
+    public static final int DECISECOND_PER_MINUTE = 600;
+    public static final double CONVERSION_RATE = 9;
     public static final double ENCODER_UNITS_TO_METER = 1;
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
@@ -50,9 +50,9 @@ public final class DriveTrainConstants {
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
     public static final double TRACKWIDTH_METERS = 0.69;
     public static final double TRAJECTORY_P = 0;
-    public static final double KS = 0;
-    public static final double KV = 0;
-    public static final double KA = 0;
+    public static final double KS = 0.68132;
+    public static final double KV = 2.5333;
+    public static final double KA = 0.0073009;
 
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);

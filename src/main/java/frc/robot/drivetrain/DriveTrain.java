@@ -1,17 +1,12 @@
 package frc.robot.drivetrain;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.sensors.PigeonIMU;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 
@@ -25,15 +20,7 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        System.out.println("contractor");
-        Shuffleboard.getTab("Drivetrain")
-                .addNumber("LEFT DRIVE ENCODER",
-                        () -> driveTrainComponents.getLeftEncoder().getRate());
-        Shuffleboard.getTab("Drivetrain")
-                .addNumber("RIGHT DRIVE ENCODER",
-                        () -> driveTrainComponents.getRightEncoder().getRate());
-        SmartDashboard.putData(driveTrainComponents.getField());
-        driveTrainComponents.getField().setRobotPose(new Pose2d(7,10,new Rotation2d(80)));
+        resetEncoders();
     }
 
     public void resetEncoders() {
@@ -44,7 +31,6 @@ public class DriveTrain extends SubsystemBase {
 
     @Override
     public void periodic() {
-        System.out.println(this.getPose());
         driveTrainComponents.getOdometry().update(
                 Rotation2d.fromDegrees(getHeading()),
                 encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
@@ -54,7 +40,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed*0.5, rotation*0.6);
     }
 
     public void stop() {
