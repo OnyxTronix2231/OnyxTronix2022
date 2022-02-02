@@ -6,8 +6,8 @@ import java.util.function.DoubleSupplier;
 
 public class RotateNonVisionDepended extends RotateToAngleRTF {
 
-    public RotateNonVisionDepended(YawControl yawControl, DoubleSupplier angleSupplier) {
+    public RotateNonVisionDepended(YawControl yawControl, Vision vision) {
         super(yawControl, ()-> yawControl.getAngleNonVisionDependent(vision) );
-        addRequirements(yawControl, vision);
+        addRequirements(yawControl);
     }
 }

@@ -25,7 +25,7 @@ public class TurretComponentsBase implements TurretComponents {
 
         encoder = new CtreEncoder(motor);
         controller = new CtreMotionMagicController(
-                motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOTHING);
+                motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
 
     @Override
