@@ -9,9 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.shooterWood.ShooterWoodComponentsBase;
-import frc.robot.shooterWood.ShooterWood;
-import frc.robot.shooterWood.ShooterWoodComponents;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcComponents;
+import frc.robot.arc.ArcComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,7 +21,7 @@ import frc.robot.shooterWood.ShooterWoodComponents;
  */
 public class Robot extends TimedRobot {
 
-    ShooterWood shooterWood;
+    Arc arc;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -30,17 +30,13 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        ShooterWoodComponents shooterWoodComponents;
+        ArcComponents arcComponents;
 
-        if (Robot.isReal()) {
-            shooterWoodComponents = new ShooterWoodComponentsBase();
-        } else {
-            shooterWoodComponents = new ShooterWoodComponentsBase();
-        }
+            arcComponents = new ArcComponentsBase();
 
-        shooterWood = new ShooterWood(shooterWoodComponents);
+        arc = new Arc(arcComponents);
 
-        new DriverOi().withShooterWood(shooterWood);
+        new DriverOi().withArc(arc);
 
         new DriverOi();
         new DeputyOi();

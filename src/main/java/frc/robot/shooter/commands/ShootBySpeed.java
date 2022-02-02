@@ -7,16 +7,16 @@ import java.util.function.DoubleSupplier;
 public class ShootBySpeed extends CommandBase {
 
     private final Shooter shooter;
-    private final DoubleSupplier speed;
+    private final DoubleSupplier speedSupplier;
 
     public ShootBySpeed(Shooter shooter, DoubleSupplier speedSupplier) {
         this.shooter = shooter;
-        this.speed = speedSupplier;
+        this.speedSupplier = speedSupplier;
     }
 
     @Override
     public void execute() {
-        shooter.setSpeed(speed.getAsDouble());
+        shooter.setSpeed(speedSupplier.getAsDouble());
     }
 
     @Override
