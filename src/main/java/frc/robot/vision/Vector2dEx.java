@@ -29,21 +29,21 @@ public class Vector2dEx extends Vector2d {
     /**
      * Add other vector to this vector
      *
-     * @param other vector to add to this vector
+     * @param otherVector vector to add to this vector
      */
-    public void add(Vector2d other) {
-        x += other.x;
-        y += other.y;
+    public void add(Vector2d otherVector) {
+        x += otherVector.x;
+        y += otherVector.y;
     }
 
     /**
      * Subtract other vector from this vector
      *
-     * @param other vector to subtract from this vector
+     * @param otherVector vector to subtract from this vector
      */
-    public void subtract(Vector2d other) {
-        x -= other.x;
-        y -= other.y;
+    public void subtract(Vector2d otherVector) {
+        x -= otherVector.x;
+        y -= otherVector.y;
     }
 
     /**

@@ -3,7 +3,8 @@ package frc.robot.RGB;
 import com.ctre.phoenix.CANifier;
 
 public class Constants {
-    public final static CANifier.PWMChannel kMotorControllerCh = CANifier.PWMChannel.PWMChannel2;
+
+    public final static CANifier.PWMChannel RGB_CONTROLLER_CHANNEL = CANifier.PWMChannel.PWMChannel2;
 
     public final static double DUTY_CYCLES = 0;
 

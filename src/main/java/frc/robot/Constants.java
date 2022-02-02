@@ -20,6 +20,6 @@ public final class Constants {
     public static final int DRIVE_JOYSTICK_PORT = 0;
     public static final int Deputy_JOYSTICK_PORT = 1;
 
-    public static final double TargetXRTF = 0;  //TODO: check and change
-    public static final double TargetYRTF = 0;  //TODO: check and change
+    public static final double TARGET_X_RTF = 0;  //TODO: check and change
+    public static final double TARGET_Y_RTF = 0;  //TODO: check and change
 }
