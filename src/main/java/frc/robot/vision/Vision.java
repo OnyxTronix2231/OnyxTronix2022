@@ -1,20 +1,22 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import vision.limelight.Limelight;
 import vision.limelight.target.LimelightTarget;
-
-import static frc.robot.Constants.TargetXRTF;
-import static frc.robot.Constants.TargetYRTF;
+import static frc.robot.Constants.TARGET_X_RTF;
+import static frc.robot.Constants.TARGET_Y_RTF;
 import static frc.robot.vision.VisionConstants.*;
 
 
-public class Vision {
+public class Vision extends SubsystemBase {
+
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
-    private Vector2dEx turretToTargetVector;
+    private Vector2dEx turretToTargetVectorRTT;
 
     public Vision() {
+        super();
         this.limelight = Limelight.getInstance();
     }
 
@@ -27,47 +29,47 @@ public class Vision {
         return -999;
     }
 
-    private void updateTurretToTargetVector() {
+    private void updateTurretToTargetVectorRTT() {
         if (limelight.targetFound()) {
             double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
             Vector2dEx limelightToTurret = Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
-            turretToTargetVector = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
+            turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
                     limelightOffsetFromTarget);
-            turretToTargetVector.add(limelightToTurret);
+            turretToTargetVectorRTT.add(limelightToTurret);  // might be sub
         } else
-            turretToTargetVector = null;
+            turretToTargetVectorRTT = null;
     }
 
-    public double getHorizontalAngelTurretToTargetRTR() {
-        if (turretToTargetVector != null)
-            return turretToTargetVector.direction();
+    public double getHorizontalAngelTurretToTargetRTT() {
+        if (turretToTargetVectorRTT != null)
+            return turretToTargetVectorRTT.direction();
         return -999;
     }
 
     public double getHorizontalDistanceTurretToTarget() {
-        if (turretToTargetVector != null)
-            return turretToTargetVector.magnitude();
+        if (turretToTargetVectorRTT != null)
+            return turretToTargetVectorRTT.magnitude();
         return -999;
     }
 
     public void update() {
         this.limelightTarget = limelight.getTarget();
-        updateTurretToTargetVector();
+        updateTurretToTargetVectorRTT();
     }
 
     public boolean hasTarget() {
         return limelight.targetFound();
     }
 
-    public double getRobotToTargetAngleRTF(Drivetrain drivetrain) {
-        double horizontalAngelTurretToTargetRTR = getHorizontalAngelTurretToTargetRTR();
-        return horizontalAngelTurretToTargetRTR + drivetrain.getHeading();
+    public double getRobotToTargetAngleRTF(Turret turret) {
+        double horizontalAngelTurretToTargetRTT = getHorizontalAngelTurretToTargetRTT();
+        return horizontalAngelTurretToTargetRTT + turret.getAngleRTF();
     }
 
-    public Translation2d getXAndY(Drivetrain drivetrain) {
-        double robotToTargetAngleRTF = getRobotToTargetAngleRTF(drivetrain);
-        double x = TargetXRTF - Math.cos(Math.toRadians(robotToTargetAngleRTF));
-        double y = TargetYRTF - Math.sin(Math.toRadians(robotToTargetAngleRTF));
+    public Translation2d getXAndY(Turret turret) {
+        double robotToTargetAngleRTF = getRobotToTargetAngleRTF(turret);
+        double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF));
+        double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF));
         return new Translation2d(x, y);
     }
 }
