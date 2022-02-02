@@ -1,4 +1,4 @@
-package frc.robot.turret.commands;
+package frc.robot.turret;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
