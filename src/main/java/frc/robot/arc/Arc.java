@@ -18,7 +18,15 @@ public class Arc extends SubsystemBase {
         arcComponents.getLinearServo().setSpeed(speed);
     }
 
+    public void setPos(double position) {
+        arcComponents.getLinearServo().setPosition(position);
+    }
+
     public void stop() {
         arcComponents.getLinearServo().setSpeed(0);
+    }
+
+    public boolean inPosition() {
+        return arcComponents.getLinearServo().isOnTarget();
     }
 }

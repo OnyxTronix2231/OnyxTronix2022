@@ -6,18 +6,18 @@ import java.util.function.DoubleSupplier;
 
 public class MoveArcBySpeed extends CommandBase {
 
-    private Arc arc;
-    private DoubleSupplier speed;
+    private final Arc arc;
+    private final DoubleSupplier speedSupplier;
 
     public MoveArcBySpeed(Arc arc, DoubleSupplier speedSupplier) {
         this.arc = arc;
-        this.speed = speedSupplier;
+        this.speedSupplier = speedSupplier;
         addRequirements(arc);
     }
 
     @Override
     public void execute() {
-        arc.setSpeed(speed.getAsDouble());
+        arc.setSpeed(speedSupplier.getAsDouble());
     }
 
     @Override
