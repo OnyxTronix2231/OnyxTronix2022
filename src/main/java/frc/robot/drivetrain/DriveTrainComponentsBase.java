@@ -30,27 +30,27 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private Field2d field2d;
 
     public DriveTrainComponentsBase() {
-        leftMasterMotor = new WPI_TalonFX(3);
+        leftMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);
         leftMasterMotor.configFactoryDefault();
         leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
         leftMasterMotor.configOpenloopRamp(RAMP_TIME);
 
-        leftSlaveMotor = new WPI_TalonFX(4);
+        leftSlaveMotor = new WPI_TalonFX(LEFT_SLAVE_MOTOR_PORT);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configAllSettings(getFalconConfiguration());
         leftSlaveMotor.setNeutralMode(NeutralMode.Brake);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
-        rightMasterMotor = new WPI_TalonFX(1);
+        rightMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
         rightMasterMotor.configFactoryDefault();
         rightMasterMotor.configAllSettings(getFalconConfiguration());
         rightMasterMotor.setInverted(true);
         rightMasterMotor.setNeutralMode(NeutralMode.Brake);
         rightMasterMotor.configOpenloopRamp(RAMP_TIME);
 
-        rightSlaveMotor = new WPI_TalonFX(2);
+        rightSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configAllSettings(getFalconConfiguration());
         rightSlaveMotor.setInverted(true);
@@ -69,10 +69,10 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftEncoder = new CtreEncoder(leftMasterMotor);
         rightEncoder = new CtreEncoder(rightMasterMotor);
 
-        leftController = new CtreMotionMagicController(leftMasterMotor, leftEncoder, new PIDFTerms(kP, kI, kD, kF),
-                acceleration, cruiseVelocity, accelerationSmoothing);
-        rightController = new CtreMotionMagicController(rightMasterMotor, rightEncoder, new PIDFTerms(kP, kI, kD, kF),
-                acceleration, cruiseVelocity, accelerationSmoothing);
+        leftController = new CtreMotionMagicController(leftMasterMotor, leftEncoder, new PIDFTerms(KP, KI, KD, kF),
+                ACCELERATION, CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
+        rightController = new CtreMotionMagicController(rightMasterMotor, rightEncoder, new PIDFTerms(KP, KI, KD, kF),
+                ACCELERATION, CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
 
         field2d = new Field2d();
     }

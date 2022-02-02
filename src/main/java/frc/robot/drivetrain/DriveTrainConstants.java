@@ -36,15 +36,15 @@ public final class DriveTrainConstants {
 
     public static final double MAX_VELOCITY = 18000;
     public static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
-    public static final double kP = 0;
-    public static final double kI = 0;
-    public static final double kD = 0;
+    public static final double KP = 0;
+    public static final double KI = 0;
+    public static final double KD = 0;
     public static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
-    public static final double tolerance = 0.5;
+    public static final double TOLERANCE = 0.5;
 
-    public static final int acceleration = 0;
-    public static final int cruiseVelocity = 0;
-    public static final int accelerationSmoothing = 0;
+    public static final int ACCELERATION = 0;
+    public static final int CRUISE_VELOCITY = 0;
+    public static final int ACCELERATION_SMOOTHING = 0;
 
     public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
@@ -60,11 +60,11 @@ public final class DriveTrainConstants {
 
     public static final class Calculations {
 
-        static double encoderUnitsToMeter(double encodeUnits){
+        static double encoderUnitsToMeter(double encodeUnits) {
             return (encodeUnits / ENCODER_UNITS_PER_ROTATION) * WHEEL_DIAMETER_METER * Math.PI;
         }
 
-        static double meterToEncoderUnits(double meters){
+        static double meterToEncoderUnits(double meters) {
             return meters * ENCODER_UNITS_PER_ROTATION;
         }
     }

@@ -3,14 +3,13 @@ package frc.robot.drivetrain.commands;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.trajectory.Trajectory;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.Path;
 
-
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+
 public class MoveByPath extends CommandBase {
     private DriveTrain driveTrain;
     private Trajectory trajectory;
@@ -58,4 +57,3 @@ public class MoveByPath extends CommandBase {
         driveTrain.stopDrive();
     }
 }
-
