@@ -19,6 +19,5 @@ public class DriverOi {
         JoystickAxis leftJoystick = new JoystickAxis(xboxController, XboxController.Axis.kLeftY.value);
         JoystickAxis rightJoystick = new JoystickAxis(xboxController, XboxController.Axis.kRightX.value);
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
-        return this;
     }
 }

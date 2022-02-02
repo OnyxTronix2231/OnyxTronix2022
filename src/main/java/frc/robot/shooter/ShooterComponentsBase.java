@@ -20,6 +20,7 @@ public class ShooterComponentsBase implements ShooterComponents{
     public ShooterComponentsBase() {
         masterMotor = new WPI_TalonFX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
+        
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
