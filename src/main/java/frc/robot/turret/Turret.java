@@ -1,40 +1,27 @@
 package frc.robot.turret;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.turret.commands.TurretShuffleBoard;
+
 import static frc.robot.turret.TurretConstants.*;
+import static frc.robot.turret.TurretConstants.RobotConstants.*;
+import static frc.robot.turret.TurretConstants.calculations.*;
 
 public class Turret extends SubsystemBase {
 
     private final TurretComponents components;
-    private final NetworkTableEntry kP;
-    private final NetworkTableEntry kI;
-    private final NetworkTableEntry kD;
-    private final NetworkTableEntry kF;
+    private final TurretShuffleBoard turretShuffleBoard;
 
     public Turret(TurretComponents turretComponents) {
         components = turretComponents;
         configMotorLimits();
 
-        Shuffleboard.getTab("Turret").addNumber("number", this::getCurrentAngle);
-        kP = Shuffleboard.getTab("Turret").add("set kP",
-                components.getController().getPIDFTerms().getKp()).getEntry();
-        kI = Shuffleboard.getTab("Turret").add("set kI",
-                components.getController().getPIDFTerms().getKi()).getEntry();
-        kD = Shuffleboard.getTab("Turret").add("set kD",
-                components.getController().getPIDFTerms().getKd()).getEntry();
-        kF = Shuffleboard.getTab("Turret").add("set kF",
-                components.getController().getPIDFTerms().getKf()).getEntry();
+        turretShuffleBoard = new TurretShuffleBoard(components);
     }
 
     @Override
     public void periodic() {
-        components.getController().setPIDFTerms(
-                kP.getDouble(components.getController().getPIDFTerms().getKp()),
-                kI.getDouble(components.getController().getPIDFTerms().getKi()),
-                kD.getDouble(components.getController().getPIDFTerms().getKd()),
-                kF.getDouble(components.getController().getPIDFTerms().getKf()));
+        turretShuffleBoard.update();
     }
 
     public void configMotorLimits() {
@@ -44,7 +31,7 @@ public class Turret extends SubsystemBase {
         components.getMotor().configReverseSoftLimitEnable(true);
     }
 
-    public double getCurrentAngle() {
+    public double getCurrentAngleRTR() {
         return encToDeg(components.getEncoder().getCount());
     }
 
@@ -58,11 +45,11 @@ public class Turret extends SubsystemBase {
     }
 
     public void initMoveByDegree(double deg) {
-        initMoveToDegree(getCurrentAngle() + deg);
+        initMoveToDegree(getCurrentAngleRTR() + deg);
     }
 
     public void updateMoveByDegree(double deg) {
-        updateMoveToDegree(getCurrentAngle() + deg);
+        updateMoveToDegree(getCurrentAngleRTR() + deg);
     }
 
     public void initMoveToDegree(double deg) {
@@ -76,14 +63,20 @@ public class Turret extends SubsystemBase {
 
     public double fixDeg(double deg) {
         double fixed = deg % DEG_IN_CIRCLE;
-        if (fixed > MAX_DEG){
+        if (fixed > MAX_DEG) {
             fixed -= DEG_IN_CIRCLE;
-        } if (fixed < MIN_DEG){
+        }
+        if (fixed < MIN_DEG) {
             fixed += DEG_IN_CIRCLE;
-        } return fixed;
+        }
+        return fixed;
     }
 
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
+    }
+
+    public TurretComponents getComponents() {
+        return components;
     }
 }

@@ -15,7 +15,7 @@ public class YawControl extends Turret {
     }
 
     public double getTurretAngleRTF() {
-        return Math.abs(getCurrentAngle() - driveTrain.getHeading());
+        return Math.abs(getCurrentAngleRTR() - driveTrain.getHeading());
     }
 
     public double getAngleRTRToFixAngleRTF(double angleRTF) {

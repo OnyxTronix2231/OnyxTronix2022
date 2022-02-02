@@ -21,7 +21,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getShooterOnly2DVector() {
-        /*the vector that represents the first movement of the ball in the air (from the side)
+        /**the vector that represents the first movement of the ball in the air (from the side)
 
         robot   ^             hub
                /            \     /
@@ -41,7 +41,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getXZ2DVector() {
-        /*the vector that represents the horizontal movement of the ball (from the top)
+        /**the vector that represents the horizontal movement of the ball (from the top)
 
         robot                 hub
 
@@ -60,7 +60,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getMovementVector() {
-        /*the vector that represents the movement of the robot (from the top)
+        /**the vector that represents the movement of the robot (from the top)
 
         robot                   hub
                 _->
@@ -79,7 +79,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getCorrectTrajectory() {
-        /*the vector that represents the fixed horizontal movement of the ball (from the top)
+        /**the vector that represents the fixed horizontal movement of the ball (from the top)
         it is fixed according to the movement of the whole robot
 
         robot   ^               hub
@@ -97,7 +97,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getFixedShootingVector() {
-        /*the vector that represents the fixed movement of the ball in the air (from the side)
+        /**the vector that represents the fixed movement of the ball in the air (from the side)
         it is fixed by the changed horizontal vector
 
         robot   ^             hub

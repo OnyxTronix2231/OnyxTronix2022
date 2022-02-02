@@ -44,7 +44,7 @@ public final class TurretConstants {
             return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
         }
 
-        static double encToDeg(double enc) {
+        public static double encToDeg(double enc) {
             return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
         }
     }
