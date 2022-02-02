@@ -19,7 +19,7 @@ public class Path {
     private final Pose2d endPose;
     private final TrajectoryConfig config;
 
-    public Path(Pose2d startPose, List<Translation2d> middlePoints, Pose2d endPose,boolean reversed,
+    public Path(Pose2d startPose, List<Translation2d> middlePoints, Pose2d endPose, Boolean reversed,
                 TrajectoryConstraint... constraints) {
         this.startPose = startPose;
         this.middlePoints = middlePoints;

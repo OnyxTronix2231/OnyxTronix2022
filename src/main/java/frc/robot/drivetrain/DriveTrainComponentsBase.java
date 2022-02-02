@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.CtreEncoder;
@@ -15,17 +16,18 @@ import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrainComponentsBase implements DriveTrainComponents {
 
-    WPI_TalonFX leftMasterMotor;
-    WPI_TalonFX leftSlaveMotor;
-    WPI_TalonFX rightMasterMotor;
-    WPI_TalonFX rightSlaveMotor;
-    DifferentialDrive differentialDrive;
-    DifferentialDriveOdometry odometry;
-    NormalizedPigeonIMU pigeonIMU;
-    CtreMotionMagicController leftController;
-    CtreMotionMagicController rightController;
-    CtreEncoder leftEncoder;
-    CtreEncoder rightEncoder;
+    private WPI_TalonFX leftMasterMotor;
+    private WPI_TalonFX leftSlaveMotor;
+    private WPI_TalonFX rightMasterMotor;
+    private WPI_TalonFX rightSlaveMotor;
+    private DifferentialDrive differentialDrive;
+    private DifferentialDriveOdometry odometry;
+    private NormalizedPigeonIMU pigeonIMU;
+    private CtreMotionMagicController leftController;
+    private CtreMotionMagicController rightController;
+    private CtreEncoder leftEncoder;
+    private CtreEncoder rightEncoder;
+    private Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(3);
@@ -71,6 +73,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
                 acceleration, cruiseVelocity, accelerationSmoothing);
         rightController = new CtreMotionMagicController(rightMasterMotor, rightEncoder, new PIDFTerms(kP, kI, kD, kF),
                 acceleration, cruiseVelocity, accelerationSmoothing);
+
+        field2d = new Field2d();
     }
 
     @Override
@@ -79,18 +83,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
-    public WPI_TalonFX getLeftSlaveMotor() {
-        return leftSlaveMotor;
-    }
-
-    @Override
     public WPI_TalonFX getRightMasterMotor() {
         return rightMasterMotor;
-    }
-
-    @Override
-    public WPI_TalonFX getRightSlaveMotor() {
-        return rightSlaveMotor;
     }
 
     @Override
@@ -126,6 +120,11 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     @Override
     public CtreMotionMagicController getRightController() {
         return rightController;
+    }
+
+    @Override
+    public Field2d getField() {
+        return field2d;
     }
 
     private TalonFXConfiguration getFalconConfiguration() {

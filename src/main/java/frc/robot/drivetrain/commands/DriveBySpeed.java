@@ -15,7 +15,6 @@ public class DriveBySpeed extends CommandBase {
         this.speedSupplier = speedSupplier;
         this.rotationSupplier = rotationSupplier;
         this.driveTrain = driveTrain;
-
         addRequirements(driveTrain);
     }
 
