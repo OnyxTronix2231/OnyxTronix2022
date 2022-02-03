@@ -19,10 +19,13 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX armMotorLeftMaster;
     private WPI_TalonFX armMotorRightSlave;
     private WPI_TalonFX armMotorLeftSlave;
-    private Microswitch outerMicroSwitch;
-    private Microswitch innerMicroSwitch;
     private CtreMotionMagicController armLeftMotionMagicController;
     private CtreMotionMagicController armRightMotionMagicController;
+    private WPI_TalonFX armMotor;
+    private DoubleSolenoid solenoid;
+//    private DigitalInput outerHallEffect;
+    private DigitalInput innerHallEffect;
+    private CtreMotionMagicController armMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
     private CtreEncoder armEncoder;
     private CtreEncoder railEncoder;
@@ -47,10 +50,9 @@ public class ClimberComponentsBase implements ClimberComponents {
         armMotorLeftSlave.follow(armMotorLeftMaster);
         //solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
-        outerMicroSwitch = new Microswitch(new DigitalInput(0));
 
-        innerMicroSwitch = new Microswitch(new DigitalInput(3));
-
+//        outerHallEffect = new DigitalInput(0);
+        innerHallEffect = new DigitalInput(1);
         armEncoder = new CtreEncoder(armMotorRightMaster);
 
         railEncoder = new CtreEncoder(railMotor);
@@ -95,19 +97,19 @@ public class ClimberComponentsBase implements ClimberComponents {
     public WPI_TalonFX getArmMotorLeft() {
         return armMotorLeftMaster;
     }
+
     @Override
     public WPI_TalonFX getArmMotorRight() {
         return armMotorRightMaster;
     }
 
+//    @Override
+//    public DigitalInput getOuterHallEffect() {
+//        return outerHallEffect;
+//    }
 
     @Override
-    public Microswitch getOuterMicroSwitch() {
-        return outerMicroSwitch;
-    }
-
-    @Override
-    public Microswitch getInnerMicroSwitch() {
-        return innerMicroSwitch;
+    public DigitalInput getInnerHallEffect() {
+        return innerHallEffect;
     }
 }

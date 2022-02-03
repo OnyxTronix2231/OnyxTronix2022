@@ -53,11 +53,11 @@ public class Climber extends SubsystemBase {
         moveArmBySpeed(0);
     }
 
-    public boolean isInnerMicroSwitchOpen() {
-        return components.getInnerMicroSwitch().isOpen();
+    public boolean isInnerHallEffectClosed() {
+        return components.getInnerHallEffect().get();
     }
 
-    public boolean isOuterMicroSwitchOpen() {
-        return components.getOuterMicroSwitch().isOpen();
-    }
+//    public boolean isOuterHallEffectClosed() {
+//        return components.getOuterHallEffect().get();
+//    }
 }
