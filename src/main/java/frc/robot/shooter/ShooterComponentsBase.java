@@ -20,15 +20,13 @@ public class ShooterComponentsBase implements ShooterComponents{
     private final WPI_TalonFX masterMotor;
     private final WPI_TalonFX slaveMotor;
     private final CtreEncoder encoder;
-    private EncoderSim simEncoder;
     private final CtrePIDController controller;
-    private FlywheelSim flywheelSim;
 
     public ShooterComponentsBase() {
         masterMotor = new WPI_TalonFX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
-        slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
 
+        slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
 
@@ -37,8 +35,6 @@ public class ShooterComponentsBase implements ShooterComponents{
         controller = new CtrePIDController(masterMotor, encoder,
                 new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Velocity);
         controller.setPIDFTerms(controller.getPIDFTerms());
-
-        flywheelSim = new FlywheelSim(DCMotor.getFalcon500(2), 1, 0.01 );
     }
 
     @Override

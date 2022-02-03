@@ -8,7 +8,7 @@ public class ArcComponentsBase implements ArcComponents {
     private final LinearServo linearServo;
 
     public ArcComponentsBase() {
-        linearServo = new LinearServo(ARCH_CHANNEL, ARCH_MAX_LENGTH, ARC_MAX_SPEED);
+        linearServo = new LinearServo(ARC_CHANNEL, ARC_MAX_LENGTH, ARC_MAX_SPEED);
     }
 
     @Override

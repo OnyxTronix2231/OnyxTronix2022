@@ -17,11 +17,11 @@ public class ShooterConstants {
     public static final double SHOOTER_MOTOR_RADIUS = 0; //TODO check with mechanics
 
     public static class ShooterCalculations {
-        static double rpmToEncoderUnitsInDecisecond(double rpm) {
+        public static double rpmToEncoderUnitsInDecisecond(double rpm) {
             return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
         }
 
-        static double rpmToMetersPerSec(double rpm) {
+        public static double rpmToMetersPerSec(double rpm) {
             return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * rpm);
         }
     }

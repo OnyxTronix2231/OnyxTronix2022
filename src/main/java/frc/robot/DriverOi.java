@@ -3,10 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.shooterWood.ShooterWood;
-import frc.robot.shooterWood.ShooterWoodDriverOiBinder;
-import frc.robot.shooter.Shooter;
-import frc.robot.shooter.ShooterDriverOIBinder;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcDriverOiBinder;
+import onyxTronix.JoystickAxis;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -18,15 +17,9 @@ public class DriverOi {
         xboxController = new XboxController(DRIVE_JOYSTICK_PORT);
     }
 
-    public DriverOi withShooterWood(ShooterWood shooter){
-        Trigger shooterTrigger = new JoystickButton(xboxController, XboxController.Button.kA.value);
-        new ShooterWoodDriverOiBinder(shooter, shooterTrigger);
-        return this;
-    }
-
-    public DriverOi withShooter (Shooter shooter){
-        Trigger shooterTrigger = new JoystickButton(xboxController, XboxController.Button.kB.value);
-        new ShooterDriverOIBinder(shooter, shooterTrigger);
+    public DriverOi withArc(Arc arc) {
+        JoystickAxis arcTrigger = new JoystickAxis(xboxController, XboxController.Axis.kLeftY.value);
+        new ArcDriverOiBinder(arc, arcTrigger);
         return this;
     }
 }
