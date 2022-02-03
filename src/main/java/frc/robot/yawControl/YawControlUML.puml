@@ -3,7 +3,6 @@
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
 abstract class SubsystemBase
 abstract class CommandBase
-abstract class ConditionalCommand
 
 TurretComponentsBase ----|> TurretComponents
 TurretComponentsBase --* Turret
@@ -20,11 +19,9 @@ RotateByVision --|> RotateByAngle
 YawControl --|> Turret
 RotateToAngleRTF --|> RotateToAngle
 RotateToAngleRTFOnce --|> RotateToAngleRTF
-frc.robot.yawControl.Commands.RotateByPos --|> RotateToAngleRTF
 YawControl --o RotateToAngleRTF
-LocateTargetByCalculating ---|> ConditionalCommand
-frc.robot.yawControl.Commands.RotateByPos --o LocateTargetByCalculating
-RotateByVision --o LocateTargetByCalculating
+RotateNonVisionDependent --|> RotateToAngleRTF
+RotateByPose --|> RotateToAngleRTF
 
 
 interface TurretComponents {
@@ -106,15 +103,12 @@ class RotateToAngleRTF {
 class RotateToAngleRTFOnce {
 }
 
-class frc.robot.yawControl.Commands.RotateByPos {
+class RotateNonVisionDependent {
     YawControl yawControl
-    Pose2d currentPos
+    Vision vision
 }
 
-class LocateTargetByCalculating {
-    RotateToAngleRTF trueCommand
-    frc.robot.yawControl.Commands.RotateByPos falseCommand
-    Vision vision
-    Pose2d currentPos
+class RotateByPose {
+    YawControl yawControl
 }
 @enduml

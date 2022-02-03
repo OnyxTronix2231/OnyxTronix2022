@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform;
 
 import edu.wpi.first.wpilibj.drive.Vector2d;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.yawControl.YawControl;
 
 public class ShootWhileDrivingCalc {
@@ -72,7 +73,7 @@ public class ShootWhileDrivingCalc {
         * angle -> robot's direction*/
 
         double size = drivetrain.getCorrectRobotSpeed();
-        double angle = drivetrain.getHedding();
+        double angle = drivetrain.getHeading();
         double x = size * Math.cos(Math.toRadians(angle));
         double y = size * Math.sin(Math.toRadians(angle));
         return new Vector2d(x, y);
