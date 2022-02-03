@@ -5,7 +5,7 @@ import onyxTronix.JoystickAxis;
 
 public class DriverDriveTrainOiBinders {
 
-    public DriverDriveTrainOiBinders(DriveTrain driveTrain, JoystickAxis rightJoystick, JoystickAxis leftJoystick) {
-        driveTrain.setDefaultCommand(new DriveBySpeed(driveTrain, rightJoystick::getRawAxis, leftJoystick::getRawAxis));
+    public DriverDriveTrainOiBinders(DriveTrain driveTrain, JoystickAxis leftJoystick, JoystickAxis rightJoystick) {
+        driveTrain.setDefaultCommand(new DriveBySpeed(driveTrain, leftJoystick::getRawAxis, rightJoystick::getRawAxis));
     }
 }

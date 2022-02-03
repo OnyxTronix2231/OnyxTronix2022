@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import sensors.counter.CtreEncoder;
 
+import static frc.robot.drivetrain.DriveTrainConstants.RobotConstants.*;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrainComponentsBase implements DriveTrainComponents {
@@ -85,7 +86,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
-    public NormalizedPigeonIMU getNormelizedPigeonIMU() {
+    public NormalizedPigeonIMU getNormalizedPigeonIMU() {
         return pigeonIMU;
     }
 

@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.Calculations.*;
 
 public class DriveTrain extends SubsystemBase {
 
@@ -18,7 +19,7 @@ public class DriveTrain extends SubsystemBase {
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
-        driveTrainComponents.getNormelizedPigeonIMU().reset();
+        driveTrainComponents.getNormalizedPigeonIMU().reset();
     }
 
     @Override
@@ -42,18 +43,14 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getOdometry().getPoseMeters();
     }
 
-    private double encoderUnitsToMeters(double units) {
-        return units * PERIMETER_METER / ENCODER_UNITS_PER_ROTATION;
-    }
-
     public double getHeading() {
-        return driveTrainComponents.getNormelizedPigeonIMU().getRawYaw();
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
     public void resetOdometryToPose(Translation2d translation) {
         resetEncoders();
         Pose2d targetPose = new Pose2d(translation, this.getPose().getRotation());
         driveTrainComponents.getOdometry().resetPosition(targetPose, targetPose.getRotation());
-        driveTrainComponents.getNormelizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
+        driveTrainComponents.getNormalizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
     }
 }
