@@ -2,11 +2,14 @@
 'https://plantuml.com/sequence-diagram
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
 
-ShooterComponentsBase <|-- ShooterComponents
+ShooterComponentsBase --|> ShooterComponents
 Shooter o-- ShooterComponents
 ShooterDriverOIBinder o-- Shooter
 ShootByRPM_PID o-- Shooter
 ShootBySpeed o-- Shooter
+CommandBase <|-- ShootBySpeed
+CommandBase <|-- ShootByRPM_PID
+SubsystemBase <|-- Shooter
 
 
 class Shooter {
@@ -53,5 +56,10 @@ class ShootBySpeed {
     void end()
 }
 
+class SubsystemBase {
+}
+
+class CommandBase {
+}
 
 @enduml
