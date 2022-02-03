@@ -15,11 +15,14 @@ import static frc.robot.climber.ClimberConstants.*;
 public class ClimberComponentsBase implements ClimberComponents {
 
     private WPI_TalonFX railMotor;
-    private WPI_TalonFX armMotor;
-    private DoubleSolenoid solenoid;
+    private WPI_TalonFX armMotorRightMaster;
+    private WPI_TalonFX armMotorLeftMaster;
+    private WPI_TalonFX armMotorRightSlave;
+    private WPI_TalonFX armMotorLeftSlave;
     private Microswitch outerMicroSwitch;
     private Microswitch innerMicroSwitch;
-    private CtreMotionMagicController armMotionMagicController;
+    private CtreMotionMagicController armLeftMotionMagicController;
+    private CtreMotionMagicController armRightMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
     private CtreEncoder armEncoder;
     private CtreEncoder railEncoder;
@@ -28,30 +31,46 @@ public class ClimberComponentsBase implements ClimberComponents {
         railMotor = new WPI_TalonFX(0);
         railMotor.configFactoryDefault();
 
-        armMotor = new WPI_TalonFX(1);
-        armMotor.configFactoryDefault();
+        armMotorRightMaster  = new WPI_TalonFX(1);
+        armMotorRightMaster.configFactoryDefault();
 
-        solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
+        armMotorLeftMaster  = new WPI_TalonFX(2);
+        armMotorLeftMaster.configFactoryDefault();
+
+        armMotorRightSlave = new WPI_TalonFX(3);
+        armMotorRightSlave.configFactoryDefault();
+
+        armMotorLeftSlave = new WPI_TalonFX(4);
+        armMotorLeftSlave.configFactoryDefault();
+
+        armMotorRightSlave.follow(armMotorRightMaster);
+        armMotorLeftSlave.follow(armMotorLeftMaster);
+        //solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
         outerMicroSwitch = new Microswitch(new DigitalInput(0));
 
-        innerMicroSwitch = new Microswitch(new DigitalInput(1));
+        innerMicroSwitch = new Microswitch(new DigitalInput(3));
 
-        armEncoder = new CtreEncoder(armMotor);
+        armEncoder = new CtreEncoder(armMotorRightMaster);
 
         railEncoder = new CtreEncoder(railMotor);
 
-        armMotionMagicController = new CtreMotionMagicController(armMotor, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
+        armLeftMotionMagicController = new CtreMotionMagicController(armMotorLeftMaster, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
+                ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
+        armRightMotionMagicController = new CtreMotionMagicController(armMotorRightMaster, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
         railMotionMagicController = new CtreMotionMagicController(railMotor, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
     }
 
     @Override
-    public CtreMotionMagicController getArmMotionMagicController() {
-        return armMotionMagicController;
+    public CtreMotionMagicController getArmRightMotionMagicController() {
+        return armRightMotionMagicController;
     }
-
+    @Override
+    public CtreMotionMagicController getArmLeftMotionMagicController() {
+        return armLeftMotionMagicController;
+    }
     @Override
     public CtreMotionMagicController getRailMotionMagicController() {
         return railMotionMagicController;
@@ -73,14 +92,14 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public WPI_TalonFX getArmMotor() {
-        return armMotor;
+    public WPI_TalonFX getArmMotorLeft() {
+        return armMotorLeftMaster;
+    }
+    @Override
+    public WPI_TalonFX getArmMotorRight() {
+        return armMotorRightMaster;
     }
 
-    @Override
-    public DoubleSolenoid getSolenoid() {
-        return solenoid;
-    }
 
     @Override
     public Microswitch getOuterMicroSwitch() {

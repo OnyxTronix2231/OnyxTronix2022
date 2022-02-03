@@ -1,7 +1,6 @@
 package frc.robot.climber;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static frc.robot.climber.ClimberConstants.Calculations.armMeterToEncoderUnits;
 import static frc.robot.climber.ClimberConstants.Calculations.railMeterToEncoderUnits;
 
@@ -14,13 +13,18 @@ public class Climber extends SubsystemBase {
 
     }
 
+
     public void initMoveArmByDistance(double distance) {
-        components.getArmMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
-        components.getArmMotionMagicController().enable();
+        components.getArmLeftMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
+        components.getArmLeftMotionMagicController().enable();
+        components.getArmRightMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
+        components.getArmRightMotionMagicController().enable();
     }
 
     public void updateMoveArmByDistance(double distance) {
-        components.getArmMotionMagicController().update(armMeterToEncoderUnits(distance));
+        components.getArmLeftMotionMagicController().update(armMeterToEncoderUnits(distance));
+        components.getArmRightMotionMagicController().update(armMeterToEncoderUnits(distance));
+
     }
 
     public void initMoveRailByDistance(double distance) {
@@ -41,7 +45,8 @@ public class Climber extends SubsystemBase {
     }
 
     public void moveArmBySpeed(double speed) {
-        components.getArmMotor().set(speed);
+        components.getArmMotorRight().set(speed);
+        components.getArmMotorLeft().set(speed);
     }
 
     public void stopArmMotor() {
