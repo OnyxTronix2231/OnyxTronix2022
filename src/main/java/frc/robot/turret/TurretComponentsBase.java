@@ -8,6 +8,7 @@ import pid.PIDFTerms;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 import static frc.robot.turret.TurretConstants.*;
+import static frc.robot.turret.TurretConstants.RobotConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {
 
