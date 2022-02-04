@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.climber.Climber;
+import frc.robot.climber.ClimberComponents;
+import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -22,6 +25,7 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrainComponents driveTrainComponents;
+    Climber climber;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -30,15 +34,19 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        ClimberComponents climberComponents;
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
+            climberComponents = new ClimberComponentsBase();
         } else {
             driveTrainComponents = null;
+            climberComponents = null;
         }
 
         DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
 
-        new DriverOi().withDriveTrain(driveTrain);
+        new DriverOi().withDriveTrain(driveTrain).withClimberOi(climber);
         new DeputyOi();
 
         new DriversShuffleboard();
