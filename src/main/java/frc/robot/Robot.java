@@ -9,9 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,7 +21,8 @@ import frc.robot.climber.ClimberComponentsBase;
  */
 public class Robot extends TimedRobot {
 
-    Climber climber;
+    DriveTrainComponents driveTrainComponents;
+
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -29,23 +30,18 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        ClimberComponents climberComponents;
-
         if (Robot.isReal()) {
-            climberComponents = new ClimberComponentsBase();
+            driveTrainComponents = new DriveTrainComponentsBase();
         } else {
-            climberComponents = new ClimberComponentsBase();
-
+            driveTrainComponents = null;
         }
-        climber = new Climber(climberComponents);
 
+        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
 
-        DriverOi driverOi = new DriverOi();
-        driverOi.withClimberOi(climber);
+        new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
+
         new DriversShuffleboard();
-
-
     }
 
     /**
