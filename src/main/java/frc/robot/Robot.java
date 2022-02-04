@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcComponents;
+import frc.robot.arc.ArcComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -22,6 +25,7 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrainComponents driveTrainComponents;
+    Arc arc;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -30,13 +34,18 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        ArcComponents arcComponents;
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
+            arcComponents = new ArcComponentsBase();
         } else {
             driveTrainComponents = null;
+            arcComponents = null;
         }
 
         DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+        Arc arc = new Arc(arcComponents);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
