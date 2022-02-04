@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
         }
 
         DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
-        Arc arc = new Arc(arcComponents);
+        arc = new Arc(arcComponents);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
