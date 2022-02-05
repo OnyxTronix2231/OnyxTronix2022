@@ -9,7 +9,7 @@ public class OpenAndIntake extends SequentialCommandGroup {
 
     public OpenAndIntake(Intake intake, DoubleSupplier speedSupplier) {
         super(
-                new OpenSolenoid(intake),
+                new OpenPiston(intake),
                 new IntakeBySpeed(intake, speedSupplier)
         );
     }
