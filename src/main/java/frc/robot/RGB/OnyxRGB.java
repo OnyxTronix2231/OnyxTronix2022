@@ -12,8 +12,8 @@ import static frc.robot.RGB.Constants.*;
  */
 public class OnyxRGB extends SubsystemBase {
 
-    private float[] RGB;;
-    private final CANifier canifier;
+    private float[] RGB; // current color
+    private final CANifier canifier; // electronic shit
     private final ColorNameToRGB colorNameToRGB;
     private int cyclesLeft;
 
@@ -45,11 +45,11 @@ public class OnyxRGB extends SubsystemBase {
         canifier.enablePWMOutput(RGB_CONTROLLER_CHANNEL.value, false);
     }
 
-    private void setColorByName(Color color) {
+    public void setColorByName(Color color) {
         RGB = colorNameToRGB.getColorNameToRGB(color).clone();
     }
 
-    private void setColorByRGB(int kR, int kG, int kB) {
+    public void setColorByRGB(int kR, int kG, int kB) {
         kR = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, kR));
         kG = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, kG));
         kB = Math.max(MIN_RGB_VALUE, Math.min(MAX_RGB_VALUE, kB));
