@@ -2,13 +2,12 @@ package frc.robot.trigger.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.trigger.BallTrigger;
-
 import java.util.function.DoubleSupplier;
 
 public class TriggerMoveBySpeed extends CommandBase {
 
     private final BallTrigger trigger;
-    private final DoubleSupplier doubleSupplier;
+    private final DoubleSupplier speedSupplier;
 
     @Override
     public void initialize() {
@@ -22,13 +21,13 @@ public class TriggerMoveBySpeed extends CommandBase {
 
     public TriggerMoveBySpeed(BallTrigger trigger, DoubleSupplier doubleSupplier) {
         this.trigger = trigger;
-        this.doubleSupplier = doubleSupplier;
+        this.speedSupplier = doubleSupplier;
         addRequirements(trigger);
     }
 
     @Override
     public void execute() {
-        trigger.moveTriggerBySpeed(doubleSupplier.getAsDouble());
+        trigger.moveTriggerBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override

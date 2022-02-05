@@ -6,7 +6,7 @@ import static frc.robot.loader.LoaderConstants.LOADER_MOTOR_ID;
 
 public class LoaderComponentsBase implements LoaderComponents {
 
-    private WPI_TalonFX loaderMotor;
+    private final WPI_TalonFX loaderMotor;
 
     public LoaderComponentsBase() {
         loaderMotor = new WPI_TalonFX(LOADER_MOTOR_ID);
