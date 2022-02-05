@@ -1,16 +1,16 @@
-package frc.robot.intakeForward.commands;
+package frc.robot.intake.commands;
 
-import frc.robot.intakeForward.IntakeForward;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.intake.Intake;
 
 import java.util.function.DoubleSupplier;
 
 public class IntakeBySpeed extends CommandBase {
 
-    private final IntakeForward intake;
+    private final Intake intake;
     private final DoubleSupplier speedSupplier;
 
-    public IntakeBySpeed(IntakeForward intake, DoubleSupplier speedSupplier) {
+    public IntakeBySpeed(Intake intake, DoubleSupplier speedSupplier) {
         this.intake = intake;
 
         this.speedSupplier = speedSupplier;
