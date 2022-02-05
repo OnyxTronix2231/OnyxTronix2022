@@ -9,9 +9,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+<<<<<<< HEAD
 import frc.robot.trigger.TriggerComponents;
 import frc.robot.trigger.TriggerComponentsBase;
 import frc.robot.trigger.Triggerr;
+=======
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
+>>>>>>> 42a9833bd240527147887e07d1aee86bb437a999
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,7 +26,8 @@ import frc.robot.trigger.Triggerr;
  * project.
  */
 public class Robot extends TimedRobot {
-    TriggerComponents triggerComponents = new TriggerComponentsBase();
+
+    DriveTrainComponents driveTrainComponents;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -28,14 +35,21 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+<<<<<<< HEAD
         Triggerr triggerSub = new Triggerr(triggerComponents);
         //Ultrasonic.setAutomaticMode(true);
+=======
+>>>>>>> 42a9833bd240527147887e07d1aee86bb437a999
 
         if (Robot.isReal()) {
+            driveTrainComponents = new DriveTrainComponentsBase();
         } else {
+            driveTrainComponents = null;
         }
 
-        new DriverOi().triggerTest(triggerSub);
+        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+
+        new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
         new DriversShuffleboard();
