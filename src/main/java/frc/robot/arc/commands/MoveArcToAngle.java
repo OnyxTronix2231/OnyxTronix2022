@@ -8,6 +8,6 @@ import java.util.function.DoubleSupplier;
 public class MoveArcToAngle extends MoveLinearServoByDistance {
 
     public MoveArcToAngle(Arc arc, DoubleSupplier angleSupplier) {
-        super(arc, () -> ArcConstants.ArcCalculations.getLinearServoPositionFromAngle(angleSupplier.getAsDouble()));
+        super(arc, () -> ArcConstants.ArcCalculations.angleToLinearServoPos(angleSupplier.getAsDouble()));
     }
 }

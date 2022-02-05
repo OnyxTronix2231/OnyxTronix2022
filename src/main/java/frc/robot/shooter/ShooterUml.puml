@@ -56,10 +56,13 @@ class ShootBySpeed {
     void end()
 }
 
+<<<<<<< Updated upstream
 class SubsystemBase {
 }
 
 class CommandBase {
 }
 
+=======
+>>>>>>> Stashed changes
 @enduml

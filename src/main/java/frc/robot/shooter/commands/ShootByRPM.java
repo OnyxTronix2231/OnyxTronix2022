@@ -4,14 +4,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.shooter.Shooter;
 import java.util.function.DoubleSupplier;
 
-public class ShootByRPM_PID extends CommandBase {
+public class ShootByRPM extends CommandBase {
 
     private final Shooter shooter;
     private final DoubleSupplier rpmSupplier;
 
-    public ShootByRPM_PID(Shooter shooter, DoubleSupplier rpmSupplier) {
+    public ShootByRPM(Shooter shooter, DoubleSupplier rpmSupplier) {
         this.shooter = shooter;
         this.rpmSupplier = rpmSupplier;
+        addRequirements(shooter);
     }
 
     @Override

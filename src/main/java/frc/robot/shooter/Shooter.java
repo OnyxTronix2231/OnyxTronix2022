@@ -22,10 +22,11 @@ public class Shooter extends SubsystemBase {
     }
 
     public void updateSetPIDSpeed(double rpm) {
-        shooterComponents.getController().setSetpoint(ShooterCalculations.rpmToEncoderUnitsInDecisecond(rpm));
+        shooterComponents.getController().update(ShooterCalculations.rpmToEncoderUnitsInDecisecond(rpm));
     }
 
     public void stop() {
         setSpeed(0);
+        shooterComponents.getController().disable();
     }
 }

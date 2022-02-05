@@ -14,6 +14,8 @@ import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 
 import static frc.robot.shooter.ShooterConstants.*;
+import static frc.robot.shooter.ShooterConstants.RobotConstants.MASTER_MOTOR_ID;
+import static frc.robot.shooter.ShooterConstants.RobotConstants.SLAVE_MOTOR_ID;
 
 public class ShooterComponentsBase implements ShooterComponents{
 

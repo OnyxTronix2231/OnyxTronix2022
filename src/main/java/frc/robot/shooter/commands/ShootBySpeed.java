@@ -12,6 +12,7 @@ public class ShootBySpeed extends CommandBase {
     public ShootBySpeed(Shooter shooter, DoubleSupplier speedSupplier) {
         this.shooter = shooter;
         this.speedSupplier = speedSupplier;
+        addRequirements(shooter);
     }
 
     @Override

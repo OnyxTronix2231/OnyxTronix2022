@@ -19,4 +19,14 @@ public class MoveLinearServoByDistance extends CommandBase {
     public void execute() {
         arc.setPos(distance.getAsDouble());
     }
+
+    @Override
+    public boolean isFinished() {
+        return arc.isOnTarget();
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        arc.setSpeed(0);
+    }
 }
