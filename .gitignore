@@ -85,6 +85,9 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+# vscode
+.vscode
+
 ### Gradle ###
 .gradle
 /build/

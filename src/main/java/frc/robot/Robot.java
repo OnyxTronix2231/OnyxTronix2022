@@ -13,6 +13,7 @@ import frc.robot.vision.Vision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.vision.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
