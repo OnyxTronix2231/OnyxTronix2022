@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
+
+
+ArcComponentsBase --|> ArcComponents
+Arc o-- ArcComponents
+CommandBase <|-- MoveArcToAngle
+CommandBase <|-- MoveArcBySpeed
+CommandBase <|-- MoveArcByDistance
+MoveArcBySpeed o-- Arc
+MoveArcToAngle o-- Arc
+MoveArcByDistance o-- Arc
+SubsystemBase <|-- Arc
+
+class Arc {
+    ArcComponents arcComponents
+
+    public void setSpeed()
+    void setPos()
+    void stop()
+    boolean inPosition()
+}
+
+class ArcComponentsBase {
+    LinearServo linearServo
+
+    LinearServo getLinearServo()
+}
+
+class MoveArcToAngle {
+    Arc arc
+    DoubleSupplier angleSupplier
+
+    void execute()
+    boolean isFinished()
+    void end()
+}
+
+class MoveArcBySpeed {
+    Arc arc
+    DoubleSupplier speedSupplier
+
+    void execute()
+    void end()
+}
+
+class MoveArcByDistance {
+    Arc arc
+    DoubleSupplier distanceSupplier
+
+    void execute()
+    boolean isFinished()
+    void end()
+}
+
+class SubsystemBase {
+}
+
+class CommandBase {
+}
+
+interface ArcComponents {
+    LinearServo getLinearServo()
+}
+
+@enduml

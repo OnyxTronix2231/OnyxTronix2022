@@ -1,6 +1,11 @@
 package frc.robot.shooter;
 
+import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
+import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
 import pid.PIDFTerms;
@@ -20,7 +25,7 @@ public class ShooterComponentsBase implements ShooterComponents{
     public ShooterComponentsBase() {
         masterMotor = new WPI_TalonFX(MASTER_MOTOR_ID);
         masterMotor.configFactoryDefault();
-        
+
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);

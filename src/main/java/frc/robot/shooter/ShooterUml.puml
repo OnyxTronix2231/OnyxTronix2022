@@ -2,11 +2,16 @@
 'https://plantuml.com/sequence-diagram
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
 
-ShooterComponentsBase <|-- ShooterComponents
+ShooterComponentsBase --|> ShooterComponents
+
 Shooter o-- ShooterComponents
 ShooterDriverOIBinder o-- Shooter
 ShootByRPM_PID o-- Shooter
 ShootBySpeed o-- Shooter
+
+CommandBase <|-- ShootBySpeed
+CommandBase <|-- ShootByRPM_PID
+SubsystemBase <|-- Shooter
 
 
 class Shooter {
@@ -21,9 +26,7 @@ class ShooterComponentsBase {
     WPI_TalonFX masterMotor
     WPI_TalonFX slaveMotor
     CtreEncoder encoder
-    EncoderSim simEncoder
     CtrePIDController controller
-    FlywheelSim flywheelSim
 
     WPI_TalonFX getMasterMotor()
     Counter getCounter()
@@ -36,7 +39,7 @@ interface ShooterComponents {
     PIDController getController()
 }
 
-class ShootByRPM_PID {
+class ShootByRPM {
     Shooter shooter
     DoubleSupplier rpm
 
@@ -53,5 +56,10 @@ class ShootBySpeed {
     void end()
 }
 
+class SubsystemBase {
+}
+
+class CommandBase {
+}
 
 @enduml
