@@ -8,5 +8,4 @@ public interface TriggerComponents {
 
     WPI_TalonFX getTriggerMotor();
     Rev2mDistanceSensor getDistanceSensor();
-
 }

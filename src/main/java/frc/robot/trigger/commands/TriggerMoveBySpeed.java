@@ -1,13 +1,13 @@
 package frc.robot.trigger.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.trigger.TriggerSub;
+import frc.robot.trigger.Triggerr;
 
 import java.util.function.DoubleSupplier;
 
 public class TriggerMoveBySpeed extends CommandBase {
 
-    private final TriggerSub trigger;
+    private final Triggerr trigger;
     private final DoubleSupplier doubleSupplier;
 
     @Override
@@ -20,7 +20,7 @@ public class TriggerMoveBySpeed extends CommandBase {
         return trigger.isLoadedV2();
     }
 
-    public TriggerMoveBySpeed(TriggerSub trigger, DoubleSupplier doubleSupplier) {
+    public TriggerMoveBySpeed(Triggerr trigger, DoubleSupplier doubleSupplier) {
         this.trigger = trigger;
         this.doubleSupplier = doubleSupplier;
         addRequirements(trigger);

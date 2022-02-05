@@ -6,21 +6,21 @@ import static frc.robot.loader.LoaderConstants.*;
 
 public class Loader extends SubsystemBase {
 
-    private final LoaderComponents components;
+    private final LoaderComponents loaderComponents;
 
     public Loader(LoaderComponents components) {
-        this.components = components;
+        this.loaderComponents = components;
     }
 
-
     public void moveLoaderBySpeed(double speed) {
-        components.getLoaderMotor().set(speed);
+        loaderComponents.getLoaderMotor().set(speed);
     }
 
     public void stop() {
         moveLoaderBySpeed(0);
     }
+
     public boolean isStuck() {
-        return components.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
+        return loaderComponents.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
     }
 }

@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.loader.LoaderConstants.NORMAL_AMP;
 import static frc.robot.trigger.TriggerConstants.DISTANCE_TO_STOP_IN_MM;
 
-public class TriggerSub extends SubsystemBase {
+public class Triggerr extends SubsystemBase {
 
     private final TriggerComponents triggerComponents;
 
-    public TriggerSub(TriggerComponents triggerComponents) {
+    public Triggerr(TriggerComponents triggerComponents) {
         this.triggerComponents = triggerComponents;
     }
 
@@ -19,8 +19,8 @@ public class TriggerSub extends SubsystemBase {
     }
 
 
-    public boolean isLoadedV2(){
-        return triggerComponents.getDistanceSensor().getRange(Rev2mDistanceSensor.Unit.kMillimeters)> DISTANCE_TO_STOP_IN_MM;
+    public boolean isLoadedV2() {
+        return triggerComponents.getDistanceSensor().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
     }
 
     @Override
@@ -28,12 +28,12 @@ public class TriggerSub extends SubsystemBase {
         System.out.println(triggerComponents.getDistanceSensor().getRange());
     }
 
-    public void stop(){
-        moveTriggerBySpeed(0);
-    }
     public boolean isStuck() {
-        return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
-        //in one side is geting amper and other is checking amper he he ha ha yeahhhhhhh
+        return triggerComponents.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
+    }
+
+    public void stop() {
+        moveTriggerBySpeed(0);
     }
 
 }

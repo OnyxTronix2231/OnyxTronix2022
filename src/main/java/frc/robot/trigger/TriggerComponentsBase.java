@@ -5,7 +5,6 @@ import com.revrobotics.*;
 
 import static frc.robot.trigger.TriggerConstants.*;
 
-
 public class TriggerComponentsBase implements TriggerComponents {
 
     private WPI_TalonFX triggerMotor;
@@ -23,8 +22,6 @@ public class TriggerComponentsBase implements TriggerComponents {
     public WPI_TalonFX getTriggerMotor() {
         return triggerMotor;
     }
-
-
 
     @Override
     public Rev2mDistanceSensor getDistanceSensor() {
