@@ -3,14 +3,14 @@ package frc.robot.trigger;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.*;
 
-import static frc.robot.trigger.TriggerConstants.*;
+import static frc.robot.trigger.BallTriggerConstants.*;
 
-public class TriggerComponentsBase implements TriggerComponents {
+public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private WPI_TalonFX triggerMotor;
     private Rev2mDistanceSensor distanceSensor;
 
-    public TriggerComponentsBase() {
+    public BallTriggerComponentsBase() {
         triggerMotor = new WPI_TalonFX(TRIGGER_MOTOR_ID);
         triggerMotor.configFactoryDefault();
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,

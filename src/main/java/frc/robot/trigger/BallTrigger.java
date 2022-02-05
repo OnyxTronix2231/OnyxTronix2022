@@ -4,13 +4,13 @@ import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.loader.LoaderConstants.NORMAL_AMP;
-import static frc.robot.trigger.TriggerConstants.DISTANCE_TO_STOP_IN_MM;
+import static frc.robot.trigger.BallTriggerConstants.DISTANCE_TO_STOP_IN_MM;
 
-public class Triggerr extends SubsystemBase {
+public class BallTrigger extends SubsystemBase {
 
-    private final TriggerComponents triggerComponents;
+    private final BallTriggerComponents triggerComponents;
 
-    public Triggerr(TriggerComponents triggerComponents) {
+    public BallTrigger(BallTriggerComponents triggerComponents) {
         this.triggerComponents = triggerComponents;
     }
 
@@ -29,7 +29,7 @@ public class Triggerr extends SubsystemBase {
     }
 
     public boolean isStuck() {
-        return triggerComponents.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
+        return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
     }
 
     public void stop() {

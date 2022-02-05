@@ -1,7 +1,7 @@
 
 package frc.robot.trigger;
 
-public final class TriggerConstants {
+public final class BallTriggerConstants {
 
     public static final int TRIGGER_MOTOR_ID = 11;
     public static final int PING_CHANNEL = 0;
