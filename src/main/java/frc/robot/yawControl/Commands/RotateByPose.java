@@ -8,6 +8,5 @@ public class RotateByPose extends RotateToAngleRTF {
 
     public RotateByPose(YawControl yawControl) {
         super(yawControl, yawControl::getAngleToTargetByPose);
-        addRequirements(yawControl);
     }
 }
