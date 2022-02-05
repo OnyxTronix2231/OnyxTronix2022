@@ -35,7 +35,7 @@ public class Vision extends SubsystemBase {
             Vector2dEx limelightToTurret = Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
             turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
                     limelightOffsetFromTarget);
-            turretToTargetVectorRTT.add(limelightToTurret);  // might be sub
+            turretToTargetVectorRTT.add(limelightToTurret); //TODO: might be sub
         } else
             turretToTargetVectorRTT = null;
     }
