@@ -8,16 +8,16 @@ import java.util.function.DoubleSupplier;
 public class MoveLinearServoByDistance extends CommandBase {
 
     private final Arc arc;
-    private final DoubleSupplier distance;
+    private final DoubleSupplier distanceSupplier;
 
     public MoveLinearServoByDistance(Arc arc, DoubleSupplier distance) {
         this.arc = arc;
-        this.distance = distance;
+        this.distanceSupplier = distance;
     }
 
     @Override
     public void execute() {
-        arc.setPos(distance.getAsDouble());
+        arc.setPos(distanceSupplier.getAsDouble());
     }
 
     @Override
