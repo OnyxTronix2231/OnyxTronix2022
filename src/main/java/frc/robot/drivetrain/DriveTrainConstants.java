@@ -92,5 +92,30 @@ public final class DriveTrainConstants {
                 new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
                 true,
                 new MaxVelocityConstraint(1.5));
+
+        public static final Path path1 = new Path(
+                new Pose2d(8.943985451508386, 5.520, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
+                true,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path2 = new Path(
+                new Pose2d(9.000216212542298, 7.533, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(8.943985451508386, 6.352, Rotation2d.fromDegrees(0)),
+                true,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path3 = new Path(
+                new Pose2d(9.000216212542298, 7.533, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(8.943985451508386, 6.352, Rotation2d.fromDegrees(0)),
+                true,
+                new MaxVelocityConstraint(1.5)
+        );
+
     }
 }
