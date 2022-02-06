@@ -105,17 +105,51 @@ public final class DriveTrainConstants {
                 new Pose2d(9.000216212542298, 7.533, Rotation2d.fromDegrees(0)),
                 List.of(),
                 new Pose2d(8.943985451508386, 6.352, Rotation2d.fromDegrees(0)),
-                true,
+                false,
                 new MaxVelocityConstraint(1.5)
         );
 
         public static final Path path3 = new Path(
-                new Pose2d(9.000216212542298, 7.533, Rotation2d.fromDegrees(0)),
+                new Pose2d(11.688046589963278, 5.947, Rotation2d.fromDegrees(0)),
                 List.of(),
-                new Pose2d(8.943985451508386, 6.352, Rotation2d.fromDegrees(0)),
-                true,
+                new Pose2d(15.522984492476057, 7.162, Rotation2d.fromDegrees(0)),
+                false,
                 new MaxVelocityConstraint(1.5)
         );
+
+        public static final Path path4 = new Path(
+                new Pose2d(15.28681529613363, 6.397, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(9.922400693498448, 3.282, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path5 = new Path(
+                new Pose2d(9.967385302325578, 3.158, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(11.654308133342933, 2.022, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path6 = new Path(
+                new Pose2d(11.553092763481887, 2.011, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(10.507200608251132, 0.886, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path7 = new Path(
+                new Pose2d(10.77710826121391, 1.246, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(12.104154221614227, 5.047, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+
 
     }
 }
