@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.loader.Loader;
+import frc.robot.loader.LoaderOiBinder;
 import frc.robot.trigger.BallTriggerOiBinder;
 import frc.robot.trigger.BallTrigger;
 import frc.robot.drivetrain.DriveTrain;
@@ -25,9 +27,14 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi triggerTest(BallTrigger trigger) {
+    public DriverOi withTrigger(BallTrigger ballTrigger) {
         JoystickButton triggerMoveBySpeed = new JoystickButton(xboxController, XboxController.Button.kA.value);
-        new BallTriggerOiBinder(trigger, triggerMoveBySpeed);
+        new BallTriggerOiBinder(ballTrigger, triggerMoveBySpeed);
+        return this;
+    }
+    public DriverOi withLoader(Loader loader) {
+        JoystickButton loaderMoveBySpeed = new JoystickButton(xboxController, XboxController.Button.kY.value);
+        new LoaderOiBinder(loader, loaderMoveBySpeed);
         return this;
     }
 }
