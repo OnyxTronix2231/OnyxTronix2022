@@ -10,6 +10,7 @@ public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents triggerComponents;
 
+
     public BallTrigger(BallTriggerComponents triggerComponents) {
         this.triggerComponents = triggerComponents;
     }
@@ -25,8 +26,9 @@ public class BallTrigger extends SubsystemBase {
 
     @Override
     public void periodic() {
-        System.out.println(triggerComponents.getDistanceSensor().getRange());
+        System.out.println(triggerComponents.getDigitalInput().get());
     }
+    
 
     public boolean isStuck() {
         return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
