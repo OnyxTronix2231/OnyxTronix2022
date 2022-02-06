@@ -1,81 +1,145 @@
 package frc.robot.turret;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.networktables.NetworkTableEntry;
 
 import static frc.robot.turret.TurretConstants.*;
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
-import static frc.robot.turret.TurretConstants.calculations.*;
 
 public class Turret extends SubsystemBase {
 
-    private final TurretComponents components;
-    private final TurretShuffleBoard turretShuffleBoard;
+    protected final TurretComponents components;
+    private double startingAngle;
+    private double targetAngle;
+    //private final NetworkTableEntry kP;
+    //private final NetworkTableEntry kI;
+    //private final NetworkTableEntry kD;
+    //private final NetworkTableEntry kF;
+    //private final NetworkTableEntry cruiseVelocity;
+    //private final NetworkTableEntry acceleration;
+    //private final NetworkTableEntry accelerationSmoothing;
 
     public Turret(TurretComponents turretComponents) {
-        components = turretComponents;
-        configMotorLimits();
+        this.components = turretComponents;
+        components.getMotor().configForwardSoftLimitEnable(true);
+        components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(MAX_DEGREE));
+        components.getMotor().configReverseSoftLimitEnable(true);
+        components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(MIN_DEGREE));
+//        Shuffleboard.getTab("Turret").addNumber("Current velocity",
+//                () -> components.getEncoder().getRate());
+        Shuffleboard.getTab("Turret").addNumber("current angle",
+                this::getAngleRTR);
 
-        turretShuffleBoard = new TurretShuffleBoard(components);
+//        Shuffleboard.getTab("Turret").addNumber("current position ENC",
+//                ()-> components.getEncoder().getCount());
+    //    Shuffleboard.getTab("Turret").addNumber("current ERROR ENC",
+    //            ()-> (components.getTurretController().getSetpoint() - components.getEncoder().getCount()));
+    //    Shuffleboard.getTab("Turret").addNumber("current ERROR ENC numnum",
+    //            ()-> (components.getTurretController().getSetpoint() - components.getEncoder().getCount()));
+    //    Shuffleboard.getTab("Turret").addNumber("current pos",
+    //            ()-> components.getEncoder().getCount());
+    //    Shuffleboard.getTab("Turret").addNumber("setpoint",
+    //            ()-> components.getTurretController().getSetpoint());
+    //    Shuffleboard.getTab("Turret").addNumber("current ERROR ENC num",
+    //            ()-> components.getMotor().getClosedLoopError());
+    //    Shuffleboard.getTab("Turret").addNumber("current ERROR angle",
+    //            ()-> encoderUnitsToAngle(components.getMotor().getClosedLoopError()));
+
+    //    kP = Shuffleboard.getTab("Turret").add("kP",
+    //            components.getTurretController().getPIDFTerms().getKp()).getEntry();
+    //    kI = Shuffleboard.getTab("Turret").add("kI",
+    //            components.getTurretController().getPIDFTerms().getKi()).getEntry();
+    //    kD = Shuffleboard.getTab("Turret").add("kD",
+    //            components.getTurretController().getPIDFTerms().getKd()).getEntry();
+    //    kF = Shuffleboard.getTab("Turret").add("kF",
+    //            components.getTurretController().getPIDFTerms().getKf()).getEntry();
+
+
+    //   cruiseVelocity = Shuffleboard.getTab("Turret").add("Cruise velocity",
+    //           components.getTurretController().getCruiseVelocity()).getEntry();
+    //   acceleration = Shuffleboard.getTab("Turret").add("Acceleration",
+    //           components.getTurretController().getAcceleration()).getEntry();
+    //   accelerationSmoothing = Shuffleboard.getTab("Turret" +
+    //           "").add("Acceleration smoothing",
+    //           components.getTurretController().getAccelerationSmoothing()).getEntry();
     }
 
     @Override
     public void periodic() {
-        turretShuffleBoard.update();
+//        components.getTurretController().setPIDFTerms(
+//                kP.getDouble(components.getTurretController().getPIDFTerms().getKp()),
+//                kI.getDouble(components.getTurretController().getPIDFTerms().getKi()),
+//                kD.getDouble(components.getTurretController().getPIDFTerms().getKd()),
+//                kF.getDouble(components.getTurretController().getPIDFTerms().getKf()));
+//        components.getTurretController().setCruiseVelocity((int)
+//                cruiseVelocity.getDouble(components.getTurretController().getCruiseVelocity()));
+//        components.getTurretController().setAcceleration((int)
+//                acceleration.getDouble(components.getTurretController().getAcceleration()));
+//        components.getTurretController().setAccelerationSmoothing((int)
+//                accelerationSmoothing.getDouble(components.getTurretController().getAccelerationSmoothing()));
+        //components.setCurrentPos(new Pose2d(kX.getDouble(components.getCurrentPos().getX()),
+        //        kY.getDouble(components.getCurrentPos().getY()), new Rotation2d()));
     }
 
-    public void configMotorLimits() {
-        components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
-        components.getMotor().configForwardSoftLimitEnable(true);
-        components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
-        components.getMotor().configReverseSoftLimitEnable(true);
-    }
-
-    public double getCurrentAngleRTR() {
-        return encToDeg(components.getEncoder().getPosition());
-    }
-
-    public void stop() {
-        setSpeed(0);
-        components.getController().disable();
-    }
-
-    public void setSpeed(double speed) {
+    public void moveBySpeed(double speed) {
         components.getMotor().set(speed);
     }
 
-    public void initMoveByDegree(double deg) {
-        initMoveToDegree(getCurrentAngleRTR() + deg);
+    public void stop() {
+        moveBySpeed(0);
+        components.getTurretController().disable();
     }
 
-    public void updateMoveByDegree(double deg) {
-        updateMoveToDegree(getCurrentAngleRTR() + deg);
+    public void initMoveToAngle(double angle) {
+        angle = getAngleByLimits(angle);
+        components.getTurretController().setSetpoint(angleToEncoderUnits(angle));
+        components.getTurretController().enable();
     }
 
-    public void initMoveToDegree(double deg) {
-        components.getController().setSetpoint(degToEnc(fixDeg(deg)));
-        components.getController().enable();
+    public void updateMoveToAngle(double angle) {
+        angle = getAngleByLimits(angle);
+        components.getTurretController().update(angleToEncoderUnits(angle));
     }
 
-    public void updateMoveToDegree(double deg) {
-        components.getController().update(degToEnc(fixDeg(deg)));
+    public void initMoveByAngle(double angle) {
+        startingAngle = getAngleRTR();
+        targetAngle = angle;
+        initMoveToAngle(startingAngle + angle);
     }
 
-    public double fixDeg(double deg) {
-        double fixed = deg % DEG_IN_CIRCLE;
-        if (fixed > MAX_DEG) {
-            fixed -= DEG_IN_CIRCLE;
+    public void updateMoveByAngle(double angle) {
+        if (targetAngle != angle) {
+            startingAngle = getAngleRTR();
+            targetAngle = angle;
         }
-        if (fixed < MIN_DEG) {
-            fixed += DEG_IN_CIRCLE;
+        updateMoveToAngle(startingAngle + angle);
+    }
+
+    public double getAngleRTR() {
+        return encoderUnitsToAngle(components.getEncoder().getCount());
+    }
+
+    public double encoderUnitsToAngle(double encoderUnits) {
+        return (encoderUnits * DEGREES_IN_CIRCLE) / ENCODER_UNITS_PER_ROUND;
+    }
+
+    public double angleToEncoderUnits(double angle) {
+        return (ENCODER_UNITS_PER_ROUND / DEGREES_IN_CIRCLE) * angle;
+    }
+
+    public int getAngleByLimits(double angle) {
+        angle = angle % DEGREES_IN_CIRCLE;
+        if (angle > MAX_DEGREE) {
+            angle = (angle - FLIP_POINT);
+        } else if (angle < MIN_DEGREE) {
+            angle = (angle + FLIP_POINT);
         }
-        return fixed;
+        return (int)angle;
     }
 
     public boolean isOnTarget() {
-        return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
-    }
-
-    public TurretComponents getComponents() {
-        return components;
+        return components.getTurretController().isOnTarget(angleToEncoderUnits(TOLERANCE_DEGREE));
     }
 }

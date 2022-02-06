@@ -1,52 +1,41 @@
 package frc.robot.turret;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
+public class TurretConstants {
 
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
+    static final int MASTER_MOTOR_ID = 8;
+    static final int FLIP_POINT = 360;
+    static final double TOLERANCE_DEGREE = 1;
+    private static final double TURRET_CONVERSION = 1;
+    static final double ENCODER_UNITS_PER_ROUND = 1023 * TURRET_CONVERSION;
+    static final double DEGREES_IN_CIRCLE = 360;
+    static final double MAX_DEGREE = 225;
+    static final double MIN_DEGREE = -135;
+    static final int ENCODER_OFFSET = 336;
 
-public final class TurretConstants {
+    public static final class TurretConstantsA {
 
-    /*fixed values*/
-    public static final Pose2d TARGET_POS = new Pose2d(0, 0, new Rotation2d()); //TODO: confirm
-    public static final int DEG_IN_CIRCLE = 360;
-    public static final int HALF_ROTATION = 180;
-
-    /*PID values*/
-    public static final int MAX_ACC = 0; //TODO: calibrate
-    public static final int CRUISE_VELOCITY = 0; //TODO: calibrate
-    public static final int ACC_SMOOTHING = 0; //TODO: calibrate
-    public static final double KP = 0; //TODO: calibrate
-    public static final double KI = 0; //TODO: calibrate
-    public static final double KD = 0; //TODO: calibrate
-    public static final double KF = 0; //TODO: calibrate
-
-    /*system settings*/
-    public static final int MIDDLE_ANGLE = 0;
-    public static final double ROTATION_SETBACK = 0.3;
-    public static final double TOLERANCE_DEGREE = 1; //TODO: Correct the number
-    public static final double DEG_IN_TURRET_ROTATION = CONVERSION_RATE * DEG_IN_CIRCLE;
-
-
-    public static class RobotConstants {
-
-        /*mechanic values*/
-        public static final int ENCODER_ID = 0; //TODO: Correct the number
-        public static final int TURRET_MOTOR_ID = 0; //TODO: Correct the number
-        public static final int CONVERSION_RATE = 1; //TODO: Correct the number
-        public static final double MAX_DEG = 0; //TODO: Correct the number
-        public static final double MIN_DEG = 0; //TODO: Correct the number
-        public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: confirm
-    }
-
-    public static final class calculations {
-
-        static double degToEnc(double deg) {
-            return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
-        }
-
-        public static double encToDeg(double enc) {
-            return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
-        }
+        static final int MAX_ACCELERATION = 1500;
+        static final int CRUISE_VELOCITY = 200;
+        static final int ACCELERATION_SMOOTHING = 0;
+//        static final int MAX_ACCELERATION = 1000;
+//        static final int CRUISE_VELOCITY = 120;
+//        static final int ACCELERATION_SMOOTHING = 2;
+        static final int CONTINUOUS_CURRENT_LIMIT = 0;
+        static final int PEAK_AMP_DURATION = 0;
+        static final int PEAK_AMP = 0;
+        static final int SLOT_IDX = 0;
+        static final double MAX_VELOCITY = 250;
+//        static final double KP = 8;
+//        static final double KI = 0.02;
+//        static final double KD = 0;
+//        static final double KF = 1023 / MAX_VELOCITY;
+        static final double KP = 3;
+        static final double KI = 0;
+        static final double KD = 180;
+        static final double KF = 4.5;
+        static final double CLOSE_LOOP_RAMP = 0;
+        static final double OPEN_LOOP_RAMP = 0;
+        static final double INTEGRAL_ZONE_BOUND = 30;
+        static final boolean CURRENT_LIMIT_ENABLED = false;
     }
 }

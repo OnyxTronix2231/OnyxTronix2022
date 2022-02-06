@@ -31,7 +31,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation * 0.5);
     }
 
     public void stop() {

@@ -1,9 +1,10 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.turret.Turret;
-import frc.robot.yawControl.YawControl;
+import frc.robot.yawControll.YawControl;
 import vision.limelight.Limelight;
 import vision.limelight.target.LimelightTarget;
 import static frc.robot.Constants.TARGET_X_RTF;
@@ -19,7 +20,15 @@ public class Vision extends SubsystemBase {
 
     public Vision() {
         super();
+        Shuffleboard.getTab("Vision").addNumber("Angle RTT", this::getHorizontalAngelTurretToTargetRTT);
         this.limelight = Limelight.getInstance();
+    }
+
+    @Override
+    public void periodic() {
+        System.out.println(limelight.targetFound());
+        this.limelightTarget = limelight.getTarget();
+        updateTurretToTargetVectorRTT();
     }
 
     private double getDistanceLimelightFromTarget() {
@@ -38,8 +47,9 @@ public class Vision extends SubsystemBase {
             turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
                     limelightOffsetFromTarget);
             turretToTargetVectorRTT.add(limelightToTurret); //TODO: might be sub
-        } else
+        } else {
             turretToTargetVectorRTT = null;
+        }
     }
 
     public double getHorizontalAngelTurretToTargetRTT() {
@@ -50,7 +60,7 @@ public class Vision extends SubsystemBase {
 
     public double getHorizontalAngelTurretToTargetRTR(Turret turret) {
         if (turretToTargetVectorRTT != null)
-            return turretToTargetVectorRTT.direction() + turret.getCurrentAngleRTR();
+            return turretToTargetVectorRTT.direction() + turret.getAngleRTR();
         return -999;
     }
 
@@ -58,11 +68,6 @@ public class Vision extends SubsystemBase {
         if (turretToTargetVectorRTT != null)
             return turretToTargetVectorRTT.magnitude();
         return -999;
-    }
-
-    public void update() {
-        this.limelightTarget = limelight.getTarget();
-        updateTurretToTargetVectorRTT();
     }
 
     public boolean hasTarget() {

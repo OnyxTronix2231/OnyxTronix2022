@@ -1,12 +1,13 @@
 package frc.robot.turret.commands;
 
 import frc.robot.turret.Turret;
+
 import java.util.function.DoubleSupplier;
 
-public class RotateByAngleOnce extends RotateByAngle {
+public class MoveTurretByAngle extends MoveTurretByAngleAndKeep {
 
-    public RotateByAngleOnce(Turret turret, DoubleSupplier angelSupplier){
-        super(turret, angelSupplier);
+    public MoveTurretByAngle(Turret turret, DoubleSupplier angleSupplier) {
+        super(turret, angleSupplier);
     }
 
     @Override

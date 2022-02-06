@@ -2,27 +2,28 @@ package frc.robot.turret.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
+
 import java.util.function.DoubleSupplier;
 
-public class RotateToAngle extends CommandBase {
+public class MoveTurretToAngleAndKeep extends CommandBase {
 
     protected final Turret turret;
-    protected final DoubleSupplier angleSupplier;
+    private final DoubleSupplier angle;
 
-    public RotateToAngle(Turret turret, DoubleSupplier angleSupplier) {
+    public MoveTurretToAngleAndKeep(Turret turret, DoubleSupplier angle) {
         this.turret = turret;
-        this.angleSupplier = angleSupplier;
+        this.angle = angle;
         addRequirements(turret);
     }
 
     @Override
     public void initialize() {
-        turret.initMoveToDegree(angleSupplier.getAsDouble());
+        turret.initMoveToAngle(angle.getAsDouble());
     }
 
     @Override
     public void execute() {
-        turret.updateMoveToDegree(angleSupplier.getAsDouble());
+        turret.updateMoveToAngle(angle.getAsDouble());
     }
 
     @Override
