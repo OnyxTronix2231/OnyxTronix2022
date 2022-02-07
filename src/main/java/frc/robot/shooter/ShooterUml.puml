@@ -62,10 +62,7 @@ class SubsystemBase {
 class CommandBase {
 }
 
-<<<<<<< Updated upstream
-=======
 class ShooterConstants {
 }
 
->>>>>>> Stashed changes
 @enduml

@@ -2,7 +2,6 @@
 'https://plantuml.com/sequence-diagram
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
 
-
 ArcComponentsBase --|> ArcComponents
 Arc o-- ArcComponents
 CommandBase <|-- MoveArcToAngle
@@ -64,13 +63,10 @@ interface ArcComponents {
     LinearServo getLinearServo()
 }
 
-<<<<<<< Updated upstream
-=======
 class ArcConstants {
 }
 
 class ArcDriverOiBinder {
 }
 
->>>>>>> Stashed changes
 @enduml

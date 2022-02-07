@@ -11,11 +11,7 @@ public class MoveLinearServoByDistance extends CommandBase {
 
     public MoveLinearServoByDistance(Arc arc, DoubleSupplier distanceSupplier) {
         this.arc = arc;
-<<<<<<< Updated upstream
-        this.distanceSupplier = distance;
-=======
         this.distanceSupplier = distanceSupplier;
->>>>>>> Stashed changes
     }
 
     @Override

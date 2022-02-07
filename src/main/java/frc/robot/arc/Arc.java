@@ -8,10 +8,10 @@ public class Arc extends SubsystemBase {
 
     public Arc(ArcComponents arcComponents) {
             this.arcComponents = arcComponents;
-        }
+    }
 
-        public void periodic() {
-            arcComponents.getLinearServo().updateCurrentPosition();
+    public void periodic() {
+        arcComponents.getLinearServo().updateCurrentPosition();
     }
 
     public void setSpeed(double speed) {

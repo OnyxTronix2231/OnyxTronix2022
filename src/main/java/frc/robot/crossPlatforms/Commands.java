@@ -8,11 +8,10 @@ import frc.robot.shooter.commands.ShootByRPM;
 import java.util.function.DoubleSupplier;
 
 public class Commands extends ParallelCommandGroup {
-    public Commands(Arc arc, Shooter shooter, DoubleSupplier rpmSupplier , DoubleSupplier angleSupplier){
+    public Commands(Arc arc, Shooter shooter, DoubleSupplier rpmSupplier , DoubleSupplier angleSupplier) {
         super(
-                new ShootByRPM(shooter,rpmSupplier),
+                new ShootByRPM(shooter, rpmSupplier),
                 new MoveArcToAngle(arc, angleSupplier)
         );
     }
-
 }

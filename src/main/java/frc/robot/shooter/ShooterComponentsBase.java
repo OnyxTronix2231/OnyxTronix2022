@@ -7,6 +7,7 @@ import pid.PIDFTerms;
 import pid.interfaces.PIDController;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.shooter.ShooterConstants.*;
 import static frc.robot.shooter.ShooterConstants.RobotConstants.MASTER_MOTOR_ID;
@@ -16,7 +17,7 @@ public class ShooterComponentsBase implements ShooterComponents{
 
     private final WPI_TalonFX masterMotor;
     private final WPI_TalonFX slaveMotor;
-    private final CtreEncoder encoder;
+    private final TalonEncoder encoder;
     private final CtrePIDController controller;
 
     public ShooterComponentsBase() {
@@ -27,7 +28,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
 
-        encoder = new CtreEncoder(masterMotor);
+        encoder = new TalonEncoder(masterMotor);
 
         controller = new CtrePIDController(masterMotor, encoder,
                 new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Velocity);

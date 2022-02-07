@@ -22,11 +22,11 @@ public class ShooterConstants {
 
     public static class ShooterCalculations {
 
-        public static double rpmToEncoderUnitsInDecisecond(double rpm) {
+        public static double rpmToEncUnitsDecisec(double rpm) {
             return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
         }
 
-        public static double rpmToMetersPerSec(double rpm) {
+        public static double rpmToMPS(double rpm) {
             return ((2 * Math.PI * RobotConstants.SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * rpm);
         }
     }

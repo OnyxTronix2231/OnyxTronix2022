@@ -3,6 +3,7 @@ package frc.robot.shooter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.shooter.ShooterConstants.*;
+import static frc.robot.shooter.ShooterConstants.ShooterCalculations.rpmToEncUnitsDecisec;
 
 public class Shooter extends SubsystemBase {
 
@@ -17,12 +18,12 @@ public class Shooter extends SubsystemBase {
     }
 
     public void initSetPIDSpeed(double rpm) {
-        shooterComponents.getController().setSetpoint(ShooterCalculations.rpmToEncoderUnitsInDecisecond(rpm));
+        shooterComponents.getController().setSetpoint(rpmToEncUnitsDecisec(rpm));
         shooterComponents.getController().enable();
     }
 
     public void updateSetPIDSpeed(double rpm) {
-        shooterComponents.getController().update(ShooterCalculations.rpmToEncoderUnitsInDecisecond(rpm));
+        shooterComponents.getController().update(rpmToEncUnitsDecisec(rpm));
     }
 
     public void stop() {
