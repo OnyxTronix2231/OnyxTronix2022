@@ -26,25 +26,11 @@ public final class DriveTrainConstants {
 
     public static final int DECISECOND_IN_SECOND = 10;
     public static final int ENCODER_UNITS = 2048;
-    public static final int DECISECOND_PER_MINUTE = 600;
     public static final double CONVERSION_RATE = 9;
-    public static final double ENCODER_UNITS_TO_METER = 1;
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
     public static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     public static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
-
-    public static final double MAX_VELOCITY = 18000;
-    public static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
-    public static final double KP = 0;
-    public static final double KI = 0;
-    public static final double KD = 0;
-    public static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
-    public static final double TOLERANCE = 0.5;
-
-    public static final int ACCELERATION = 0;
-    public static final int CRUISE_VELOCITY = 0;
-    public static final int ACCELERATION_SMOOTHING = 0;
 
     public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
@@ -66,6 +52,14 @@ public final class DriveTrainConstants {
 
         static double meterToEncoderUnits(double meters) {
             return meters * ENCODER_UNITS_PER_ROTATION;
+        }
+
+        static double encoderUnitsToMeters(double units) {
+            return units * PERIMETER_METER / ENCODER_UNITS_PER_ROTATION;
+        }
+
+        static double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
+            return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
         }
     }
 

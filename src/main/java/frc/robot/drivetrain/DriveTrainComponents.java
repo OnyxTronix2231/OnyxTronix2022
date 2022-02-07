@@ -23,9 +23,5 @@ public interface DriveTrainComponents {
 
     CtreEncoder getRightEncoder();
 
-    CtreMotionMagicController getLeftController();
-
-    CtreMotionMagicController getRightController();
-
     Field2d getField();
 }
