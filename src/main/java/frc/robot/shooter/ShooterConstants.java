@@ -14,8 +14,8 @@ public class ShooterConstants {
 
     public static class RobotConstants {
 
-        public static final int MASTER_MOTOR_ID = 1;
-        public static final int SLAVE_MOTOR_ID = 1;
+        public static final int MASTER_MOTOR_ID = 11;
+        public static final int SLAVE_MOTOR_ID = 12;
         public static final double ENCODER_UNITS_PER_ROUND = 2048;
         public static final double SHOOTER_MOTOR_RADIUS = 0; //TODO check with mechanics
     }

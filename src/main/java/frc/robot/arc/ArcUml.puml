@@ -7,11 +7,14 @@ ArcComponentsBase --|> ArcComponents
 Arc o-- ArcComponents
 CommandBase <|-- MoveArcToAngle
 CommandBase <|-- MoveArcBySpeed
-CommandBase <|-- MoveArcByDistance
+CommandBase <|-- MoveLinearServoByDistance
+MoveLinearServoByDistance <|-- MoveArcToAngle
+MoveArcToAngle <|-- MoveArcByDistance
 MoveArcBySpeed o-- Arc
-MoveArcToAngle o-- Arc
-MoveArcByDistance o-- Arc
+MoveLinearServoByDistance o-- Arc
 SubsystemBase <|-- Arc
+
+
 
 class Arc {
     ArcComponents arcComponents
@@ -28,13 +31,16 @@ class ArcComponentsBase {
     LinearServo getLinearServo()
 }
 
-class MoveArcToAngle {
+class MoveLinearServoByDistance {
     Arc arc
-    DoubleSupplier angleSupplier
+    DoubleSupplier distanceSupplier
 
     void execute()
     boolean isFinished()
     void end()
+}
+
+class MoveArcToAngle {
 }
 
 class MoveArcBySpeed {
@@ -46,12 +52,6 @@ class MoveArcBySpeed {
 }
 
 class MoveArcByDistance {
-    Arc arc
-    DoubleSupplier distanceSupplier
-
-    void execute()
-    boolean isFinished()
-    void end()
 }
 
 class SubsystemBase {
@@ -64,4 +64,13 @@ interface ArcComponents {
     LinearServo getLinearServo()
 }
 
+<<<<<<< Updated upstream
+=======
+class ArcConstants {
+}
+
+class ArcDriverOiBinder {
+}
+
+>>>>>>> Stashed changes
 @enduml

@@ -8,9 +8,9 @@ public class ArcConstants {
     public static final double SPEED = 0.8;
 
     public static class RobotConstants {
-        public static final int ARC_CHANNEL = 8;
-        public static final int ARC_MAX_LENGTH = 100;
-        public static final int ARC_MAX_SPEED = 8;
+        public static final int LINEAR_SERVO_CHANNEL = 0;
+        public static final int LINEAR_SERVO_MAX_LENGTH = 150;
+        public static final int LINEAR_SERVO_MAX_SPEED = 8;
         public static final double ARC_MAX_ANGLE = 28;
         public static final double ARC_MIN_ANGLE = 15;
     }
@@ -18,11 +18,11 @@ public class ArcConstants {
     public static class ArcCalculations {
 
         public static double linearServoPosToAngle(double position) {
-            return ((ARC_MAX_ANGLE + ARC_MIN_ANGLE) * position) / ARC_MAX_LENGTH + ARC_MIN_ANGLE;
+            return ((ARC_MAX_ANGLE + ARC_MIN_ANGLE) * position) / LINEAR_SERVO_MAX_LENGTH + ARC_MIN_ANGLE;
         }
 
         public static double angleToLinearServoPos(double angle) {
-            return (ARC_MAX_LENGTH * (angle - ARC_MIN_ANGLE)) / (ARC_MAX_ANGLE-ARC_MIN_ANGLE);
+            return (LINEAR_SERVO_MAX_LENGTH * (angle - ARC_MIN_ANGLE)) / (ARC_MAX_ANGLE-ARC_MIN_ANGLE);
         }
 
         public static double distanceToAngle(double distance) {

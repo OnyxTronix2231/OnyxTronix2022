@@ -1,11 +1,6 @@
 package frc.robot.shooter;
 
-import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.wpilibj.simulation.EncoderSim;
-import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
 import pid.PIDFTerms;

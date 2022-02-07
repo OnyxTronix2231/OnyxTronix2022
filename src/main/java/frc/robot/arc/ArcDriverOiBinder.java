@@ -10,9 +10,7 @@ import static frc.robot.arc.ArcConstants.ANGLE;
 
 public class ArcDriverOiBinder {
 
-    public ArcDriverOiBinder(Arc arc, JoystickAxis changeAngle, Trigger init, Trigger sec) {
+    public ArcDriverOiBinder(Arc arc, JoystickAxis changeAngle) {
         arc.setDefaultCommand(new MoveArcBySpeed(arc, changeAngle::getRawAxis));
-        init.whileActiveContinuous(new MoveLinearServoByDistance(arc, ()-> 50));
-        sec.whileActiveContinuous(new MoveLinearServoByDistance(arc, ()-> 0));
     }
 }
