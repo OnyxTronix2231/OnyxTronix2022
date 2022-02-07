@@ -20,7 +20,9 @@ public class DriverOi {
     public DriverOi withDriveTrain(DriveTrain driveTrain) {
         JoystickAxis leftJoystick = new JoystickAxis(xboxController, XboxController.Axis.kLeftY.value);
         JoystickAxis rightJoystick = new JoystickAxis(xboxController, XboxController.Axis.kRightX.value);
-        new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
+        Trigger buttonA = new JoystickButton(xboxController, XboxController.Button.kA.value);
+        Trigger buttonB = new JoystickButton(xboxController, XboxController.Button.kB.value);
+        new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick, buttonA, buttonB);
         return this;
     }
 }
