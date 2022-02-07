@@ -16,10 +16,10 @@ public class YawControl extends Turret {
     }
 
     public double getTurretAngleRTF() {
-        return Math.abs(getCurrentAngleRTR() - driveTrain.getHeading());
+        return getCurrentAngleRTR() - driveTrain.getHeading();
     }
 
-    public double getAngleRTRToFixAngleRTF(double angleRTF) {
+    public double angleRTFToAngleRTR(double angleRTF) {
         // this func is correct if both systems enlarge the angle by rotating to the same side
         return angleRTF - driveTrain.getHeading();
     }
@@ -31,11 +31,5 @@ public class YawControl extends Turret {
         if (currentPos.getX() > TARGET_POS.getX())
             angle += 180;
         return angle;
-    }
-
-    public double getAngleNonVisionDependent(Vision vision) {
-        if (vision.hasTarget())
-            return vision.getAngleToTarget() + driveTrain.getHeading();
-        return getAngleToTargetByPose();
     }
 }

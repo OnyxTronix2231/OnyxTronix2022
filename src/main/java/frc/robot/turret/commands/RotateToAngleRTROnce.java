@@ -3,9 +3,9 @@ package frc.robot.turret.commands;
 import frc.robot.turret.Turret;
 import java.util.function.DoubleSupplier;
 
-public class RotateToAngleOnce extends RotateToAngle {
+public class RotateToAngleRTROnce extends RotateToAngleRTR {
 
-    public RotateToAngleOnce(Turret turret, DoubleSupplier angleSupplier) {
+    public RotateToAngleRTROnce(Turret turret, DoubleSupplier angleSupplier) {
         super(turret, angleSupplier);
     }
 

@@ -20,7 +20,6 @@ YawControl --|> Turret
 RotateToAngleRTF --|> RotateToAngle
 RotateToAngleRTFOnce --|> RotateToAngleRTF
 YawControl --o RotateToAngleRTF
-RotateNonVisionDependent --|> RotateToAngleRTF
 RotateByPose --|> RotateToAngleRTF
 
 
@@ -101,11 +100,6 @@ class RotateToAngleRTF {
 }
 
 class RotateToAngleRTFOnce {
-}
-
-class RotateNonVisionDependent {
-    YawControl yawControl
-    Vision vision
 }
 
 class RotateByPose {
