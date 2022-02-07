@@ -74,8 +74,4 @@ public class Turret extends SubsystemBase {
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
     }
-
-    public TurretComponents getComponents() {
-        return components;
-    }
 }
