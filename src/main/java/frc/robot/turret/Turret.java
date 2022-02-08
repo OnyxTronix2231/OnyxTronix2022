@@ -44,23 +44,23 @@ public class Turret extends SubsystemBase {
     }
 
     public void initMoveByDegree(double deg) {
-        initMoveToDegree(getCurrentAngleRTR() + deg);
+        initMoveToDegreeRTR(getCurrentAngleRTR() + deg);
     }
 
     public void updateMoveByDegree(double deg) {
-        updateMoveToDegree(getCurrentAngleRTR() + deg);
+        updateMoveToDegreeRTR(getCurrentAngleRTR() + deg);
     }
 
-    public void initMoveToDegree(double deg) {
-        components.getController().setSetpoint(degToEnc(fixDeg(deg)));
+    public void initMoveToDegreeRTR(double deg) {
+        components.getController().setSetpoint(degToEnc(fixAngleAccordingToLimits(deg)));
         components.getController().enable();
     }
 
-    public void updateMoveToDegree(double deg) {
-        components.getController().update(degToEnc(fixDeg(deg)));
+    public void updateMoveToDegreeRTR(double deg) {
+        components.getController().update(degToEnc(fixAngleAccordingToLimits(deg)));
     }
 
-    public double fixDeg(double deg) {
+    public double fixAngleAccordingToLimits(double deg) {
         double fixed = deg % DEG_IN_CIRCLE;
         if (fixed > MAX_DEG) {
             fixed -= DEG_IN_CIRCLE;

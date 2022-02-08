@@ -21,7 +21,7 @@ public class ShootWhileDrivingCalc {
         this.yawControl = yawControl;
     }
 
-    public Vector2d getShooterOnly2DVector() {
+    public Vector2d getShooterOnlyVector() {
         /**the vector that represents the first movement of the ball in the air (from the side)
 
         robot   ^             hub
@@ -32,16 +32,16 @@ public class ShootWhileDrivingCalc {
         ______________________________floor
 
         * size -> speed of the shooting system (m/s)
-        * angle -> arc's direction (deg)*/
+        * direction -> arc's direction (deg)*/
 
         double size = shooter.getNeededSpeed();
-        double angle = arc.getNeededAngle();
-        double x = size * Math.cos(Math.toRadians(angle));
-        double y = size * Math.sin(Math.toRadians(angle));
+        double direction = arc.getNeededdirection();
+        double x = size * Math.cos(Math.toRadians(direction));
+        double y = size * Math.sin(Math.toRadians(direction));
         return new Vector2d(x, y);
     }
 
-    public Vector2d getXZ2DVector() {
+    public Vector2d getXZVector() {
         /**the vector that represents the horizontal movement of the ball (from the top)
 
         robot                 hub
@@ -51,12 +51,12 @@ public class ShootWhileDrivingCalc {
         \---/                -___-
 
         * size -> horizontal speed of shooting system (m/s)
-        * angle -> turret's direction*/
+        * direction -> turret's direction*/
 
-        double size = getShooterOnly2DVector().x;
-        double angle = yawControl.getAngleNonVisionDependent(vision);
-        double x = size * Math.cos(Math.toRadians(angle));
-        double y = size * Math.sin(Math.toRadians(angle));
+        double size = getShooterOnlyVector().x;
+        double direction = yawControl.getdirectionNonVisionDependent(vision);
+        double x = size * Math.cos(Math.toRadians(direction));
+        double y = size * Math.sin(Math.toRadians(direction));
         return new Vector2d(x, y);
     }
 
@@ -70,12 +70,12 @@ public class ShootWhileDrivingCalc {
         \---/                  -___-
 
         * size -> speed of the robot (m/s)
-        * angle -> robot's direction*/
+        * direction -> robot's direction*/
 
         double size = drivetrain.getCorrectRobotSpeed();
-        double angle = drivetrain.getHeading();
-        double x = size * Math.cos(Math.toRadians(angle));
-        double y = size * Math.sin(Math.toRadians(angle));
+        double direction = drivetrain.getHeading();
+        double x = size * Math.cos(Math.toRadians(direction));
+        double y = size * Math.sin(Math.toRadians(direction));
         return new Vector2d(x, y);
     }
 
@@ -90,9 +90,9 @@ public class ShootWhileDrivingCalc {
         \---/                  -___-
 
         * size -> new & fixed horizontal speed of shooting system (m/s)
-        * angle -> new & fixed turret's direction*/
+        * direction -> new & fixed turret's direction*/
 
-        Vector2d turretVector = getXZ2DVector();
+        Vector2d turretVector = getXZVector();
         Vector2d movementVector = getMovementVector();
         return new Vector2d(turretVector.x - movementVector.x, turretVector.y - movementVector.y);
     }
@@ -109,13 +109,13 @@ public class ShootWhileDrivingCalc {
         ______________________________floor
 
         * size -> fixed speed of the shooting system (m/s)
-        * angle -> fixed arc's direction (deg)*/
+        * direction -> fixed arc's direction (deg)*/
         double x = getCorrectTrajectory().magnitude();
-        double y = getShooterOnly2DVector().y;
+        double y = getShooterOnlyVector().y;
         return new Vector2d(x, y);
     }
 
-    public double getTurretFixedAngle() {
+    public double getTurretFixeddirection() {
         Vector2d correctVector = getCorrectTrajectory();
         return Math.toDegrees(Math.atan(correctVector.y / correctVector.x));
     }
@@ -124,7 +124,7 @@ public class ShootWhileDrivingCalc {
         return getFixedShootingVector().magnitude();
     }
 
-    public double getShooterFixedAngle() {
+    public double getShooterFixeddirection() {
         Vector2d correctVector = getFixedShootingVector();
         return Math.toDegrees(Math.atan(correctVector.y / correctVector.x));
     }

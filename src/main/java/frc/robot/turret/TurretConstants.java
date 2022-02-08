@@ -26,6 +26,7 @@ public final class TurretConstants {
     public static final double ROTATION_SETBACK = 0.3;
     public static final double TOLERANCE_DEGREE = 1; //TODO: Correct the number
     public static final double DEG_IN_TURRET_ROTATION = CONVERSION_RATE * DEG_IN_CIRCLE;
+    public static final double DEFULT_TURRET_SPEED = 0.5;
 
 
     public static class RobotConstants {
