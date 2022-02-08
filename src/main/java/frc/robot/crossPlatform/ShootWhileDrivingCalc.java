@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform;
 
 import edu.wpi.first.wpilibj.drive.Vector2d;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.yawControl.YawControl;
 
 public class ShootWhileDrivingCalc {
@@ -21,7 +22,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getShooterOnly2DVector() {
-        /*the vector that represents the first movement of the ball in the air (from the side)
+        /**the vector that represents the first movement of the ball in the air (from the side)
 
         robot   ^             hub
                /            \     /
@@ -41,7 +42,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getXZ2DVector() {
-        /*the vector that represents the horizontal movement of the ball (from the top)
+        /**the vector that represents the horizontal movement of the ball (from the top)
 
         robot                 hub
 
@@ -53,14 +54,14 @@ public class ShootWhileDrivingCalc {
         * angle -> turret's direction*/
 
         double size = getShooterOnly2DVector().x;
-        double angle = yawControl.getAngleNoVisionDependent(vision);
+        double angle = yawControl.getAngleNonVisionDependent(vision);
         double x = size * Math.cos(Math.toRadians(angle));
         double y = size * Math.sin(Math.toRadians(angle));
         return new Vector2d(x, y);
     }
 
     public Vector2d getMovementVector() {
-        /*the vector that represents the movement of the robot (from the top)
+        /**the vector that represents the movement of the robot (from the top)
 
         robot                   hub
                 _->
@@ -72,14 +73,14 @@ public class ShootWhileDrivingCalc {
         * angle -> robot's direction*/
 
         double size = drivetrain.getCorrectRobotSpeed();
-        double angle = drivetrain.getHedding();
+        double angle = drivetrain.getHeading();
         double x = size * Math.cos(Math.toRadians(angle));
         double y = size * Math.sin(Math.toRadians(angle));
         return new Vector2d(x, y);
     }
 
     public Vector2d getCorrectTrajectory() {
-        /*the vector that represents the fixed horizontal movement of the ball (from the top)
+        /**the vector that represents the fixed horizontal movement of the ball (from the top)
         it is fixed according to the movement of the whole robot
 
         robot   ^               hub
@@ -97,7 +98,7 @@ public class ShootWhileDrivingCalc {
     }
 
     public Vector2d getFixedShootingVector() {
-        /*the vector that represents the fixed movement of the ball in the air (from the side)
+        /**the vector that represents the fixed movement of the ball in the air (from the side)
         it is fixed by the changed horizontal vector
 
         robot   ^             hub
