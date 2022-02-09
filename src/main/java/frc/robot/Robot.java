@@ -24,7 +24,7 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrainComponents driveTrainComponents;
+    DriveTrain driveTrain;
     Arc arc;
 
     /**
@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         ArcComponents arcComponents;
+        DriveTrainComponents driveTrainComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
@@ -44,7 +45,7 @@ public class Robot extends TimedRobot {
             arcComponents = null;
         }
 
-        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+        driveTrain = new DriveTrain(driveTrainComponents);
         arc = new Arc(arcComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withArc(arc);

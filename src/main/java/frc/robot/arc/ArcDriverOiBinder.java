@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.commands.MoveArcBySpeed;
 import frc.robot.arc.commands.MoveArcToAngle;
 import frc.robot.arc.commands.MoveLinearServoByDistance;
-import onyxTronix.JoystickAxis;
+import humanControls.JoystickAxis;
 
 import static frc.robot.arc.ArcConstants.ANGLE;
 
