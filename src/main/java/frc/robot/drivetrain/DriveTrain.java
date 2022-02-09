@@ -3,6 +3,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
@@ -14,6 +15,7 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         resetEncoders();
+        resetOdometryToPose(new Translation2d(7, 9));
     }
 
     public void resetEncoders() {
@@ -29,6 +31,7 @@ public class DriveTrain extends SubsystemBase {
                 encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
                 encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
         driveTrainComponents.getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
+        SmartDashboard.updateValues();
     }
 
     public void arcadeDrive(double speed, double rotation) {
