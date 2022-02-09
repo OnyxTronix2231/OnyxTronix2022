@@ -1,7 +1,7 @@
 package frc.robot.drivetrain;
 
 import frc.robot.drivetrain.commands.DriveBySpeed;
-import onyxTronix.JoystickAxis;
+import humanControls.JoystickAxis;
 
 public class DriverDriveTrainOiBinders {
 
