@@ -8,8 +8,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import pid.CtreMotionMagicController;
-import pid.PIDFTerms;
 import sensors.counter.CtreEncoder;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
@@ -23,8 +21,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private DifferentialDrive differentialDrive;
     private DifferentialDriveOdometry odometry;
     private NormalizedPigeonIMU pigeonIMU;
-    private CtreMotionMagicController leftController;
-    private CtreMotionMagicController rightController;
     private CtreEncoder leftEncoder;
     private CtreEncoder rightEncoder;
     private Field2d field2d;
@@ -58,6 +54,9 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
+        leftEncoder = new CtreEncoder(leftMasterMotor);
+        rightEncoder = new CtreEncoder(rightMasterMotor);
+
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(0));
         odometry.resetPosition(new Pose2d(), new Rotation2d());
 
@@ -65,14 +64,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);
-
-        leftEncoder = new CtreEncoder(leftMasterMotor);
-        rightEncoder = new CtreEncoder(rightMasterMotor);
-
-        leftController = new CtreMotionMagicController(leftMasterMotor, leftEncoder, new PIDFTerms(KP, KI, KD, kF),
-                ACCELERATION, CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
-        rightController = new CtreMotionMagicController(rightMasterMotor, rightEncoder, new PIDFTerms(KP, KI, KD, kF),
-                ACCELERATION, CRUISE_VELOCITY, ACCELERATION_SMOOTHING);
 
         field2d = new Field2d();
     }
@@ -110,16 +101,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     @Override
     public CtreEncoder getRightEncoder() {
         return rightEncoder;
-    }
-
-    @Override
-    public CtreMotionMagicController getLeftController() {
-        return leftController;
-    }
-
-    @Override
-    public CtreMotionMagicController getRightController() {
-        return rightController;
     }
 
     @Override

@@ -54,6 +54,6 @@ public class MoveByPath extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         command.end(interrupted);
-        driveTrain.stopDrive();
+        driveTrain.stop();
     }
 }

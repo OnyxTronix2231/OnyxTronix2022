@@ -28,8 +28,8 @@ public class DriveTrain extends SubsystemBase {
     public void periodic() {
         driveTrainComponents.getOdometry().update(
                 Rotation2d.fromDegrees(getHeading()),
-                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
+                Calculations.encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+                Calculations.encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
         driveTrainComponents.getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
         SmartDashboard.updateValues();
     }
@@ -39,40 +39,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void stop() {
-        driveTrainComponents.getLeftMasterMotor().stopMotor();
-        driveTrainComponents.getRightMasterMotor().stopMotor();
-    }
-
-    public void stopDrive() {
-        driveTrainComponents.getLeftMasterMotor().stopMotor();
-        driveTrainComponents.getRightMasterMotor().stopMotor();
-        driveTrainComponents.getLeftController().disable();
-        driveTrainComponents.getRightController().disable();
         driveTrainComponents.getDifferentialDrive().stopMotor();
-    }
-
-    public void initDriveByDistance(double distance) {
-        initMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
-    }
-
-    public void updateDriveByDistance(double distance) {
-        updateMoveByEncoderUnits(Calculations.meterToEncoderUnits(distance));
-    }
-
-    public void initMoveByEncoderUnits(double encoderUnits) {
-        driveTrainComponents.getLeftController().setSetpoint(encoderUnits);
-        driveTrainComponents.getRightController().setSetpoint(encoderUnits);
-        driveTrainComponents.getLeftController().enable();
-        driveTrainComponents.getRightController().enable();
-    }
-
-    public void updateMoveByEncoderUnits(double encoderUnits) {
-        driveTrainComponents.getLeftController().update(encoderUnits);
-        driveTrainComponents.getRightController().update(encoderUnits);
-    }
-
-    public boolean isOnTarget() {
-        return driveTrainComponents.getLeftController().isOnTarget(TOLERANCE) && driveTrainComponents.getRightController().isOnTarget(TOLERANCE);
     }
 
     public Pose2d getPose() {
@@ -80,17 +47,13 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-        return new DifferentialDriveWheelSpeeds(encoderUnitsDeciSecToMetersSec(
+        return new DifferentialDriveWheelSpeeds(Calculations.encoderUnitsDeciSecToMetersSec(
                         driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
-                        encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
+                        Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
     }
 
-    private double encoderUnitsToMeters(double units) {
-        return units * PERIMETER_METER / ENCODER_UNITS_PER_ROTATION;
-    }
-
-    private double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
-        return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
+    public double getRobotSpeedMPS() {
+        return ((getWheelSpeeds().leftMetersPerSecond + getWheelSpeeds().rightMetersPerSecond) / 2);
     }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {

@@ -26,25 +26,11 @@ public final class DriveTrainConstants {
 
     public static final int DECISECOND_IN_SECOND = 10;
     public static final int ENCODER_UNITS = 2048;
-    public static final int DECISECOND_PER_MINUTE = 600;
     public static final double CONVERSION_RATE = 9;
-    public static final double ENCODER_UNITS_TO_METER = 1;
     public static final double VOLTS = 12;
     public static final double WHEEL_DIAMETER_METER = 0.1524;
     public static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     public static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
-
-    public static final double MAX_VELOCITY = 18000;
-    public static final double MAX_CLOSE_LOOP_OUTPUT = 1023;
-    public static final double KP = 0;
-    public static final double KI = 0;
-    public static final double KD = 0;
-    public static final double kF = MAX_CLOSE_LOOP_OUTPUT/MAX_VELOCITY;
-    public static final double TOLERANCE = 0.5;
-
-    public static final int ACCELERATION = 0;
-    public static final int CRUISE_VELOCITY = 0;
-    public static final int ACCELERATION_SMOOTHING = 0;
 
     public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
     public static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3;
@@ -66,6 +52,14 @@ public final class DriveTrainConstants {
 
         static double meterToEncoderUnits(double meters) {
             return meters * ENCODER_UNITS_PER_ROTATION;
+        }
+
+        static double encoderUnitsToMeters(double units) {
+            return units * PERIMETER_METER / ENCODER_UNITS_PER_ROTATION;
+        }
+
+        static double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
+            return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
         }
     }
 
@@ -92,5 +86,61 @@ public final class DriveTrainConstants {
                 new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
                 true,
                 new MaxVelocityConstraint(1.5));
+
+        public static final Path path1 = new Path(
+                new Pose2d(8.943985451508386, 5.520, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
+                true,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path2 = new Path(
+                new Pose2d(9.000216212542298, 7.533, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(8.943985451508386, 6.352, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path3 = new Path(
+                new Pose2d(11.688046589963278, 5.947, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(15.522984492476057, 7.162, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path4 = new Path(
+                new Pose2d(15.28681529613363, 6.397, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(9.922400693498448, 3.282, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path5 = new Path(
+                new Pose2d(9.967385302325578, 3.158, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(11.654308133342933, 2.022, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path6 = new Path(
+                new Pose2d(11.553092763481887, 2.011, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(10.507200608251132, 0.886, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
+
+        public static final Path path7 = new Path(
+                new Pose2d(10.77710826121391, 1.246, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(12.104154221614227, 5.047, Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
     }
 }
