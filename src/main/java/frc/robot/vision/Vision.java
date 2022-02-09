@@ -9,6 +9,7 @@ import frc.robot.yawControll.YawControl;
 import vision.limelight.Limelight;
 import vision.limelight.enums.LimelightStreamMode;
 import vision.limelight.target.LimelightTarget;
+
 import static frc.robot.Constants.TARGET_X_RTF;
 import static frc.robot.Constants.TARGET_Y_RTF;
 import static frc.robot.vision.VisionConstants.*;
@@ -23,15 +24,13 @@ public class Vision extends SubsystemBase {
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
 
-    public Vision() {
+    public Vision(YawControl yawControl) {
         super();
         Shuffleboard.getTab("Vision").addNumber("Angle RTT", this::getHorizontalAngelTurretToTargetRTT);
         Shuffleboard.getTab("Vision").addNumber("Distance", this::getHorizontalDistanceTurretToTarget);
+        Shuffleboard.getTab("Vision").addNumber("X", () -> this.getXAndY(yawControl).getX());
+        Shuffleboard.getTab("Vision").addNumber("Y", () -> this.getXAndY(yawControl).getY());
         this.limelight = Limelight.getInstance();
-        limelight.setStreamMode(pipSecondary);
-        //limelight.setOperationMode(driverCamera);
-        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
-
     }
 
     @Override
@@ -54,7 +53,7 @@ public class Vision extends SubsystemBase {
         if (limelight.targetFound()) {
             double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
             Vector2dEx limelightToTurret = Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
-            turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
+            turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget() + 122,
                     limelightOffsetFromTarget);
             turretToTargetVectorRTT.add(limelightToTurret); //TODO: it is in fact sub
         } else {
@@ -93,10 +92,13 @@ public class Vision extends SubsystemBase {
     }
 
     public Translation2d getXAndY(YawControl yawControl) {
+        if (hasTarget()) {
             double robotToTargetAngleRTF = getRobotToTargetAngleRTF(yawControl);
-            double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF));
-            double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF));
+            double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF)) / 100;
+            double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF)) / 100;
             return new Translation2d(x, y);
+        }
+        return new Translation2d(-999, -999);
     }
 
     public Translation2d getXAndYAuto(YawControl yawControl) {
@@ -105,6 +107,6 @@ public class Vision extends SubsystemBase {
                 return getXAndY(yawControl);
             }
         }
-        return new Translation2d(999,999);
+        return null;
     }
 }

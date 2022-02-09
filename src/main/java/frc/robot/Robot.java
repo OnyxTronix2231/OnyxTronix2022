@@ -9,11 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.turret.TurretComponents;
+import frc.robot.turret.TurretComponentsA;
 import frc.robot.vision.Vision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.yawControll.YawControl;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,8 +26,10 @@ import frc.robot.vision.Vision;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrainComponents driveTrainComponents;
+    DriveTrain driveTrain;
+    TurretComponents turretComponents;
     Vision vision;
+    YawControl yawControl;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -34,15 +39,19 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        DriveTrainComponents driveTrainComponents;
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            vision = new Vision();
+            turretComponents = new TurretComponentsA();
         } else {
             driveTrainComponents = null;
             vision = null;
         }
 
-        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+        driveTrain = new DriveTrain(driveTrainComponents);
+        yawControl = new YawControl(turretComponents, driveTrain);
+        vision = new Vision(yawControl);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();

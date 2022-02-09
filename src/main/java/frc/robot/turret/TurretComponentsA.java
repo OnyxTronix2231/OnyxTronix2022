@@ -10,6 +10,7 @@ import pid.CtreMotionMagicController;
 import pid.interfaces.MotionMagicController;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.turret.TurretConstants.ENCODER_OFFSET;
 import static frc.robot.turret.TurretConstants.MASTER_MOTOR_ID;
@@ -31,7 +32,7 @@ public class TurretComponentsA implements TurretComponents {
         motor.setSelectedSensorPosition( motor.getSensorCollection().getAnalogInRaw() - ENCODER_OFFSET, 0, 0);
         motor.setInverted(true);
         motor.setSensorPhase(true);
-        encoder = new CtreEncoder(motor);
+        encoder = new TalonEncoder(motor);
         motor.config_IntegralZone(SLOT_IDX, INTEGRAL_ZONE_BOUND);
         motor.setNeutralMode(NeutralMode.Brake);
         controller = new CtreMotionMagicController(motor, encoder,

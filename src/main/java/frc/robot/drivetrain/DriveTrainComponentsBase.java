@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.drivetrain.DriveTrainConstants.RobotConstants.*;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
@@ -61,8 +62,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);
 
-        leftEncoder = new CtreEncoder(leftMasterMotor);
-        rightEncoder = new CtreEncoder(rightMasterMotor);
+        leftEncoder = new TalonEncoder(leftMasterMotor);
+        rightEncoder = new TalonEncoder(rightMasterMotor);
     }
 
     @Override
