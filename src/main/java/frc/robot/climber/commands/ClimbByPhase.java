@@ -10,7 +10,7 @@ import static frc.robot.climber.commands.ClimberCommandConstants.DISTANCE_BETWEE
 
 public class ClimbByPhase extends ConditionalCommand {
 
-    public static boolean phase = true;
+    public static boolean FIRST_PHASE = true;
 
     public ClimbByPhase(Climber climber, DoubleSupplier distanceSupplier, DoubleSupplier closingDistanceSupplier,
                         DoubleSupplier speedSupplier) {
@@ -19,11 +19,11 @@ public class ClimbByPhase extends ConditionalCommand {
                 new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS).
                         andThen(new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
                                 climber::isInnerHallEffectClosed)).andThen(new MoveRailByDistance(climber,
-                                () -> DISCONNECT_DISTANCE)), () -> phase);
+                                () -> DISCONNECT_DISTANCE)), () -> FIRST_PHASE);
     }
 
     @Override
     public void end(boolean interrupted) {
-        phase = false;
+        FIRST_PHASE = false;
     }
 }

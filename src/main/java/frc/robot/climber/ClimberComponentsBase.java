@@ -2,11 +2,8 @@ package frc.robot.climber;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
-import sensors.Switch.Microswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
@@ -15,71 +12,74 @@ import static frc.robot.climber.ClimberConstants.*;
 
 public class ClimberComponentsBase implements ClimberComponents {
 
-    private WPI_TalonFX railMotor;
-    private WPI_TalonFX armMotorRightMaster;
-    private WPI_TalonFX armMotorLeftMaster;
-    private WPI_TalonFX armMotorRightSlave;
-    private WPI_TalonFX armMotorLeftSlave;
-    private CtreMotionMagicController armLeftMotionMagicController;
-    private CtreMotionMagicController armRightMotionMagicController;
-    private WPI_TalonFX armMotor;
-    private DoubleSolenoid solenoid;
+    private WPI_TalonFX railMotorMaster;
+    private WPI_TalonFX railMotorSlave;
+    private WPI_TalonFX armMotorRight;
+    private WPI_TalonFX armMotorLeft;
 //    private DigitalInput outerHallEffect;
     private DigitalInput innerHallEffect;
-    private CtreMotionMagicController armMotionMagicController;
+    private CtreMotionMagicController rightArmMotionMagicController;
+    private CtreMotionMagicController leftArmMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
-    private CtreEncoder armEncoder;
+    private CtreEncoder leftArmEncoder;
+    private CtreEncoder rightArmEncoder;
     private CtreEncoder railEncoder;
 
     public ClimberComponentsBase() {
-        railMotor = new WPI_TalonFX(0);
-        railMotor.configFactoryDefault();
+        railMotorMaster = new WPI_TalonFX(13);
+        railMotorMaster.configFactoryDefault();
 
-        armMotorRightMaster  = new WPI_TalonFX(1);
-        armMotorRightMaster.configFactoryDefault();
+        railMotorSlave = new WPI_TalonFX(14);
+        railMotorSlave.configFactoryDefault();
+        railMotorSlave.setInverted(true);
+        railMotorSlave.follow(railMotorMaster);
 
-        armMotorLeftMaster  = new WPI_TalonFX(2);
-        armMotorLeftMaster.configFactoryDefault();
+        armMotorRight  = new WPI_TalonFX(15);
+        armMotorRight.configFactoryDefault();
 
-        armMotorRightSlave = new WPI_TalonFX(3);
-        armMotorRightSlave.configFactoryDefault();
+        armMotorLeft = new WPI_TalonFX(16);
+        armMotorLeft.configFactoryDefault();
 
-        armMotorLeftSlave = new WPI_TalonFX(4);
-        armMotorLeftSlave.configFactoryDefault();
 
-        armMotorRightSlave.follow(armMotorRightMaster);
-        armMotorLeftSlave.follow(armMotorLeftMaster);
         //solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
 //        outerHallEffect = new DigitalInput(0);
         innerHallEffect = new DigitalInput(1);
-        armEncoder = new TalonEncoder(armMotorRightMaster);
-        railEncoder = new TalonEncoder(railMotor);
+        rightArmEncoder = new TalonEncoder(armMotorRight);
+        leftArmEncoder = new TalonEncoder(armMotorLeft);
+        railEncoder = new TalonEncoder(railMotorMaster);
 
-        armLeftMotionMagicController = new CtreMotionMagicController(armMotorLeftMaster, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
+        leftArmMotionMagicController = new CtreMotionMagicController(armMotorLeft, leftArmEncoder, new PIDFTerms(ARM_RIGHT_kP, ARM_RIGHT_kI, ARM_RIGHT_kD, ARM_RIGHT_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        armRightMotionMagicController = new CtreMotionMagicController(armMotorRightMaster, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
+        rightArmMotionMagicController = new CtreMotionMagicController(armMotorRight, rightArmEncoder, new PIDFTerms(ARM_RIGHT_kP, ARM_RIGHT_kI, ARM_RIGHT_kD, ARM_RIGHT_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        railMotionMagicController = new CtreMotionMagicController(railMotor, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
+        railMotionMagicController = new CtreMotionMagicController(railMotorMaster, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
     }
 
     @Override
     public CtreMotionMagicController getArmRightMotionMagicController() {
-        return armRightMotionMagicController;
+        return rightArmMotionMagicController;
     }
+
     @Override
     public CtreMotionMagicController getArmLeftMotionMagicController() {
-        return armLeftMotionMagicController;
+        return leftArmMotionMagicController;
     }
+
     @Override
     public CtreMotionMagicController getRailMotionMagicController() {
         return railMotionMagicController;
     }
 
     @Override
-    public Counter getArmCounter() {
-        return armEncoder;
+    public Counter getArmCounterRight() {
+        return rightArmEncoder;
+    }
+
+    @Override
+    public Counter getArmCounterLeft() {
+        return leftArmEncoder;
     }
 
     @Override
@@ -89,17 +89,17 @@ public class ClimberComponentsBase implements ClimberComponents {
 
     @Override
     public WPI_TalonFX getRailMotor() {
-        return railMotor;
+        return railMotorMaster;
     }
 
     @Override
     public WPI_TalonFX getArmMotorLeft() {
-        return armMotorLeftMaster;
+        return armMotorLeft;
     }
 
     @Override
     public WPI_TalonFX getArmMotorRight() {
-        return armMotorRightMaster;
+        return armMotorRight;
     }
 
 //    @Override

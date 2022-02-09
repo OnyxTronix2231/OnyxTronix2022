@@ -28,8 +28,6 @@ public class DriverOi {
     }
 
     public DriverOi withClimberOi(Climber climber) {
-        Trigger microSwitchTest = new JoystickButton(controller, controller.getButtonDown());
-        new ClimberDriverOiBinder(climber, microSwitchTest);
         return this;
     }
 }

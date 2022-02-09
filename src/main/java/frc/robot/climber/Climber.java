@@ -13,7 +13,6 @@ public class Climber extends SubsystemBase {
 
     }
 
-
     public void initMoveArmByDistance(double distance) {
         components.getArmLeftMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
         components.getArmLeftMotionMagicController().enable();

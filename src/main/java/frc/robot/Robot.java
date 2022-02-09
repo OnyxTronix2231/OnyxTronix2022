@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
 
         new DriverOi().withDriveTrain(driveTrain).withClimberOi(climber);
         new DeputyOi();
-
         new DriversShuffleboard();
     }
 

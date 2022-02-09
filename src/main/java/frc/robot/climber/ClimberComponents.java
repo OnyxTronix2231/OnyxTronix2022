@@ -10,11 +10,14 @@ import sensors.counter.Counter;
 public interface ClimberComponents {
 
     CtreMotionMagicController getArmLeftMotionMagicController();
+
     CtreMotionMagicController getArmRightMotionMagicController();
 
     CtreMotionMagicController getRailMotionMagicController();
 
-    Counter getArmCounter();
+    Counter getArmCounterRight();
+
+    Counter getArmCounterLeft();
 
     Counter getRailCounter();
 
@@ -23,7 +26,6 @@ public interface ClimberComponents {
     WPI_TalonFX getArmMotorRight();
 
     WPI_TalonFX getArmMotorLeft();
-
 
 //    DigitalInput getOuterHallEffect();
 
