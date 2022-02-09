@@ -39,7 +39,7 @@ interface ShooterComponents {
     PIDController getController()
 }
 
-class ShootByRPM {
+class ShootByRPM_PID {
     Shooter shooter
     DoubleSupplier rpm
 
