@@ -21,7 +21,7 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrainComponents driveTrainComponents;
+    DriveTrain driveTrain;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -30,13 +30,15 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        DriveTrainComponents driveTrainComponents;
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
         } else {
             driveTrainComponents = null;
         }
 
-        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+        driveTrain = new DriveTrain(driveTrainComponents);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
