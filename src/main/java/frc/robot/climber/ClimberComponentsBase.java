@@ -9,6 +9,7 @@ import pid.PIDFTerms;
 import sensors.Switch.Microswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.climber.ClimberConstants.*;
 
@@ -50,12 +51,10 @@ public class ClimberComponentsBase implements ClimberComponents {
         armMotorLeftSlave.follow(armMotorLeftMaster);
         //solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
 
-
 //        outerHallEffect = new DigitalInput(0);
         innerHallEffect = new DigitalInput(1);
-        armEncoder = new CtreEncoder(armMotorRightMaster);
-
-        railEncoder = new CtreEncoder(railMotor);
+        armEncoder = new TalonEncoder(armMotorRightMaster);
+        railEncoder = new TalonEncoder(railMotor);
 
         armLeftMotionMagicController = new CtreMotionMagicController(armMotorLeftMaster, armEncoder, new PIDFTerms(ARM_kP, ARM_kI, ARM_kD, ARM_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
