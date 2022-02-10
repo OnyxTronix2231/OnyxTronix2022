@@ -35,7 +35,6 @@ public class Vision extends SubsystemBase {
 
     @Override
     public void periodic() {
-        System.out.println(limelight.targetFound());
         this.limelightTarget = limelight.getTarget();
         updateTurretToTargetVectorRTT();
     }
@@ -52,10 +51,12 @@ public class Vision extends SubsystemBase {
     private void updateTurretToTargetVectorRTT() {
         if (limelight.targetFound()) {
             double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
+            System.out.println("offset " + limelightOffsetFromTarget);
             Vector2dEx limelightToTurret = Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
             turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget() + 122,
                     limelightOffsetFromTarget);
             turretToTargetVectorRTT.add(limelightToTurret); //TODO: it is in fact sub
+            System.out.println("offset calc " + turretToTargetVectorRTT.direction());
         } else {
             turretToTargetVectorRTT = null;
         }
@@ -86,7 +87,8 @@ public class Vision extends SubsystemBase {
     public double getRobotToTargetAngleRTF(YawControl yawControl) {
         if (turretToTargetVectorRTT != null) {
             double horizontalAngelTurretToTargetRTT = getHorizontalAngelTurretToTargetRTT();
-            return horizontalAngelTurretToTargetRTT + yawControl.getTurretAngleRTF();
+            System.out.println("Angle RTF" + yawControl.getTurretAngleRTF());
+            return horizontalAngelTurretToTargetRTT + yawControl.getTurretAngleRTF() - 180;
         }
         return -999;
     }
@@ -94,8 +96,9 @@ public class Vision extends SubsystemBase {
     public Translation2d getXAndY(YawControl yawControl) {
         if (hasTarget()) {
             double robotToTargetAngleRTF = getRobotToTargetAngleRTF(yawControl);
-            double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF)) / 100;
-            double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF)) / 100;
+            double turretToTargetDistance = getHorizontalDistanceTurretToTarget();
+            double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF)) * turretToTargetDistance;
+            double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF)) * turretToTargetDistance;
             return new Translation2d(x, y);
         }
         return new Translation2d(-999, -999);
