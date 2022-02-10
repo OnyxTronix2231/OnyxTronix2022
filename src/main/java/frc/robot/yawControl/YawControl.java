@@ -19,7 +19,7 @@ public class YawControl extends Turret {
         return getCurrentAngleRTR() - driveTrain.getHeading();
     }
 
-    public double angleRTFToAngleRTR(double angleRTF) {
+    public double getRTFToRTRAngle(double angleRTF) {
         // this func is correct if both systems enlarge the angle by rotating to the same side
         return angleRTF - driveTrain.getHeading();
     }

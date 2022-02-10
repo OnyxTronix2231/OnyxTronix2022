@@ -1,7 +1,11 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
+import frc.robot.turret.DriverTurretOiBinder;
+import frc.robot.turret.Turret;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
@@ -20,6 +24,18 @@ public class DriverOi {
         JoystickAxis leftJoystick = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis rightJoystick = new JoystickAxis(controller, controller.getAxisRightX());
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
+        return this;
+    }
+
+    public DriverOi withTurret(Turret turret, Vision vision) {
+        Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
+        Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
+        Trigger move10 = new JoystickButton(controller, controller.getButtonUp());
+        Trigger move50 = new JoystickButton(controller, controller.getButtonRight());
+        Trigger move90 = new JoystickButton(controller, controller.getButtonDown());
+        Trigger move180 = new JoystickButton(controller, controller.getButtonLeft());
+        Trigger byVision = new JoystickButton(controller, controller.getCenterLeft());
+        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, move10, move50, move90, move180, byVision);
         return this;
     }
 }

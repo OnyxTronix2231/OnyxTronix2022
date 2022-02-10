@@ -2,11 +2,8 @@ package frc.robot.turret;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.turret.TurretComponents;
 
-import static frc.robot.turret.TurretConstants.calculations.*;
-
-public class TurretShuffleBoard{
+public class TurretShuffleBoard {
 
     private final TurretComponents components;
     private final NetworkTableEntry kP;

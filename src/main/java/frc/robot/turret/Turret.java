@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.RobotConstants.*;
-import static frc.robot.turret.TurretConstants.calculations.*;
+import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class Turret extends SubsystemBase {
 
@@ -24,14 +24,14 @@ public class Turret extends SubsystemBase {
     }
 
     public void configMotorLimits() {
-        components.getMotor().configForwardSoftLimitThreshold(degToEnc(MAX_DEG));
+        components.getMotor().configForwardSoftLimitThreshold(degreesToEncoderUnits(MAX_DEG));
         components.getMotor().configForwardSoftLimitEnable(true);
-        components.getMotor().configReverseSoftLimitThreshold(degToEnc(MIN_DEG));
+        components.getMotor().configReverseSoftLimitThreshold(degreesToEncoderUnits(MIN_DEG));
         components.getMotor().configReverseSoftLimitEnable(true);
     }
 
     public double getCurrentAngleRTR() {
-        return encToDeg(components.getEncoder().getPosition());
+        return encoderUnitsToDegrees(components.getEncoder().getPosition());
     }
 
     public void stop() {
@@ -52,12 +52,12 @@ public class Turret extends SubsystemBase {
     }
 
     public void initMoveToDegreeRTR(double deg) {
-        components.getController().setSetpoint(degToEnc(fixAngleAccordingToLimits(deg)));
+        components.getController().setSetpoint(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
         components.getController().enable();
     }
 
     public void updateMoveToDegreeRTR(double deg) {
-        components.getController().update(degToEnc(fixAngleAccordingToLimits(deg)));
+        components.getController().update(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
     }
 
     public double fixAngleAccordingToLimits(double deg) {
@@ -72,6 +72,6 @@ public class Turret extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
-        return components.getController().isOnTarget(degToEnc(TOLERANCE_DEGREE));
+        return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
     }
 }

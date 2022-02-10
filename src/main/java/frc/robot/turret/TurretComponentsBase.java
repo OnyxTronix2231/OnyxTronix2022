@@ -25,7 +25,6 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setNeutralMode(NeutralMode.Brake);
 
         encoder = new CtreCANCoder(ENCODER_ID);
-        // need to fix the motion magic lib so it will work with CANCoder
         controller = new CtreMotionMagicController(
                 motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }

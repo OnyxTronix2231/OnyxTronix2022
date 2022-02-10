@@ -23,30 +23,28 @@ public final class TurretConstants {
 
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
-    public static final double ROTATION_SETBACK = 0.3;
-    public static final double TOLERANCE_DEGREE = 1; //TODO: Correct the number
-    public static final double DEG_IN_TURRET_ROTATION = CONVERSION_RATE * DEG_IN_CIRCLE;
-    public static final double DEFULT_TURRET_SPEED = 0.5;
-
+    public static final double TOLERANCE_DEGREES = 0.3; //TODO: Correct the number
+    public static final double DEFAULT_TURRET_SPEED = 0.5;
 
     public static class RobotConstants {
 
         /*mechanic values*/
         public static final int ENCODER_ID = 0; //TODO: Correct the number
+        public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: confirm
         public static final int TURRET_MOTOR_ID = 0; //TODO: Correct the number
         public static final int CONVERSION_RATE = 1; //TODO: Correct the number
         public static final double MAX_DEG = 0; //TODO: Correct the number
         public static final double MIN_DEG = 0; //TODO: Correct the number
-        public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: confirm
+        public static final double DEG_IN_TURRET_ROTATION = CONVERSION_RATE * DEG_IN_CIRCLE;
     }
 
-    public static final class calculations {
+    public static final class Calculation {
 
-        static double degToEnc(double deg) {
+        static double degreesToEncoderUnits(double deg) {
             return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
         }
 
-        public static double encToDeg(double enc) {
+        public static double encoderUnitsToDegrees(double enc) {
             return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
         }
     }
