@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.loader.Loader;
 
-public class IfStuckThen extends SequentialCommandGroup {
+public class LoaderIfStuckThen extends SequentialCommandGroup {
 
-    public IfStuckThen(Loader loader, Command command){
-        super(new UntilStuck(loader,command), new LoaderMoveBySpeed(loader, ()->-0.15));
+    public LoaderIfStuckThen(Loader loader, Command command){
+        super(new LoaderDoUntilStuck(loader,command), new LoaderMoveBySpeed(loader, ()->-0.15));
+
     }
 
     @Override
