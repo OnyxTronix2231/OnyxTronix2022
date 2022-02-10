@@ -16,7 +16,7 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX railMotorSlave;
     private WPI_TalonFX armMotorRight;
     private WPI_TalonFX armMotorLeft;
-//    private DigitalInput outerHallEffect;
+//  private DigitalInput outerHallEffect;
     private DigitalInput innerHallEffect;
     private CtreMotionMagicController rightArmMotionMagicController;
     private CtreMotionMagicController leftArmMotionMagicController;
@@ -26,32 +26,29 @@ public class ClimberComponentsBase implements ClimberComponents {
     private CtreEncoder railEncoder;
 
     public ClimberComponentsBase() {
-        railMotorMaster = new WPI_TalonFX(13);
+        railMotorMaster = new WPI_TalonFX(RAIL_MASTER_MOTOR_ID);
         railMotorMaster.configFactoryDefault();
 
-        railMotorSlave = new WPI_TalonFX(14);
+        railMotorSlave = new WPI_TalonFX(RAIL_SLAVE_MOTOR_ID);
         railMotorSlave.configFactoryDefault();
         railMotorSlave.setInverted(true);
         railMotorSlave.follow(railMotorMaster);
 
-        armMotorRight  = new WPI_TalonFX(15);
+        armMotorRight  = new WPI_TalonFX(ARM_RIGHT_MOTOR_ID);
         armMotorRight.configFactoryDefault();
 
-        armMotorLeft = new WPI_TalonFX(16);
+        armMotorLeft = new WPI_TalonFX(ARM_LEFT_MOTOR_ID);
         armMotorLeft.configFactoryDefault();
 
-
-        //solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FORWARD_CHANNEL, BACKWARD_CHANNEL);
-
-//        outerHallEffect = new DigitalInput(0);
-        innerHallEffect = new DigitalInput(1);
+        //outerHallEffect = new DigitalInput(0);
+        innerHallEffect = new DigitalInput(INNER_HALL_EFFECT_CHANNEL);
         rightArmEncoder = new TalonEncoder(armMotorRight);
         leftArmEncoder = new TalonEncoder(armMotorLeft);
         railEncoder = new TalonEncoder(railMotorMaster);
 
         leftArmMotionMagicController = new CtreMotionMagicController(armMotorLeft, leftArmEncoder, new PIDFTerms(ARM_RIGHT_kP, ARM_RIGHT_kI, ARM_RIGHT_kD, ARM_RIGHT_kF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        rightArmMotionMagicController = new CtreMotionMagicController(armMotorRight, rightArmEncoder, new PIDFTerms(ARM_RIGHT_kP, ARM_RIGHT_kI, ARM_RIGHT_kD, ARM_RIGHT_kF), ARM_ACCELERATION,
+        rightArmMotionMagicController = new CtreMotionMagicController(armMotorRight, rightArmEncoder, new PIDFTerms(ARM_LEFT_KP, ARM_LEFT_KI, ARM_LEFT_KD, ARM_LEFT_KF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
         railMotionMagicController = new CtreMotionMagicController(railMotorMaster, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);

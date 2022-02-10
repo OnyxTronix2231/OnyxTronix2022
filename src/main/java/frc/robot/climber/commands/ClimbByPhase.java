@@ -14,8 +14,8 @@ public class ClimbByPhase extends ConditionalCommand {
 
     public ClimbByPhase(Climber climber, DoubleSupplier distanceSupplier, DoubleSupplier closingDistanceSupplier,
                         DoubleSupplier speedSupplier) {
-        super(new MoveArmByDistance(climber, distanceSupplier).
-                        andThen(new MoveArmByDistance(climber, closingDistanceSupplier)),
+        super(new MoveRightArmByDistance(climber, distanceSupplier).
+                        andThen(new MoveRightArmByDistance(climber, closingDistanceSupplier)),
                 new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS).
                         andThen(new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
                                 climber::isInnerHallEffectClosed)).andThen(new MoveRailByDistance(climber,

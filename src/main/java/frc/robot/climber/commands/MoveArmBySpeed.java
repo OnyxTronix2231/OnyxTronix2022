@@ -18,12 +18,14 @@ public class MoveArmBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        climber.moveArmBySpeed(speedSupplier.getAsDouble());
+        climber.moveRightArmBySpeed(speedSupplier.getAsDouble());
+        climber.moveLeftArmBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopArmMotor();
+        climber.stopArmLeftMotor();
+        climber.stopArmRightMotor();
     }
 }
 
