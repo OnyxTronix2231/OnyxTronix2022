@@ -3,8 +3,7 @@ package frc.robot.climber.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.climber.Climber;
 
-import static frc.robot.climber.commands.ClimberCommandConstants.CLIMBER_SPEED;
-import static frc.robot.climber.commands.ClimberCommandConstants.DISTANCE_BETWEEN_BEAMS;
+import static frc.robot.climber.commands.ClimberCommandConstants.*;
 
 public class ClimbingSequence extends SequentialCommandGroup {
 

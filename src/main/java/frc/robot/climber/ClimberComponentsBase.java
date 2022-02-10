@@ -46,11 +46,14 @@ public class ClimberComponentsBase implements ClimberComponents {
         leftArmEncoder = new TalonEncoder(armMotorLeft);
         railEncoder = new TalonEncoder(railMotorMaster);
 
-        leftArmMotionMagicController = new CtreMotionMagicController(armMotorLeft, leftArmEncoder, new PIDFTerms(ARM_RIGHT_kP, ARM_RIGHT_kI, ARM_RIGHT_kD, ARM_RIGHT_kF), ARM_ACCELERATION,
+        leftArmMotionMagicController = new CtreMotionMagicController(armMotorLeft, leftArmEncoder,
+                new PIDFTerms(ARM_RIGHT_KP, ARM_RIGHT_KI, ARM_RIGHT_KD, ARM_RIGHT_KF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        rightArmMotionMagicController = new CtreMotionMagicController(armMotorRight, rightArmEncoder, new PIDFTerms(ARM_LEFT_KP, ARM_LEFT_KI, ARM_LEFT_KD, ARM_LEFT_KF), ARM_ACCELERATION,
+        rightArmMotionMagicController = new CtreMotionMagicController(armMotorRight, rightArmEncoder,
+                new PIDFTerms(ARM_LEFT_KP, ARM_LEFT_KI, ARM_LEFT_KD, ARM_LEFT_KF), ARM_ACCELERATION,
                 ARM_CRUISE_VELOCITY, ARM_ACCELERATION_SMOOTHING);
-        railMotionMagicController = new CtreMotionMagicController(railMotorMaster, railEncoder, new PIDFTerms(RAIL_kP, RAIL_kI, RAIL_kD, RAIL_kF), RAIL_ACCELERATION,
+        railMotionMagicController = new CtreMotionMagicController(railMotorMaster, railEncoder,
+                new PIDFTerms(RAIL_KP, RAIL_KI, RAIL_KD, RAIL_KF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
     }
 

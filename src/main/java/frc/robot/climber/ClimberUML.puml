@@ -74,6 +74,4 @@ interface ClimberComponents{
     DigitalInput getInnerHallEffect()
 }
 
-
-
 @enduml

@@ -2,7 +2,6 @@ package frc.robot.climber.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.climber.Climber;
-
 import java.util.function.DoubleSupplier;
 
 public class MoveArmBySpeed extends CommandBase {
@@ -28,5 +27,3 @@ public class MoveArmBySpeed extends CommandBase {
         climber.stopArmRightMotor();
     }
 }
-
-

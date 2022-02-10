@@ -2,7 +2,6 @@ package frc.robot.climber.commands;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import frc.robot.climber.Climber;
-
 import java.util.function.DoubleSupplier;
 
 import static frc.robot.climber.commands.ClimberCommandConstants.DISCONNECT_DISTANCE;

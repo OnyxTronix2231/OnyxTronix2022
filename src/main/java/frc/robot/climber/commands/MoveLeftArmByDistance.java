@@ -2,7 +2,6 @@ package frc.robot.climber.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.climber.Climber;
-
 import java.util.function.DoubleSupplier;
 
 public class MoveLeftArmByDistance extends CommandBase {
