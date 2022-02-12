@@ -142,5 +142,13 @@ public final class DriveTrainConstants {
                 false,
                 new MaxVelocityConstraint(1.5)
         );
+
+        public static final Path path8 = new Path(
+                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
+                List.of(),
+                new Pose2d(7.415,7.926,Rotation2d.fromDegrees(0)),
+                false,
+                new MaxVelocityConstraint(1.5)
+        );
     }
 }
