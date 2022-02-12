@@ -1,3 +1,4 @@
+
 @startuml
 'https://plantuml.com/sequence-diagram
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
@@ -8,7 +9,7 @@ CommandBase <|-- MoveArcToAngle
 CommandBase <|-- MoveArcBySpeed
 CommandBase <|-- MoveLinearServoByDistance
 MoveLinearServoByDistance <|-- MoveArcToAngle
-MoveArcToAngle <|-- MoveArcByDistance
+MoveArcToAngle <|-- MoveArcByTargetDistance
 MoveArcBySpeed o-- Arc
 MoveLinearServoByDistance o-- Arc
 SubsystemBase <|-- Arc
@@ -16,41 +17,41 @@ SubsystemBase <|-- Arc
 
 
 class Arc {
-    ArcComponents arcComponents
+   ArcComponents arcComponents
 
-    public void setSpeed()
-    void setPos()
-    void stop()
-    boolean inPosition()
+   public void setSpeed()
+   void setPos()
+   void stop()
+   boolean inPosition()
 }
 
 class ArcComponentsBase {
-    LinearServo linearServo
+   LinearServo linearServo
 
-    LinearServo getLinearServo()
+   LinearServo getLinearServo()
 }
 
 class MoveLinearServoByDistance {
-    Arc arc
-    DoubleSupplier distanceSupplier
+   Arc arc
+   DoubleSupplier distanceSupplier
 
-    void execute()
-    boolean isFinished()
-    void end()
+   void execute()
+   boolean isFinished()
+   void end()
 }
 
 class MoveArcToAngle {
 }
 
 class MoveArcBySpeed {
-    Arc arc
-    DoubleSupplier speedSupplier
+   Arc arc
+   DoubleSupplier speedSupplier
 
-    void execute()
-    void end()
+   void execute()
+   void end()
 }
 
-class MoveArcByDistance {
+class MoveArcByTargetDistance {
 }
 
 class SubsystemBase {
@@ -60,7 +61,7 @@ class CommandBase {
 }
 
 interface ArcComponents {
-    LinearServo getLinearServo()
+   LinearServo getLinearServo()
 }
 
 class ArcConstants {
