@@ -9,4 +9,8 @@ public final class BallTriggerConstants {
     public static final int NORMAL_AMP = 0;
     public static final int DISTANCE_TO_STOP_IN_MM = 1000;
     public static final int DISTANCE_SENSOR_PORT = 0;
+    public static final int BACK_SENSOR_CHANNEL = 0;
+    public static final int FRONT_SENSOR_CHANNEL = 0;
+    public static final int FRONT_FULL = 1;
+    public static final int BACK_FULL = 2;
 }

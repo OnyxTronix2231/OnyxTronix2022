@@ -3,6 +3,7 @@ package frc.robot.trigger;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj.DigitalInput;
+import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 import static frc.robot.trigger.BallTriggerConstants.*;
 
@@ -19,6 +20,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
         digitalInput = new DigitalInput(0);
+
     }
 
     @Override
@@ -27,7 +29,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     }
 
     @Override
-    public Rev2mDistanceSensor getDistanceSensor() {
+    public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
     }
 
@@ -35,4 +37,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public DigitalInput getDigitalInput() {
         return digitalInput;
     }
+
+
 }

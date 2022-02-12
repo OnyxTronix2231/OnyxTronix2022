@@ -4,7 +4,7 @@ import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.loader.LoaderConstants.NORMAL_AMP;
-import static frc.robot.trigger.BallTriggerConstants.DISTANCE_TO_STOP_IN_MM;
+import static frc.robot.trigger.BallTriggerConstants.*;
 
 public class BallTrigger extends SubsystemBase {
 
@@ -19,9 +19,8 @@ public class BallTrigger extends SubsystemBase {
         triggerComponents.getTriggerMotor().set(speed);
     }
 
-
-    public boolean isLoadedV2() {
-        return triggerComponents.getDistanceSensor().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
+    public boolean isLoadedLevel2() {
+        return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
     }
 
     @Override

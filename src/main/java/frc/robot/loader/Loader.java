@@ -23,4 +23,16 @@ public class Loader extends SubsystemBase {
     public boolean isStuck() {
         return loaderComponents.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
     }
+
+    public boolean identifiedBallBack(){
+        return loaderComponents.getBackSensor().getDistance() < NO_BALL_DISTANCE;
+    }
+
+    public boolean identifiedBallFront(){
+        return loaderComponents.getFrontSensor().getDistance() < NO_BALL_DISTANCE;
+    }
+
+    public boolean identifiedBall(){
+        return this.identifiedBallBack() || this.identifiedBallFront();
+    }
 }
