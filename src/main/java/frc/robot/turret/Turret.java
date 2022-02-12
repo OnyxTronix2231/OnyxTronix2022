@@ -15,7 +15,7 @@ public class Turret extends SubsystemBase {
         components = turretComponents;
         configMotorLimits();
 
-        turretShuffleBoard = new TurretShuffleBoard(components);
+        turretShuffleBoard = new TurretShuffleBoard(this, components);
     }
 
     @Override
