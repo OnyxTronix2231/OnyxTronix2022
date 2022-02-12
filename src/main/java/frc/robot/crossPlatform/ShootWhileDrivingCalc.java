@@ -124,7 +124,7 @@ public class ShootWhileDrivingCalc {
         return getFixedShootingVector().magnitude();
     }
 
-    public double getShooterFixeddirection() {
+    public double getShooterFixedDirection() {
         Vector2d correctVector = getFixedShootingVector();
         return Math.toDegrees(Math.atan(correctVector.y / correctVector.x));
     }
