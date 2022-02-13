@@ -29,10 +29,12 @@ public class ClimberConstants {
     static final double ARM_RIGHT_KI = 0; //TODO: Check and change
     static final double ARM_RIGHT_KD = 0; //TODO: Check and change
     static final double ARM_RIGHT_KF = ARM_RIGHT_MAX_VELOCITY / MAX_CLOSE_LOOP_OUTPUT;
+    static final double ARM_RIGHT_ARB_FF = 0; //TODO: Check and Change
     static final double ARM_LEFT_KP = 0; //TODO: Check and change
     static final double ARM_LEFT_KI = 0; //TODO: Check and change
     static final double ARM_LEFT_KD = 0; //TODO: Check and change
     static final double ARM_LEFT_KF = ARM_LEFT_MAX_VELOCITY / MAX_CLOSE_LOOP_OUTPUT;
+    static final double ARM_LEFT_ARB_FF = 0; //TODO: Check and change
     static final double RAIL_KP = 0; //TODO: Check and change
     static final double RAIL_KI = 0; //TODO: Check and change
     static final double RAIL_KD = 0; //TODO: Check and change
