@@ -1,4 +1,5 @@
 package frc.robot.drivetrain;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -14,7 +15,6 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        resetEncoders();
         resetOdometryToPose(new Translation2d(7, 9));
     }
 

@@ -8,7 +8,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
@@ -21,8 +21,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private DifferentialDrive differentialDrive;
     private DifferentialDriveOdometry odometry;
     private NormalizedPigeonIMU pigeonIMU;
-    private CtreEncoder leftEncoder;
-    private CtreEncoder rightEncoder;
+    private TalonEncoder leftEncoder;
+    private TalonEncoder rightEncoder;
     private Field2d field2d;
 
     public DriveTrainComponentsBase() {
@@ -54,8 +54,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
-        leftEncoder = new CtreEncoder(leftMasterMotor);
-        rightEncoder = new CtreEncoder(rightMasterMotor);
+        leftEncoder = new TalonEncoder(leftMasterMotor);
+        rightEncoder = new TalonEncoder(rightMasterMotor);
 
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(0));
         odometry.resetPosition(new Pose2d(), new Rotation2d());
@@ -94,12 +94,12 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
-    public CtreEncoder getLeftEncoder() {
+    public TalonEncoder getLeftEncoder() {
         return leftEncoder;
     }
 
     @Override
-    public CtreEncoder getRightEncoder() {
+    public TalonEncoder getRightEncoder() {
         return rightEncoder;
     }
 
