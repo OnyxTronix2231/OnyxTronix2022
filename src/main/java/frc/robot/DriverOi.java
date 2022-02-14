@@ -10,7 +10,6 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
-import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -19,7 +18,7 @@ public class DriverOi {
     private ConsoleController consoleController;
 
     public DriverOi() {
-        consoleController = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
+        consoleController = new ConsoleController(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain ) {
