@@ -11,16 +11,13 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private WPI_TalonFX triggerMotor;
     private Rev2mDistanceSensor distanceSensor;
-    private DigitalInput digitalInput;
-
+    private TriangulatingRangefinder analogDistanceSencor;
     public BallTriggerComponentsBase() {
         triggerMotor = new WPI_TalonFX(TRIGGER_MOTOR_ID);
         triggerMotor.configFactoryDefault();
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
-        distanceSensor.setAutomaticMode(true);
-        digitalInput = new DigitalInput(0);
-
+        analogDistanceSencor = new TriangulatingRangefinder(ANALOG_DISTANCE_SENSOR);
     }
 
     @Override
@@ -34,9 +31,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     }
 
     @Override
-    public DigitalInput getDigitalInput() {
-        return digitalInput;
+    public TriangulatingRangefinder getTriangulatingRangefinder() {
+        return analogDistanceSencor;
     }
-
-
 }

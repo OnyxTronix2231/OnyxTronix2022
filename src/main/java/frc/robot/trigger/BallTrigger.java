@@ -23,11 +23,15 @@ public class BallTrigger extends SubsystemBase {
         return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
     }
 
+    public boolean isLoadedV3(){
+        return triggerComponents.getTriangulatingRangefinder().getDistance() > DISTANCE_TO_STOP_IN_MM;
+    }
+
+
+
     @Override
     public void periodic() {
-        System.out.println(triggerComponents.getDigitalInput().get());
     }
-    
 
     public boolean isStuck() {
         return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
