@@ -23,19 +23,19 @@ public class DriverOi {
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain ) {
-        JoystickAxis leftJoystick = new JoystickAxis(consoleController, XboxController.Axis.kLeftY.value);
-        JoystickAxis rightJoystick = new JoystickAxis(consoleController, XboxController.Axis.kRightX.value);
+        JoystickAxis leftJoystick = new JoystickAxis(consoleController, consoleController.getAxisLeftY());
+        JoystickAxis rightJoystick = new JoystickAxis(consoleController, consoleController.getAxisRightX());
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
         return this;
     }
 
     public DriverOi withTrigger(BallTrigger ballTrigger) {
-        JoystickButton triggerMoveBySpeed = new JoystickButton(consoleController, XboxController.Button.kA.value);
+        JoystickButton triggerMoveBySpeed = new JoystickButton(consoleController, consoleController.getButtonDown());
         new BallTriggerOiBinder(ballTrigger, triggerMoveBySpeed);
         return this;
     }
     public DriverOi withLoader(Loader loader) {
-        JoystickButton loaderMoveBySpeed = new JoystickButton(consoleController, XboxController.Button.kY.value);
+        JoystickButton loaderMoveBySpeed = new JoystickButton(consoleController, consoleController.getButtonUp());
         new LoaderOiBinder(loader, loaderMoveBySpeed);
         return this;
     }
