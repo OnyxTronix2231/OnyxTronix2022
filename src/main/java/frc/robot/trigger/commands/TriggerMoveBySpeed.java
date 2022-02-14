@@ -27,7 +27,7 @@ public class TriggerMoveBySpeed extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return trigger.isLoadedLevel2();
+        return trigger.isLoadedAnalog();
     }
 
     @Override

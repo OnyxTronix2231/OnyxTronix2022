@@ -19,15 +19,18 @@ public class BallTrigger extends SubsystemBase {
         triggerComponents.getTriggerMotor().set(speed);
     }
 
-    public boolean isLoadedLevel2() {
+    public boolean isLoadedRev() {
         return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
+    }
+
+    public boolean isLoadedAnalog(){
+        return triggerComponents.getAnalogDistance().getDistance()> DISTANCE_TO_STOP_IN_MM;
     }
 
     @Override
     public void periodic() {
-        System.out.println(triggerComponents.getDigitalInput().get());
+        System.out.println(triggerComponents.getAnalogDistance().getDistance());;
     }
-    
 
     public boolean isStuck() {
         return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;
