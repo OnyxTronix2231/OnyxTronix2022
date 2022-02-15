@@ -9,27 +9,29 @@ import static frc.robot.climber.ClimberConstants.Calculations.railMeterToEncoder
 public class Climber extends SubsystemBase {
 
     private final ClimberComponents components;
+    private boolean firstPhase;
 
     public Climber(ClimberComponents components) {
         this.components = components;
+        firstPhase = true;
     }
 
     public void initMoveLeftArmByDistance(double distance) {
         components.getArmLeftMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
-        components.getArmLeftMotionMagicController().enable();
+        components.getArmLeftMotionMagicController().enable(ARM_LEFT_ARB_FF);
     }
 
     public void initMoveRightArmByDistance(double distance) {
         components.getArmRightMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
-        components.getArmRightMotionMagicController().enable();
+        components.getArmRightMotionMagicController().enable(ARM_RIGHT_ARB_FF);
     }
 
     public void updateMoveLeftArmByDistance(double distance) {
-        components.getArmLeftMotionMagicController().update(armMeterToEncoderUnits(distance));
+        components.getArmLeftMotionMagicController().update(armMeterToEncoderUnits(distance), ARM_LEFT_ARB_FF);
     }
 
     public void updateMoveRightArmByDistance(double distance) {
-        components.getArmRightMotionMagicController().update(armMeterToEncoderUnits(distance));
+        components.getArmRightMotionMagicController().update(armMeterToEncoderUnits(distance), ARM_RIGHT_ARB_FF);
     }
 
     public void initMoveRailByDistance(double distance) {
@@ -62,11 +64,11 @@ public class Climber extends SubsystemBase {
         moveLeftArmBySpeed(0);
         components.getArmLeftMotionMagicController().disable();
     }
+
     public void stopArmRightMotor() {
         moveRightArmBySpeed(0);
         components.getArmRightMotionMagicController().disable();
     }
-
     public boolean isInnerHallEffectClosed() {
         return components.getInnerHallEffect().get();
     }
@@ -82,7 +84,16 @@ public class Climber extends SubsystemBase {
     public boolean isRailOnTarget() {
         return components.getRailMotionMagicController().isOnTarget(RAIL_TOLERANCE);
     }
-//    public boolean isOuterHallEffectClosed() {
-//        return components.getOuterHallEffect().get();
-//    }
+
+    public boolean isOuterHallEffectClosed() {
+        return components.getOuterHallEffect().get();
+    }
+
+    public boolean isFirstPhase() {
+        return firstPhase;
+    }
+
+    public void setFirstPhase(boolean firstPhase) {
+        this.firstPhase = firstPhase;
+    }
 }

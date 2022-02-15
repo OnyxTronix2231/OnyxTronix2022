@@ -25,7 +25,7 @@ public interface ClimberComponents {
 
     WPI_TalonFX getArmMotorLeft();
 
-//    DigitalInput getOuterHallEffect();
+    DigitalInput getOuterHallEffect();
 
     DigitalInput getInnerHallEffect();
 }

@@ -8,6 +8,6 @@ import static frc.robot.climber.ClimberConstants.*;
 public class ClimberDriverOiBinder {
 
     public ClimberDriverOiBinder(final Climber climber, final Trigger climbByPhase, final Trigger climbingSequence) {
-        climbByPhase.whileActiveOnce(new ClimbByPhase(climber, () -> ARM_DISTANCE, () -> ARM_DISTANCE_2, () -> PERCENT_OUTPUT));
+        climbByPhase.whileActiveOnce(new ClimbByPhase(climber, () -> PERCENT_OUTPUT));
     }
 }

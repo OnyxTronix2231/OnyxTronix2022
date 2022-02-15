@@ -16,7 +16,7 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX railMotorSlave;
     private WPI_TalonFX armMotorRight;
     private WPI_TalonFX armMotorLeft;
-//  private DigitalInput outerHallEffect;
+    private DigitalInput outerHallEffect;
     private DigitalInput innerHallEffect;
     private CtreMotionMagicController rightArmMotionMagicController;
     private CtreMotionMagicController leftArmMotionMagicController;
@@ -40,7 +40,7 @@ public class ClimberComponentsBase implements ClimberComponents {
         armMotorLeft = new WPI_TalonFX(ARM_LEFT_MOTOR_ID);
         armMotorLeft.configFactoryDefault();
 
-        //outerHallEffect = new DigitalInput(0);
+        outerHallEffect = new DigitalInput(0);
         innerHallEffect = new DigitalInput(INNER_HALL_EFFECT_CHANNEL);
         rightArmEncoder = new TalonEncoder(armMotorRight);
         leftArmEncoder = new TalonEncoder(armMotorLeft);
@@ -102,10 +102,10 @@ public class ClimberComponentsBase implements ClimberComponents {
         return armMotorRight;
     }
 
-//    @Override
-//    public DigitalInput getOuterHallEffect() {
-//        return outerHallEffect;
-//    }
+    @Override
+    public DigitalInput getOuterHallEffect() {
+        return outerHallEffect;
+    }
 
     @Override
     public DigitalInput getInnerHallEffect() {
