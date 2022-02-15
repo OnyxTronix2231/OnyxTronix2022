@@ -32,9 +32,4 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
     }
-
-    @Override
-    public TriangulatingRangefinder getAnalogDistance() {
-        return analogDistanceSensor;
-    }
 }

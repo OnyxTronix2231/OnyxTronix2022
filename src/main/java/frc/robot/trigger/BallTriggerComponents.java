@@ -9,7 +9,6 @@ public interface BallTriggerComponents {
 
     WPI_TalonFX getTriggerMotor();
     Rev2mDistanceSensor getDistanceSensorUp();
-    TriangulatingRangefinder getAnalogDistance();
 
 
 }

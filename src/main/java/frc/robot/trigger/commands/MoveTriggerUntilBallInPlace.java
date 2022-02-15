@@ -7,8 +7,8 @@ import frc.robot.trigger.commands.TriggerMoveBySpeed;
 
 import java.util.function.DoubleSupplier;
 
-public class MoveTriggerUntilBallIdentified extends ParallelDeadlineGroup {
-    public MoveTriggerUntilBallIdentified(BallTrigger trigger, DoubleSupplier speedSupplier) {
+public class MoveTriggerUntilBallInPlace extends ParallelDeadlineGroup {
+    public MoveTriggerUntilBallInPlace(BallTrigger trigger, DoubleSupplier speedSupplier) {
         super(new WaitUntilCommand(trigger::isLoadedRev), new TriggerMoveBySpeed(trigger, speedSupplier));
     }
 }
