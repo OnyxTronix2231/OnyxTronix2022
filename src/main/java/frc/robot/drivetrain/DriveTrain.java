@@ -67,9 +67,12 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void resetOdometryToPose(Translation2d translation) {
+        resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
+    }
+
+    public void resetOdometryToPose(Pose2d pose) {
         resetEncoders();
-        Pose2d targetPose = new Pose2d(translation, this.getPose().getRotation());
-        driveTrainComponents.getOdometry().resetPosition(targetPose, targetPose.getRotation());
-        driveTrainComponents.getNormelizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
+        driveTrainComponents.getOdometry().resetPosition(pose, pose.getRotation());
+        driveTrainComponents.getNormelizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
     }
 }

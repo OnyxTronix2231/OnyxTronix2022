@@ -63,18 +63,12 @@ public final class DriveTrainConstants {
         }
     }
 
+    public static final class startPoses {
+
+        public static final Pose2d S1 = new Pose2d(2, 3, new Rotation2d(30));
+    }
+
     public static final class Paths {
-
-        public static final Path ONE_METER_FORWARD = new Path(
-                List.of(),
-                new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5));
-
-        public static final Path ONE_METER_BACKWARD = new Path(
-                List.of(),
-                new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        ).setReversed();
 
         public static final Path DRIVE_TO_FIRST_BALL = new Path(
                 List.of(),
