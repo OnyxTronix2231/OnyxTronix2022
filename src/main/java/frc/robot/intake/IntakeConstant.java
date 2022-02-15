@@ -13,4 +13,6 @@ public class IntakeConstant {
    public static final int FORWARD_SOLENOID_REVERSE_CHANNEL = 0;
    public static final int BACK_SOLENOID_FORWARD_CHANNEL = 0;
    public static final int BACK_SOLENOID_REVERSE_CHANNEL = 0;
+   public static final int WHEN_MOTOR_SPINNING_CURRENT_SUPPLY = 0 ;
+   public static final int VISGOR_BODY_COUNT = 0; // WE NEED TO DELETE IT BEFORE COMIT
 }
