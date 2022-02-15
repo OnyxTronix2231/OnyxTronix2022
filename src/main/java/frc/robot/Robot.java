@@ -9,6 +9,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.intake.Intake;
+import frc.robot.intake.IntakeBackComponentsBase;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeForwardComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,20 +25,32 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
 
+    DriveTrainComponents driveTrainComponents;
+    IntakeComponents intakeBackComponents;
+    IntakeComponents intakeForwardComponents;
+
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
     @Override
     public void robotInit() {
-
         if (Robot.isReal()) {
+            driveTrainComponents = new DriveTrainComponentsBase();
+            intakeBackComponents = new IntakeBackComponentsBase();
+            intakeForwardComponents = new IntakeForwardComponentsBase();
         } else {
+            driveTrainComponents = null;
+            intakeBackComponents = null;
+            intakeForwardComponents = null;
         }
 
-        new DriverOi();
-        new DeputyOi();
+        Intake intakeBack = new Intake(intakeBackComponents);
+        Intake intakeForward = new Intake(intakeForwardComponents);
+        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
 
+        new DriverOi().withDriveTrain(driveTrain).withBackIntake(intakeBack).withForwardIntake(intakeForward);
+        new DeputyOi();
         new DriversShuffleboard();
     }
 
