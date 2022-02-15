@@ -18,7 +18,6 @@ public class LoaderComponentsBase implements LoaderComponents {
         loaderMotor.configFactoryDefault();
         this.backSensor = new TriangulatingRangefinder(BACK_SENSOR_CHANNEL);
         this.frontSensor = new TriangulatingRangefinder(FRONT_SENSOR_CHANNEL);
-
     }
 
     @Override
@@ -34,5 +33,4 @@ public class LoaderComponentsBase implements LoaderComponents {
     public TriangulatingRangefinder getFrontSensor() {
         return frontSensor;
     }
-
 }

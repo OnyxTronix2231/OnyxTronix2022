@@ -7,7 +7,7 @@ import frc.robot.trigger.BallTrigger;
 public class IfStuckThen extends SequentialCommandGroup {
 
     public IfStuckThen(BallTrigger ballTrigger, Command command){
-        super(new UntilStuck(ballTrigger,command), new TriggerMoveBySpeed(ballTrigger, ()->-0.15));
+        super(new UntilStuck(ballTrigger,command), new TriggerMoveBySpeed(ballTrigger, ()-> -0.15));
     }
 
     @Override

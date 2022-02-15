@@ -12,7 +12,7 @@ public class LoadBall extends ConditionalCommand {
                     DoubleSupplier triggerSpeedSupplier) {
         super(new LoadUntilBallIdentified(loader, loaderSpeedSupplier),
                 new TransferBallToTrigger(loader, trigger, loaderSpeedSupplier, triggerSpeedSupplier),
-                trigger::isLoadedLevel2);
+                trigger::isLoadedRev);
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.function.DoubleSupplier;
 public class TransferBallToTrigger extends ParallelDeadlineGroup {
 
     public TransferBallToTrigger(Loader loader, BallTrigger trigger, DoubleSupplier loaderSpeedSupplier, DoubleSupplier triggerSpeedSupplier) {
-        super (new MoveTriggerUntilBallIdentified(trigger, triggerSpeedSupplier),
+        super(new MoveTriggerUntilBallIdentified(trigger, triggerSpeedSupplier),
                 new LoaderMoveBySpeed(loader, loaderSpeedSupplier));
     } // TODO What if 2 balls are in at the same time.
 }
