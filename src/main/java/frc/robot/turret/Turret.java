@@ -31,7 +31,7 @@ public class Turret extends SubsystemBase {
     }
 
     public double getCurrentAngleRTR() {
-        return encoderUnitsToDegrees(components.getEncoder().getPosition());
+        return encoderUnitsToDegrees(components.getEncoder().getCount());
     }
 
     public void stop() {

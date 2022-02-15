@@ -36,13 +36,16 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         DriveTrainComponents driveTrainComponents;
+        CollectorComponents collectorComponents;
         TurretComponents turretComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            turretComponents = new TurretComponentsBase();
+            collectorComponents = new CollectorComponents();
+            turretComponents = new TurretComponentsBase(collectorComponents.getEncoder());
         } else {
             driveTrainComponents = null;
+            collectorComponents = null;
             turretComponents = null;
         }
 

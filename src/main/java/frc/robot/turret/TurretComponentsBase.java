@@ -6,6 +6,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.CtreCANCoder;
+import sensors.counter.CtreEncoder;
+
+import java.beans.Encoder;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.RobotConstants.*;
@@ -13,10 +16,10 @@ import static frc.robot.turret.TurretConstants.RobotConstants.*;
 public class TurretComponentsBase implements TurretComponents {
 
     private final WPI_TalonFX motor;
-    private final CtreCANCoder encoder;
+    private final CtreEncoder encoder;
     private final CtreMotionMagicController controller;
 
-    public TurretComponentsBase() {
+    public TurretComponentsBase(CtreEncoder encoder) {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
@@ -24,9 +27,9 @@ public class TurretComponentsBase implements TurretComponents {
                 motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
         motor.setNeutralMode(NeutralMode.Brake);
 
-        encoder = new CtreCANCoder(ENCODER_ID);
+        this.encoder = encoder;
         controller = new CtreMotionMagicController(
-                motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
+                motor, this.encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
 
     @Override
@@ -35,7 +38,7 @@ public class TurretComponentsBase implements TurretComponents {
     }
 
     @Override
-    public CtreCANCoder getEncoder() {
+    public CtreEncoder getEncoder() {
         return encoder;
     }
 
