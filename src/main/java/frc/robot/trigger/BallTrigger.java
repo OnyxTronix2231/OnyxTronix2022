@@ -9,7 +9,7 @@ import static frc.robot.trigger.BallTriggerConstants.*;
 public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents triggerComponents;
-    
+
     public BallTrigger(BallTriggerComponents triggerComponents) {
         this.triggerComponents = triggerComponents;
     }
