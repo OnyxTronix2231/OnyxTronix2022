@@ -9,11 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.vision.Vision;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriveTrainComponents;
-import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.vision.Vision;
+
+import java.util.List;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,9 +20,6 @@ import frc.robot.vision.Vision;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrainComponents driveTrainComponents;
-    Vision vision;
-
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -33,18 +27,12 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-
         if (Robot.isReal()) {
-            driveTrainComponents = new DriveTrainComponentsBase();
-            vision = new Vision();
-        } else {
-            driveTrainComponents = null;
-            vision = null;
+        }
+        else {
         }
 
-        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
-
-        new DriverOi().withDriveTrain(driveTrain);
+        new DriverOi();
         new DeputyOi();
 
         new DriversShuffleboard();
