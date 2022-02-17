@@ -13,4 +13,5 @@ public final class BallTriggerConstants {
     public static final int FRONT_SENSOR_CHANNEL = 0;
     public static final int FRONT_FULL = 1;
     public static final int BACK_FULL = 2;
+    public static final int TRIGGER_HALF_LOADED = 50;
 }

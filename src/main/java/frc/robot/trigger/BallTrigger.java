@@ -21,6 +21,9 @@ public class BallTrigger extends SubsystemBase {
     public boolean isLoadedRev() {
         return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > DISTANCE_TO_STOP_IN_MM;
     }
+    public boolean isHalfLoadedRev(){
+        return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) > TRIGGER_HALF_LOADED;
+    }
 
     public boolean isStuck() {
         return triggerComponents.getTriggerMotor().getSupplyCurrent() > NORMAL_AMP;

@@ -8,7 +8,8 @@ import frc.robot.trigger.BallTrigger;
 import java.util.function.DoubleSupplier;
 
 public class LoadBall extends ConditionalCommand {
-    public LoadBall(BallTrigger trigger, Loader loader, DoubleSupplier loaderSpeedSupplier,DoubleSupplier triggerSpeedSupplier) {
+    public LoadBall(BallTrigger trigger, Loader loader, DoubleSupplier loaderSpeedSupplier,
+                    DoubleSupplier triggerSpeedSupplier) {
         super(new LoadUntilBallIInPlace(loader, loaderSpeedSupplier),
                 new TransferBallToTrigger(loader, trigger, loaderSpeedSupplier, triggerSpeedSupplier),
                 trigger::isLoadedRev);
