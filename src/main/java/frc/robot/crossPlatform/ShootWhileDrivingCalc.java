@@ -35,7 +35,7 @@ public class ShootWhileDrivingCalc {
         * direction -> arc's direction (deg)*/
 
         double size = shooter.getNeededSpeed();
-        double direction = arc.getNeededdirection();
+        double direction = arc.getNeededDirection();
         double x = size * Math.cos(Math.toRadians(direction));
         double y = size * Math.sin(Math.toRadians(direction));
         return new Vector2d(x, y);
@@ -54,7 +54,7 @@ public class ShootWhileDrivingCalc {
         * direction -> turret's direction*/
 
         double size = getShooterOnlyVector().x;
-        double direction = yawControl.getdirectionNonVisionDependent(vision);
+        double direction = yawControl.getAngleToTargetByPose();
         double x = size * Math.cos(Math.toRadians(direction));
         double y = size * Math.sin(Math.toRadians(direction));
         return new Vector2d(x, y);
@@ -110,12 +110,13 @@ public class ShootWhileDrivingCalc {
 
         * size -> fixed speed of the shooting system (m/s)
         * direction -> fixed arc's direction (deg)*/
+
         double x = getCorrectTrajectory().magnitude();
         double y = getShooterOnlyVector().y;
         return new Vector2d(x, y);
     }
 
-    public double getTurretFixeddirection() {
+    public double getTurretFixedDirection() {
         Vector2d correctVector = getCorrectTrajectory();
         return Math.toDegrees(Math.atan(correctVector.y / correctVector.x));
     }
@@ -124,7 +125,7 @@ public class ShootWhileDrivingCalc {
         return getFixedShootingVector().magnitude();
     }
 
-    public double getShooterFixedDirection() {
+    public double getArcFixedDirection() {
         Vector2d correctVector = getFixedShootingVector();
         return Math.toDegrees(Math.atan(correctVector.y / correctVector.x));
     }
