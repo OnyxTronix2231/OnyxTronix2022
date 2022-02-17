@@ -25,6 +25,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         masterMotor.configFactoryDefault();
 
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
+        slaveMotor.setInverted(true);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
 
