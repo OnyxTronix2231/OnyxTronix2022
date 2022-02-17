@@ -26,11 +26,6 @@ public class TriggerMoveBySpeed extends CommandBase {
     }
 
     @Override
-    public boolean isFinished() {
-        return trigger.isLoadedAnalog();
-    }
-
-    @Override
     public void end(boolean interrupted) {
         trigger.stop();
     }

@@ -1,5 +1,6 @@
 package frc.robot.intake;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.util.function.BooleanSupplier;
@@ -28,6 +29,9 @@ public class Intake extends SubsystemBase {
 
     public void closeSolenoid() {
         components.getSolenoid().set(SOLENOID_CLOSE);
+    }
+    public boolean isFrontOpen(){
+       return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
 
     public boolean isMotorSpin(){
