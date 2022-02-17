@@ -1,10 +1,7 @@
 package frc.robot.intake.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import frc.robot.intake.Intake;
-
-import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 

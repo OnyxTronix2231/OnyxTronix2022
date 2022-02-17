@@ -1,7 +1,7 @@
-package frc.robot.loader;
+package frc.robot.Conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.loader.commands.LoaderMoveBySpeed;
+import frc.robot.Conveyor.loader.commands.LoaderMoveBySpeed;
 
 public class LoaderOiBinder {
     public LoaderOiBinder(Loader loader, JoystickButton loaderMoveBySpeed) {

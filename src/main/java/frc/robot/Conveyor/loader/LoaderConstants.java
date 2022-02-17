@@ -1,5 +1,5 @@
 
-package frc.robot.loader;
+package frc.robot.Conveyor.loader;
 
 public final class LoaderConstants {
 

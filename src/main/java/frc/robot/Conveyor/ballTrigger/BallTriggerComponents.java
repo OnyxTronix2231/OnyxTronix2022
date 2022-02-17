@@ -1,13 +1,12 @@
-package frc.robot.trigger;
+package frc.robot.Conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.Rev2mDistanceSensor;
-import edu.wpi.first.wpilibj.DigitalInput;
-import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 public interface BallTriggerComponents {
 
-    WPI_TalonFX getTriggerMotor();
+    WPI_TalonSRX getTriggerMotor();
     Rev2mDistanceSensor getDistanceSensorUp();
 
 

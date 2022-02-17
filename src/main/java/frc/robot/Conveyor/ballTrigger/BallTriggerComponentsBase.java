@@ -1,30 +1,25 @@
-package frc.robot.trigger;
+package frc.robot.Conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
-import edu.wpi.first.wpilibj.DigitalInput;
-import sensors.triangulatingRangefinder.TriangulatingRangefinder;
-
-import static frc.robot.trigger.BallTriggerConstants.*;
+import static frc.robot.Conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
-    private WPI_TalonFX triggerMotor;
+    private WPI_TalonSRX triggerMotor;
     private Rev2mDistanceSensor distanceSensor;
-    private TriangulatingRangefinder analogDistanceSensor;
 
     public BallTriggerComponentsBase() {
-        triggerMotor = new WPI_TalonFX(TRIGGER_MOTOR_ID);
+        triggerMotor = new WPI_TalonSRX(TRIGGER_MOTOR_ID);
         triggerMotor.configFactoryDefault();
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
-       analogDistanceSensor = new TriangulatingRangefinder(ANALOG_DISTANCE_SENSOR);
-
     }
 
     @Override
-    public WPI_TalonFX getTriggerMotor() {
+    public WPI_TalonSRX getTriggerMotor() {
         return triggerMotor;
     }
 

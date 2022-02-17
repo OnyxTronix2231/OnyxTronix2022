@@ -1,7 +1,7 @@
-package frc.robot.loader.commands;
+package frc.robot.Conveyor.loader.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.loader.Loader;
+import frc.robot.Conveyor.loader.Loader;
 import java.util.function.DoubleSupplier;
 
 public class LoaderMoveBySpeed extends CommandBase {

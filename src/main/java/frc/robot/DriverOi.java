@@ -1,11 +1,10 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.loader.Loader;
-import frc.robot.loader.LoaderOiBinder;
-import frc.robot.trigger.BallTriggerOiBinder;
-import frc.robot.trigger.BallTrigger;
+import frc.robot.Conveyor.loader.Loader;
+import frc.robot.Conveyor.loader.LoaderOiBinder;
+import frc.robot.Conveyor.ballTrigger.BallTriggerOiBinder;
+import frc.robot.Conveyor.ballTrigger.BallTrigger;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import humanControls.ConsoleController;

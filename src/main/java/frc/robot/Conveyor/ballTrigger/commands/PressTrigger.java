@@ -1,11 +1,8 @@
-package frc.robot.trigger.commands;
+package frc.robot.Conveyor.ballTrigger.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.trigger.BallTrigger;
-import frc.robot.trigger.commands.TriggerMoveBySpeed;
+import frc.robot.Conveyor.ballTrigger.BallTrigger;
 
 import java.util.function.DoubleSupplier;
 

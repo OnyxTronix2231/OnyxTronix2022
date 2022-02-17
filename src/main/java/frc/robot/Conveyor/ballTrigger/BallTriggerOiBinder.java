@@ -1,8 +1,7 @@
-package frc.robot.trigger;
+package frc.robot.Conveyor.ballTrigger;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.trigger.commands.PressTrigger;
-import frc.robot.trigger.commands.TriggerMoveBySpeed;
+import frc.robot.Conveyor.ballTrigger.commands.PressTrigger;
 
 public class BallTriggerOiBinder {
     public BallTriggerOiBinder(BallTrigger trigger, JoystickButton PressTrigger){
