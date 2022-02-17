@@ -29,7 +29,7 @@ public class YawControl extends Turret {
         double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POS.getY()) /
                 (currentPos.getX() - TARGET_POS.getX())));
         if (currentPos.getX() > TARGET_POS.getX())
-            angle += 180;
+            angle += HALF_ROTATION;
         return angle;
     }
 }

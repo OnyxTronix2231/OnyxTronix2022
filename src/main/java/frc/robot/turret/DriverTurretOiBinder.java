@@ -1,7 +1,6 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.turret.commands.RotateByAngle;
 import frc.robot.turret.commands.RotateByAngleOnce;
 import frc.robot.turret.commands.RotateBySpeed;
 import frc.robot.turret.commands.RotateByVision;
@@ -19,6 +18,5 @@ public class DriverTurretOiBinder {
         move90.whenActive(new RotateByAngleOnce(turret, () -> 90));
         move180.whenActive(new RotateByAngleOnce(turret, () -> 180));
         byVision.whileActiveContinuous(new RotateByVision(turret, vision));
-
     }
 }

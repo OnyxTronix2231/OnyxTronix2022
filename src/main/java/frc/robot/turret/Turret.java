@@ -61,14 +61,14 @@ public class Turret extends SubsystemBase {
     }
 
     public double fixAngleAccordingToLimits(double deg) {
-        double fixed = deg % DEG_IN_CIRCLE;
-        if (fixed > MAX_DEG) {
-            fixed -= DEG_IN_CIRCLE;
+        double fixedAngle = deg % DEG_IN_CIRCLE;
+        if (fixedAngle > MAX_DEG) {
+            fixedAngle -= DEG_IN_CIRCLE;
         }
-        if (fixed < MIN_DEG) {
-            fixed += DEG_IN_CIRCLE;
+        if (fixedAngle < MIN_DEG) {
+            fixedAngle += DEG_IN_CIRCLE;
         }
-        return fixed;
+        return fixedAngle;
     }
 
     public boolean isOnTarget() {
