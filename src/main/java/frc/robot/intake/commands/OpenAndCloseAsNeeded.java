@@ -11,7 +11,7 @@ import java.util.function.DoubleSupplier;
 public class OpenAndCloseAsNeeded extends ConditionalCommand {
 
     public OpenAndCloseAsNeeded(Intake intake, DoubleSupplier speedSupplier, Command onTrue, Command onFalse, BooleanSupplier condition) {
-        super(new OpenAndIntake(intake, speedSupplier), new ClosePiston(intake), intake.isMotorSpin());
+        super(new OpenAndIntake(intake, speedSupplier), new ClosePiston(intake), intake::isMotorSpin);
     }
     
     @Override
