@@ -29,7 +29,8 @@ public class Intake extends SubsystemBase {
     public void closeSolenoid() {
         components.getSolenoid().set(SOLENOID_CLOSE);
     }
-    public BooleanSupplier isMotorSpin(){
-        return () ->components.getMotor().getSupplyCurrent()<WHEN_MOTOR_SPINNING_CURRENT_SUPPLY;
+
+    public boolean isMotorSpin(){
+        return components.getMotor().getSupplyCurrent()<WHEN_MOTOR_SPINNING_CURRENT_SUPPLY;
     }
 }
