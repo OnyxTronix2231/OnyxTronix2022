@@ -1,16 +1,15 @@
 package frc.robot.intake;
 
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.intake.commands.ClosePiston;
-import frc.robot.intake.commands.OpenAndCloseAsNeeded;
-import frc.robot.intake.commands.OpenAndIntake;
-
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.intake.commands.IntakeByDriveTrain;
+import humanControls.JoystickAxis;
 import java.util.function.DoubleSupplier;
+import static frc.robot.intake.IntakeConstant.INTAKE_SPEED;
 
 public class IntakeOiBinder {
 
-    public IntakeOiBinder(Intake intakeForward,Intake intakeBack, JoystickButton openAndIntake, DoubleSupplier IntakeSpeedSupplier) {
-        openAndIntake.toggleWhenPressed(new OpenAndCloseAsNeeded(intakeForward, intakeBack ,IntakeSpeedSupplier));
+    public IntakeOiBinder(DriveTrain driveTrain,Intake intakeForward, Intake intakeBack, JoystickAxis openAndIntakeTwoSides, DoubleSupplier IntakeSpeedSupplier) {
+        openAndIntakeTwoSides.whileActiveContinuous(new IntakeByDriveTrain(intakeForward,intakeBack,()->INTAKE_SPEED,driveTrain));
     }
 }
 
