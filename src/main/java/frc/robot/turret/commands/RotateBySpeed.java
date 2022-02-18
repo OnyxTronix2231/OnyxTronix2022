@@ -6,7 +6,7 @@ import java.util.function.DoubleSupplier;
 
 public class RotateBySpeed extends CommandBase {
 
-    private final Turret turret;
+    protected final Turret turret;
     private final DoubleSupplier speedSupplier;
 
     public RotateBySpeed(Turret turret, DoubleSupplier speedSupplier) {

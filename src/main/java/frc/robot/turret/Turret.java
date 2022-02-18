@@ -57,4 +57,15 @@ public class Turret extends SubsystemBase {
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
     }
+
+    public boolean isCalibrated() {
+        boolean fwdClosed = components.getMotor().getSensorCollection().isFwdLimitSwitchClosed() == 1;
+        boolean revClosed = components.getMotor().getSensorCollection().isRevLimitSwitchClosed() == 1;
+        return fwdClosed && revClosed;
+    }
+    
+    public void activateSoftLimits(){
+        components.getMotor().configForwardSoftLimitEnable(true);
+        components.getMotor().configReverseSoftLimitEnable(true);
+    }
 }
