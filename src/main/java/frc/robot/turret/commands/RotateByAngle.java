@@ -6,6 +6,6 @@ import java.util.function.DoubleSupplier;
 public class RotateByAngle extends RotateToAngleRTR {
 
     public RotateByAngle(Turret turret, DoubleSupplier angleSupplier) {
-        super(turret, ()-> (angleSupplier.getAsDouble() + turret.getCurrentAngleRTR()));
+        super(turret, () -> (angleSupplier.getAsDouble() + turret.getCurrentAngleRTR()));
     }
 }

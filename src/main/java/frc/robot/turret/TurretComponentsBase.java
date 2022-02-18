@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
-import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.turret.TurretConstants.*;
@@ -16,7 +15,7 @@ import static frc.robot.turret.TurretConstants.RobotConstants.*;
 public class TurretComponentsBase implements TurretComponents {
 
     private final WPI_TalonFX motor;
-    private final CtreEncoder encoder;
+    private final TalonEncoder encoder;
     private final CtreMotionMagicController controller;
 
     public TurretComponentsBase() {
@@ -48,7 +47,7 @@ public class TurretComponentsBase implements TurretComponents {
     }
 
     @Override
-    public CtreEncoder getEncoder() {
+    public TalonEncoder getEncoder() {
         return encoder;
     }
 
