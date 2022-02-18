@@ -1,10 +1,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Conveyor.loader.Loader;
-import frc.robot.Conveyor.loader.LoaderOiBinder;
-import frc.robot.Conveyor.ballTrigger.BallTriggerOiBinder;
-import frc.robot.Conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.loader.Loader;
+import frc.robot.conveyor.loader.LoaderOiBinder;
+import frc.robot.conveyor.ballTrigger.BallTriggerOiBinder;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import humanControls.ConsoleController;
@@ -29,8 +29,7 @@ public class DriverOi {
     }
 
     public DriverOi withTrigger(BallTrigger ballTrigger) {
-        JoystickButton triggerMoveBySpeed = new JoystickButton(consoleController, consoleController.getButtonDown());
-        new BallTriggerOiBinder(ballTrigger, triggerMoveBySpeed);
+        new BallTriggerOiBinder(ballTrigger);
         return this;
     }
     public DriverOi withLoader(Loader loader) {
