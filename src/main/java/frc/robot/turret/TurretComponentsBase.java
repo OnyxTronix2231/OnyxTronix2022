@@ -2,16 +2,15 @@ package frc.robot.turret;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
-import sensors.counter.CtreCANCoder;
 import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
 
-import java.beans.Encoder;
-
 import static frc.robot.turret.TurretConstants.*;
+import static frc.robot.turret.TurretConstants.Calculation.degreesToEncoderUnits;
 import static frc.robot.turret.TurretConstants.RobotConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {
@@ -23,6 +22,7 @@ public class TurretComponentsBase implements TurretComponents {
     public TurretComponentsBase() {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
+        motor.configAllSettings(getTalonFxConfiguration());
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
         motor.setSelectedSensorPosition(
                 motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
@@ -31,6 +31,15 @@ public class TurretComponentsBase implements TurretComponents {
         this.encoder = new TalonEncoder(motor);
         controller = new CtreMotionMagicController(
                 motor, this.encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
+    }
+
+    public TalonFXConfiguration getTalonFxConfiguration() {
+        TalonFXConfiguration config = new TalonFXConfiguration();
+        config.forwardSoftLimitThreshold = degreesToEncoderUnits(MAX_DEG);
+        config.forwardSoftLimitEnable = true;
+        config.reverseSoftLimitThreshold = degreesToEncoderUnits(MIN_DEG);
+        config.reverseSoftLimitEnable = true;
+        return config;
     }
 
     @Override

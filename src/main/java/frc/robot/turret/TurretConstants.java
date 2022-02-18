@@ -10,7 +10,7 @@ public final class TurretConstants {
     /*fixed values*/
     public static final Pose2d TARGET_POS = new Pose2d(0, 0, new Rotation2d()); //TODO: confirm
     public static final int DEG_IN_CIRCLE = 360;
-    public static final int HALF_ROTATION = 180;
+    public static final int DEG_IN_HALF_CIRCLE = 180;
 
     /*PID values*/
     public static final int MAX_ACC = 0; //TODO: calibrate
@@ -40,12 +40,12 @@ public final class TurretConstants {
 
     public static final class Calculation {
 
-        static double degreesToEncoderUnits(double deg) {
-            return (deg * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
+        static double degreesToEncoderUnits(double degree) {
+            return (degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
         }
 
-        public static double encoderUnitsToDegrees(double enc) {
-            return (enc * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+        public static double encoderUnitsToDegrees(double encoderUnits) {
+            return (encoderUnits * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
         }
     }
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
+
 import static frc.robot.turret.TurretConstants.*;
 
 public class YawControl extends Turret {
@@ -20,8 +21,7 @@ public class YawControl extends Turret {
     }
 
     public double getRTFToRTRAngle(double angleRTF) {
-        // this func is correct if both systems enlarge the angle by rotating to the same side
-        return angleRTF - driveTrain.getHeading();
+        return angleRTF - driveTrain.getHeading(); //TODO: find if rotating to same direction
     }
 
     public double getAngleToTargetByPose() {
@@ -29,7 +29,7 @@ public class YawControl extends Turret {
         double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POS.getY()) /
                 (currentPos.getX() - TARGET_POS.getX())));
         if (currentPos.getX() > TARGET_POS.getX())
-            angle += HALF_ROTATION;
+            angle += DEG_IN_HALF_CIRCLE;
         return angle;
     }
 }

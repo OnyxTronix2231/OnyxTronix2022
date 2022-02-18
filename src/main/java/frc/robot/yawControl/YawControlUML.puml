@@ -4,10 +4,10 @@
 abstract class SubsystemBase
 abstract class CommandBase
 
-TurretComponentsBase ----|> TurretComponents
+TurretComponentsBase ---|> TurretComponents
 TurretComponentsBase --* Turret
-Turret ---|> SubsystemBase
-RotateByAngle --|> CommandBase
+Turret --|> SubsystemBase
+RotateByAngle --|> RotateToAngleRTR
 RotateToAngleRTR --|> CommandBase
 RotateByAngleOnce --|> RotateByAngle
 RotateToAngleRTROnce --|> RotateToAngleRTR

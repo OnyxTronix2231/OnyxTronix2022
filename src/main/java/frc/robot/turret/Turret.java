@@ -7,27 +7,18 @@ import static frc.robot.turret.TurretConstants.RobotConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class Turret extends SubsystemBase {
-
     private final TurretComponents components;
+
     private final TurretShuffleBoard turretShuffleBoard;
 
     public Turret(TurretComponents turretComponents) {
         components = turretComponents;
-        configMotorLimits();
-
         turretShuffleBoard = new TurretShuffleBoard(this, components);
     }
 
     @Override
     public void periodic() {
         turretShuffleBoard.update();
-    }
-
-    public void configMotorLimits() {
-        components.getMotor().configForwardSoftLimitThreshold(degreesToEncoderUnits(MAX_DEG));
-        components.getMotor().configForwardSoftLimitEnable(true);
-        components.getMotor().configReverseSoftLimitThreshold(degreesToEncoderUnits(MIN_DEG));
-        components.getMotor().configReverseSoftLimitEnable(true);
     }
 
     public double getCurrentAngleRTR() {
@@ -41,14 +32,6 @@ public class Turret extends SubsystemBase {
 
     public void setSpeed(double speed) {
         components.getMotor().set(speed);
-    }
-
-    public void initMoveByDegree(double deg) {
-        initMoveToDegreeRTR(getCurrentAngleRTR() + deg);
-    }
-
-    public void updateMoveByDegree(double deg) {
-        updateMoveToDegreeRTR(getCurrentAngleRTR() + deg);
     }
 
     public void initMoveToDegreeRTR(double deg) {

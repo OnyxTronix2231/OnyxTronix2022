@@ -7,6 +7,6 @@ import java.util.function.DoubleSupplier;
 public class RotateToAngleRTF extends RotateToAngleRTR {
 
     public RotateToAngleRTF(YawControl yawControl, DoubleSupplier angleSupplier) {
-        super(yawControl,()-> yawControl.getRTFToRTRAngle(angleSupplier.getAsDouble()));
+        super(yawControl, ()-> yawControl.getRTFToRTRAngle(angleSupplier.getAsDouble()));
     }
 }

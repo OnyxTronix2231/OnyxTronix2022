@@ -9,9 +9,9 @@ public class RotateBySpeed extends CommandBase {
     private final Turret turret;
     private final DoubleSupplier speedSupplier;
 
-    public RotateBySpeed(Turret turret, DoubleSupplier speed) {
+    public RotateBySpeed(Turret turret, DoubleSupplier speedSupplier) {
         this.turret = turret;
-        this.speedSupplier = speed;
+        this.speedSupplier = speedSupplier;
         addRequirements(turret);
     }
 

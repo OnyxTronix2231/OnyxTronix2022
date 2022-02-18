@@ -5,8 +5,8 @@ import java.util.function.DoubleSupplier;
 
 public class RotateByAngleOnce extends RotateByAngle {
 
-    public RotateByAngleOnce(Turret turret, DoubleSupplier angelSupplier){
-        super(turret, angelSupplier);
+    public RotateByAngleOnce(Turret turret, DoubleSupplier angleSupplier){
+        super(turret, angleSupplier);
     }
 
     @Override

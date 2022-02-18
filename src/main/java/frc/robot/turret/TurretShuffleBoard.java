@@ -58,4 +58,3 @@ public class TurretShuffleBoard {
                 (int)accSmoothing.getDouble(components.getController().getAccelerationSmoothing()));
     }
 }
-
