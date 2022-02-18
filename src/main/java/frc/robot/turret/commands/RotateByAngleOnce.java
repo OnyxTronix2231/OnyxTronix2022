@@ -5,7 +5,7 @@ import java.util.function.DoubleSupplier;
 
 public class RotateByAngleOnce extends RotateByAngle {
 
-    public RotateByAngleOnce(Turret turret, DoubleSupplier angleSupplier){
+    public RotateByAngleOnce(Turret turret, DoubleSupplier angleSupplier) {
         super(turret, angleSupplier);
     }
 
