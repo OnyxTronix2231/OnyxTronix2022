@@ -2,6 +2,8 @@ package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.turret.Turret;
+import frc.robot.yawControl.YawControl;
 import vision.limelight.Limelight;
 import vision.limelight.target.LimelightTarget;
 import static frc.robot.vision.VisionConstants.*;
@@ -50,7 +52,7 @@ public class Vision extends SubsystemBase {
 
     public double getHorizontalAngleTurretToTargetRTR(Turret turret) {
         if (turretToTargetVectorRTT != null)
-            return turretToTargetVectorRTT.direction() + turret.getAngleRTR();
+            return turretToTargetVectorRTT.direction() + turret.getCurrentAngleRTR();
         return TARGET_NOT_FOUND;
     }
 

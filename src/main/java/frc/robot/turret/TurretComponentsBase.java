@@ -7,6 +7,7 @@ import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.CtreCANCoder;
 import sensors.counter.CtreEncoder;
+import sensors.counter.TalonEncoder;
 
 import java.beans.Encoder;
 
@@ -19,7 +20,7 @@ public class TurretComponentsBase implements TurretComponents {
     private final CtreEncoder encoder;
     private final CtreMotionMagicController controller;
 
-    public TurretComponentsBase(CtreEncoder encoder) {
+    public TurretComponentsBase() {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
         motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
@@ -27,7 +28,7 @@ public class TurretComponentsBase implements TurretComponents {
                 motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
         motor.setNeutralMode(NeutralMode.Brake);
 
-        this.encoder = encoder;
+        this.encoder = new TalonEncoder(motor);
         controller = new CtreMotionMagicController(
                 motor, this.encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
