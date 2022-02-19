@@ -68,6 +68,14 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         field2d = new Field2d();
     }
 
+    public void setNeutralMode(NeutralMode mode) {
+        leftMasterMotor.setNeutralMode(mode);
+        leftSlaveMotor.setNeutralMode(mode);
+        rightMasterMotor.setNeutralMode(mode);
+        rightSlaveMotor.setNeutralMode(mode);
+
+    }
+
     @Override
     public WPI_TalonFX getLeftMasterMotor() {
         return leftMasterMotor;

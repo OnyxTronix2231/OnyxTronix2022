@@ -1,11 +1,13 @@
 package frc.robot.drivetrain;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 
 import java.util.function.DoubleSupplier;
 
@@ -72,6 +74,14 @@ public class DriveTrain extends SubsystemBase {
 
     public void resetOdometryToPose(Translation2d translation) {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
+    }
+
+    public void setNeutralModeToCoast() {
+        driveTrainComponents.setNeutralMode(NeutralMode.Coast);
+    }
+
+    public void setNeutralModeToBrake() {
+        driveTrainComponents.setNeutralMode(NeutralMode.Brake);
     }
 
     public void resetOdometryToPose(Pose2d pose) {
