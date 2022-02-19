@@ -9,9 +9,9 @@ import static frc.robot.drivetrain.DriveTrainConstants.Paths.*;
 public class SecondPathOption extends SequentialCommandGroup {
     public SecondPathOption(DriveTrain driveTrain) {
         super(
-                new MoveByPath(driveTrain, DRIVE_TO_FIRST_BALL),
+                new MoveByPath(driveTrain, PATH_A_FIRST_BALL),
                 // shoot
-                new MoveByPath(driveTrain, path8)
+                new MoveByPath(driveTrain, PATH_B_SECOND_BALL)
         );
     }
 }

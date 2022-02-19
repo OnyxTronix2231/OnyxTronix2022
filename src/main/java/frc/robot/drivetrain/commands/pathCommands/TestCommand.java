@@ -7,20 +7,26 @@ import frc.robot.drivetrain.commands.MoveByPath;
 import static frc.robot.drivetrain.DriveTrainConstants.Paths.*;
 
 public class TestCommand extends SequentialCommandGroup {
+    public TestCommand(DriveTrain driveTrain) {
+        super();
+    }
 
 //    public TestCommand(DriveTrain driveTrain) {
 //        super(new MoveByPath(driveTrain, DRIVE_TO_FIRST_BALL),
-//                // shoot
+//                //collect
+//                //shoot 2 balls
 //                new MoveByPath(driveTrain, DRIVE_TO_SECOND_BALL),
+                    //collect ball
 //                new MoveByPath(driveTrain, DRIVE_TO_THIRD_BALL),
-//                // shoot
+//                // collect
 //                new MoveByPath(driveTrain, path4),
+                    //shoot
 //                new MoveByPath(driveTrain, path5),
-//                // shoot
+//                // collect&shoot
 //                new MoveByPath(driveTrain, path6),
-//                // kick
+//                // collect&kick
 //                new MoveByPath(driveTrain, path7)
-//                // kick
+//                // collect&kick
 //        );
 //    }
 }

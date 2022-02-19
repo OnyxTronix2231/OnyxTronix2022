@@ -7,11 +7,14 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import java.util.function.DoubleSupplier;
+
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrain extends SubsystemBase {
 
     private final DriveTrainComponents driveTrainComponents;
+    public double forwardJoystickValue;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -36,6 +39,7 @@ public class DriveTrain extends SubsystemBase {
 
     public void arcadeDrive(double speed, double rotation) {
         driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation);
+        forwardJoystickValue = speed;
     }
 
     public void stop() {
@@ -74,5 +78,9 @@ public class DriveTrain extends SubsystemBase {
         resetEncoders();
         driveTrainComponents.getOdometry().resetPosition(pose, pose.getRotation());
         driveTrainComponents.getNormelizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
+    }
+
+    public double getForwardJoystickValue() {
+        return forwardJoystickValue;
     }
 }
