@@ -1,7 +1,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+=======
+import frc.robot.Conveyor.loader.Loader;
+import frc.robot.Conveyor.loader.LoaderOiBinder;
+import frc.robot.Conveyor.ballTrigger.BallTriggerOiBinder;
+import frc.robot.Conveyor.ballTrigger.BallTrigger;
+>>>>>>> parent of f38dcfd (fixed acourdung to CR and change ball transfer logic)
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.turret.DriverTurretOiBinder;
@@ -28,6 +35,7 @@ public class DriverOi {
         return this;
     }
 
+<<<<<<< HEAD
     public DriverOi withTurret(Turret turret, Vision vision) {
         Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
         Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
@@ -37,6 +45,16 @@ public class DriverOi {
         Trigger move180 = new JoystickButton(controller, controller.getButtonLeft());
         Trigger byVision = new JoystickButton(controller, controller.getCenterLeft());
         new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, move10, move50, move90, move180, byVision);
+=======
+    public DriverOi withTrigger(BallTrigger ballTrigger) {
+        JoystickButton triggerMoveBySpeed = new JoystickButton(consoleController, consoleController.getButtonDown());
+        new BallTriggerOiBinder(ballTrigger, triggerMoveBySpeed);
+        return this;
+    }
+    public DriverOi withLoader(Loader loader) {
+        JoystickButton loaderMoveBySpeed = new JoystickButton(consoleController, consoleController.getButtonUp());
+        new LoaderOiBinder(loader, loaderMoveBySpeed);
+>>>>>>> parent of f38dcfd (fixed acourdung to CR and change ball transfer logic)
         return this;
     }
 }

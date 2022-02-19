@@ -9,15 +9,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.conveyor.loader.Loader;
-import frc.robot.conveyor.loader.LoaderComponents;
-import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.Conveyor.loader.Loader;
+import frc.robot.Conveyor.loader.LoaderComponents;
+import frc.robot.Conveyor.loader.LoaderComponentsBase;
+import frc.robot.Conveyor.ballTrigger.BallTrigger;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
+import frc.robot.Conveyor.ballTrigger.BallTriggerComponents;
+import frc.robot.Conveyor.ballTrigger.BallTriggerComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
