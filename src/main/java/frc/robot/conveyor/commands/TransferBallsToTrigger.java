@@ -13,9 +13,8 @@ public class TransferBallsToTrigger extends ParallelCommandGroup {
 
     public TransferBallsToTrigger(Loader loader, BallTrigger ballTrigger, DoubleSupplier loaderSpeedSupplier,
                                   DoubleSupplier triggerSpeedSupplier) {
-        super(new MoveTriggerUntilBallInPlace(ballTrigger, triggerSpeedSupplier),
-                new LoaderMoveBySpeed(loader, loaderSpeedSupplier).
-                        deadlineWith(new WaitUntilCommand(() ->
-                                ballTrigger.isBallIdentified() && loader.identifiedBall())));
+        super(new LoaderMoveBySpeed(loader, loaderSpeedSupplier).
+                deadlineWith(new WaitUntilTwoBallsIdentified(loader, ballTrigger).
+                        deadlineWith(new MoveTriggerUntilBallInPlace(ballTrigger, triggerSpeedSupplier))));
     }
 }
