@@ -7,7 +7,7 @@ public interface LoaderComponents {
 
     WPI_TalonFX getMotor();
 
-    TriangulatingRangefinder getBackSensor();
-
     TriangulatingRangefinder getFrontSensor();
+
+    TriangulatingRangefinder getBackSensor();
 }

@@ -14,6 +14,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
+        
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);

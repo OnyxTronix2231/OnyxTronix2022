@@ -14,6 +14,7 @@ public class IntakeBackComponentsBase implements IntakeComponents {
     public IntakeBackComponentsBase() {
         motor = new WPI_TalonFX(BACK_MOTOR_ID);
         motor.configFactoryDefault();
+
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, BACK_SOLENOID_FORWARD_CHANNEL,
                 BACK_SOLENOID_REVERSE_CHANNEL);
     }
@@ -27,5 +28,4 @@ public class IntakeBackComponentsBase implements IntakeComponents {
     public DoubleSolenoid getSolenoid() {
         return solenoid;
     }
-
 }

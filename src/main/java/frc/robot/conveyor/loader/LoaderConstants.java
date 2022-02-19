@@ -7,7 +7,7 @@ public final class LoaderConstants {
     public static class ComponentsConstant {
 
         static final int MOTOR_ID = 0;
-        static final int BACK_SENSOR_CHANNEL = 0;
         static final int FRONT_SENSOR_CHANNEL = 1;
+        static final int BACK_SENSOR_CHANNEL = 0;
     }
 }

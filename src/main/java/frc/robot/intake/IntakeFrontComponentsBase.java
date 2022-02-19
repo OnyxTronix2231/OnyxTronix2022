@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
 
 public class IntakeFrontComponentsBase implements IntakeComponents {
+
     private final WPI_TalonFX motor;
     private final DoubleSolenoid solenoid;
 
