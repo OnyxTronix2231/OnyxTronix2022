@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import static frc.robot.turret.TurretConstants.Calculation.*;
+import static frc.robot.turret.TurretConstants.RobotConstants.*;
 
 public class TurretShuffleBoard {
 
@@ -37,7 +38,7 @@ public class TurretShuffleBoard {
                 components.getController().getAccelerationSmoothing()).getEntry();
 
         Shuffleboard.getTab("Turret").addNumber("AngleRTR DEG", turret::getCurrentAngleRTR);
-        Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", ()-> components.getEncoder().getCount());
+        Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", ()-> components.getEncoder().getCount() % ENCODER_UNITS_IN_ROTATION);
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", ()->
                 encoderUnitsToDegrees(components.getController().getSetpoint()));
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", ()->

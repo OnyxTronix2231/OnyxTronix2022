@@ -6,6 +6,6 @@ import frc.robot.vision.Vision;
 public class RotateByVision extends RotateByAngle {
 
    public RotateByVision(Turret turret, Vision vision) {
-       super(turret, ()-> vision.getHorizontalAngleTurretToTargetRTR(turret));
+       super(turret, vision::getHorizontalAngleTurretToTargetRTT);
    }
 }
