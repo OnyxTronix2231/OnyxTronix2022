@@ -2,8 +2,7 @@ package frc.robot.conveyor.loader;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
-
-import static frc.robot.conveyor.loader.LoaderConstants.*;
+import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 
 public class LoaderComponentsBase implements LoaderComponents {
 

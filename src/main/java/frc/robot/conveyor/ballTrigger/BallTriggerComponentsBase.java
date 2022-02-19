@@ -3,7 +3,8 @@ package frc.robot.conveyor.ballTrigger;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
 
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.MOTOR_ID;
+
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
