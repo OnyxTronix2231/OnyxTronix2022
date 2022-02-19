@@ -2,24 +2,25 @@ package frc.robot.conveyor.loader;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
+
 import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 
 public class LoaderComponentsBase implements LoaderComponents {
 
-    private final WPI_TalonFX loaderMotor;
+    private final WPI_TalonFX motor;
     private final TriangulatingRangefinder backSensor;
     private final TriangulatingRangefinder frontSensor;
 
     public LoaderComponentsBase() {
-        loaderMotor = new WPI_TalonFX(LOADER_MOTOR_ID);
-        loaderMotor.configFactoryDefault();
+        motor = new WPI_TalonFX(MOTOR_ID);
+        motor.configFactoryDefault();
         this.backSensor = new TriangulatingRangefinder(BACK_SENSOR_CHANNEL);
         this.frontSensor = new TriangulatingRangefinder(FRONT_SENSOR_CHANNEL);
     }
 
     @Override
-    public WPI_TalonFX getLoaderMotor() {
-        return loaderMotor;
+    public WPI_TalonFX getMotor() {
+        return motor;
     }
 
     public TriangulatingRangefinder getBackSensor() {

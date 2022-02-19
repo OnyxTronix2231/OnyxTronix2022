@@ -5,7 +5,7 @@ import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 public interface LoaderComponents {
 
-    WPI_TalonFX getLoaderMotor();
+    WPI_TalonFX getMotor();
 
     TriangulatingRangefinder getBackSensor();
 

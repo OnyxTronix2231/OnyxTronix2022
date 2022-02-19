@@ -2,33 +2,33 @@ package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.loader.LoaderConstants.*;
+import static frc.robot.conveyor.loader.LoaderConstants.NO_BALL_DISTANCE;
 
 public class Loader extends SubsystemBase {
 
-    private final LoaderComponents loaderComponents;
+    private final LoaderComponents components;
 
     public Loader(LoaderComponents components) {
-        this.loaderComponents = components;
+        this.components = components;
     }
 
     public void moveLoaderBySpeed(double speed) {
-        loaderComponents.getLoaderMotor().set(speed);
+        components.getMotor().set(speed);
     }
 
     public void stop() {
         moveLoaderBySpeed(0);
     }
 
-    public boolean identifiedBallBack(){
-        return loaderComponents.getBackSensor().getDistance() <= NO_BALL_DISTANCE;
+    public boolean identifiedBallBack() {
+        return components.getBackSensor().getDistance() <= NO_BALL_DISTANCE;
     }
 
-    public boolean identifiedBallFront(){
-        return loaderComponents.getFrontSensor().getDistance() <= NO_BALL_DISTANCE;
+    public boolean identifiedBallFront() {
+        return components.getFrontSensor().getDistance() <= NO_BALL_DISTANCE;
     }
 
-    public boolean identifiedBall(){
+    public boolean identifiedBall() {
         return this.identifiedBallBack() || this.identifiedBallFront();
     }
 }

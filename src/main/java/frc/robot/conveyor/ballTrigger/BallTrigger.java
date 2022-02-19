@@ -3,7 +3,8 @@ package frc.robot.conveyor.ballTrigger;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.DISTANCE_IN_PLACE_MM;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.NORMAL_DISTANCE_MM;
 
 public class BallTrigger extends SubsystemBase {
 

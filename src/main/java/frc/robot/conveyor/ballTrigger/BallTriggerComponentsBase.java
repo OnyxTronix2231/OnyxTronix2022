@@ -1,15 +1,15 @@
 package frc.robot.conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.*;
+import com.revrobotics.Rev2mDistanceSensor;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.MOTOR_ID;
 
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
-    private WPI_TalonSRX motor;
-    private Rev2mDistanceSensor distanceSensor;
+    private final WPI_TalonSRX motor;
+    private final Rev2mDistanceSensor distanceSensor;
 
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
