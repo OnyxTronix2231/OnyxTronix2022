@@ -1,7 +1,8 @@
-package frc.robot.conveyor.ballTrigger.commands;
+package frc.robot.conveyor.ballTrigger;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 import frc.robot.intake.Intake;
 import frc.robot.intake.commands.ClosePiston;
 import frc.robot.intake.commands.IntakeBySpeed;

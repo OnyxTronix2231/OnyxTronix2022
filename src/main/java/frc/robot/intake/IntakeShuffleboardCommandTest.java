@@ -1,4 +1,4 @@
-package frc.robot.intake.commands;
+package frc.robot.intake;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.intake.Intake;
