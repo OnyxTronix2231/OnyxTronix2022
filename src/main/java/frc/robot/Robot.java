@@ -8,10 +8,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.crossPlatform.autonomousCommands.pathCommands.*;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,6 +29,13 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
+    Command UpperTarmac2UpperAllianceBalls;
+    Command UpperTarmacToAllBalls;
+    Command UpTarmacToAllianceAndEnemyBall;
+    Command LowTarmacToAllianceAndEnemyBalls;
+    Command LowTarmacTo1Ball;
+    SendableChooser<Command> autonomousChooser = new SendableChooser<>();
+    Command selectedAutoCommand;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -44,6 +58,17 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
+
+        driveTrain = new DriveTrain(driveTrainComponents);
+        UpperTarmac2UpperAllianceBalls = new UpperTarmacTo2UpperAllianceBalls(driveTrain);
+        UpperTarmacToAllBalls = new UpperTarmacTo5AllianceBalls(driveTrain);
+        UpTarmacToAllianceAndEnemyBall = new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
+        LowTarmacTo1Ball = new LowerTarmacToAlliance1Ball(driveTrain);
+        LowTarmacToAllianceAndEnemyBalls = new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
+
+        new DriversShuffleboard();
+        SmartDashboard.putData(autonomousChooser);
+
     }
 
     /**
@@ -67,12 +92,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-//    new Timer().schedule(new TimerTask() {
-//      @Override
-//      public void run() {
-//        if (isDisabled()) driveTrain.setNeutralModeToCoast();
-//      }
-//    }, 3000);
+    new Timer().schedule(new TimerTask() {
+      @Override
+      public void run() {
+        if (isDisabled()) driveTrain.setNeutralModeToCoast();
+      }
+    }, 3000);
     }
 
     @Override
@@ -84,11 +109,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    selectedAutonomousCommand = autonomousChooser.getSelected();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.schedule();
-//    }
+    driveTrain.setNeutralModeToBrake();
+    selectedAutoCommand = autonomousChooser.getSelected();
+    if (selectedAutoCommand != null) {
+      selectedAutoCommand.schedule();
+    }
     }
 
     /**
@@ -100,10 +125,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.cancel();
-//    }
+    driveTrain.setNeutralModeToBrake();
+    if (selectedAutoCommand != null) {
+      selectedAutoCommand.cancel();
+    }
     }
 
     /**
