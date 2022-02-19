@@ -14,12 +14,4 @@ public class LoadBalls extends ConditionalCommand {
                 new TransferBallsToTrigger(loader, trigger, loaderSpeedSupplier, triggerSpeedSupplier),
                 trigger::isLoadedRev);
     }
-
-    @Override
-    public boolean isFinished() {
-        if (super.isFinished()) {
-            initialize();
-        }
-        return false;
-    }
 }
