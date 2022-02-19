@@ -4,15 +4,21 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class IntakeConstant {
 
-   public static final DoubleSolenoid.Value SOLENOID_OPEN = DoubleSolenoid.Value.kForward;
-   public static final DoubleSolenoid.Value SOLENOID_CLOSE = DoubleSolenoid.Value.kReverse;
+    static final DoubleSolenoid.Value SOLENOID_OPEN = DoubleSolenoid.Value.kForward;
+    static final DoubleSolenoid.Value SOLENOID_CLOSE = DoubleSolenoid.Value.kReverse;
+    static final double INTAKE_SPEED = 0;
 
-   public static final int FORWARD_MOTOR_ID = 0;
-   public static final int BACK_MOTOR_ID = 0;
-   public static final int FORWARD_SOLENOID_FORWARD_CHANNEL = 0;
-   public static final int FORWARD_SOLENOID_REVERSE_CHANNEL = 0;
-   public static final int BACK_SOLENOID_FORWARD_CHANNEL = 0;
-   public static final int BACK_SOLENOID_REVERSE_CHANNEL = 0;
-   public static final int WHEN_MOTOR_SPINNING_CURRENT_SUPPLY = 0 ;
-   public static final double INTAKE_SPEED = 0;
+    public static class ForwardComponentsConstants {
+
+        static final int FORWARD_MOTOR_ID = 5;
+        static final int FORWARD_SOLENOID_FORWARD_CHANNEL = 0;
+        static final int FORWARD_SOLENOID_REVERSE_CHANNEL = 1;
+    }
+
+    public static class BackComponentConstants {
+
+        static final int BACK_MOTOR_ID = 6;
+        static final int BACK_SOLENOID_FORWARD_CHANNEL = 2;
+        static final int BACK_SOLENOID_REVERSE_CHANNEL = 3;
+    }
 }

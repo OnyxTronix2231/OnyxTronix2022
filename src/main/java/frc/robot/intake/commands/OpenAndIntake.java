@@ -7,7 +7,7 @@ import java.util.function.DoubleSupplier;
 
 public class OpenAndIntake extends SequentialCommandGroup {
 
-    private Intake intake;
+    private final Intake intake;
 
     public OpenAndIntake(Intake intake, DoubleSupplier speedSupplier) {
         super(

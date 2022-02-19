@@ -1,11 +1,10 @@
 package frc.robot.intake;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-import static frc.robot.intake.IntakeConstant.*;
+import static frc.robot.intake.IntakeConstant.BackComponentConstants.*;
 
 public class IntakeBackComponentsBase implements IntakeComponents {
 
