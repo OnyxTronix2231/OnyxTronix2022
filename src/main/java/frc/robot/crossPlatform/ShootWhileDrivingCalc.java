@@ -3,7 +3,6 @@ package frc.robot.crossPlatform;
 import edu.wpi.first.wpilibj.drive.Vector2dEx;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.vision.Vector2dEx;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
 public class ShootWhileDrivingCalc {

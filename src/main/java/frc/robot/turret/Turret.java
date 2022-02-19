@@ -3,7 +3,7 @@ package frc.robot.turret;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.turret.TurretConstants.*;
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
+import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class Turret extends SubsystemBase {

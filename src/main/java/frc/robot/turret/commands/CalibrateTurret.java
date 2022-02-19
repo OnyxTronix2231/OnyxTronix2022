@@ -2,8 +2,6 @@ package frc.robot.turret.commands;
 
 import frc.robot.turret.Turret;
 
-import java.util.function.DoubleSupplier;
-
 public class CalibrateTurret extends RotateBySpeed{
 
     public CalibrateTurret(Turret turret) {

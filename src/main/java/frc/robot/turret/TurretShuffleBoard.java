@@ -4,7 +4,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import static frc.robot.turret.TurretConstants.Calculation.*;
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
+import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public class TurretShuffleBoard {
 

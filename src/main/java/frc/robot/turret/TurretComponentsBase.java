@@ -1,6 +1,5 @@
 package frc.robot.turret;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -10,7 +9,7 @@ import sensors.counter.TalonEncoder;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.degreesToEncoderUnits;
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
+import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {
 

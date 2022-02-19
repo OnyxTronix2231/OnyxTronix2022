@@ -3,7 +3,7 @@ package frc.robot.turret;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
+import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public final class TurretConstants {
 
@@ -26,15 +26,15 @@ public final class TurretConstants {
     public static final double TOLERANCE_DEGREES = 0.5; //TODO: Correct the number
     public static final double DEFAULT_TURRET_SPEED = 0.5;
 
-    public static class RobotConstants {
+    public static class ComponentsConstants {
 
         /*mechanic values*/
-        public static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: Confirm
-        public static final int TURRET_MOTOR_ID = 9;
-        public static final double CONVERSION_RATE = 1.0 / 75;
-        public static final double MAX_DEG = 0; //TODO: Correct the number
-        public static final double MIN_DEG = 0; //TODO: Correct the number
-        public static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
+        static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: Confirm
+        static final int TURRET_MOTOR_ID = 9;
+        static final double CONVERSION_RATE = 1.0 / 75;
+        static final double MAX_DEG = 0; //TODO: Correct the number
+        static final double MIN_DEG = 0; //TODO: Correct the number
+        static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
 
     public static final class Calculation {
