@@ -7,8 +7,8 @@ import frc.robot.drivetrain.commands.MoveByPath;
 import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_B_FIRST_BALL;
 import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_B_SECOND_BALL;
 
-public class PathB extends SequentialCommandGroup {
-    public PathB(DriveTrain driveTrain) {
+public class UpperTarmacTo2UpperAllianceBalls extends SequentialCommandGroup {
+    public UpperTarmacTo2UpperAllianceBalls(DriveTrain driveTrain) {
         super(
                 new MoveByPath(driveTrain, PATH_B_FIRST_BALL),
                 // collecting the ball
