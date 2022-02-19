@@ -1,4 +1,4 @@
-package frc.robot.crossPlatform.teleopCommands;
+package frc.robot.conveyor.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
