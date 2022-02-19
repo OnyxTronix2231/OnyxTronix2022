@@ -9,15 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Conveyor.loader.Loader;
-import frc.robot.Conveyor.loader.LoaderComponents;
-import frc.robot.Conveyor.loader.LoaderComponentsBase;
-import frc.robot.Conveyor.ballTrigger.BallTrigger;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.Conveyor.ballTrigger.BallTriggerComponents;
-import frc.robot.Conveyor.ballTrigger.BallTriggerComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,8 +22,6 @@ import frc.robot.Conveyor.ballTrigger.BallTriggerComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
-    BallTriggerComponents ballTriggerComponents;
-    LoaderComponents loaderComponents;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -42,19 +34,11 @@ public class Robot extends TimedRobot {
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            loaderComponents = new LoaderComponentsBase();
-
-
         } else {
             driveTrainComponents = null;
-            ballTriggerComponents = null;
-            loaderComponents = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        BallTrigger ballTrigger = new BallTrigger(ballTriggerComponents);
-        Loader loader = new Loader(loaderComponents);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
