@@ -27,7 +27,7 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrainComponents driveTrainComponents;
+    DriveTrain driveTrain;
     BallTriggerComponents ballTriggerComponents;
     LoaderComponents loaderComponents;
 
@@ -38,24 +38,25 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        DriveTrainComponents driveTrainComponents;
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
             loaderComponents = new LoaderComponentsBase();
 
 
-        } else{
+        } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;
             loaderComponents = null;
         }
 
-        DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
+        driveTrain = new DriveTrain(driveTrainComponents);
         BallTrigger ballTrigger = new BallTrigger(ballTriggerComponents);
         Loader loader = new Loader(loaderComponents);
 
-
-        new DriverOi().withDriveTrain(driveTrain).withTrigger(ballTrigger).withLoader(loader);
+        new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
         new DriversShuffleboard();
