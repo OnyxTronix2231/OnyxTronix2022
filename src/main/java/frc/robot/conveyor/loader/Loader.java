@@ -20,16 +20,12 @@ public class Loader extends SubsystemBase {
         moveLoaderBySpeed(0);
     }
 
-    public boolean isStuck() {
-        return loaderComponents.getLoaderMotor().getSupplyCurrent() > NORMAL_AMP;
-    }
-
     public boolean identifiedBallBack(){
-        return loaderComponents.getBackSensor().getDistance() < NO_BALL_DISTANCE;
+        return loaderComponents.getBackSensor().getDistance() <= NO_BALL_DISTANCE;
     }
 
     public boolean identifiedBallFront(){
-        return loaderComponents.getFrontSensor().getDistance() < NO_BALL_DISTANCE;
+        return loaderComponents.getFrontSensor().getDistance() <= NO_BALL_DISTANCE;
     }
 
     public boolean identifiedBall(){
