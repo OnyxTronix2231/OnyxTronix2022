@@ -8,11 +8,11 @@ public class IntakeConstant {
     static final DoubleSolenoid.Value SOLENOID_CLOSE = DoubleSolenoid.Value.kReverse;
     static final double INTAKE_SPEED = 0;
 
-    public static class ForwardComponentsConstants {
+    public static class FrontComponentsConstants {
 
-        static final int FORWARD_MOTOR_ID = 5;
-        static final int FORWARD_SOLENOID_FORWARD_CHANNEL = 0;
-        static final int FORWARD_SOLENOID_REVERSE_CHANNEL = 1;
+        static final int FRONT_MOTOR_ID = 5;
+        static final int FRONT_SOLENOID_FORWARD_CHANNEL = 0;
+        static final int FRONT_SOLENOID_REVERSE_CHANNEL = 1;
     }
 
     public static class BackComponentConstants {

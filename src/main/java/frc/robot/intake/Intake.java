@@ -1,7 +1,9 @@
 package frc.robot.intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.intake.commands.OpenAndCloseAsNeeded;
 
 import static frc.robot.intake.IntakeConstant.SOLENOID_CLOSE;
 import static frc.robot.intake.IntakeConstant.SOLENOID_OPEN;

@@ -10,8 +10,10 @@ import static frc.robot.intake.IntakeConstant.INTAKE_SPEED;
 
 public class IntakeOiBinder {
 
-    public IntakeOiBinder(DriveTrain driveTrain, Intake intakeForward, Intake intakeBack, JoystickAxis openAndIntakeTwoSides, DoubleSupplier IntakeSpeedSupplier) {
-        openAndIntakeTwoSides.whileActiveContinuous(new IntakeByDriveTrain(intakeForward, intakeBack, () -> INTAKE_SPEED, driveTrain));
+    public IntakeOiBinder(DriveTrain driveTrain, Intake intakeForward, Intake intakeBack,
+                          JoystickAxis openAndIntakeTwoSides, DoubleSupplier IntakeSpeedSupplier) {
+        openAndIntakeTwoSides.whileActiveContinuous(new IntakeByDriveTrain(intakeForward, intakeBack,
+                () -> INTAKE_SPEED, driveTrain));
     }
 }
 

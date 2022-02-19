@@ -12,9 +12,7 @@ public class IntakeBySpeed extends CommandBase {
 
     public IntakeBySpeed(Intake intake, DoubleSupplier speedSupplier) {
         this.intake = intake;
-
         this.speedSupplier = speedSupplier;
-
         addRequirements(intake);
     }
 
