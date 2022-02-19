@@ -12,6 +12,6 @@ public class LoadBalls extends ConditionalCommand {
                      DoubleSupplier triggerSpeedSupplier) {
         super(new LoadUntilBallIInPlace(loader, loaderSpeedSupplier),
                 new TransferBallsToTrigger(loader, ballTrigger, loaderSpeedSupplier, triggerSpeedSupplier),
-                ballTrigger::isLoadedRev);
+                ballTrigger::isBallInPlace);
     }
 }

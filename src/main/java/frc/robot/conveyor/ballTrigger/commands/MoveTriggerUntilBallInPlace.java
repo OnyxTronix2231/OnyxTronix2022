@@ -9,6 +9,6 @@ import java.util.function.DoubleSupplier;
 public class MoveTriggerUntilBallInPlace extends ParallelDeadlineGroup {
 
     public MoveTriggerUntilBallInPlace(BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
-        super(new WaitUntilCommand(ballTrigger::isLoadedRev), new TriggerMoveBySpeed(ballTrigger, speedSupplier));
+        super(new WaitUntilCommand(ballTrigger::isBallInPlace), new TriggerMoveBySpeed(ballTrigger, speedSupplier));
     }
 }

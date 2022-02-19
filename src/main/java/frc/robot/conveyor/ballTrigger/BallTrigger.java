@@ -7,24 +7,24 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTrigger extends SubsystemBase {
 
-    private final BallTriggerComponents triggerComponents;
+    private final BallTriggerComponents components;
 
-    public BallTrigger(BallTriggerComponents triggerComponents) {
-        this.triggerComponents = triggerComponents;
+    public BallTrigger(BallTriggerComponents components) {
+        this.components = components;
     }
 
     public void moveTriggerBySpeed(double speed) {
-        triggerComponents.getMotor().set(speed);
+        components.getMotor().set(speed);
     }
 
-    public boolean isLoadedRev() {
-        return triggerComponents.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= DISTANCE_TO_STOP_IN_MM;
+    public boolean isBallInPlace() {
+        return components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= DISTANCE_IN_PLACE_MM;
     }
 
-    public boolean isHalfLoadedRev() {
-        return triggerComponents.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= TRIGGER_HALF_LOADED;
+    public boolean isBallIdentified() {
+        return components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= NORMAL_DISTANCE_MM;
     }
 
     public void stop() {
