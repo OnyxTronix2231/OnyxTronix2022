@@ -29,12 +29,7 @@ import java.util.TimerTask;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
-    Command UpperTarmac2UpperAllianceBalls;
-    Command UpperTarmacToAllBalls;
-    Command UpTarmacToAllianceAndEnemyBall;
-    Command LowTarmacToAllianceAndEnemyBalls;
-    Command LowTarmacTo1Ball;
-    SendableChooser<Command> autonomousChooser = new SendableChooser<>();
+    DriversShuffleboard driversShuffleboard;
     Command selectedAutoCommand;
 
     /**
@@ -57,17 +52,7 @@ public class Robot extends TimedRobot {
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
-        new DriversShuffleboard();
-
-        driveTrain = new DriveTrain(driveTrainComponents);
-        UpperTarmac2UpperAllianceBalls = new UpperTarmacTo2UpperAllianceBalls(driveTrain);
-        UpperTarmacToAllBalls = new UpperTarmacTo5AllianceBalls(driveTrain);
-        UpTarmacToAllianceAndEnemyBall = new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
-        LowTarmacTo1Ball = new LowerTarmacToAlliance1Ball(driveTrain);
-        LowTarmacToAllianceAndEnemyBalls = new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
-
-        new DriversShuffleboard();
-        SmartDashboard.putData(autonomousChooser);
+         driversShuffleboard = new  DriversShuffleboard(driveTrain);
 
     }
 
@@ -110,7 +95,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
     driveTrain.setNeutralModeToBrake();
-    selectedAutoCommand = autonomousChooser.getSelected();
+    selectedAutoCommand = driversShuffleboard.autonomousChooser.getSelected();
     if (selectedAutoCommand != null) {
       selectedAutoCommand.schedule();
     }
