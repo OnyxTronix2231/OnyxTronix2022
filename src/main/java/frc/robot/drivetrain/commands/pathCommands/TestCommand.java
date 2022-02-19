@@ -12,8 +12,15 @@ public class TestCommand extends SequentialCommandGroup {
         super(new MoveByPath(driveTrain, DRIVE_TO_FIRST_BALL),
                 // shoot
                 new MoveByPath(driveTrain, DRIVE_TO_SECOND_BALL),
-                new MoveByPath(driveTrain, DRIVE_TO_THIRD_BALL)
+                new MoveByPath(driveTrain, DRIVE_TO_THIRD_BALL),
                 // shoot
+                new MoveByPath(driveTrain, path4),
+                new MoveByPath(driveTrain, path5),
+                // shoot
+                new MoveByPath(driveTrain, path6),
+                // kick
+                new MoveByPath(driveTrain, path7)
+                // kick
         );
     }
 }
