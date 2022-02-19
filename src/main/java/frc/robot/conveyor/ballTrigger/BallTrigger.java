@@ -14,16 +14,19 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public void moveTriggerBySpeed(double speed) {
-        triggerComponents.getTriggerMotor().set(speed);
+        triggerComponents.getMotor().set(speed);
     }
 
     public boolean isLoadedRev() {
-        return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= DISTANCE_TO_STOP_IN_MM;
+        return triggerComponents.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= DISTANCE_TO_STOP_IN_MM;
     }
-    public boolean isHalfLoadedRev(){
-        return triggerComponents.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= TRIGGER_HALF_LOADED;
+
+    public boolean isHalfLoadedRev() {
+        return triggerComponents.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= TRIGGER_HALF_LOADED;
     }
-    
+
     public void stop() {
         moveTriggerBySpeed(0);
     }

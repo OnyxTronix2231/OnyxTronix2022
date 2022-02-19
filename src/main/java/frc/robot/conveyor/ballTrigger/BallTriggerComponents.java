@@ -5,7 +5,7 @@ import com.revrobotics.Rev2mDistanceSensor;
 
 public interface BallTriggerComponents {
 
-    WPI_TalonSRX getTriggerMotor();
+    WPI_TalonSRX getMotor();
 
     Rev2mDistanceSensor getDistanceSensorUp();
 }

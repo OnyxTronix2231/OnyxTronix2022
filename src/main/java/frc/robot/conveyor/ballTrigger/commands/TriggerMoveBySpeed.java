@@ -6,27 +6,27 @@ import java.util.function.DoubleSupplier;
 
 public class TriggerMoveBySpeed extends CommandBase {
 
-    private final BallTrigger trigger;
+    private final BallTrigger ballTrigger;
     private final DoubleSupplier speedSupplier;
 
-    public TriggerMoveBySpeed(BallTrigger trigger, DoubleSupplier doubleSupplier) {
-        this.trigger = trigger;
+    public TriggerMoveBySpeed(BallTrigger ballTrigger, DoubleSupplier doubleSupplier) {
+        this.ballTrigger = ballTrigger;
         this.speedSupplier = doubleSupplier;
-        addRequirements(trigger);
+        addRequirements(ballTrigger);
     }
 
     @Override
     public void initialize() {
-        trigger.stop();
+        ballTrigger.stop();
     }
 
     @Override
     public void execute() {
-        trigger.moveTriggerBySpeed(speedSupplier.getAsDouble());
+        ballTrigger.moveTriggerBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        trigger.stop();
+        ballTrigger.stop();
     }
 }

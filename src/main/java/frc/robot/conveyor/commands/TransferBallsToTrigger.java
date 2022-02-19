@@ -11,10 +11,10 @@ import java.util.function.DoubleSupplier;
 
 public class TransferBallsToTrigger extends ParallelCommandGroup {
 
-    public TransferBallsToTrigger(Loader loader, BallTrigger trigger, DoubleSupplier loaderSpeedSupplier,
+    public TransferBallsToTrigger(Loader loader, BallTrigger ballTrigger, DoubleSupplier loaderSpeedSupplier,
                                   DoubleSupplier triggerSpeedSupplier) {
-        super(new MoveTriggerUntilBallInPlace(trigger, triggerSpeedSupplier),
+        super(new MoveTriggerUntilBallInPlace(ballTrigger, triggerSpeedSupplier),
                 new LoaderMoveBySpeed(loader, loaderSpeedSupplier).
-                        deadlineWith(new WaitUntilCommand(() -> trigger.isHalfLoadedRev() && loader.identifiedBall())));
+                        deadlineWith(new WaitUntilCommand(() -> ballTrigger.isHalfLoadedRev() && loader.identifiedBall())));
     }
 }

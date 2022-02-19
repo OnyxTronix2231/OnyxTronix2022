@@ -8,10 +8,10 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import java.util.function.DoubleSupplier;
 
 public class LoadBalls extends ConditionalCommand {
-    public LoadBalls(BallTrigger trigger, Loader loader, DoubleSupplier loaderSpeedSupplier,
+    public LoadBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier loaderSpeedSupplier,
                      DoubleSupplier triggerSpeedSupplier) {
         super(new LoadUntilBallIInPlace(loader, loaderSpeedSupplier),
-                new TransferBallsToTrigger(loader, trigger, loaderSpeedSupplier, triggerSpeedSupplier),
-                trigger::isLoadedRev);
+                new TransferBallsToTrigger(loader, ballTrigger, loaderSpeedSupplier, triggerSpeedSupplier),
+                ballTrigger::isLoadedRev);
     }
 }
