@@ -1,8 +1,8 @@
-package frc.robot.Conveyor.loader;
+package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.Conveyor.loader.LoaderConstants.*;
+import static frc.robot.conveyor.loader.LoaderConstants.*;
 
 public class Loader extends SubsystemBase {
 

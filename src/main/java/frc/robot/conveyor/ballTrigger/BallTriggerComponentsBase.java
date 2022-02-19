@@ -1,9 +1,8 @@
-package frc.robot.Conveyor.ballTrigger;
+package frc.robot.conveyor.ballTrigger;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
-import static frc.robot.Conveyor.ballTrigger.BallTriggerConstants.*;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 

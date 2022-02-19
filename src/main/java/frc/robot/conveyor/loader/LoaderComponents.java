@@ -1,4 +1,4 @@
-package frc.robot.Conveyor.loader;
+package frc.robot.conveyor.loader;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;

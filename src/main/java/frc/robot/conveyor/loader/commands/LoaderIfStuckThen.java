@@ -1,8 +1,8 @@
-package frc.robot.Conveyor.loader.commands;
+package frc.robot.conveyor.loader.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Conveyor.loader.Loader;
+import frc.robot.conveyor.loader.Loader;
 
 public class LoaderIfStuckThen extends SequentialCommandGroup {
 

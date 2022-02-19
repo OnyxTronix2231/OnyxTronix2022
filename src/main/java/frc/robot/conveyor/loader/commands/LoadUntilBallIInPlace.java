@@ -1,7 +1,7 @@
-package frc.robot.Conveyor.loader.commands;
+package frc.robot.conveyor.loader.commands;
 
 import edu.wpi.first.wpilibj2.command.*;
-import frc.robot.Conveyor.loader.Loader;
+import frc.robot.conveyor.loader.Loader;
 
 import java.util.function.DoubleSupplier;
 

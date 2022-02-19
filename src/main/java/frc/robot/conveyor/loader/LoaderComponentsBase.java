@@ -1,11 +1,11 @@
-package frc.robot.Conveyor.loader;
+package frc.robot.conveyor.loader;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
-import static frc.robot.Conveyor.loader.LoaderConstants.*;
-import static frc.robot.Conveyor.ballTrigger.BallTriggerConstants.BACK_SENSOR_CHANNEL;
-import static frc.robot.Conveyor.ballTrigger.BallTriggerConstants.FRONT_SENSOR_CHANNEL;
+import static frc.robot.conveyor.loader.LoaderConstants.*;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.BACK_SENSOR_CHANNEL;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.FRONT_SENSOR_CHANNEL;
 
 public class LoaderComponentsBase implements LoaderComponents {
 

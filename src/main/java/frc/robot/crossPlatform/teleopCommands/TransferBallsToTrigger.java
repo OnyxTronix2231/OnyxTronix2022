@@ -2,10 +2,10 @@ package frc.robot.crossPlatform.teleopCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.Conveyor.loader.Loader;
-import frc.robot.Conveyor.loader.commands.LoaderMoveBySpeed;
-import frc.robot.Conveyor.ballTrigger.BallTrigger;
-import frc.robot.Conveyor.ballTrigger.commands.MoveTriggerUntilBallInPlace;
+import frc.robot.conveyor.loader.Loader;
+import frc.robot.conveyor.loader.commands.LoaderMoveBySpeed;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.commands.MoveTriggerUntilBallInPlace;
 
 import java.util.function.DoubleSupplier;
 

@@ -1,5 +1,5 @@
 
-package frc.robot.Conveyor.ballTrigger;
+package frc.robot.conveyor.ballTrigger;
 
 public final class BallTriggerConstants {
 

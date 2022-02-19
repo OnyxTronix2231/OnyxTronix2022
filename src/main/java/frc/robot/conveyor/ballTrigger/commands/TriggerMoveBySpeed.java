@@ -1,7 +1,7 @@
-package frc.robot.Conveyor.ballTrigger.commands;
+package frc.robot.conveyor.ballTrigger.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
 import java.util.function.DoubleSupplier;
 
 public class TriggerMoveBySpeed extends CommandBase {

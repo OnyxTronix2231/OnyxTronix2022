@@ -1,10 +1,10 @@
-package frc.robot.Conveyor.ballTrigger;
+package frc.robot.conveyor.ballTrigger;
 
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.Conveyor.loader.LoaderConstants.NORMAL_AMP;
-import static frc.robot.Conveyor.ballTrigger.BallTriggerConstants.*;
+import static frc.robot.conveyor.loader.LoaderConstants.NORMAL_AMP;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTrigger extends SubsystemBase {
 
