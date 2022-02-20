@@ -15,5 +15,6 @@ public class LoaderShuffleboardCommandTest {
                 0.0).getEntry();
         Shuffleboard.getTab("loader").add(new MoveLoaderBySpeed(loader,
                 ()->loaderSpeed.getDouble(0)));
+        Shuffleboard.getTab("loader").addBoolean("isIdentify",()->loader.identifiedBallBack());
     }
 }

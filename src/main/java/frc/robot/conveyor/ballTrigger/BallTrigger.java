@@ -20,15 +20,22 @@ public class BallTrigger extends SubsystemBase {
 
     public boolean isBallInPlace() {
         return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= DISTANCE_IN_PLACE_MM;
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) >= DISTANCE_IN_PLACE_MM && components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
     }
 
     public boolean isBallIdentified() {
         return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= NORMAL_DISTANCE_MM;
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= NORMAL_DISTANCE_MM && components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
     }
 
     public void stop() {
         moveTriggerBySpeed(0);
+    }
+
+    public double getDistance() {
+        return components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters);
     }
 }

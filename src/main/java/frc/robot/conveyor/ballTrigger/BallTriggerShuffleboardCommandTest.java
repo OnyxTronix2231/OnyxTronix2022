@@ -16,5 +16,9 @@ public class BallTriggerShuffleboardCommandTest {
                 0.0).getEntry();
         Shuffleboard.getTab("ballTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 ()->ballTriggerSpeed.getDouble(0)));
+
+        Shuffleboard.getTab("ballTrigger").addNumber("distance", ()-> ballTrigger.getDistance());
+        Shuffleboard.getTab("ballTrigger").addBoolean("isBallIdentify", () -> ballTrigger.isBallIdentified());
+        Shuffleboard.getTab("ballTrigger").addBoolean("isBallInPlace", ()-> ballTrigger.isBallInPlace());
     }
 }

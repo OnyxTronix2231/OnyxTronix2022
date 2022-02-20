@@ -11,8 +11,8 @@ public class Loader extends SubsystemBase {
 
     public Loader(LoaderComponents components) {
         this.components = components;
-        Shuffleboard.getTab("loader").addNumber("distance",() ->components.getBackSensor().getDistance());
-        Shuffleboard.getTab("loader").addNumber("voltage",()->components.getBackSensor().getVoltage());
+        Shuffleboard.getTab("loader").addNumber("distance", () -> components.getBackSensor().getDistance());
+        Shuffleboard.getTab("loader").addNumber("voltage", () -> components.getBackSensor().getVoltage());
     }
 
     public void moveLoaderBySpeed(double speed) {
@@ -24,14 +24,14 @@ public class Loader extends SubsystemBase {
     }
 
     public boolean identifiedBallBack() {
-        return components.getBackSensor().getDistance() <= NO_BALL_DISTANCE;
+        return components.getBackSensor().getVoltage() >= 1.7 && components.getBackSensor().getVoltage() <= 2.5;
     }
 
     public boolean identifiedBallFront() {
-        return components.getFrontSensor().getDistance() <= NO_BALL_DISTANCE;
+        return components.getFrontSensor().getVoltage() >= 1.7 && components.getFrontSensor().getVoltage() <= 2.5;
     }
 
-    public boolean identifiedBall() {
-        return this.identifiedBallBack() || this.identifiedBallFront();
+    public boolean identifiedBall() { //TODO return back check
+        return identifiedBallBack();
     }
 }

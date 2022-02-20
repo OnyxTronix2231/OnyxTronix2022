@@ -2,6 +2,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.conveyor.DriverConveyorOiBinder;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.turret.DriverTurretOiBinder;
@@ -9,6 +12,7 @@ import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
+import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
@@ -18,7 +22,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
+        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {
@@ -37,6 +41,12 @@ public class DriverOi {
         Trigger move180 = new JoystickButton(controller, controller.getButtonLeft());
         Trigger byVision = new JoystickButton(controller, controller.getCenterLeft());
         new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, move10, move50, move90, move180, byVision);
+        return this;
+    }
+
+    public DriverOi withConveyor(Loader loader, BallTrigger ballTrigger){
+        Trigger load = new JoystickButton(controller, controller.getButtonUp());
+        new DriverConveyorOiBinder(loader, ballTrigger, load);
         return this;
     }
 }
