@@ -9,10 +9,4 @@ public class WaitUntilTwoBallsIdentified extends WaitUntilCommand {
     public WaitUntilTwoBallsIdentified(Loader loader, BallTrigger ballTrigger) {
         super(() -> (ballTrigger.isBallIdentified() && loader.identifiedBall()));
     }
-
-    @Override
-    public void end(boolean interrupted) {
-        super.end(interrupted);
-        System.out.println("ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-    }
 }
