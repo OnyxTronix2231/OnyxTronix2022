@@ -8,11 +8,11 @@ import java.util.function.BooleanSupplier;
 
 import static frc.robot.climber.commands.ClimberCommandConstants.CLIMBER_DELAY_TIME;
 
-public class WaitUntilHallEffectOpenedAgain extends SequentialCommandGroup {
+public class WaitUntilHallEffectClosedAgain extends SequentialCommandGroup {
 
-    public WaitUntilHallEffectOpenedAgain(BooleanSupplier isHallEffectClosed) {
-        super(new WaitUntilHallEffect(isHallEffectClosed),
-                new WaitUntilCommand(()->!isHallEffectClosed.getAsBoolean()),
+    public WaitUntilHallEffectClosedAgain(BooleanSupplier isHallEffectClosed) {
+        super(new WaitUntilHallEffect( ()-> !isHallEffectClosed.getAsBoolean()),
+                new WaitUntilCommand(isHallEffectClosed),
                 new WaitCommand(CLIMBER_DELAY_TIME));
     }
 

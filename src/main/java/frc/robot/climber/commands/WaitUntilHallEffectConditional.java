@@ -5,7 +5,7 @@ import java.util.function.BooleanSupplier;
 
 public class WaitUntilHallEffectConditional extends ConditionalCommand {
     public WaitUntilHallEffectConditional(BooleanSupplier isHallEffectClosed, boolean isInner) {
-        super(new WaitUntilHallEffectOpenedAgain(isHallEffectClosed),
+        super(new WaitUntilHallEffectClosedAgain(isHallEffectClosed),
                 new WaitUntilHallEffect(isHallEffectClosed), ()->isInner);
     }
 }
