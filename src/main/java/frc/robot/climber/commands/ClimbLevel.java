@@ -9,9 +9,8 @@ import static frc.robot.climber.commands.ClimberCommandConstants.*;
 public class ClimbLevel extends SequentialCommandGroup {
 
     public ClimbLevel(Climber climber, DoubleSupplier speedSupplier) {
-        super(new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterHallEffectClosed, OUTER_HALL_EFFECT),
-                new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(),
-                        climber::isInnerHallEffectClosed, INNER_HALL_EFFECT),
+        super(new MoveRailUntilConditions(climber, speedSupplier, climber::isOuterHallEffectClosed),
+                new MoveRailUntilConditions(climber, () -> -speedSupplier.getAsDouble(), climber::isInnerHallEffectClosed),
                 new MoveRailByDistance(climber, () -> DISCONNECT_DISTANCE));
     }
 }

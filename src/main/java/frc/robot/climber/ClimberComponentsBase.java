@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
+import sensors.Switch.Microswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
@@ -16,8 +17,8 @@ public class ClimberComponentsBase implements ClimberComponents {
     private WPI_TalonFX railMotorSlave;
     private WPI_TalonFX armMotorRight;
     private WPI_TalonFX armMotorLeft;
-    private DigitalInput outerHallEffect;
-    private DigitalInput innerHallEffect;
+    private Microswitch outerMicroSwitch;
+    private Microswitch innerMicroSwitch;
     private CtreMotionMagicController rightArmMotionMagicController;
     private CtreMotionMagicController leftArmMotionMagicController;
     private CtreMotionMagicController railMotionMagicController;
@@ -40,8 +41,8 @@ public class ClimberComponentsBase implements ClimberComponents {
         armMotorLeft = new WPI_TalonFX(ARM_LEFT_MOTOR_ID);
         armMotorLeft.configFactoryDefault();
 
-        outerHallEffect = new DigitalInput(0);
-        innerHallEffect = new DigitalInput(INNER_HALL_EFFECT_CHANNEL);
+        outerMicroSwitch = new Microswitch(new DigitalInput(0));
+        innerMicroSwitch = new Microswitch(new DigitalInput(INNER_HALL_EFFECT_CHANNEL));
         rightArmEncoder = new TalonEncoder(armMotorRight);
         leftArmEncoder = new TalonEncoder(armMotorLeft);
         railEncoder = new TalonEncoder(railMotorMaster);
@@ -103,12 +104,12 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public DigitalInput getOuterHallEffect() {
-        return outerHallEffect;
+    public Microswitch getOuterMicroSwitch() {
+        return outerMicroSwitch;
     }
 
     @Override
-    public DigitalInput getInnerHallEffect() {
-        return innerHallEffect;
+    public Microswitch getInnerMicroSwitch() {
+        return innerMicroSwitch;
     }
 }
