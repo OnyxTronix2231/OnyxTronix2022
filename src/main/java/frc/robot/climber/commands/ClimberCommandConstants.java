@@ -8,6 +8,6 @@ public class ClimberCommandConstants {
     static final double DISCONNECT_DISTANCE = 10; //TODO: Check and change
     static final double ARM_OPEN_DISTANCE = 1; //TODO: Check and change
     static final double ARM_CLOSE_DISTANCE = -1; //TODO: Check and change
-    static final boolean OUTER_HALL_EFFECT = false;
-    static final boolean INNER_HALL_EFFECT = true;
+    static final double RAIL_SAFETY_DISTANCE = 0.1;
+
 }

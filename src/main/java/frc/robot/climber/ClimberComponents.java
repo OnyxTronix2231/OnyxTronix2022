@@ -29,4 +29,8 @@ public interface ClimberComponents {
     Microswitch getOuterMicroSwitch();
 
     Microswitch getInnerMicroSwitch();
+
+    DigitalInput getLeftArmLimitSwitch();
+
+    DigitalInput getRightArmLimitSwitch();
 }

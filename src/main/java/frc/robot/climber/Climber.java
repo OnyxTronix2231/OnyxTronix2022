@@ -94,4 +94,12 @@ public class Climber extends SubsystemBase {
     public void setFirstPhase(boolean firstPhase) {
         this.firstPhase = firstPhase;
     }
+
+    public void setRailInitialPosition() {
+        components.getRailCounter().reset();
+    }
+    public void setArmsInitialPosition() {
+        components.getArmCounterRight().reset();
+        components.getArmCounterLeft().reset();
+    }
 }

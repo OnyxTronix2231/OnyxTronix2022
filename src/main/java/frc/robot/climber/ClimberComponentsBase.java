@@ -25,6 +25,8 @@ public class ClimberComponentsBase implements ClimberComponents {
     private CtreEncoder leftArmEncoder;
     private CtreEncoder rightArmEncoder;
     private CtreEncoder railEncoder;
+    private DigitalInput leftArmLimitSwitch;
+    private DigitalInput rightArmLimitSwitch;
 
     public ClimberComponentsBase() {
         railMotorMaster = new WPI_TalonFX(RAIL_MASTER_MOTOR_ID);
@@ -56,6 +58,9 @@ public class ClimberComponentsBase implements ClimberComponents {
         railMotionMagicController = new CtreMotionMagicController(railMotorMaster, railEncoder,
                 new PIDFTerms(RAIL_KP, RAIL_KI, RAIL_KD, RAIL_KF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
+
+        leftArmLimitSwitch = new DigitalInput(3);
+        rightArmLimitSwitch = new DigitalInput(4);
     }
 
     @Override
@@ -111,5 +116,15 @@ public class ClimberComponentsBase implements ClimberComponents {
     @Override
     public Microswitch getInnerMicroSwitch() {
         return innerMicroSwitch;
+    }
+
+    @Override
+    public DigitalInput getLeftArmLimitSwitch() {
+        return leftArmLimitSwitch;
+    }
+
+    @Override
+    public DigitalInput getRightArmLimitSwitch() {
+        return rightArmLimitSwitch;
     }
 }
