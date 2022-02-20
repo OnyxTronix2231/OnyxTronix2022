@@ -10,7 +10,5 @@ public class DriverDriveTrainOiBinders {
 
     public DriverDriveTrainOiBinders(DriveTrain driveTrain, JoystickAxis leftJoystick, JoystickAxis rightJoystick) {
         new DriveByJoystick(driveTrain, leftJoystick, rightJoystick);
-        //buttonA.whenActive(new TestCommand(driveTrain));
-        //buttonB.whenActive(new SecondPathOption(driveTrain));
     }
 }
