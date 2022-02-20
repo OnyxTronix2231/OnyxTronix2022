@@ -49,7 +49,6 @@ public class Climber extends SubsystemBase {
 
     public void stopRailMotor() {
         moveRailBySpeed(0);
-        components.getRailMotionMagicController().disable();
     }
 
     public void moveRightArmBySpeed(double speed) {
@@ -62,12 +61,10 @@ public class Climber extends SubsystemBase {
 
     public void stopArmLeftMotor() {
         moveLeftArmBySpeed(0);
-        components.getArmLeftMotionMagicController().disable();
     }
 
     public void stopArmRightMotor() {
         moveRightArmBySpeed(0);
-        components.getArmRightMotionMagicController().disable();
     }
     public boolean isInnerHallEffectClosed() {
         return components.getInnerHallEffect().get();

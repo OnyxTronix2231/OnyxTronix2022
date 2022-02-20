@@ -6,7 +6,9 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class MoveRailUntilConditions extends ParallelDeadlineGroup {
-    public MoveRailUntilConditions(Climber climber, DoubleSupplier speedSupplier, BooleanSupplier isMicroSwitchOpen) {
-        super(new ClimbConditions(isMicroSwitchOpen), new MoveRailBySpeed(climber, speedSupplier));
+    public MoveRailUntilConditions(Climber climber, DoubleSupplier speedSupplier, BooleanSupplier isMicroSwitchClosed,
+                                   boolean isInner) {
+        super(new WaitUntilHallEffectConditional(isMicroSwitchClosed, isInner),
+                new MoveRailBySpeed(climber, speedSupplier));
     }
 }
