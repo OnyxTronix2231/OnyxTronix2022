@@ -11,8 +11,7 @@ public class Loader extends SubsystemBase {
 
     public Loader(LoaderComponents components) {
         this.components = components;
-        Shuffleboard.getTab("loader").addNumber("distance", () -> components.getBackSensor().getDistance());
-        Shuffleboard.getTab("loader").addNumber("voltage", () -> components.getBackSensor().getVoltage());
+        new LoaderShuffleboard(this);
     }
 
     public void moveLoaderBySpeed(double speed) {
@@ -23,15 +22,34 @@ public class Loader extends SubsystemBase {
         moveLoaderBySpeed(0);
     }
 
+    //TODO replace it for new sensor
     public boolean identifiedBallBack() {
-        return components.getBackSensor().getVoltage() >= 1.7 && components.getBackSensor().getVoltage() <= 2.5;
+        return components.getBackSensor().getVoltage() >= NO_BALL_DISTANCE && components.getBackSensor().getVoltage() <= 2.5;
+
     }
 
     public boolean identifiedBallFront() {
-        return components.getFrontSensor().getVoltage() >= 1.7 && components.getFrontSensor().getVoltage() <= 2.5;
+        return components.getFrontSensor().getVoltage() >= NO_BALL_DISTANCE && components.getFrontSensor().getVoltage() <= 2.5;
     }
+    /** **/
 
     public boolean identifiedBall() { //TODO return back check
-        return identifiedBallBack();
+        return identifiedBallBack() || identifiedBallFront();
+    }
+
+    public double getVoltageFront(){
+        return components.getFrontSensor().getVoltage();
+    }
+
+    public double getVoltageBack(){
+        return components.getBackSensor().getVoltage();
+    }
+
+    public double getDistanceFront(){
+        return components.getFrontSensor().getDistance();
+    }
+
+    public double getDistanceBack(){
+        return components.getBackSensor().getDistance();
     }
 }

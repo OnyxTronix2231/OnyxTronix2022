@@ -4,7 +4,7 @@ import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.DISTANCE_IN_PLACE_MM;
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.NORMAL_DISTANCE_MM;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.IDENTIFIED_DISTANCE_MM;
 
 public class BallTrigger extends SubsystemBase {
 
@@ -26,7 +26,7 @@ public class BallTrigger extends SubsystemBase {
 
     public boolean isBallIdentified() {
         return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= NORMAL_DISTANCE_MM && components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= IDENTIFIED_DISTANCE_MM && components.getDistanceSensorUp().
                 getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
     }
 

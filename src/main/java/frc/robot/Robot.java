@@ -16,7 +16,7 @@ import frc.robot.conveyor.ballTrigger.BallTriggerShuffleboardCommandTest;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.conveyor.loader.LoaderShuffleboardCommandTest;
+import frc.robot.conveyor.loader.LoaderShuffleboard;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -74,7 +74,6 @@ public class Robot extends TimedRobot {
 
         new DriversShuffleboard();
         new BallTriggerShuffleboardCommandTest(ballTrigger);
-        new LoaderShuffleboardCommandTest(loader);
         new IntakeShuffleboardCommandTest(intakeFront,intakeBack);
     }
 
