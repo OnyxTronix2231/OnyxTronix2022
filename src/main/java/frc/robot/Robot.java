@@ -46,26 +46,28 @@ public class Robot extends TimedRobot {
         DriveTrainComponents driveTrainComponents;
         BallTriggerComponents ballTriggerComponents;
         LoaderComponents loaderComponents;
-        IntakeComponents intakeComponents;
+        IntakeComponents intakeComponentsFront;
+        IntakeComponents intakeComponentsBack;
 
         if (true) {
             driveTrainComponents = new DriveTrainComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
             loaderComponents = new LoaderComponentsBase();
-            intakeComponents = new IntakeFrontComponentsBase();
-            intakeComponents = new IntakeBackComponentsBase();
+            intakeComponentsFront = new IntakeFrontComponentsBase();
+            intakeComponentsBack = new IntakeBackComponentsBase();
         } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;
             loaderComponents = null;
-            intakeComponents = null;
+            intakeComponentsFront = null;
+            intakeComponentsBack = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         loader = new Loader(loaderComponents);
-        intakeFront = new Intake(intakeComponents);
-        intakeBack = new Intake(intakeComponents);
+        intakeFront = new Intake(intakeComponentsFront);
+        intakeBack = new Intake(intakeComponentsBack);
 
         new DriverOi().withConveyor(loader, ballTrigger);
         new DeputyOi();
