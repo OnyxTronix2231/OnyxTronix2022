@@ -15,16 +15,16 @@ public class LoaderShuffleboard {
 
     public LoaderShuffleboard(Loader loader) {
 
-        minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", 0.0).getEntry();
+        minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", IDENTIFY_BALL_MIN).getEntry();
 
-        maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", 0.0).getEntry();
+        maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", IDENTIFY_BALL_MAX).getEntry();
 
         var loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",
                 0.0).getEntry();
         Shuffleboard.getTab("Loader").add(new MoveLoaderBySpeed(loader,
                 () -> loaderSpeed.getDouble(0)));
 
-        Shuffleboard.getTab("Loader").addBoolean("IsIdentify", loader::identifiedBallBack);
+        Shuffleboard.getTab("Loader").addBoolean("IsIdentify", loader::identifiedBall);
         Shuffleboard.getTab("Loader").addNumber("DistanceBack", loader::getDistanceBack);
         Shuffleboard.getTab("Loader").addNumber("VoltageBack", loader::getVoltageBack);
         Shuffleboard.getTab("Loader").addNumber("DistanceFront", loader::getDistanceFront);

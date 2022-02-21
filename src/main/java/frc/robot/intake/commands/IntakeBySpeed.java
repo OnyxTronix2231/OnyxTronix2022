@@ -24,5 +24,6 @@ public class IntakeBySpeed extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         intake.stop();
+        System.out.println("endddd intake by speed");
     }
 }

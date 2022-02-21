@@ -15,9 +15,9 @@ public class BallTriggerShuffleboard {
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
 
 
-        ballInPlaceValue = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", 0.0).getEntry();
+        ballInPlaceValue = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", IN_PLACE_DISTANCE_MM).getEntry();
 
-        identifiedBallValue = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", 0.0).getEntry();
+        identifiedBallValue = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", IDENTIFIED_DISTANCE_MM).getEntry();
 
         var ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
                 0.0).getEntry();
