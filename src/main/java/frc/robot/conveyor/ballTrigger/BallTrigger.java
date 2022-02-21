@@ -11,6 +11,7 @@ public class BallTrigger extends SubsystemBase {
     private final BallTriggerComponents components;
     private final BallTriggerShuffleboard ballTriggerShuffleboard;
 
+
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
         this.ballTriggerShuffleboard = new BallTriggerShuffleboard(this);
@@ -21,17 +22,12 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallInPlace() {
-        return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) >= ballTriggerShuffleboard.ballInPlaceValue.
-                getDouble(0) && components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
+        return getDistance() >= ballTriggerShuffleboard.getBallInPlaceValue() && getDistance() != -1;
     }
 
     public boolean isBallIdentified() {
-        return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) <= ballTriggerShuffleboard.identifiedBallValue.
-                getDouble(0) && components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
+
+        return getDistance() <= ballTriggerShuffleboard.getIdentifiedBallValue() && getDistance() != -1;
     }
 
     public void stop() {
@@ -41,10 +37,5 @@ public class BallTrigger extends SubsystemBase {
     public double getDistance() {
         return components.getDistanceSensorUp().
                 getRange(Rev2mDistanceSensor.Unit.kMillimeters);
-    }
-
-    //TODO CHECK
-    public int getDistanceColor() {
-        return components.getColorSensor().getProximity();// range from 0 - 2047
     }
 }

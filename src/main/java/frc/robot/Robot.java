@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.conveyor.ConveyorShuffleboard;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -17,10 +18,12 @@ import frc.robot.conveyor.ballTrigger.BallTriggerShuffleboard;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.conveyor.loader.commands.MoveLoaderBySpeed;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
 import frc.robot.intake.*;
+import frc.robot.intake.commands.IntakeByDriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -66,14 +69,16 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(driveTrainComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         loader = new Loader(loaderComponents);
-        intakeFront = new Intake(intakeComponentsFront,"front");
-        intakeBack = new Intake(intakeComponentsBack,"back");
+        intakeFront = new Intake(intakeComponentsFront,"Front");
+        intakeBack = new Intake(intakeComponentsBack,"Back");
 
         new DriverOi().withConveyor(loader, ballTrigger);
         new DeputyOi();
 
         new DriversShuffleboard();
         new ConveyorShuffleboard(loader, ballTrigger);
+
+        Shuffleboard.getTab("Intake").add(new IntakeByDriveTrain(intakeFront,intakeBack,()->0.5,driveTrain));
     }
 
     /**

@@ -15,6 +15,10 @@ public class LoaderShuffleboard {
 
     public LoaderShuffleboard(Loader loader) {
 
+        minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", 0.0).getEntry();
+
+        maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", 0.0).getEntry();
+
         var loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",
                 0.0).getEntry();
         Shuffleboard.getTab("Loader").add(new MoveLoaderBySpeed(loader,
@@ -25,10 +29,6 @@ public class LoaderShuffleboard {
         Shuffleboard.getTab("Loader").addNumber("VoltageBack", loader::getVoltageBack);
         Shuffleboard.getTab("Loader").addNumber("DistanceFront", loader::getDistanceFront);
         Shuffleboard.getTab("Loader").addNumber("VoltageFront", loader::getVoltageFront);
-
-        minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", 0.0).getEntry();
-
-        maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", 0.0).getEntry();
     }
 
     public double getMinValueEntry() {

@@ -2,8 +2,8 @@ package frc.robot.conveyor.loader;
 
 public final class LoaderConstants {
 
-    static final double IDENTIFY_BALL_MIN = 0; // TODO CHECK VALUE\
-    static final double IDENTIFY_BALL_MAX = 0;
+    static final double IDENTIFY_BALL_MIN = 1.3; // TODO CHECK VALUE\
+    static final double IDENTIFY_BALL_MAX = 100;
 
     public static class ComponentsConstant {
 

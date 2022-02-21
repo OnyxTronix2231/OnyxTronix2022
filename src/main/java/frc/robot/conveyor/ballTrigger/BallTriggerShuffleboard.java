@@ -9,10 +9,15 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.IN_PLACE_DISTA
 
 public class BallTriggerShuffleboard {
 
-    NetworkTableEntry ballInPlaceValue;
-    NetworkTableEntry identifiedBallValue;
+    private final NetworkTableEntry ballInPlaceValue;
+    private final NetworkTableEntry identifiedBallValue;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
+
+
+        ballInPlaceValue = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", 0.0).getEntry();
+
+        identifiedBallValue = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", 0.0).getEntry();
 
         var ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
                 0.0).getEntry();
@@ -20,13 +25,9 @@ public class BallTriggerShuffleboard {
                 () -> ballTriggerSpeed.getDouble(0)));
 
         Shuffleboard.getTab("BallTrigger").addNumber("Distance", ballTrigger::getDistance);
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor",ballTrigger::getDistanceColor);
+       // Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor",ballTrigger::getDistanceColor);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
-
-        ballInPlaceValue = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", 0.0).getEntry();
-
-        identifiedBallValue = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", 0.0).getEntry();
     }
 
     public double getBallInPlaceValue() {
@@ -34,6 +35,6 @@ public class BallTriggerShuffleboard {
     }
 
     public double getIdentifiedBallValue() {
-        return ballInPlaceValue.getDouble(IDENTIFIED_DISTANCE_MM);
+        return identifiedBallValue.getDouble(IDENTIFIED_DISTANCE_MM);
     }
 }

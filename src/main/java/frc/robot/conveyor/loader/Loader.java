@@ -27,14 +27,14 @@ public class Loader extends SubsystemBase {
 
     //TODO replace it for new sensor
     public boolean identifiedBallBack() {
-        return components.getBackSensor().getVoltage() >= loaderShuffleboard.minValueEntry.getDouble(0) &&
-                components.getBackSensor().getVoltage() <= loaderShuffleboard.maxValueEntry.getDouble(0);
+        return components.getBackSensor().getVoltage() >= loaderShuffleboard.getMinValueEntry() &&
+                components.getBackSensor().getVoltage() <= loaderShuffleboard.getMaxValueEntry();
 
     }
 
     public boolean identifiedBallFront() {
-        return components.getFrontSensor().getVoltage() >= loaderShuffleboard.minValueEntry.getDouble(0) &&
-                components.getFrontSensor().getVoltage() <= loaderShuffleboard.maxValueEntry.getDouble(0);
+        return components.getFrontSensor().getVoltage() >= loaderShuffleboard.getMinValueEntry() &&
+                components.getFrontSensor().getVoltage() <= loaderShuffleboard.getMaxValueEntry();
     }
 
     /**
