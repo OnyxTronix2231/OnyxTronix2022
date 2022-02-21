@@ -66,15 +66,14 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(driveTrainComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         loader = new Loader(loaderComponents);
-        intakeFront = new Intake(intakeComponentsFront);
-        intakeBack = new Intake(intakeComponentsBack);
+        intakeFront = new Intake(intakeComponentsFront,"front");
+        intakeBack = new Intake(intakeComponentsBack,"back");
 
         new DriverOi().withConveyor(loader, ballTrigger);
         new DeputyOi();
 
         new DriversShuffleboard();
         new ConveyorShuffleboard(loader, ballTrigger);
-        new IntakeShuffleboard(intakeFront,intakeBack);
     }
 
     /**

@@ -7,6 +7,7 @@ public class IntakeConstant {
     static final DoubleSolenoid.Value SOLENOID_OPEN = DoubleSolenoid.Value.kForward;
     static final DoubleSolenoid.Value SOLENOID_CLOSE = DoubleSolenoid.Value.kReverse;
     static final double INTAKE_SPEED = 0;
+    public static double JOYSTICK_VALUE = 0;
 
     public static class FrontComponentsConstants {
 

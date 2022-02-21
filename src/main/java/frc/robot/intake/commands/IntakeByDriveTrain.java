@@ -8,12 +8,11 @@ import frc.robot.intake.Intake;
 import java.util.function.DoubleSupplier;
 
 public class IntakeByDriveTrain extends ConditionalCommand {
-    public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier speedSupplier,
-                              DriveTrain driveTrain) {
-        super(new OpenAndIntake(intakeForward, speedSupplier)
-                        .deadlineWith(new WaitUntilCommand(driveTrain.getDrivingDirection() == reversed)),
-                new OpenAndIntake(intakeForward, speedSupplier)
-                        .deadlineWith(new WaitUntilCommand(driveTrain.getDrivingDirection() == forward)),
-                driveTrain.getDrivingDirection() == forward);
+    public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier speedSupplier, DriveTrain driveTrain) {
+        super(new WaitUntilCommand(()->intakeForward.getJoyStickValue() < -0.1)
+                        .deadlineWith(new OpenAndIntake(intakeBack, speedSupplier)),
+                new WaitUntilCommand(()->intakeBack.getJoyStickValue() > 0.1)
+                        .deadlineWith(new OpenAndIntake(intakeForward, speedSupplier)),
+                ()->intakeBack.getJoyStickValue()>0.1);
     }
 }

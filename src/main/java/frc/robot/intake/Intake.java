@@ -11,9 +11,11 @@ import static frc.robot.intake.IntakeConstant.SOLENOID_OPEN;
 public class Intake extends SubsystemBase {
 
     private final IntakeComponents components;
-
-    public Intake(IntakeComponents components) {
+    private final IntakeShuffleboard intakeShuffleboard;
+    public Intake(IntakeComponents components, String name) {
         this.components = components;
+        this.setName(name);
+        this.intakeShuffleboard = new IntakeShuffleboard(this);
     }
 
     public void moveBySpeed(double speed) {
@@ -34,5 +36,9 @@ public class Intake extends SubsystemBase {
 
     public boolean isFrontOpen() {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
+    }
+
+    public double getJoyStickValue(){
+        return intakeShuffleboard.getJoystickValue();
     }
 }
