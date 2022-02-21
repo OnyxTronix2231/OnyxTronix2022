@@ -22,7 +22,6 @@ public class IntakeShuffleboard {
         Shuffleboard.getTab("Intake").add("IntakeFrontSpeed", new IntakeBySpeed(intake, () -> Intake.getDouble(0)));
 
         joyStick = Shuffleboard.getTab("Intake").add("JoystickValue", 0.0).getEntry();
-        Shuffleboard.getTab("Intake").addNumber("JoystickValue", this::getJoystickValue);
     }
 
     public double getJoystickValue() {

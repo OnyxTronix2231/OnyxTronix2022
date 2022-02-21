@@ -27,10 +27,8 @@ public class LoaderShuffleboard {
         Shuffleboard.getTab("Loader").addNumber("VoltageFront", loader::getVoltageFront);
 
         minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", 0.0).getEntry();
-        Shuffleboard.getTab("Loader").addNumber("MinValue", this::getMinValueEntry);
 
         maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", 0.0).getEntry();
-        Shuffleboard.getTab("Loader").addNumber("MaxValue", this::getMaxValueEntry);
     }
 
     public double getMinValueEntry() {

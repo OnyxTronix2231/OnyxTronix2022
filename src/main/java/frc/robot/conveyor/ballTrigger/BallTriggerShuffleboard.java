@@ -25,10 +25,8 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
 
         ballInPlaceValue = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", 0.0).getEntry();
-        Shuffleboard.getTab("BallTrigger").addNumber("InPlaceValue", this::getBallInPlaceValue);
 
         identifiedBallValue = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", 0.0).getEntry();
-        Shuffleboard.getTab("BallTrigger").addNumber("IdentifiedValue", this::getIdentifiedBallValue);
     }
 
     public double getBallInPlaceValue() {
