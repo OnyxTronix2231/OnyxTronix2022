@@ -40,7 +40,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation);
+        System.out.println(rotation * ROTATION_SENSITIVITY);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation * ROTATION_SENSITIVITY);
         forwardJoystickValue = speed;
     }
 

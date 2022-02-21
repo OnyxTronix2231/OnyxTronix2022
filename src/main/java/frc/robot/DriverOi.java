@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.drivetrain.DriveTrain;
@@ -9,6 +10,7 @@ import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
+import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
@@ -18,7 +20,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
+        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {
