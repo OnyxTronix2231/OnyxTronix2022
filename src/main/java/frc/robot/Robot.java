@@ -52,7 +52,6 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         driversShuffleboard = new DriversShuffleboard(driveTrain);
-
     }
 
     /**
