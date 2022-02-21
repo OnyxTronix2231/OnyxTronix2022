@@ -8,14 +8,15 @@ import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_E_ENEMY_BALL;
 import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_E_FIRST_BALL;
 
 public class LowerTarmacToAllianceBallEnemyBalls extends SequentialCommandGroup {
-    public LowerTarmacToAllianceBallEnemyBalls(DriveTrain driveTrain){
+
+    public LowerTarmacToAllianceBallEnemyBalls(DriveTrain driveTrain) {
         super(
                 new MoveByPath(driveTrain, PATH_E_FIRST_BALL),
-                //collecting the ball
-                //shooting 2 balls
+                // TODO: collecting the ball
+                // TODO: shooting 2 balls
                 new MoveByPath(driveTrain, PATH_E_ENEMY_BALL)
-                //collecting the enemy ball
-                //shooting away the enemy ball
+                // TODO: collecting the enemy ball
+                // TODO: shooting away the enemy ball
         );
     }
 }

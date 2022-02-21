@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.ComponentsConstants.*;
 
 public class DriveTrainComponentsBase implements DriveTrainComponents {
 
@@ -73,7 +74,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftSlaveMotor.setNeutralMode(mode);
         rightMasterMotor.setNeutralMode(mode);
         rightSlaveMotor.setNeutralMode(mode);
-
     }
 
     @Override

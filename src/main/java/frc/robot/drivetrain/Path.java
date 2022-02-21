@@ -12,7 +12,9 @@ import java.util.List;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
+
 public class Path {
+
     private final List<Translation2d> middlePoints;
     private final Pose2d endPose;
     private final TrajectoryConfig config;

@@ -9,24 +9,13 @@ import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
 import java.util.List;
 
 public final class DriveTrainConstants {
-    static final int LEFT_MASTER_MOTOR_PORT = 3;
-    static final int LEFT_SLAVE_MOTOR_PORT = 4;
-    static final int RIGHT_MASTER_MOTOR_PORT = 1;
-    static final int RIGHT_SLAVE_MOTOR_PORT = 2;
-    static final int PIGEON_PORT = 0;
 
     static final double ROTATION_SENSITIVITY = 1;
-
-    static final double MAX_OUTPUT_FORWARD = 1;
-    static final double MAX_OUTPUT_REVERSE = -1;
-    static final double CURRENT_LIMIT = 40;
-    static final double TRIGGER_THRESHOLD_CURRENT = 40;
-    static final double TRIGGER_THRESHOLD_TIME = 0.03;
-    static final double RAMP_TIME = 0.3;
+    static final double SPEED_SENSITIVITY = 1;
 
     static final int DECISECOND_IN_SECOND = 10;
     static final int ENCODER_UNITS = 2048;
-    static final double CONVERSION_RATE = 8.4; // TODO: check
+    static final double CONVERSION_RATE = 8.4;
     static final double VOLTS = 12;
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
@@ -34,7 +23,7 @@ public final class DriveTrainConstants {
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
-    static final double TRACKWIDTH_METERS = 0.69; // TODO: check
+    static final double TRACKWIDTH_METERS = 0.68;
     public static final double TRAJECTORY_P = 0;
     static final double KS = 0.68132; // TODO: calibrate
     static final double KV = 2.0333; // TODO: calibrate
@@ -43,6 +32,22 @@ public final class DriveTrainConstants {
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
+
+    public static final class ComponentsConstants {
+
+        static final int RIGHT_MASTER_MOTOR_PORT = 1;
+        static final int RIGHT_SLAVE_MOTOR_PORT = 2;
+        static final int LEFT_MASTER_MOTOR_PORT = 3;
+        static final int LEFT_SLAVE_MOTOR_PORT = 4;
+        static final int PIGEON_PORT = 0;
+
+        static final double MAX_OUTPUT_FORWARD = 1;
+        static final double MAX_OUTPUT_REVERSE = -1;
+        static final double CURRENT_LIMIT = 40;
+        static final double TRIGGER_THRESHOLD_CURRENT = 40;
+        static final double TRIGGER_THRESHOLD_TIME = 0.03;
+        static final double RAMP_TIME = 0.3;
+    }
 
     public static final class Calculations {
 
@@ -63,7 +68,7 @@ public final class DriveTrainConstants {
         }
     }
 
-    public static final class startPoses {
+    public static final class StartPoses {
 
         public static final Pose2d S1 = new Pose2d(2, 3, new Rotation2d(30));
     }

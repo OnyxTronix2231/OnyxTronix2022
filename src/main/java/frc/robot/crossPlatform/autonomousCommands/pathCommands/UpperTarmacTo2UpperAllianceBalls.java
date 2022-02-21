@@ -8,13 +8,14 @@ import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_B_FIRST_BALL;
 import static frc.robot.drivetrain.DriveTrainConstants.Paths.PATH_B_SECOND_BALL;
 
 public class UpperTarmacTo2UpperAllianceBalls extends SequentialCommandGroup {
+
     public UpperTarmacTo2UpperAllianceBalls(DriveTrain driveTrain) {
         super(
                 new MoveByPath(driveTrain, PATH_B_FIRST_BALL),
-                // collecting the ball
-                // shooting 2 balls
+                // TODO: collecting the ball
+                // TODO: shooting 2 balls
                 new MoveByPath(driveTrain, PATH_B_SECOND_BALL)
-                //collecting&shooting
+                // TODO: collecting&shooting
         );
     }
 }

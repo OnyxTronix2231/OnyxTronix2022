@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
-         driversShuffleboard = new  DriversShuffleboard(driveTrain);
+        driversShuffleboard = new DriversShuffleboard(driveTrain);
 
     }
 
@@ -77,12 +77,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-    new Timer().schedule(new TimerTask() {
-      @Override
-      public void run() {
-        if (isDisabled()) driveTrain.setNeutralModeToCoast();
-      }
-    }, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+            }
+        }, 3000);
     }
 
     @Override
@@ -94,11 +94,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-    driveTrain.setNeutralModeToBrake();
-    selectedAutoCommand = driversShuffleboard.autonomousChooser.getSelected();
-    if (selectedAutoCommand != null) {
-      selectedAutoCommand.schedule();
-    }
+        driveTrain.setNeutralModeToBrake();
+        selectedAutoCommand = driversShuffleboard.autonomousChooser.getSelected();
+        if (selectedAutoCommand != null) {
+            selectedAutoCommand.schedule();
+        }
     }
 
     /**
@@ -110,10 +110,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-    driveTrain.setNeutralModeToBrake();
-    if (selectedAutoCommand != null) {
-      selectedAutoCommand.cancel();
-    }
+        driveTrain.setNeutralModeToBrake();
+        if (selectedAutoCommand != null) {
+            selectedAutoCommand.cancel();
+        }
     }
 
     /**
