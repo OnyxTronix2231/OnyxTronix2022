@@ -38,11 +38,12 @@ public class TurretShuffleBoard {
                 components.getController().getAccelerationSmoothing()).getEntry();
 
         Shuffleboard.getTab("Turret").addNumber("AngleRTR DEG", turret::getCurrentAngleRTR);
-        Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", ()-> components.getEncoder().getCount() % ENCODER_UNITS_IN_ROTATION);
-        Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", ()->
+        Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", () -> components.getEncoder().getCount() % ENCODER_UNITS_IN_ROTATION);
+        Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", () ->
                 encoderUnitsToDegrees(components.getController().getSetpoint()));
-        Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", ()->
+        Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
                 components.getController().getSetpoint());
+        Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getSetpoint() - components.getEncoder().getCount()));
     }
 
     public void update() {
@@ -52,10 +53,10 @@ public class TurretShuffleBoard {
                 kD.getDouble(components.getController().getPIDFTerms().getKd()),
                 kF.getDouble(components.getController().getPIDFTerms().getKf()));
         components.getController().setCruiseVelocity(
-                (int)cruiseVel.getDouble(components.getController().getCruiseVelocity()));
+                (int) cruiseVel.getDouble(components.getController().getCruiseVelocity()));
         components.getController().setAcceleration(
-                (int)acceleration.getDouble(components.getController().getAcceleration()));
+                (int) acceleration.getDouble(components.getController().getAcceleration()));
         components.getController().setAccelerationSmoothing(
-                (int)accSmoothing.getDouble(components.getController().getAccelerationSmoothing()));
+                (int) accSmoothing.getDouble(components.getController().getAccelerationSmoothing()));
     }
 }
