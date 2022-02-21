@@ -39,4 +39,8 @@ public class BallTrigger extends SubsystemBase {
         return components.getDistanceSensorUp().
                 getRange(Rev2mDistanceSensor.Unit.kMillimeters);
     }
+//TODO CHECK
+    public int getDistanceColor(){
+        return components.getColorSensor().getProximity();// range from 0 - 2047
+    }
 }
