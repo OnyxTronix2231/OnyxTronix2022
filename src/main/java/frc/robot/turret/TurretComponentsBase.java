@@ -21,9 +21,9 @@ public class TurretComponentsBase implements TurretComponents {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
         motor.configAllSettings(getTalonFxConfiguration());
-       //motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
-       //motor.setSelectedSensorPosition(
-       //        motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
+        //motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+        //motor.setSelectedSensorPosition(
+        //        motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
         motor.setNeutralMode(NeutralMode.Brake);
 
         this.encoder = new TalonEncoder(motor);

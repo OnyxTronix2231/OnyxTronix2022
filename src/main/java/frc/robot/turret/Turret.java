@@ -63,8 +63,9 @@ public class Turret extends SubsystemBase {
         boolean revClosed = components.getMotor().getSensorCollection().isRevLimitSwitchClosed() == 1;
         return fwdClosed && revClosed;
     }
-    
-    public void activateSoftLimits(){
+
+    public void activateSoftLimits() {
+        components.getEncoder().reset();
         components.getMotor().configForwardSoftLimitEnable(true);
         components.getMotor().configReverseSoftLimitEnable(true);
     }
