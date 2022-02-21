@@ -3,7 +3,7 @@ package frc.robot.conveyor.ballTrigger;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.DISTANCE_IN_PLACE_MM;
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.IN_PLACE_DISTANCE_MM;
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.IDENTIFIED_DISTANCE_MM;
 
 public class BallTrigger extends SubsystemBase {
@@ -12,6 +12,7 @@ public class BallTrigger extends SubsystemBase {
 
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
+        new BallTriggerShuffleboard(this);
     }
 
     public void moveTriggerBySpeed(double speed) {
@@ -20,7 +21,7 @@ public class BallTrigger extends SubsystemBase {
 
     public boolean isBallInPlace() {
         return components.getDistanceSensorUp().
-                getRange(Rev2mDistanceSensor.Unit.kMillimeters) >= DISTANCE_IN_PLACE_MM && components.getDistanceSensorUp().
+                getRange(Rev2mDistanceSensor.Unit.kMillimeters) >= IN_PLACE_DISTANCE_MM && components.getDistanceSensorUp().
                 getRange(Rev2mDistanceSensor.Unit.kMillimeters) != -1;
     }
 

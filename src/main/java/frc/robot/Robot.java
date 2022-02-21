@@ -9,14 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.conveyor.ConveyorShuffleboard;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
-import frc.robot.conveyor.ballTrigger.BallTriggerShuffleboardCommandTest;
+import frc.robot.conveyor.ballTrigger.BallTriggerShuffleboard;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.conveyor.loader.LoaderShuffleboard;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -73,8 +73,8 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
-        new BallTriggerShuffleboardCommandTest(ballTrigger);
-        new IntakeShuffleboardCommandTest(intakeFront,intakeBack);
+        new ConveyorShuffleboard(loader, ballTrigger);
+        new IntakeShuffleboard(intakeFront,intakeBack);
     }
 
     /**

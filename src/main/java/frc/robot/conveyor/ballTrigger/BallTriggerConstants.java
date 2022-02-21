@@ -2,7 +2,7 @@ package frc.robot.conveyor.ballTrigger;
 
 public final class BallTriggerConstants {
 
-    static final int DISTANCE_IN_PLACE_MM = 160;//TODO
+    static final int IN_PLACE_DISTANCE_MM = 160;//TODO
     static final int IDENTIFIED_DISTANCE_MM = 330;//TODO
 
     public static class ComponentsConstants {

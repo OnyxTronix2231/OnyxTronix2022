@@ -15,24 +15,22 @@ public class LoaderShuffleboard {
 
     public LoaderShuffleboard(Loader loader) {
 
-        var loaderSpeed = Shuffleboard.getTab("loader").add("loader-speed",
+        var loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",
                 0.0).getEntry();
-        Shuffleboard.getTab("loader").add(new MoveLoaderBySpeed(loader,
+        Shuffleboard.getTab("Loader").add(new MoveLoaderBySpeed(loader,
                 () -> loaderSpeed.getDouble(0)));
 
-        Shuffleboard.getTab("loader").addBoolean("isIdentify", loader::identifiedBallBack);
-        Shuffleboard.getTab("loader").addNumber("distanceBack", loader::getDistanceBack);
-        Shuffleboard.getTab("loader").addNumber("voltageBack", loader::getVoltageBack);
-        Shuffleboard.getTab("loader").addNumber("distanceFront", loader::getDistanceFront);
-        Shuffleboard.getTab("loader").addNumber("voltageFront", loader::getVoltageFront);
+        Shuffleboard.getTab("Loader").addBoolean("IsIdentify", loader::identifiedBallBack);
+        Shuffleboard.getTab("Loader").addNumber("DistanceBack", loader::getDistanceBack);
+        Shuffleboard.getTab("Loader").addNumber("VoltageBack", loader::getVoltageBack);
+        Shuffleboard.getTab("Loader").addNumber("DistanceFront", loader::getDistanceFront);
+        Shuffleboard.getTab("Loader").addNumber("VoltageFront", loader::getVoltageFront);
 
-        minValueEntry = Shuffleboard.getTab("loader").add("minValue", 0.0).getEntry();
-        Shuffleboard.getTab("loader").addNumber("min-val", this::getMinValueEntry);
+        minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", 0.0).getEntry();
+        Shuffleboard.getTab("Loader").addNumber("MinValue", this::getMinValueEntry);
 
-        maxValueEntry = Shuffleboard.getTab("loader").add("maxValue", 0.0).getEntry();
-        Shuffleboard.getTab("loader").addNumber("max-val", this::getMinValueEntry);
-
-
+        maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", 0.0).getEntry();
+        Shuffleboard.getTab("Loader").addNumber("MaxValue", this::getMaxValueEntry);
     }
 
     public double getMinValueEntry() {
