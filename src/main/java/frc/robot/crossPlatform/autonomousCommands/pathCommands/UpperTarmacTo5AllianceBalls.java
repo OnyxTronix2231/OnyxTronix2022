@@ -22,10 +22,10 @@ public class UpperTarmacTo5AllianceBalls extends SequentialCommandGroup {
                 // TODO: collect the ball
                 new MoveByPath(driveTrain, PATH_A_SHOOTING_PLACE),
                 // TODO: at point shooting 2 balls
-                new MoveByPath(driveTrain,PATH_A_FOURTH_BALL),
+                new MoveByPath(driveTrain, PATH_A_FOURTH_BALL),
                 // TODO: collecting the ball
                 // TODO: shooting the ball
-                new MoveByPath(driveTrain,PATH_A_ENEMY_BALL)
+                new MoveByPath(driveTrain, PATH_A_ENEMY_BALL)
                 // TODO: collecting the enemy ball and shooting it away
         );
     }

@@ -7,6 +7,7 @@ import frc.robot.crossPlatform.autonomousCommands.pathCommands.*;
 import frc.robot.drivetrain.DriveTrain;
 
 public class DriversShuffleboard {
+
     Command upperTarmacTo5AllianceBalls;
     Command upperTarmacTo2AllianceBalls;
     Command upperTarmacToAllianceAndEnemyBall;
@@ -14,8 +15,7 @@ public class DriversShuffleboard {
     Command lowerTarmacToAllianceBallEnemyBalls;
     SendableChooser<Command> autonomousChooser;
 
-
-    public DriversShuffleboard(DriveTrain driveTrain){
+    public DriversShuffleboard(DriveTrain driveTrain) {
 
         autonomousChooser = new SendableChooser<>();
         new UpperTarmacTo2UpperAllianceBalls(driveTrain);
@@ -32,7 +32,7 @@ public class DriversShuffleboard {
         autonomousChooser.addOption("lower tarmac to alliance ball and enemy ball",lowerTarmacToAllianceBallEnemyBalls);
     }
 
-    public Command getSelectedAutoCommand(){
+    public Command getSelectedAutoCommand() {
         return autonomousChooser.getSelected();
     }
 }

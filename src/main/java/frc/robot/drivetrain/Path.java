@@ -6,12 +6,10 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.trajectory.constraint.TrajectoryConstraint;
-
 import java.util.Arrays;
 import java.util.List;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
-
 
 public class Path {
 
