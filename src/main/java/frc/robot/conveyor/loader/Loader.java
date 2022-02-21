@@ -1,9 +1,9 @@
 package frc.robot.conveyor.loader;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.loader.LoaderConstants.NO_BALL_DISTANCE;
+import static frc.robot.conveyor.loader.LoaderConstants.IDENTIFY_BALL_MAX;
+import static frc.robot.conveyor.loader.LoaderConstants.IDENTIFY_BALL_MIN;
 
 public class Loader extends SubsystemBase {
 
@@ -24,12 +24,12 @@ public class Loader extends SubsystemBase {
 
     //TODO replace it for new sensor
     public boolean identifiedBallBack() {
-        return components.getBackSensor().getVoltage() >= NO_BALL_DISTANCE && components.getBackSensor().getVoltage() <= 2.5;
+        return components.getBackSensor().getVoltage() >= IDENTIFY_BALL_MIN && components.getBackSensor().getVoltage() <= IDENTIFY_BALL_MAX;
 
     }
 
     public boolean identifiedBallFront() {
-        return components.getFrontSensor().getVoltage() >= NO_BALL_DISTANCE && components.getFrontSensor().getVoltage() <= 2.5;
+        return components.getFrontSensor().getVoltage() >= IDENTIFY_BALL_MIN && components.getFrontSensor().getVoltage() <= IDENTIFY_BALL_MAX;
     }
     /** **/
 
