@@ -9,9 +9,6 @@ import java.util.List;
 
 public final class DriveTrainConstants {
 
-    static final double ROTATION_SENSITIVITY = 1;
-    static final double SPEED_SENSITIVITY = 1;
-
     static final int DECISECOND_IN_SECOND = 10;
     static final int ENCODER_UNITS = 2048;
     static final double CONVERSION_RATE = 8.4;
@@ -19,6 +16,8 @@ public final class DriveTrainConstants {
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
+    static final double ROTATION_SENSITIVITY = 1;
+    static final double SPEED_SENSITIVITY = 1;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
