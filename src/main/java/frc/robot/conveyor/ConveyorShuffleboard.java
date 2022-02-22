@@ -19,6 +19,5 @@ public class ConveyorShuffleboard {
         Shuffleboard.getTab("Conveyor").add(new LoadBallsV2(loader, ballTrigger,
                 () -> loaderSpeed.getDouble(LOADER_SPEED),
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
-
     }
 }
