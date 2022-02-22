@@ -3,6 +3,7 @@ package frc.robot.climber;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import pid.CtreMotionMagicController;
+import sensors.Switch.Microswitch;
 import sensors.counter.Counter;
 
 public interface ClimberComponents {
@@ -25,7 +26,11 @@ public interface ClimberComponents {
 
     WPI_TalonFX getArmMotorLeft();
 
-    DigitalInput getOuterHallEffect();
+    Microswitch getOuterMicroSwitch();
 
-    DigitalInput getInnerHallEffect();
+    Microswitch getInnerMicroSwitch();
+
+    DigitalInput getLeftArmLimitSwitch();
+
+    DigitalInput getRightArmLimitSwitch();
 }

@@ -66,9 +66,6 @@ public class Climber extends SubsystemBase {
     public void stopArmRightMotor() {
         moveRightArmBySpeed(0);
     }
-    public boolean isInnerHallEffectClosed() {
-        return components.getInnerHallEffect().get();
-    }
 
     public boolean isLeftArmOnTarget() {
         return components.getArmLeftMotionMagicController().isOnTarget(ARM_TOLERANCE);
@@ -82,8 +79,12 @@ public class Climber extends SubsystemBase {
         return components.getRailMotionMagicController().isOnTarget(RAIL_TOLERANCE);
     }
 
+    public boolean isInnerHallEffectClosed() {
+        return components.getInnerMicroSwitch().isOpen();
+    }
+
     public boolean isOuterHallEffectClosed() {
-        return components.getOuterHallEffect().get();
+        return components.getOuterMicroSwitch().isOpen();
     }
 
     public boolean isFirstPhase() {
@@ -92,5 +93,13 @@ public class Climber extends SubsystemBase {
 
     public void setFirstPhase(boolean firstPhase) {
         this.firstPhase = firstPhase;
+    }
+
+    public void setRailInitialPosition() {
+        components.getRailCounter().reset();
+    }
+    public void setArmsInitialPosition() {
+        components.getArmCounterRight().reset();
+        components.getArmCounterLeft().reset();
     }
 }
