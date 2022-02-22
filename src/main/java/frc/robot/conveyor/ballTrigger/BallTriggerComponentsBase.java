@@ -22,6 +22,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         distanceSensor.setAutomaticMode(true);
 
         colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+        colorSensor.
     }
 
     @Override

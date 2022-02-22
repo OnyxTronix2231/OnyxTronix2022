@@ -32,6 +32,7 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").addBoolean("Color", ballTrigger::isBlue);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
+        Shuffleboard.getTab("BallTrigger").addNumber("getBlue",()->ballTrigger.getBlue());
     }
 
     public double getBallInPlaceValueEntry() {
