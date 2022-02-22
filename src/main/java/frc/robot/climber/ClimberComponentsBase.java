@@ -1,10 +1,13 @@
 package frc.robot.climber;
 
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.Switch.Microswitch;
+import sensors.Switch.TalonFxReverseMicroswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
@@ -25,8 +28,8 @@ public class ClimberComponentsBase implements ClimberComponents {
     private CtreEncoder leftArmEncoder;
     private CtreEncoder rightArmEncoder;
     private CtreEncoder railEncoder;
-    private DigitalInput leftArmLimitSwitch;
-    private DigitalInput rightArmLimitSwitch;
+    private TalonFxReverseMicroswitch leftArmLimitSwitch;
+    private TalonFxReverseMicroswitch rightArmLimitSwitch;
 
     public ClimberComponentsBase() {
         railMotorMaster = new WPI_TalonFX(RAIL_MASTER_MOTOR_ID);
@@ -59,8 +62,10 @@ public class ClimberComponentsBase implements ClimberComponents {
                 new PIDFTerms(RAIL_KP, RAIL_KI, RAIL_KD, RAIL_KF), RAIL_ACCELERATION,
                 RAIL_CRUISE_VELOCITY, RAIL_ACCELERATION_SMOOTHING);
 
-        leftArmLimitSwitch = new DigitalInput(3);
-        rightArmLimitSwitch = new DigitalInput(4);
+        leftArmLimitSwitch = new TalonFxReverseMicroswitch(armMotorLeft, LimitSwitchSource.RemoteTalon,
+                LimitSwitchNormal.NormallyOpen);
+        rightArmLimitSwitch = new TalonFxReverseMicroswitch(armMotorRight, LimitSwitchSource.RemoteTalon,
+                LimitSwitchNormal.NormallyOpen);
     }
 
     @Override
@@ -119,12 +124,12 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public DigitalInput getLeftArmLimitSwitch() {
+    public TalonFxReverseMicroswitch getLeftArmLimitSwitch() {
         return leftArmLimitSwitch;
     }
 
     @Override
-    public DigitalInput getRightArmLimitSwitch() {
+    public TalonFxReverseMicroswitch getRightArmLimitSwitch() {
         return rightArmLimitSwitch;
     }
 }
