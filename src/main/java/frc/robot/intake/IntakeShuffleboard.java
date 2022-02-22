@@ -9,9 +9,14 @@ import static frc.robot.intake.IntakeConstant.JOYSTICK_VALUE;
 
 public class IntakeShuffleboard {
 
-    NetworkTableEntry joyStick;
+    private final Intake intake;
+    private NetworkTableEntry joyStick;
 
     public IntakeShuffleboard(Intake intake) {
+        this.intake = intake;
+    }
+
+    public void init() {
         joyStick = Shuffleboard.getTab("Intake").add("JoystickValue" + intake.getName(), 0.0).getEntry();
 
         Shuffleboard.getTab("Intake").add("Open" + intake.getName(), new OpenPiston(intake));
@@ -20,6 +25,6 @@ public class IntakeShuffleboard {
     }
 
     public double getJoystickValue() {
-        return joyStick.getDouble(JOYSTICK_VALUE);
+        return joyStick != null ? joyStick.getDouble(JOYSTICK_VALUE) : JOYSTICK_VALUE;
     }
 }

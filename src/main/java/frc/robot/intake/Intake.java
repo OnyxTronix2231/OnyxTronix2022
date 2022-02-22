@@ -15,6 +15,7 @@ public class Intake extends SubsystemBase {
         this.components = components;
         this.setName(name);
         this.intakeShuffleboard = new IntakeShuffleboard(this);
+        intakeShuffleboard.init();
     }
 
     public void moveBySpeed(double speed) {

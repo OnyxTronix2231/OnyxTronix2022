@@ -8,32 +8,39 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTriggerShuffleboard {
 
-    private final NetworkTableEntry ballInPlaceValueEntry;
-    private final NetworkTableEntry identifiedBallValueEntry;
+    private NetworkTableEntry ballInPlaceValueEntry;
+    private NetworkTableEntry identifiedBallValueEntry;
+    private final BallTrigger ballTrigger;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
+        this.ballTrigger = ballTrigger;
+    }
 
-
-        ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue", INPLACE_DISTANCE_MM).getEntry();
-        identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue", IDENTIFIED_DISTANCE_MM).getEntry();
+    public void init() {
+        ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue",
+                INPLACE_DISTANCE_MM).getEntry();
+        identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
+                IDENTIFIED_DISTANCE_MM).getEntry();
 
         var ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
-                0.0).getEntry();
+                BALLTRIGGER_SPEED).getEntry();
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
         Shuffleboard.getTab("BallTrigger").addNumber("Distance", ballTrigger::getDistance);
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor",ballTrigger::getColorDistance);
-        Shuffleboard.getTab("BallTrigger").addNumber("Color",ballTrigger::isBlue);
+        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor", ballTrigger::getColorDistance);
+        Shuffleboard.getTab("BallTrigger").addBoolean("Color", ballTrigger::isBlue);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
     }
 
     public double getBallInPlaceValueEntry() {
-        return ballInPlaceValueEntry.getDouble(INPLACE_DISTANCE_MM);
+        return ballInPlaceValueEntry != null ?
+                ballInPlaceValueEntry.getDouble(INPLACE_DISTANCE_MM) : INPLACE_DISTANCE_MM;
     }
 
     public double getIdentifiedBallValueEntry() {
-        return identifiedBallValueEntry.getDouble(IDENTIFIED_DISTANCE_MM);
+        return identifiedBallValueEntry != null ?
+                identifiedBallValueEntry.getDouble(IDENTIFIED_DISTANCE_MM) : IDENTIFIED_DISTANCE_MM;
     }
 }

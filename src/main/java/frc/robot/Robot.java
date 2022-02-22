@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
-        new ConveyorShuffleboard(loader, ballTrigger);
+        new ConveyorShuffleboard(loader, ballTrigger).init();
 
         Shuffleboard.getTab("Intake").add(new IntakeByDriveTrain(intakeFront, intakeBack, () -> INTAKE_SPEED, driveTrain));
     }

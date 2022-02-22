@@ -4,14 +4,23 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.THRESHOLD_BLUENESS;
+
 public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents components;
     private final BallTriggerShuffleboard ballTriggerShuffleboard;
+    private double currentDistance;
 
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
         this.ballTriggerShuffleboard = new BallTriggerShuffleboard(this);
+        ballTriggerShuffleboard.init();
+    }
+
+    @Override
+    public void periodic() {
+        currentDistance = getDistance();
     }
 
     public void moveTriggerBySpeed(double speed) {
@@ -19,11 +28,11 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallInPlace() {
-        return getDistance() >= ballTriggerShuffleboard.getBallInPlaceValueEntry() && getDistance() != -1;
+        return currentDistance >= ballTriggerShuffleboard.getBallInPlaceValueEntry() && currentDistance != -1;
     }
 
     public boolean isBallIdentified() {
-        return getDistance() <= ballTriggerShuffleboard.getIdentifiedBallValueEntry() && getDistance() != -1;
+        return currentDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntry() && currentDistance != -1;
     }
 
     public void stop() {
@@ -38,7 +47,7 @@ public class BallTrigger extends SubsystemBase {
         return components.getColorSensor().getProximity();
     }
 
-    public int isBlue(){
-        return components.getColorSensor().getBlue();
+    public boolean isBlue(){
+        return components.getColorSensor().getBlue() > THRESHOLD_BLUENESS;
     }
 }

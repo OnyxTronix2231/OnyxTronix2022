@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.I2C;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.MOTOR_ID;
 
-
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonSRX motor;
@@ -17,9 +16,11 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
+
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
+
         colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     }
 
@@ -37,6 +38,5 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public ColorSensorV3 getColorSensor() {
         return colorSensor;
     }
-
 }
 

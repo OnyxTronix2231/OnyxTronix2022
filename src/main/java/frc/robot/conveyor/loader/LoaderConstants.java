@@ -3,8 +3,7 @@ package frc.robot.conveyor.loader;
 public final class LoaderConstants {
 
     static final double IDENTIFY_BALL_MIN = 1.3;
-    static final double IDENTIFY_BALL_MAX = 100;
-    public static final double LOADER_SPEED = 0.8;
+    static final double LOADER_SPEED = 0.8;
 
     public static class ComponentsConstant {
 
