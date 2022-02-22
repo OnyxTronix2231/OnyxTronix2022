@@ -1,5 +1,6 @@
 package frc.robot.conveyor.ballTrigger;
 
+import com.revrobotics.ColorSensorV3;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -31,5 +32,13 @@ public class BallTrigger extends SubsystemBase {
 
     public double getDistance() {
         return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
+    }
+
+    public double getColorDistance(){
+        return components.getColorSensor().getProximity();
+    }
+
+    public int isBlue(){
+        return components.getColorSensor().getBlue();
     }
 }
