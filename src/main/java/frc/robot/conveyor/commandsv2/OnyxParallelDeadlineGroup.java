@@ -1,4 +1,4 @@
-package frc.robot.conveyor.commands;
+package frc.robot.conveyor.commandsv2;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
