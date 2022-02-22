@@ -45,7 +45,6 @@ public class Robot extends TimedRobot {
         }
 
         DriveTrain driveTrain = new DriveTrain(driveTrainComponents);
-        Climber climber = new Climber(climberComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withClimberOi(climber);
         new DeputyOi();
