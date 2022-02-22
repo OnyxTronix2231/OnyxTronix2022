@@ -12,11 +12,9 @@ public class LoaderShuffleboard {
     NetworkTableEntry minValueEntry;
     NetworkTableEntry maxValueEntry;
 
-
     public LoaderShuffleboard(Loader loader) {
 
         minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", IDENTIFY_BALL_MIN).getEntry();
-
         maxValueEntry = Shuffleboard.getTab("Loader").add("MaxValue", IDENTIFY_BALL_MAX).getEntry();
 
         var loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",

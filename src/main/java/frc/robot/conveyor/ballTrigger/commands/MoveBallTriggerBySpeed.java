@@ -10,9 +10,9 @@ public class MoveBallTriggerBySpeed extends CommandBase {
     private final BallTrigger ballTrigger;
     private final DoubleSupplier speedSupplier;
 
-    public MoveBallTriggerBySpeed(BallTrigger ballTrigger, DoubleSupplier doubleSupplier) {
+    public MoveBallTriggerBySpeed(BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
         this.ballTrigger = ballTrigger;
-        this.speedSupplier = doubleSupplier;
+        this.speedSupplier = speedSupplier;
         addRequirements(ballTrigger);
     }
 

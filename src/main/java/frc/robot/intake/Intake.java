@@ -1,9 +1,7 @@
 package frc.robot.intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.intake.commands.OpenAndCloseAsNeeded;
 
 import static frc.robot.intake.IntakeConstant.SOLENOID_CLOSE;
 import static frc.robot.intake.IntakeConstant.SOLENOID_OPEN;
@@ -12,6 +10,7 @@ public class Intake extends SubsystemBase {
 
     private final IntakeComponents components;
     private final IntakeShuffleboard intakeShuffleboard;
+
     public Intake(IntakeComponents components, String name) {
         this.components = components;
         this.setName(name);
@@ -38,7 +37,7 @@ public class Intake extends SubsystemBase {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
 
-    public double getJoyStickValue(){
+    public double getJoyStickValue() {
         return intakeShuffleboard.getJoystickValue();
     }
 }

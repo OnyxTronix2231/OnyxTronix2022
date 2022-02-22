@@ -1,9 +1,7 @@
 package frc.robot.conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.ColorSensorV3;
 import com.revrobotics.Rev2mDistanceSensor;
-import edu.wpi.first.wpilibj.I2C;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.MOTOR_ID;
 
@@ -12,7 +10,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonSRX motor;
     private final Rev2mDistanceSensor distanceSensor;
-   // private final ColorSensorV3 colorSensor;
+    // private final ColorSensorV3 colorSensor;
 
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
@@ -32,9 +30,10 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
     }
-
-    //@Override
-   // public ColorSensorV3 getColorSensor() { //TODO delete not work i think need to check
-   //     return colorSensor;
-    //}
+  /*@Override
+    public ColorSensorV3 getColorSensor() { //TODO delete not work i think need to check
+        return colorSensor;
+        }
+   */
 }
+

@@ -1,16 +1,11 @@
 package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.intake.IntakeShuffleboard;
-
-import static frc.robot.conveyor.loader.LoaderConstants.IDENTIFY_BALL_MAX;
-import static frc.robot.conveyor.loader.LoaderConstants.IDENTIFY_BALL_MIN;
 
 public class Loader extends SubsystemBase {
 
     private final LoaderComponents components;
     private final LoaderShuffleboard loaderShuffleboard;
-
 
     public Loader(LoaderComponents components) {
         this.components = components;
@@ -23,26 +18,6 @@ public class Loader extends SubsystemBase {
 
     public void stop() {
         moveLoaderBySpeed(0);
-    }
-
-    //TODO replace it for new sensor
-    public boolean identifiedBallBack() {
-        return components.getBackSensor().getVoltage() >= loaderShuffleboard.getMinValueEntry() &&
-                components.getBackSensor().getVoltage() <= loaderShuffleboard.getMaxValueEntry();
-
-    }
-
-    public boolean identifiedBallFront() {
-        return components.getFrontSensor().getVoltage() >= loaderShuffleboard.getMinValueEntry() &&
-                components.getFrontSensor().getVoltage() <= loaderShuffleboard.getMaxValueEntry();
-    }
-
-    /**
-     *
-     **/
-
-    public boolean identifiedBall() { //TODO return back check
-        return identifiedBallBack() || identifiedBallFront();
     }
 
     public double getVoltageFront() {
@@ -59,5 +34,18 @@ public class Loader extends SubsystemBase {
 
     public double getDistanceBack() {
         return components.getBackSensor().getDistance();
+    }
+
+    public boolean identifiedBallFront() {
+        return getDistanceFront() >= loaderShuffleboard.getMinValueEntry();
+    }
+
+    public boolean identifiedBallBack() {
+        return getVoltageBack() >= loaderShuffleboard.getMinValueEntry();
+
+    }
+
+    public boolean identifiedBall() { //TODO return back check
+        return identifiedBallBack() || identifiedBallFront();
     }
 }
