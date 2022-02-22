@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import pid.CtreMotionMagicController;
 import sensors.Switch.Microswitch;
+import sensors.Switch.TalonFxReverseMicroswitch;
 import sensors.counter.Counter;
 
 public interface ClimberComponents {
@@ -33,4 +34,6 @@ public interface ClimberComponents {
     DigitalInput getLeftArmLimitSwitch();
 
     DigitalInput getRightArmLimitSwitch();
+
+    TalonFxReverseMicroswitch getReverseMicroSwitch();
 }

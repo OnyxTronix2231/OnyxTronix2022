@@ -1,10 +1,13 @@
 package frc.robot.climber;
 
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.Switch.Microswitch;
+import sensors.Switch.TalonFxReverseMicroswitch;
 import sensors.counter.Counter;
 import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
@@ -27,6 +30,7 @@ public class ClimberComponentsBase implements ClimberComponents {
     private CtreEncoder railEncoder;
     private DigitalInput leftArmLimitSwitch;
     private DigitalInput rightArmLimitSwitch;
+    private TalonFxReverseMicroswitch reverseMicroswitch;
 
     public ClimberComponentsBase() {
         railMotorMaster = new WPI_TalonFX(RAIL_MASTER_MOTOR_ID);
@@ -61,6 +65,9 @@ public class ClimberComponentsBase implements ClimberComponents {
 
         leftArmLimitSwitch = new DigitalInput(3);
         rightArmLimitSwitch = new DigitalInput(4);
+
+        reverseMicroswitch = new TalonFxReverseMicroswitch(armMotorLeft, LimitSwitchSource.RemoteTalon,
+                LimitSwitchNormal.NormallyOpen);
     }
 
     @Override
@@ -126,5 +133,10 @@ public class ClimberComponentsBase implements ClimberComponents {
     @Override
     public DigitalInput getRightArmLimitSwitch() {
         return rightArmLimitSwitch;
+    }
+
+    @Override
+    public TalonFxReverseMicroswitch getReverseMicroSwitch() {
+        return reverseMicroswitch;
     }
 }

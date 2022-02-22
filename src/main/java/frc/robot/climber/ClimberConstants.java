@@ -5,7 +5,7 @@ public class ClimberConstants {
     static final int RAIL_MASTER_MOTOR_ID = 13;
     static final int RAIL_SLAVE_MOTOR_ID = 14;
     static final int ARM_RIGHT_MOTOR_ID = 15;
-    static final int ARM_LEFT_MOTOR_ID = 16;
+    static final int ARM_LEFT_MOTOR_ID = 4;
     static final int INNER_HALL_EFFECT_CHANNEL = 1;
     static final int MAX_CLOSE_LOOP_OUTPUT = 1023;
     static final int ARM_LEFT_MAX_VELOCITY = 0; //TODO: Check and change

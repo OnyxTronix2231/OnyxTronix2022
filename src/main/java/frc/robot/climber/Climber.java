@@ -16,6 +16,11 @@ public class Climber extends SubsystemBase {
         firstPhase = true;
     }
 
+    @Override
+    public void periodic() {
+        System.out.println(components.getReverseMicroSwitch().isOpen());
+    }
+
     public void initMoveLeftArmByDistance(double distance) {
         components.getArmLeftMotionMagicController().setSetpoint(armMeterToEncoderUnits(distance));
         components.getArmLeftMotionMagicController().enable(ARM_LEFT_ARB_FF);

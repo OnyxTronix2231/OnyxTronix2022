@@ -9,11 +9,9 @@ public class ClimbingSequence extends SequentialCommandGroup {
 
     public ClimbingSequence(Climber climber) {
         super(new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS),
-                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed,
-                        INNER_HALL_EFFECT),
+                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed),
                 new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS),
-                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed,
-                        INNER_HALL_EFFECT),
+                new MoveRailUntilConditions(climber, () -> -CLIMBER_SPEED, climber::isInnerHallEffectClosed),
                 new MoveRailByDistance(climber, () -> DISTANCE_BETWEEN_BEAMS));
     }
 }
