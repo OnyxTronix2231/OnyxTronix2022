@@ -11,6 +11,6 @@ import static frc.robot.arc.ArcConstants.ANGLE;
 public class ArcDriverOiBinder {
 
     public ArcDriverOiBinder(Arc arc, JoystickAxis changeAngle) {
-        arc.setDefaultCommand(new MoveArcBySpeed(arc, changeAngle::getRawAxis));
+        arc.setDefaultCommand(new MoveArcBySpeed(arc, arc::getAngle));
     }
 }

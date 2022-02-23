@@ -26,6 +26,10 @@ public class ShooterConstants {
             return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
         }
 
+        public static double encUnitsDecisecToRPM(double encoderUnits){
+            return (encoderUnits * DECI_SECONDS_PER_MINUTE) / ENCODER_UNITS_PER_ROUND;
+        }
+
         public static double rpmToMPS(double rpm) {
             return ((2 * Math.PI * RobotConstants.SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * rpm);
         }
