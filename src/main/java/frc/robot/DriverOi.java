@@ -1,13 +1,16 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcDriverOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterDriverOIBinder;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
-import humanControls.PlayStation5Controller;
+import humanControls.OnyxXboxController;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -16,7 +19,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
+        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {
@@ -29,6 +32,12 @@ public class DriverOi {
     public DriverOi withArc(Arc arc) {
         JoystickAxis arcTrigger = new JoystickAxis(controller, controller.getAxisLeftY());
         new ArcDriverOiBinder(arc, arcTrigger);
+        return this;
+    }
+
+    public DriverOi withShooter(Shooter shooter) {
+        Trigger shooterTrigger = new JoystickButton(controller, controller.getBumperLeft());
+        new ShooterDriverOIBinder(shooter, shooterTrigger);
         return this;
     }
 }

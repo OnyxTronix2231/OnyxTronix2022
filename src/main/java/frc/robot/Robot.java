@@ -15,6 +15,9 @@ import frc.robot.arc.ArcComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterComponents;
+import frc.robot.shooter.ShooterComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +29,7 @@ public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
     Arc arc;
+    Shooter shooter;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -35,20 +39,24 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         ArcComponents arcComponents;
+        ShooterComponents shooterComponents;
         DriveTrainComponents driveTrainComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
             arcComponents = new ArcComponentsBase();
+            shooterComponents = new ShooterComponentsBase();
         } else {
             driveTrainComponents = null;
             arcComponents = null;
+            shooterComponents = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
         arc = new Arc(arcComponents);
+        shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withArc(arc);
+        new DriverOi().withShooter(shooter).withArc(arc);
         new DeputyOi();
 
         new DriversShuffleboard();

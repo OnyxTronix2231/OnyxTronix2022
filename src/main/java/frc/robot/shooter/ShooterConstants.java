@@ -7,10 +7,12 @@ public class ShooterConstants {
     public static final int SEC_IN_MIN = 60;
     public static final double DECI_SECONDS_PER_MINUTE = 600;
     public static final double SPEED = 0.5;
+    static final double MAX_CLOSED_LOOP_OUTPUT = 1023;
+    static final double MAX_VELOCITY = 17750 * 1.2;
     public static final double KP = 0; //TODO calibrate value
     public static final double KI = 0; //TODO calibrate value
     public static final double KD = 0; //TODO calibrate value
-    public static final double KF = 0; //TODO calibrate value
+    static final double KF = MAX_CLOSED_LOOP_OUTPUT / MAX_VELOCITY;
 
     public static class RobotConstants {
 
