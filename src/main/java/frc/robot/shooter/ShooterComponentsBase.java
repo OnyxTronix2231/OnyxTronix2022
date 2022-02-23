@@ -27,6 +27,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.follow(masterMotor);
+        slaveMotor.setInverted(true);
 
         encoder = new TalonEncoder(masterMotor);
 

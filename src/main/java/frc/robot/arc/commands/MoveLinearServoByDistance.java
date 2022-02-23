@@ -12,6 +12,7 @@ public class MoveLinearServoByDistance extends CommandBase {
     public MoveLinearServoByDistance(Arc arc, DoubleSupplier distanceSupplier) {
         this.arc = arc;
         this.distanceSupplier = distanceSupplier;
+        addRequirements(arc);
     }
 
     @Override
@@ -21,7 +22,7 @@ public class MoveLinearServoByDistance extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return arc.isOnTarget();
+        return false;
     }
 
     @Override

@@ -14,23 +14,23 @@ public class Shooter extends SubsystemBase {
     private final NetworkTableEntry kP;
     private final NetworkTableEntry kI;
     private final NetworkTableEntry kD;
-    private final NetworkTableEntry precentageOutput;
+    private final NetworkTableEntry setRPM;
     private double speed;
 
     public Shooter(ShooterComponents shooterComponents) {
         this.shooterComponents = shooterComponents;
         Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encUnitsDecisecToRPM(shooterComponents
                 .getCounter().getRate()));
-        precentageOutput = Shuffleboard.getTab("Shooter").add("precentageOutput", 0).getEntry();
+        setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
         kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
         Shuffleboard.getTab("Shooter").addNumber("err", () -> Math.abs(encUnitsDecisecToRPM(shooterComponents
-                .getCounter().getRate()) - precentageOutput.getDouble(0)));
+                .getCounter().getRate()) - setRPM.getDouble(0)));
     }
 
     public void periodic() {
-        speed = precentageOutput.getDouble(0);
+        speed = setRPM.getDouble(0);
         shooterComponents.getController().setPIDFTerms(kP.getDouble(KP), kI.getDouble(KI), kD.getDouble(KD), KF);
     }
 

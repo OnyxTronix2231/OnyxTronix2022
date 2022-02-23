@@ -10,10 +10,10 @@ public class ArcConstants {
     public static class RobotConstants {
 
         public static final int LINEAR_SERVO_CHANNEL = 0;
-        public static final int LINEAR_SERVO_MAX_LENGTH = 150;
-        public static final int LINEAR_SERVO_MAX_SPEED = 8;
-        public static final double ARC_MAX_ANGLE = 28;
-        public static final double ARC_MIN_ANGLE = 15;
+        public static final int LINEAR_SERVO_MAX_LENGTH = 50;
+        public static final int LINEAR_SERVO_MAX_SPEED = 32;
+        public static final double ARC_MAX_ANGLE = 31.47;
+        public static final double ARC_MIN_ANGLE = 20;
     }
 
     public static class ArcCalculations {
