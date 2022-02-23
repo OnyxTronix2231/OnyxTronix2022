@@ -6,7 +6,7 @@ import java.util.function.DoubleSupplier;
 
 public class MoveArmBySpeed extends CommandBase {
 
-    private final Climber climber;
+    protected final Climber climber;
     private final DoubleSupplier speedSupplier;
 
     public MoveArmBySpeed(Climber climber, DoubleSupplier speedSupplier) {

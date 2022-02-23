@@ -98,8 +98,13 @@ public class Climber extends SubsystemBase {
     public void setRailInitialPosition() {
         components.getRailCounter().reset();
     }
+
     public void setArmsInitialPosition() {
         components.getArmCounterRight().reset();
         components.getArmCounterLeft().reset();
+    }
+
+    public boolean areArmsAtLimitSwitch() {
+        return components.getLeftArmLimitSwitch().isOpen() && components.getRightArmLimitSwitch().isOpen();
     }
 }

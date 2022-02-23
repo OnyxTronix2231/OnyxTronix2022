@@ -9,5 +9,6 @@ public class ClimberCommandConstants {
     static final double ARM_OPEN_DISTANCE = 1; //TODO: Check and change
     static final double ARM_CLOSE_DISTANCE = -1; //TODO: Check and change
     static final double RAIL_SAFETY_DISTANCE = 0.1;
+    static final double MOVE_ARMS_TO_LIMIT_SWITCH_SPEED = 0.4;
 
 }
