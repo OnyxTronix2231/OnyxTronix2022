@@ -2,78 +2,63 @@
 'https://plantuml.com/sequence-diagram
 !includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
 
-class frc.robot.intake.commands.OpenAndCloseAsNeeded {
-}
-class frc.robot.intake.IntakeConstant {
-~ {static} DoubleSolenoid.Value SOLENOID_OPEN
-~ {static} DoubleSolenoid.Value SOLENOID_CLOSE
-~ {static} double INTAKE_SPEED
-}
-class frc.robot.intake.IntakeConstant.FrontComponentsConstants {
-~ {static} int FRONT_MOTOR_ID
-~ {static} int FRONT_SOLENOID_FORWARD_CHANNEL
-~ {static} int FRONT_SOLENOID_REVERSE_CHANNEL
-}
-class frc.robot.intake.IntakeConstant.BackComponentConstants {
-~ {static} int BACK_MOTOR_ID
-~ {static} int BACK_SOLENOID_FORWARD_CHANNEL
-~ {static} int BACK_SOLENOID_REVERSE_CHANNEL
-}
-class frc.robot.intake.Intake {
-- IntakeComponents components
-+ void moveBySpeed(double)
-+ void stop()
-+ void openSolenoid()
-+ void closeSolenoid()
-+ boolean isFrontOpen()
-}
-class frc.robot.intake.commands.ClosePiston {
-}
-class frc.robot.intake.commands.OpenPiston {
-}
-class frc.robot.intake.commands.OpenAndIntake {
-- Intake intake
-+ void end(boolean)
-}
-class frc.robot.intake.commands.IntakeBySpeed {
-- Intake intake
-- DoubleSupplier speedSupplier
-+ void execute()
-+ void end(boolean)
-}
-interface frc.robot.intake.IntakeComponents {
-~ WPI_TalonFX getMotor()
-~ DoubleSolenoid getSolenoid()
-}
-class frc.robot.intake.IntakeBackComponentsBase {
-- WPI_TalonFX motor
-- DoubleSolenoid solenoid
-+ WPI_TalonFX getMotor()
-+ DoubleSolenoid getSolenoid()
-}
-class frc.robot.intake.commands.IntakeByDriveTrain {
-}
-class frc.robot.intake.IntakeFrontComponentsBase {
-- WPI_TalonFX motor
-- DoubleSolenoid solenoid
-+ WPI_TalonFX getMotor()
-+ DoubleSolenoid getSolenoid()
-}
-class frc.robot.intake.IntakeShuffleboardCommandTest {
-}
-class frc.robot.intake.IntakeOiBinder {
-}
+abstract class SubsystemBase
+abstract class CommandBase
+
+IntakeBackComponentsBase ...|> IntakeComponents
+IntakeBackComponentsBase --* Intake
+IntakeFrontComponentsBase ...|> IntakeComponents
+
+ClosePiston ----|> InstantCommand
+IntakeByDriveTrain ---|> ConditionalCommand
+IntakeBySpeed ---|> CommandBase
+OpenAndCloseAsNeeded ---|> ConditionalCommand
+OpenAndIntake ---|> SequentialCommandGroup
+OpenPiston ----|> InstantCommand
 
 
-edu.wpi.first.wpilibj2.command.ConditionalCommand <|------- frc.robot.intake.commands.OpenAndCloseAsNeeded
-frc.robot.intake.IntakeConstant +.. frc.robot.intake.IntakeConstant.FrontComponentsConstants
-frc.robot.intake.IntakeConstant +.. frc.robot.intake.IntakeConstant.BackComponentConstants
-edu.wpi.first.wpilibj2.command.SubsystemBase <|----- frc.robot.intake.Intake
-edu.wpi.first.wpilibj2.command.InstantCommand <|------ frc.robot.intake.commands.ClosePiston
-edu.wpi.first.wpilibj2.command.InstantCommand <|----- frc.robot.intake.commands.OpenPiston
-edu.wpi.first.wpilibj2.command.SequentialCommandGroup <|------- frc.robot.intake.commands.OpenAndIntake
-edu.wpi.first.wpilibj2.command.CommandBase <|-------- frc.robot.intake.commands.IntakeBySpeed
-frc.robot.intake.IntakeComponents <|.. frc.robot.intake.IntakeBackComponentsBase
-edu.wpi.first.wpilibj2.command.ConditionalCommand <|-------- frc.robot.intake.commands.IntakeByDriveTrain
-frc.robot.intake.IntakeComponents <|.. frc.robot.intake.IntakeFrontComponentsBase
+interface IntakeComponents {
+    WPI_TalonFX motor
+    DoubleSolenoid solenoid
+}
+
+class IntakeBackComponentsBase {
+    WPI_TalonFX motor
+    DoubleSolenoid solenoid
+}
+
+class Intake {
+    private final IntakeComponents components;
+    void moveBySpeed()
+    void stop()
+    void openSolenoid()
+    closeSolenoid()
+    isFrontOpen()
+}
+
+class ClosePiston {
+}
+
+class IntakeByDriveTrain {
+
+}
+
+class IntakeBySpeed {
+    Intake intake
+    DoubleSupplier speedSupplier
+    void execute()
+    void end()
+}
+
+class OpenAndCloseAsNeeded {
+
+}
+
+class OpenAndIntake {
+    Intake intake
+    void end()
+}
+
+class OpenPiston {
+}
 @enduml
