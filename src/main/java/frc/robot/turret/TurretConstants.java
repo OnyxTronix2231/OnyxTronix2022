@@ -30,11 +30,12 @@ public final class TurretConstants {
     public static class ComponentsConstants {
 
         /*mechanic values*/
-        static final int ENCODER_UNITS_IN_ROTATION = 4096; //TODO: Confirm
+        static final int ENCODER_UNITS_IN_ROTATION = 4096;
         static final int TURRET_MOTOR_ID = 9;
-        static final double CONVERSION_RATE = 1.0 / 75;
-        static final double MAX_DEG = 0; //TODO: Correct the number
-        static final double MIN_DEG = 0; //TODO: Correct the number
+        //static final double CONVERSION_RATE = 1.0 / 75;
+        static final double CONVERSION_RATE = 1.0;
+        static final double MAX_DEG = 200; //TODO: Correct the number
+        static final double MIN_DEG = -200; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
 

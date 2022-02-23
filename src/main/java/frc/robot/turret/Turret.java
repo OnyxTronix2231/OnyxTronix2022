@@ -59,13 +59,14 @@ public class Turret extends SubsystemBase {
     }
 
     public boolean isCalibrated() {
-        boolean fwdClosed = components.getMotor().getSensorCollection().isFwdLimitSwitchClosed() == 1;
-        boolean revClosed = components.getMotor().getSensorCollection().isRevLimitSwitchClosed() == 1;
-        return fwdClosed && revClosed;
+        //boolean fwdClosed = components.getMotor().getSensorCollection().isFwdLimitSwitchClosed() == 1;
+        //boolean revClosed = components.getMotor().getSensorCollection().isRevLimitSwitchClosed() == 1;
+        //return fwdClosed && revClosed;
+        return true;
     }
 
     public void activateSoftLimits() {
-        components.getEncoder().reset();
+        //components.getEncoder().reset();
         components.getMotor().configForwardSoftLimitEnable(true);
         components.getMotor().configReverseSoftLimitEnable(true);
     }

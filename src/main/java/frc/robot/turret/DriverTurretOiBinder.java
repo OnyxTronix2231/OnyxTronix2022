@@ -13,7 +13,7 @@ public class DriverTurretOiBinder {
 
     public DriverTurretOiBinder(Turret turret, Vision vision, Trigger moveLeft, Trigger moveRight, Trigger move10, Trigger move50,
                                 Trigger move90, Trigger move180, Trigger byVision, Trigger calibrate) {
-        calibrate.whenActive(new CalibrateTurret(turret));
+        //calibrate.whenActive(new CalibrateTurret(turret));
         moveLeft.whileActiveContinuous(new RotateBySpeed(turret, () -> DEFAULT_TURRET_SPEED));
         moveRight.whileActiveContinuous(new RotateBySpeed(turret, () -> -DEFAULT_TURRET_SPEED));
         move10.whenActive(new RotateByAngleOnce(turret, () -> 10));
