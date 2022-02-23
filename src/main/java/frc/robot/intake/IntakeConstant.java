@@ -21,5 +21,6 @@ public class IntakeConstant {
         static final int BACK_MOTOR_ID = 6;
         static final int BACK_SOLENOID_FORWARD_CHANNEL = 2;
         static final int BACK_SOLENOID_REVERSE_CHANNEL = 3;
+        static final double CURRENT_LIMIT_ENABLED_BACK = 0;
     }
 }
