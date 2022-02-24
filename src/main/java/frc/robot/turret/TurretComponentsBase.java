@@ -33,11 +33,12 @@ public class TurretComponentsBase implements TurretComponents {
 
         motor.configRemoteFeedbackFilter(motor2, 0);
         motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
+
         motor.setSelectedSensorPosition(
-                motor2.getSensorCollection().getAnalogInRaw(), 0, 0);
+                motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
         motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-        
+
         motor.configRemoteFeedbackFilter(motor2, 0);
         motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
 
