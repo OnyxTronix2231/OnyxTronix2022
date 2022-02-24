@@ -11,6 +11,4 @@ public interface TurretComponents {
     TalonEncoder getEncoder();
 
     CtreMotionMagicController getController();
-
-
 }
