@@ -33,6 +33,7 @@ public final class TurretConstants {
         static final int ENCODER_UNITS_IN_ROTATION = 4096;
         static final int TURRET_MOTOR_ID = 9;
         static final int TALON_ENCODER_ID = 8;
+        static final double ENCODER_MIDDLE = 2062;
         //static final double CONVERSION_RATE = 1.0 / 75;
         static final double CONVERSION_RATE = 1.0;
         static final double MAX_DEG = 200; //TODO: Correct the number
@@ -43,11 +44,11 @@ public final class TurretConstants {
     public static final class Calculation {
 
         static double degreesToEncoderUnits(double degree) {
-            return (degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION;
+            return ENCODER_MIDDLE + ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION);
         }
 
         public static double encoderUnitsToDegrees(double encoderUnits) {
-            return (encoderUnits * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+            return ((encoderUnits - ENCODER_MIDDLE) * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
         }
     }
 }

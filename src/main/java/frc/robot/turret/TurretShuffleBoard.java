@@ -40,7 +40,6 @@ public class TurretShuffleBoard {
 
         Shuffleboard.getTab("Turret").addNumber("AngleRTR DEG", turret::getCurrentAngleRTR);
         Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", () -> components.getMotor().getSelectedSensorPosition());
-        Shuffleboard.getTab("Turret").addNumber("Encoder", () -> components.getEncoder().getCount());
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", () ->
                 encoderUnitsToDegrees(components.getController().getSetpoint()));
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
