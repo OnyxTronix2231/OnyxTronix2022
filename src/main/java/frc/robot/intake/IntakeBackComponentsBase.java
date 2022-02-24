@@ -21,7 +21,6 @@ public class IntakeBackComponentsBase implements IntakeComponents {
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
 
-
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, BACK_SOLENOID_FORWARD_CHANNEL,
                 BACK_SOLENOID_REVERSE_CHANNEL);
     }
