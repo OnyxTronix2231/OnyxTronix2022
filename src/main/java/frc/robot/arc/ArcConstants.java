@@ -19,7 +19,7 @@ public class ArcConstants {
     public static class ArcCalculations {
 
         public static double linearServoPosToAngle(double position) {
-            return ((ARC_MAX_ANGLE + ARC_MIN_ANGLE) * position) / LINEAR_SERVO_MAX_LENGTH + ARC_MIN_ANGLE;
+            return ((ARC_MAX_ANGLE - ARC_MIN_ANGLE) * position) / LINEAR_SERVO_MAX_LENGTH + ARC_MIN_ANGLE;
         }
 
         public static double angleToLinearServoPos(double angle) {
