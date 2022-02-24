@@ -6,8 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
-import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
-import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
 
 public class LoaderComponentsBase implements LoaderComponents {
 
@@ -43,7 +41,7 @@ public class LoaderComponentsBase implements LoaderComponents {
 
     private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT_ENABLED;
+        config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT;
         config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
         config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME;
         config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;

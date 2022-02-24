@@ -6,8 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-import static frc.robot.intake.IntakeConstant.BackComponentConstants.*;
-import static frc.robot.intake.IntakeConstant.BackComponentConstants.CLOSE_LOOP_RAMP_BACK;
 import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
 
 public class IntakeFrontComponentsBase implements IntakeComponents {
@@ -38,7 +36,7 @@ public class IntakeFrontComponentsBase implements IntakeComponents {
 
     private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT_ENABLED_FRONT;
+        config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT_FRONT;
         config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT_FRONT;
         config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME_FRONT;
         config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED_FRONT;

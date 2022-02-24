@@ -1,13 +1,13 @@
 package frc.robot.conveyor.ballTrigger;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj.I2C;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.*;
-import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
@@ -18,6 +18,10 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
+        motor.configAllSettings(getTalonConfiguration());
+        motor.setNeutralMode(NeutralMode.Coast);
+        motor.setInverted(false);
+        motor.enableCurrentLimit(SUPPLY_CURRENT_LIMIT_ENABLED);
 
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
@@ -41,16 +45,11 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         return colorSensor;
     }
 
-    private TalonFXConfiguration getFalconConfiguration() {
-        final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT_ENABLED;
-        config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
-        config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME;
-        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
-        config.statorCurrLimit.currentLimit = STATOR_CURRENT_LIMIT;
-        config.statorCurrLimit.triggerThresholdCurrent = STATOR_TRIGGER_THRESHOLD_CURRENT;
-        config.statorCurrLimit.triggerThresholdTime = STATOR_TRIGGER_THRESHOLD_TIME;
-        config.statorCurrLimit.enable = STATOR_CURRENT_LIMIT_ENABLED;
+    private TalonSRXConfiguration getTalonConfiguration() {
+        final TalonSRXConfiguration config = new TalonSRXConfiguration();
+        config.continuousCurrentLimit = SUPPLY_CURRENT_LIMIT;
+        config.peakCurrentLimit = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
+        config.peakCurrentDuration = SUPPLY_TRIGGER_THRESHOLD_TIME;
         config.openloopRamp = OPEN_LOOP_RAMP;
         config.closedloopRamp = CLOSE_LOOP_RAMP;
         return config;
