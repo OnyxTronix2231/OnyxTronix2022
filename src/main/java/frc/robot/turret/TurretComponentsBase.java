@@ -2,6 +2,7 @@ package frc.robot.turret;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -23,18 +24,17 @@ public class TurretComponentsBase implements TurretComponents {
     public TurretComponentsBase() {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
+        motor.configAllSettings(getTalonFxConfiguration());
+        motor.setNeutralMode(NeutralMode.Brake);
 
-        motor.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor0);
-        motor.configRemoteFeedbackFilter(TALON_ENCODER_ID, RemoteSensorSource.TalonSRX_SelectedSensor, 0);
 
         WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
         motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
+        motor.configRemoteFeedbackFilter(motor2, 0);
+        motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
         motor.setSelectedSensorPosition(
                 motor2.getSensorCollection().getAnalogInRaw(), 0, 0);
-
-        motor.configAllSettings(getTalonFxConfiguration());
-        motor.setNeutralMode(NeutralMode.Brake);
 
         this.encoder = new TalonEncoder(new WPI_TalonSRX(TALON_ENCODER_ID));
 

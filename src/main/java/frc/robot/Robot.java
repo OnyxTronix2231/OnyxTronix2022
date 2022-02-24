@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
         turret = new Turret(turretComponents);
         vision = new Vision();
 
-        new DriverOi().withDriveTrain(driveTrain).withTurret(turret, vision);
+        new DriverOi().withTurret(turret, vision);
         new DeputyOi();
 
         new DriversShuffleboard();
