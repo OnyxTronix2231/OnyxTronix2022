@@ -10,5 +10,15 @@ public final class BallTriggerConstants {
     public static class ComponentsConstants {
 
         static final int MOTOR_ID = 8;
+        static final double CURRENT_LIMIT_ENABLED = 0;
+        static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;
+        static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0;
+        static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = false;
+        static final double STATOR_CURRENT_LIMIT = 0;
+        static final double STATOR_TRIGGER_THRESHOLD_CURRENT = 0;
+        static final double STATOR_TRIGGER_THRESHOLD_TIME = 0;
+        static final boolean STATOR_CURRENT_LIMIT_ENABLED = false;
+        static final double OPEN_LOOP_RAMP = 0;
+        static final double CLOSE_LOOP_RAMP = 0;
     }
 }
