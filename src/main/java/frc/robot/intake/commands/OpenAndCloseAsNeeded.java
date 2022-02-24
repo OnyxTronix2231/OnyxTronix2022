@@ -8,6 +8,6 @@ import java.util.function.DoubleSupplier;
 public class OpenAndCloseAsNeeded extends ConditionalCommand {
 
     public OpenAndCloseAsNeeded(Intake intakeFront, Intake intakeBack, DoubleSupplier speedSupplier) {
-        super(new OpenAndIntake(intakeBack, speedSupplier), new OpenAndIntake(intakeFront, speedSupplier), intakeFront::isFrontOpen);
+        super(new OpenAndIntake(intakeBack, speedSupplier), new OpenAndIntake(intakeFront, speedSupplier), intakeFront::isFrontIntakeOpen);
     }
 }

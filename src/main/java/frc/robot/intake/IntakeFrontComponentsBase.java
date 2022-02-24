@@ -14,6 +14,7 @@ public class IntakeFrontComponentsBase implements IntakeComponents {
     public IntakeFrontComponentsBase() {
         motor = new WPI_TalonFX(FRONT_MOTOR_ID);
         motor.configFactoryDefault();
+
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FRONT_SOLENOID_FORWARD_CHANNEL,
                 FRONT_SOLENOID_REVERSE_CHANNEL);
     }

@@ -6,7 +6,7 @@ import frc.robot.intake.Intake;
 public class OpenPiston extends InstantCommand {
 
     public OpenPiston(Intake intake) {
-        super(intake::openSolenoid);
+        super(intake::openPiston);
         addRequirements(intake);
     }
 }

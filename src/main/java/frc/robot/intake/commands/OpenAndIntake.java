@@ -20,8 +20,7 @@ public class OpenAndIntake extends SequentialCommandGroup {
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("ENDDDDDD openandintake");
         super.end(interrupted);
-        intake.closeSolenoid();
+        intake.closePiston();
     }
 }

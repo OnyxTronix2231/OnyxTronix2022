@@ -11,7 +11,6 @@ import static frc.robot.conveyor.ConveyorConstant.LOADER_CONVEYOR_SPEED;
 public class DriverConveyorOiBinder {
 
     public DriverConveyorOiBinder(Loader loader, BallTrigger ballTrigger, Trigger load) {
-
         load.whileActiveContinuous(new LoadBalls(loader, ballTrigger, () -> LOADER_CONVEYOR_SPEED,
                 () -> BALLTRIGGER_CONVEYOR_SPEED));
     }

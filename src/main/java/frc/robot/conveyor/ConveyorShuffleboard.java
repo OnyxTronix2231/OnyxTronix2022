@@ -1,5 +1,6 @@
 package frc.robot.conveyor;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.commands.LoadBalls;
@@ -19,9 +20,9 @@ public class ConveyorShuffleboard {
     }
 
     public void init(){
-        var loaderSpeed = Shuffleboard.getTab("Conveyor").add("LoaderSpeed",
+        NetworkTableEntry loaderSpeed = Shuffleboard.getTab("Conveyor").add("LoaderSpeed",
                 LOADER_CONVEYOR_SPEED).getEntry();
-        var ballTriggerSpeed = Shuffleboard.getTab("Conveyor").add("BallTriggerSpeed",
+        NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("Conveyor").add("BallTriggerSpeed",
                 BALLTRIGGER_CONVEYOR_SPEED).getEntry();
 
         Shuffleboard.getTab("Conveyor").add(new LoadBalls(loader, ballTrigger,

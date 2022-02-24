@@ -6,7 +6,7 @@ import frc.robot.intake.Intake;
 public class ClosePiston extends InstantCommand {
 
     public ClosePiston(Intake intake) {
-        super(intake::closeSolenoid);
+        super(intake::closePiston);
         addRequirements(intake);
     }
 }

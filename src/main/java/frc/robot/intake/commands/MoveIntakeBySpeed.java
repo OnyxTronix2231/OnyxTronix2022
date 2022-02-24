@@ -24,6 +24,5 @@ public class MoveIntakeBySpeed extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         intake.stop();
-        System.out.println("endddd intake by speed");
     }
 }
