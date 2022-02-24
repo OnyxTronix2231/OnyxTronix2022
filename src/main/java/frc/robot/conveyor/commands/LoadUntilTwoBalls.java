@@ -6,8 +6,8 @@ import frc.robot.conveyor.loader.commands.MoveLoaderBySpeed;
 
 import java.util.function.DoubleSupplier;
 
-public class LoadUntillTwoBalls extends OnyxParallelDeadlineGroup {
-    public LoadUntillTwoBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
+public class LoadUntilTwoBalls extends OnyxParallelDeadlineGroup {
+    public LoadUntilTwoBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
         super(() -> loader.identifiedBall() && ballTrigger.isBallIdentified(),
                 new MoveLoaderBySpeed(loader, speedSupplier));
     }

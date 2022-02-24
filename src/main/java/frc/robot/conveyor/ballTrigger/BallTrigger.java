@@ -50,6 +50,7 @@ public class BallTrigger extends SubsystemBase {
     public boolean isBlue(){
         return components.getColorSensor().getColor().blue > THRESHOLD_BLUENESS;
     }
+
     public double getBlue(){
         return components.getColorSensor().getColor().blue;
     }

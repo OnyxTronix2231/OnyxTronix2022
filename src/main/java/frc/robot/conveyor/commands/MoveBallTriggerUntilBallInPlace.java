@@ -6,8 +6,8 @@ import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 
 import java.util.function.DoubleSupplier;
 
-public class TriggerUntilBallsInPlace extends OnyxParallelDeadlineGroup {
-    public TriggerUntilBallsInPlace(BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
+public class MoveBallTriggerUntilBallInPlace extends OnyxParallelDeadlineGroup {
+    public MoveBallTriggerUntilBallInPlace(BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
         super(ballTrigger::isBallInPlace, new WaitUntilCommand(ballTrigger::isBallIdentified).
                 andThen(new MoveBallTriggerBySpeed(ballTrigger, speedSupplier)));
     }
