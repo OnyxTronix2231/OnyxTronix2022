@@ -7,9 +7,9 @@ import frc.robot.conveyor.loader.Loader;
 import java.util.function.DoubleSupplier;
 
 public class LoadBalls extends ParallelCommandGroup {
-    public LoadBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier speedSupplierLoader,
-                     DoubleSupplier speedSupplierBallTrigger) {
-        super(new LoadUntilTwoBalls(loader, ballTrigger, speedSupplierLoader),
-                new MoveBallTriggerUntilBallInPlace(ballTrigger, speedSupplierBallTrigger));
+    public LoadBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier loaderSpeedSupplier,
+                     DoubleSupplier ballTriggerSpeedSupplier) {
+        super(new LoadUntilTwoBalls(loader, ballTrigger, loaderSpeedSupplier),
+                new MoveBallTriggerUntilBallInPlace(ballTrigger, ballTriggerSpeedSupplier));
     }
 }
