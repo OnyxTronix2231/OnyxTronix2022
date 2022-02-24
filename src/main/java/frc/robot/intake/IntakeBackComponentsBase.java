@@ -17,9 +17,10 @@ public class IntakeBackComponentsBase implements IntakeComponents {
     public IntakeBackComponentsBase() {
         motor = new WPI_TalonFX(BACK_MOTOR_ID);
         motor.configFactoryDefault();
-        motor.configAllSettings(getConfiguration());
-        motor.setNeutralMode(NeutralMode.Brake);
-        motor.enableCurrentLimit(CURRENT_LIMIT_ENABLED_BACK);
+        motor.configAllSettings(getFalconConfiguration());
+        motor.setNeutralMode(NeutralMode.Coast);
+        motor.setInverted(false);
+
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, BACK_SOLENOID_FORWARD_CHANNEL,
                 BACK_SOLENOID_REVERSE_CHANNEL);
@@ -35,13 +36,18 @@ public class IntakeBackComponentsBase implements IntakeComponents {
         return solenoid;
     }
 
-    private TalonFXConfiguration getConfiguration() {
+    private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.peakCurrentLimit = PEAK_AMP;
-        config.peakCurrentDuration = PEAK_AMP_DURATION;
-        config.continuousCurrentLimit = CONTINUOUS_CURRENT_LIMIT;
-        config.openloopRamp = OPEN_LOOP_RAMP;
-        config.closedloopRamp = CLOSED_LOOP_RAMP;
+        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT_ENABLED_BACK;
+        config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT_BACK;
+        config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME_BACK;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED_BACK;
+        config.statorCurrLimit.currentLimit = STATOR_CURRENT_LIMIT_BACK;
+        config.statorCurrLimit.triggerThresholdCurrent = STATOR_TRIGGER_THRESHOLD_CURRENT_BACK;
+        config.statorCurrLimit.triggerThresholdTime = STATOR_TRIGGER_THRESHOLD_TIME_BACK;
+        config.statorCurrLimit.enable = STATOR_CURRENT_LIMIT_ENABLED_BACK;
+        config.openloopRamp = OPEN_LOOP_RAMP_BACK;
+        config.closedloopRamp = CLOSE_LOOP_RAMP_BACK;
         return config;
     }
 }
