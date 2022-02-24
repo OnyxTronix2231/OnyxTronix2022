@@ -6,12 +6,11 @@ import pid.PIDControlMode;
 import pid.PIDFTerms;
 import pid.interfaces.PIDController;
 import sensors.counter.Counter;
-import sensors.counter.CtreEncoder;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.shooter.ShooterConstants.*;
-import static frc.robot.shooter.ShooterConstants.RobotConstants.MASTER_MOTOR_ID;
-import static frc.robot.shooter.ShooterConstants.RobotConstants.SLAVE_MOTOR_ID;
+import static frc.robot.shooter.ShooterConstants.ComponentsConstants.MASTER_MOTOR_ID;
+import static frc.robot.shooter.ShooterConstants.ComponentsConstants.SLAVE_MOTOR_ID;
 
 public class ShooterComponentsBase implements ShooterComponents{
 
