@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.Path;
-
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.commands.DriveTrainCommandConstants.TRAJECTORY_P;
 
 public class MoveByPath extends CommandBase {
 

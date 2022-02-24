@@ -22,7 +22,6 @@ public final class DriveTrainConstants {
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
     static final double TRACKWIDTH_METERS = 0.68;
-    public static final double TRAJECTORY_P = 0;
     static final double KS = 0.68132; // TODO: calibrate
     static final double KV = 2.0333; // TODO: calibrate
     static final double KA = 0.0073009; // TODO: calibrate
@@ -64,91 +63,5 @@ public final class DriveTrainConstants {
         static double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
             return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
         }
-    }
-
-    public static final class StartPoses {
-
-        public static final Pose2d S1 = new Pose2d(2, 3, new Rotation2d(30));
-    }
-
-    public static final class Paths {
-
-        public static final Path PATH_A_FIRST_BALL = new Path(
-                List.of(),
-                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        ).setReversed();
-
-        public static final Path PATH_A_SECOND_BALL = new Path(
-                List.of(),
-                new Pose2d(11.531, 6.352, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_A_THIRD_BALL = new Path(
-                List.of(),
-                new Pose2d(15.522984492476057, 7.162, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_A_SHOOTING_PLACE = new Path(
-                List.of(),
-                new Pose2d(9.922400693498448, 3.282, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_A_FOURTH_BALL = new Path(
-                List.of(),
-                new Pose2d(11.654308133342933, 2.022, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_A_ENEMY_BALL = new Path(
-                List.of(),
-                new Pose2d(10.507200608251132, 0.886, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_B_FIRST_BALL = new Path(
-                List.of(),
-                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        ).setReversed();
-
-        public static final Path PATH_B_SECOND_BALL = new Path(
-                List.of(),
-                new Pose2d(11.531, 6.352, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_C_FIRST_BALL = new Path(
-                List.of(),
-                new Pose2d(8.943985451508386, 7.960, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        ).setReversed();
-
-        public static final Path PATH_C_ENEMY_BALL = new Path(
-                List.of(),
-                new Pose2d(7.415,7.926,Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_D_FIRST_BALL = new Path(
-                List.of(),
-                new Pose2d(11.654308133342933, 2.022, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_E_FIRST_BALL = new Path(
-                List.of(),
-                new Pose2d(11.654308133342933, 2.022, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
-
-        public static final Path PATH_E_ENEMY_BALL = new Path(
-                List.of(),
-                new Pose2d(10.507200608251132, 0.886, Rotation2d.fromDegrees(0)),
-                new MaxVelocityConstraint(1.5)
-        );
     }
 }
