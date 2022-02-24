@@ -5,12 +5,22 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.crossPlatform.autonomousCommands.pathCommands.*;
 
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrain extends SubsystemBase {
+
+    Command upperTarmacTo5AllianceBalls;
+    Command upperTarmacTo2AllianceBalls;
+    Command upperTarmacToAllianceAndEnemyBall;
+    Command lowerTarmacToAlliance1Ball;
+    Command lowerTarmacToAllianceBallEnemyBalls;
+    SendableChooser<Command> autonomousChooser;
 
     private final DriveTrainComponents driveTrainComponents;
     public double forwardJoystickValue;
@@ -24,6 +34,26 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
         driveTrainComponents.getNormelizedPigeonIMU().reset();
+    }
+
+    public void shuffleBoard(DriveTrain driveTrain) {
+        autonomousChooser = new SendableChooser<>();
+        new UpperTarmacTo2UpperAllianceBalls(driveTrain);
+        new UpperTarmacTo5AllianceBalls(driveTrain);
+        new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
+        new LowerTarmacToAlliance1Ball(driveTrain);
+        new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
+        SmartDashboard.putData(autonomousChooser);
+
+        autonomousChooser.setDefaultOption("upper tarmac to 5 alliance balls",upperTarmacTo5AllianceBalls);
+        autonomousChooser.addOption("upper tarmac to 2 alliance balls",upperTarmacTo2AllianceBalls);
+
+        autonomousChooser.addOption("lower tarmac to one alliance ball",lowerTarmacToAlliance1Ball);
+        autonomousChooser.addOption("lower tarmac to alliance ball and enemy ball",lowerTarmacToAllianceBallEnemyBalls);
+    }
+
+    public Command getSelectedAutoCommand() {
+        return autonomousChooser.getSelected();
     }
 
     @Override
