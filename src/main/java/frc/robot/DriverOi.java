@@ -3,7 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
-import frc.robot.arc.ArcDriverOiBinder;
+import frc.robot.arc.DriverArcOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.shooter.Shooter;
@@ -13,8 +13,6 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.TestBallTriggerOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.TestLoaderOiBinder;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
 import frc.robot.intake.DriverIntakeOiBinder;
 import frc.robot.turret.DriverTurretOiBinder;
@@ -42,7 +40,7 @@ public class DriverOi {
     }
 
     public DriverOi withArc(Arc arc) {
-        new ArcDriverOiBinder(arc);
+        new DriverArcOiBinder(arc);
         return this;
     }
 

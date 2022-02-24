@@ -10,24 +10,24 @@ import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 
 public class ArcShuffleBoard {
 
-    private final NetworkTableEntry setAngle;
-    private final NetworkTableEntry percentageOutput;
+    private final Arc arc;
+    private NetworkTableEntry setAngle;
+    private NetworkTableEntry percentageOutput;
+    private double speed;
+    private double angle;
 
-    public ArcShuffleBoard(Arc arc, ArcComponents arcComponents) {
-        
-        Shuffleboard.getTab("Arc").addNumber("Angle", () -> linearServoPosToAngle(arcComponents
-                .getLinearServo().getPosition()));
+    public ArcShuffleBoard(Arc arc) {
+        this.arc = arc;
+    }
+
+    public void init() {
+        Shuffleboard.getTab("Arc").addNumber("Angle", () -> linearServoPosToAngle(arc.getCurrentPos()));
         setAngle = Shuffleboard.getTab("Arc").add("setAngle", ARC_MIN_ANGLE).getEntry();
+        angle = setAngle.getDouble(ARC_MIN_ANGLE);
         percentageOutput = Shuffleboard.getTab("Arc").add("percentageOutput", 0).getEntry();
-        Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, this::getSpeed));
-        Shuffleboard.getTab("Arc").add("MoveArcToAngle", new MoveArcToAngle(arc, this::getAngle));
+        speed = percentageOutput.getDouble(0);
+        Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, ()-> speed));
+        Shuffleboard.getTab("Arc").add("MoveArcToAngle", new MoveArcToAngle(arc, ()-> angle));
     }
 
-    public double getSpeed() {
-        return percentageOutput.getDouble(0);
-    }
-
-    public double getAngle() {
-        return setAngle.getDouble(ARC_MIN_ANGLE);
-    }
 }

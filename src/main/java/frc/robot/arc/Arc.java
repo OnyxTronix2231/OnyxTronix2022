@@ -1,10 +1,6 @@
 package frc.robot.arc;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import static frc.robot.arc.ArcConstants.ArcCalculations.linearServoPosToAngle;
 
 public class Arc extends SubsystemBase {
 
@@ -13,16 +9,13 @@ public class Arc extends SubsystemBase {
 
     public Arc(ArcComponents arcComponents) {
         this.components = arcComponents;
-        shuffleBoard = new ArcShuffleBoard(this, components);
+        shuffleBoard = new ArcShuffleBoard(this);
+        shuffleBoard.init();
     }
 
     @Override
     public void periodic() {
         components.getLinearServo().updateCurrentPosition();
-    }
-
-    public double getAngle(){
-        return shuffleBoard.getAngle();
     }
 
     public void setSpeed(double speed) {
@@ -33,11 +26,11 @@ public class Arc extends SubsystemBase {
         components.getLinearServo().setPosition(position);
     }
 
-    public void stop() {
-        components.getLinearServo().setSpeed(0);
+    public double getCurrentPos() {
+        return components.getLinearServo().getPosition();
     }
 
-    public boolean isOnTarget() {
-        return components.getLinearServo().isOnTarget();
+    public void stop() {
+        components.getLinearServo().setSpeed(0);
     }
 }
