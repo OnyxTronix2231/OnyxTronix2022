@@ -21,24 +21,23 @@ public class TurretComponentsBase implements TurretComponents {
     public TurretComponentsBase() {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
-        motor.configAllSettings(getTalonFxConfiguration());
+        //motor.configAllSettings(getTalonFxConfiguration());
         //motor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
         //motor.setSelectedSensorPosition(
         //        motor.getSensorCollection().getIntegratedSensorAbsolutePosition(), 0, 0);
         motor.setNeutralMode(NeutralMode.Brake);
-        WPI_TalonSRX motor2 = new WPI_TalonSRX(8);
 
-        this.encoder = new TalonEncoder(motor2);
+        this.encoder = new TalonEncoder(new WPI_TalonSRX(TALON_ENCODER_ID));
         controller = new CtreMotionMagicController(
                 motor, this.encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
 
     public TalonFXConfiguration getTalonFxConfiguration() {
         TalonFXConfiguration config = new TalonFXConfiguration();
-        //config.forwardSoftLimitThreshold = degreesToEncoderUnits(MAX_DEG);
-        //config.forwardSoftLimitEnable = false;
-        //config.reverseSoftLimitThreshold = degreesToEncoderUnits(MIN_DEG);
-        //config.reverseSoftLimitEnable = false;
+        config.forwardSoftLimitThreshold = degreesToEncoderUnits(MAX_DEG);
+        config.forwardSoftLimitEnable = false;
+        config.reverseSoftLimitThreshold = degreesToEncoderUnits(MIN_DEG);
+        config.reverseSoftLimitEnable = false;
         return config;
     }
 

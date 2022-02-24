@@ -32,6 +32,7 @@ public final class TurretConstants {
         /*mechanic values*/
         static final int ENCODER_UNITS_IN_ROTATION = 4096;
         static final int TURRET_MOTOR_ID = 9;
+        static final int TALON_ENCODER_ID = 8;
         //static final double CONVERSION_RATE = 1.0 / 75;
         static final double CONVERSION_RATE = 1.0;
         static final double MAX_DEG = 200; //TODO: Correct the number
