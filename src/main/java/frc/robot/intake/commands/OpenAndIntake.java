@@ -15,7 +15,6 @@ public class OpenAndIntake extends SequentialCommandGroup {
                 new MoveIntakeBySpeed(intake, speedSupplier)
         );
         this.intake = intake;
-
     }
 
     @Override

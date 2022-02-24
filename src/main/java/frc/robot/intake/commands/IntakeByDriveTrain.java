@@ -27,4 +27,3 @@ public class IntakeByDriveTrain extends ConditionalCommand {
         return false;
     }
 }
-

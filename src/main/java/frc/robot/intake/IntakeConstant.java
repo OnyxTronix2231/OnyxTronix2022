@@ -8,7 +8,7 @@ public class IntakeConstant {
     static final DoubleSolenoid.Value PISTON_CLOSE = DoubleSolenoid.Value.kReverse;
     static final double INTAKE_SPEED = 0.8;
     static double JOYSTICK_VALUE = 0;
-    
+
     public static class FrontComponentsConstants {
 
         static final int FRONT_MOTOR_ID = 5;
