@@ -1,4 +1,4 @@
-package frc.robot.conveyor.commandsv2;
+package frc.robot.conveyor.commands;
 
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;

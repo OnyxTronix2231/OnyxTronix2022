@@ -1,4 +1,4 @@
-package frc.robot.conveyor.commandsv2;
+package frc.robot.conveyor.commands;
 
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.conveyor.ballTrigger.BallTrigger;

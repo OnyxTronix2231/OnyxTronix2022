@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.conveyor.DriverConveyorOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.BallTriggerOiBinder;
 import frc.robot.conveyor.loader.Loader;
+import frc.robot.conveyor.loader.LoaderOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.turret.DriverTurretOiBinder;
@@ -47,6 +49,18 @@ public class DriverOi {
     public DriverOi withConveyor(Loader loader, BallTrigger ballTrigger){
         Trigger load = new JoystickButton(controller, controller.getButtonUp());
         new DriverConveyorOiBinder(loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withLoader(Loader loader){
+        Trigger loadBySpeed = new JoystickButton(controller,controller.getButtonRight());
+        new LoaderOiBinder(loader,loadBySpeed);
+        return this;
+    }
+
+    public DriverOi withBallTrigger(BallTrigger ballTrigger){
+        Trigger ballTriggerBySpeed = new JoystickButton(controller,controller.getButtonLeft());
+        new BallTriggerOiBinder(ballTrigger,ballTriggerBySpeed);
         return this;
     }
 }

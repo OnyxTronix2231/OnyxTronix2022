@@ -1,6 +1,6 @@
 package frc.robot.conveyor.loader.commands;
 
-import frc.robot.conveyor.commandsv2.OnyxParallelDeadlineGroup;
+import frc.robot.conveyor.commands.OnyxParallelDeadlineGroup;
 import frc.robot.conveyor.loader.Loader;
 
 import java.util.function.DoubleSupplier;

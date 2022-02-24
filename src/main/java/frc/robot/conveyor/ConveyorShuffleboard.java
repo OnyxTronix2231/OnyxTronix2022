@@ -2,7 +2,7 @@ package frc.robot.conveyor;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.commandsv2.LoadBallsV2;
+import frc.robot.conveyor.commands.LoadBalls;
 import frc.robot.conveyor.loader.Loader;
 
 import static frc.robot.conveyor.ConveyorConstant.BALLTRIGGER_CONVEYOR_SPEED;
@@ -24,7 +24,7 @@ public class ConveyorShuffleboard {
         var ballTriggerSpeed = Shuffleboard.getTab("Conveyor").add("BallTriggerSpeed",
                 BALLTRIGGER_CONVEYOR_SPEED).getEntry();
 
-        Shuffleboard.getTab("Conveyor").add(new LoadBallsV2(loader, ballTrigger,
+        Shuffleboard.getTab("Conveyor").add(new LoadBalls(loader, ballTrigger,
                 () -> loaderSpeed.getDouble(LOADER_CONVEYOR_SPEED),
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_CONVEYOR_SPEED)));
     }
