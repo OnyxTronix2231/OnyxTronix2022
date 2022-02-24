@@ -11,27 +11,15 @@ import static frc.robot.shooter.ShooterConstants.ShooterCalculations.rpmToEncUni
 public class Shooter extends SubsystemBase {
 
     private final ShooterComponents shooterComponents;
-    private final NetworkTableEntry kP;
-    private final NetworkTableEntry kI;
-    private final NetworkTableEntry kD;
-    private final NetworkTableEntry setRPM;
-    private double speed;
+    private final ShooterShuffleBoard shuffleBoard;
 
     public Shooter(ShooterComponents shooterComponents) {
         this.shooterComponents = shooterComponents;
-        Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encUnitsDecisecToRPM(shooterComponents
-                .getCounter().getRate()));
-        setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
-        kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
-        kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
-        kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
-        Shuffleboard.getTab("Shooter").addNumber("err", () -> Math.abs(encUnitsDecisecToRPM(shooterComponents
-                .getCounter().getRate()) - setRPM.getDouble(0)));
+        shuffleBoard = new ShooterShuffleBoard(this, shooterComponents);
     }
 
     public void periodic() {
-        speed = setRPM.getDouble(0);
-        shooterComponents.getController().setPIDFTerms(kP.getDouble(KP), kI.getDouble(KI), kD.getDouble(KD), KF);
+        shuffleBoard.update();
     }
 
     public void setSpeed(double speed) {
@@ -44,7 +32,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public double getSpeed() {
-        return speed;
+        return shuffleBoard.getRPM();
     }
 
     public void updateSetPIDSpeed(double rpm) {

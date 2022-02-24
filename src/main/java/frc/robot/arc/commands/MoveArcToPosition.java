@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.arc.Arc;
 import java.util.function.DoubleSupplier;
 
-public class MoveLinearServoByDistance extends CommandBase {
+public class MoveArcToPosition extends CommandBase {
 
     private final Arc arc;
     private final DoubleSupplier distanceSupplier;
 
-    public MoveLinearServoByDistance(Arc arc, DoubleSupplier distanceSupplier) {
+    public MoveArcToPosition(Arc arc, DoubleSupplier distanceSupplier) {
         this.arc = arc;
         this.distanceSupplier = distanceSupplier;
         addRequirements(arc);

@@ -7,11 +7,11 @@ ArcComponentsBase --|> ArcComponents
 Arc o-- ArcComponents
 CommandBase <|-- MoveArcToAngle
 CommandBase <|-- MoveArcBySpeed
-CommandBase <|-- MoveLinearServoByDistance
-MoveLinearServoByDistance <|-- MoveArcToAngle
+CommandBase <|-- MoveArcToPosition
+MoveArcToPosition <|-- MoveArcToAngle
 MoveArcToAngle <|-- MoveArcByTargetDistance
 MoveArcBySpeed o-- Arc
-MoveLinearServoByDistance o-- Arc
+MoveArcToPosition o-- Arc
 SubsystemBase <|-- Arc
 
 
@@ -31,7 +31,7 @@ class ArcComponentsBase {
    LinearServo getLinearServo()
 }
 
-class MoveLinearServoByDistance {
+class MoveArcToPosition {
    Arc arc
    DoubleSupplier distanceSupplier
 

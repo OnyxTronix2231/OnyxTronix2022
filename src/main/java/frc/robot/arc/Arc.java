@@ -9,26 +9,20 @@ import static frc.robot.arc.ArcConstants.ArcCalculations.linearServoPosToAngle;
 public class Arc extends SubsystemBase {
 
     private final ArcComponents arcComponents;
-
-    private final NetworkTableEntry setAngle;
-    private double angle;
+    private final ArcShuffleBoard shuffleBoard;
 
     public Arc(ArcComponents arcComponents) {
         this.arcComponents = arcComponents;
-
-        Shuffleboard.getTab("Arc").addNumber("getAngle", () -> linearServoPosToAngle(arcComponents
-                .getLinearServo().getPosition()));
-        setAngle = Shuffleboard.getTab("Arc").add("setAngle", 0).getEntry();
+        shuffleBoard = new ArcShuffleBoard(this, arcComponents);
     }
 
     @Override
     public void periodic() {
         arcComponents.getLinearServo().updateCurrentPosition();
-        angle = setAngle.getDouble(0);
     }
 
     public double getAngle(){
-        return angle;
+        return shuffleBoard.getAngle();
     }
 
     public void setSpeed(double speed) {
