@@ -43,10 +43,9 @@ public class Loader extends SubsystemBase {
 
     public boolean identifiedBallBack() {
         return getVoltageBack() >= loaderShuffleboard.getMinValueEntry();
-
     }
 
-    public boolean identifiedBall() { //TODO return back check
+    public boolean identifiedBall() {
         return identifiedBallBack() || identifiedBallFront();
     }
 }

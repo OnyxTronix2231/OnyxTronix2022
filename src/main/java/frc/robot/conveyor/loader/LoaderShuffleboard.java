@@ -9,8 +9,8 @@ import static frc.robot.conveyor.loader.LoaderConstants.LOADER_SPEED;
 
 public class LoaderShuffleboard {
 
+    private final Loader loader;
     private NetworkTableEntry minValueEntry;
-    private Loader loader;
 
     public LoaderShuffleboard(Loader loader) {
         this.loader = loader;
@@ -19,7 +19,7 @@ public class LoaderShuffleboard {
     public void init() {
         minValueEntry = Shuffleboard.getTab("Loader").add("MinValue", IDENTIFY_BALL_MIN).getEntry();
 
-        var loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",
+        NetworkTableEntry loaderSpeed = Shuffleboard.getTab("Loader").add("LoaderSpeed",
                 LOADER_SPEED).getEntry();
         Shuffleboard.getTab("Loader").add(new MoveLoaderBySpeed(loader,
                 () -> loaderSpeed.getDouble(LOADER_SPEED)));
@@ -35,5 +35,4 @@ public class LoaderShuffleboard {
         return minValueEntry != null ?
                 minValueEntry.getDouble(IDENTIFY_BALL_MIN) : IDENTIFY_BALL_MIN;
     }
-
 }

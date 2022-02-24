@@ -22,7 +22,7 @@ public class BallTriggerShuffleboard {
         identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
                 IDENTIFIED_DISTANCE_MM).getEntry();
 
-        var ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
+        NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
                 BALLTRIGGER_SPEED).getEntry();
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
@@ -32,7 +32,7 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").addBoolean("Color", ballTrigger::isBlue);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
-        Shuffleboard.getTab("BallTrigger").addNumber("getBlue",()->ballTrigger.getBlue());
+        Shuffleboard.getTab("BallTrigger").addNumber("getBlue", () -> ballTrigger.getBlue());
     }
 
     public double getBallInPlaceValueEntry() {

@@ -3,8 +3,8 @@ package frc.robot.intake;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.intake.IntakeConstant.SOLENOID_CLOSE;
-import static frc.robot.intake.IntakeConstant.SOLENOID_OPEN;
+import static frc.robot.intake.IntakeConstant.PISTON_CLOSE;
+import static frc.robot.intake.IntakeConstant.PISTON_OPEN;
 
 public class Intake extends SubsystemBase {
 
@@ -26,15 +26,15 @@ public class Intake extends SubsystemBase {
         moveBySpeed(0);
     }
 
-    public void openSolenoid() {
-        components.getSolenoid().set(SOLENOID_OPEN);
+    public void openPiston() {
+        components.getSolenoid().set(PISTON_OPEN);
     }
 
-    public void closeSolenoid() {
-        components.getSolenoid().set(SOLENOID_CLOSE);
+    public void closePiston() {
+        components.getSolenoid().set(PISTON_CLOSE);
     }
 
-    public boolean isFrontOpen() {
+    public boolean isFrontIntakeOpen() {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
 

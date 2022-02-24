@@ -5,9 +5,9 @@ import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.BALLTRIGGER_SPEED;
 
-public class BallTriggerOiBinder {
+public class TestBallTriggerOiBinder {
 
-    public BallTriggerOiBinder(BallTrigger ballTrigger, Trigger trigger) {
+    public TestBallTriggerOiBinder(BallTrigger ballTrigger, Trigger trigger) {
 
         trigger.whileActiveContinuous(new MoveBallTriggerBySpeed(ballTrigger, () -> BALLTRIGGER_SPEED));
     }

@@ -5,9 +5,9 @@ import frc.robot.conveyor.loader.commands.MoveLoaderBySpeed;
 
 import static frc.robot.conveyor.loader.LoaderConstants.LOADER_SPEED;
 
-public class LoaderOiBinder {
+public class TestLoaderOiBinder {
 
-    public LoaderOiBinder(Loader loader, Trigger trigger) {
+    public TestLoaderOiBinder(Loader loader, Trigger trigger) {
         trigger.whileActiveContinuous(new MoveLoaderBySpeed(loader, () -> LOADER_SPEED));
     }
 }

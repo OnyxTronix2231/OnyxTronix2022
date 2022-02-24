@@ -1,4 +1,4 @@
-package frc.robot.conveyor.commandsv2;
+package frc.robot.conveyor.commands;
 
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -6,10 +6,10 @@ import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 
 import java.util.function.DoubleSupplier;
 
-public class TriggerUntilBallsInPlace extends OnyxParallelDeadlineGroup {
-    public TriggerUntilBallsInPlace(BallTrigger ballTrigger, DoubleSupplier speedSupplier) {
+public class MoveBallTriggerUntilBallInPlace extends OnyxParallelDeadlineGroup {
+    public MoveBallTriggerUntilBallInPlace(BallTrigger ballTrigger, DoubleSupplier ballTriggerSpeedSupplier) {
         super(ballTrigger::isBallInPlace, new WaitUntilCommand(ballTrigger::isBallIdentified).
-                andThen(new MoveBallTriggerBySpeed(ballTrigger, speedSupplier)));
+                andThen(new MoveBallTriggerBySpeed(ballTrigger, ballTriggerSpeedSupplier)));
     }
 
     @Override

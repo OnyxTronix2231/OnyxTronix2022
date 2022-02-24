@@ -5,12 +5,12 @@ import frc.robot.intake.Intake;
 
 import java.util.function.DoubleSupplier;
 
-public class IntakeBySpeed extends CommandBase {
+public class MoveIntakeBySpeed extends CommandBase {
 
     private final Intake intake;
     private final DoubleSupplier speedSupplier;
 
-    public IntakeBySpeed(Intake intake, DoubleSupplier speedSupplier) {
+    public MoveIntakeBySpeed(Intake intake, DoubleSupplier speedSupplier) {
         this.intake = intake;
         this.speedSupplier = speedSupplier;
         addRequirements(intake);
@@ -24,6 +24,5 @@ public class IntakeBySpeed extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         intake.stop();
-        System.out.println("endddd intake by speed");
     }
 }
