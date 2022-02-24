@@ -10,6 +10,5 @@ public class DriverIntakeOiBinder {
     public DriverIntakeOiBinder(Intake intakeForward, Intake intakeBack, Trigger toggleIntakeSides) {
         toggleIntakeSides.whileActiveContinuous(new ToggleIntakeSides(intakeForward, intakeBack,
                 () -> INTAKE_SPEED));
-
     }
 }
