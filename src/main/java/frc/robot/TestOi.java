@@ -6,7 +6,10 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.TestBallTriggerOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.TestLoaderOiBinder;
+import frc.robot.intake.Intake;
+import frc.robot.intake.TestIntakeOiBinder;
 import humanControls.ConsoleController;
+import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
@@ -20,18 +23,31 @@ public class TestOi {
     }
 
     public TestOi withLoader(Loader loader) {
-        Trigger loadBySpeed = new JoystickButton(controller, controller.getButtonRight());
+        Trigger loadBySpeed = new JoystickAxis(controller, controller.getLeftTrigger());
         new TestLoaderOiBinder(loader, loadBySpeed);
         return this;
     }
 
     public TestOi withBallTrigger(BallTrigger ballTrigger) {
-        Trigger ballTriggerBySpeed = new JoystickButton(controller, controller.getButtonLeft());
+        Trigger ballTriggerBySpeed = new JoystickAxis(controller, controller.getRightTrigger());
         new TestBallTriggerOiBinder(ballTrigger, ballTriggerBySpeed);
         return this;
     }
 
+    public TestOi withIntake(Intake intakeFront, Intake intakeBack) {
+        Trigger openFrontPiston = new JoystickButton(controller, controller.getButtonDown());
+        Trigger openBackPiston = new JoystickButton(controller, controller.getButtonLeft());
 
+        Trigger closeFrontPiston = new JoystickButton(controller, controller.getButtonUp());
+        Trigger closeBackPiston = new JoystickButton(controller, controller.getButtonRight());
+
+        Trigger moveFrontIntake = new JoystickButton(controller, controller.getBumperRight());
+        Trigger moveBackIntake = new JoystickButton(controller, controller.getBumperLeft());
+
+        new TestIntakeOiBinder(intakeFront, intakeBack, openFrontPiston, openBackPiston, closeFrontPiston,
+                closeBackPiston, moveFrontIntake, moveBackIntake);
+        return this;
+    }
 }
 
 

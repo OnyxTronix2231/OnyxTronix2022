@@ -20,7 +20,5 @@ public class TestIntakeOiBinder {
 
         moveFrontIntake.whileActiveContinuous(new MoveIntakeBySpeed(intakeFront, () -> INTAKE_SPEED));
         moveBackIntake.whileActiveContinuous(new MoveIntakeBySpeed(intakeBack, () -> INTAKE_SPEED));
-
-
     }
 }
