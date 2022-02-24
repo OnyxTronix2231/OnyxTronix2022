@@ -19,7 +19,7 @@ public class ConveyorShuffleboard {
         this.ballTrigger = ballTrigger;
     }
 
-    public void init(){
+    public void init() {
         NetworkTableEntry loaderSpeed = Shuffleboard.getTab("Conveyor").add("LoaderSpeed",
                 LOADER_CONVEYOR_SPEED).getEntry();
         NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("Conveyor").add("BallTriggerSpeed",

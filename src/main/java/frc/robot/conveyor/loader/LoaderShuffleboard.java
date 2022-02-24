@@ -9,8 +9,8 @@ import static frc.robot.conveyor.loader.LoaderConstants.LOADER_SPEED;
 
 public class LoaderShuffleboard {
 
+    private final Loader loader;
     private NetworkTableEntry minValueEntry;
-    private Loader loader;
 
     public LoaderShuffleboard(Loader loader) {
         this.loader = loader;

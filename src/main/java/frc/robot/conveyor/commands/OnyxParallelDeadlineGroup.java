@@ -9,6 +9,6 @@ import java.util.function.BooleanSupplier;
 public class OnyxParallelDeadlineGroup extends ParallelDeadlineGroup {
 
     public OnyxParallelDeadlineGroup(BooleanSupplier condition, Command... commands) {
-        super(new WaitUntilCommand(condition), new WaitUntilCommand(()->!condition.getAsBoolean()).andThen(commands));
+        super(new WaitUntilCommand(condition), new WaitUntilCommand(() -> !condition.getAsBoolean()).andThen(commands));
     }
 }

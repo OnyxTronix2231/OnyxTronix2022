@@ -39,4 +39,3 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         return colorSensor;
     }
 }
-
