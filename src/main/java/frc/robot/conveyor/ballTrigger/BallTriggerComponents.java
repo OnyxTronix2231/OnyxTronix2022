@@ -10,4 +10,5 @@ public interface BallTriggerComponents {
 
     Rev2mDistanceSensor getDistanceSensorUp();
 
+    ColorSensorV3 getColorSensor();
 }
