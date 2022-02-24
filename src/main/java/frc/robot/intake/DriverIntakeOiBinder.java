@@ -5,11 +5,12 @@ import frc.robot.intake.commands.OpenAndCloseAsNeeded;
 
 import static frc.robot.intake.IntakeConstant.INTAKE_SPEED;
 
-public class IntakeOiBinder {
+public class DriverIntakeOiBinder {
 
-    public IntakeOiBinder(Intake intakeForward, Intake intakeBack, Trigger openAndIntakeTwoSides) {
+    public DriverIntakeOiBinder(Intake intakeForward, Intake intakeBack, Trigger openAndIntakeTwoSides) {
         openAndIntakeTwoSides.whileActiveContinuous(new OpenAndCloseAsNeeded(intakeForward, intakeBack,
                 () -> INTAKE_SPEED));
+
     }
 }
 
