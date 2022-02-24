@@ -7,6 +7,5 @@ public class OpenPiston extends InstantCommand {
 
     public OpenPiston(Intake intake) {
         super(intake::openPiston);
-        addRequirements(intake);
     }
 }
