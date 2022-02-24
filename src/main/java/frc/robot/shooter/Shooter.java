@@ -27,8 +27,12 @@ public class Shooter extends SubsystemBase {
         shooterComponents.getController().enable();
     }
 
-    public double getSpeed() {
+    public double getRPM() {
         return shuffleBoard.getRPM();
+    }
+
+    public double getSpeed() {
+        return shuffleBoard.getSpeed();
     }
 
     public void updateSetPIDSpeed(double rpm) {
