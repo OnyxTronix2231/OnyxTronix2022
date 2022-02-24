@@ -14,9 +14,10 @@ CommandBase <|-- ShootBySpeed
 CommandBase <|-- ShootByRPM
 SubsystemBase <|-- Shooter
 
-
 class Shooter {
+
    ShooterComponents shooterComponents
+
    void setSpeed()
    void initSetPIDSpeed()
    void updateSetPIDSpeed()
@@ -24,6 +25,7 @@ class Shooter {
 }
 
 class ShooterComponentsBase {
+
    WPI_TalonFX masterMotor
    WPI_TalonFX slaveMotor
    TalonEncoder encoder
@@ -35,14 +37,16 @@ class ShooterComponentsBase {
 }
 
 interface ShooterComponents {
+
    WPI_TalonFX getMasterMotor()
    Counter getCounter()
    PIDController getController()
 }
 
 class ShootByRPM {
+
    Shooter shooter
-   DoubleSupplier rpmSupplier
+   DoubleSupplier RPMSupplier
 
    void initialize()
    void execute()
@@ -50,6 +54,7 @@ class ShootByRPM {
 }
 
 class ShootBySpeed {
+
    Shooter shooter
    DoubleSupplier speedSupplier
 

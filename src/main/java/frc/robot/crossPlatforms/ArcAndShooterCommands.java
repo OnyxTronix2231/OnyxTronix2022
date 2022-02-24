@@ -11,8 +11,8 @@ public class ArcAndShooterCommands extends ParallelCommandGroup {
 
     public ArcAndShooterCommands(Arc arc, Shooter shooter, DoubleSupplier rpmSupplier , DoubleSupplier angleSupplier) {
         super(
-                new ShootByRPM(shooter, rpmSupplier),
-                new MoveArcToAngle(arc, angleSupplier)
+                new MoveArcToAngle(arc, angleSupplier),
+                new ShootByRPM(shooter, rpmSupplier)
         );
     }
 }

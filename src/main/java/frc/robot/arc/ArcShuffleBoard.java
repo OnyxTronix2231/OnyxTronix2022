@@ -6,7 +6,7 @@ import frc.robot.arc.commands.MoveArcBySpeed;
 import frc.robot.arc.commands.MoveArcToAngle;
 
 import static frc.robot.arc.ArcConstants.ArcCalculations.linearServoPosToAngle;
-import static frc.robot.arc.ArcConstants.RobotConstants.ARC_MIN_ANGLE;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 
 public class ArcShuffleBoard {
 
@@ -14,7 +14,6 @@ public class ArcShuffleBoard {
     private final ArcComponents arcComponents;
     private final NetworkTableEntry setAngle;
     private final NetworkTableEntry percentageOutput;
-
 
     public ArcShuffleBoard(Arc arc, ArcComponents arcComponents) {
         this.arc = arc;

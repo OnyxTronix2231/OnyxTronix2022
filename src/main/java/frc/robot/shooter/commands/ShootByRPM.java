@@ -7,22 +7,22 @@ import java.util.function.DoubleSupplier;
 public class ShootByRPM extends CommandBase {
 
     private final Shooter shooter;
-    private final DoubleSupplier rpmSupplier;
+    private final DoubleSupplier RPMSupplier;
 
     public ShootByRPM(Shooter shooter, DoubleSupplier rpmSupplier) {
         this.shooter = shooter;
-        this.rpmSupplier = rpmSupplier;
+        this.RPMSupplier = rpmSupplier;
         addRequirements(shooter);
     }
 
     @Override
     public void initialize() {
-        shooter.initSetPIDSpeed(rpmSupplier.getAsDouble());
+        shooter.initSetPIDSpeed(RPMSupplier.getAsDouble());
     }
 
     @Override
     public void execute() {
-        shooter.updateSetPIDSpeed(rpmSupplier.getAsDouble());
+        shooter.updateSetPIDSpeed(RPMSupplier.getAsDouble());
     }
 
     @Override

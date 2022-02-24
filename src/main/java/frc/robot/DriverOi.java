@@ -7,7 +7,7 @@ import frc.robot.arc.ArcDriverOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.shooter.Shooter;
-import frc.robot.shooter.ShooterDriverOIBinder;
+import frc.robot.shooter.DriverShooterOIBinder;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
@@ -30,14 +30,13 @@ public class DriverOi {
     }
 
     public DriverOi withArc(Arc arc) {
-        JoystickAxis arcTrigger = new JoystickAxis(controller, controller.getAxisLeftY());
-        new ArcDriverOiBinder(arc, arcTrigger);
+        new ArcDriverOiBinder(arc);
         return this;
     }
 
     public DriverOi withShooter(Shooter shooter) {
         Trigger shooterTrigger = new JoystickButton(controller, controller.getBumperLeft());
-        new ShooterDriverOIBinder(shooter, shooterTrigger);
+        new DriverShooterOIBinder(shooter, shooterTrigger);
         return this;
     }
 }

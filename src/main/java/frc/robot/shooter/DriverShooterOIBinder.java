@@ -6,9 +6,9 @@ import frc.robot.shooter.commands.ShootBySpeed;
 
 import static frc.robot.shooter.ShooterConstants.SPEED;
 
-public class ShooterDriverOIBinder {
+public class DriverShooterOIBinder {
 
-    public ShooterDriverOIBinder(Shooter shooter, Trigger shooterTrigger) {
+    public DriverShooterOIBinder(Shooter shooter, Trigger shooterTrigger) {
         shooterTrigger.whileActiveContinuous(new ShootBySpeed(shooter, shooter::getSpeed));
     }
 }

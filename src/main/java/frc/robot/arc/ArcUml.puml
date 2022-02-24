@@ -14,9 +14,8 @@ MoveArcBySpeed o-- Arc
 MoveArcToPosition o-- Arc
 SubsystemBase <|-- Arc
 
-
-
 class Arc {
+
    ArcComponents arcComponents
 
    public void setSpeed()
@@ -26,12 +25,14 @@ class Arc {
 }
 
 class ArcComponentsBase {
+
    LinearServo linearServo
 
    LinearServo getLinearServo()
 }
 
 class MoveArcToPosition {
+
    Arc arc
    DoubleSupplier distanceSupplier
 
@@ -44,6 +45,7 @@ class MoveArcToAngle {
 }
 
 class MoveArcBySpeed {
+
    Arc arc
    DoubleSupplier speedSupplier
 
@@ -61,6 +63,7 @@ class CommandBase {
 }
 
 interface ArcComponents {
+
    LinearServo getLinearServo()
 }
 

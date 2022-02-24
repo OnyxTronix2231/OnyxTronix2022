@@ -8,17 +8,17 @@ import static frc.robot.arc.ArcConstants.ArcCalculations.linearServoPosToAngle;
 
 public class Arc extends SubsystemBase {
 
-    private final ArcComponents arcComponents;
+    private final ArcComponents components;
     private final ArcShuffleBoard shuffleBoard;
 
     public Arc(ArcComponents arcComponents) {
-        this.arcComponents = arcComponents;
-        shuffleBoard = new ArcShuffleBoard(this, arcComponents);
+        this.components = arcComponents;
+        shuffleBoard = new ArcShuffleBoard(this, components);
     }
 
     @Override
     public void periodic() {
-        arcComponents.getLinearServo().updateCurrentPosition();
+        components.getLinearServo().updateCurrentPosition();
     }
 
     public double getAngle(){
@@ -26,19 +26,18 @@ public class Arc extends SubsystemBase {
     }
 
     public void setSpeed(double speed) {
-        arcComponents.getLinearServo().setSpeed(speed);
+        components.getLinearServo().setSpeed(speed);
     }
 
     public void setPosition(double position) {
-        arcComponents.getLinearServo().setPosition(position);
+        components.getLinearServo().setPosition(position);
     }
 
     public void stop() {
-        arcComponents.getLinearServo().setSpeed(0);
+        components.getLinearServo().setSpeed(0);
     }
 
     public boolean isOnTarget() {
-        return arcComponents.getLinearServo().isOnTarget();
+        return components.getLinearServo().isOnTarget();
     }
-
 }

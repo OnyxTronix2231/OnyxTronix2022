@@ -5,7 +5,7 @@ import humanControls.JoystickAxis;
 
 public class ArcDriverOiBinder {
 
-    public ArcDriverOiBinder(Arc arc, JoystickAxis changeAngle) {
+    public ArcDriverOiBinder(Arc arc) {
         arc.setDefaultCommand(new MoveArcBySpeed(arc, ()-> arc.getAngle()));
     }
 }

@@ -1,13 +1,10 @@
 package frc.robot.arc;
 
-import static frc.robot.arc.ArcConstants.RobotConstants.*;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 
 public class ArcConstants {
 
-    public static final double ANGLE = 15; //todo calibrate different angles
-    public static final double SPEED = 0.8;
-
-    public static class RobotConstants {
+    public static class ComponentsConstants {
 
         public static final int LINEAR_SERVO_CHANNEL = 0;
         public static final int LINEAR_SERVO_MAX_LENGTH = 50;

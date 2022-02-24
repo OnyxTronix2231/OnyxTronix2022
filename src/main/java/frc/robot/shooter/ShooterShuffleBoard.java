@@ -16,7 +16,7 @@ public class ShooterShuffleBoard {
     private final NetworkTableEntry kI;
     private final NetworkTableEntry kD;
     private final NetworkTableEntry setRPM;
-    private double rpm;
+    private double RPM;
 
     public ShooterShuffleBoard(Shooter shooter, ShooterComponents shooterComponents) {
         this.shooter = shooter;
@@ -24,22 +24,22 @@ public class ShooterShuffleBoard {
 
         Shuffleboard.getTab("Shooter").addNumber("RPM", () -> encUnitsDecisecToRPM(shooterComponents
                 .getCounter().getRate()));
-        setRPM = Shuffleboard.getTab("SHooter").add("setRPM", 0).getEntry();
+        setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
         Shuffleboard.getTab("Shooter").addNumber("err", () -> Math.abs(encUnitsDecisecToRPM(shooterComponents
                 .getCounter().getRate()) - setRPM.getDouble(0)));
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
         kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
-        Shuffleboard.getTab("Shooter").add("Shoot By Speed", new ShootBySpeed(shooter, ()-> getRPM()));
-        Shuffleboard.getTab("Shooter").add("Shoot By RPM", new ShootByRPM(shooter, ()-> getRPM()));
+        Shuffleboard.getTab("Shooter").add("ShootBySpeed", new ShootBySpeed(shooter, ()-> getRPM()));
+        Shuffleboard.getTab("Shooter").add("ShootByRPM", new ShootByRPM(shooter, ()-> getRPM()));
     }
 
     public void update() {
         shooterComponents.getController().setPIDFTerms(kP.getDouble(KP), kI.getDouble(KI), kD.getDouble(KD), KF);
-        rpm = setRPM.getDouble(0);
+        RPM = setRPM.getDouble(0);
     }
 
     public double getRPM() {
-        return rpm;
+        return RPM;
     }
 }

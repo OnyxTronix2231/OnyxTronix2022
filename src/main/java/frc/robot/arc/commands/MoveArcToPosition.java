@@ -7,22 +7,17 @@ import java.util.function.DoubleSupplier;
 public class MoveArcToPosition extends CommandBase {
 
     private final Arc arc;
-    private final DoubleSupplier distanceSupplier;
+    private final DoubleSupplier positionSupplier;
 
-    public MoveArcToPosition(Arc arc, DoubleSupplier distanceSupplier) {
+    public MoveArcToPosition(Arc arc, DoubleSupplier positionSupplier) {
         this.arc = arc;
-        this.distanceSupplier = distanceSupplier;
+        this.positionSupplier = positionSupplier;
         addRequirements(arc);
     }
 
     @Override
     public void execute() {
-        arc.setPosition(distanceSupplier.getAsDouble());
-    }
-
-    @Override
-    public boolean isFinished() {
-        return false;
+        arc.setPosition(positionSupplier.getAsDouble());
     }
 
     @Override
