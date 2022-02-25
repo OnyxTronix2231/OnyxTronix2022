@@ -1,6 +1,8 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.ComponentsConstants.*;

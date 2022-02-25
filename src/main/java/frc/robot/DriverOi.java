@@ -31,14 +31,10 @@ public class DriverOi {
     public DriverOi withTurret(Turret turret, Vision vision) {
         Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
         Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
-        Trigger move10 = new JoystickButton(controller, controller.getButtonUp());
-        Trigger move50 = new JoystickButton(controller, controller.getButtonRight());
-        Trigger move90 = new JoystickButton(controller, controller.getButtonDown());
-        Trigger move180 = new JoystickButton(controller, controller.getButtonLeft());
         Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
         Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
         new DriverTurretOiBinder
-                (turret, vision, moveLeft, moveRight, move10, move50, move90, move180, byVision, calibrate);
+                (turret, vision, moveLeft, moveRight, byVision, calibrate);
         return this;
     }
 }
