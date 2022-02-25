@@ -9,9 +9,9 @@ public class ShootByRPM extends CommandBase {
     private final Shooter shooter;
     private final DoubleSupplier RPMSupplier;
 
-    public ShootByRPM(Shooter shooter, DoubleSupplier rpmSupplier) {
+    public ShootByRPM(Shooter shooter, DoubleSupplier RPMSupplier) {
         this.shooter = shooter;
-        this.RPMSupplier = rpmSupplier;
+        this.RPMSupplier = RPMSupplier;
         addRequirements(shooter);
     }
 

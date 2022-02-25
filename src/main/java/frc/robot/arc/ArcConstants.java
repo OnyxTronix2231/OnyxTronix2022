@@ -9,9 +9,9 @@ public class ArcConstants {
         public static final int LINEAR_SERVO_CHANNEL = 0;
         public static final int LINEAR_SERVO_MAX_LENGTH = 50;
         public static final int LINEAR_SERVO_MAX_SPEED = 32;
-        public static final double ARC_MAX_ANGLE = 31.47;
-        public static final double ARC_MIN_ANGLE = 20;
-        public static final double ANGLE = 20;
+        public static final double ARC_MAX_ANGLE = 35;
+        public static final double ARC_MIN_ANGLE = 23.48;
+        public static final double ANGLE = 23.48;
         public static final double SPEED = 0;
     }
 

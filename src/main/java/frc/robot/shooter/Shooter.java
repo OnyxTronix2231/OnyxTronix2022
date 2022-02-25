@@ -37,8 +37,12 @@ public class Shooter extends SubsystemBase {
         return encUnitsDecisecToRPM(shooterComponents.getCounter().getRate());
     }
 
-    public double getSpeed() {
-        return shuffleBoard.getSpeed();
+    public double getError() {
+        return shooterComponents.getController().getCurrentError();
+    }
+
+    public double getEncoderUnits() {
+        return shooterComponents.getCounter().getRate();
     }
 
     public void updateSetPIDSpeed(double rpm) {

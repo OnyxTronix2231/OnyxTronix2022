@@ -8,10 +8,10 @@ public class ShooterConstants {
     public static final int SEC_IN_MIN = 60;
     public static final double DECI_SECONDS_PER_MINUTE = 600;
     public static final double MAX_CLOSED_LOOP_OUTPUT = 1023;
-    public static final double MAX_VELOCITY = 5030.0 * 1.25;
-    public static final double KP = 0; //TODO calibrate value
-    public static final double KI = 0; //TODO calibrate value
-    public static final double KD = 0; //TODO calibrate value
+    public static final double MAX_VELOCITY = 20625;
+    public static final double KP = 0.47;
+    public static final double KI = 0;
+    public static final double KD = 25;
     public static final double KF = MAX_CLOSED_LOOP_OUTPUT / MAX_VELOCITY;
     public static final double SPEED = 0;
 
