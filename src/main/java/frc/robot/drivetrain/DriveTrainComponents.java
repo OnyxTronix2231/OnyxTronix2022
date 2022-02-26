@@ -22,8 +22,4 @@ public interface DriveTrainComponents {
     TalonEncoder getLeftEncoder();
 
     TalonEncoder getRightEncoder();
-
-    Field2d getField();
-
-    void setNeutralMode(NeutralMode mode);
 }
