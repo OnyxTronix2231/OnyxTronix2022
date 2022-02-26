@@ -21,6 +21,14 @@ public class Climber extends SubsystemBase {
         moveBySpeed(0);
     }
 
+    public double getLeftEncoderUnits() {
+        return components.getLeftEncoder().getCount();
+    }
+
+    public double getRightEncoderUnits() {
+        return components.getRightEncoder().getCount();
+    }
+
     public void openSolenoid() {
         components.getDoubleSolenoid().set(SOLENOID_OPEN_VALUE);
     }

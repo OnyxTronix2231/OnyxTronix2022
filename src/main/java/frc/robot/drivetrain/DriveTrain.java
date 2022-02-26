@@ -47,6 +47,10 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
+    public double getPitch() {
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawPitch();
+    }
+
     public void resetOdometryToPose(Translation2d translation) {
         resetEncoders();
         Pose2d targetPose = new Pose2d(translation, this.getPose().getRotation());

@@ -13,4 +13,8 @@ public interface ClimberComponents {
     WPI_TalonFX getLeftMotor();
 
     DoubleSolenoid getDoubleSolenoid();
+
+    TalonEncoder getLeftEncoder();
+
+    TalonEncoder getRightEncoder();
 }
