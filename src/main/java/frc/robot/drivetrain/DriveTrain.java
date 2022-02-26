@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -15,19 +16,13 @@ import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrain extends SubsystemBase {
 
-    Command upperTarmacTo5AllianceBalls;
-    Command upperTarmacTo2AllianceBalls;
-    Command upperTarmacToAllianceAndEnemyBall;
-    Command lowerTarmacToAlliance1Ball;
-    Command lowerTarmacToAllianceBallEnemyBalls;
-    SendableChooser<Command> autonomousChooser;
-
     private final DriveTrainComponents driveTrainComponents;
     public double forwardJoystickValue;
+    private Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        resetOdometryToPose(PathCommandsConstants.StartPoses.S1);
+        field2d = new Field2d();
     }
 
     public void resetEncoders() {
@@ -36,33 +31,13 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getNormelizedPigeonIMU().reset();
     }
 
-    public void shuffleBoard(DriveTrain driveTrain) {
-        autonomousChooser = new SendableChooser<>();
-        new UpperTarmacTo2UpperAllianceBalls(driveTrain);
-        new UpperTarmacTo5AllianceBalls(driveTrain);
-        new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
-        new LowerTarmacToAlliance1Ball(driveTrain);
-        new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
-        SmartDashboard.putData(autonomousChooser);
-
-        autonomousChooser.setDefaultOption("upper tarmac to 5 alliance balls",upperTarmacTo5AllianceBalls);
-        autonomousChooser.addOption("upper tarmac to 2 alliance balls",upperTarmacTo2AllianceBalls);
-
-        autonomousChooser.addOption("lower tarmac to one alliance ball",lowerTarmacToAlliance1Ball);
-        autonomousChooser.addOption("lower tarmac to alliance ball and enemy ball",lowerTarmacToAllianceBallEnemyBalls);
-    }
-
-    public Command getSelectedAutoCommand() {
-        return autonomousChooser.getSelected();
-    }
-
     @Override
     public void periodic() {
         driveTrainComponents.getOdometry().update(
                 Rotation2d.fromDegrees(getHeading()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
-        driveTrainComponents.getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
+        getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
         SmartDashboard.updateValues();
     }
 
@@ -86,7 +61,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getRobotSpeedMPS() {
-        return ((getWheelSpeeds().leftMetersPerSecond + getWheelSpeeds().rightMetersPerSecond) / 2);
+        return getAverageSpeed;
     }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -103,12 +78,21 @@ public class DriveTrain extends SubsystemBase {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
     }
 
+    public Field2d getField() {
+        return field2d;
+    }
+
+    public void setNeutralMode(NeutralMode mode) {
+        driveTrainComponents.getLeftMasterMotor().setNeutralMode(mode);
+        driveTrainComponents.getRightMasterMotor().setNeutralMode(mode);
+    }
+
     public void setNeutralModeToCoast() {
-        driveTrainComponents.setNeutralMode(NeutralMode.Coast);
+        setNeutralMode(NeutralMode.Coast);
     }
 
     public void setNeutralModeToBrake() {
-        driveTrainComponents.setNeutralMode(NeutralMode.Brake);
+        setNeutralMode(NeutralMode.Brake);
     }
 
     public void resetOdometryToPose(Pose2d pose) {

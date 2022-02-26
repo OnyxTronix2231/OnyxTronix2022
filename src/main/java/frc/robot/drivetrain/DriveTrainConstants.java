@@ -29,6 +29,7 @@ public final class DriveTrainConstants {
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
+    public static double getAverageSpeed;
 
     public static final class ComponentsConstants {
 
@@ -62,6 +63,10 @@ public final class DriveTrainConstants {
 
         static double encoderUnitsDeciSecToMetersSec(double unitsDeciSec) {
             return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
+        }
+
+        static double getAverageSpeed(double rightSpeed, double leftSpeed) {
+            return (rightSpeed+leftSpeed)/2;
         }
     }
 }

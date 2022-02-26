@@ -8,12 +8,11 @@ import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
 
-
 public class UpperTarmacTo5AllianceBalls extends SequentialCommandGroup {
 
     public UpperTarmacTo5AllianceBalls(DriveTrain driveTrain) {
         super(
-                new ResetOdometryToPose(driveTrain, StartPoses.S1),
+                new ResetOdometryToPose(driveTrain, StartPoses.START_POSE_A),
                 new MoveByPath(driveTrain, PATH_A_FIRST_BALL),
                 // TODO: collect ball at point
                 // TODO: shoots 2 balls from the point
