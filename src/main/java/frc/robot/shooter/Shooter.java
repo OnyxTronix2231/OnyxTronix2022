@@ -28,8 +28,8 @@ public class Shooter extends SubsystemBase {
         shooterComponents.getMasterMotor().set(speed);
     }
 
-    public void initSetPIDSpeed(double RPM) {
-        shooterComponents.getController().setSetpoint(RPMToEncUnitsDecisec(RPM));
+    public void initSetPIDSpeed(double rpm) {
+        shooterComponents.getController().setSetpoint(RPMToEncUnitsDecisec(rpm));
         shooterComponents.getController().enable();
     }
 

@@ -1,19 +1,25 @@
 package frc.robot.arc;
 
-import sensors.linearServo.LinearServo;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import sensors.counter.TalonEncoder;
 
 import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 
+
 public class ArcComponentsBase implements ArcComponents {
 
-    private final LinearServo linearServo;
+    private final WPI_TalonSRX motor;
+    private final TalonEncoder encoder;
 
     public ArcComponentsBase() {
-        linearServo = new LinearServo(LINEAR_SERVO_CHANNEL, LINEAR_SERVO_MAX_LENGTH, LINEAR_SERVO_MAX_SPEED);
+        motor = new WPI_TalonSRX(MOTOR_ID);
+        motor.configFactoryDefault();
+
+        encoder = new TalonEncoder(motor);
     }
 
     @Override
-    public LinearServo getLinearServo() {
-        return linearServo;
+    public WPI_TalonSRX getMotor() {
+        return motor;
     }
 }

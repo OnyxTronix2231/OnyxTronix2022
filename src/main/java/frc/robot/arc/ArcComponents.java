@@ -1,8 +1,8 @@
 package frc.robot.arc;
 
-import sensors.linearServo.LinearServo;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public interface ArcComponents {
 
-    LinearServo getLinearServo();
+    WPI_TalonSRX getMotor();
 }

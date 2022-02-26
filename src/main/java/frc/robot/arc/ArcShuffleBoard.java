@@ -7,7 +7,6 @@ import frc.robot.arc.commands.MoveArcToAngle;
 
 import java.util.function.DoubleSupplier;
 
-import static frc.robot.arc.ArcConstants.ArcCalculations.linearServoPosToAngle;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 
 public class ArcShuffleBoard {

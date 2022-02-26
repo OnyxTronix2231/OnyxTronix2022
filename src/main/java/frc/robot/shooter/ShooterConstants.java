@@ -25,8 +25,8 @@ public class ShooterConstants {
 
     public static class ShooterCalculations {
 
-        public static double RPMToEncUnitsDecisec(double RPM) {
-            return (RPM * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
+        public static double RPMToEncUnitsDecisec(double rpm) {
+            return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
         }
 
         public static double encUnitsDecisecToRPM(double encoderUnits){
