@@ -39,7 +39,7 @@ public class TurretComponentsBase implements TurretComponents {
         encoder = new TalonEncoder(motor2);
 
         controller = new CtreMotionMagicController(
-                motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
+                motor, encoder, new PIDFTerms(KP, KI, KD, KF), ACCELERATION, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
 
     public TalonFXConfiguration getTalonFxConfiguration() {

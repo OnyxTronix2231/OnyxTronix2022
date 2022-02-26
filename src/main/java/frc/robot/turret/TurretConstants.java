@@ -13,13 +13,13 @@ public final class TurretConstants {
     public static final int DEG_IN_HALF_CIRCLE = 180;
 
     /*PID values*/
-    public static final int MAX_ACC = 0; //TODO: calibrate
-    public static final int CRUISE_VELOCITY = 0; //TODO: calibrate
+    public static final int ACCELERATION = 4000; //TODO: calibrate
+    public static final int CRUISE_VELOCITY = 480; //TODO: calibrate
     public static final int ACC_SMOOTHING = 0; //TODO: calibrate
-    public static final double KP = 0; //TODO: calibrate
+    public static final double KP = 4; //TODO: calibrate
     public static final double KI = 0; //TODO: calibrate
-    public static final double KD = 0; //TODO: calibrate
-    public static final double KF = 0; //TODO: calibrate
+    public static final double KD = 3; //TODO: calibrate
+    public static final double KF = 1.82; //TODO: calibrate
 
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
@@ -36,7 +36,7 @@ public final class TurretConstants {
         static final double ENCODER_OFFSET = 2062;
         //static final double CONVERSION_RATE = 1.0 / 75;
         static final double CONVERSION_RATE = 1.0;
-        static final double MAX_DEG = 200; //TODO: Correct the number
+        static final double MAX_DEG = 160; //TODO: Correct the number
         static final double MIN_DEG = -270; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
