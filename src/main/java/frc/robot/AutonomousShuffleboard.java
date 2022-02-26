@@ -7,6 +7,7 @@ import frc.robot.crossPlatform.autonomousCommands.pathCommands.*;
 import frc.robot.drivetrain.DriveTrain;
 
 public class AutonomousShuffleboard {
+
     Command upperTarmacTo5AllianceBalls;
     Command upperTarmacTo2AllianceBalls;
     Command upperTarmacToAllianceAndEnemyBall;
@@ -15,13 +16,14 @@ public class AutonomousShuffleboard {
 
     public SendableChooser<Command> autonomousChooser;
 
-    public void shuffleBoard(DriveTrain driveTrain) {
+    public AutonomousShuffleboard(DriveTrain driveTrain) {
         autonomousChooser = new SendableChooser<>();
-        new UpperTarmacTo2UpperAllianceBalls(driveTrain);
-        new UpperTarmacTo5AllianceBalls(driveTrain);
-        new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
-        new LowerTarmacToAlliance1Ball(driveTrain);
-        new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
+        upperTarmacTo2AllianceBalls = new UpperTarmacTo2UpperAllianceBalls(driveTrain);
+        upperTarmacTo5AllianceBalls = new UpperTarmacTo5AllianceBalls(driveTrain);
+        upperTarmacToAllianceAndEnemyBall = new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
+        lowerTarmacToAlliance1Ball = new LowerTarmacToAlliance1Ball(driveTrain);
+        lowerTarmacToAllianceBallEnemyBalls = new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
+
         SmartDashboard.putData(autonomousChooser);
 
         autonomousChooser.setDefaultOption("upper tarmac to 5 alliance balls",upperTarmacTo5AllianceBalls);

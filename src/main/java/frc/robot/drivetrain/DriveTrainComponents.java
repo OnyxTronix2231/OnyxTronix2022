@@ -17,9 +17,11 @@ public interface DriveTrainComponents {
 
     DifferentialDriveOdometry getOdometry();
 
-    NormalizedPigeonIMU getNormelizedPigeonIMU();
+    NormalizedPigeonIMU getNormalizedPigeonIMU();
 
     TalonEncoder getLeftEncoder();
 
     TalonEncoder getRightEncoder();
+
+    void setNeutralMode(NeutralMode mode);
 }

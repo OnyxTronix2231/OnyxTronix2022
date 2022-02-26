@@ -38,7 +38,6 @@ class DriveTrainComponentsBase {
     NormalizedPigeonIMU pigeonIMU
     TalonEncoder leftEncoder
     TalonEncoder rightEncoder
-    Field2d field2d
 }
 
 class DriveTrainOiBinder {
@@ -55,7 +54,6 @@ class DriveTrainComponents {
     NormalizedPigeonIMU getNormelizedPigeonIMU()
     TalonEncoder getLeftEncoder()
     TalonEncoder getRightEncoder()
-    Field2d getField()
     void setNeutralMode(NeutralMode mode)
 }
 
@@ -82,4 +80,3 @@ class Path {
     TrajectoryConfig config
     toTrajectory()
 }
-@enduml

@@ -7,8 +7,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.Path;
+
 import static frc.robot.drivetrain.DriveTrainConstants.*;
-import static frc.robot.drivetrain.commands.DriveTrainCommandConstants.TRAJECTORY_P;
+import static frc.robot.drivetrain.commands.DriveTrainCommandConstants.*;
 
 public class MoveByPath extends CommandBase {
 
@@ -34,8 +35,8 @@ public class MoveByPath extends CommandBase {
                 FEEDFORWARD,
                 DRIVE_KINEMATICS,
                 driveTrain::getWheelSpeeds,
-                new PIDController(TRAJECTORY_P, 0, 0),
-                new PIDController(TRAJECTORY_P, 0, 0),
+                new PIDController(TRAJECTORY_P, TRAJECTORY_I, TRAJECTORY_D),
+                new PIDController(TRAJECTORY_P, TRAJECTORY_I, TRAJECTORY_D),
                 driveTrain::tankDriveVolts,
                 driveTrain
         );

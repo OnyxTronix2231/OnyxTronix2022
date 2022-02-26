@@ -67,6 +67,14 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
+    public void setNeutralMode(NeutralMode mode) {
+        leftMasterMotor.setNeutralMode(mode);
+        leftSlaveMotor.setNeutralMode(mode);
+        rightMasterMotor.setNeutralMode(mode);
+        rightSlaveMotor.setNeutralMode(mode);
+    }
+
+    @Override
     public WPI_TalonFX getLeftMasterMotor() {
         return leftMasterMotor;
     }
@@ -87,7 +95,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
-    public NormalizedPigeonIMU getNormelizedPigeonIMU() {
+    public NormalizedPigeonIMU getNormalizedPigeonIMU() {
         return pigeonIMU;
     }
 
