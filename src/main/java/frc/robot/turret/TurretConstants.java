@@ -37,14 +37,14 @@ public final class TurretConstants {
         //static final double CONVERSION_RATE = 1.0 / 75;
         static final double CONVERSION_RATE = 1.0;
         static final double MAX_DEG = 200; //TODO: Correct the number
-        static final double MIN_DEG = -200; //TODO: Correct the number
+        static final double MIN_DEG = -270; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
 
     public static final class Calculation {
 
-        static double degreesToEncoderUnits(double degree) {
-            return ENCODER_MIDDLE + ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION);
+        static int degreesToEncoderUnits(double degree) {
+            return (int) (ENCODER_MIDDLE + ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION));
         }
 
         public static double encoderUnitsToDegrees(double encoderUnits) {

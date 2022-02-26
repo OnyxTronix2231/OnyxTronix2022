@@ -37,16 +37,18 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setSelectedSensorPosition(
                 motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
-        motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+       // motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+//
+       // motor.configRemoteFeedbackFilter(motor2, 0);
+       // motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
+//
+       // motor.setSelectedSensorPosition(
+                //motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
-        motor.configRemoteFeedbackFilter(motor2, 0);
-        motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
-
-
-        this.encoder = new TalonEncoder(new WPI_TalonSRX(TALON_ENCODER_ID));
+        encoder = new TalonEncoder(motor2);
 
         controller = new CtreMotionMagicController(
-                motor, this.encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
+                motor, encoder, new PIDFTerms(KP, KI, KD, KF), MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
     }
 
     public TalonFXConfiguration getTalonFxConfiguration() {

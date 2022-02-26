@@ -1,7 +1,6 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.turret.commands.CalibrateTurret;
 import frc.robot.turret.commands.RotateByAngleOnce;
 import frc.robot.turret.commands.RotateBySpeed;
 import frc.robot.turret.commands.RotateByVision;

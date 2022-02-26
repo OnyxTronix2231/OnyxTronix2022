@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.turret.commands.RotateByAngle;
+import frc.robot.turret.commands.RotateByAngleOnce;
 import frc.robot.turret.commands.RotateBySpeed;
 
 import static frc.robot.turret.TurretConstants.Calculation.*;
@@ -46,13 +47,15 @@ public class TurretShuffleBoard {
         Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", () -> components.getMotor().getSelectedSensorPosition());
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", () ->
                 encoderUnitsToDegrees(components.getController().getSetpoint()));
+        Shuffleboard.getTab("Turret").addNumber("Motor Speed", ()-> components.getEncoder().getRate());
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
                 components.getController().getSetpoint());
         Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getSetpoint() - components.getEncoder().getCount()));
-        Shuffleboard.getTab("Turret").add("move 10", new RotateByAngle(turret, () ->10 ));
-        Shuffleboard.getTab("Turret").add("move 50", new RotateByAngle(turret, () ->50 ));
-        Shuffleboard.getTab("Turret").add("move 90", new RotateByAngle(turret, () ->90 ));
-        Shuffleboard.getTab("Turret").add("move 180", new RotateByAngle(turret, () ->180 ));
+
+        Shuffleboard.getTab("Turret").add("move 10", new RotateByAngleOnce(turret, () -> 10 ));
+        Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50 ));
+        Shuffleboard.getTab("Turret").add("move 90", new RotateByAngleOnce(turret, () -> 90 ));
+        Shuffleboard.getTab("Turret").add("move 180", new RotateByAngleOnce(turret, () -> 180 ));
 
     }
 
