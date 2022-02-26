@@ -12,10 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.turret.Turret;
-import frc.robot.turret.TurretComponents;
-import frc.robot.turret.TurretComponentsBase;
-import frc.robot.vision.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,8 +22,6 @@ import frc.robot.vision.Vision;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
-    Turret turret;
-    Vision vision;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -37,21 +31,16 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         DriveTrainComponents driveTrainComponents;
-        TurretComponents turretComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            turretComponents = new TurretComponentsBase();
         } else {
             driveTrainComponents = null;
-            turretComponents = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        turret = new Turret(turretComponents);
-        vision = new Vision();
 
-        new DriverOi().withTurret(turret, vision);
+        new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
         new DriversShuffleboard();
