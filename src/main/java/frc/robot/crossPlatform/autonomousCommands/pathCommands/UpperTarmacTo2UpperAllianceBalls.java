@@ -6,15 +6,15 @@ import frc.robot.drivetrain.commands.MoveByPath;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
 
-public class UpperBallAndEnemyBall extends SequentialCommandGroup {
+public class UpperTarmacTo2UpperAllianceBalls extends SequentialCommandGroup {
 
-    public UpperBallAndEnemyBall(DriveTrain driveTrain) {
+    public UpperTarmacTo2UpperAllianceBalls(DriveTrain driveTrain) {
         super(
-                new MoveByPath(driveTrain, PATH_C_FIRST_BALL),
+                new MoveByPath(driveTrain, PATH_B_FIRST_BALL),
                 // TODO: collecting the ball
                 // TODO: shooting 2 balls
-                new MoveByPath(driveTrain, PATH_C_ENEMY_BALL)
-                // TODO: collecting enemy ball& shooting it away
+                new MoveByPath(driveTrain, PATH_B_SECOND_BALL)
+                // TODO: collecting&shooting
         );
     }
 }

@@ -8,9 +8,9 @@ import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
 
-public class Upper5Balls extends SequentialCommandGroup {
+public class UpperTarmacTo5AllianceBalls extends SequentialCommandGroup {
 
-    public Upper5Balls(DriveTrain driveTrain) {
+    public UpperTarmacTo5AllianceBalls(DriveTrain driveTrain) {
         super(
                 new ResetOdometryToPose(driveTrain, StartPoses.START_POSE_A),
                 new MoveByPath(driveTrain, PATH_A_FIRST_BALL),
