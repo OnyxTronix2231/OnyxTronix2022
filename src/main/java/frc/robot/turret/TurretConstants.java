@@ -23,8 +23,8 @@ public final class TurretConstants {
 
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
-    public static final double TOLERANCE_DEGREES = 0.5; //TODO: Correct the number
-    public static final double DEFAULT_TURRET_SPEED = 0.2;
+    public static final double TOLERANCE_DEGREES = 0; //TODO: Correct the number
+    public static final double DEFAULT_TURRET_SPEED = 1;
     public static final double CALIBRATION_SPEED = 0.3;
 
     public static class ComponentsConstants {
@@ -33,7 +33,7 @@ public final class TurretConstants {
         static final int ENCODER_UNITS_IN_ROTATION = 4096;
         static final int TURRET_MOTOR_ID = 9;
         static final int TALON_ENCODER_ID = 8;
-        static final double ENCODER_MIDDLE = 2062;
+        static final double ENCODER_OFFSET = 2062;
         //static final double CONVERSION_RATE = 1.0 / 75;
         static final double CONVERSION_RATE = 1.0;
         static final double MAX_DEG = 200; //TODO: Correct the number
@@ -48,7 +48,7 @@ public final class TurretConstants {
         }
 
         static int degreesToAbsoluteEncoderUnits(double degree) {
-            return (int) (ENCODER_MIDDLE + ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION));
+            return (int) ENCODER_OFFSET + degreesToEncoderUnits(degree);
         }
 
         public static double encoderUnitsToDegrees(double encoderUnits) {
@@ -56,7 +56,7 @@ public final class TurretConstants {
         }
 
         public static double absoluteEncoderUnitsToDegrees(double encoderUnits) {
-            return ((encoderUnits - ENCODER_MIDDLE) * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+            return encoderUnitsToDegrees(encoderUnits - ENCODER_OFFSET);
         }
     }
 }

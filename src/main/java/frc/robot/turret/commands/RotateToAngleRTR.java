@@ -23,11 +23,12 @@ public class RotateToAngleRTR extends CommandBase {
     @Override
     public void execute() {
         turret.updateMoveToDegreeRTR(angleSupplier.getAsDouble());
+        System.out.println(angleSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        System.out.println("ENDDD");
+        System.out.println("END");
         turret.stop();
     }
 }

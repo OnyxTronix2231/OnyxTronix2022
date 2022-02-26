@@ -26,23 +26,15 @@ public class TurretComponentsBase implements TurretComponents {
         motor.configAllSettings(getTalonFxConfiguration());
         motor.setNeutralMode(NeutralMode.Brake);
 
-
         WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
-        motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+        motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        motor2.setSelectedSensorPosition(
+                motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
         motor.configRemoteFeedbackFilter(motor2, 0);
         motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
 
-        motor.setSelectedSensorPosition(
-                motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
-       // motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-//
-       // motor.configRemoteFeedbackFilter(motor2, 0);
-       // motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
-//
-       // motor.setSelectedSensorPosition(
-                //motor2.getSensorCollection().getPulseWidthPosition(), 0, 0);
 
         encoder = new TalonEncoder(motor2);
 

@@ -37,12 +37,12 @@ public class Turret extends SubsystemBase {
     }
 
     public void initMoveToDegreeRTR(double deg) {
-        components.getController().setSetpoint(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
+        components.getController().setSetpoint(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
         components.getController().enable();
     }
 
     public void updateMoveToDegreeRTR(double deg) {
-        components.getController().update(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
+        components.getController().update(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
     }
 
     public double fixAngleAccordingToLimits(double deg) {
@@ -57,7 +57,6 @@ public class Turret extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
-        System.out.println(degreesToEncoderUnits(TOLERANCE_DEGREES));
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
     }
 
