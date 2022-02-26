@@ -8,29 +8,29 @@ import frc.robot.drivetrain.DriveTrain;
 
 public class AutonomousShuffleboard {
 
-    Command upperTarmacTo5AllianceBalls;
-    Command upperTarmacTo2AllianceBalls;
-    Command upperTarmacToAllianceAndEnemyBall;
-    Command lowerTarmacToAlliance1Ball;
-    Command lowerTarmacToAllianceBallEnemyBalls;
+    Command upper5Balls;
+    Command upper2Balls;
+    Command upperBallAndEnemyBall;
+    Command lowOneBall;
+    Command low1BallAndEnemyBall;
 
     public SendableChooser<Command> autonomousChooser;
 
     public AutonomousShuffleboard(DriveTrain driveTrain) {
         autonomousChooser = new SendableChooser<>();
-        upperTarmacTo2AllianceBalls = new UpperTarmacTo2UpperAllianceBalls(driveTrain);
-        upperTarmacTo5AllianceBalls = new UpperTarmacTo5AllianceBalls(driveTrain);
-        upperTarmacToAllianceAndEnemyBall = new UpperTarmacToAllianceAndEnemyBalls(driveTrain);
-        lowerTarmacToAlliance1Ball = new LowerTarmacToAlliance1Ball(driveTrain);
-        lowerTarmacToAllianceBallEnemyBalls = new LowerTarmacToAllianceBallEnemyBalls(driveTrain);
+        upper2Balls = new UpperTwoBalls(driveTrain);
+        upper5Balls = new Upper5Balls(driveTrain);
+        upperBallAndEnemyBall = new UpperBallAndEnemyBall(driveTrain);
+        lowOneBall = new LowOneBall(driveTrain);
+        low1BallAndEnemyBall = new Low1BallAndEnemy1(driveTrain);
 
         SmartDashboard.putData(autonomousChooser);
 
-        autonomousChooser.setDefaultOption("upper tarmac to 5 alliance balls",upperTarmacTo5AllianceBalls);
-        autonomousChooser.addOption("upper tarmac to 2 alliance balls",upperTarmacTo2AllianceBalls);
-
-        autonomousChooser.addOption("lower tarmac to one alliance ball",lowerTarmacToAlliance1Ball);
-        autonomousChooser.addOption("lower tarmac to alliance ball and enemy ball",lowerTarmacToAllianceBallEnemyBalls);
+        autonomousChooser.setDefaultOption("1 ball from lower start point",lowOneBall);
+        autonomousChooser.addOption("5 balls from upper start point",upper5Balls);
+        autonomousChooser.addOption("2 balls from upper start point",upper2Balls);
+        autonomousChooser.addOption("one ball and enemy ball from upper start point",upperBallAndEnemyBall);
+        autonomousChooser.addOption("1 ball and 1 enemy ball from low start point",low1BallAndEnemyBall);
     }
 
     public Command getSelectedAutoCommand() {
