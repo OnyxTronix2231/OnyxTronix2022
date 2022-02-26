@@ -22,14 +22,14 @@ public class PathCommandsConstants {
     static final double X_FIRST_BALL_B = 8.943985451508386;
     static final double X_SECOND_BALL_B = 11.531;
 
-    static final double X_START_POSE_C = 0; // TODO: check
+    static final double X_START_POSE_C = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_C = 8.943985451508386;
     static final double X_ENEMY_BALL_C = 7.415;
 
-    static final double X_START_POSE_D = 0; // TODO: check
+    static final double X_START_POSE_D = 10; // TODO: check
     static final double X_FIRST_BALL_D = 11.654308133342933;
 
-    static final double X_START_POSE_E = 0; // TODO: check
+    static final double X_START_POSE_E = 10; // TODO: check
     static final double X_FIRST_BALL_E = 11.654308133342933;
     static final double X_ENEMY_BALL_E = 10.507200608251132;
 
@@ -45,40 +45,40 @@ public class PathCommandsConstants {
     static final double Y_FIRST_BALL_B = 7.960;
     static final double Y_SECOND_BALL_B = 6.352;
 
-    static final double Y_START_POSE_C = 0; // TODO: check
+    static final double Y_START_POSE_C = 5.960; // TODO: check
     static final double Y_FIRST_BALL_C = 7.960;
     static final double Y_ENEMY_BALL_C = 7.926;
 
-    static final double Y_START_POSE_D = 0; // TODO: check
+    static final double Y_START_POSE_D = 3; // TODO: check
     static final double Y_FIRST_BALL_D = 2.022;
 
-    static final double Y_START_POSE_E = 0; // TODO: check
+    static final double Y_START_POSE_E = 3; // TODO: check
     static final double Y_FIRST_BALL_E = 2.022;
     static final double Y_ENEMY_BALL_E = 0.886;
 
     // TODO: check all rotation constants
-    static final double ROTATION_START_POSE_A = 0;
-    static final double ROTATION_FIRST_BALL_A = 0;
-    static final double ROTATION_SECOND_BALL_A = 0;
-    static final double ROTATION_THIRD_BALL_A = 0;
-    static final double ROTATION_FOURTH_BALL_A = 0;
-    static final double ROTATION_ENEMY_BALL_A = 0;
-    static final double ROTATION_SHOOTING_PLACE_A = 0;
+    static final double ROTATION_START_POSE_A = -90;
+    static final double ROTATION_FIRST_BALL_A = -121.86367;
+    static final double ROTATION_SECOND_BALL_A = 168.53;
+    static final double ROTATION_THIRD_BALL_A = 145.2863;
+    static final double ROTATION_FOURTH_BALL_A = -44.72144;
+    static final double ROTATION_ENEMY_BALL_A = -44.72144;
+    static final double ROTATION_SHOOTING_PLACE_A = -126.0368;
 
-    static final double ROTATION_START_POSE_B = 0;
-    static final double ROTATION_FIRST_BALL_B = 0;
-    static final double ROTATION_SECOND_BALL_B = 0;
+    static final double ROTATION_START_POSE_B = -90;
+    static final double ROTATION_FIRST_BALL_B = -121.86367;
+    static final double ROTATION_SECOND_BALL_B = -121.86367;
 
-    static final double ROTATION_START_POSE_C = 0;
-    static final double ROTATION_FIRST_BALL_C = 0;
-    static final double ROTATION_ENEMY_BALL_C = 0;
+    static final double ROTATION_START_POSE_C = -90;
+    static final double ROTATION_FIRST_BALL_C = -1.2738748;
+    static final double ROTATION_ENEMY_BALL_C = -1.2738748;
 
-    static final double ROTATION_START_POSE_D = 0;
-    static final double ROTATION_FIRST_BALL_D = 0;
+    static final double ROTATION_START_POSE_D = 30.591;
+    static final double ROTATION_FIRST_BALL_D = 30.591;
 
-    static final double ROTATION_START_POSE_E = 0;
-    static final double ROTATION_FIRST_BALL_E = 0;
-    static final double ROTATION_ENEMY_BALL_E = 0;
+    static final double ROTATION_START_POSE_E = 30.591;
+    static final double ROTATION_FIRST_BALL_E = -44.72144;
+    static final double ROTATION_ENEMY_BALL_E = -44.72144;
 
     static final double VELOCITY_CONSTRAINT_A = 2;
     static final double CENTRIPETAL_ACCELERATION_CONSTRAINT_A = 2;
@@ -98,15 +98,15 @@ public class PathCommandsConstants {
     public static final class StartPoses {
 
         public static final Pose2d START_POSE_A = new Pose2d(X_START_POSE_A, Y_START_POSE_A,
-                new Rotation2d(ROTATION_START_POSE_A));
+                Rotation2d.fromDegrees(ROTATION_START_POSE_A));
         public static final Pose2d START_POSE_B = new Pose2d(X_START_POSE_B, Y_START_POSE_B,
-                new Rotation2d(ROTATION_START_POSE_B));
+                Rotation2d.fromDegrees(ROTATION_START_POSE_B));
         public static final Pose2d START_POSE_C = new Pose2d(X_START_POSE_C, Y_START_POSE_C,
-                new Rotation2d(ROTATION_START_POSE_C));
+                Rotation2d.fromDegrees(ROTATION_START_POSE_C));
         public static final Pose2d START_POSE_D = new Pose2d(X_START_POSE_D, Y_START_POSE_D,
-                new Rotation2d(ROTATION_START_POSE_D));
+                Rotation2d.fromDegrees(ROTATION_START_POSE_D));
         public static final Pose2d START_POSE_E = new Pose2d(X_START_POSE_E, Y_START_POSE_E,
-                new Rotation2d(ROTATION_START_POSE_E));
+                Rotation2d.fromDegrees(ROTATION_START_POSE_E));
     }
 
     public static final class Paths {
@@ -137,7 +137,7 @@ public class PathCommandsConstants {
                 new Pose2d(X_SHOOTING_PLACE_A, Y_SHOOTING_PLACE_A, Rotation2d.fromDegrees(ROTATION_SHOOTING_PLACE_A)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_A),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_A)
-        );
+        ).setReversed();
 
         public static final Path PATH_A_FOURTH_BALL = new Path(
                 List.of(),
@@ -186,14 +186,14 @@ public class PathCommandsConstants {
                 new Pose2d(X_FIRST_BALL_D, Y_FIRST_BALL_D, Rotation2d.fromDegrees(ROTATION_FIRST_BALL_D)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_D),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_D)
-        );
+        ).setReversed();
 
         public static final Path PATH_E_FIRST_BALL = new Path(
                 List.of(),
                 new Pose2d(X_FIRST_BALL_E, Y_FIRST_BALL_E, Rotation2d.fromDegrees(ROTATION_FIRST_BALL_E)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_E),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_E)
-        );
+        ).setReversed();
 
         public static final Path PATH_E_ENEMY_BALL = new Path(
                 List.of(),

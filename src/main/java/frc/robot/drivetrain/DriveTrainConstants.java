@@ -1,11 +1,7 @@
 package frc.robot.drivetrain;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
-import java.util.List;
 
 public final class DriveTrainConstants {
 
@@ -29,7 +25,6 @@ public final class DriveTrainConstants {
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
-    public static double getAverageSpeed;
 
     public static final class ComponentsConstants {
 
@@ -65,8 +60,8 @@ public final class DriveTrainConstants {
             return encoderUnitsToMeters(unitsDeciSec * DECISECOND_IN_SECOND);
         }
 
-        static double getAverageSpeed(double rightSpeed, double leftSpeed) {
-            return (rightSpeed+leftSpeed)/2;
+        static double getAverageSpeed(double leftSpeed, double rightSpeed) {
+            return (leftSpeed+rightSpeed) / 2;
         }
     }
 }

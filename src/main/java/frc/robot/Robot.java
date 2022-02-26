@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.drivetrain.DriveTrain;
@@ -45,9 +46,12 @@ public class Robot extends TimedRobot {
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
+        autonomousShuffleboard  = new AutonomousShuffleboard(driveTrain);
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
+
+        SmartDashboard.putData(autonomousShuffleboard.getAutonomousChooser());
     }
 
     /**
@@ -89,7 +93,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.setNeutralModeToBrake();
-        selectedAutoCommand = autonomousShuffleboard.autonomousChooser.getSelected();
+        selectedAutoCommand = autonomousShuffleboard.getAutonomousChooser().getSelected();
         if (selectedAutoCommand != null) {
             selectedAutoCommand.schedule();
         }

@@ -9,10 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.Constants.TARGET_POSE_X;
+import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrain extends SubsystemBase {
-
     private final DriveTrainComponents driveTrainComponents;
     public double forwardJoystickValue;
     private Field2d field2d;
@@ -58,7 +59,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getRobotSpeedMPS() {
-        return getAverageSpeed;
+        DifferentialDriveWheelSpeeds currentSpeed = getWheelSpeeds();
+        return Calculations.getAverageSpeed(currentSpeed.leftMetersPerSecond, currentSpeed.rightMetersPerSecond);
     }
 
     public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -71,8 +73,16 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
+    public double getPitch() { return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw(); }
+
     public void resetOdometryToPose(Translation2d translation) {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
+    }
+
+    public double getDistanceFromTargetByEncoders() {
+        Pose2d currentPose = getPose();
+        return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
+                + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
     }
 
     public Field2d getField() {

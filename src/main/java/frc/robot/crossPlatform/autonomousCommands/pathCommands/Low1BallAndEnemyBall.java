@@ -3,13 +3,15 @@ package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.commands.MoveByPath;
+import frc.robot.drivetrain.commands.ResetOdometryToPose;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
 
-public class LowerTarmacToAllianceBallEnemyBalls extends SequentialCommandGroup {
+public class Low1BallAndEnemyBall extends SequentialCommandGroup {
 
-    public LowerTarmacToAllianceBallEnemyBalls(DriveTrain driveTrain) {
+    public Low1BallAndEnemyBall(DriveTrain driveTrain) {
         super(
+                new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_E),
                 new MoveByPath(driveTrain, PATH_E_FIRST_BALL),
                 // TODO: collecting the ball
                 // TODO: shooting 2 balls
