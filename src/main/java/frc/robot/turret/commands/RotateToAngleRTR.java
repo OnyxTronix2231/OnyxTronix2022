@@ -27,6 +27,7 @@ public class RotateToAngleRTR extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        System.out.println("ENDDD");
         turret.stop();
     }
 }

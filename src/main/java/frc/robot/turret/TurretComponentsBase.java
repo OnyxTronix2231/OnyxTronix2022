@@ -3,7 +3,6 @@ package frc.robot.turret;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.RemoteFeedbackDevice;
-import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -12,7 +11,7 @@ import pid.PIDFTerms;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.turret.TurretConstants.*;
-import static frc.robot.turret.TurretConstants.Calculation.degreesToEncoderUnits;
+import static frc.robot.turret.TurretConstants.Calculation.*;
 import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {
@@ -53,9 +52,9 @@ public class TurretComponentsBase implements TurretComponents {
 
     public TalonFXConfiguration getTalonFxConfiguration() {
         TalonFXConfiguration config = new TalonFXConfiguration();
-        config.forwardSoftLimitThreshold = degreesToEncoderUnits(MAX_DEG);
+        config.forwardSoftLimitThreshold = degreesToAbsoluteEncoderUnits(MAX_DEG);
         config.forwardSoftLimitEnable = true;
-        config.reverseSoftLimitThreshold = degreesToEncoderUnits(MIN_DEG);
+        config.reverseSoftLimitThreshold = degreesToAbsoluteEncoderUnits(MIN_DEG);
         config.reverseSoftLimitEnable = true;
         return config;
     }

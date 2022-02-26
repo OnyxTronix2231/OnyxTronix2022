@@ -24,7 +24,7 @@ public class Turret extends SubsystemBase {
     }
 
     public double getCurrentAngleRTR() {
-        return encoderUnitsToDegrees(components.getEncoder().getCount());
+        return absoluteEncoderUnitsToDegrees(components.getEncoder().getCount());
     }
 
     public void stop() {
@@ -57,6 +57,7 @@ public class Turret extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
+        System.out.println(degreesToEncoderUnits(TOLERANCE_DEGREES));
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
     }
 

@@ -44,10 +44,18 @@ public final class TurretConstants {
     public static final class Calculation {
 
         static int degreesToEncoderUnits(double degree) {
+            return (int) ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION);
+        }
+
+        static int degreesToAbsoluteEncoderUnits(double degree) {
             return (int) (ENCODER_MIDDLE + ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION));
         }
 
         public static double encoderUnitsToDegrees(double encoderUnits) {
+            return (encoderUnits * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+        }
+
+        public static double absoluteEncoderUnitsToDegrees(double encoderUnits) {
             return ((encoderUnits - ENCODER_MIDDLE) * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
         }
     }

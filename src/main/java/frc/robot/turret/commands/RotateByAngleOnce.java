@@ -13,4 +13,5 @@ public class RotateByAngleOnce extends RotateByAngle {
     public boolean isFinished() {
         return turret.isOnTarget();
     }
+
 }
