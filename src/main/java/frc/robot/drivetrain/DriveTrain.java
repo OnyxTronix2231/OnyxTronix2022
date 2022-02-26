@@ -27,7 +27,7 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        resetOdometryToPose(StartPoses.S1);
+        resetOdometryToPose(PathCommandsConstants.StartPoses.S1);
     }
 
     public void resetEncoders() {
