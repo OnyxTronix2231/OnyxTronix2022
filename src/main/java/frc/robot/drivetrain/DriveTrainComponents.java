@@ -23,10 +23,5 @@ public interface DriveTrainComponents {
 
     TalonEncoder getRightEncoder();
 
-<<<<<<< HEAD
-=======
-    Field2d getField();
-
->>>>>>> parent of d53e226 (fix by code cr)
     void setNeutralMode(NeutralMode mode);
 }

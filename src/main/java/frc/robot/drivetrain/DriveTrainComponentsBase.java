@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.drivetrain.DriveTrainConstants.ComponentsConstants.*;
@@ -67,13 +68,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         field2d = new Field2d();
     }
 
-    public void setNeutralMode(NeutralMode mode) {
-        leftMasterMotor.setNeutralMode(mode);
-        leftSlaveMotor.setNeutralMode(mode);
-        rightMasterMotor.setNeutralMode(mode);
-        rightSlaveMotor.setNeutralMode(mode);
-    }
-
     @Override
     public void setNeutralMode(NeutralMode mode) {
         leftMasterMotor.setNeutralMode(mode);
@@ -115,11 +109,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     @Override
     public TalonEncoder getRightEncoder() {
         return rightEncoder;
-    }
-
-    @Override
-    public Field2d getField() {
-        return field2d;
     }
 
     private TalonFXConfiguration getFalconConfiguration() {
