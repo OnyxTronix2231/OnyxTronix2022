@@ -2,6 +2,7 @@ package frc.robot.turret.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.turret.Turret;
+
 import java.util.function.DoubleSupplier;
 
 public class RotateByAngle extends CommandBase {
@@ -11,9 +12,9 @@ public class RotateByAngle extends CommandBase {
     protected RotateToAngleRTR rotateToAngleRTR;
 
     public RotateByAngle(Turret turret, DoubleSupplier angleSupplier) {
-       this.turret = turret;
-       this.angleSupplier = angleSupplier;
-       this.rotateToAngleRTR = null;
+        this.turret = turret;
+        this.angleSupplier = angleSupplier;
+        this.rotateToAngleRTR = null;
     }
 
     @Override

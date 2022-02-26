@@ -34,8 +34,6 @@ public class TurretComponentsBase implements TurretComponents {
         motor.configRemoteFeedbackFilter(motor2, 0);
         motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
 
-
-
         encoder = new TalonEncoder(motor2);
 
         controller = new CtreMotionMagicController(
