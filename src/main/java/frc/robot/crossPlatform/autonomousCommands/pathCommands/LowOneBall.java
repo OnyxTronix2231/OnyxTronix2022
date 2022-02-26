@@ -6,9 +6,9 @@ import frc.robot.drivetrain.commands.MoveByPath;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
 
-public class LowerTarmacToAlliance1Ball extends SequentialCommandGroup {
+public class LowOneBall extends SequentialCommandGroup {
 
-    public LowerTarmacToAlliance1Ball(DriveTrain driveTrain) {
+    public LowOneBall(DriveTrain driveTrain) {
         super(
                 new MoveByPath(driveTrain, PATH_D_FIRST_BALL)
                 // TODO: collecting the ball
