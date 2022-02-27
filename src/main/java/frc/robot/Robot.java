@@ -9,16 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.turret.Turret;
-import frc.robot.turret.TurretComponents;
-import frc.robot.turret.TurretComponentsBase;
-import frc.robot.vision.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,9 +22,6 @@ import frc.robot.vision.Vision;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
-    BallTrigger ballTrigger;
-    Turret turret;
-    Vision vision;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -41,25 +31,16 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         DriveTrainComponents driveTrainComponents;
-        BallTriggerComponents ballTriggerComponents;
-        TurretComponents turretComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            turretComponents = new TurretComponentsBase();
         } else {
             driveTrainComponents = null;
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            turretComponents = new TurretComponentsBase();
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        turret = new Turret(turretComponents);
-        vision = new Vision();
 
-        new DriverOi().withDriveTrain(driveTrain).withTurret(turret, vision).withBallTrigger(ballTrigger);
+        new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
 
         new DriversShuffleboard();
