@@ -7,9 +7,9 @@ import java.util.function.DoubleSupplier;
 
 public class RotateByAngle extends CommandBase {
 
-    protected DoubleSupplier angleSupplier;
-    protected Turret turret;
-    protected RotateToAngleRTR rotateToAngleRTR;
+    private final DoubleSupplier angleSupplier;
+    protected final Turret turret;
+    private RotateToAngleRTR rotateToAngleRTR;
 
     public RotateByAngle(Turret turret, DoubleSupplier angleSupplier) {
         this.turret = turret;

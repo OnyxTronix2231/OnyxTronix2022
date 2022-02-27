@@ -24,7 +24,7 @@ public final class TurretConstants {
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
     public static final double TOLERANCE_DEGREES = 0; //TODO: Correct the number
-    public static final double DEFAULT_TURRET_SPEED = 1;
+    public static final double DEFAULT_TURRET_SPEED = 0.2;
 
     public static class ComponentsConstants {
 
