@@ -5,6 +5,7 @@ import frc.robot.climber.Climber;
 
 import static frc.robot.climber.commands.ClimberCommandConstants.*;
 public class WaitUntilLeftEncoderPosition extends CommandBase {
+
     private final Climber climber;
 
     public WaitUntilLeftEncoderPosition(Climber climber) {
