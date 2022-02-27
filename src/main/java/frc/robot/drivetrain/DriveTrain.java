@@ -4,8 +4,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.drivetrain.DriveTrainConstants.Calculations.*;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.Calculations.*;
 
 
 public class DriveTrain extends SubsystemBase {
