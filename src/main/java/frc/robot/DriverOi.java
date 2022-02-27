@@ -16,8 +16,6 @@ import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
 
-import java.util.function.DoubleSupplier;
-
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
 public class DriverOi {
@@ -53,21 +51,15 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withConvoyerAndIntakeFront(Loader loader, BallTrigger ballTrigger, Intake intake,
-                                               DoubleSupplier loaderSpeedSupplier, DoubleSupplier triggerSpeedSupplier,
-                                               DoubleSupplier intakeSpeedSupplier){
+    public DriverOi withConvoyerAndIntakeFront(Loader loader, BallTrigger ballTrigger, Intake intake){
         Trigger load = new JoystickButton(controller, controller.getButtonRight());
-        new DriverInatkeAndConvoyerOiBinder(loader,ballTrigger, intake, load, loaderSpeedSupplier,
-                triggerSpeedSupplier, intakeSpeedSupplier);
+        new DriverInatkeAndConvoyerOiBinder(loader,ballTrigger, intake, load);
         return this;
     }
 
-    public DriverOi withConvoyerAndIntakeBack(Loader loader, BallTrigger ballTrigger, Intake intake,
-                                               DoubleSupplier loaderSpeedSupplier, DoubleSupplier triggerSpeedSupplier,
-                                               DoubleSupplier intakeSpeedSupplier) {
+    public DriverOi withConvoyerAndIntakeBack(Loader loader, BallTrigger ballTrigger, Intake intake) {
         Trigger load = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverInatkeAndConvoyerOiBinder(loader, ballTrigger, intake, load, loaderSpeedSupplier,
-                triggerSpeedSupplier, intakeSpeedSupplier);
+        new DriverInatkeAndConvoyerOiBinder(loader, ballTrigger, intake, load);
         return this;
     }
 }

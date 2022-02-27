@@ -8,10 +8,7 @@ import frc.robot.intake.Intake;
 import java.util.function.DoubleSupplier;
 
 public class DriverInatkeAndConvoyerOiBinder {
-    public DriverInatkeAndConvoyerOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load,
-                                           DoubleSupplier loaderSpeedSupplier, DoubleSupplier triggerSpeedSupplier,
-                                           DoubleSupplier intakeSpeedSupplier) {
-        load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader, loaderSpeedSupplier, triggerSpeedSupplier,
-                intakeSpeedSupplier));
+    public DriverInatkeAndConvoyerOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load) {
+        load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader));
     }
 }
