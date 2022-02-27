@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 import static frc.robot.drivetrain.DriveTrainConstants.Calculations.*;
 
-
 public class DriveTrain extends SubsystemBase {
 
     private final DriveTrainComponents driveTrainComponents;
