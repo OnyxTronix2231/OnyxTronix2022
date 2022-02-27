@@ -13,7 +13,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonSRX motor;
     private final Rev2mDistanceSensor distanceSensor;
-    private final ColorSensorV3 colorSensor;
 
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
@@ -27,7 +26,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
 
-        colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     }
 
     @Override
@@ -38,11 +36,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     @Override
     public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
-    }
-
-    @Override
-    public ColorSensorV3 getColorSensor() {
-        return colorSensor;
     }
 
     private TalonSRXConfiguration getTalonConfiguration() {

@@ -38,7 +38,7 @@ public class Loader extends SubsystemBase {
     }
 
     public boolean identifiedBallFront() {
-        return getDistanceFront() >= loaderShuffleboard.getMinValueEntry();
+        return getVoltageFront() >= loaderShuffleboard.getMinValueEntry();
     }
 
     public boolean identifiedBallBack() {
