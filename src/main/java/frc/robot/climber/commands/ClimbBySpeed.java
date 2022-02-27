@@ -1,18 +1,17 @@
 package frc.robot.climber.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.climber.Climber;
 
 import java.util.function.DoubleSupplier;
 
 
-public class MoveMotorsBySpeed extends CommandBase {
+public class ClimbBySpeed extends CommandBase {
 
     private final Climber climber;
     private DoubleSupplier speedSupplier;
 
-    public MoveMotorsBySpeed(Climber climber, DoubleSupplier speedSupplier) {
+    public ClimbBySpeed(Climber climber, DoubleSupplier speedSupplier) {
         this.climber = climber;
         this.speedSupplier = speedSupplier;
         addRequirements(this.climber);

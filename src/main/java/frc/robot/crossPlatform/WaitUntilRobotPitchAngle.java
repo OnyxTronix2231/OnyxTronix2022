@@ -18,17 +18,7 @@ public class WaitUntilRobotPitchAngle extends CommandBase {
     }
 
     @Override
-    public void execute() {
-        climber.moveBySpeed(0.8);
-    }
-
-    @Override
     public boolean isFinished() {
         return driveTrain.getPitch() == CLIMB_ANGLE;
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        climber.stopMotors();
     }
 }
