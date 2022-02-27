@@ -24,16 +24,16 @@ public class AutonomousShuffleboard {
         LowOneBall = new LowOneBall(driveTrain);
         Low1BallAndEnemyBall = new Low1BallAndEnemyBall(driveTrain);
 
-        autonomousChooser.setDefaultOption("1 ball from low point",LowOneBall);
-        autonomousChooser.addOption("5 balls from upper start point",Upper5Balls);
-        autonomousChooser.addOption("2 balls from upper start point",UpperTwoBalls);
-        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start",Upper1BallAnd1EnemyBall);
-        autonomousChooser.addOption("1 ball and 1 enemy ball from low point",Low1BallAndEnemyBall);
+        autonomousChooser.setDefaultOption("1 ball from low point", LowOneBall);
+        autonomousChooser.addOption("5 balls from upper start point", Upper5Balls);
+        autonomousChooser.addOption("2 balls from upper start point", UpperTwoBalls);
+        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", Upper1BallAnd1EnemyBall);
+        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", Low1BallAndEnemyBall);
 
         SmartDashboard.putData(autonomousChooser);
     }
 
-    public Command getSelectedAutoCommand() {
+    public Command getSelectedCommand() {
         return autonomousChooser.getSelected();
     }
 

@@ -28,7 +28,6 @@ public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
     AutonomousShuffleboard autonomousShuffleboard;
-    Command selectedAutoCommand;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -36,7 +35,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-
         DriveTrainComponents driveTrainComponents;
 
         if (Robot.isReal()) {
@@ -50,8 +48,6 @@ public class Robot extends TimedRobot {
 
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
-
-        SmartDashboard.putData(autonomousShuffleboard.getAutonomousChooser());
     }
 
     /**
@@ -93,9 +89,8 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.setNeutralModeToBrake();
-        selectedAutoCommand = autonomousShuffleboard.getAutonomousChooser().getSelected();
-        if (selectedAutoCommand != null) {
-            selectedAutoCommand.schedule();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().schedule();
         }
     }
 
@@ -109,8 +104,8 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         driveTrain.setNeutralModeToBrake();
-        if (selectedAutoCommand != null) {
-            selectedAutoCommand.cancel();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().cancel();
         }
     }
 
