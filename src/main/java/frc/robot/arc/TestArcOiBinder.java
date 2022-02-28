@@ -2,7 +2,7 @@ package frc.robot.arc;
 
 import frc.robot.arc.commands.MoveArcBySpeed;
 
-import static frc.robot.arc.ArcConstants.ComponentsConstants.SPEED;
+import static frc.robot.arc.ArcConstants.SPEED;
 
 public class TestArcOiBinder {
     public TestArcOiBinder(Arc arc) {

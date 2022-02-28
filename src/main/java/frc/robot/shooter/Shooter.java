@@ -28,9 +28,13 @@ public class Shooter extends SubsystemBase {
         shooterComponents.getMasterMotor().set(speed);
     }
 
-    public void initSetPIDSpeed(double rpm) {
-        shooterComponents.getController().setSetpoint(RPMToEncUnitsDecisec(rpm));
+    public void initSetPIDSpeed(double RPM) {
+        shooterComponents.getController().setSetpoint(RPMToEncUnitsDecisec(RPM));
         shooterComponents.getController().enable();
+    }
+
+    public void updateSetPIDSpeed(double RPM) {
+        shooterComponents.getController().update(RPMToEncUnitsDecisec(RPM));
     }
 
     public double getCurrentRPM() {
@@ -43,10 +47,6 @@ public class Shooter extends SubsystemBase {
 
     public double getEncoderUnits() {
         return shooterComponents.getCounter().getRate();
-    }
-
-    public void updateSetPIDSpeed(double rpm) {
-        shooterComponents.getController().update(RPMToEncUnitsDecisec(rpm));
     }
 
     public void stop() {

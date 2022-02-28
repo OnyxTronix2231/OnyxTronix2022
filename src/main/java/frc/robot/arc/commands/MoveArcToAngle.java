@@ -8,17 +8,21 @@ import java.util.function.DoubleSupplier;
 public class MoveArcToAngle extends CommandBase {
 
     private final Arc arc;
-    private final DoubleSupplier distanceSupplier;
+    private final DoubleSupplier angleSupplier;
 
-    public MoveArcToAngle(Arc arc, DoubleSupplier distanceSupplier) {
+    public MoveArcToAngle(Arc arc, DoubleSupplier angleSupplier) {
         this.arc = arc;
-        this.distanceSupplier = distanceSupplier;
+        this.angleSupplier = angleSupplier;
         addRequirements(arc);
+    }
+
+    public void initialize() {
+        arc.initMoveToAngle(angleSupplier.getAsDouble());
     }
 
     @Override
     public void execute() {
-
+        arc.updateMoveToAngle(angleSupplier.getAsDouble());
     }
 
     @Override
