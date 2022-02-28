@@ -32,6 +32,10 @@ public class Arc extends SubsystemBase {
         arcComponents.getMotor().set(speed);
     }
 
+    public boolean hasHitReverseLimit(){
+        return arcComponents.getReverseMicroSwitch().isOpen();
+    }
+
     public void stop() {
         setSpeed(0);
     }

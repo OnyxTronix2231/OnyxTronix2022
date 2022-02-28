@@ -19,7 +19,6 @@ public class ArcComponentsBase implements ArcComponents {
 
     private final WPI_TalonSRX motor;
     private final TalonEncoder encoder;
-    private final TalonSrxForwardMicroswitch forwardMicroswitch;
     private final TalonSrxReverseMicroswitch reverseMicroswitch;
     private final CtrePIDController controller;
 
@@ -31,20 +30,13 @@ public class ArcComponentsBase implements ArcComponents {
 
         controller = new CtrePIDController(motor, encoder, new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Position);
 
-        forwardMicroswitch = new TalonSrxForwardMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen);
         reverseMicroswitch = new TalonSrxReverseMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
                 LimitSwitchNormal.NormallyOpen);
     }
 
     @Override
-    public TalonSrxReverseMicroswitch getReverseMicroswitch() {
+    public TalonSrxReverseMicroswitch getReverseMicroSwitch() {
         return reverseMicroswitch;
-    }
-
-    @Override
-    public TalonSrxForwardMicroswitch getForwardMicroswitch() {
-        return forwardMicroswitch;
     }
 
     @Override
