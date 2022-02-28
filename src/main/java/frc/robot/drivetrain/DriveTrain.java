@@ -6,7 +6,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.TARGET_POSE_X;
@@ -15,7 +14,7 @@ import static frc.robot.drivetrain.DriveTrainConstants.*;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
-    public double forwardJoystickValue;
+    public double forwardSpeedValue;
     private Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
@@ -39,8 +38,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        forwardJoystickValue = speed * SPEED_SENSITIVITY;
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardJoystickValue, rotation * ROTATION_SENSITIVITY);
+        forwardSpeedValue = speed * SPEED_SENSITIVITY;
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
     }
 
     public void stop() {
@@ -102,7 +101,7 @@ public class DriveTrain extends SubsystemBase {
         driveTrainComponents.getNormalizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
     }
 
-    public double getForwardJoystickValue() {
-        return forwardJoystickValue;
+    public double getForwardSpeedValue() {
+        return forwardSpeedValue;
     }
 }
