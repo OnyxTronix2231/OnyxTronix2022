@@ -38,7 +38,7 @@ public class DriverOi {
     public DriverOi withTurret(Turret turret, Vision vision) {
         Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
         Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
-        Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
+        Trigger byVision = new JoystickButton(controller, controller.getButtonUp());
         new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, byVision);
         return this;
     }

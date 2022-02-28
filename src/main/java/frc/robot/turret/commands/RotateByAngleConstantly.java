@@ -8,6 +8,5 @@ public class RotateByAngleConstantly extends RotateToAngleRTR {
 
     public RotateByAngleConstantly(Turret turret, DoubleSupplier angleSupplier) {
         super(turret, () -> (angleSupplier.getAsDouble() + turret.getCurrentAngleRTR()));
-
     }
 }

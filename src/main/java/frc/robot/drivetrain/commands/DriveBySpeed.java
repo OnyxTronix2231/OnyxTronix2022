@@ -19,7 +19,7 @@ public class DriveBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        driveTrain.arcadeDrive(speedSupplier.getAsDouble()*(-1), rotationSupplier.getAsDouble());
+        driveTrain.arcadeDrive(-speedSupplier.getAsDouble() * 0.5, rotationSupplier.getAsDouble() * 0.5);
     }
 
     @Override

@@ -10,6 +10,9 @@ public class Turret extends SubsystemBase {
     private final TurretComponents components;
     private final TurretShuffleBoard turretShuffleBoard;
 
+    private double startingAngle;
+    private double targetAngle;
+
     public Turret(TurretComponents turretComponents) {
         components = turretComponents;
         turretShuffleBoard = new TurretShuffleBoard(this, components);
@@ -41,6 +44,21 @@ public class Turret extends SubsystemBase {
     public void updateMoveToDegreeRTR(double deg) {
         components.getController().update(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
     }
+
+    public void initMoveByDegree(double deg){
+        startingAngle = getCurrentAngleRTR();
+        targetAngle = deg;
+        initMoveToDegreeRTR(startingAngle + deg);
+    }
+
+    public void updateMoveByDegree(double deg){
+        if (targetAngle != deg) {
+            startingAngle = getCurrentAngleRTR();
+            targetAngle = deg;
+        }
+        updateMoveToDegreeRTR(startingAngle + deg);
+    }
+
 
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
