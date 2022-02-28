@@ -32,5 +32,4 @@ public class YawControl extends Turret {
             angle += DEG_IN_HALF_CIRCLE;
         return angle;
     }
-
 }

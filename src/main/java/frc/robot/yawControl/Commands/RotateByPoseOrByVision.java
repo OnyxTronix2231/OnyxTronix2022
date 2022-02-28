@@ -11,6 +11,6 @@ public class RotateByPoseOrByVision extends ConditionalCommand {
 
     public RotateByPoseOrByVision (YawControl yawControl, Vision vision) {
         super(new RotateByVision(yawControl, vision),
-                new RotateByPose(yawControl), () -> vision.getHorizontalAngleTurretToTargetRTT() != TARGET_NOT_FOUND);
+                new RotateByPose(yawControl), vision::hasTarget);
     }
 }
