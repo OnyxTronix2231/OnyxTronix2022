@@ -11,6 +11,7 @@ public class ArcConstants {
     public static final double KI = 0;  //TODO calibrate
     public static final double KD = 0;  //TODO calibrate
     public static final double KF = MAX_CLOSED_LOOP_OUTPUT / MAX_VELOCITY;
+    public static final double CALIBRATION_SPEED = 0;
 
     public static class ComponentsConstants {
 

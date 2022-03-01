@@ -12,6 +12,8 @@ public interface ArcComponents {
 
     TalonSrxReverseMicroswitch getReverseMicroSwitch();
 
+    TalonSrxForwardMicroswitch getForwardMicroSwitch();
+
     Counter getCounter();
 
     PIDController getController();
