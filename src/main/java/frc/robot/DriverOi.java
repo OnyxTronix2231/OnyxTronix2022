@@ -1,16 +1,14 @@
 package frc.robot;
 
+import crossPlatform.telopCommands.DriverInatkeAndConvoyerOiBinder;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.conveyor.DriverConveyorOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.ballTrigger.TestBallTriggerOiBinder;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.conveyor.loader.TestLoaderOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
-import frc.robot.intake.DriverIntakeOiBinder;
 import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -49,21 +47,15 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withLoader(Loader loader) {
-        Trigger loadBySpeed = new JoystickButton(controller, controller.getButtonRight());
-        new TestLoaderOiBinder(loader, loadBySpeed);
+    public DriverOi withConvoyerAndIntakeFront(Loader loader, BallTrigger ballTrigger, Intake intake){
+        Trigger load = new JoystickButton(controller, controller.getButtonRight());
+        new DriverInatkeAndConvoyerOiBinder(loader,ballTrigger, intake, load);
         return this;
     }
 
-    public DriverOi withBallTrigger(BallTrigger ballTrigger) {
-        Trigger ballTriggerBySpeed = new JoystickButton(controller, controller.getButtonLeft());
-        new TestBallTriggerOiBinder(ballTrigger, ballTriggerBySpeed);
-        return this;
-    }
-
-    public DriverOi withIntake(Intake intakeFront, Intake intakeBack) {
-        Trigger intakeAsNeeded = new JoystickButton(controller, controller.getButtonDown());
-        new DriverIntakeOiBinder(intakeFront, intakeBack, intakeAsNeeded);
+    public DriverOi withConvoyerAndIntakeBack(Loader loader, BallTrigger ballTrigger, Intake intake) {
+        Trigger load = new JoystickButton(controller, controller.getButtonLeft());
+        new DriverInatkeAndConvoyerOiBinder(loader, ballTrigger, intake, load);
         return this;
     }
 }
