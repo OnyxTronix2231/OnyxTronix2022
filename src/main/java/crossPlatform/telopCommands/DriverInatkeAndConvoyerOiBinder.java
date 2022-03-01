@@ -5,10 +5,11 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.intake.Intake;
 
-import java.util.function.DoubleSupplier;
+import static crossPlatform.telopCommands.CrossPlatformConstants.*;
 
 public class DriverInatkeAndConvoyerOiBinder {
     public DriverInatkeAndConvoyerOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load) {
-        load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader));
+        load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader, () -> LOADER_SPEED,
+                () -> BALL_TRIGGER_SPEED, () -> INTAKE_SPEED));
     }
 }

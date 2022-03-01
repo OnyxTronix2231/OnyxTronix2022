@@ -19,7 +19,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
         motor.enableCurrentLimit(SUPPLY_CURRENT_LIMIT_ENABLED);
-
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);

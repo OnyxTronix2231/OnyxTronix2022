@@ -9,12 +9,13 @@ import frc.robot.intake.commands.MoveIntakeBySpeed;
 
 import java.util.function.DoubleSupplier;
 
-import static crossPlatform.telopCommands.CrossPlatformConstants.*;
-
 
 public class MoveIntakeAndConveyor extends ParallelCommandGroup {
-    public MoveIntakeAndConveyor(Intake intake, BallTrigger ballTrigger, Loader loader) {
-        super(new LoadBalls(loader, ballTrigger, ()-> LOADER_SPEED, ()-> BALL_TRIGGER_SPEED ),
-                new MoveIntakeBySpeed(intake, ()-> INTAKE_SPEED));
+    public MoveIntakeAndConveyor(Intake intake, BallTrigger ballTrigger, Loader loader,
+                                 DoubleSupplier loaderSpeedSupplier, DoubleSupplier ballTriggerSpeedSupplier,
+                                 DoubleSupplier intakeSpeedSupplier) {
+        super(new LoadBalls(loader, ballTrigger, () -> loaderSpeedSupplier.getAsDouble(),
+                        () -> ballTriggerSpeedSupplier.getAsDouble()),
+                new MoveIntakeBySpeed(intake, () -> intakeSpeedSupplier.getAsDouble()));
     }
 }
