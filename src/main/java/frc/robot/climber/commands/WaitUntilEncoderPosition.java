@@ -6,6 +6,6 @@ import frc.robot.climber.Climber;
 public class WaitUntilEncoderPosition extends ParallelCommandGroup {
 
     public WaitUntilEncoderPosition(Climber climber) {
-        super(new WaitUntilLeftEncoderPosition(climber),new WaitUntilRightEncoderPosition(climber));
+        super(new WaitUntilLeftEncoderPosition(climber), new WaitUntilRightEncoderPosition(climber));
     }
 }

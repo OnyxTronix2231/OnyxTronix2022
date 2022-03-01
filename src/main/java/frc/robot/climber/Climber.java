@@ -36,4 +36,12 @@ public class Climber extends SubsystemBase {
     public void closeSolenoid() {
         components.getDoubleSolenoid().set(SOLENOID_CLOSE_VALUE);
     }
+
+    public boolean isRightEncoderOnTarget() {
+        return getRightEncoderUnits() == DESIRED_ENCODER_UNITS;
+    }
+
+    public boolean isLeftEncoderOnTarget() {
+        return getLeftEncoderUnits() == DESIRED_ENCODER_UNITS;
+    }
 }
