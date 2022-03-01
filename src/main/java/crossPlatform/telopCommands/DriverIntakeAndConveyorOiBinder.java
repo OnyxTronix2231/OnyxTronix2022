@@ -7,8 +7,8 @@ import frc.robot.intake.Intake;
 
 import static crossPlatform.telopCommands.CrossPlatformConstants.*;
 
-public class DriverInatkeAndConvoyerOiBinder {
-    public DriverInatkeAndConvoyerOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load) {
+public class DriverIntakeAndConveyorOiBinder {
+    public DriverIntakeAndConveyorOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load) {
         load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader, () -> LOADER_SPEED,
                 () -> BALL_TRIGGER_SPEED, () -> INTAKE_SPEED));
     }

@@ -1,6 +1,6 @@
 package frc.robot;
 
-import crossPlatform.telopCommands.DriverInatkeAndConvoyerOiBinder;
+import crossPlatform.telopCommands.DriverIntakeAndConveyorOiBinder;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.conveyor.DriverConveyorOiBinder;
@@ -53,13 +53,13 @@ public class DriverOi {
 
     public DriverOi withConvoyerAndIntakeFront(Loader loader, BallTrigger ballTrigger, Intake intake){
         Trigger load = new JoystickButton(controller, controller.getButtonRight());
-        new DriverInatkeAndConvoyerOiBinder(loader,ballTrigger, intake, load);
+        new DriverIntakeAndConveyorOiBinder(loader,ballTrigger, intake, load);
         return this;
     }
 
     public DriverOi withConvoyerAndIntakeBack(Loader loader, BallTrigger ballTrigger, Intake intake) {
         Trigger load = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverInatkeAndConvoyerOiBinder(loader, ballTrigger, intake, load);
+        new DriverIntakeAndConveyorOiBinder(loader, ballTrigger, intake, load);
         return this;
     }
 }
