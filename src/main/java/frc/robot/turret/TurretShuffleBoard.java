@@ -3,12 +3,15 @@ package frc.robot.turret;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.turret.commands.RotateByAngleOnce;
+import frc.robot.turret.commands.RotateByVision;
+import frc.robot.vision.Vision;
 
 import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class TurretShuffleBoard {
 
     private final Turret turret;
+    private final Vision vision;
     private final TurretComponents components;
     private final NetworkTableEntry kP;
     private final NetworkTableEntry kI;
@@ -18,8 +21,9 @@ public class TurretShuffleBoard {
     private final NetworkTableEntry acceleration;
     private final NetworkTableEntry accSmoothing;
 
-    public TurretShuffleBoard(Turret turret, TurretComponents components) {
+    public TurretShuffleBoard(Turret turret, Vision vision, TurretComponents components) {
         this.turret = turret;
+        this.vision = vision;
         this.components = components;
 
         kP = Shuffleboard.getTab("Turret").add("set kP",
@@ -50,6 +54,7 @@ public class TurretShuffleBoard {
         Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50 ));
         Shuffleboard.getTab("Turret").add("move 90", new RotateByAngleOnce(turret, () -> 90 ));
         Shuffleboard.getTab("Turret").add("move 180", new RotateByAngleOnce(turret, () -> 180 ));
+        Shuffleboard.getTab("Turret").add("move by turret", new RotateByVision(turret, vision));
     }
 
     public void update() {

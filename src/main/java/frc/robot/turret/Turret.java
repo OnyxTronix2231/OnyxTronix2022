@@ -1,6 +1,7 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.vision.Vision;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
@@ -13,9 +14,9 @@ public class Turret extends SubsystemBase {
     private double startingAngle;
     private double targetAngle;
 
-    public Turret(TurretComponents turretComponents) {
+    public Turret(TurretComponents turretComponents, Vision vision) {
         components = turretComponents;
-        turretShuffleBoard = new TurretShuffleBoard(this, components);
+        turretShuffleBoard = new TurretShuffleBoard(this, vision, components);
     }
 
     @Override
