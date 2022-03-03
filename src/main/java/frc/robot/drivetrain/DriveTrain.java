@@ -15,7 +15,7 @@ import static frc.robot.drivetrain.DriveTrainConstants.*;
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
     public double forwardSpeedValue;
-    private final Field2d field2d;
+    private Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -52,8 +52,8 @@ public class DriveTrain extends SubsystemBase {
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(Calculations.encoderUnitsDeciSecToMetersSec(
-                driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
-                Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
+                        driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
+                        Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
     }
 
     public double getRobotSpeedMPS() {
@@ -71,9 +71,7 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
-    public double getPitch() {
-        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
-    }
+    public double getPitch() { return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw(); }
 
     public void resetOdometryToPose(Translation2d translation) {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
