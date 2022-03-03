@@ -1,5 +1,6 @@
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
@@ -8,13 +9,11 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.DriverShooterOIBinder;
-import frc.robot.conveyor.DriverConveyorOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.ballTrigger.TestBallTriggerOiBinder;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.conveyor.loader.TestLoaderOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.intake.Intake;
-import frc.robot.intake.DriverIntakeOiBinder;
 import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -53,36 +52,27 @@ public class DriverOi {
     public DriverOi withTurret(Turret turret, Vision vision) {
         Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
         Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
-        Trigger move10 = new JoystickButton(controller, controller.getButtonUp());
-        Trigger move50 = new JoystickButton(controller, controller.getButtonRight());
-        Trigger move90 = new JoystickButton(controller, controller.getButtonDown());
-        Trigger move180 = new JoystickButton(controller, controller.getButtonLeft());
-        Trigger byVision = new JoystickButton(controller, controller.getCenterLeft());
-        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, move10, move50, move90, move180, byVision);
+        Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
+        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, byVision);
         return this;
     }
 
-    public DriverOi withConveyor(Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getButtonUp());
-        new DriverConveyorOiBinder(loader, ballTrigger, load);
+    public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
+                                                       Loader loader, BallTrigger ballTrigger) {
+        Trigger collect = new JoystickButton(controller, controller.getButtonRight());
+        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger, collect);
         return this;
     }
 
-    public DriverOi withLoader(Loader loader) {
-        Trigger loadBySpeed = new JoystickButton(controller, controller.getButtonRight());
-        new TestLoaderOiBinder(loader, loadBySpeed);
+    public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
+        Trigger load = new JoystickButton(controller, controller.getButtonRight());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 
-    public DriverOi withBallTrigger(BallTrigger ballTrigger) {
-        Trigger ballTriggerBySpeed = new JoystickButton(controller, controller.getButtonLeft());
-        new TestBallTriggerOiBinder(ballTrigger, ballTriggerBySpeed);
-        return this;
-    }
-
-    public DriverOi withIntake(Intake intakeFront, Intake intakeBack) {
-        Trigger intakeAsNeeded = new JoystickButton(controller, controller.getButtonDown());
-        new DriverIntakeOiBinder(intakeFront, intakeBack, intakeAsNeeded);
+    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
+        Trigger load = new JoystickButton(controller, controller.getButtonLeft());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 }

@@ -17,8 +17,6 @@ public class IntakeShuffleboard {
     }
 
     public void init() {
-        joyStick = Shuffleboard.getTab("Intake").add("JoystickValue" + intake.getName(), 0.0).getEntry();
-
         Shuffleboard.getTab("Intake").add("Open" + intake.getName(), new OpenPiston(intake));
 
         Shuffleboard.getTab("Intake").add("Close" + intake.getName(), new ClosePiston(intake));
