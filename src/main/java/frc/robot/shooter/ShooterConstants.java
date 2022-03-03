@@ -12,6 +12,8 @@ public class ShooterConstants {
     static final double KD = 10;
     static final double KF = 0.0482;
     static final double SPEED = 0;
+    static final double TOLERANCE = 100;
+
 
     public static class ComponentsConstants {
 

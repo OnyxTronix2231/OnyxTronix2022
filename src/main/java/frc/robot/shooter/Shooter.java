@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.RPMToEncUnitsDecisec;
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDecisecToRPM;
+import static frc.robot.shooter.ShooterConstants.TOLERANCE;
 
 public class Shooter extends SubsystemBase {
 
@@ -51,5 +52,9 @@ public class Shooter extends SubsystemBase {
 
     public ShooterComponents getComponents(){
         return components;
+    }
+
+    public boolean isOnTarget(){
+        return components.getController().isOnTarget(RPMToEncUnitsDecisec(TOLERANCE));
     }
 }

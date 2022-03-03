@@ -48,6 +48,7 @@ public class ArcShuffleBoard {
         Shuffleboard.getTab("Arc").add("MoveTo30", new MoveArcToAngle(arc,
                 () -> 30));
 
+        Shuffleboard.getTab("Arc").add("Calibrate arc", new CalibrateArc(arc));
         Shuffleboard.getTab("Arc").add("MoveTo45", new MoveArcToAngle(arc,
                 () -> 45));
 

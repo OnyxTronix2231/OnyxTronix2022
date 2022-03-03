@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+                intakeBack, loader, ballTrigger).withShooterArcAndConveyor(loader, ballTrigger, shooter, arc);
 
         new DeputyOi();
 

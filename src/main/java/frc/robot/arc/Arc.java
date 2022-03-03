@@ -61,4 +61,8 @@ public class Arc extends SubsystemBase {
         components.getMotor().configForwardSoftLimitEnable(enable);
         components.getMotor().configReverseSoftLimitEnable(enable);
     }
+
+    public boolean isOnTarget(){
+        return components.getController().isOnTarget(angleToEncoderUnits(3));
+    }
 }
