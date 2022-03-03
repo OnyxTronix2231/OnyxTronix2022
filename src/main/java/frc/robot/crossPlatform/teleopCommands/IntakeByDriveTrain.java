@@ -12,10 +12,10 @@ public class IntakeByDriveTrain extends ConditionalCommand {
 
     public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
                               DriveTrainJoystickValueProvider intakeControl) {
-        super(new WaitUntilCommand(intakeControl::isForward)
-                        .deadlineWith(new OpenAndIntake(intakeBack, intakeSpeedSupplier)),
-                new WaitUntilCommand(intakeControl::isForward)
+        super(new WaitUntilCommand(() -> !intakeControl.isForward())
                         .deadlineWith(new OpenAndIntake(intakeForward, intakeSpeedSupplier)),
+                new WaitUntilCommand(intakeControl::isForward)
+                        .deadlineWith(new OpenAndIntake(intakeBack, intakeSpeedSupplier)),
                 intakeControl::isForward);
     }
 

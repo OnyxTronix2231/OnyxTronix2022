@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DriverConveyorIntakeAndDriveTrain;
+import frc.robot.crossPlatform.teleopCommands.DriverConveyorAndIntakeOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
@@ -44,7 +44,7 @@ public class DriverOi {
     public DriverOi withDriveTrainConveyorAndIntake(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
                                                     Loader loader, BallTrigger ballTrigger ){
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverConveyorIntakeAndDriveTrain(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverConveyorAndIntakeOiBinder(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
         return this;
     }
 }
