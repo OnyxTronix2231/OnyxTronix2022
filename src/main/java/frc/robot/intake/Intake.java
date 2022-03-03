@@ -33,8 +33,4 @@ public class Intake extends SubsystemBase {
     public void closePiston() {
         components.getSolenoid().set(PISTON_CLOSE);
     }
-
-    public boolean isFrontIntakeOpen() {
-        return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
-    }
 }

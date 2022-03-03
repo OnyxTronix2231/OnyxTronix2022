@@ -1,13 +1,22 @@
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DriverConveyorIntakeAndDriveTrain;
+import frc.robot.arc.Arc;
+import frc.robot.arc.DriverArcOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.DriverShooterOIBinder;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.loader.Loader;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.intake.Intake;
+import frc.robot.turret.DriverTurretOiBinder;
+import frc.robot.turret.Turret;
+import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
@@ -29,10 +38,41 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withDriveTrainConveyorAndIntake(DriveTrain driveTrain, Intake intakeFront, Intake intakeBack,
-                                                    Loader loader, BallTrigger ballTrigger ){
+    public DriverOi withArc(Arc arc) {
+        new DriverArcOiBinder(arc);
+        return this;
+    }
+
+    public DriverOi withShooter(Shooter shooter) {
+        Trigger shooterTrigger = new JoystickButton(controller, controller.getBumperLeft());
+        new DriverShooterOIBinder(shooter, shooterTrigger);
+        return this;
+    }
+
+    public DriverOi withTurret(Turret turret, Vision vision) {
+        Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
+        Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
+        Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
+        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, byVision);
+        return this;
+    }
+
+    public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
+                                                       Loader loader, BallTrigger ballTrigger) {
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverConveyorIntakeAndDriveTrain(driveTrain, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger, collect);
+        return this;
+    }
+
+    public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
+        Trigger load = new JoystickButton(controller, controller.getButtonRight());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
+        Trigger load = new JoystickButton(controller, controller.getButtonLeft());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 }

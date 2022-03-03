@@ -11,7 +11,7 @@ public class IntakeConstant {
 
     public static class FrontComponentsConstants {
 
-        static final int FRONT_MOTOR_ID = 5;
+        static final int FRONT_MOTOR_ID = 6;
         static final int FRONT_SOLENOID_FORWARD_CHANNEL = 0;
         static final int FRONT_SOLENOID_REVERSE_CHANNEL = 1;
         static final double SUPPLY_CURRENT_LIMIT_FRONT = 0;
@@ -28,7 +28,7 @@ public class IntakeConstant {
 
     public static class BackComponentConstants {
 
-        static final int BACK_MOTOR_ID = 6;
+        static final int BACK_MOTOR_ID = 5;
         static final int BACK_SOLENOID_FORWARD_CHANNEL = 2;
         static final int BACK_SOLENOID_REVERSE_CHANNEL = 3;
         static final double CURRENT_LIMIT_ENABLED_BACK = 0;

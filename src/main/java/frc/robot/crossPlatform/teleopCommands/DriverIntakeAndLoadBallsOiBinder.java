@@ -7,10 +7,10 @@ import frc.robot.intake.Intake;
 
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.*;
 
-public class DriverIntakeAndConveyorOiBinder {
+public class DriverIntakeAndLoadBallsOiBinder {
 
-    public DriverIntakeAndConveyorOiBinder(Loader loader, BallTrigger ballTrigger, Intake intake, Trigger load) {
-        load.whenActive(new MoveIntakeAndConveyor(intake, ballTrigger, loader,
+    public DriverIntakeAndLoadBallsOiBinder(Intake intake, Loader loader, BallTrigger ballTrigger, Trigger load) {
+        load.whenActive(new IntakeAndLoadBalls(intake, ballTrigger, loader,
                 () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED, () -> INTAKE_SPEED));
     }
 }
