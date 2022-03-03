@@ -14,11 +14,11 @@ public class Vision extends SubsystemBase {
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
+    private VisionShuffleboard visionShuffleboard;
 
     public Vision() {
         limelight = Limelight.getInstance();
-        Shuffleboard.getTab("Vision").addNumber("Distance", this::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("Vision").addNumber("Angle", this::getHorizontalAngleTurretToTargetRTT);
+        visionShuffleboard = new VisionShuffleboard(this);
     }
 
     @Override
