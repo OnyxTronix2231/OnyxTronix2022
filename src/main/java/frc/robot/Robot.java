@@ -9,19 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
-import frc.robot.conveyor.loader.Loader;
-import frc.robot.conveyor.loader.LoaderComponents;
-import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriveTrainComponents;
-import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.intake.Intake;
-import frc.robot.intake.IntakeBackComponentsBase;
-import frc.robot.intake.IntakeComponents;
-import frc.robot.intake.IntakeFrontComponentsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,12 +18,6 @@ import frc.robot.intake.IntakeFrontComponentsBase;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrain driveTrain;
-    BallTrigger ballTrigger;
-    Loader loader;
-    Intake intakeFront;
-    Intake intakeBack;
-
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -44,35 +25,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        DriveTrainComponents driveTrainComponents;
-        LoaderComponents loaderComponents;
-        BallTriggerComponents ballTriggerComponents;
-        IntakeComponents intakeFrontComponents;
-        IntakeComponents intakeBackComponents;
-
         if (Robot.isReal()) {
-            driveTrainComponents = new DriveTrainComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            loaderComponents = new LoaderComponentsBase();
-            intakeFrontComponents = new IntakeBackComponentsBase();
-            intakeBackComponents = new IntakeFrontComponentsBase();
         } else {
-            driveTrainComponents = null;
-            ballTriggerComponents = null;
-            loaderComponents = null;
-            intakeFrontComponents = null;
-            intakeBackComponents = null;
         }
 
-        driveTrain = new DriveTrain(driveTrainComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        loader = new Loader(loaderComponents);
-        intakeFront = new Intake(intakeFrontComponents,"Front");
-        intakeBack = new Intake(intakeBackComponents,"Back");
-
-        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(driveTrain, intakeFront,
-                intakeBack, loader, ballTrigger);
-
+        new DriverOi();
         new DeputyOi();
 
         new DriversShuffleboard();
