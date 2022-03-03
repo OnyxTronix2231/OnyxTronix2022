@@ -15,30 +15,39 @@ public class ShooterShuffleBoard {
     private NetworkTableEntry kP;
     private NetworkTableEntry kI;
     private NetworkTableEntry kD;
+    private NetworkTableEntry kF;
     private NetworkTableEntry setRPM;
     private NetworkTableEntry setSpeed;
-    private DoubleSupplier RPM;
-    private DoubleSupplier speed;
+
 
     public ShooterShuffleBoard(Shooter shooter) {
         this.shooter = shooter;
-        setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
+
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("err", shooter::getError);
-        setSpeed = Shuffleboard.getTab("Shooter").add("setSpeed", 0).getEntry();
+
+
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
         kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
+        kF = Shuffleboard.getTab("Shooter").add("kF", KF).getEntry();
 
-        RPM = () -> setRPM.getDouble(0);
-        speed = () -> setSpeed.getDouble(0);
+        setSpeed = Shuffleboard.getTab("Shooter").add("setSpeed", 0).getEntry();
+        setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
 
-        Shuffleboard.getTab("Shooter").add("ShootBySpeed", new ShootBySpeed(shooter, speed));
-        Shuffleboard.getTab("Shooter").add("ShootByRPM", new ShootByRPM(shooter, RPM));
+        Shuffleboard.getTab("Shooter").add("ShootBySpeed", new ShootBySpeed(shooter,
+                () -> setSpeed.getDouble(0)));
+        Shuffleboard.getTab("Shooter").add("ShootByRPM", new ShootByRPM(shooter,
+                () -> setRPM.getDouble(0)));
     }
 
     public void update() {
-        shooter.setPID(kP.getDouble(KP), kI.getDouble(KI), kD.getDouble(KD), KF);
+        shooter.getComponents().getController().setPIDFTerms(
+                kP.getDouble(shooter.getComponents().getController().getPIDFTerms().getKp()),
+                kI.getDouble(shooter.getComponents().getController().getPIDFTerms().getKi()),
+                kD.getDouble(shooter.getComponents().getController().getPIDFTerms().getKd()),
+                kF.getDouble(shooter.getComponents().getController().getPIDFTerms().getKf()));
+        ;
     }
 }

@@ -7,11 +7,11 @@ import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDec
 
 public class Shooter extends SubsystemBase {
 
-    private final ShooterComponents shooterComponents;
+    private final ShooterComponents components;
     private final ShooterShuffleBoard shuffleBoard;
 
-    public Shooter(ShooterComponents shooterComponents) {
-        this.shooterComponents = shooterComponents;
+    public Shooter(ShooterComponents components) {
+        this.components = components;
         shuffleBoard = new ShooterShuffleBoard(this);
     }
 
@@ -19,37 +19,37 @@ public class Shooter extends SubsystemBase {
         shuffleBoard.update();
     }
 
-    public void setPID(double kP, double kI, double kD, double kF) {
-        shooterComponents.getController().setPIDFTerms(kP, kI, kD, kF);
-    }
-
     public void setSpeed(double speed) {
-        shooterComponents.getMasterMotor().set(speed);
+        components.getMasterMotor().set(speed);
     }
 
     public void initSetPIDSpeed(double RPM) {
-        shooterComponents.getController().setSetpoint(RPMToEncUnitsDecisec(RPM));
-        shooterComponents.getController().enable();
+        components.getController().setSetpoint(RPMToEncUnitsDecisec(RPM));
+        components.getController().enable();
     }
 
     public void updateSetPIDSpeed(double RPM) {
-        shooterComponents.getController().update(RPMToEncUnitsDecisec(RPM));
+        components.getController().update(RPMToEncUnitsDecisec(RPM));
     }
 
     public double getCurrentRPM() {
-        return encUnitsDecisecToRPM(shooterComponents.getCounter().getRate());
+        return encUnitsDecisecToRPM(components.getCounter().getRate());
     }
 
     public double getError() {
-        return shooterComponents.getController().getCurrentError();
+        return components.getController().getCurrentError();
     }
 
     public double getEncoderUnits() {
-        return shooterComponents.getCounter().getRate();
+        return components.getCounter().getRate();
     }
 
     public void stop() {
         setSpeed(0);
-        shooterComponents.getController().disable();
+        components.getController().disable();
+    }
+
+    public ShooterComponents getComponents(){
+        return components;
     }
 }
