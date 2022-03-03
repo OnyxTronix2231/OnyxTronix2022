@@ -27,8 +27,7 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
-//        Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDigitalDistance);
-//        Shuffleboard.getTab("BallTrigger").addNumber("DistanceAnalog", ballTrigger::getAnalogDistance);
+        Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
     }

@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
         intakeBack = new Intake(intakeBackComponents,"Back");
         intakeControl = new DriveTrainJoystickValueProvider(driveTrain);
 
-        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(intakeControl, intakeFront,
+        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(intakeControl, intakeFront,
                 intakeBack, loader, ballTrigger);
 
         new DeputyOi();

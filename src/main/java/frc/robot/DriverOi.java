@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DriverConveyorAndIntakeOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
@@ -41,10 +42,22 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withDriveTrainConveyorAndIntake(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
-                                                    Loader loader, BallTrigger ballTrigger ){
+    public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
+                                                       Loader loader, BallTrigger ballTrigger ){
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverConveyorAndIntakeOiBinder(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
+        return this;
+    }
+
+    public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger){
+        Trigger load = new JoystickButton(controller, controller.getButtonRight());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger){
+        Trigger load = new JoystickButton(controller, controller.getButtonLeft());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 }

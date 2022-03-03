@@ -10,7 +10,7 @@ public class OpenAndIntake extends SequentialCommandGroup {
     private final Intake intake;
 
     public OpenAndIntake(Intake intake, DoubleSupplier speedSupplier) {
-        super(//new OpenPiston(intake),
+        super(new OpenPiston(intake),
                 new MoveIntakeBySpeed(intake, speedSupplier));
         this.intake = intake;
     }
@@ -18,6 +18,6 @@ public class OpenAndIntake extends SequentialCommandGroup {
     @Override
     public void end(boolean interrupted) {
         super.end(interrupted);
-        //intake.closePiston();
+        intake.closePiston();
     }
 }

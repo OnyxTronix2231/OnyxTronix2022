@@ -12,7 +12,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonSRX motor;
     private final Rev2mDistanceSensor distanceSensor;
-   // private final TriangulatingRangefinder ananlogDistanceSensor;
 
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
@@ -24,8 +23,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
-        //this.ananlogDistanceSensor = new TriangulatingRangefinder(ANALOG_DISTANCE_SENSOR_ID);
-
     }
 
     @Override
@@ -37,11 +34,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
     }
-
-//    @Override
-//    public TriangulatingRangefinder getBallTriggerSensor() {
-//        return ananlogDistanceSensor;
-//    }
 
     private TalonSRXConfiguration getTalonConfiguration() {
         final TalonSRXConfiguration config = new TalonSRXConfiguration();

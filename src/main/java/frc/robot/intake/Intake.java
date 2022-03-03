@@ -8,7 +8,6 @@ import static frc.robot.intake.IntakeConstant.PISTON_OPEN;
 
 public class Intake extends SubsystemBase {
 
-    private static boolean isForward = true;
     private final IntakeComponents components;
     private final IntakeShuffleboard intakeShuffleboard;
 
@@ -33,18 +32,5 @@ public class Intake extends SubsystemBase {
 
     public void closePiston() {
         components.getSolenoid().set(PISTON_CLOSE);
-    }
-
-    public boolean isFrontIntakeOpen() {
-        return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
-    }
-
-    public static void setIsForward(boolean isForward) {
-        Intake.isForward = isForward;
-    }
-
-    public static boolean getIsForward() {
-        System.out.println(isForward);
-        return isForward;
     }
 }
