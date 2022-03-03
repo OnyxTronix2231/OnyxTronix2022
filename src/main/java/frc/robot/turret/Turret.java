@@ -3,12 +3,11 @@ package frc.robot.turret;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.turret.TurretConstants.*;
-import static frc.robot.turret.TurretConstants.RobotConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class Turret extends SubsystemBase {
-    private final TurretComponents components;
 
+    private final TurretComponents components;
     private final TurretShuffleBoard turretShuffleBoard;
 
     public Turret(TurretComponents turretComponents) {
@@ -22,7 +21,7 @@ public class Turret extends SubsystemBase {
     }
 
     public double getCurrentAngleRTR() {
-        return encoderUnitsToDegrees(components.getEncoder().getCount());
+        return absoluteEncoderUnitsToDegrees(components.getEncoder().getCount());
     }
 
     public void stop() {
@@ -35,23 +34,12 @@ public class Turret extends SubsystemBase {
     }
 
     public void initMoveToDegreeRTR(double deg) {
-        components.getController().setSetpoint(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
+        components.getController().setSetpoint(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
         components.getController().enable();
     }
 
     public void updateMoveToDegreeRTR(double deg) {
-        components.getController().update(degreesToEncoderUnits(fixAngleAccordingToLimits(deg)));
-    }
-
-    public double fixAngleAccordingToLimits(double deg) {
-        double fixedAngle = deg % DEG_IN_CIRCLE;
-        if (fixedAngle > MAX_DEG) {
-            fixedAngle -= DEG_IN_CIRCLE;
-        }
-        if (fixedAngle < MIN_DEG) {
-            fixedAngle += DEG_IN_CIRCLE;
-        }
-        return fixedAngle;
+        components.getController().update(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
     }
 
     public boolean isOnTarget() {
