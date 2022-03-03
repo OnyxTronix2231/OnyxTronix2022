@@ -42,10 +42,10 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
+    public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
                                                        Loader loader, BallTrigger ballTrigger ){
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader,ballTrigger, collect);
         return this;
     }
 

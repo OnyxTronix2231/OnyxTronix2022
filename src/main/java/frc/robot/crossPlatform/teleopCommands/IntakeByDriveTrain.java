@@ -11,12 +11,12 @@ import java.util.function.DoubleSupplier;
 public class IntakeByDriveTrain extends ConditionalCommand {
 
     public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
-                              DriveTrainJoystickValueProvider intakeControl) {
-        super(new WaitUntilCommand(() -> !intakeControl.isForward())
+                              DriveTrainJoystickValueProvider joystickValueProvider) {
+        super(new WaitUntilCommand(() -> !joystickValueProvider.isForward())
                         .deadlineWith(new OpenAndIntake(intakeForward, intakeSpeedSupplier)),
-                new WaitUntilCommand(intakeControl::isForward)
+                new WaitUntilCommand(joystickValueProvider::isForward)
                         .deadlineWith(new OpenAndIntake(intakeBack, intakeSpeedSupplier)),
-                intakeControl::isForward);
+                joystickValueProvider::isForward);
     }
 
     @Override

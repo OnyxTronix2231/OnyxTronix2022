@@ -11,13 +11,13 @@ import java.util.function.DoubleSupplier;
 
 public class IntakeByDriveTrainAndLoadBalls extends ParallelCommandGroup {
 
-    public IntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
+    public IntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
                                           Loader loader, BallTrigger ballTrigger, DoubleSupplier loaderSpeedSupplier,
                                           DoubleSupplier ballTriggerSpeedSupplier,
                                           DoubleSupplier intakeSpeedSupplier) {
         super(
-//                new LoadBalls(loader, ballTrigger, loaderSpeedSupplier::getAsDouble,
-//                        ballTriggerSpeedSupplier::getAsDouble),
-                new IntakeByDriveTrain(intakeFront, intakeBack, intakeSpeedSupplier, intakeControl));
+                new LoadBalls(loader, ballTrigger, loaderSpeedSupplier::getAsDouble,
+                        ballTriggerSpeedSupplier::getAsDouble),
+                new IntakeByDriveTrain(intakeFront, intakeBack, intakeSpeedSupplier, joystickValueProvider));
     }
 }
