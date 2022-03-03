@@ -3,10 +3,9 @@ package frc.robot.arc;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import sensors.Switch.TalonSrxForwardMicroswitch;
+import pid.CtreMotionMagicController;
 import sensors.Switch.TalonSrxReverseMicroswitch;
-import pid.CtrePIDController;
-import pid.PIDControlMode;
+
 import pid.PIDFTerms;
 import sensors.counter.Counter;
 import sensors.counter.TalonEncoder;
@@ -14,14 +13,12 @@ import sensors.counter.TalonEncoder;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 import static frc.robot.arc.ArcConstants.*;
 
-
 public class ArcComponentsBase implements ArcComponents {
 
     private final WPI_TalonSRX motor;
     private final TalonEncoder encoder;
     private final TalonSrxReverseMicroswitch reverseMicroswitch;
-    private final TalonSrxForwardMicroswitch forwardMicroswitch;
-    private final CtrePIDController controller;
+    private final CtreMotionMagicController controller;
 
     public ArcComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
@@ -29,17 +26,11 @@ public class ArcComponentsBase implements ArcComponents {
 
         encoder = new TalonEncoder(motor);
 
-        controller = new CtrePIDController(motor, encoder, new PIDFTerms(KP, KI, KD, KF), PIDControlMode.Position);
+        controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(KP, KI, KD, KF),
+                MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
 
-        forwardMicroswitch = new TalonSrxForwardMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen);
         reverseMicroswitch = new TalonSrxReverseMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
                 LimitSwitchNormal.NormallyOpen);
-    }
-
-    @Override
-    public TalonSrxForwardMicroswitch getForwardMicroSwitch() {
-        return forwardMicroswitch;
     }
 
     @Override
@@ -58,7 +49,7 @@ public class ArcComponentsBase implements ArcComponents {
     }
 
     @Override
-    public CtrePIDController getController() {
+    public CtreMotionMagicController getController() {
         return controller;
     }
 }

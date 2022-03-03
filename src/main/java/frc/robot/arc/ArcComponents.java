@@ -1,6 +1,7 @@
 package frc.robot.arc;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import pid.CtreMotionMagicController;
 import sensors.Switch.TalonSrxForwardMicroswitch;
 import sensors.Switch.TalonSrxReverseMicroswitch;
 import pid.interfaces.PIDController;
@@ -12,9 +13,7 @@ public interface ArcComponents {
 
     TalonSrxReverseMicroswitch getReverseMicroSwitch();
 
-    TalonSrxForwardMicroswitch getForwardMicroSwitch();
-
     Counter getCounter();
 
-    PIDController getController();
+    CtreMotionMagicController getController();
 }

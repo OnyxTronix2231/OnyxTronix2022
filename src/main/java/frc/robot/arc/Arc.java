@@ -3,44 +3,59 @@ package frc.robot.arc;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.arc.ArcConstants.ArcCalculations.angleToEncoderUnits;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MAX_ANGLE;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
+import static frc.robot.arc.ArcConstants.TIME_OUT;
 
 public class Arc extends SubsystemBase {
 
-    private final ArcComponents arcComponents;
+    private final ArcComponents components;
     private final ArcShuffleBoard shuffleBoard;
 
-    public Arc(ArcComponents arcComponents) {
-        this.arcComponents = arcComponents;
+    public Arc(ArcComponents components) {
+        this.components = components;
         shuffleBoard = new ArcShuffleBoard(this);
-        shuffleBoard.init();
+        components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(ARC_MAX_ANGLE));
+        components.getMotor().configForwardSoftLimitEnable(true);
+        components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(ARC_MIN_ANGLE));
+        components.getMotor().configReverseSoftLimitEnable(true);
+
+        resetEncoderByAbsoluteValue();
     }
 
-    public void setPID(double kP, double kI, double kD, double kF) {
-        arcComponents.getController().setPIDFTerms(kP, kI, kD, kF);
+    @Override
+    public void periodic() {
+        shuffleBoard.update();
     }
 
     public void initMoveToAngle(double angle) {
-        arcComponents.getController().setSetpoint(angleToEncoderUnits(angle));
-        arcComponents.getController().enable();
+        components.getController().setSetpoint(angleToEncoderUnits(angle));
+        components.getController().enable();
     }
 
     public void updateMoveToAngle(double angle) {
-        arcComponents.getController().update(angleToEncoderUnits(angle));
+        components.getController().update(angleToEncoderUnits(angle));
     }
 
     public void setSpeed(double speed) {
-        arcComponents.getMotor().set(speed);
+        components.getMotor().set(speed);
     }
 
-    public boolean hasHitReverseLimitSwitch(){
-        return arcComponents.getReverseMicroSwitch().isOpen();
+    public boolean hasHitReverseMicroSwitch() {
+        return components.getReverseMicroSwitch().isOpen();
     }
 
     public void resetEncoderByAbsoluteValue() {
-        arcComponents.getMotor().setSelectedSensorPosition(0);
+        components.getMotor().getSensorCollection().setPulseWidthPosition(0, TIME_OUT);
+        components.getMotor().setSelectedSensorPosition(0);
     }
 
     public void stop() {
         setSpeed(0);
+        components.getController().disable();
+    }
+
+    public ArcComponents getComponents(){
+        return components;
     }
 }

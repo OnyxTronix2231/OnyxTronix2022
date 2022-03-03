@@ -22,10 +22,6 @@ public class ShooterShuffleBoard {
 
     public ShooterShuffleBoard(Shooter shooter) {
         this.shooter = shooter;
-
-    }
-
-    public void init() {
         setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
@@ -35,8 +31,8 @@ public class ShooterShuffleBoard {
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
         kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
 
-        RPM = ()->setRPM.getDouble(0);
-        speed = ()-> setSpeed.getDouble(0);
+        RPM = () -> setRPM.getDouble(0);
+        speed = () -> setSpeed.getDouble(0);
 
         Shuffleboard.getTab("Shooter").add("ShootBySpeed", new ShootBySpeed(shooter, speed));
         Shuffleboard.getTab("Shooter").add("ShootByRPM", new ShootByRPM(shooter, RPM));
