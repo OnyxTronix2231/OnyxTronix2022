@@ -13,7 +13,8 @@ public class ArcConstants {
     static final double KI = 0.00251;
     static final double KD = 8;
     static final double KF = 1.657;
-    public static final double CALIBRATION_SPEED = 0;
+    public static final double CALIBRATION_SPEED = -0.2;
+    static final double INTEGRAL_ZONE = 25;
 
     public static class ComponentsConstants {
 

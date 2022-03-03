@@ -57,9 +57,6 @@ public class ArcShuffleBoard {
         Shuffleboard.getTab("Arc").add("MoveArcToAngle", new MoveArcToAngle(arc,
                 () -> setAngle.getDouble(ARC_MIN_ANGLE)));
 
-        Shuffleboard.getTab("Arc").add("MoveArcUntilLimitSwitch", new CalibrateArc(arc, () ->
-                calibrateSpeed.getDouble(0)));
-
         kP = Shuffleboard.getTab("Arc").add("set kP",
                 arc.getComponents().getController().getPIDFTerms().getKp()).getEntry();
         kI = Shuffleboard.getTab("Arc").add("set kI",

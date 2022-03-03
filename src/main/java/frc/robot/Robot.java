@@ -56,9 +56,7 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withShooter(shooter)
-                .withArc(arc)
-        ;
+        new DriverOi();
         new DeputyOi();
 
         new DriversShuffleboard();

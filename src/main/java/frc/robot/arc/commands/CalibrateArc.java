@@ -10,8 +10,8 @@ public class CalibrateArc extends MoveArcBySpeed {
 
     private final Arc arc;
 
-    public CalibrateArc(Arc arc, DoubleSupplier calibrateSpeedSupplier) {
-        super(arc, calibrateSpeedSupplier);
+    public CalibrateArc(Arc arc) {
+        super(arc, ()-> CALIBRATION_SPEED);
         this.arc = arc;
         addRequirements(arc);
     }
