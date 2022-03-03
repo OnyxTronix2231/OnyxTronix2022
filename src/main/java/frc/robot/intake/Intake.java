@@ -37,8 +37,4 @@ public class Intake extends SubsystemBase {
     public boolean isFrontIntakeOpen() {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
-
-    public double getJoyStickValue() {
-        return intakeShuffleboard.getJoystickValue();
-    }
 }

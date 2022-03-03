@@ -6,7 +6,6 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.util.sendable.SendableRegistry;
 
-
 public class NormalizedPigeonIMU extends PigeonIMU implements Sendable {
 
     public NormalizedPigeonIMU(int deviceNumber) {
@@ -23,6 +22,12 @@ public class NormalizedPigeonIMU extends PigeonIMU implements Sendable {
         double[] yawPitchRoll = new double[3];
         getYawPitchRoll(yawPitchRoll);
         return Math.IEEEremainder(yawPitchRoll[0], 360);
+    }
+
+    public double getRawPitch() {
+        double[] yawPitchRoll = new double[3];
+        getYawPitchRoll(yawPitchRoll);
+        return Math.IEEEremainder(yawPitchRoll[1], 360);
     }
 
     public void reset() {
