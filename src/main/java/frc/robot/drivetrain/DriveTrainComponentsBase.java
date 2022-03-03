@@ -7,11 +7,10 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import sensors.counter.CtreEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import sensors.counter.TalonEncoder;
 
-import static frc.robot.drivetrain.DriveTrainConstants.RobotConstants.*;
-import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.ComponentsConstants.*;
 
 public class DriveTrainComponentsBase implements DriveTrainComponents {
 
@@ -24,6 +23,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private NormalizedPigeonIMU pigeonIMU;
     private TalonEncoder leftEncoder;
     private TalonEncoder rightEncoder;
+    private Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);
@@ -54,6 +54,9 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
+        leftEncoder = new TalonEncoder(leftMasterMotor);
+        rightEncoder = new TalonEncoder(rightMasterMotor);
+
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(0));
         odometry.resetPosition(new Pose2d(), new Rotation2d());
 
@@ -62,8 +65,15 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);
 
-        leftEncoder = new TalonEncoder(leftMasterMotor);
-        rightEncoder = new TalonEncoder(rightMasterMotor);
+        field2d = new Field2d();
+    }
+
+    @Override
+    public void setNeutralMode(NeutralMode mode) {
+        leftMasterMotor.setNeutralMode(mode);
+        leftSlaveMotor.setNeutralMode(mode);
+        rightMasterMotor.setNeutralMode(mode);
+        rightSlaveMotor.setNeutralMode(mode);
     }
 
     @Override
@@ -92,12 +102,12 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     }
 
     @Override
-    public CtreEncoder getLeftEncoder() {
+    public TalonEncoder getLeftEncoder() {
         return leftEncoder;
     }
 
     @Override
-    public CtreEncoder getRightEncoder() {
+    public TalonEncoder getRightEncoder() {
         return rightEncoder;
     }
 

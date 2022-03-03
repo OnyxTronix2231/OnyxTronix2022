@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
@@ -23,6 +24,9 @@ import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -32,6 +36,7 @@ import frc.robot.intake.IntakeFrontComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
+    AutonomousShuffleboard autonomousShuffleboard;
     BallTrigger ballTrigger;
     Loader loader;
     Intake intakeFront;
@@ -43,7 +48,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-
         DriveTrainComponents driveTrainComponents;
         LoaderComponents loaderComponents;
         BallTriggerComponents ballTriggerComponents;
@@ -76,6 +80,7 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
+        new AutonomousShuffleboard(driveTrain);
     }
 
     /**
@@ -92,6 +97,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
+        SmartDashboard.updateValues();
     }
 
     /**
@@ -99,12 +105,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-//    new Timer().schedule(new TimerTask() {
-//      @Override
-//      public void run() {
-//        if (isDisabled()) driveTrain.setNeutralModeToCoast();
-//      }
-//    }, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+            }
+        }, 3000);
     }
 
     @Override
@@ -116,11 +122,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    selectedAutonomousCommand = autonomousChooser.getSelected();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.schedule();
-//    }
+        driveTrain.setNeutralModeToBrake();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().schedule();
+        }
     }
 
     /**
@@ -132,10 +137,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.cancel();
-//    }
+        driveTrain.setNeutralModeToBrake();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().cancel();
+        }
     }
 
     /**

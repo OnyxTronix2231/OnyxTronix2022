@@ -16,6 +16,7 @@ import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
