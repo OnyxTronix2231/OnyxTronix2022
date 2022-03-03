@@ -1,7 +1,6 @@
 package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.vision.Vision;
 
 import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
