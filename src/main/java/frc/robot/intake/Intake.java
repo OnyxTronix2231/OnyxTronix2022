@@ -9,13 +9,13 @@ import static frc.robot.intake.IntakeConstant.PISTON_OPEN;
 public class Intake extends SubsystemBase {
 
     private final IntakeComponents components;
-    private final IntakeShuffleboard intakeShuffleboard;
+    //private final IntakeShuffleboard intakeShuffleboard;
 
     public Intake(IntakeComponents components, String name) {
         this.components = components;
         this.setName(name);
-        this.intakeShuffleboard = new IntakeShuffleboard(this);
-        intakeShuffleboard.init();
+        //this.intakeShuffleboard = new IntakeShuffleboard(this);
+        //intakeShuffleboard.init();
     }
 
     public void moveBySpeed(double speed) {
