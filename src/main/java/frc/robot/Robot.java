@@ -16,9 +16,20 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.crossPlatform.ShuffleBoardTurretAndVision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.intake.IntakeBackComponentsBase;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.turret.Turret;
+import frc.robot.turret.TurretComponents;
+import frc.robot.turret.TurretComponentsBase;
+import frc.robot.vision.Vision;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -44,6 +55,9 @@ public class Robot extends TimedRobot {
         BallTriggerComponents ballTriggerComponents;
         IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
+        TurretComponents turretComponents;
+        Vision vision;
+        Turret turret;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
@@ -51,17 +65,24 @@ public class Robot extends TimedRobot {
             loaderComponents = new LoaderComponentsBase();
             intakeFrontComponents = new IntakeBackComponentsBase();
             intakeBackComponents = new IntakeFrontComponentsBase();
+            vision = new Vision();
+            turretComponents = new TurretComponentsBase();
+            turret = new Turret(turretComponents);
         } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;
             loaderComponents = null;
             intakeFrontComponents = null;
             intakeBackComponents = null;
+            vision = null;
+            turret = null;
+            turretComponents = null;
         }
 
 
         new DeputyOi();
 
+        new ShuffleBoardTurretAndVision(turret, turretComponents, vision);
         new DriversShuffleboard();
         new AutonomousShuffleboard(driveTrain);
     }
@@ -106,10 +127,10 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().schedule();
+      // if (autonomousShuffleboard.getSelectedCommand() != null) {
+      //     autonomousShuffleboard.getSelectedCommand().schedule();
         }
-    }
+  //  }
 
     /**
      * This function is called periodically during autonomous.
@@ -121,9 +142,9 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().cancel();
-        }
+       // if (autonomousShuffleboard.getSelectedCommand() != null) {
+       //     autonomousShuffleboard.getSelectedCommand().cancel();
+      //  }
     }
 
     /**

@@ -11,11 +11,14 @@ import static frc.robot.turret.TurretConstants.Calculation.absoluteEncoderUnitsT
 public class ShuffleBoardTurretAndVision {
     public ShuffleBoardTurretAndVision(Turret turret, TurretComponents components, Vision vision) {
 
-        Shuffleboard.getTab("The amazing turret and vision").addNumber("Current AngleRTR", turret::getCurrentAngleRTR);
+        Shuffleboard.getTab("The amazing turret and vision").addNumber
+                ("Current AngleRTR", turret::getCurrentAngleRTR);
 
         Shuffleboard.getTab("The amazing turret and vision").addNumber("Desired angleRTR", () ->
                 absoluteEncoderUnitsToDegrees(components.getController().getSetpoint()));
 
-        Shuffleboard.getTab("The amazing turret and vision").add("move turret by vision", new RotateByVision(turret, vision));
+        Shuffleboard.getTab("The amazing turret and vision").add
+                ("move turret by vision", new RotateByVision(turret, vision));
     }
+
 }
