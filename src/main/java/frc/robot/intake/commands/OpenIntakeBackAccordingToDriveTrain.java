@@ -20,8 +20,8 @@ public class OpenIntakeBackAccordingToDriveTrain extends OnyxParallelDeadlineGro
     }
 
     @Override
-    public void end(boolean interrupted) {
-        super.end(interrupted);
+    public void initialize() {
+        super.initialize();
         intakeBack.setIsForward(true);
     }
 }
