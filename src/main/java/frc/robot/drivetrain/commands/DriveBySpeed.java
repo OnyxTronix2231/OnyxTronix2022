@@ -2,6 +2,7 @@ package frc.robot.drivetrain.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.drivetrain.DriveTrain;
+
 import java.util.function.DoubleSupplier;
 
 public class DriveBySpeed extends CommandBase {
@@ -19,7 +20,7 @@ public class DriveBySpeed extends CommandBase {
 
     @Override
     public void execute() {
-        driveTrain.arcadeDrive(speedSupplier.getAsDouble()*(-1), rotationSupplier.getAsDouble());
+        driveTrain.arcadeDrive(speedSupplier.getAsDouble(), rotationSupplier.getAsDouble());
     }
 
     @Override
