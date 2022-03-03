@@ -1,19 +1,22 @@
 package frc.robot.crossPlatform.teleopCommands;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import frc.robot.drivetrain.DriveTrain;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.intake.Intake;
+import frc.robot.intake.commands.OpenAndIntake;
 
 import java.util.function.DoubleSupplier;
 
 public class IntakeByDriveTrain extends ConditionalCommand {
 
-    public IntakeByDriveTrain(Intake intakeFront, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
-                              DriveTrain driveTrain, double joystickDeadband) {
-        super(new OpenIntakeFrontAccordingToDriveTrain(driveTrain, intakeFront, joystickDeadband, intakeSpeedSupplier),
-                new OpenIntakeBackAccordingToDriveTrain(driveTrain, intakeBack, joystickDeadband, intakeSpeedSupplier),
-                ()-> Math.abs(driveTrain.getForwardSpeedValue()) < joystickDeadband  ? Intake.getIsForward() :
-                        driveTrain.getForwardSpeedValue() > joystickDeadband );
+    public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
+                              DriveTrainJoystickValueProvider intakeControl) {
+        super(new WaitUntilCommand(intakeControl::isForward)
+                        .deadlineWith(new OpenAndIntake(intakeBack, intakeSpeedSupplier)),
+                new WaitUntilCommand(intakeControl::isForward)
+                        .deadlineWith(new OpenAndIntake(intakeForward, intakeSpeedSupplier)),
+                intakeControl::isForward);
     }
 
     @Override

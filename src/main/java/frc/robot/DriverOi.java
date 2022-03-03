@@ -1,12 +1,11 @@
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.conveyor.DriverConveyorOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverConveyorIntakeAndDriveTrain;
-import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndConveyorOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
@@ -16,7 +15,6 @@ import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
-import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -43,10 +41,10 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withDriveTrainConveyorAndIntake(DriveTrain driveTrain, Intake intakeFront, Intake intakeBack,
+    public DriverOi withDriveTrainConveyorAndIntake(DriveTrainJoystickValueProvider intakeControl, Intake intakeFront, Intake intakeBack,
                                                     Loader loader, BallTrigger ballTrigger ){
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverConveyorIntakeAndDriveTrain(driveTrain, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverConveyorIntakeAndDriveTrain(intakeControl, intakeFront, intakeBack, loader,ballTrigger, collect);
         return this;
     }
 }

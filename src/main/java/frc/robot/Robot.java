@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -53,6 +54,7 @@ public class Robot extends TimedRobot {
         BallTriggerComponents ballTriggerComponents;
         IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
+        DriveTrainJoystickValueProvider intakeControl;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
@@ -73,8 +75,9 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         intakeFront = new Intake(intakeFrontComponents,"Front");
         intakeBack = new Intake(intakeBackComponents,"Back");
+        intakeControl = new DriveTrainJoystickValueProvider(driveTrain);
 
-        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(driveTrain, intakeFront,
+        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(intakeControl, intakeFront,
                 intakeBack, loader, ballTrigger);
 
         new DeputyOi();
