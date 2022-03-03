@@ -70,9 +70,8 @@ public class Robot extends TimedRobot {
         intakeFront = new Intake(intakeFrontComponents,"Front");
         intakeBack = new Intake(intakeBackComponents,"Back");
 
-        new DriverOi().withDriveTrain(driveTrain).withConvoyerAndIntakeBack(loader,ballTrigger,intakeBack).
-                withConvoyerAndIntakeFront(loader,ballTrigger,intakeFront).
-                withConveyor(loader,ballTrigger);
+        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(driveTrain, intakeFront,
+                intakeBack, loader, ballTrigger);
 
         new DeputyOi();
 

@@ -1,4 +1,4 @@
-package crossPlatform.telopCommands;
+package frc.robot.crossPlatform.teleopCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -11,11 +11,12 @@ import java.util.function.DoubleSupplier;
 
 
 public class MoveIntakeAndConveyor extends ParallelCommandGroup {
+
     public MoveIntakeAndConveyor(Intake intake, BallTrigger ballTrigger, Loader loader,
                                  DoubleSupplier loaderSpeedSupplier, DoubleSupplier ballTriggerSpeedSupplier,
                                  DoubleSupplier intakeSpeedSupplier) {
-        super(new LoadBalls(loader, ballTrigger, () -> loaderSpeedSupplier.getAsDouble(),
-                        () -> ballTriggerSpeedSupplier.getAsDouble()),
-                new MoveIntakeBySpeed(intake, () -> intakeSpeedSupplier.getAsDouble()));
+        super(new LoadBalls(loader, ballTrigger, loaderSpeedSupplier,
+                        ballTriggerSpeedSupplier),
+                new MoveIntakeBySpeed(intake, intakeSpeedSupplier));
     }
 }

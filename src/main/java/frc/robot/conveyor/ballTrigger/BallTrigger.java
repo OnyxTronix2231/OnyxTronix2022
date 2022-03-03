@@ -41,16 +41,4 @@ public class BallTrigger extends SubsystemBase {
     public double getDistance() {
         return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
     }
-
-    public double getColorDistance() {
-        return components.getColorSensor().getProximity();
-    }
-
-    public boolean isBlue() {
-        return components.getColorSensor().getColor().blue > THRESHOLD_BLUENESS;
-    }
-
-    public double getBlue() {
-        return components.getColorSensor().getColor().blue;
-    }
 }
