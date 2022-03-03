@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -53,13 +54,14 @@ public class Robot extends TimedRobot {
         BallTriggerComponents ballTriggerComponents;
         IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
+        DriveTrainJoystickValueProvider joystickValueProvider;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
             loaderComponents = new LoaderComponentsBase();
-            intakeFrontComponents = new IntakeBackComponentsBase();
-            intakeBackComponents = new IntakeFrontComponentsBase();
+            intakeFrontComponents = new IntakeFrontComponentsBase();
+            intakeBackComponents = new IntakeBackComponentsBase();
         } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;
@@ -73,8 +75,9 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         intakeFront = new Intake(intakeFrontComponents,"Front");
         intakeBack = new Intake(intakeBackComponents,"Back");
+        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
 
-        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(driveTrain, intakeFront,
+        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
                 intakeBack, loader, ballTrigger);
 
         new DeputyOi();

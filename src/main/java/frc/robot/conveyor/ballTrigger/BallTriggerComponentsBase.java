@@ -22,7 +22,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
-
     }
 
     @Override
