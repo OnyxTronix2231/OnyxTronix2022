@@ -3,20 +3,13 @@ package frc.robot;
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.arc.Arc;
-import frc.robot.arc.DriverArcOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
-import frc.robot.shooter.Shooter;
-import frc.robot.shooter.DriverShooterOIBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.intake.Intake;
-import frc.robot.turret.DriverTurretOiBinder;
-import frc.robot.turret.Turret;
-import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
@@ -35,25 +28,6 @@ public class DriverOi {
         JoystickAxis leftJoystick = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis rightJoystick = new JoystickAxis(controller, controller.getAxisRightX());
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
-        return this;
-    }
-
-    public DriverOi withArc(Arc arc) {
-        new DriverArcOiBinder(arc);
-        return this;
-    }
-
-    public DriverOi withShooter(Shooter shooter) {
-        Trigger shooterTrigger = new JoystickButton(controller, controller.getBumperLeft());
-        new DriverShooterOIBinder(shooter, shooterTrigger);
-        return this;
-    }
-
-    public DriverOi withTurret(Turret turret, Vision vision) {
-        Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
-        Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
-        Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
-        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, byVision);
         return this;
     }
 

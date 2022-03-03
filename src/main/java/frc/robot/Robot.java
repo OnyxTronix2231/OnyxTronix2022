@@ -31,6 +31,10 @@ import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.turret.Turret;
+import frc.robot.turret.TurretComponents;
+import frc.robot.turret.TurretComponentsBase;
+import frc.robot.vision.Vision;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -51,6 +55,8 @@ public class Robot extends TimedRobot {
     Loader loader;
     Intake intakeFront;
     Intake intakeBack;
+    Turret turret;
+    Vision vision;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -64,6 +70,7 @@ public class Robot extends TimedRobot {
         LoaderComponents loaderComponents;
         BallTriggerComponents ballTriggerComponents;
         DriveTrainJoystickValueProvider joystickValueProvider;
+        TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
 
@@ -73,16 +80,20 @@ public class Robot extends TimedRobot {
             intakeBackComponents = new IntakeBackComponentsBase();
             loaderComponents = new LoaderComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
+            turretComponents = new TurretComponentsBase();
             arcComponents = new ArcComponentsBase();
             shooterComponents = new ShooterComponentsBase();
+            vision = new Vision();
         } else {
             driveTrainComponents = null;
             intakeFrontComponents = null;
             intakeBackComponents = null;
             loaderComponents = null;
             ballTriggerComponents = null;
+            turretComponents = null;
             arcComponents = null;
             shooterComponents = null;
+            vision = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
@@ -91,6 +102,7 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+        turret = new Turret(turretComponents);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
@@ -100,7 +112,7 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
-        new AutonomousShuffleboard(driveTrain);
+        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
     }
 
     /**
