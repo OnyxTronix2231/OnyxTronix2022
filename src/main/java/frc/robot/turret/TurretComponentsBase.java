@@ -27,14 +27,16 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setNeutralMode(NeutralMode.Brake);
 
         WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
-        motor2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-        motor2.setSelectedSensorPosition(
-                motor2.getSensorCollection().getPulseWidthPosition() - 190, 0, 0);
+        //motor2.setSelectedSensorPosition(
+        //motor2.getSensorCollection().getPulseWidthPosition() - 190, 0, 0)
+        // ;
+        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() - 190) / (CONVERSION_RATE * 2));
 
-        motor.configRemoteFeedbackFilter(motor2, 0);
-        motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
+        //motor.configRemoteFeedbackFilter(motor2, 0);
+        //motor.configSelectedFeedbackSensor(RemoteFeedbackDevice.RemoteSensor0, 0, 0);
+        //motor.config_IntegralZone(0, 100);
 
-        encoder = new TalonEncoder(motor2);
+        encoder = new TalonEncoder(motor);
 
         controller = new CtreMotionMagicController(
                 motor, encoder, new PIDFTerms(KP, KI, KD, KF), ACCELERATION, CRUISE_VELOCITY, ACC_SMOOTHING);
@@ -46,6 +48,7 @@ public class TurretComponentsBase implements TurretComponents {
         config.forwardSoftLimitEnable = true;
         config.reverseSoftLimitThreshold = degreesToAbsoluteEncoderUnits(MIN_DEG);
         config.reverseSoftLimitEnable = true;
+        config.slot0.integralZone = 100;
         return config;
     }
 
