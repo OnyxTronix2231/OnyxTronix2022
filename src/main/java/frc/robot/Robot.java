@@ -45,9 +45,11 @@ public class Robot extends TimedRobot {
 
         driveTrain = new DriveTrain(driveTrainComponents);
         autonomousShuffleboard  = new AutonomousShuffleboard(driveTrain);
-
+        
         new DriverOi().withDriveTrain(driveTrain);
         new DeputyOi();
+
+        new DriversShuffleboard();
     }
 
     /**
