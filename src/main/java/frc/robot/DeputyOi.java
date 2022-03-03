@@ -1,14 +1,15 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
+import humanControls.ConsoleController;
+import humanControls.OnyxXboxController;
 
 import static frc.robot.Constants.Deputy_JOYSTICK_PORT;
 
 public class DeputyOi {
 
-    final XboxController xboxController;
+    final ConsoleController controller;
 
     public DeputyOi() {
-        xboxController = new XboxController(Deputy_JOYSTICK_PORT);
+        controller = new OnyxXboxController(Deputy_JOYSTICK_PORT);
     }
 }
