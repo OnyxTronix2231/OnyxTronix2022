@@ -11,15 +11,22 @@ import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcComponents;
+import frc.robot.arc.ArcComponentsBase;
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterComponents;
+import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriveTrainComponents;
-import frc.robot.drivetrain.DriveTrainComponentsBase;
+
 import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
@@ -37,6 +44,8 @@ import java.util.TimerTask;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
+    Arc arc;
+    Shooter shooter;
     AutonomousShuffleboard autonomousShuffleboard;
     BallTrigger ballTrigger;
     Loader loader;
@@ -50,32 +59,40 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         DriveTrainComponents driveTrainComponents;
-        LoaderComponents loaderComponents;
-        BallTriggerComponents ballTriggerComponents;
         IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
+        LoaderComponents loaderComponents;
+        BallTriggerComponents ballTriggerComponents;
         DriveTrainJoystickValueProvider joystickValueProvider;
+        ArcComponents arcComponents;
+        ShooterComponents shooterComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            loaderComponents = new LoaderComponentsBase();
             intakeFrontComponents = new IntakeFrontComponentsBase();
             intakeBackComponents = new IntakeBackComponentsBase();
+            loaderComponents = new LoaderComponentsBase();
+            ballTriggerComponents = new BallTriggerComponentsBase();
+            arcComponents = new ArcComponentsBase();
+            shooterComponents = new ShooterComponentsBase();
         } else {
             driveTrainComponents = null;
-            ballTriggerComponents = null;
-            loaderComponents = null;
             intakeFrontComponents = null;
             intakeBackComponents = null;
+            loaderComponents = null;
+            ballTriggerComponents = null;
+            arcComponents = null;
+            shooterComponents = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
+        intakeFront = new Intake(intakeFrontComponents, "Front");
+        intakeBack = new Intake(intakeBackComponents, "Back");
         loader = new Loader(loaderComponents);
-        intakeFront = new Intake(intakeFrontComponents,"Front");
-        intakeBack = new Intake(intakeBackComponents,"Back");
+        ballTrigger = new BallTrigger(ballTriggerComponents);
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+        arc = new Arc(arcComponents);
+        shooter = new Shooter(shooterComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
                 intakeBack, loader, ballTrigger);
