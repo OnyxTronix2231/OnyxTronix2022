@@ -28,11 +28,8 @@ public class BallTriggerShuffleboard {
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
         Shuffleboard.getTab("BallTrigger").addNumber("Distance", ballTrigger::getDistance);
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor", ballTrigger::getColorDistance);
-        Shuffleboard.getTab("BallTrigger").addBoolean("Color", ballTrigger::isBlue);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
-        Shuffleboard.getTab("BallTrigger").addNumber("getBlue", () -> ballTrigger.getBlue());
     }
 
     public double getBallInPlaceValueEntry() {
