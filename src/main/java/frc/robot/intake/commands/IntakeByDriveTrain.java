@@ -11,11 +11,11 @@ public class IntakeByDriveTrain extends ConditionalCommand {
 
     public IntakeByDriveTrain(Intake intakeForward, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
                               DriveTrain driveTrain, double joystickDeadband) {
-        super(new WaitUntilCommand(() -> intakeForward.getJoyStickValue() < -joystickDeadband)
+        super(new WaitUntilCommand(() -> driveTrain.getForwardSpeedValue() < -joystickDeadband)
                         .deadlineWith(new OpenAndIntake(intakeBack, intakeSpeedSupplier)),
-                new WaitUntilCommand(() -> intakeForward.getJoyStickValue() > joystickDeadband)
+                new WaitUntilCommand(() -> driveTrain.getForwardSpeedValue() > joystickDeadband)
                         .deadlineWith(new OpenAndIntake(intakeForward, intakeSpeedSupplier)),
-                () -> intakeForward.getJoyStickValue() > joystickDeadband);
+                () -> driveTrain.getForwardSpeedValue() > joystickDeadband);
     }
 
     @Override
