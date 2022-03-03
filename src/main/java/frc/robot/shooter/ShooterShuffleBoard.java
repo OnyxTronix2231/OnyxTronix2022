@@ -8,6 +8,7 @@ import frc.robot.shooter.commands.ShootBySpeed;
 import java.util.function.DoubleSupplier;
 
 import static frc.robot.shooter.ShooterConstants.*;
+import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDecisecToRPM;
 
 public class ShooterShuffleBoard {
 
@@ -25,7 +26,8 @@ public class ShooterShuffleBoard {
 
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
-        Shuffleboard.getTab("Shooter").addNumber("err", shooter::getError);
+        Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);
+        Shuffleboard.getTab("Shooter").addNumber("err",()-> encUnitsDecisecToRPM(shooter.getError()));
 
 
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
