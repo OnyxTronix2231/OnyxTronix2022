@@ -11,7 +11,6 @@ import static frc.robot.turret.TurretConstants.Calculation.*;
 public class TurretShuffleBoard {
 
     private final Turret turret;
-    private final Vision vision;
     private final TurretComponents components;
     private final NetworkTableEntry kP;
     private final NetworkTableEntry kI;
@@ -21,9 +20,8 @@ public class TurretShuffleBoard {
     private final NetworkTableEntry acceleration;
     private final NetworkTableEntry accSmoothing;
 
-    public TurretShuffleBoard(Turret turret, Vision vision, TurretComponents components) {
+    public TurretShuffleBoard(Turret turret, TurretComponents components) {
         this.turret = turret;
-        this.vision = vision;
         this.components = components;
 
         kP = Shuffleboard.getTab("Turret").add("set kP",
@@ -49,12 +47,13 @@ public class TurretShuffleBoard {
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
                 components.getController().getSetpoint());
         Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getCurrentError()));
+        Shuffleboard.getTab("Turret").addNumber("error ENC Num", () -> (components.getController().getCurrentError()));
 
         Shuffleboard.getTab("Turret").add("move 10", new RotateByAngleOnce(turret, () -> 10 ));
         Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50 ));
         Shuffleboard.getTab("Turret").add("move 90", new RotateByAngleOnce(turret, () -> 90 ));
         Shuffleboard.getTab("Turret").add("move 180", new RotateByAngleOnce(turret, () -> 180 ));
-        Shuffleboard.getTab("Turret").add("move by turret", new RotateByVision(turret, vision));
+        //Shuffleboard.getTab("Turret").add("move by turret", new RotateByVision(turret, vision));
     }
 
     public void update() {

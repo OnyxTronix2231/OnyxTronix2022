@@ -48,10 +48,10 @@ public class Robot extends TimedRobot {
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        turret = new Turret(turretComponents);
         vision = new Vision();
+        turret = new Turret(turretComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withTurret(turret, vision);
+        new DriverOi().withTurret(turret, vision);
         new DeputyOi();
 
         new DriversShuffleboard();
