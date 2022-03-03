@@ -3,8 +3,6 @@ package frc.robot.conveyor.ballTrigger;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.THRESHOLD_BLUENESS;
-
 public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents components;
@@ -19,7 +17,7 @@ public class BallTrigger extends SubsystemBase {
 
     @Override
     public void periodic() {
-        currentDistance = getDistance();
+        currentDistance = getDigitalDistance();
     }
 
     public void moveTriggerBySpeed(double speed) {
@@ -38,7 +36,10 @@ public class BallTrigger extends SubsystemBase {
         moveTriggerBySpeed(0);
     }
 
-    public double getDistance() {
+    public double getDigitalDistance() {
         return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
+    }
+    public double getAnalogDistance(){
+        return components.getBallTriggerSensor().getDistance();
     }
 }

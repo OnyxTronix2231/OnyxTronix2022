@@ -10,6 +10,7 @@ public final class BallTriggerConstants {
     public static class ComponentsConstants {
 
         static final int MOTOR_ID = 8;
+        static final int ANALOG_DISTANCE_SENSOR_ID = 0;
         static final int SUPPLY_CURRENT_LIMIT = 0;
         static final int SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;
         static final int SUPPLY_TRIGGER_THRESHOLD_TIME = 0;
