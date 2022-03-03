@@ -6,14 +6,19 @@ import java.util.function.DoubleSupplier;
 
 import static frc.robot.arc.ArcConstants.CALIBRATION_SPEED;
 
-public class MoveArcLowerLimitSwitch extends MoveArcBySpeed {
+public class CalibrateArc extends MoveArcBySpeed {
 
     private final Arc arc;
 
-    public MoveArcLowerLimitSwitch(Arc arc, DoubleSupplier calibrateSpeedSupplier) {
+    public CalibrateArc(Arc arc, DoubleSupplier calibrateSpeedSupplier) {
         super(arc, calibrateSpeedSupplier);
         this.arc = arc;
         addRequirements(arc);
+    }
+
+    @Override
+    public void initialize() {
+        arc.enableSoftLimitSwitch(false);
     }
 
     @Override
@@ -26,6 +31,7 @@ public class MoveArcLowerLimitSwitch extends MoveArcBySpeed {
         if (!interrupted) {
             arc.resetEncoderByAbsoluteValue();
         }
+        arc.enableSoftLimitSwitch(true);
         arc.stop();
     }
 }

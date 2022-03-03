@@ -4,7 +4,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.arc.commands.MoveArcBySpeed;
 import frc.robot.arc.commands.MoveArcToAngle;
-import frc.robot.arc.commands.MoveArcLowerLimitSwitch;
+import frc.robot.arc.commands.CalibrateArc;
 
 import static frc.robot.arc.ArcConstants.ArcCalculations.encoderUnitsToAngle;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
@@ -41,7 +41,7 @@ public class ArcShuffleBoard {
                 percentageOutput.getDouble(0)));
         Shuffleboard.getTab("Arc").add("MoveArcToAngle", new MoveArcToAngle(arc,
                 () -> setAngle.getDouble(ARC_MIN_ANGLE)));
-        Shuffleboard.getTab("Arc").add("MoveArcUntilLimitSwitch", new MoveArcLowerLimitSwitch(arc, () ->
+        Shuffleboard.getTab("Arc").add("MoveArcUntilLimitSwitch", new CalibrateArc(arc, () ->
                 calibrateSpeed.getDouble(0)));
 
         kP = Shuffleboard.getTab("Turret").add("set kP",

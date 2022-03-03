@@ -16,10 +16,8 @@ public class Arc extends SubsystemBase {
         this.components = components;
         shuffleBoard = new ArcShuffleBoard(this);
         components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(ARC_MAX_ANGLE));
-        components.getMotor().configForwardSoftLimitEnable(true);
         components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(ARC_MIN_ANGLE));
-        components.getMotor().configReverseSoftLimitEnable(true);
-
+        enableSoftLimitSwitch(true);
         resetEncoderByAbsoluteValue();
     }
 
@@ -55,7 +53,12 @@ public class Arc extends SubsystemBase {
         components.getController().disable();
     }
 
-    public ArcComponents getComponents(){
+    public ArcComponents getComponents() {
         return components;
+    }
+
+    public void enableSoftLimitSwitch(boolean enable) {
+        components.getMotor().configForwardSoftLimitEnable(enable);
+        components.getMotor().configReverseSoftLimitEnable(enable);
     }
 }
