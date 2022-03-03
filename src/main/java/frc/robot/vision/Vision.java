@@ -1,6 +1,7 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.turret.Turret;
 import frc.robot.yawControl.YawControl;
@@ -16,6 +17,8 @@ public class Vision extends SubsystemBase {
 
     public Vision() {
         limelight = Limelight.getInstance();
+        Shuffleboard.getTab("Vision").addNumber("Distance", this::getHorizontalDistanceTurretToTarget);
+        Shuffleboard.getTab("Vision").addNumber("Angle", this::getHorizontalAngleTurretToTargetRTT);
     }
 
     @Override
