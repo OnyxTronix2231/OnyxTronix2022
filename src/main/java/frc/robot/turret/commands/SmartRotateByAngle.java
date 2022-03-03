@@ -7,8 +7,8 @@ import java.util.function.DoubleSupplier;
 
 public class SmartRotateByAngle extends CommandBase {
 
-    private Turret turret;
-    private DoubleSupplier angleSupplier;
+    private final Turret turret;
+    private final DoubleSupplier angleSupplier;
 
     public SmartRotateByAngle (Turret turret, DoubleSupplier angleSupplier){
         this.turret = turret;

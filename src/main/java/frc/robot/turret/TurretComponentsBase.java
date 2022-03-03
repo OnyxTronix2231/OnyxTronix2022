@@ -1,8 +1,6 @@
 package frc.robot.turret;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.RemoteFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -27,7 +25,7 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setNeutralMode(NeutralMode.Brake);
 
         WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
-        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() - 190) / (CONVERSION_RATE * 2));
+        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() - ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
         encoder = new TalonEncoder(motor);
 
@@ -41,7 +39,7 @@ public class TurretComponentsBase implements TurretComponents {
         config.forwardSoftLimitEnable = true;
         config.reverseSoftLimitThreshold = degreesToAbsoluteEncoderUnits(MIN_DEG);
         config.reverseSoftLimitEnable = true;
-        config.slot0.integralZone = 100;
+        config.slot0.integralZone = INTEGRAL_ZONE;
         return config;
     }
 

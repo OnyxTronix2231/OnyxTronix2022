@@ -23,6 +23,7 @@ public final class TurretConstants {
 
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
+    public static final int INTEGRAL_ZONE = 100;
     public static final double TOLERANCE_DEGREES = 0; //TODO: Correct the number
     public static final double DEFAULT_TURRET_SPEED = 0.8;
 
@@ -32,6 +33,7 @@ public final class TurretConstants {
         static final int ENCODER_UNITS_IN_ROTATION = 2048;
         static final int TURRET_MOTOR_ID = 9;
         static final int TALON_ENCODER_ID = 8;
+        static final int ENCODER_DEFAULT_ERROR = 190;
         static final double ENCODER_OFFSET = 1;
         static final double CONVERSION_RATE = 1.0 / 75;
         static final double MAX_DEG = 340; //TODO: Correct the number
