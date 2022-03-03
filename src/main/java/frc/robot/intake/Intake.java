@@ -39,11 +39,12 @@ public class Intake extends SubsystemBase {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
 
-    public void setIsForward(boolean isForward) {
+    public static void setIsForward(boolean isForward) {
         Intake.isForward = isForward;
     }
 
     public static boolean getIsForward() {
+        System.out.println(isForward);
         return isForward;
     }
 }

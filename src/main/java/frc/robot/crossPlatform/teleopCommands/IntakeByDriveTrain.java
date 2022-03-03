@@ -1,8 +1,6 @@
-package frc.robot.intake.commands;
+package frc.robot.crossPlatform.teleopCommands;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.intake.Intake;
 
@@ -12,9 +10,10 @@ public class IntakeByDriveTrain extends ConditionalCommand {
 
     public IntakeByDriveTrain(Intake intakeFront, Intake intakeBack, DoubleSupplier intakeSpeedSupplier,
                               DriveTrain driveTrain, double joystickDeadband) {
-        super(new OpenIntakeBackAccordingToDriveTrain(driveTrain, intakeBack, joystickDeadband, intakeSpeedSupplier),
-               new OpenIntakeFrontAccordingToDriveTrain(driveTrain, intakeFront, joystickDeadband, intakeSpeedSupplier),
-                () -> !Intake.getIsForward());
+        super(new OpenIntakeFrontAccordingToDriveTrain(driveTrain, intakeFront, joystickDeadband, intakeSpeedSupplier),
+                new OpenIntakeBackAccordingToDriveTrain(driveTrain, intakeBack, joystickDeadband, intakeSpeedSupplier),
+                ()-> Math.abs(driveTrain.getForwardSpeedValue()) < joystickDeadband  ? Intake.getIsForward() :
+                        driveTrain.getForwardSpeedValue() > joystickDeadband );
     }
 
     @Override

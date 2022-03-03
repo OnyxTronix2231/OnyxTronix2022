@@ -1,25 +1,32 @@
-package frc.robot.intake.commands;
+package frc.robot.crossPlatform.teleopCommands;
 
 import frc.robot.conveyor.commands.OnyxParallelDeadlineGroup;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.intake.Intake;
+import frc.robot.intake.commands.OpenAndIntake;
 
 import java.util.function.DoubleSupplier;
 
 public class OpenIntakeBackAccordingToDriveTrain extends OnyxParallelDeadlineGroup {
 
-    private final Intake intakeBack;
-
     public OpenIntakeBackAccordingToDriveTrain(DriveTrain driveTrain, Intake intakeBack, double joystickDeadband
             , DoubleSupplier intakeSpeedSupplier) {
-        super(() -> driveTrain.getForwardSpeedValue() > joystickDeadband,
+        super(() -> driveTrain.getForwardSpeedValue() > joystickDeadband &&
+                        Math.abs(driveTrain.getForwardSpeedValue()) > joystickDeadband,
                 new OpenAndIntake(intakeBack, intakeSpeedSupplier));
-        this.intakeBack = intakeBack;
     }
 
     @Override
     public void initialize() {
         super.initialize();
-        intakeBack.setIsForward(false);
+        Intake.setIsForward(false);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        super.end(interrupted);
+        if (!interrupted) {
+            Intake.setIsForward(true);
+        }
     }
 }
