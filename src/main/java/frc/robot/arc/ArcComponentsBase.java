@@ -23,6 +23,8 @@ public class ArcComponentsBase implements ArcComponents {
     public ArcComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
         motor.configFactoryDefault();
+        motor.setInverted(true);
+        motor.config_IntegralZone(0,25);
 
         encoder = new TalonEncoder(motor);
 

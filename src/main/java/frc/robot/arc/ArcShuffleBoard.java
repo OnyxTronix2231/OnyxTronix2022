@@ -33,30 +33,46 @@ public class ArcShuffleBoard {
         Shuffleboard.getTab("Arc").addNumber("Current velocity",
                 () -> arc.getComponents().getCounter().getRate());
 
+        Shuffleboard.getTab("Arc").addNumber("Current error enc",
+                () -> arc.getComponents().getController().getCurrentError());
+
+        Shuffleboard.getTab("Arc").addNumber("Current error angle",
+                () -> encoderUnitsToAngle(arc.getComponents().getController().getCurrentError()) - ARC_MIN_ANGLE);
+
         setAngle = Shuffleboard.getTab("Arc").add("setAngle", ARC_MIN_ANGLE).getEntry();
         percentageOutput = Shuffleboard.getTab("Arc").add("percentageOutput", 0).getEntry();
         calibrateSpeed = Shuffleboard.getTab("Arc").add("calibrateSpeed", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 percentageOutput.getDouble(0)));
+        Shuffleboard.getTab("Arc").add("MoveTo30", new MoveArcToAngle(arc,
+                () -> 30));
+
+        Shuffleboard.getTab("Arc").add("MoveTo45", new MoveArcToAngle(arc,
+                () -> 45));
+
+        Shuffleboard.getTab("Arc").add("MoveTo60", new MoveArcToAngle(arc,
+                () -> 60));
+
         Shuffleboard.getTab("Arc").add("MoveArcToAngle", new MoveArcToAngle(arc,
                 () -> setAngle.getDouble(ARC_MIN_ANGLE)));
+
         Shuffleboard.getTab("Arc").add("MoveArcUntilLimitSwitch", new CalibrateArc(arc, () ->
                 calibrateSpeed.getDouble(0)));
 
-        kP = Shuffleboard.getTab("Turret").add("set kP",
+        kP = Shuffleboard.getTab("Arc").add("set kP",
                 arc.getComponents().getController().getPIDFTerms().getKp()).getEntry();
-        kI = Shuffleboard.getTab("Turret").add("set kI",
+        kI = Shuffleboard.getTab("Arc").add("set kI",
                 arc.getComponents().getController().getPIDFTerms().getKi()).getEntry();
-        kD = Shuffleboard.getTab("Turret").add("set kD",
+        kD = Shuffleboard.getTab("Arc").add("set kD",
                 arc.getComponents().getController().getPIDFTerms().getKd()).getEntry();
-        kF = Shuffleboard.getTab("Turret").add("set kF",
+        kF = Shuffleboard.getTab("Arc").add("set kF",
                 arc.getComponents().getController().getPIDFTerms().getKf()).getEntry();
-        cruiseVel = Shuffleboard.getTab("Turret").add("set cruiseVel",
+        cruiseVel = Shuffleboard.getTab("Arc").add("set cruiseVel",
                 arc.getComponents().getController().getCruiseVelocity()).getEntry();
-        acceleration = Shuffleboard.getTab("Turret").add("set acceleration",
+        acceleration = Shuffleboard.getTab("Arc").add("set acceleration",
                 arc.getComponents().getController().getAcceleration()).getEntry();
-        accSmoothing = Shuffleboard.getTab("Turret").add("set accSmoothing",
+        accSmoothing = Shuffleboard.getTab("Arc").add("set accSmoothing",
                 arc.getComponents().getController().getAccelerationSmoothing()).getEntry();
     }
 
