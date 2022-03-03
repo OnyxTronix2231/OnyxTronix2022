@@ -34,7 +34,6 @@ public final class TurretConstants {
         static final int TALON_ENCODER_ID = 8;
         static final double ENCODER_OFFSET = 1;
         static final double CONVERSION_RATE = 1.0 / 75;
-       // static final double CONVERSION_RATE = 1.0;
         static final double MAX_DEG = 340; //TODO: Correct the number
         static final double MIN_DEG = -50; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
