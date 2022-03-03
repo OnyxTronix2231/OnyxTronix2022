@@ -10,13 +10,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
+import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
@@ -28,7 +31,6 @@ import frc.robot.vision.Vision;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -38,7 +40,13 @@ import java.util.TimerTask;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
-
+    AutonomousShuffleboard autonomousShuffleboard;
+    BallTrigger ballTrigger;
+    Loader loader;
+    Intake intakeFront;
+    Intake intakeBack;
+    Turret turret;
+    Vision vision;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -47,14 +55,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         DriveTrainComponents driveTrainComponents;
-
         LoaderComponents loaderComponents;
         BallTriggerComponents ballTriggerComponents;
         IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
         TurretComponents turretComponents;
-        Vision vision;
-        Turret turret;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
@@ -62,26 +67,32 @@ public class Robot extends TimedRobot {
             loaderComponents = new LoaderComponentsBase();
             intakeFrontComponents = new IntakeBackComponentsBase();
             intakeBackComponents = new IntakeFrontComponentsBase();
-            vision = new Vision();
             turretComponents = new TurretComponentsBase();
-            turret = new Turret(turretComponents);
+            vision = new Vision();
         } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;
             loaderComponents = null;
             intakeFrontComponents = null;
             intakeBackComponents = null;
-            vision = null;
-            turret = null;
             turretComponents = null;
+            vision = null;
         }
 
+        driveTrain = new DriveTrain(driveTrainComponents);
+        ballTrigger = new BallTrigger(ballTriggerComponents);
+        loader = new Loader(loaderComponents);
+        intakeFront = new Intake(intakeFrontComponents,"Front");
+        intakeBack = new Intake(intakeBackComponents,"Back");
+        turret = new Turret(turretComponents);
+
+        new DriverOi().withDriveTrain(driveTrain).withDriveTrainConveyorAndIntake(driveTrain, intakeFront,
+                intakeBack, loader, ballTrigger);
 
         new DeputyOi();
 
-        new ShuffleBoardTurretAndVision(turret, turretComponents, vision);
         new DriversShuffleboard();
-        new AutonomousShuffleboard(driveTrain);
+        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
     }
 
     /**
@@ -124,10 +135,10 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.setNeutralModeToBrake();
-      // if (autonomousShuffleboard.getSelectedCommand() != null) {
-      //     autonomousShuffleboard.getSelectedCommand().schedule();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().schedule();
         }
-  //  }
+    }
 
     /**
      * This function is called periodically during autonomous.
@@ -139,9 +150,9 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         driveTrain.setNeutralModeToBrake();
-       // if (autonomousShuffleboard.getSelectedCommand() != null) {
-       //     autonomousShuffleboard.getSelectedCommand().cancel();
-      //  }
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().cancel();
+        }
     }
 
     /**
