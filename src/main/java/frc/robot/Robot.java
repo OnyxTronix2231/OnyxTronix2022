@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
         new DeputyOi();
 
         new DriversShuffleboard();
-        new AutonomousShuffleboard(driveTrain);
+       autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
     }
 
     /**
@@ -137,10 +137,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().cancel();
-        }
+//        driveTrain.setNeutralModeToBrake();
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().cancel();
+//        }
     }
 
     /**

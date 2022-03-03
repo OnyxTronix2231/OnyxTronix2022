@@ -6,8 +6,6 @@ import frc.robot.conveyor.commands.LoadBalls;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.intake.Intake;
-import frc.robot.intake.commands.IntakeByDriveTrain;
-import frc.robot.intake.commands.MoveIntakeBySpeed;
 
 import java.util.function.DoubleSupplier;
 
@@ -19,6 +17,6 @@ public class MoveIntakeAndConveyorByDriveTrain extends ParallelCommandGroup {
                                              DoubleSupplier intakeSpeedSupplier) {
         super(new LoadBalls(loader, ballTrigger, loaderSpeedSupplier::getAsDouble,
                         ballTriggerSpeedSupplier::getAsDouble),
-                new IntakeByDriveTrain(intakeFront, intakeBack, intakeSpeedSupplier, driveTrain, 0));
+                new IntakeByDriveTrainFix(intakeFront, intakeBack, intakeSpeedSupplier, driveTrain, 0));
     }
 }
