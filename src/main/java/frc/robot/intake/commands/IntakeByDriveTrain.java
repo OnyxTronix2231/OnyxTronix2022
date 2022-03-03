@@ -14,7 +14,7 @@ public class IntakeByDriveTrain extends ConditionalCommand {
                               DriveTrain driveTrain, double joystickDeadband) {
         super(new OpenIntakeBackAccordingToDriveTrain(driveTrain, intakeBack, joystickDeadband, intakeSpeedSupplier),
                new OpenIntakeFrontAccordingToDriveTrain(driveTrain, intakeFront, joystickDeadband, intakeSpeedSupplier),
-                () -> Intake.isForward);
+                () -> !Intake.getIsForward());
     }
 
     @Override

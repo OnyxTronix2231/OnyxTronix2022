@@ -8,7 +8,7 @@ import static frc.robot.intake.IntakeConstant.PISTON_OPEN;
 
 public class Intake extends SubsystemBase {
 
-    public static boolean isForward;
+    private static boolean isForward = true;
     private final IntakeComponents components;
     private final IntakeShuffleboard intakeShuffleboard;
 
@@ -39,7 +39,11 @@ public class Intake extends SubsystemBase {
         return components.getSolenoid().get() == DoubleSolenoid.Value.kForward;
     }
 
-    public void setIsForward(boolean isForward){
+    public void setIsForward(boolean isForward) {
         Intake.isForward = isForward;
+    }
+
+    public static boolean getIsForward() {
+        return isForward;
     }
 }

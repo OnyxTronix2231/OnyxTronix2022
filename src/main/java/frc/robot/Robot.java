@@ -58,8 +58,8 @@ public class Robot extends TimedRobot {
             driveTrainComponents = new DriveTrainComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
             loaderComponents = new LoaderComponentsBase();
-            intakeFrontComponents = new IntakeBackComponentsBase();
-            intakeBackComponents = new IntakeFrontComponentsBase();
+            intakeFrontComponents = new IntakeFrontComponentsBase();
+            intakeBackComponents = new IntakeBackComponentsBase();
         } else {
             driveTrainComponents = null;
             ballTriggerComponents = null;

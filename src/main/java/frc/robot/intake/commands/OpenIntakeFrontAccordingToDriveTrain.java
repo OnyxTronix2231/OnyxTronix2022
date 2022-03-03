@@ -21,8 +21,7 @@ public class OpenIntakeFrontAccordingToDriveTrain extends OnyxParallelDeadlineGr
 
     @Override
     public void end(boolean interrupted) {
-        if (!interrupted) {
-            intakeForward.setIsForward(false);
-        }
+        super.end(interrupted);
+        intakeForward.setIsForward(false);
     }
 }

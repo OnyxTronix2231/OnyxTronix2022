@@ -14,14 +14,14 @@ public class OpenIntakeBackAccordingToDriveTrain extends OnyxParallelDeadlineGro
 
     public OpenIntakeBackAccordingToDriveTrain(DriveTrain driveTrain, Intake intakeBack, double joystickDeadband
             , DoubleSupplier intakeSpeedSupplier) {
-        super(()-> driveTrain.getForwardSpeedValue() > joystickDeadband,
+        super(() -> driveTrain.getForwardSpeedValue() > joystickDeadband,
                 new OpenAndIntake(intakeBack, intakeSpeedSupplier));
         this.intakeBack = intakeBack;
     }
 
     @Override
     public void end(boolean interrupted) {
-        if (!interrupted)
+        super.end(interrupted);
         intakeBack.setIsForward(true);
     }
 }
