@@ -1,7 +1,9 @@
 package frc.robot.shooter;
 
+import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import frc.robot.StatusFrameConfig;
 import pid.CtrePIDController;
 import pid.PIDControlMode;
 import pid.PIDFTerms;
@@ -9,6 +11,7 @@ import pid.interfaces.PIDController;
 import sensors.counter.Counter;
 import sensors.counter.TalonEncoder;
 
+import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
 import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 import static frc.robot.shooter.ShooterConstants.*;
 import static frc.robot.shooter.ShooterConstants.ComponentsConstants.MASTER_MOTOR_ID;
@@ -27,11 +30,15 @@ public class ShooterComponentsBase implements ShooterComponents{
         masterMotor.configFactoryDefault();
         masterMotor.configAllSettings(getConfiguration());
 
+        new StatusFrameConfig(masterMotor).disablePID1();
+
         slaveMotor = new WPI_TalonFX(SLAVE_MOTOR_ID);
         slaveMotor.configFactoryDefault();
         slaveMotor.configAllSettings(getConfiguration());
         slaveMotor.follow(masterMotor);
         slaveMotor.setInverted(true);
+
+        new StatusFrameConfig(slaveMotor).disablePID1().disableFollowerCAN();
 
         encoder = new TalonEncoder(masterMotor);
 

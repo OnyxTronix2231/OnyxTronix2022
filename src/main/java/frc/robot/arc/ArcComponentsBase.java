@@ -3,7 +3,9 @@ package frc.robot.arc;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import frc.robot.StatusFrameConfig;
 import pid.CtreMotionMagicController;
 import sensors.Switch.TalonSrxReverseMicroswitch;
 
@@ -11,6 +13,7 @@ import pid.PIDFTerms;
 import sensors.counter.Counter;
 import sensors.counter.TalonEncoder;
 
+import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 import static frc.robot.arc.ArcConstants.*;
 
@@ -29,6 +32,8 @@ public class ArcComponentsBase implements ArcComponents {
 
         motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         encoder = new TalonEncoder(motor);
+
+        new StatusFrameConfig(motor).disablePID1();
 
         controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(KP, KI, KD, KF),
                 MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
