@@ -13,6 +13,7 @@ public class Shooter extends SubsystemBase {
     public Shooter(ShooterComponents components) {
         this.components = components;
         shuffleBoard = new ShooterShuffleBoard(this);
+        //shuffleBoard.init();
     }
 
     public void periodic() {

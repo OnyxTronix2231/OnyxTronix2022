@@ -18,8 +18,8 @@ public class ShooterConstants {
     static final double OPEN_LOOP_RAMP = 0;
     static final double CLOSE_LOOP_RAMP = 0.8;
     static final double SUPPLY_CURRENT_LIMIT = 35;
-    static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;
-    static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0;
+    static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 50;
+    static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0.5;
     static final double STATOR_CURRENT_LIMIT = 0;
     static final double STATOR_TRIGGER_THRESHOLD_CURRENT = 0;
     static final double STATOR_TRIGGER_THRESHOLD_TIME = 0;

@@ -20,15 +20,15 @@ public class ShooterShuffleBoard {
     private NetworkTableEntry setRPM;
     private NetworkTableEntry setSpeed;
 
-
     public ShooterShuffleBoard(Shooter shooter) {
         this.shooter = shooter;
+    }
 
+    public void init(){
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);
         Shuffleboard.getTab("Shooter").addNumber("err",()-> encUnitsDecisecToRPM(shooter.getError()));
-
 
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
