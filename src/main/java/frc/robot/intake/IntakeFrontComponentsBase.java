@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import frc.robot.StatusFrameConfig;
 
 import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
 
@@ -19,6 +20,10 @@ public class IntakeFrontComponentsBase implements IntakeComponents {
         motor.configAllSettings(getFalconConfiguration());
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
+
+        new StatusFrameConfig(motor).disablePID1().disableFollowerCAN();
+
+        new StatusFrameConfig(motor);
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FRONT_SOLENOID_FORWARD_CHANNEL,
                 FRONT_SOLENOID_REVERSE_CHANNEL);

@@ -5,7 +5,7 @@ import frc.robot.turret.commands.RotateBySpeed;
 import frc.robot.turret.commands.RotateByVision;
 import frc.robot.vision.Vision;
 
-import static frc.robot.turret.TurretConstants.*;
+import static frc.robot.turret.TurretConstants.DEFAULT_TURRET_SPEED;
 
 public class DriverTurretOiBinder {
 

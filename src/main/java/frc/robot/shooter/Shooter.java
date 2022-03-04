@@ -2,21 +2,21 @@ package frc.robot.shooter;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.shooter.ShooterConstants.ShooterCalculations.RPMToEncUnitsDecisec;
-import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDecisecToRPM;
+import static frc.robot.shooter.ShooterConstants.ShooterCalculations.*;
+import static frc.robot.shooter.ShooterConstants.TOLERANCE;
 
 public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
-    private final ShooterShuffleBoard shuffleBoard;
+    //private final ShooterShuffleBoard shuffleBoard;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
-        shuffleBoard = new ShooterShuffleBoard(this);
+        //shuffleBoard = new ShooterShuffleBoard(this);
     }
 
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void setSpeed(double speed) {
@@ -26,6 +26,14 @@ public class Shooter extends SubsystemBase {
     public void initSetPIDSpeed(double RPM) {
         components.getController().setSetpoint(RPMToEncUnitsDecisec(RPM));
         components.getController().enable();
+    }
+
+    public void initShootByDistance(double distance) {
+        initSetPIDSpeed(distanceToRPM(distance));
+    }
+
+    public void updateShootByDistance(double distance) {
+        updateSetPIDSpeed(distanceToRPM(distance));
     }
 
     public void updateSetPIDSpeed(double RPM) {
@@ -49,7 +57,11 @@ public class Shooter extends SubsystemBase {
         components.getController().disable();
     }
 
-    public ShooterComponents getComponents(){
+    public boolean isOnTarget() {
+        return components.getController().isOnTarget(TOLERANCE);
+    }
+
+    public ShooterComponents getComponents() {
         return components;
     }
 }

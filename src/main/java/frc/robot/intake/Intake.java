@@ -1,6 +1,5 @@
 package frc.robot.intake;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.intake.IntakeConstant.PISTON_CLOSE;
@@ -15,7 +14,7 @@ public class Intake extends SubsystemBase {
         this.components = components;
         this.setName(name);
         this.intakeShuffleboard = new IntakeShuffleboard(this);
-        intakeShuffleboard.init();
+        //intakeShuffleboard.init();
     }
 
     public void moveBySpeed(double speed) {

@@ -3,8 +3,6 @@ package frc.robot.conveyor.ballTrigger;
 import com.revrobotics.Rev2mDistanceSensor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.THRESHOLD_BLUENESS;
-
 public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents components;
@@ -14,7 +12,7 @@ public class BallTrigger extends SubsystemBase {
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
         this.ballTriggerShuffleboard = new BallTriggerShuffleboard(this);
-        ballTriggerShuffleboard.init();
+        //ballTriggerShuffleboard.init();
     }
 
     @Override

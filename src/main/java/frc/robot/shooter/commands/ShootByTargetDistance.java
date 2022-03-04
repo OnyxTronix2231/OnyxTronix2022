@@ -5,25 +5,24 @@ import frc.robot.shooter.Shooter;
 
 import java.util.function.DoubleSupplier;
 
-public class ShootByRPM extends CommandBase {
+public class ShootByTargetDistance extends CommandBase {
 
     private final Shooter shooter;
-    private final DoubleSupplier RPMSupplier;
+    private final DoubleSupplier distanceSupplier;
 
-    public ShootByRPM(Shooter shooter, DoubleSupplier RPMSupplier) {
+    public ShootByTargetDistance(Shooter shooter, DoubleSupplier distanceSupplier) {
         this.shooter = shooter;
-        this.RPMSupplier = RPMSupplier;
-        addRequirements(shooter);
+        this.distanceSupplier = distanceSupplier;
     }
 
     @Override
     public void initialize() {
-        shooter.initSetPIDSpeed(RPMSupplier.getAsDouble());
+        shooter.initShootByDistance(distanceSupplier.getAsDouble());
     }
 
     @Override
     public void execute() {
-        shooter.updateSetPIDSpeed(RPMSupplier.getAsDouble());
+        shooter.updateShootByDistance(distanceSupplier.getAsDouble());
     }
 
     @Override

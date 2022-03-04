@@ -8,15 +8,16 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.Path;
 
-import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.drivetrain.DriveTrainConstants.DRIVE_KINEMATICS;
+import static frc.robot.drivetrain.DriveTrainConstants.FEEDFORWARD;
 import static frc.robot.drivetrain.commands.DriveTrainCommandConstants.*;
 
 public class MoveByPath extends CommandBase {
 
-    private DriveTrain driveTrain;
+    private final DriveTrain driveTrain;
     private Trajectory trajectory;
     private RamseteCommand command;
-    private Path currentPath;
+    private final Path currentPath;
 
     public MoveByPath(DriveTrain driveTrain, Path path) {
         this.driveTrain = driveTrain;

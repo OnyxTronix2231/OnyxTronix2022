@@ -6,6 +6,6 @@ import static frc.robot.arc.ArcConstants.SPEED;
 
 public class TestArcOiBinder {
     public TestArcOiBinder(Arc arc) {
-        arc.setDefaultCommand(new MoveArcBySpeed(arc, ()-> SPEED));
+        arc.setDefaultCommand(new MoveArcBySpeed(arc, () -> SPEED));
     }
 }
