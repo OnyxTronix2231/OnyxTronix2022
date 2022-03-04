@@ -58,7 +58,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
-        return components.getController().isOnTarget(TOLERANCE);
+        return components.getController().isOnTarget(RPMToEncUnitsDecisec(TOLERANCE));
     }
 
     public ShooterComponents getComponents() {
