@@ -15,8 +15,8 @@ import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
-    public double forwardSpeedValue;
     private final Field2d field2d;
+    public double forwardSpeedValue;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -86,7 +86,7 @@ public class DriveTrain extends SubsystemBase {
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
     }
 
-    public double getAngleToAPose(Pose2d pose2d){
+    public double getAngleToAPose(Pose2d pose2d) {
         Pose2d currentPos = getPose();
         double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - pose2d.getY()) /
                 (currentPos.getX() - pose2d.getX())));
