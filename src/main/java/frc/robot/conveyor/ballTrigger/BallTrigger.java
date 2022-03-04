@@ -46,20 +46,20 @@ public class BallTrigger extends SubsystemBase {
         return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
     }
 
-    public double getBlue(){
-        return components.getColorSensor().getColor().blue;
-    }
-
     public double getRed(){
         return components.getColorSensor().getColor().red;
     }
 
-    public boolean isBlue(){
-        return components.getColorSensor().getColor().blue >= THRESHOLD_BLUENESS;
+    public double getBlue(){
+        return components.getColorSensor().getColor().blue;
     }
 
     public boolean isRed(){
-        return components.getColorSensor().getColor().red >= THRESHOLD_REDNESS;
+        return components.getColorSensor().getColor().red >= ballTriggerShuffleboard.getIsRedEntry();
+    }
+
+    public boolean isBlue(){
+        return components.getColorSensor().getColor().blue >= ballTriggerShuffleboard.getIsBlueEntry();
     }
 
     public int getColorDistance(){
@@ -67,7 +67,7 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallInPlaceV2(){
-        return currentColorDistance >=  INPLACE_DISTANCE_COLOR;
+        return currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
     }
 
     public double getAnalogDistance(){
@@ -75,6 +75,6 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallIdentifiedV2(){
-        return currentAnalogDistance <= IDENTIFIED_DISTANCE_ANALOG;
+        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2();
     }
 }
