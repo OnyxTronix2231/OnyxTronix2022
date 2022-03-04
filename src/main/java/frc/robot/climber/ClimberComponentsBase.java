@@ -12,7 +12,8 @@ public class ClimberComponentsBase implements ClimberComponents {
 
     private final WPI_TalonFX leftMotor;
     private final WPI_TalonFX rightMotor;
-    private final DoubleSolenoid doubleSolenoid;
+    private final DoubleSolenoid leftDoubleSolenoid;
+    private final DoubleSolenoid rightDoubleSolenoid;
     private final TalonEncoder leftEncoder;
     private final TalonEncoder rightEncoder;
 
@@ -21,8 +22,10 @@ public class ClimberComponentsBase implements ClimberComponents {
         leftMotor.configFactoryDefault();
         rightMotor = new WPI_TalonFX(RIGHT_MOTOR_DEVICE_NUMBER);
         rightMotor.configFactoryDefault();
-        doubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, SOLENOID_FORWARD_CHANNEL
-                , SOLENOID_REVERSE_CHANNEL);
+        rightDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RIGHT_SOLENOID_FORWARD_CHANNEL
+                , RIGHT_SOLENOID_REVERSE_CHANNEL);
+        leftDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, LEFT_SOLENOID_FORWARD_CHANNEL
+                , LEFT_SOLENOID_REVERSE_CHANNEL);
         leftEncoder = new TalonEncoder(leftMotor);
         rightEncoder = new TalonEncoder(rightMotor);
     }
@@ -38,8 +41,13 @@ public class ClimberComponentsBase implements ClimberComponents {
     }
 
     @Override
-    public DoubleSolenoid getDoubleSolenoid() {
-        return doubleSolenoid;
+    public DoubleSolenoid getLeftDoubleSolenoid() {
+        return leftDoubleSolenoid;
+    }
+
+    @Override
+    public DoubleSolenoid getRightDoubleSolenoid() {
+        return rightDoubleSolenoid;
     }
 
     @Override

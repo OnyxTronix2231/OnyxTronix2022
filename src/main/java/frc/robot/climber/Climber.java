@@ -17,7 +17,7 @@ public class Climber extends SubsystemBase {
         components.getLeftMotor().set(speed);
     }
 
-    public void stopMotors() {
+    public void stop() {
         moveBySpeed(0);
     }
 
@@ -29,19 +29,20 @@ public class Climber extends SubsystemBase {
         return components.getRightEncoder().getCount();
     }
 
-    public void openSolenoid() {
-        components.getDoubleSolenoid().set(SOLENOID_OPEN_VALUE);
+    public void openPistons() {
+        components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_OPEN_VALUE);
+        components.getRightDoubleSolenoid().set(RIGHT_SOLENOID_OPEN_VALUE);
     }
 
-    public void closeSolenoid() {
-        components.getDoubleSolenoid().set(SOLENOID_CLOSE_VALUE);
-    }
+    public void closePistons() {
+        components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_CLOSE_VALUE);
+        components.getRightDoubleSolenoid().set(RIGHT_SOLENOID_CLOSE_VALUE);    }
 
     public boolean isRightEncoderOnTarget() {
-        return getRightEncoderUnits() == DESIRED_ENCODER_UNITS;
+        return getRightEncoderUnits() <= DESIRED_ENCODER_UNITS;
     }
 
     public boolean isLeftEncoderOnTarget() {
-        return getLeftEncoderUnits() == DESIRED_ENCODER_UNITS;
+        return getLeftEncoderUnits() <= DESIRED_ENCODER_UNITS;
     }
 }

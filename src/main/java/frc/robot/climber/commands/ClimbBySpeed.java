@@ -24,6 +24,6 @@ public class ClimbBySpeed extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopMotors();
+        climber.stop();
     }
 }
