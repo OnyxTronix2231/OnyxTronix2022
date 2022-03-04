@@ -10,6 +10,9 @@ import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.intake.Intake;
+import frc.robot.turret.DriverTurretOiBinder;
+import frc.robot.yawControl.DriverYawControlOiBinder;
+import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
@@ -28,6 +31,15 @@ public class DriverOi {
         JoystickAxis leftJoystick = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis rightJoystick = new JoystickAxis(controller, controller.getAxisRightX());
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
+        return this;
+    }
+
+    public DriverOi withYawControl(YawControl yawControl){
+        Trigger moveRTF = new JoystickButton(controller, controller.getButtonUp());
+        Trigger left = new JoystickButton(controller, controller.getBumperLeft());
+        Trigger right = new JoystickButton(controller, controller.getBumperRight());
+        new DriverYawControlOiBinder(yawControl, moveRTF);
+        new DriverTurretOiBinder(yawControl, left, right);
         return this;
     }
 

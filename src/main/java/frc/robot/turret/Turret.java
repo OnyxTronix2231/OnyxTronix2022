@@ -7,7 +7,7 @@ import static frc.robot.turret.TurretConstants.Calculation.*;
 
 public class Turret extends SubsystemBase {
 
-    private final TurretComponents components;
+    protected final TurretComponents components;
     private final TurretShuffleBoard turretShuffleBoard;
 
     private double startingAngle;

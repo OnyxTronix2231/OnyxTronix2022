@@ -44,8 +44,9 @@ public class TurretShuffleBoard {
             Shuffleboard.getTab("Turret").addNumber("Motor Speed", ()-> components.getEncoder().getRate());
             Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
                     components.getController().getSetpoint());
-            Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getCurrentError()));
-            Shuffleboard.getTab("Turret").addNumber("error ENC Num", () -> (components.getController().getCurrentError()));
+
+            Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getSetpoint() - components.getController().getCurrentError()));
+            Shuffleboard.getTab("Turret").addNumber("error DEG", () -> (encoderUnitsToDegrees(components.getController().getCurrentError())));
 
             Shuffleboard.getTab("Turret").add("move 10", new RotateByAngleOnce(turret, () -> 10 ));
             Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50 ));

@@ -35,6 +35,7 @@ import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,7 +56,7 @@ public class Robot extends TimedRobot {
     Loader loader;
     Intake intakeFront;
     Intake intakeBack;
-    Turret turret;
+    YawControl yawControl;
     Vision vision;
 
     /**
@@ -102,12 +103,11 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new Turret(turretComponents);
+        yawControl = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+        new DriverOi().withDriveTrain(driveTrain).withYawControl(yawControl);
 
         new DeputyOi();
 
