@@ -11,7 +11,7 @@ public final class VisionConstants {
     public static final double TURRET_TOLERANCE = 0.5;
     public static final Vector2dEx LIMELIGHT_TO_TURRET_VECTOR_RTT =
             Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
-    public static final double TARGET_NOT_FOUND = -999;
+    public static final double TARGET_NOT_FOUND = 0;
     public static final double TARGET_X_RTF = 800;  //TODO: check and change
     public static final double TARGET_Y_RTF = 500;  //TODO: check and change
 }
