@@ -17,11 +17,15 @@ public class Shooter extends SubsystemBase {
     }
 
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void setSpeed(double speed) {
         components.getMasterMotor().set(speed);
+    }
+
+    public double getSpeed() {
+        return components.getMasterMotor().getMotorOutputPercent();
     }
 
     public void initSetPIDSpeed(double RPM) {

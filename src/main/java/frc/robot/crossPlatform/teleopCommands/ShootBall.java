@@ -15,7 +15,12 @@ public class ShootBall extends ParallelCommandGroup {
 
     public ShootBall(Loader loader, BallTrigger ballTrigger, Shooter shooter, Arc arc) {
         super(
-                new ShootByRPM(shooter, () -> 6000), new MoveArcToAngle(arc, () -> 62),
+
+
+
+
+
+                new ShootByRPM(shooter, () -> 4000), new MoveArcToAngle(arc, () -> 62),
                 new WaitUntilCommand(() -> shooter.isOnTarget()).andThen(
                         new ParallelCommandGroup(
                                 new MoveBallTriggerBySpeed(ballTrigger, () -> 0.6),

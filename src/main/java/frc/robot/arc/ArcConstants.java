@@ -22,7 +22,7 @@ public class ArcConstants {
         static final double CONVERSION_RATE = 1;
         static final double ENCODER_UNITS_PER_ROUND = 4096 * CONVERSION_RATE;
         static final double ANGLE_PER_MOTOR_ROTATION = 45;
-        static final double ARC_MIN_ANGLE = 15.33;
+        public static final double ARC_MIN_ANGLE = 15.33;
         static final double ARC_MAX_ANGLE = 62;
     }
 

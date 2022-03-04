@@ -8,15 +8,22 @@
 package frc.robot;
 
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
+import frc.robot.arc.commands.MoveArcToAngle;
+import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
+import frc.robot.conveyor.commands.LoadBalls;
+import frc.robot.conveyor.loader.commands.MoveLoaderBySpeed;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.intake.commands.MoveIntakeBySpeed;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
@@ -31,6 +38,7 @@ import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.shooter.commands.ShootByRPM;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
@@ -38,6 +46,9 @@ import frc.robot.vision.Vision;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static frc.robot.arc.ArcConstants.ArcCalculations.encoderUnitsToAngle;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -113,6 +124,19 @@ public class Robot extends TimedRobot {
 
         new DriversShuffleboard();
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
+
+        Shuffleboard.getTab("ShootTesting").add("intake", new MoveIntakeBySpeed(intakeBack,()-> 0.5));
+        Shuffleboard.getTab("ShootTesting").add("loader", new MoveLoaderBySpeed(loader,()-> 0.5));
+        Shuffleboard.getTab("ShootTesting").add("ballTrigger", new MoveBallTriggerBySpeed(ballTrigger,()-> 0.5));
+        Shuffleboard.getTab("ShootTesting").addNumber("current angle",
+                () -> encoderUnitsToAngle(arc.getComponents().getCounter().getCount()));
+        NetworkTableEntry setAngle = Shuffleboard.getTab("ShootTesting").add("setAngle", ARC_MIN_ANGLE).getEntry();
+        Shuffleboard.getTab("ShootTesting").add("MoveArcToAngle", new MoveArcToAngle(arc,
+                () -> setAngle.getDouble(ARC_MIN_ANGLE)));
+        NetworkTableEntry setRPM = Shuffleboard.getTab("ShootTesting").add("setRPM", 0).getEntry();
+        Shuffleboard.getTab("ShootTesting").addNumber("RPM", shooter::getCurrentRPM);
+        Shuffleboard.getTab("ShootTesting").add("ShootByRPM", new ShootByRPM(shooter,
+                () -> setRPM.getDouble(0)));
     }
 
     /**

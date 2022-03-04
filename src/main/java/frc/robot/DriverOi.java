@@ -16,6 +16,7 @@ import frc.robot.shooter.Shooter;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -24,7 +25,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
+        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {

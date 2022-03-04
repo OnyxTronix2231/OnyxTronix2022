@@ -28,12 +28,13 @@ public class ShooterShuffleBoard {
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);
         Shuffleboard.getTab("Shooter").addNumber("err",()-> encUnitsDecisecToRPM(shooter.getError()));
+        Shuffleboard.getTab("Shooter").addNumber("percentageOutput", ()-> shooter.getSpeed());
 
 
-        kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
-        kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
-        kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
-        kF = Shuffleboard.getTab("Shooter").add("kF", KF).getEntry();
+       // kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
+        //kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
+        //kD = Shuffleboard.getTab("Shooter").add("kD", KD).getEntry();
+        //kF = Shuffleboard.getTab("Shooter").add("kF", KF).getEntry();
 
         setSpeed = Shuffleboard.getTab("Shooter").add("setSpeed", 0).getEntry();
         setRPM = Shuffleboard.getTab("Shooter").add("setRPM", 0).getEntry();
@@ -45,11 +46,12 @@ public class ShooterShuffleBoard {
     }
 
     public void update() {
+        /*
         shooter.getComponents().getController().setPIDFTerms(
                 kP.getDouble(shooter.getComponents().getController().getPIDFTerms().getKp()),
                 kI.getDouble(shooter.getComponents().getController().getPIDFTerms().getKi()),
                 kD.getDouble(shooter.getComponents().getController().getPIDFTerms().getKd()),
                 kF.getDouble(shooter.getComponents().getController().getPIDFTerms().getKf()));
-        ;
+         */
     }
 }

@@ -23,7 +23,7 @@ public class Arc extends SubsystemBase {
 
     @Override
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void initMoveToAngle(double angle) {
