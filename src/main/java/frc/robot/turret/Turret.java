@@ -45,18 +45,22 @@ public class Turret extends SubsystemBase {
         components.getController().update(degreesToAbsoluteEncoderUnits(fixAngleAccordingToLimits(deg)));
     }
 
-    public void initMoveByDegree(double deg){
+    public void initMoveByDegree(double deg) {
         startingAngle = getCurrentAngleRTR();
         targetAngle = deg;
         initMoveToDegreeRTR(startingAngle + deg);
     }
 
-    public void updateMoveByDegree(double deg){
+    public void updateMoveByDegree(double deg) {
         if (targetAngle != deg) {
             startingAngle = getCurrentAngleRTR();
             targetAngle = deg;
         }
         updateMoveToDegreeRTR(startingAngle + deg);
+    }
+
+    public double convertAngleOffsetToRTR(double deg){
+        return getCurrentAngleRTR() - deg;
     }
 
     public boolean isOnTarget() {

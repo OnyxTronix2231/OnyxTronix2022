@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.TARGET_POSE_X;
 import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
+import static frc.robot.turret.TurretConstants.TARGET_POS;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
@@ -81,6 +83,15 @@ public class DriveTrain extends SubsystemBase {
         Pose2d currentPose = getPose();
         return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
+    }
+
+    public double getAngleToTargetByPose() {
+        Pose2d currentPos = getPose();
+        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POSE_Y) /
+                (currentPos.getX() - TARGET_POSE_X)));
+        if (currentPos.getX() > TARGET_POSE_X)
+            angle += DEG_IN_HALF_CIRCLE;
+        return angle;
     }
 
     public Field2d getField() {

@@ -17,6 +17,7 @@ public class ArcConstants {
     static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
     public static final double CALIBRATION_SPEED = -0.2;
     static final double INTEGRAL_ZONE = 100;
+    static final double TOLERANCE = 1;
 
     public static class ComponentsConstants {
 
@@ -30,15 +31,15 @@ public class ArcConstants {
 
     public static class ArcCalculations {
 
-        public static double angleToEncoderUnits(double angle) {
+        static double angleToEncoderUnits(double angle) {
             return ((angle - ARC_MIN_ANGLE) / ANGLE_PER_MOTOR_ROTATION) * ENCODER_UNITS_PER_ROUND;
         }
 
-        public static double encoderUnitsToAngle(double encoderUnits) {
+        static double encoderUnitsToAngle(double encoderUnits) {
             return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION) + ARC_MIN_ANGLE;
         }
 
-        public static double distanceToAngle(double distance) {
+        static double distanceToAngle(double distance) {
             return distance; //todo find the calculations for this
         }
     }

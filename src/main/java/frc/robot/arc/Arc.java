@@ -3,9 +3,11 @@ package frc.robot.arc;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.arc.ArcConstants.ArcCalculations.angleToEncoderUnits;
+import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MAX_ANGLE;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 import static frc.robot.arc.ArcConstants.TIME_OUT;
+import static frc.robot.arc.ArcConstants.TOLERANCE;
 
 public class Arc extends SubsystemBase {
 
@@ -35,6 +37,14 @@ public class Arc extends SubsystemBase {
         components.getController().update(angleToEncoderUnits(angle));
     }
 
+    public void initMoveArcByDistance(double distance){
+        initMoveToAngle(distanceToAngle(distance));
+    }
+
+    public void updateMoveArcByDistance(double distance){
+        updateMoveToAngle(distanceToAngle(distance));
+    }
+
     public void setSpeed(double speed) {
         components.getMotor().set(speed);
     }
@@ -60,5 +70,9 @@ public class Arc extends SubsystemBase {
     public void enableSoftLimitSwitch(boolean enable) {
         components.getMotor().configForwardSoftLimitEnable(enable);
         components.getMotor().configReverseSoftLimitEnable(enable);
+    }
+
+    public boolean isOnTarget(){
+        return components.getController().isOnTarget(TOLERANCE);
     }
 }

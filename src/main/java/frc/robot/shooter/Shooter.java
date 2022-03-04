@@ -2,8 +2,8 @@ package frc.robot.shooter;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.shooter.ShooterConstants.ShooterCalculations.RPMToEncUnitsDecisec;
-import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDecisecToRPM;
+import static frc.robot.shooter.ShooterConstants.ShooterCalculations.*;
+import static frc.robot.shooter.ShooterConstants.TOLERANCE;
 
 public class Shooter extends SubsystemBase {
 
@@ -28,6 +28,14 @@ public class Shooter extends SubsystemBase {
         components.getController().enable();
     }
 
+    public void initShootByDistance(double distance) {
+        initSetPIDSpeed(distanceToRPM(distance));
+    }
+
+    public void updateShootByDistance(double distance){
+        updateSetPIDSpeed(distanceToRPM(distance));
+    }
+
     public void updateSetPIDSpeed(double RPM) {
         components.getController().update(RPMToEncUnitsDecisec(RPM));
     }
@@ -47,6 +55,10 @@ public class Shooter extends SubsystemBase {
     public void stop() {
         setSpeed(0);
         components.getController().disable();
+    }
+
+    public boolean isOnTarget(){
+        return components.getController().isOnTarget(TOLERANCE);
     }
 
     public ShooterComponents getComponents(){
