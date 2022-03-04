@@ -4,11 +4,10 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.turret.commands.RotateByAngleOnce;
 
-import static frc.robot.turret.TurretConstants.Calculation.*;
+import static frc.robot.turret.TurretConstants.Calculation.absoluteEncoderUnitsToDegrees;
 
 public class TurretShuffleBoard {
 
-    private final Turret turret;
     private final TurretComponents components;
     private final NetworkTableEntry kP;
     private final NetworkTableEntry kI;
@@ -19,7 +18,6 @@ public class TurretShuffleBoard {
     private final NetworkTableEntry accSmoothing;
 
     public TurretShuffleBoard(Turret turret, TurretComponents components) {
-        this.turret = turret;
         this.components = components;
 
         kP = Shuffleboard.getTab("Turret").add("set kP",
@@ -41,15 +39,16 @@ public class TurretShuffleBoard {
         Shuffleboard.getTab("Turret").addNumber("AngleRTR ENC", () -> components.getMotor().getSelectedSensorPosition());
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR DEG", () ->
                 absoluteEncoderUnitsToDegrees(components.getController().getSetpoint()));
-        Shuffleboard.getTab("Turret").addNumber("Motor Speed", ()-> components.getEncoder().getRate());
+        Shuffleboard.getTab("Turret").addNumber("Motor Speed", () -> components.getEncoder().getRate());
         Shuffleboard.getTab("Turret").addNumber("DesiredRTR ENC", () ->
                 components.getController().getSetpoint());
         Shuffleboard.getTab("Turret").addNumber("error ENC", () -> (components.getController().getCurrentError()));
+        Shuffleboard.getTab("Turret").addNumber("error ENC Num", () -> (components.getController().getCurrentError()));
 
-        Shuffleboard.getTab("Turret").add("move 10", new RotateByAngleOnce(turret, () -> 10 ));
-        Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50 ));
-        Shuffleboard.getTab("Turret").add("move 90", new RotateByAngleOnce(turret, () -> 90 ));
-        Shuffleboard.getTab("Turret").add("move 180", new RotateByAngleOnce(turret, () -> 180 ));
+        Shuffleboard.getTab("Turret").add("move 10", new RotateByAngleOnce(turret, () -> 10));
+        Shuffleboard.getTab("Turret").add("move 50", new RotateByAngleOnce(turret, () -> 50));
+        Shuffleboard.getTab("Turret").add("move 90", new RotateByAngleOnce(turret, () -> 90));
+        Shuffleboard.getTab("Turret").add("move 180", new RotateByAngleOnce(turret, () -> 180));
     }
 
     public void update() {

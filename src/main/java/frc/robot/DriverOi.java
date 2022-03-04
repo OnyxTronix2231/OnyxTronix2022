@@ -10,9 +10,6 @@ import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBal
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
-import frc.robot.turret.DriverTurretOiBinder;
-import frc.robot.turret.Turret;
-import frc.robot.vision.Vision;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
@@ -34,28 +31,20 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withTurret(Turret turret, Vision vision) {
-        Trigger moveLeft = new JoystickButton(controller, controller.getBumperLeft());
-        Trigger moveRight = new JoystickButton(controller, controller.getBumperRight());
-        Trigger byVision = new JoystickButton(controller, controller.getLeftTrigger());
-        new DriverTurretOiBinder(turret, vision, moveLeft, moveRight, byVision);
-        return this;
-    }
-
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
-                                                       Loader loader, BallTrigger ballTrigger ){
+                                                       Loader loader, BallTrigger ballTrigger) {
         Trigger collect = new JoystickButton(controller, controller.getButtonRight());
-        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader,ballTrigger, collect);
+        new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger, collect);
         return this;
     }
 
-    public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger){
+    public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getButtonRight());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 
-    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger){
+    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getButtonLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;

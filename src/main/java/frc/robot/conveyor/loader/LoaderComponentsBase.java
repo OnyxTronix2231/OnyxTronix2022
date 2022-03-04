@@ -3,6 +3,7 @@ package frc.robot.conveyor.loader;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import frc.robot.StatusFrameConfig;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
@@ -19,6 +20,8 @@ public class LoaderComponentsBase implements LoaderComponents {
         motor.configAllSettings(getFalconConfiguration());
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
+
+        new StatusFrameConfig(motor).disablePID1().disableFollowerCAN();
 
         this.frontSensor = new TriangulatingRangefinder(FRONT_SENSOR_CHANNEL);
         this.backSensor = new TriangulatingRangefinder(BACK_SENSOR_CHANNEL);

@@ -10,7 +10,7 @@ public class Loader extends SubsystemBase {
     public Loader(LoaderComponents components) {
         this.components = components;
         this.loaderShuffleboard = new LoaderShuffleboard(this);
-        loaderShuffleboard.init();
+        //loaderShuffleboard.init();
     }
 
     public void moveLoaderBySpeed(double speed) {
