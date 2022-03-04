@@ -1,13 +1,32 @@
 package frc.robot.arc.commands;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.arc.Arc;
+
 import java.util.function.DoubleSupplier;
 
-import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
+public class MoveArcByTargetDistance extends CommandBase {
 
-public class MoveArcByTargetDistance extends MoveArcToAngle {
+    private final Arc arc;
+    private final DoubleSupplier distanceSupplier;
 
     public MoveArcByTargetDistance(Arc arc, DoubleSupplier distanceSupplier) {
-        super(arc, () -> distanceToAngle(distanceSupplier.getAsDouble()));
+        this.arc = arc;
+        this.distanceSupplier = distanceSupplier;
+    }
+
+    @Override
+    public void initialize() {
+        arc.initMoveArcByDistance(distanceSupplier.getAsDouble());
+    }
+
+    @Override
+    public void execute() {
+        arc.updateMoveArcByDistance(distanceSupplier.getAsDouble());
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        arc.stop();
     }
 }

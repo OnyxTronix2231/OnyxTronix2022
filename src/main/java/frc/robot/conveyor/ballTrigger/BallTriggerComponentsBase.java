@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.Rev2mDistanceSensor;
+import frc.robot.StatusFrameConfig;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.*;
 
@@ -19,6 +20,9 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
         motor.enableCurrentLimit(SUPPLY_CURRENT_LIMIT_ENABLED);
+
+        new StatusFrameConfig(motor).disablePID1().disableFollowerCAN();
+
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);

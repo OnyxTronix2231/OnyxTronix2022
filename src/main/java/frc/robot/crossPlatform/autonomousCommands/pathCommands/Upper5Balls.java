@@ -5,8 +5,8 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 
-import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.StartPoses;
 
 public class Upper5Balls extends SequentialCommandGroup {
 

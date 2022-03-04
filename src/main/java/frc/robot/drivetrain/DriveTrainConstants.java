@@ -18,12 +18,11 @@ public final class DriveTrainConstants {
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
     static final double TRACKWIDTH_METERS = 0.68;
+    public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
+            new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     static final double KS = 0.68132; // TODO: calibrate
     static final double KV = 2.0333; // TODO: calibrate
     static final double KA = 0.0073009; // TODO: calibrate
-
-    public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
-            new DifferentialDriveKinematics(TRACKWIDTH_METERS);
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
     public static final class ComponentsConstants {
@@ -61,7 +60,7 @@ public final class DriveTrainConstants {
         }
 
         static double getAverageSpeed(double leftSpeed, double rightSpeed) {
-            return (leftSpeed+rightSpeed) / 2;
+            return (leftSpeed + rightSpeed) / 2;
         }
     }
 }
