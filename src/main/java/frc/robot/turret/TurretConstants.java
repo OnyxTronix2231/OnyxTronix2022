@@ -27,6 +27,10 @@ public final class TurretConstants {
     public static final double TOLERANCE_DEGREES = 0; //TODO: Correct the number
     public static final double DEFAULT_TURRET_SPEED = 0.8;
 
+    /*field settings*/
+    public static final double DRIVERS_DIRECTION = 180;
+
+
     public static class ComponentsConstants {
 
         /*mechanic values*/
