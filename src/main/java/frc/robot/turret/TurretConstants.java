@@ -3,6 +3,8 @@ package frc.robot.turret;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 
+import static frc.robot.Constants.TARGET_POSE_X;
+import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public final class TurretConstants {
@@ -28,8 +30,10 @@ public final class TurretConstants {
     public static final double DEFAULT_TURRET_SPEED = 0.8;
 
     /*field settings*/
-    public static final double DRIVERS_DIRECTION = 180;
-
+    public static final double SIDE_TARGET_OFFSET = 0.25; //TODO: Correct the number
+    public static final double DRIVERS_DIRECTION = 0;
+    public static final Pose2d P1 = new Pose2d(TARGET_POSE_X, 0.5 * TARGET_POSE_Y, new Rotation2d());
+    public static final Pose2d P2 = new Pose2d(TARGET_POSE_X, 1.5 * TARGET_POSE_Y, new Rotation2d());
 
     public static class ComponentsConstants {
 

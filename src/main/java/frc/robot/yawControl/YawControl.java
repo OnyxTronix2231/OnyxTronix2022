@@ -1,7 +1,6 @@
 package frc.robot.yawControl;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
