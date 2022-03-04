@@ -5,13 +5,15 @@ import frc.robot.climber.commands.ClosePistons;
 import frc.robot.climber.commands.ClimbBySpeed;
 import frc.robot.climber.commands.OpenPistons;
 
+import static frc.robot.climber.ClimberConstants.*;
+
 public class ClimberDriverOiBinder {
 
     public ClimberDriverOiBinder(Climber climber, Trigger closeSolenoid, Trigger openSolenoid,
-                                 Trigger moveForward, Trigger moveBackwards) {
+                                 Trigger openArms, Trigger closeArms) {
         closeSolenoid.whileActiveOnce(new ClosePistons(climber));
         openSolenoid.whileActiveOnce(new OpenPistons(climber));
-        moveBackwards.whileActiveContinuous(new ClimbBySpeed(climber, ()->0.8));
-        moveForward.whileActiveContinuous(new ClimbBySpeed(climber, ()->0.8));
+        openArms.whileActiveContinuous(new ClimbBySpeed(climber, () -> OPEN_CLIMBER_SPEED));
+        closeArms.whileActiveContinuous(new ClimbBySpeed(climber, () -> CLOSE_CLIMBER_SPEED));
     }
 }
