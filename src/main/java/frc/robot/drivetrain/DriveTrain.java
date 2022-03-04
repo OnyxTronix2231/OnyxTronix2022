@@ -73,7 +73,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getPitch() {
-
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
     public void resetOdometryToPose(Translation2d translation) {
