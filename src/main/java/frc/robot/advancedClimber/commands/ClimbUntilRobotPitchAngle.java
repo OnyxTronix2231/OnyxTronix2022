@@ -1,6 +1,7 @@
-package frc.robot.crossPlatform;
+package frc.robot.advancedClimber.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.climber.Climber;
 import frc.robot.climber.commands.ClimbBySpeed;
 import frc.robot.drivetrain.DriveTrain;
@@ -9,7 +10,7 @@ import java.util.function.DoubleSupplier;
 
 public class ClimbUntilRobotPitchAngle extends ParallelDeadlineGroup {
 
-    public ClimbUntilRobotPitchAngle(Climber climber, DriveTrain driveTrain, DoubleSupplier speedSupplier) {
-        super(new WaitUntilRobotPitchAngle(climber, driveTrain), new ClimbBySpeed(climber, speedSupplier));
+    public ClimbUntilRobotPitchAngle(AdvancedClimber advancedClimber, DoubleSupplier speedSupplier) {
+        super(new WaitUntilRobotPitchAngle(advancedClimber), new ClimbBySpeed(advancedClimber, speedSupplier));
     }
 }
