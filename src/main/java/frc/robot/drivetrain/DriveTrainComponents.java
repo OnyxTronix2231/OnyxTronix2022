@@ -1,9 +1,11 @@
 package frc.robot.drivetrain;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import sensors.counter.CtreEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import sensors.counter.TalonEncoder;
 
 public interface DriveTrainComponents {
 
@@ -17,7 +19,9 @@ public interface DriveTrainComponents {
 
     NormalizedPigeonIMU getNormalizedPigeonIMU();
 
-    CtreEncoder getLeftEncoder();
+    TalonEncoder getLeftEncoder();
 
-    CtreEncoder getRightEncoder();
+    TalonEncoder getRightEncoder();
+
+    void setNeutralMode(NeutralMode mode);
 }

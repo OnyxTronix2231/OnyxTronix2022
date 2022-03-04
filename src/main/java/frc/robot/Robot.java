@@ -7,11 +7,37 @@
 
 package frc.robot;
 
+import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcComponents;
+import frc.robot.arc.ArcComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterComponents;
+import frc.robot.shooter.ShooterComponentsBase;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
+import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
+import frc.robot.conveyor.loader.Loader;
+import frc.robot.conveyor.loader.LoaderComponents;
+import frc.robot.conveyor.loader.LoaderComponentsBase;
+
+import frc.robot.intake.Intake;
+import frc.robot.intake.IntakeBackComponentsBase;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.turret.Turret;
+import frc.robot.turret.TurretComponents;
+import frc.robot.turret.TurretComponentsBase;
+import frc.robot.vision.Vision;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,6 +48,15 @@ import frc.robot.drivetrain.DriveTrainComponentsBase;
 public class Robot extends TimedRobot {
 
     DriveTrain driveTrain;
+    Arc arc;
+    Shooter shooter;
+    AutonomousShuffleboard autonomousShuffleboard;
+    BallTrigger ballTrigger;
+    Loader loader;
+    Intake intakeFront;
+    Intake intakeBack;
+    Turret turret;
+    Vision vision;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -29,21 +64,55 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-
         DriveTrainComponents driveTrainComponents;
+        IntakeComponents intakeFrontComponents;
+        IntakeComponents intakeBackComponents;
+        LoaderComponents loaderComponents;
+        BallTriggerComponents ballTriggerComponents;
+        DriveTrainJoystickValueProvider joystickValueProvider;
+        TurretComponents turretComponents;
+        ArcComponents arcComponents;
+        ShooterComponents shooterComponents;
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
+            intakeFrontComponents = new IntakeFrontComponentsBase();
+            intakeBackComponents = new IntakeBackComponentsBase();
+            loaderComponents = new LoaderComponentsBase();
+            ballTriggerComponents = new BallTriggerComponentsBase();
+            turretComponents = new TurretComponentsBase();
+            arcComponents = new ArcComponentsBase();
+            shooterComponents = new ShooterComponentsBase();
+            vision = new Vision();
         } else {
             driveTrainComponents = null;
+            intakeFrontComponents = null;
+            intakeBackComponents = null;
+            loaderComponents = null;
+            ballTriggerComponents = null;
+            turretComponents = null;
+            arcComponents = null;
+            shooterComponents = null;
+            vision = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
+        intakeFront = new Intake(intakeFrontComponents, "Front");
+        intakeBack = new Intake(intakeBackComponents, "Back");
+        loader = new Loader(loaderComponents);
+        ballTrigger = new BallTrigger(ballTriggerComponents);
+        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+        turret = new Turret(turretComponents);
+        arc = new Arc(arcComponents);
+        shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain);
+        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
+                intakeBack, loader, ballTrigger);
+
         new DeputyOi();
 
         new DriversShuffleboard();
+        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
     }
 
     /**
@@ -60,6 +129,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
+        SmartDashboard.updateValues();
     }
 
     /**
@@ -67,12 +137,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-//    new Timer().schedule(new TimerTask() {
-//      @Override
-//      public void run() {
-//        if (isDisabled()) driveTrain.setNeutralModeToCoast();
-//      }
-//    }, 3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+            }
+        }, 3000);
     }
 
     @Override
@@ -84,11 +154,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    selectedAutonomousCommand = autonomousChooser.getSelected();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.schedule();
-//    }
+        driveTrain.setNeutralModeToBrake();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().schedule();
+        }
     }
 
     /**
@@ -100,10 +169,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-//    driveTrain.setNeutralModeToBrake();
-//    if (selectedAutonomousCommand != null) {
-//      selectedAutonomousCommand.cancel();
-//    }
+        driveTrain.setNeutralModeToBrake();
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().cancel();
+        }
     }
 
     /**

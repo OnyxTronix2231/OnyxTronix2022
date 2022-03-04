@@ -1,0 +1,82 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
+
+abstract class SubsystemBase
+abstract class CommandBase
+
+DriveTrain---|>SubsystemBase
+DriveTrain *- DriveTrainComponentsBase
+DriveTrainComponents <|--- DriveTrainComponentsBase
+DriveBySpeed ---|> CommandBase
+MoveByPath ---|> CommandBase
+ResetOdometryToPose ---|> InstantCommand
+DriveBySpeed <|--- DriveByJoystick
+DriveBySpeed o-- DriveTrain
+DriveByJoystick o-- DriveTrain
+MoveByPath o-- DriveTrain
+MoveByPath o-- Path
+DriveTrainOiBinder o-- DriveByJoystick
+
+class DriveTrain {
+    void periodic()
+    void arcadeDrive(double speed,double rotation)
+    void tankDriveVolts(double leftVolts, double rightVolts)
+    DifferentialDriveWheelSpeeds getWheelSpeeds()
+    void resetOdometryToPose(Pose2d pose)
+    void resetOdometryToPose(Translation2d translation)
+    void stop()
+}
+
+class DriveTrainComponentsBase {
+    WPI_TalonFX leftMasterMotor
+    WPI_TalonFX leftSlaveMotor
+    WPI_TalonFX rightMasterMotor
+    WPI_TalonFX rightSlaveMotor
+    DifferentialDrive differentialDrive
+    DifferentialDriveOdometry odometry
+    NormalizedPigeonIMU pigeonIMU
+    TalonEncoder leftEncoder
+    TalonEncoder rightEncoder
+}
+
+class DriveTrainOiBinder {
+    DriveTrain driveTrain
+    JoystickAxis leftJoystick
+    JoystickAxis rightJoystick
+}
+
+class DriveTrainComponents {
+    WPI_TalonFX getLeftMasterMotor()
+    WPI_TalonFX getRightMasterMotor()
+    DifferentialDrive getDifferentialDrive()
+    DifferentialDriveOdometry getOdometry()
+    NormalizedPigeonIMU getNormelizedPigeonIMU()
+    TalonEncoder getLeftEncoder()
+    TalonEncoder getRightEncoder()
+    void setNeutralMode(NeutralMode mode)
+}
+
+class DriveByJoystick {
+    void execute()
+    void end(boolean interrupted)
+}
+
+class DriveBySpeed {
+    void initialize()
+    void execute()
+    void end(boolean interrupted)
+}
+
+class MoveByPath {
+    void initialize()
+    void execute()
+    void end(boolean interrupted)
+}
+
+class Path {
+    List<Translation2d> middlePoints
+    Pose2d endPose
+    TrajectoryConfig config
+    toTrajectory()
+}

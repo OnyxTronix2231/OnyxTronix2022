@@ -1,19 +1,25 @@
 package frc.robot.drivetrain;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.Constants.TARGET_POSE_X;
+import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
-import static frc.robot.drivetrain.DriveTrainConstants.Calculations.*;
 
 public class DriveTrain extends SubsystemBase {
-
     private final DriveTrainComponents driveTrainComponents;
+    public double forwardSpeedValue;
+    private Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        resetEncoders();
+        field2d = new Field2d();
     }
 
     public void resetEncoders() {
@@ -26,21 +32,39 @@ public class DriveTrain extends SubsystemBase {
     public void periodic() {
         driveTrainComponents.getOdometry().update(
                 Rotation2d.fromDegrees(getHeading()),
-                encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
-                encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
+                Calculations.encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
+                Calculations.encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
+        getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(speed, rotation);
+        forwardSpeedValue = speed * SPEED_SENSITIVITY;
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
     }
 
     public void stop() {
-        driveTrainComponents.getLeftMasterMotor().stopMotor();
-        driveTrainComponents.getRightMasterMotor().stopMotor();
+        driveTrainComponents.getDifferentialDrive().stopMotor();
     }
 
     public Pose2d getPose() {
         return driveTrainComponents.getOdometry().getPoseMeters();
+    }
+
+    public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+        return new DifferentialDriveWheelSpeeds(Calculations.encoderUnitsDeciSecToMetersSec(
+                        driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
+                        Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
+    }
+
+    public double getRobotSpeedMPS() {
+        DifferentialDriveWheelSpeeds currentSpeed = getWheelSpeeds();
+        return Calculations.getAverageSpeed(currentSpeed.leftMetersPerSecond, currentSpeed.rightMetersPerSecond);
+    }
+
+    public void tankDriveVolts(double leftVolts, double rightVolts) {
+        driveTrainComponents.getLeftMasterMotor().set(leftVolts / VOLTS);
+        driveTrainComponents.getRightMasterMotor().set(rightVolts / VOLTS);
+        driveTrainComponents.getDifferentialDrive().feed();
     }
 
     public double getHeading() {
@@ -52,9 +76,34 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void resetOdometryToPose(Translation2d translation) {
+        resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
+    }
+
+    public double getDistanceFromTargetByEncoders() {
+        Pose2d currentPose = getPose();
+        return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
+                + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
+    }
+
+    public Field2d getField() {
+        return field2d;
+    }
+
+    public void setNeutralModeToCoast() {
+        driveTrainComponents.setNeutralMode(NeutralMode.Coast);
+    }
+
+    public void setNeutralModeToBrake() {
+        driveTrainComponents.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void resetOdometryToPose(Pose2d pose) {
         resetEncoders();
-        Pose2d targetPose = new Pose2d(translation, this.getPose().getRotation());
-        driveTrainComponents.getOdometry().resetPosition(targetPose, targetPose.getRotation());
-        driveTrainComponents.getNormalizedPigeonIMU().setYaw(targetPose.getRotation().getDegrees());
+        driveTrainComponents.getOdometry().resetPosition(pose, pose.getRotation());
+        driveTrainComponents.getNormalizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
+    }
+
+    public double getForwardSpeedValue() {
+        return forwardSpeedValue;
     }
 }
