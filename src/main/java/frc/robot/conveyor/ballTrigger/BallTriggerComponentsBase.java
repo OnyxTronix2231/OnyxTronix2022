@@ -3,7 +3,10 @@ package frc.robot.conveyor.ballTrigger;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.ColorSensorV3;
 import com.revrobotics.Rev2mDistanceSensor;
+import edu.wpi.first.wpilibj.I2C;
+import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.*;
 
@@ -11,6 +14,8 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonSRX motor;
     private final Rev2mDistanceSensor distanceSensor;
+    public final ColorSensorV3 colorSensor;
+    public final TriangulatingRangefinder analogSensor;
 
     public BallTriggerComponentsBase() {
         motor = new WPI_TalonSRX(MOTOR_ID);
@@ -22,6 +27,9 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         distanceSensor = new Rev2mDistanceSensor(Rev2mDistanceSensor.Port.kOnboard,
                 Rev2mDistanceSensor.Unit.kMillimeters, Rev2mDistanceSensor.RangeProfile.kHighAccuracy);
         distanceSensor.setAutomaticMode(true);
+
+        colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+        analogSensor = new TriangulatingRangefinder(ANALOG_ID);
     }
 
     @Override
@@ -32,6 +40,16 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
     @Override
     public Rev2mDistanceSensor getDistanceSensorUp() {
         return distanceSensor;
+    }
+
+    @Override
+    public ColorSensorV3 getColorSensor() {
+        return colorSensor;
+    }
+
+    @Override
+    public TriangulatingRangefinder getAnalogSensor() {
+        return analogSensor;
     }
 
     private TalonSRXConfiguration getTalonConfiguration() {

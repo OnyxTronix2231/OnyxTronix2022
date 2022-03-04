@@ -8,7 +8,7 @@ import java.util.function.DoubleSupplier;
 
 public class MoveBallTriggerUntilBallInPlace extends OnyxParallelDeadlineGroup {
     public MoveBallTriggerUntilBallInPlace(BallTrigger ballTrigger, DoubleSupplier ballTriggerSpeedSupplier) {
-        super(ballTrigger::isBallInPlace, new WaitUntilCommand(ballTrigger::isBallIdentified).
+        super(ballTrigger::isBallInPlaceV2, new WaitUntilCommand(ballTrigger::isBallIdentifiedV2).
                 andThen(new MoveBallTriggerBySpeed(ballTrigger, ballTriggerSpeedSupplier)));
     }
 
