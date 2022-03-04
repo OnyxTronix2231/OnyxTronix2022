@@ -12,9 +12,9 @@ import static frc.robot.vision.VisionConstants.*;
 public class Vision extends SubsystemBase {
 
     private final Limelight limelight;
+    private final VisionShuffleboard visionShuffleboard;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
-    private final VisionShuffleboard visionShuffleboard;
 
     public Vision() {
         limelight = Limelight.getInstance();
