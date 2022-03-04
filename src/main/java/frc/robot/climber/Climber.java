@@ -10,6 +10,7 @@ public class Climber extends SubsystemBase {
 
     public Climber(ClimberComponents components) {
         this.components = components;
+        new ClimberShuffleBoard(this);
     }
 
     public void moveBySpeed(double speed) {

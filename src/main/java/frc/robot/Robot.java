@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
+import frc.robot.climber.Climber;
+import frc.robot.climber.ClimberComponents;
+import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -57,6 +60,7 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     Turret turret;
     Vision vision;
+    Climber climber;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -73,7 +77,7 @@ public class Robot extends TimedRobot {
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
-
+        ClimberComponents climberComponents;
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
             intakeFrontComponents = new IntakeFrontComponentsBase();
@@ -83,6 +87,7 @@ public class Robot extends TimedRobot {
             turretComponents = new TurretComponentsBase();
             arcComponents = new ArcComponentsBase();
             shooterComponents = new ShooterComponentsBase();
+            climberComponents = new ClimberComponentsBase();
             vision = new Vision();
         } else {
             driveTrainComponents = null;
@@ -93,6 +98,7 @@ public class Robot extends TimedRobot {
             turretComponents = null;
             arcComponents = null;
             shooterComponents = null;
+            climberComponents = null;
             vision = null;
         }
 
@@ -105,9 +111,10 @@ public class Robot extends TimedRobot {
         turret = new Turret(turretComponents);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
+        climber = new Climber(climberComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+                intakeBack, loader, ballTrigger).withClimber(climber);
 
         new DeputyOi();
 

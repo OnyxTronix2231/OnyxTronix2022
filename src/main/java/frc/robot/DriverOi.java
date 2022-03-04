@@ -3,6 +3,8 @@ package frc.robot;
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.climber.Climber;
+import frc.robot.climber.ClimberDriverOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -47,6 +49,14 @@ public class DriverOi {
     public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getButtonLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withClimber(Climber climber) {
+        Trigger closeSolenoid = new JoystickButton(controller, controller.getButtonDown());
+        Trigger openSolenoid = new JoystickButton(controller, controller.getButtonDown());
+        JoystickAxis openArms = new JoystickAxis(controller, controller.getAxisRightY());
+        new ClimberDriverOiBinder(climber, closeSolenoid, openSolenoid, openArms);
         return this;
     }
 }
