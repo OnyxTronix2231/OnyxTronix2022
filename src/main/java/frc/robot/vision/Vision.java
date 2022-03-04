@@ -14,9 +14,12 @@ public class Vision extends SubsystemBase {
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
+    private VisionShuffleboard visionShuffleboard;
 
     public Vision() {
         limelight = Limelight.getInstance();
+        visionShuffleboard = new VisionShuffleboard(this);
+        visionShuffleboard.init();
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Vision extends SubsystemBase {
             double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
             turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
                     limelightOffsetFromTarget);
-            turretToTargetVectorRTT.add(LIMELIGHT_TO_TURRET_VECTOR_RTT); //TODO: it is in fact sub!!!
+            turretToTargetVectorRTT.add(LIMELIGHT_TO_TURRET_VECTOR_RTT);
         } else {
             turretToTargetVectorRTT = null;
         }
@@ -59,7 +62,7 @@ public class Vision extends SubsystemBase {
 
     public double getHorizontalDistanceTurretToTarget() {
         if (turretToTargetVectorRTT != null)
-            return turretToTargetVectorRTT.magnitude();
+            return turretToTargetVectorRTT.magnitude() + TARGET_RADIUS;
         return TARGET_NOT_FOUND;
     }
 
