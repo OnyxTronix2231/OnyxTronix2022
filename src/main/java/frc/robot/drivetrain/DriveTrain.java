@@ -12,12 +12,11 @@ import static frc.robot.Constants.TARGET_POSE_X;
 import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
 import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
-import static frc.robot.turret.TurretConstants.TARGET_POS;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
     public double forwardSpeedValue;
-    private Field2d field2d;
+    private final Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -54,8 +53,8 @@ public class DriveTrain extends SubsystemBase {
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(Calculations.encoderUnitsDeciSecToMetersSec(
-                        driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
-                        Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
+                driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
+                Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
     }
 
     public double getRobotSpeedMPS() {
@@ -73,7 +72,9 @@ public class DriveTrain extends SubsystemBase {
         return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
-    public double getPitch() { return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw(); }
+    public double getPitch() {
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
+    }
 
     public void resetOdometryToPose(Translation2d translation) {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));

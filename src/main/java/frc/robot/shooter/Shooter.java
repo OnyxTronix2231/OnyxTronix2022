@@ -32,7 +32,7 @@ public class Shooter extends SubsystemBase {
         initSetPIDSpeed(distanceToRPM(distance));
     }
 
-    public void updateShootByDistance(double distance){
+    public void updateShootByDistance(double distance) {
         updateSetPIDSpeed(distanceToRPM(distance));
     }
 
@@ -57,11 +57,11 @@ public class Shooter extends SubsystemBase {
         components.getController().disable();
     }
 
-    public boolean isOnTarget(){
+    public boolean isOnTarget() {
         return components.getController().isOnTarget(TOLERANCE);
     }
 
-    public ShooterComponents getComponents(){
+    public ShooterComponents getComponents() {
         return components;
     }
 }

@@ -1,6 +1,5 @@
 package frc.robot.shooter;
 
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.StatusFrameConfig;
@@ -11,14 +10,12 @@ import pid.interfaces.PIDController;
 import sensors.counter.Counter;
 import sensors.counter.TalonEncoder;
 
-import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
-import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 import static frc.robot.shooter.ShooterConstants.*;
 import static frc.robot.shooter.ShooterConstants.ComponentsConstants.MASTER_MOTOR_ID;
 import static frc.robot.shooter.ShooterConstants.ComponentsConstants.SLAVE_MOTOR_ID;
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.RPMToEncUnitsDecisec;
 
-public class ShooterComponentsBase implements ShooterComponents{
+public class ShooterComponentsBase implements ShooterComponents {
 
     private final WPI_TalonFX masterMotor;
     private final WPI_TalonFX slaveMotor;
@@ -47,7 +44,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         controller.setPIDFTerms(controller.getPIDFTerms());
     }
 
-    public TalonFXConfiguration getConfiguration(){
+    public TalonFXConfiguration getConfiguration() {
         TalonFXConfiguration config = new TalonFXConfiguration();
         config.closedloopRamp = CLOSE_LOOP_RAMP;
         config.slot0.integralZone = RPMToEncUnitsDecisec(INTEGRAL_ZONE);
@@ -62,6 +59,7 @@ public class ShooterComponentsBase implements ShooterComponents{
         config.openloopRamp = OPEN_LOOP_RAMP;
         return config;
     }
+
     @Override
     public WPI_TalonFX getMasterMotor() {
         return masterMotor;

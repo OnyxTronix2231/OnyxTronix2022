@@ -8,9 +8,9 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTriggerShuffleboard {
 
+    private final BallTrigger ballTrigger;
     private NetworkTableEntry ballInPlaceValueEntry;
     private NetworkTableEntry identifiedBallValueEntry;
-    private final BallTrigger ballTrigger;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
         this.ballTrigger = ballTrigger;

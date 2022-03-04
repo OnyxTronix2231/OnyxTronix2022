@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.shooter.commands.ShootByRPM;
 import frc.robot.shooter.commands.ShootBySpeed;
 
-import java.util.function.DoubleSupplier;
-
 import static frc.robot.shooter.ShooterConstants.*;
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDecisecToRPM;
 
@@ -26,7 +24,7 @@ public class ShooterShuffleBoard {
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);
-        Shuffleboard.getTab("Shooter").addNumber("err",()-> encUnitsDecisecToRPM(shooter.getError()));
+        Shuffleboard.getTab("Shooter").addNumber("err", () -> encUnitsDecisecToRPM(shooter.getError()));
 
         kP = Shuffleboard.getTab("Shooter").add("kP", KP).getEntry();
         kI = Shuffleboard.getTab("Shooter").add("kI", KI).getEntry();
@@ -48,6 +46,5 @@ public class ShooterShuffleBoard {
                 kI.getDouble(shooter.getComponents().getController().getPIDFTerms().getKi()),
                 kD.getDouble(shooter.getComponents().getController().getPIDFTerms().getKd()),
                 kF.getDouble(shooter.getComponents().getController().getPIDFTerms().getKf()));
-        ;
     }
 }

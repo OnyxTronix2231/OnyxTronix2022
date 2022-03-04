@@ -37,11 +37,11 @@ public class Arc extends SubsystemBase {
         components.getController().update(angleToEncoderUnits(angle));
     }
 
-    public void initMoveArcByDistance(double distance){
+    public void initMoveArcByDistance(double distance) {
         initMoveToAngle(distanceToAngle(distance));
     }
 
-    public void updateMoveArcByDistance(double distance){
+    public void updateMoveArcByDistance(double distance) {
         updateMoveToAngle(distanceToAngle(distance));
     }
 
@@ -72,7 +72,7 @@ public class Arc extends SubsystemBase {
         components.getMotor().configReverseSoftLimitEnable(enable);
     }
 
-    public boolean isOnTarget(){
+    public boolean isOnTarget() {
         return components.getController().isOnTarget(TOLERANCE);
     }
 }

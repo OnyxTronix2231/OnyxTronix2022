@@ -1,7 +1,6 @@
 package frc.robot.turret;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -10,9 +9,8 @@ import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
 import sensors.counter.TalonEncoder;
 
-import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
 import static frc.robot.turret.TurretConstants.*;
-import static frc.robot.turret.TurretConstants.Calculation.*;
+import static frc.robot.turret.TurretConstants.Calculation.degreesToAbsoluteEncoderUnits;
 import static frc.robot.turret.TurretConstants.ComponentsConstants.*;
 
 public class TurretComponentsBase implements TurretComponents {

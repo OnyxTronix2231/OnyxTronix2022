@@ -11,7 +11,7 @@ import java.util.function.DoubleSupplier;
 public class MoveConveyor extends ParallelCommandGroup {
 
     public MoveConveyor(Loader loader, BallTrigger ballTrigger, DoubleSupplier loadSpeed,
-                        DoubleSupplier ballTriggerSpeed){
+                        DoubleSupplier ballTriggerSpeed) {
         super(
                 new MoveLoaderBySpeed(loader, loadSpeed),
                 new MoveBallTriggerBySpeed(ballTrigger, ballTriggerSpeed)

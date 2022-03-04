@@ -1,12 +1,8 @@
 package frc.robot.yawControl;
 
-import edu.wpi.first.math.geometry.Pose2d;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
-
-import static frc.robot.Constants.*;
-import static frc.robot.turret.TurretConstants.*;
 
 public class YawControl extends Turret {
 

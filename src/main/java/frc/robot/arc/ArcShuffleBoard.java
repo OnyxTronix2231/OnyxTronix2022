@@ -2,9 +2,9 @@ package frc.robot.arc;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import frc.robot.arc.commands.CalibrateArc;
 import frc.robot.arc.commands.MoveArcBySpeed;
 import frc.robot.arc.commands.MoveArcToAngle;
-import frc.robot.arc.commands.CalibrateArc;
 
 import static frc.robot.arc.ArcConstants.ArcCalculations.encoderUnitsToAngle;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;

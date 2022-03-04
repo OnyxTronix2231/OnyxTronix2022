@@ -16,10 +16,10 @@ import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.LOA
 public class ShootBallByDistanceAndAngleRTR extends SequentialCommandGroup {
 
     public ShootBallByDistanceAndAngleRTR(Shooter shooter, Arc arc, Turret turret, Loader loader, BallTrigger ballTrigger,
-                                          DoubleSupplier distanceFromTarget, DoubleSupplier angleRTR){
+                                          DoubleSupplier distanceFromTarget, DoubleSupplier angleRTR) {
         super(
                 new GetReadyToShoot(shooter, arc, turret, distanceFromTarget, angleRTR),
-                new MoveConveyor(loader, ballTrigger, ()-> LOADER_SPEED, ()-> BALL_TRIGGER_SPEED)
+                new MoveConveyor(loader, ballTrigger, () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED)
         );
     }
 }

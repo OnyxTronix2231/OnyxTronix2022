@@ -4,6 +4,7 @@ import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 
 public class ArcConstants {
 
+    public static final double CALIBRATION_SPEED = -0.2;
     static final int TIME_OUT = 100;
     static final int MAX_ACC = 3000;
     static final int ACC_SMOOTHING = 0;
@@ -15,7 +16,6 @@ public class ArcConstants {
     static final double KI = 0;
     static final double KD = 20;
     static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
-    public static final double CALIBRATION_SPEED = -0.2;
     static final double INTEGRAL_ZONE = 100;
     static final double TOLERANCE = 1;
 

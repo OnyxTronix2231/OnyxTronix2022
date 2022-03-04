@@ -1,13 +1,11 @@
 package frc.robot.conveyor.loader;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.StatusFrameConfig;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
 
-import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
 import static frc.robot.conveyor.loader.LoaderConstants.ComponentsConstant.*;
 
 public class LoaderComponentsBase implements LoaderComponents {

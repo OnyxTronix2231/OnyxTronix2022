@@ -13,7 +13,7 @@ import java.util.function.DoubleSupplier;
 public class GetReadyToShoot extends ParallelDeadlineGroup {
 
     public GetReadyToShoot(Shooter shooter, Arc arc, Turret turret,
-                           DoubleSupplier distanceFromTarget, DoubleSupplier angleRTR){
+                           DoubleSupplier distanceFromTarget, DoubleSupplier angleRTR) {
         super(
                 new ShootByTargetDistance(shooter, distanceFromTarget),
                 new MoveArcByTargetDistance(arc, distanceFromTarget),

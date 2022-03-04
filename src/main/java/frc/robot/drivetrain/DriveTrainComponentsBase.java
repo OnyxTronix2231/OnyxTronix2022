@@ -2,7 +2,6 @@ package frc.robot.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -18,16 +17,16 @@ import static frc.robot.drivetrain.DriveTrainConstants.ComponentsConstants.*;
 
 public class DriveTrainComponentsBase implements DriveTrainComponents {
 
-    private WPI_TalonFX leftMasterMotor;
-    private WPI_TalonFX leftSlaveMotor;
-    private WPI_TalonFX rightMasterMotor;
-    private WPI_TalonFX rightSlaveMotor;
-    private DifferentialDrive differentialDrive;
-    private DifferentialDriveOdometry odometry;
-    private NormalizedPigeonIMU pigeonIMU;
-    private TalonEncoder leftEncoder;
-    private TalonEncoder rightEncoder;
-    private Field2d field2d;
+    private final WPI_TalonFX leftMasterMotor;
+    private final WPI_TalonFX leftSlaveMotor;
+    private final WPI_TalonFX rightMasterMotor;
+    private final WPI_TalonFX rightSlaveMotor;
+    private final DifferentialDrive differentialDrive;
+    private final DifferentialDriveOdometry odometry;
+    private final NormalizedPigeonIMU pigeonIMU;
+    private final TalonEncoder leftEncoder;
+    private final TalonEncoder rightEncoder;
+    private final Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);

@@ -1,13 +1,11 @@
 package frc.robot.conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.Rev2mDistanceSensor;
 import frc.robot.StatusFrameConfig;
 
-import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsConstants.*;
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {

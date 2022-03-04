@@ -2,8 +2,8 @@ package frc.robot.turret;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.turret.TurretConstants.*;
 import static frc.robot.turret.TurretConstants.Calculation.*;
+import static frc.robot.turret.TurretConstants.TOLERANCE_DEGREES;
 
 public class Turret extends SubsystemBase {
 
@@ -59,7 +59,7 @@ public class Turret extends SubsystemBase {
         updateMoveToDegreeRTR(startingAngle + deg);
     }
 
-    public double convertAngleOffsetToRTR(double deg){
+    public double convertAngleOffsetToRTR(double deg) {
         return getCurrentAngleRTR() - deg;
     }
 
