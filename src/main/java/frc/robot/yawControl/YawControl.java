@@ -1,8 +1,14 @@
 package frc.robot.yawControl;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
+
+import static frc.robot.Constants.TARGET_POSE_X;
+import static frc.robot.Constants.TARGET_POSE_Y;
+import static frc.robot.turret.TurretConstants.*;
+import static frc.robot.turret.TurretConstants.SIDE_TARGET_OFFSET;
 
 public class YawControl extends Turret {
 
@@ -23,5 +29,20 @@ public class YawControl extends Turret {
 
     public double getAngleRTRToTarget() {
         return getRTFToRTRAngle(driveTrain.getAngleToTargetByPose());
+    }
+
+    public double getAngleToEjectBall(){
+        Pose2d currentPos = driveTrain.getPose();
+        if (currentPos.getX() < TARGET_POSE_X){
+            return DRIVERS_DIRECTION;
+        } if (currentPos.getY() < TARGET_POSE_Y){
+            return driveTrain.getAngleToAPose(P1);
+        } return driveTrain.getAngleToAPose(P2);
+    }
+
+    public double getAngleToTargetSideRTF(){
+        double angle = driveTrain.getAngleToTargetByPose();
+        angle += Math.toDegrees(Math.atan(SIDE_TARGET_OFFSET / driveTrain.getDistanceFromTargetByEncoders()));
+        return angle;
     }
 }
