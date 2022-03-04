@@ -13,18 +13,16 @@ import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDec
 public class ShooterShuffleBoard {
 
     private final Shooter shooter;
-    private NetworkTableEntry kP;
-    private NetworkTableEntry kI;
-    private NetworkTableEntry kD;
-    private NetworkTableEntry kF;
-    private NetworkTableEntry setRPM;
-    private NetworkTableEntry setSpeed;
+    private final NetworkTableEntry kP;
+    private final NetworkTableEntry kI;
+    private final NetworkTableEntry kD;
+    private final NetworkTableEntry kF;
+    private final NetworkTableEntry setRPM;
+    private final NetworkTableEntry setSpeed;
 
     public ShooterShuffleBoard(Shooter shooter) {
         this.shooter = shooter;
-    }
 
-    public void init(){
         Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);

@@ -8,20 +8,19 @@ import static frc.robot.turret.TurretConstants.Calculation.*;
 public class Turret extends SubsystemBase {
 
     private final TurretComponents components;
-    private final TurretShuffleBoard turretShuffleBoard;
+    //private final TurretShuffleBoard turretShuffleBoard;
 
     private double startingAngle;
     private double targetAngle;
 
     public Turret(TurretComponents turretComponents) {
         components = turretComponents;
-        turretShuffleBoard = new TurretShuffleBoard(this);
-        //turretShuffleBoard.init();
+        //turretShuffleBoard = new TurretShuffleBoard(this, components);
     }
 
     @Override
     public void periodic() {
-        turretShuffleBoard.update();
+        //turretShuffleBoard.update();
     }
 
     public double getCurrentAngleRTR() {
@@ -62,9 +61,5 @@ public class Turret extends SubsystemBase {
 
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
-    }
-
-    public TurretComponents getTurretComponents(){
-        return components;
     }
 }

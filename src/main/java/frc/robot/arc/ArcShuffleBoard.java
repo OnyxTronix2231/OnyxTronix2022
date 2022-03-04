@@ -12,21 +12,19 @@ import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 public class ArcShuffleBoard {
 
     private final Arc arc;
-    private NetworkTableEntry setAngle;
-    private NetworkTableEntry percentageOutput;
-    private NetworkTableEntry kP;
-    private NetworkTableEntry kI;
-    private NetworkTableEntry kD;
-    private NetworkTableEntry kF;
-    private NetworkTableEntry cruiseVel;
-    private NetworkTableEntry acceleration;
-    private NetworkTableEntry accSmoothing;
+    private final NetworkTableEntry setAngle;
+    private final NetworkTableEntry percentageOutput;
+    private final NetworkTableEntry kP;
+    private final NetworkTableEntry kI;
+    private final NetworkTableEntry kD;
+    private final NetworkTableEntry kF;
+    private final NetworkTableEntry cruiseVel;
+    private final NetworkTableEntry acceleration;
+    private final NetworkTableEntry accSmoothing;
 
     public ArcShuffleBoard(Arc arc) {
         this.arc = arc;
-    }
 
-    public void init() {
         Shuffleboard.getTab("Arc").addNumber("current encoderUnits pos",
                 () -> arc.getComponents().getCounter().getCount());
         Shuffleboard.getTab("Arc").addNumber("current angle",

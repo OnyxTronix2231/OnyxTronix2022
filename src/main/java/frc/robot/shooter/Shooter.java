@@ -8,16 +8,15 @@ import static frc.robot.shooter.ShooterConstants.ShooterCalculations.encUnitsDec
 public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
-    private final ShooterShuffleBoard shuffleBoard;
+    //private final ShooterShuffleBoard shuffleBoard;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
-        shuffleBoard = new ShooterShuffleBoard(this);
-        //shuffleBoard.init();
+        //shuffleBoard = new ShooterShuffleBoard(this);
     }
 
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void setSpeed(double speed) {
