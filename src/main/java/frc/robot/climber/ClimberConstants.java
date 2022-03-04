@@ -15,4 +15,6 @@ public class ClimberConstants {
    static final DoubleSolenoid.Value RIGHT_SOLENOID_CLOSE_VALUE = DoubleSolenoid.Value.kReverse;
    static final DoubleSolenoid.Value LEFT_SOLENOID_OPEN_VALUE = DoubleSolenoid.Value.kForward;
    static final DoubleSolenoid.Value LEFT_SOLENOID_CLOSE_VALUE = DoubleSolenoid.Value.kReverse;
+   static final double OPEN_CLIMBER_SPEED = 0;
+   static final double CLOSE_CLIMBER_SPEED = 0;
 }
