@@ -14,7 +14,7 @@ public class Vision extends SubsystemBase {
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
-    private VisionShuffleboard visionShuffleboard;
+    private final VisionShuffleboard visionShuffleboard;
 
     public Vision() {
         limelight = Limelight.getInstance();
