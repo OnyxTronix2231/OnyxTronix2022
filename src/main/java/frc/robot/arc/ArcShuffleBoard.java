@@ -21,7 +21,6 @@ public class ArcShuffleBoard {
     private final NetworkTableEntry cruiseVel;
     private final NetworkTableEntry acceleration;
     private final NetworkTableEntry accSmoothing;
-    private final NetworkTableEntry calibrateSpeed;
 
     public ArcShuffleBoard(Arc arc) {
         this.arc = arc;
@@ -41,13 +40,13 @@ public class ArcShuffleBoard {
 
         setAngle = Shuffleboard.getTab("Arc").add("setAngle", ARC_MIN_ANGLE).getEntry();
         percentageOutput = Shuffleboard.getTab("Arc").add("percentageOutput", 0).getEntry();
-        calibrateSpeed = Shuffleboard.getTab("Arc").add("calibrateSpeed", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 percentageOutput.getDouble(0)));
         Shuffleboard.getTab("Arc").add("MoveTo30", new MoveArcToAngle(arc,
                 () -> 30));
 
+        Shuffleboard.getTab("Arc").add("Calibrate", new CalibrateArc(arc));
         Shuffleboard.getTab("Arc").add("MoveTo45", new MoveArcToAngle(arc,
                 () -> 45));
 

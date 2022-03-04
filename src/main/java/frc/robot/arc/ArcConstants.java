@@ -5,16 +5,18 @@ import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 public class ArcConstants {
 
     static final int TIME_OUT = 100;
-    static final int MAX_ACC = 1000;
+    static final int MAX_ACC = 3000;
     static final int ACC_SMOOTHING = 0;
-    static final int CRUISE_VELOCITY = 500;
+    static final int CRUISE_VELOCITY = 550;
     static final double SPEED = 0;
-    static final double KP = 0.5;
-    static final double KI = 0.00251;
-    static final double KD = 8;
-    static final double KF = 1.657;
+    static final double CLOSE_LOOP_OUTPUT = 1023;
+    static final double MAX_VELOCITY = 510 * 1.25;
+    static final double KP = 8;
+    static final double KI = 0;
+    static final double KD = 20;
+    static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
     public static final double CALIBRATION_SPEED = -0.2;
-    static final double INTEGRAL_ZONE = 25;
+    static final double INTEGRAL_ZONE = 100;
 
     public static class ComponentsConstants {
 

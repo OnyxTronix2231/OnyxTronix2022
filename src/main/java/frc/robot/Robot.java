@@ -75,12 +75,12 @@ public class Robot extends TimedRobot {
         ShooterComponents shooterComponents;
 
         if (Robot.isReal()) {
-            driveTrainComponents = new DriveTrainComponentsBase();
+            /*driveTrainComponents = new DriveTrainComponentsBase();
             intakeFrontComponents = new IntakeFrontComponentsBase();
             intakeBackComponents = new IntakeBackComponentsBase();
             loaderComponents = new LoaderComponentsBase();
             ballTriggerComponents = new BallTriggerComponentsBase();
-            turretComponents = new TurretComponentsBase();
+            turretComponents = new TurretComponentsBase();*/
             arcComponents = new ArcComponentsBase();
             shooterComponents = new ShooterComponentsBase();
             vision = new Vision();
@@ -96,23 +96,24 @@ public class Robot extends TimedRobot {
             vision = null;
         }
 
-        driveTrain = new DriveTrain(driveTrainComponents);
-        intakeFront = new Intake(intakeFrontComponents, "Front");
-        intakeBack = new Intake(intakeBackComponents, "Back");
-        loader = new Loader(loaderComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new Turret(turretComponents);
+       // driveTrain = new DriveTrain(driveTrainComponents);
+        //intakeFront = new Intake(intakeFrontComponents, "Front");
+       // intakeBack = new Intake(intakeBackComponents, "Back");
+       // loader = new Loader(loaderComponents);
+        //ballTrigger = new BallTrigger(ballTriggerComponents);
+        //joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+        //turret = new Turret(turretComponents);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+        new DriverOi();
+                //.withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
+                //intakeBack, loader, ballTrigger);
 
         new DeputyOi();
 
         new DriversShuffleboard();
-        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
+        //autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
     }
 
     /**
@@ -129,7 +130,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
-        SmartDashboard.updateValues();
+//        SmartDashboard.updateValues();
     }
 
     /**
@@ -137,12 +138,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (isDisabled()) driveTrain.setNeutralModeToCoast();
-            }
-        }, 3000);
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+//            }
+//        }, 3000);
     }
 
     @Override
@@ -154,10 +155,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().schedule();
-        }
+        //driveTrain.setNeutralModeToBrake();
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().schedule();
+//        }
     }
 
     /**
@@ -169,10 +170,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().cancel();
-        }
+        //driveTrain.setNeutralModeToBrake();
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().cancel();
+//        }
     }
 
     /**

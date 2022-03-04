@@ -1,5 +1,6 @@
 package frc.robot.arc;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -26,6 +27,7 @@ public class ArcComponentsBase implements ArcComponents {
         motor.setInverted(true);
         motor.config_IntegralZone(0,INTEGRAL_ZONE);
 
+        motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         encoder = new TalonEncoder(motor);
 
         controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(KP, KI, KD, KF),
