@@ -3,7 +3,6 @@ package frc.robot.conveyor.ballTrigger;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
@@ -18,7 +17,7 @@ public class BallTriggerShuffleboard {
     private NetworkTableEntry isBlueEntry;
 
     private final BallTrigger ballTrigger;
-    private SendableChooser<Command> isOurBall;
+    private SendableChooser<String> isOurBall;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
         this.ballTrigger = ballTrigger;
@@ -26,14 +25,14 @@ public class BallTriggerShuffleboard {
     }
 
     public void init() {
-    //    ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue",
-    //            INPLACE_DISTANCE_MM).getEntry();
-    //    identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
-    //            IDENTIFIED_DISTANCE_MM).getEntry();
+        //    ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue",
+        //            INPLACE_DISTANCE_MM).getEntry();
+        //    identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
+        //            IDENTIFIED_DISTANCE_MM).getEntry();
 
         ballInPlaceValueEntryV2 = Shuffleboard.getTab("BallTrigger").add("InPlaceValueV2",
                 INPLACE_DISTANCE_COLOR).getEntry();
-        identifiedBallValueEntryV2=Shuffleboard.getTab("BallTrigger").add("IdentifiedValueV2",
+        identifiedBallValueEntryV2 = Shuffleboard.getTab("BallTrigger").add("IdentifiedValueV2",
                 IDENTIFIED_DISTANCE_ANALOG).getEntry();
 
         isRedEntry = Shuffleboard.getTab("BallTrigger").add("isRedValue",
@@ -46,9 +45,6 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
-        isOurBall.setDefaultOption("TeamRed",
-                ballTrigger::isRed);
-
 
         //Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
         //Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
@@ -60,41 +56,40 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").addBoolean("isBlue", ballTrigger::isBlue);
 
 
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceAnalog",ballTrigger::getAnalogDistance);
+        Shuffleboard.getTab("BallTrigger").addNumber("DistanceAnalog", ballTrigger::getAnalogDistance);
         Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor", ballTrigger::getColorDistance);
 
-        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentifyV2",ballTrigger::isBallIdentifiedV2);
-        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlaceV2", ballTrigger::isBallInPlaceV2);
+        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlaceV2", ballTrigger::isBallIdentifiedV2);
 
-        Shuffleboard.getTab("BallTrigger").add(isOurBall);
-    }
+            Shuffleboard.getTab("BallTrigger").add(isOurBall);
+        }
 
-    public double getBallInPlaceValueEntry() {
-        return ballInPlaceValueEntry != null ?
-                ballInPlaceValueEntry.getDouble(INPLACE_DISTANCE_MM) : INPLACE_DISTANCE_MM;
-    }
+        public double getBallInPlaceValueEntry () {
+            return ballInPlaceValueEntry != null ?
+                    ballInPlaceValueEntry.getDouble(INPLACE_DISTANCE_MM) : INPLACE_DISTANCE_MM;
+        }
 
-    public double getIdentifiedBallValueEntry() {
-        return identifiedBallValueEntry != null ?
-                identifiedBallValueEntry.getDouble(IDENTIFIED_DISTANCE_MM) : IDENTIFIED_DISTANCE_MM;
-    }
+        public double getIdentifiedBallValueEntry () {
+            return identifiedBallValueEntry != null ?
+                    identifiedBallValueEntry.getDouble(IDENTIFIED_DISTANCE_MM) : IDENTIFIED_DISTANCE_MM;
+        }
 
-    public double getBallInPlaceValueEntryV2(){
-        return ballInPlaceValueEntryV2 !=null ?
-                ballInPlaceValueEntryV2.getDouble(INPLACE_DISTANCE_COLOR) : INPLACE_DISTANCE_COLOR;
-    }
-    public double getIdentifiedBallValueEntryV2(){
-        return identifiedBallValueEntryV2 !=null ?
-                identifiedBallValueEntryV2.getDouble(IDENTIFIED_DISTANCE_ANALOG) : IDENTIFIED_DISTANCE_ANALOG;
-    }
+        public double getBallInPlaceValueEntryV2 () {
+            return ballInPlaceValueEntryV2 != null ?
+                    ballInPlaceValueEntryV2.getDouble(INPLACE_DISTANCE_COLOR) : INPLACE_DISTANCE_COLOR;
+        }
+        public double getIdentifiedBallValueEntryV2 () {
+            return identifiedBallValueEntryV2 != null ?
+                    identifiedBallValueEntryV2.getDouble(IDENTIFIED_DISTANCE_ANALOG) : IDENTIFIED_DISTANCE_ANALOG;
+        }
 
-    public double getIsRedEntry(){
-        return isRedEntry != null?
-                isRedEntry.getDouble(THRESHOLD_REDNESS) : THRESHOLD_REDNESS;
-    }
+        public double getIsRedEntry () {
+            return isRedEntry != null ?
+                    isRedEntry.getDouble(THRESHOLD_REDNESS) : THRESHOLD_REDNESS;
+        }
 
-    public double getIsBlueEntry(){
-        return isBlueEntry != null?
-                isBlueEntry.getDouble(THRESHOLD_BLUENESS) : THRESHOLD_BLUENESS;
+        public double getIsBlueEntry () {
+            return isBlueEntry != null ?
+                    isBlueEntry.getDouble(THRESHOLD_BLUENESS) : THRESHOLD_BLUENESS;
+        }
     }
-}

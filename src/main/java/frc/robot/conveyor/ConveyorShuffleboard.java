@@ -25,8 +25,7 @@ public class ConveyorShuffleboard {
         NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("Conveyor").add("BallTriggerSpeed",
                 BALLTRIGGER_CONVEYOR_SPEED).getEntry();
 
-        Shuffleboard.getTab("Conveyor").add(new LoadBalls(loader, ballTrigger,
-                () -> loaderSpeed.getDouble(LOADER_CONVEYOR_SPEED),
-                () -> ballTriggerSpeed.getDouble(BALLTRIGGER_CONVEYOR_SPEED)));
+        Shuffleboard.getTab("Conveyor").add(new LoadBalls(loader,ballTrigger,
+                () -> loaderSpeed.getDouble(LOADER_CONVEYOR_SPEED)));
     }
 }
