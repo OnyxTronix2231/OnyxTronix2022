@@ -53,10 +53,10 @@ public class DriverOi {
     }
 
     public DriverOi withClimber(Climber climber) {
-        Trigger closeSolenoid = new JoystickButton(controller, controller.getButtonDown());
-        Trigger openSolenoid = new JoystickButton(controller, controller.getButtonDown());
+        Trigger closePistons = new JoystickButton(controller, controller.getButtonDown());
+        Trigger openPistons = new JoystickButton(controller, controller.getButtonDown());
         JoystickAxis openArms = new JoystickAxis(controller, controller.getAxisRightY());
-        new ClimberDriverOiBinder(climber, closeSolenoid, openSolenoid, openArms);
+        new ClimberDriverOiBinder(climber, closePistons, openPistons, openArms);
         return this;
     }
 }
