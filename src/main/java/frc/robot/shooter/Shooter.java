@@ -28,6 +28,10 @@ public class Shooter extends SubsystemBase {
         components.getController().enable();
     }
 
+    public double getSetpoint() {
+        return encUnitsDecisecToRPM(components.getController().getSetpoint());
+    }
+
     public void initShootByDistance(double distance) {
         initSetPIDSpeed(distanceToRPM(distance));
     }

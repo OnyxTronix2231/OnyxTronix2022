@@ -31,6 +31,7 @@ import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
 import frc.robot.providers.AngleVisionProvider;
+import frc.robot.providers.DistanceVisionProvider;
 import frc.robot.providers.ShootBallConditionalsProviderAndVision;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
@@ -121,7 +122,7 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
 
 
-        distanceSupplier = new AngleVisionProvider(vision);
+        distanceSupplier = new DistanceVisionProvider(vision);
         angleSupplier = new AngleVisionProvider(vision);
         conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
 
@@ -130,9 +131,12 @@ public class Robot extends TimedRobot {
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
+
                         angleSupplier, conditionSupplier);
 
-        new DeputyOi().withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier );
+        new DeputyOi()
+                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier )
+        ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);

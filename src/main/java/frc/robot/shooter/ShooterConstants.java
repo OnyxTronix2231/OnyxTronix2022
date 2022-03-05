@@ -49,8 +49,10 @@ public class ShooterConstants {
             if (distance == 0){
                 return 0;
             }
+            System.out.println(distance);
+            System.out.println(3.9908 * distance + 2471.5);
             return 3.9908 * distance + 2471.5;
-        }
+}
 
         static double RPMToMPS(double RPM) {
             return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * RPM);
