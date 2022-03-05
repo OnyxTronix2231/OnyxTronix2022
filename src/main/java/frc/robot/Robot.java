@@ -177,10 +177,7 @@ public class Robot extends TimedRobot {
         }
     }
 
-    /**n.setNeutralModeToBrake();
-     if (autonomousShuffleboard.getSelectedCommand() != null) {
-     autonomousShuffleboard.getSelectedCommand().cancel();
-     }
+    /**
      * This function is called periodically during operator control.
      */
     @Override
