@@ -1,11 +1,11 @@
 package frc.robot.intake;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import frc.robot.StatusFrameConfig;
 
 import static frc.robot.intake.IntakeConstant.BackComponentConstants.*;
 
@@ -20,6 +20,8 @@ public class IntakeBackComponentsBase implements IntakeComponents {
         motor.configAllSettings(getFalconConfiguration());
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
+
+        new StatusFrameConfig(motor).disablePID1().disableFollowerCAN();
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, BACK_SOLENOID_FORWARD_CHANNEL,
                 BACK_SOLENOID_REVERSE_CHANNEL);

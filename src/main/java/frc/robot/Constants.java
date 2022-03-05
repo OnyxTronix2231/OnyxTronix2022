@@ -20,6 +20,8 @@ public final class Constants {
     public static final int DRIVE_JOYSTICK_PORT = 0;
     public static final int DEPUTY_JOYSTICK_PORT = 1;
 
+    public static final int LOW_PRIORITY_STATUS_FRAME_PERIODIC = 255;
+
     public static final double TARGET_POSE_X = 8.275;
     public static final double TARGET_POSE_Y = 4.115;
 }

@@ -2,8 +2,6 @@ package frc.robot.arc.commands;
 
 import frc.robot.arc.Arc;
 
-import java.util.function.DoubleSupplier;
-
 import static frc.robot.arc.ArcConstants.CALIBRATION_SPEED;
 
 public class CalibrateArc extends MoveArcBySpeed {
@@ -11,7 +9,7 @@ public class CalibrateArc extends MoveArcBySpeed {
     private final Arc arc;
 
     public CalibrateArc(Arc arc) {
-        super(arc, ()-> CALIBRATION_SPEED);
+        super(arc, () -> CALIBRATION_SPEED);
         this.arc = arc;
         addRequirements(arc);
     }

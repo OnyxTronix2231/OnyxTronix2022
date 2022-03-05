@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.TARGET_POSE_X;
 import static frc.robot.Constants.TARGET_POSE_Y;
 import static frc.robot.drivetrain.DriveTrainConstants.*;
+import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
     public double forwardSpeedValue;
-    private Field2d field2d;
+    private final Field2d field2d;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -52,8 +53,8 @@ public class DriveTrain extends SubsystemBase {
 
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(Calculations.encoderUnitsDeciSecToMetersSec(
-                        driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
-                        Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
+                driveTrainComponents.getLeftMasterMotor().getSelectedSensorVelocity()),
+                Calculations.encoderUnitsDeciSecToMetersSec(driveTrainComponents.getRightMasterMotor().getSelectedSensorVelocity()));
     }
 
     public double getRobotSpeedMPS() {
@@ -72,7 +73,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getPitch() {
-        return driveTrainComponents.getNormalizedPigeonIMU().getRawPitch();
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
     }
 
     public void resetOdometryToPose(Translation2d translation) {
@@ -83,6 +84,15 @@ public class DriveTrain extends SubsystemBase {
         Pose2d currentPose = getPose();
         return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
+    }
+
+    public double getAngleToTargetByPose() {
+        Pose2d currentPos = getPose();
+        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POSE_Y) /
+                (currentPos.getX() - TARGET_POSE_X)));
+        if (currentPos.getX() > TARGET_POSE_X)
+            angle += DEG_IN_HALF_CIRCLE;
+        return angle;
     }
 
     public Field2d getField() {

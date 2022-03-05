@@ -5,7 +5,8 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 
-import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.*;
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_C_ENEMY_BALL;
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_C_FIRST_BALL;
 
 public class Upper1BallAnd1EnemyBall extends SequentialCommandGroup {
 

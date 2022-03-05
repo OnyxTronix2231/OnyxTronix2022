@@ -9,6 +9,7 @@ package frc.robot;
 
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
@@ -17,23 +18,22 @@ import frc.robot.arc.ArcComponentsBase;
 import frc.robot.climber.Climber;
 import frc.robot.climber.ClimberComponents;
 import frc.robot.climber.ClimberComponentsBase;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriveTrainComponents;
-import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.shooter.Shooter;
-import frc.robot.shooter.ShooterComponents;
-import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
 import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterComponents;
+import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
@@ -78,6 +78,9 @@ public class Robot extends TimedRobot {
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
         ClimberComponents climberComponents;
+
+        LiveWindow.disableAllTelemetry();
+
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
             intakeFrontComponents = new IntakeFrontComponentsBase();
@@ -114,9 +117,9 @@ public class Robot extends TimedRobot {
         climber = new Climber(climberComponents);
 
         new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger).withClimber(climber);
+                intakeBack, loader, ballTrigger);
 
-        new DeputyOi();
+        new DeputyOi().withClimber(climber);
 
         new DriversShuffleboard();
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);

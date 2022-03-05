@@ -3,14 +3,12 @@ package frc.robot;
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberDriverOiBinder;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -49,14 +47,6 @@ public class DriverOi {
     public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getButtonLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
-        return this;
-    }
-
-    public DriverOi withClimber(Climber climber) {
-        Trigger closePistons = new JoystickButton(controller, controller.getButtonDown());
-        Trigger openPistons = new JoystickButton(controller, controller.getButtonDown());
-        JoystickAxis openArms = new JoystickAxis(controller, controller.getAxisRightY());
-        new ClimberDriverOiBinder(climber, closePistons, openPistons, openArms);
         return this;
     }
 }
