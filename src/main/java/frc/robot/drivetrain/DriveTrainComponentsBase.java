@@ -33,7 +33,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftMasterMotor.configFactoryDefault();
         leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
-        leftMasterMotor.configOpenloopRamp(RAMP_TIME);
 
         new StatusFrameConfig(leftMasterMotor).disablePID1();
 
@@ -42,7 +41,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftSlaveMotor.configAllSettings(getFalconConfiguration());
         leftSlaveMotor.setNeutralMode(NeutralMode.Brake);
         leftSlaveMotor.follow(leftMasterMotor);
-        leftSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_1_General, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
@@ -54,7 +52,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightMasterMotor.configAllSettings(getFalconConfiguration());
         rightMasterMotor.setInverted(true);
         rightMasterMotor.setNeutralMode(NeutralMode.Brake);
-        rightMasterMotor.configOpenloopRamp(RAMP_TIME);
 
         new StatusFrameConfig(rightMasterMotor).disablePID1();
 
@@ -64,7 +61,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.setInverted(true);
         rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
         rightSlaveMotor.follow(rightMasterMotor);
-        rightSlaveMotor.configOpenloopRamp(RAMP_TIME);
 
         new StatusFrameConfig(rightSlaveMotor).disablePID1().disableFollowerCAN();
 
@@ -132,7 +128,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
         config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
         config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
-        config.supplyCurrLimit.enable = false;
+        config.supplyCurrLimit.enable = true;
+        config.openloopRamp = RAMP_TIME;
         return config;
     }
 }

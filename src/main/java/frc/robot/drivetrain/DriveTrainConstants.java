@@ -36,9 +36,9 @@ public final class DriveTrainConstants {
         static final double MAX_OUTPUT_FORWARD = 1;
         static final double MAX_OUTPUT_REVERSE = -1;
         static final double CURRENT_LIMIT = 40;
-        static final double TRIGGER_THRESHOLD_CURRENT = 40;
-        static final double TRIGGER_THRESHOLD_TIME = 0.03;
-        static final double RAMP_TIME = 0.3;
+        static final double TRIGGER_THRESHOLD_CURRENT = 0;
+        static final double TRIGGER_THRESHOLD_TIME = 0;
+        static final double RAMP_TIME = 0.4;
     }
 
     public static final class Calculations {
