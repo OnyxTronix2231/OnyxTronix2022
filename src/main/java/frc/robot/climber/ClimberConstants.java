@@ -6,8 +6,8 @@ public class ClimberConstants {
 
    static final int RIGHT_SOLENOID_FORWARD_CHANNEL = 5; // TODO: CHECK AND FIX
    static final int RIGHT_SOLENOID_REVERSE_CHANNEL = 6; // TODO: CHECK AND FIX
-   static final int LEFT_SOLENOID_FORWARD_CHANNEL = 7; // TODO: CHECK AND FIX
-   static final int LEFT_SOLENOID_REVERSE_CHANNEL = 8; // TODO: CHECK AND FIX
+   static final int LEFT_SOLENOID_FORWARD_CHANNEL = 4; // TODO: CHECK AND FIX
+   static final int LEFT_SOLENOID_REVERSE_CHANNEL = 7; // TODO: CHECK AND FIX
    static final int LEFT_MOTOR_DEVICE_NUMBER = 13;
    static final int RIGHT_MOTOR_DEVICE_NUMBER = 14;
    static final int DESIRED_ENCODER_UNITS = 0; //TODO: CHECK AND FIX
