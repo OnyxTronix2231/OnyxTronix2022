@@ -3,11 +3,11 @@ package frc.robot.climber.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.climber.Climber;
 
-public class WaitUntilLeftEncoderPosition extends CommandBase {
+public class WaitUntilClimbedByLeftEncoder extends CommandBase {
 
     private final Climber climber;
 
-    public WaitUntilLeftEncoderPosition(Climber climber) {
+    public WaitUntilClimbedByLeftEncoder(Climber climber) {
         this.climber = climber;
     }
 
