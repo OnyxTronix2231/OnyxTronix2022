@@ -39,10 +39,10 @@ public class Climber extends SubsystemBase {
     }
 
     public boolean isRightEncoderOnTarget() {
-        return getRightEncoderUnits() <= DESIRED_ENCODER_UNITS;
+        return getRightEncoderUnits() >= DESIRED_ENCODER_UNITS;
     }
 
     public boolean isLeftEncoderOnTarget() {
-        return getLeftEncoderUnits() <= DESIRED_ENCODER_UNITS;
+        return getLeftEncoderUnits() >= DESIRED_ENCODER_UNITS;
     }
 }

@@ -12,7 +12,7 @@ public class ClimberConstants {
     static final DoubleSolenoid.Value SOLENOID_OPEN_VALUE = DoubleSolenoid.Value.kForward;
     static final DoubleSolenoid.Value SOLENOID_CLOSE_VALUE = DoubleSolenoid.Value.kReverse;
 
-    static final double OPEN_CLIMBER_SPEED = 0;
+    static final double OPEN_CLIMBER_SPEED = 0.5;
     static final double CLOSE_CLIMBER_SPEED = 0;
     static final double SUPPLY_CURRENT_LIMIT = 20;
     static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;

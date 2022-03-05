@@ -6,6 +6,6 @@ import frc.robot.climber.Climber;
 public class ClosePistons extends InstantCommand {
 
     public ClosePistons(Climber climber) {
-        super(climber::closePistons, climber);
+        super(climber::closePistons);
     }
 }

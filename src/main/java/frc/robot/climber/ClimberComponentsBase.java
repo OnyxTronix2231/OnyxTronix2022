@@ -20,16 +20,19 @@ public class ClimberComponentsBase implements ClimberComponents {
     public ClimberComponentsBase() {
         leftMotor = new WPI_TalonFX(LEFT_MOTOR_DEVICE_NUMBER);
         leftMotor.configFactoryDefault();
+        leftMotor.configAllSettings(getFalconConfiguration());
         leftMotor.setNeutralMode(NeutralMode.Brake);
-
         rightMotor = new WPI_TalonFX(RIGHT_MOTOR_DEVICE_NUMBER);
-        rightMotor.setNeutralMode(NeutralMode.Brake);
         rightMotor.configFactoryDefault();
-        
+        rightMotor.configAllSettings(getFalconConfiguration());
+        rightMotor.setNeutralMode(NeutralMode.Brake);
+
         doubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, SOLENOID_FORWARD_CHANNEL
                 , SOLENOID_REVERSE_CHANNEL);
         leftEncoder = new TalonEncoder(leftMotor);
+        leftEncoder.reset();
         rightEncoder = new TalonEncoder(rightMotor);
+        rightEncoder.reset();
     }
 
     @Override

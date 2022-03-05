@@ -1,6 +1,5 @@
 package frc.robot.climber.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import frc.robot.climber.Climber;
 

@@ -6,8 +6,8 @@ public class AdvancedClimberShuffleBoard {
 
     public AdvancedClimberShuffleBoard(AdvancedClimber advancedClimber) {
 
-        Shuffleboard.getTab("CrossPlatform").addNumber("current pitch", advancedClimber::getCurrentPitch);
-        Shuffleboard.getTab("CrossPlatform").addBoolean("is on desired angle and encoder position",
+        Shuffleboard.getTab("Climber").addNumber("current pitch", advancedClimber::getCurrentPitch);
+        Shuffleboard.getTab("Climber").addBoolean("is on desired angle and encoder position",
                 advancedClimber::hasReachedFourthBar);
     }
 }
