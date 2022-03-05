@@ -14,6 +14,6 @@ public class WaitUntilRobotPitchAngle extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return advancedClimber.hasReachedFourthBar();
+        return advancedClimber.isOnDesiredPitchAngle();
     }
 }
