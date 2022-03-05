@@ -6,7 +6,7 @@ import static frc.robot.climber.ClimberConstants.*;
 
 public class Climber extends SubsystemBase {
 
-    private final ClimberComponents components;
+    protected final ClimberComponents components;
 
     public Climber(ClimberComponents components) {
         this.components = components;
