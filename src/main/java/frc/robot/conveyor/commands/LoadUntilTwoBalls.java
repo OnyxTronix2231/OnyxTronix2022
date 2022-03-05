@@ -8,7 +8,7 @@ import java.util.function.DoubleSupplier;
 
 public class LoadUntilTwoBalls extends OnyxParallelDeadlineGroup {
     public LoadUntilTwoBalls(Loader loader, BallTrigger ballTrigger, DoubleSupplier LoaderSpeedSupplier) {
-        super(() -> loader.identifiedBall() && ballTrigger.isBallIdentifiedV2(),
+        super(() -> loader.identifiedBall() && ballTrigger.isBallInIdentifiedV2(),
                 new MoveLoaderBySpeed(loader, LoaderSpeedSupplier));
     }
 

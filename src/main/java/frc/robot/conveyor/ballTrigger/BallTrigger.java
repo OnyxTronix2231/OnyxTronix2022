@@ -66,16 +66,11 @@ public class BallTrigger extends SubsystemBase {
         return components.getColorSensor().getProximity();
     }
 
-    public boolean isBallInPlaceV2(){
-        return currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
+    public boolean isBallInIdentifiedV2(){
+        return currentAnalogDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
     }
 
     public double getAnalogDistance(){
         return components.getAnalogSensor().getDistance();
-    }
-
-    public boolean isBallIdentifiedV2(){
-        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2()||
-                currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
     }
 }
