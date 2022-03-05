@@ -8,16 +8,15 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
-import frc.robot.crossPlatform.teleopCommands.DriverShootBallBlindOiBinder;
-import frc.robot.crossPlatform.teleopCommands.ShootBallBlind;
+import frc.robot.crossPlatform.teleopCommands.DriverShootBallOnlyVisionOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
 import frc.robot.shooter.Shooter;
+import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
-import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
@@ -44,9 +43,10 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withShooterBlind(Shooter shooter, Arc arc, YawControl yawControl, BallTrigger ballTrigger, Loader loader){
+    public DriverOi withShootBallOnlyVision(Vision vision, Shooter shooter, Arc arc, YawControl yawControl,
+                                            BallTrigger ballTrigger, Loader loader){
         Trigger shoot = new JoystickAxis(controller, controller.getRightTrigger());
-        new DriverShootBallBlindOiBinder(shooter, arc, yawControl, ballTrigger, loader, shoot);
+        new DriverShootBallOnlyVisionOiBinder(shooter, arc, yawControl, ballTrigger, loader, shoot, vision);
         return this;
     }
 

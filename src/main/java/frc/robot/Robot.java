@@ -8,27 +8,19 @@
 package frc.robot;
 
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
-import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.arc.commands.MoveArcToAngle;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
-import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
-import frc.robot.conveyor.commands.LoadBalls;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.conveyor.loader.commands.MoveLoaderBySpeed;
-import frc.robot.crossPlatform.teleopCommands.ShootBallByDistanceAndAngleRTR;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -39,9 +31,6 @@ import frc.robot.intake.IntakeFrontComponentsBase;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
-import frc.robot.shooter.commands.ShootByRPM;
-import frc.robot.shooter.commands.ShootBySpeed;
-import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -49,9 +38,6 @@ import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static frc.robot.arc.ArcConstants.ArcCalculations.encoderUnitsToAngle;
-import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -126,7 +112,7 @@ public class Robot extends TimedRobot {
                 //.withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withShooterBlind(shooter, arc, turret, ballTrigger, loader)
+                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader)
         ;
 
         new DeputyOi();

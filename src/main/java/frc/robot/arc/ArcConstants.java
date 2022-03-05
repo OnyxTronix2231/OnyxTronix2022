@@ -1,5 +1,7 @@
 package frc.robot.arc;
 
+import org.opencv.core.Mat;
+
 import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
 
 public class ArcConstants {
@@ -40,7 +42,11 @@ public class ArcConstants {
         }
 
         static double distanceToAngle(double distance) {
-            return distance; //todo find the calculations for this
+            if (distance == 0){
+                return 20;
+            }
+            return (-9 * Math.pow(10, -5)) * Math.pow(distance, 2)
+                    + 0.1342 * distance + 8.5273;
         }
     }
 }

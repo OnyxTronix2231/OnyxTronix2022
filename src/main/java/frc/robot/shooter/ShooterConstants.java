@@ -46,7 +46,10 @@ public class ShooterConstants {
         }
 
         static double distanceToRPM(double distance) {
-            return 0;
+            if (distance == 0){
+                return 0;
+            }
+            return 3.9908 * distance + 2471.5;
         }
 
         static double RPMToMPS(double RPM) {

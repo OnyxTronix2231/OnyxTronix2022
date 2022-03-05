@@ -20,8 +20,8 @@ public class GetReadyToShoot extends ParallelCommandGroup {
     public GetReadyToShoot(Shooter shooter, Arc arc, Turret turret,
                            DoubleSupplier distanceFromTarget, DoubleSupplier angle) {
         super(
-                new ShootByRPM(shooter, distanceFromTarget),
-                new MoveArcToAngle(arc, distanceFromTarget),
+                new ShootByTargetDistance(shooter, distanceFromTarget),
+                new MoveArcByTargetDistance(arc, distanceFromTarget),
                 new SmartRotateByAngle(turret, angle));
     }
 }
