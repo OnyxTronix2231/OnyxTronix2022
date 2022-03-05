@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
@@ -127,15 +126,15 @@ public class Robot extends TimedRobot {
         conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
 
         new DriverOi().withDriveTrain(driveTrain)
-                //.withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
-
-                        angleSupplier, conditionSupplier);
+                        angleSupplier, conditionSupplier)
+                .withArcCalibration(arc);
 
         new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier )
+                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
+                .withArcCalibration(arc)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);

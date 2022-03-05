@@ -4,6 +4,7 @@ import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
+import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
@@ -67,6 +68,12 @@ public class DriverOi {
     public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withArcCalibration(Arc arc){
+        Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
+        new CalibrateArcOiBinder(arc, calibrate);
         return this;
     }
 }

@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
+import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
@@ -25,6 +26,12 @@ public class DeputyOi {
                                         DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
         Trigger getReady = new JoystickButton(controller, controller.getBumperLeft());
         new DeputeGetReadyToShootOiBinder(shooter, arc, yawControl, getReady, distanceSupplier, angleSupplier);
+        return this;
+    }
+
+    public DeputyOi withArcCalibration(Arc arc){
+        Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
+        new CalibrateArcOiBinder(arc, calibrate);
         return this;
     }
 }
