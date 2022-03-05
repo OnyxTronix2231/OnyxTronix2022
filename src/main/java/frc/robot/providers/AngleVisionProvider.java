@@ -7,6 +7,7 @@ import java.util.function.DoubleSupplier;
 public class AngleVisionProvider implements DoubleSupplier {
 
     private final Vision vision;
+    private double lastAngle;
 
     public AngleVisionProvider(Vision vision) {
         this.vision = vision;
@@ -14,6 +15,9 @@ public class AngleVisionProvider implements DoubleSupplier {
 
     @Override
     public double getAsDouble() {
-        return vision.hasTarget() ? -vision.getHorizontalAngleTurretToTargetRTT() : 0;
+        if (vision.hasTarget()){
+            lastAngle = -vision.getHorizontalAngleTurretToTargetRTT();
+        }
+        return lastAngle;
     }
 }

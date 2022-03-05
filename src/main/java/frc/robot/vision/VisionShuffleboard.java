@@ -1,6 +1,5 @@
 package frc.robot.vision;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class VisionShuffleboard {
@@ -13,8 +12,5 @@ public class VisionShuffleboard {
     public void init() {
         Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
         Shuffleboard.getTab("Vision").addNumber("Angle", vision::getHorizontalAngleTurretToTargetRTT);
-    }
-
-    public void periodic(){
     }
 }

@@ -35,7 +35,7 @@ public class ArcConstants {
             return ((angle) / ANGLE_PER_MOTOR_ROTATION) * ENCODER_UNITS_PER_ROUND;
         }
 
-        public static double encoderUnitsToAngle(double encoderUnits) {
+        static double encoderUnitsToAngle(double encoderUnits) {
             return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION);
         }
 

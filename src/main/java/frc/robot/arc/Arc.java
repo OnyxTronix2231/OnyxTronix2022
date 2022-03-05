@@ -3,8 +3,7 @@ package frc.robot.arc;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.shooter.ShooterConstants;
 
-import static frc.robot.arc.ArcConstants.ArcCalculations.angleToEncoderUnits;
-import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
+import static frc.robot.arc.ArcConstants.ArcCalculations.*;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MAX_ANGLE;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
 import static frc.robot.arc.ArcConstants.TOLERANCE;
@@ -12,11 +11,11 @@ import static frc.robot.arc.ArcConstants.TOLERANCE;
 public class Arc extends SubsystemBase {
 
     private final ArcComponents components;
-    private final ArcShuffleBoard shuffleBoard;
+    //private final ArcShuffleBoard shuffleBoard;
 
     public Arc(ArcComponents components) {
         this.components = components;
-        shuffleBoard = new ArcShuffleBoard(this);
+        //shuffleBoard = new ArcShuffleBoard(this);
         components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(ARC_MAX_ANGLE));
         components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(ARC_MIN_ANGLE));
         enableSoftLimitSwitch(true);
@@ -25,7 +24,7 @@ public class Arc extends SubsystemBase {
 
     @Override
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void initMoveToAngle(double angle) {
@@ -73,6 +72,10 @@ public class Arc extends SubsystemBase {
     public void enableSoftLimitSwitch(boolean enable) {
         components.getMotor().configForwardSoftLimitEnable(enable);
         components.getMotor().configReverseSoftLimitEnable(enable);
+    }
+
+    public double getCurrentAngle(){
+        return encoderUnitsToAngle(components.getCounter().getCount());
     }
 
     public boolean isOnTarget() {

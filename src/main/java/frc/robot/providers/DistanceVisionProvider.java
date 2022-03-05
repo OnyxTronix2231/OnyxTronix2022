@@ -7,6 +7,7 @@ import java.util.function.DoubleSupplier;
 public class DistanceVisionProvider implements DoubleSupplier {
 
     private final Vision vision;
+    private double lastDistance;
 
     public DistanceVisionProvider(Vision vision) {
         this.vision = vision;
@@ -14,6 +15,9 @@ public class DistanceVisionProvider implements DoubleSupplier {
 
     @Override
     public double getAsDouble() {
-        return vision.hasTarget() ? vision.getHorizontalDistanceTurretToTarget() : 0;
+        if (vision.hasTarget()) {
+            lastDistance = vision.getHorizontalDistanceTurretToTarget();
+        }
+        return lastDistance;
     }
 }
