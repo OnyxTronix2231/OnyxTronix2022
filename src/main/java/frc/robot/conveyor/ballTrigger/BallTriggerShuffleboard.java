@@ -2,6 +2,8 @@ package frc.robot.conveyor.ballTrigger;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.conveyor.ballTrigger.commands.MoveBallTriggerBySpeed;
 
 import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
@@ -14,10 +16,13 @@ public class BallTriggerShuffleboard {
     private NetworkTableEntry identifiedBallValueEntryV2;
     private NetworkTableEntry isRedEntry;
     private NetworkTableEntry isBlueEntry;
+
     private final BallTrigger ballTrigger;
+    private SendableChooser<Command> isOurBall;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
         this.ballTrigger = ballTrigger;
+        isOurBall = new SendableChooser<>();
     }
 
     public void init() {
@@ -41,6 +46,10 @@ public class BallTriggerShuffleboard {
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
+        isOurBall.setDefaultOption("TeamRed",
+                ballTrigger::isRed);
+
+
         //Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
         //Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         //Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
@@ -56,6 +65,8 @@ public class BallTriggerShuffleboard {
 
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentifyV2",ballTrigger::isBallIdentifiedV2);
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlaceV2", ballTrigger::isBallInPlaceV2);
+
+        Shuffleboard.getTab("BallTrigger").add(isOurBall);
     }
 
     public double getBallInPlaceValueEntry() {
