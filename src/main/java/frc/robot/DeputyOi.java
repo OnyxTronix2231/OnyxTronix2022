@@ -7,6 +7,7 @@ import frc.robot.climber.DeputeClimberOiBinder;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
@@ -15,7 +16,7 @@ public class DeputyOi {
     final ConsoleController controller;
 
     public DeputyOi() {
-        controller = new OnyxXboxController(DEPUTY_JOYSTICK_PORT);
+        controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
     public DeputyOi withClimber(Climber climber){
@@ -24,7 +25,8 @@ public class DeputyOi {
         Trigger down = new JoystickButton(controller, controller.getButtonDown());
         Trigger moveRightArmSlow = new JoystickButton(controller, controller.getButtonRight());
         Trigger moveLeftArmSlow = new JoystickButton(controller, controller.getButtonLeft());
-        new DeputeClimberOiBinder(climber, down, open, climb, moveRightArmSlow, moveLeftArmSlow);
+        JoystickAxis moveLeftArm = new JoystickAxis(controller, controller.getAxisRightY());
+        new DeputeClimberOiBinder(climber, down, open, climb, moveRightArmSlow, moveLeftArmSlow, moveLeftArm);
         return this;
     }
 }

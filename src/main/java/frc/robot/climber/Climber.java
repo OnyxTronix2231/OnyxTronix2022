@@ -14,7 +14,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void moveBySpeed(double speed) {
-        components.getRightMotor().set(speed);
+        components.getRightMotor().set(-speed);
         components.getLeftMotor().set(speed);
     }
 
