@@ -13,11 +13,12 @@ public class AutonomousShuffleboard {
     public AutonomousShuffleboard(DriveTrain driveTrain) {
         autonomousChooser = new SendableChooser<>();
 
-        autonomousChooser.setDefaultOption("1 ball from low point", new LowOneBall(driveTrain));
-        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
-        autonomousChooser.addOption("2 balls from upper start point", new UpperTwoBalls(driveTrain));
-        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
-        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
+//        autonomousChooser.setDefaultOption("1 ball from low point", new LowOneBall(driveTrain));
+//        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
+//        autonomousChooser.addOption("2 balls from upper start point", new UpperTwoBalls(driveTrain));
+//        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
+//        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
+        autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
     }
