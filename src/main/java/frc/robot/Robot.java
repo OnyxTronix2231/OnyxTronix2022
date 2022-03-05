@@ -65,51 +65,53 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         DriveTrainComponents driveTrainComponents;
-        IntakeComponents intakeFrontComponents;
-        IntakeComponents intakeBackComponents;
-        LoaderComponents loaderComponents;
-        BallTriggerComponents ballTriggerComponents;
-        DriveTrainJoystickValueProvider joystickValueProvider;
-        TurretComponents turretComponents;
-        ArcComponents arcComponents;
-        ShooterComponents shooterComponents;
+//        IntakeComponents intakeFrontComponents;
+//        IntakeComponents intakeBackComponents;
+//        LoaderComponents loaderComponents;
+//        BallTriggerComponents ballTriggerComponents;
+//        DriveTrainJoystickValueProvider joystickValueProvider;
+//        TurretComponents turretComponents;
+//        ArcComponents arcComponents;
+//        ShooterComponents shooterComponents;
 
         LiveWindow.disableAllTelemetry();
 
         if (Robot.isReal()) {
             driveTrainComponents = new DriveTrainComponentsBase();
-            intakeFrontComponents = new IntakeFrontComponentsBase();
-            intakeBackComponents = new IntakeBackComponentsBase();
-            loaderComponents = new LoaderComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            turretComponents = new TurretComponentsBase();
-            arcComponents = new ArcComponentsBase();
-            shooterComponents = new ShooterComponentsBase();
+//            intakeFrontComponents = new IntakeFrontComponentsBase();
+//            intakeBackComponents = new IntakeBackComponentsBase();
+//            loaderComponents = new LoaderComponentsBase();
+//            ballTriggerComponents = new BallTriggerComponentsBase();
+//            turretComponents = new TurretComponentsBase();
+//            arcComponents = new ArcComponentsBase();
+//            shooterComponents = new ShooterComponentsBase();
             vision = new Vision();
         } else {
             driveTrainComponents = null;
-            intakeFrontComponents = null;
-            intakeBackComponents = null;
-            loaderComponents = null;
-            ballTriggerComponents = null;
-            turretComponents = null;
-            arcComponents = null;
-            shooterComponents = null;
+//            intakeFrontComponents = null;
+//            intakeBackComponents = null;
+//            loaderComponents = null;
+//            ballTriggerComponents = null;
+//            turretComponents = null;
+//            arcComponents = null;
+//            shooterComponents = null;
             vision = null;
         }
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        intakeFront = new Intake(intakeFrontComponents, "Front");
-        intakeBack = new Intake(intakeBackComponents, "Back");
-        loader = new Loader(loaderComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new Turret(turretComponents);
-        arc = new Arc(arcComponents);
-        shooter = new Shooter(shooterComponents);
+//        intakeFront = new Intake(intakeFrontComponents, "Front");
+//        intakeBack = new Intake(intakeBackComponents, "Back");
+//        loader = new Loader(loaderComponents);
+//        ballTrigger = new BallTrigger(ballTriggerComponents);
+//        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+//        turret = new Turret(turretComponents);
+//        arc = new Arc(arcComponents);
+//        shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+        new DriverOi()
+                .withDriveTrain(driveTrain)
+                //.withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger)
+        ;
 
         new DeputyOi();
 
