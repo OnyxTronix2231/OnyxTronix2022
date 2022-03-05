@@ -6,17 +6,16 @@ import static frc.robot.arc.ArcConstants.ArcCalculations.angleToEncoderUnits;
 import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MAX_ANGLE;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
-import static frc.robot.arc.ArcConstants.TIME_OUT;
 import static frc.robot.arc.ArcConstants.TOLERANCE;
 
 public class Arc extends SubsystemBase {
 
     private final ArcComponents components;
-    private final ArcShuffleBoard shuffleBoard;
+    //private final ArcShuffleBoard shuffleBoard;
 
     public Arc(ArcComponents components) {
         this.components = components;
-        shuffleBoard = new ArcShuffleBoard(this);
+        //shuffleBoard = new ArcShuffleBoard(this);
         components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(ARC_MAX_ANGLE));
         components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(ARC_MIN_ANGLE));
         enableSoftLimitSwitch(true);
@@ -25,7 +24,7 @@ public class Arc extends SubsystemBase {
 
     @Override
     public void periodic() {
-        shuffleBoard.update();
+        //shuffleBoard.update();
     }
 
     public void initMoveToAngle(double angle) {
@@ -54,8 +53,7 @@ public class Arc extends SubsystemBase {
     }
 
     public void resetEncoderByAbsoluteValue() {
-        components.getMotor().getSensorCollection().setPulseWidthPosition(0, TIME_OUT);
-        components.getMotor().setSelectedSensorPosition(0);
+        components.getMotor().setSelectedSensorPosition(angleToEncoderUnits(ARC_MIN_ANGLE));
     }
 
     public void stop() {
@@ -73,6 +71,6 @@ public class Arc extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
-        return components.getController().isOnTarget(angleToEncoderUnits(ARC_MIN_ANGLE + TOLERANCE));
+        return components.getController().isOnTarget(angleToEncoderUnits(TOLERANCE));
     }
 }
