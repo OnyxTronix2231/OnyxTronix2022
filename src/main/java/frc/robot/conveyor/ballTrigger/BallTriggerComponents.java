@@ -9,9 +9,7 @@ public interface BallTriggerComponents {
 
     WPI_TalonSRX getMotor();
 
-    Rev2mDistanceSensor getDistanceSensorUp();
-
-    ColorSensorV3 getColorSensor();
+    //ColorSensorV3 getColorSensor();
 
     TriangulatingRangefinder getAnalogSensor();
 }

@@ -1,10 +1,10 @@
 package frc.robot.arc;
 
-import static frc.robot.arc.ArcConstants.ComponentsConstants.*;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ANGLE_PER_MOTOR_ROTATION;
+import static frc.robot.arc.ArcConstants.ComponentsConstants.ENCODER_UNITS_PER_ROUND;
 
 public class ArcConstants {
 
-    public static final double CALIBRATION_SPEED = -0.2;
     static final int TIME_OUT = 100;
     static final int MAX_ACC = 3000;
     static final int ACC_SMOOTHING = 0;
@@ -32,15 +32,19 @@ public class ArcConstants {
     public static class ArcCalculations {
 
         static double angleToEncoderUnits(double angle) {
-            return ((angle - ARC_MIN_ANGLE) / ANGLE_PER_MOTOR_ROTATION) * ENCODER_UNITS_PER_ROUND;
+            return ((angle) / ANGLE_PER_MOTOR_ROTATION) * ENCODER_UNITS_PER_ROUND;
         }
 
         static double encoderUnitsToAngle(double encoderUnits) {
-            return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION) + ARC_MIN_ANGLE;
+            return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION);
         }
 
         static double distanceToAngle(double distance) {
-            return distance; //todo find the calculations for this
+            if (distance == 0) {
+                return 20;
+            }
+            return (-9 * Math.pow(10, -5)) * Math.pow(distance, 2)
+                    + 0.1342 * distance + 8.5273;
         }
     }
 }

@@ -1,16 +1,12 @@
 package frc.robot.conveyor.ballTrigger;
 
-import com.revrobotics.Rev2mDistanceSensor;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallTrigger extends SubsystemBase {
 
     private final BallTriggerComponents components;
     private final BallTriggerShuffleboard ballTriggerShuffleboard;
-    private double currentDistance;
-    private double currentColorDistance;
-    private double currentAnalogDistance;
+    private double currentAnalogVoltage;
 
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
@@ -20,67 +16,49 @@ public class BallTrigger extends SubsystemBase {
 
     @Override
     public void periodic() {
-        currentDistance = getDistance();
-        currentColorDistance = getColorDistance();
-        currentAnalogDistance = getAnalogDistance();
+        currentAnalogVoltage = components.getAnalogSensor().getVoltage();
     }
 
     public void moveTriggerBySpeed(double speed) {
         components.getMotor().set(speed);
     }
 
-    public boolean isBallInPlace() {
-        return currentDistance >= ballTriggerShuffleboard.getBallInPlaceValueEntry() && currentDistance != -1;
+    public boolean isBallIdentified() {
+        return currentAnalogVoltage >= ballTriggerShuffleboard.getIdentifiedBallValueEntry();
     }
 
-    public boolean isBallIdentified() {
-        return currentDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntry() && currentDistance != -1;
+    public double getAnalogSensorVoltage(){
+        return currentAnalogVoltage;
     }
 
     public void stop() {
         moveTriggerBySpeed(0);
     }
 
-    public double getDistance() {
-        return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
-    }
+//    public double getRed() {
+//        return components.getColorSensor().getColor().red;
+//    }
+//
+//    public double getBlue() {
+//        return components.getColorSensor().getColor().blue;
+//    }
+//
+//    public boolean isRed() {
+//        return components.getColorSensor().getColor().red >= ballTriggerShuffleboard.getIsRedEntry();
+//    }
+//
+//    public boolean isBlue() {
+//        return components.getColorSensor().getColor().blue >= ballTriggerShuffleboard.getIsBlueEntry();
+//    }
 
-    public double getRed() {
-        return components.getColorSensor().getColor().red;
-    }
+//    public boolean isBlueAlliance() {
+//        return DriverStation.getAlliance() == DriverStation.Alliance.Blue;
+//    }
 
-    public double getBlue() {
-        return components.getColorSensor().getColor().blue;
-    }
-
-    public boolean isRed() {
-        return components.getColorSensor().getColor().red >= ballTriggerShuffleboard.getIsRedEntry();
-    }
-
-    public boolean isBlue() {
-        return components.getColorSensor().getColor().blue >= ballTriggerShuffleboard.getIsBlueEntry();
-    }
-
-    public int getColorDistance() {
-        return components.getColorSensor().getProximity();
-    }
-
-    public double getAnalogDistance() {
-        return components.getAnalogSensor().getDistance();
-    }
-
-    public boolean isBallIdentifiedV2() {
-        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2();
-    }
-
-    public boolean isTeamBlue() {
-        return DriverStation.getAlliance() == DriverStation.Alliance.Blue;
-    }
-
-    public boolean isBlueAndNotRed(){
-        return components.getColorSensor().getColor().blue > components.getColorSensor().getColor().red;
-    }
-    public boolean isBallIsTheSameColorAsTeam(){
-        return isTeamBlue() == isBlueAndNotRed();
-    }
+//    public boolean isBlueAndNotRed(){
+//        return components.getColorSensor().getColor().blue > components.getColorSensor().getColor().red;
+//    }
+//    public boolean isBallIsTheSameColorAsTeam(){
+//        return isBlueAlliance() == isBlueAndNotRed();
+//    }
 }

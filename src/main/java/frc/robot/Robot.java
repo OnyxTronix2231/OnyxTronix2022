@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
+import frc.robot.arc.commands.CalibrateArc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
@@ -28,16 +29,23 @@ import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.providers.AngleVisionProvider;
+import frc.robot.providers.DistanceVisionProvider;
+import frc.robot.providers.ShootBallConditionalsProviderAndVision;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
-import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
+import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -55,8 +63,12 @@ public class Robot extends TimedRobot {
     Loader loader;
     Intake intakeFront;
     Intake intakeBack;
-    Turret turret;
+    YawControl turret;
     Vision vision;
+    boolean firstEnable = false;
+    DoubleSupplier distanceSupplier;
+    DoubleSupplier angleSupplier;
+    BooleanSupplier conditionSupplier;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -104,17 +116,31 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new Turret(turretComponents);
+        turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
 
-        new DeputyOi();
+        distanceSupplier = new DistanceVisionProvider(vision);
+        angleSupplier = new AngleVisionProvider(vision);
+        conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
 
-        new DriversShuffleboard();
+        new DriverOi().withDriveTrain(driveTrain)
+                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
+                        angleSupplier, conditionSupplier)
+                .withArcCalibration(arc);
+
+        new DeputyOi()
+                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
+                .withArcCalibration(arc)
+        ;
+
+        new DriversShuffleboard(vision, shooter, arc, turret);
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
+
+        firstEnable = true;
     }
 
     /**
@@ -174,6 +200,10 @@ public class Robot extends TimedRobot {
         driveTrain.setNeutralModeToBrake();
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().cancel();
+        }
+        if (firstEnable) {
+            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+            firstEnable = false;
         }
     }
 
