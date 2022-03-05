@@ -15,6 +15,6 @@ public class DeputeClimberOiBinder {
         climb.whileActiveContinuous(new ClimbBySpeed(climber, () -> -climb.getRawAxis() / 2));
         moveLeftArmSlow.whileActiveContinuous(new MoveLeftArmBySpeed(climber, () -> SLOW_ARM_SPEED));
         moveRightArmSlow.whileActiveContinuous(new MoveRightArmBySpeed(climber, () -> -SLOW_ARM_SPEED));
-        moveLeftArm.whileActiveContinuous(new MoveLeftArmBySpeed(climber, () -> -moveLeftArm.getRawAxis() / 2));
+        moveLeftArm.whileActiveContinuous(new MoveLeftArmBySpeed(climber, () -> -moveLeftArm.getRawAxis()));
     }
 }
