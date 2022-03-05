@@ -8,8 +8,7 @@ import humanControls.JoystickAxis;
 
 public class DeputeClimberOiBinder {
 
-    public DeputeClimberOiBinder(Climber climber, Trigger closeSolenoid, Trigger openSolenoid,
-                                 JoystickAxis climb) {
+    public DeputeClimberOiBinder(Climber climber, Trigger closeSolenoid, Trigger openSolenoid, JoystickAxis climb) {
         closeSolenoid.whileActiveOnce(new ClosePistons(climber));
         openSolenoid.whileActiveOnce(new OpenPistons(climber));
         climb.whileActiveContinuous(new ClimbBySpeed(climber, () -> -climb.getRawAxis()));

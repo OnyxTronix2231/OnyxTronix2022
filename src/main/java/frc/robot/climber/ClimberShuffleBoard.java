@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.climber.commands.ClimbBySpeed;
 import frc.robot.climber.commands.ClosePistons;
 import frc.robot.climber.commands.OpenPistons;
-import frc.robot.climber.commands.WaitUntilEncoderPosition;
 
 import static frc.robot.climber.ClimberConstants.CLOSE_CLIMBER_SPEED;
 import static frc.robot.climber.ClimberConstants.OPEN_CLIMBER_SPEED;
@@ -23,8 +22,8 @@ public class ClimberShuffleBoard {
 
         setSpeed = Shuffleboard.getTab("Climber").add("setSpeed", 0).getEntry();
 
-        Shuffleboard.getTab("Climber").add("openPistons", new OpenPistons(climber));
-        Shuffleboard.getTab("Climber").add("closePistons", new ClosePistons(climber));
+        Shuffleboard.getTab("Climber").add("openPiston", new OpenPistons(climber));
+        Shuffleboard.getTab("Climber").add("closePiston", new ClosePistons(climber));
         Shuffleboard.getTab("Climber").add("ClimbBySpeed",
                 new ClimbBySpeed(climber, () -> setSpeed.getDouble(0)));
         Shuffleboard.getTab("Climber").add("openClimberArms",
