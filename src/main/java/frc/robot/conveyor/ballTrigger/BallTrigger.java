@@ -70,11 +70,17 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallIdentifiedV2() {
-        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2() ||
-                currentColorDistance >= ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
+        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2();
     }
 
     public boolean isTeamBlue() {
         return DriverStation.getAlliance() == DriverStation.Alliance.Blue;
+    }
+
+    public boolean isBlueAndNotRed(){
+        return components.getColorSensor().getColor().blue > components.getColorSensor().getColor().red;
+    }
+    public boolean isBallIsTheSameColorAsTeam(){
+        return isTeamBlue() == isBlueAndNotRed();
     }
 }
