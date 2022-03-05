@@ -12,7 +12,7 @@ public class BallTrigger extends SubsystemBase {
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
         this.ballTriggerShuffleboard = new BallTriggerShuffleboard(this);
-        //ballTriggerShuffleboard.init();
+        ballTriggerShuffleboard.init();
     }
 
     @Override

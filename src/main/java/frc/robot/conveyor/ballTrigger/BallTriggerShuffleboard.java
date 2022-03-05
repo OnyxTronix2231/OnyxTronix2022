@@ -17,19 +17,19 @@ public class BallTriggerShuffleboard {
     }
 
     public void init() {
-        ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue",
-                INPLACE_DISTANCE_MM).getEntry();
-        identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
-                IDENTIFIED_DISTANCE_MM).getEntry();
+//        ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValue",
+//                INPLACE_DISTANCE_MM).getEntry();
+//        identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
+//                IDENTIFIED_DISTANCE_MM).getEntry();
 
         NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
                 BALLTRIGGER_SPEED).getEntry();
         Shuffleboard.getTab("BallTrigger").add(new MoveBallTriggerBySpeed(ballTrigger,
                 () -> ballTriggerSpeed.getDouble(BALLTRIGGER_SPEED)));
 
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
-        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
-        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
+//        Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
+//        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
+//        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
     }
 
     public double getBallInPlaceValueEntry() {
