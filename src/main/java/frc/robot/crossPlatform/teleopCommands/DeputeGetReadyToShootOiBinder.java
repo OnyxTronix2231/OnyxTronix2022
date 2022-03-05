@@ -11,6 +11,6 @@ public class DeputeGetReadyToShootOiBinder {
 
     public DeputeGetReadyToShootOiBinder(Shooter shooter, Arc arc, YawControl yawControl, Trigger getReady,
                                          DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
-        getReady.whileActiveContinuous(new GetReadyToShoot(shooter, arc, yawControl, distanceSupplier, angleSupplier));
+        getReady.whileActiveOnce(new GetReadyToShoot(shooter, arc, yawControl, distanceSupplier, angleSupplier));
     }
 }
