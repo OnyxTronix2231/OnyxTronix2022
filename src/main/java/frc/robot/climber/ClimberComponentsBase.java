@@ -1,5 +1,6 @@
 package frc.robot.climber;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -12,7 +13,7 @@ public class ClimberComponentsBase implements ClimberComponents {
 
     private final WPI_TalonFX leftMotor;
     private final WPI_TalonFX rightMotor;
-    private final DoubleSolenoid leftDoubleSolenoid;
+    //private final DoubleSolenoid leftDoubleSolenoid;
     private final DoubleSolenoid rightDoubleSolenoid;
     private final TalonEncoder leftEncoder;
     private final TalonEncoder rightEncoder;
@@ -20,12 +21,16 @@ public class ClimberComponentsBase implements ClimberComponents {
     public ClimberComponentsBase() {
         leftMotor = new WPI_TalonFX(LEFT_MOTOR_DEVICE_NUMBER);
         leftMotor.configFactoryDefault();
+        leftMotor.setNeutralMode(NeutralMode.Brake);
+
         rightMotor = new WPI_TalonFX(RIGHT_MOTOR_DEVICE_NUMBER);
+        rightMotor.setNeutralMode(NeutralMode.Brake);
         rightMotor.configFactoryDefault();
+        
         rightDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RIGHT_SOLENOID_FORWARD_CHANNEL
                 , RIGHT_SOLENOID_REVERSE_CHANNEL);
-        leftDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, LEFT_SOLENOID_FORWARD_CHANNEL
-                , LEFT_SOLENOID_REVERSE_CHANNEL);
+//        leftDoubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, LEFT_SOLENOID_FORWARD_CHANNEL
+//                , LEFT_SOLENOID_REVERSE_CHANNEL);
         leftEncoder = new TalonEncoder(leftMotor);
         rightEncoder = new TalonEncoder(rightMotor);
     }
@@ -40,10 +45,10 @@ public class ClimberComponentsBase implements ClimberComponents {
         return leftMotor;
     }
 
-    @Override
-    public DoubleSolenoid getLeftDoubleSolenoid() {
-        return leftDoubleSolenoid;
-    }
+//    @Override
+//    public DoubleSolenoid getLeftDoubleSolenoid() {
+//        return leftDoubleSolenoid;
+//    }
 
     @Override
     public DoubleSolenoid getRightDoubleSolenoid() {

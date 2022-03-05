@@ -30,12 +30,12 @@ public class Climber extends SubsystemBase {
     }
 
     public void openPistons() {
-        components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_OPEN_VALUE);
+        //components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_OPEN_VALUE);
         components.getRightDoubleSolenoid().set(RIGHT_SOLENOID_OPEN_VALUE);
     }
 
     public void closePistons() {
-        components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_CLOSE_VALUE);
+        //components.getLeftDoubleSolenoid().set(LEFT_SOLENOID_CLOSE_VALUE);
         components.getRightDoubleSolenoid().set(RIGHT_SOLENOID_CLOSE_VALUE);    }
 
     public boolean isRightEncoderOnTarget() {
