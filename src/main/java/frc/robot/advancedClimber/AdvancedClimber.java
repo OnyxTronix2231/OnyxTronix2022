@@ -10,7 +10,7 @@ public class AdvancedClimber extends Climber {
 
     private final DriveTrain driveTrain;
 
-    public AdvancedClimber(ClimberComponents components,  DriveTrain driveTrain) {
+    public AdvancedClimber(ClimberComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
     }
@@ -23,7 +23,7 @@ public class AdvancedClimber extends Climber {
         return driveTrain.getPitch() >= DESIRED_PITCH_ANGLE;
     }
 
-    public double getCurrentPitch(){
+    public double getCurrentPitch() {
         return driveTrain.getPitch();
     }
 }

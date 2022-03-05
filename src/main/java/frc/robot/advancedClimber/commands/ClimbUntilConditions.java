@@ -10,7 +10,7 @@ import java.util.function.DoubleSupplier;
 
 public class ClimbUntilConditions extends ParallelDeadlineGroup {
 
-    public ClimbUntilConditions(Climber climber, AdvancedClimber advancedClimber, DoubleSupplier speedSupplier){
+    public ClimbUntilConditions(Climber climber, AdvancedClimber advancedClimber, DoubleSupplier speedSupplier) {
         super(new WaitUntilClimbedByEncoder(climber).alongWith(new WaitUntilClimbedByPitch(advancedClimber)),
                 new ClimbBySpeed(climber, speedSupplier));
     }

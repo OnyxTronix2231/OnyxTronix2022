@@ -14,7 +14,6 @@ public class ClimberShuffleBoard {
     private NetworkTableEntry setSpeed;
 
     public ClimberShuffleBoard(Climber climber) {
-
         Shuffleboard.getTab("Climber").addNumber("leftEncoderUnits", climber::getLeftEncoderUnits);
         Shuffleboard.getTab("Climber").addNumber("rightEncoderUnits", climber::getRightEncoderUnits);
         Shuffleboard.getTab("Climber").addBoolean("climber reached fourth bar",
