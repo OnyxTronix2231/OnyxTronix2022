@@ -1,9 +1,8 @@
 package frc.robot.conveyor.ballTrigger;
 
 import com.revrobotics.Rev2mDistanceSensor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.*;
 
 public class BallTrigger extends SubsystemBase {
 
@@ -46,36 +45,40 @@ public class BallTrigger extends SubsystemBase {
         return components.getDistanceSensorUp().getRange(Rev2mDistanceSensor.Unit.kMillimeters);
     }
 
-    public double getRed(){
+    public double getRed() {
         return components.getColorSensor().getColor().red;
     }
 
-    public double getBlue(){
+    public double getBlue() {
         return components.getColorSensor().getColor().blue;
     }
 
-    public boolean isRed(){
+    public boolean isRed() {
         return components.getColorSensor().getColor().red >= ballTriggerShuffleboard.getIsRedEntry();
     }
 
-    public boolean isBlue(){
+    public boolean isBlue() {
         return components.getColorSensor().getColor().blue >= ballTriggerShuffleboard.getIsBlueEntry();
     }
 
-    public int getColorDistance(){
+    public int getColorDistance() {
         return components.getColorSensor().getProximity();
     }
 
-    public boolean isBallInPlaceV2(){
-        return currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
+    public boolean isBallInPlaceV2() {
+        return currentColorDistance >= ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
     }
 
-    public double getAnalogDistance(){
+    public double getAnalogDistance() {
         return components.getAnalogSensor().getDistance();
     }
 
-    public boolean isBallIdentifiedV2(){
-        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2()||
-                currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
+    public boolean isBallIdentifiedV2() {
+        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2() ||
+                currentColorDistance >= ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
+    }
+
+    public boolean isTeamBlue() {
+        return DriverStation.getAlliance() == DriverStation.Alliance.Blue;
     }
 }
