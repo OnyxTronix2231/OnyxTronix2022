@@ -45,6 +45,7 @@ import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -68,7 +69,7 @@ public class Robot extends TimedRobot {
     Loader loader;
     Intake intakeFront;
     Intake intakeBack;
-    Turret turret;
+    YawControl turret;
     Vision vision;
 
     /**
@@ -117,30 +118,18 @@ public class Robot extends TimedRobot {
         loader = new Loader(loaderComponents);
         ballTrigger = new BallTrigger(ballTriggerComponents);
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new Turret(turretComponents);
+        turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
 
-        new DriverOi().withDriveTrain(driveTrain).withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront,
-                intakeBack, loader, ballTrigger);
+        new DriverOi().withDriveTrain(driveTrain)
+                //.withIntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger)
+                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+                .withShooterBlind(shooter, arc, turret, ballTrigger, loader)
+        ;
 
         new DeputyOi();
-
-//        Shuffleboard.getTab("ShootTesting").add("loadBalls", new LoadBalls(loader, ballTrigger, () -> 0.5, () -> 0.5));
-        Shuffleboard.getTab("ShootTesting").addNumber("current angle",
-                () -> encoderUnitsToAngle(arc.getComponents().getCounter().getCount()));
-        NetworkTableEntry setAngle = Shuffleboard.getTab("ShootTesting").add("setAngle", ARC_MIN_ANGLE).getEntry();
-        Shuffleboard.getTab("ShootTesting").add("moveToAngle", new MoveArcToAngle(arc, ()->setAngle.getDouble(ARC_MIN_ANGLE)));
-        Shuffleboard.getTab("ShootTesting").add("Calibrate", new CalibrateArc(arc));
-
-        NetworkTableEntry setRPM = Shuffleboard.getTab("ShootTesting").add("setRPM", 0).getEntry();
-        Shuffleboard.getTab("ShootTesting").addNumber("RPM", shooter::getCurrentRPM);
-        Shuffleboard.getTab("ShootTesting").add("ShootByRPM", new ShootByRPM(shooter,
-                () -> setRPM.getDouble(0)));
-
-        Shuffleboard.getTab("ShootTesting").add("ballTrigger", new MoveBallTriggerBySpeed(ballTrigger, ()->0.6));
-        Shuffleboard.getTab("ShootTesting").add("ShootBall", new ShootBallByDistanceAndAngleRTR(shooter, arc, turret,
-                loader, ballTrigger, () -> setRPM.getDouble(3000), ()-> setAngle.getDouble(20)));
 
         new DriversShuffleboard();
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);

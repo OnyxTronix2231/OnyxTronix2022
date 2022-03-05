@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        forwardSpeedValue = speed * SPEED_SENSITIVITY;
+        forwardSpeedValue = -speed * SPEED_SENSITIVITY;
         driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
     }
 

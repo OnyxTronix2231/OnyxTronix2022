@@ -14,7 +14,7 @@ public class ShooterConstants {
     static final double CLOSE_LOOP_OUTPUT = 1023;
     static final double MAX_VELOCITY = 16325 * 1.25;
     static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
-    static final double TOLERANCE = 15;
+    static final double TOLERANCE = 100;
     static final double SPEED = 0;
     static final double OPEN_LOOP_RAMP = 0;
     static final double CLOSE_LOOP_RAMP = 0.8;

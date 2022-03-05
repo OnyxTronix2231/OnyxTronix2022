@@ -18,10 +18,10 @@ import java.util.function.DoubleSupplier;
 public class GetReadyToShoot extends ParallelCommandGroup {
 
     public GetReadyToShoot(Shooter shooter, Arc arc, Turret turret,
-                           DoubleSupplier distanceFromTarget, DoubleSupplier angleRTR) {
+                           DoubleSupplier distanceFromTarget, DoubleSupplier angle) {
         super(
                 new ShootByRPM(shooter, distanceFromTarget),
-                new MoveArcToAngle(arc, angleRTR),
-                new RotateToAngleRTR(turret, ()-> 180));
+                new MoveArcToAngle(arc, distanceFromTarget),
+                new SmartRotateByAngle(turret, angle));
     }
 }

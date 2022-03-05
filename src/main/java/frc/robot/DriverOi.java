@@ -3,16 +3,22 @@ package frc.robot;
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
+import frc.robot.crossPlatform.teleopCommands.DriverShootBallBlindOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootBallBlind;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
+import frc.robot.shooter.Shooter;
+import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -21,7 +27,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
+        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {
@@ -33,19 +39,25 @@ public class DriverOi {
 
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
                                                        Loader loader, BallTrigger ballTrigger) {
-        Trigger collect = new JoystickButton(controller, controller.getButtonRight());
+        Trigger collect = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeByDriveTrainAndLoadBallsOiBinder(joystickValueProvider, intakeFront, intakeBack, loader, ballTrigger, collect);
         return this;
     }
 
+    public DriverOi withShooterBlind(Shooter shooter, Arc arc, YawControl yawControl, BallTrigger ballTrigger, Loader loader){
+        Trigger shoot = new JoystickAxis(controller, controller.getRightTrigger());
+        new DriverShootBallBlindOiBinder(shooter, arc, yawControl, ballTrigger, loader, shoot);
+        return this;
+    }
+
     public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getButtonRight());
+        Trigger load = new JoystickButton(controller, controller.getBumperRight());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 
     public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getButtonLeft());
+        Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
