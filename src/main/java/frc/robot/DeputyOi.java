@@ -19,10 +19,12 @@ public class DeputyOi {
     }
 
     public DeputyOi withClimber(Climber climber){
-        JoystickAxis clime = new JoystickAxis(controller, controller.getAxisLeftY());
+        JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         Trigger open = new JoystickButton(controller, controller.getButtonUp());
         Trigger down = new JoystickButton(controller, controller.getButtonDown());
-        new DeputeClimberOiBinder(climber, down, open, clime);
+        Trigger moveRightArmSlow = new JoystickButton(controller, controller.getButtonRight());
+        Trigger moveLeftArmSlow = new JoystickButton(controller, controller.getButtonLeft());
+        new DeputeClimberOiBinder(climber, down, open, climb, moveRightArmSlow, moveLeftArmSlow);
         return this;
     }
 }

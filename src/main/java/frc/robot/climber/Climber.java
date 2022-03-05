@@ -18,8 +18,24 @@ public class Climber extends SubsystemBase {
         components.getLeftMotor().set(speed);
     }
 
+    public void moveLeftArmBySpeed(double speed) {
+        components.getLeftMotor().set(speed);
+    }
+
+    public void moveRightArmBySpeed(double speed) {
+        components.getRightMotor().set(speed);
+    }
+
     public void stop() {
         moveBySpeed(0);
+    }
+
+    public void stopLeftArm() {
+        moveLeftArmBySpeed(0);
+    }
+
+    public void stopRightArm() {
+        moveRightArmBySpeed(0);
     }
 
     public double getLeftEncoderUnits() {
