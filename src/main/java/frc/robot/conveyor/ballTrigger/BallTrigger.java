@@ -75,6 +75,7 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallIdentifiedV2(){
-        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2();
+        return currentAnalogDistance <= ballTriggerShuffleboard.getIdentifiedBallValueEntryV2()||
+                currentColorDistance >=  ballTriggerShuffleboard.getBallInPlaceValueEntryV2();
     }
 }
