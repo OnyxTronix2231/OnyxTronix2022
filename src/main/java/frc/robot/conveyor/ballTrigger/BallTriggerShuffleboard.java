@@ -11,8 +11,6 @@ public class BallTriggerShuffleboard {
 
     private NetworkTableEntry ballInPlaceValueEntry;
     private NetworkTableEntry identifiedBallValueEntry;
-    private NetworkTableEntry ballInPlaceValueEntryV2;
-    private NetworkTableEntry identifiedBallValueEntryV2;
     private NetworkTableEntry isRedEntry;
     private NetworkTableEntry isBlueEntry;
 
@@ -30,9 +28,9 @@ public class BallTriggerShuffleboard {
         //    identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
         //            IDENTIFIED_DISTANCE_MM).getEntry();
 
-        ballInPlaceValueEntryV2 = Shuffleboard.getTab("BallTrigger").add("InPlaceValueV2",
+        ballInPlaceValueEntry = Shuffleboard.getTab("BallTrigger").add("InPlaceValueV2",
                 INPLACE_DISTANCE_COLOR).getEntry();
-        identifiedBallValueEntryV2 = Shuffleboard.getTab("BallTrigger").add("IdentifiedValueV2",
+        identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValueV2",
                 IDENTIFIED_DISTANCE_ANALOG).getEntry();
 
         isRedEntry = Shuffleboard.getTab("BallTrigger").add("isRedValue",
@@ -49,17 +47,17 @@ public class BallTriggerShuffleboard {
         //Shuffleboard.getTab("BallTrigger").addNumber("DistanceDigital", ballTrigger::getDistance);
         //Shuffleboard.getTab("BallTrigger").addBoolean("IsBallIdentify", ballTrigger::isBallIdentified);
         //Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallInPlace);
-        Shuffleboard.getTab("BallTrigger").addNumber("getRed", ballTrigger::getRed);
-        Shuffleboard.getTab("BallTrigger").addNumber("getBlue", ballTrigger::getBlue);
+//        Shuffleboard.getTab("BallTrigger").addNumber("getRed", ballTrigger::getRed);
+//        Shuffleboard.getTab("BallTrigger").addNumber("getBlue", ballTrigger::getBlue);
+//
+//        Shuffleboard.getTab("BallTrigger").addBoolean("isRed", ballTrigger::isRed);
+//        Shuffleboard.getTab("BallTrigger").addBoolean("isBlue", ballTrigger::isBlue);
 
-        Shuffleboard.getTab("BallTrigger").addBoolean("isRed", ballTrigger::isRed);
-        Shuffleboard.getTab("BallTrigger").addBoolean("isBlue", ballTrigger::isBlue);
 
+        Shuffleboard.getTab("BallTrigger").addNumber("AnalogVoltage", ballTrigger::getAnalogSensorVoltage);
+//        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor", ballTrigger::getColorDistance);
 
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceAnalog", ballTrigger::getAnalogDistance);
-        Shuffleboard.getTab("BallTrigger").addNumber("DistanceColor", ballTrigger::getColorDistance);
-
-        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlaceV2", ballTrigger::isBallIdentifiedV2);
+        Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlaceV2", ballTrigger::isBallIdentified);
 
             Shuffleboard.getTab("BallTrigger").add(isOurBall);
         }
@@ -72,15 +70,6 @@ public class BallTriggerShuffleboard {
         public double getIdentifiedBallValueEntry () {
             return identifiedBallValueEntry != null ?
                     identifiedBallValueEntry.getDouble(IDENTIFIED_DISTANCE_MM) : IDENTIFIED_DISTANCE_MM;
-        }
-
-        public double getBallInPlaceValueEntryV2 () {
-            return ballInPlaceValueEntryV2 != null ?
-                    ballInPlaceValueEntryV2.getDouble(INPLACE_DISTANCE_COLOR) : INPLACE_DISTANCE_COLOR;
-        }
-        public double getIdentifiedBallValueEntryV2 () {
-            return identifiedBallValueEntryV2 != null ?
-                    identifiedBallValueEntryV2.getDouble(IDENTIFIED_DISTANCE_ANALOG) : IDENTIFIED_DISTANCE_ANALOG;
         }
 
         public double getIsRedEntry () {
