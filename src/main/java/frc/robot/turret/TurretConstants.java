@@ -26,7 +26,7 @@ public final class TurretConstants {
     /*system settings*/
     public static final int MIDDLE_ANGLE = 0;
     public static final int INTEGRAL_ZONE = 100;
-    public static final double TOLERANCE_DEGREES = 0; //TODO: Correct the number
+    public static final double TOLERANCE_DEGREES = 2; //TODO: Correct the number
     public static final double DEFAULT_TURRET_SPEED = 0.8;
 
     /*field settings*/

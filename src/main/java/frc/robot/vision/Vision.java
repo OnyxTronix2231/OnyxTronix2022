@@ -26,6 +26,7 @@ public class Vision extends SubsystemBase {
     public void periodic() {
         limelightTarget = limelight.getTarget();
         updateTurretToTargetVectorRTT();
+        visionShuffleboard.periodic();
     }
 
     private double getDistanceLimelightFromTarget() {
@@ -42,7 +43,7 @@ public class Vision extends SubsystemBase {
             double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
             turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
                     limelightOffsetFromTarget);
-            turretToTargetVectorRTT.add(LIMELIGHT_TO_TURRET_VECTOR_RTT);
+            turretToTargetVectorRTT.subtract(LIMELIGHT_TO_TURRET_VECTOR_RTT);
         } else {
             turretToTargetVectorRTT = null;
         }

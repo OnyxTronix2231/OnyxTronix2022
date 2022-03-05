@@ -25,7 +25,7 @@ public class ArcConstants {
         static final double CONVERSION_RATE = 1;
         static final double ENCODER_UNITS_PER_ROUND = 4096 * CONVERSION_RATE;
         static final double ANGLE_PER_MOTOR_ROTATION = 45;
-        static final double ARC_MIN_ANGLE = 15.33;
+        public static final double ARC_MIN_ANGLE = 15.33;
         static final double ARC_MAX_ANGLE = 62;
     }
 
@@ -35,7 +35,7 @@ public class ArcConstants {
             return ((angle - ARC_MIN_ANGLE) / ANGLE_PER_MOTOR_ROTATION) * ENCODER_UNITS_PER_ROUND;
         }
 
-        static double encoderUnitsToAngle(double encoderUnits) {
+        public static double encoderUnitsToAngle(double encoderUnits) {
             return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION) + ARC_MIN_ANGLE;
         }
 

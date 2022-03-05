@@ -73,6 +73,6 @@ public class Arc extends SubsystemBase {
     }
 
     public boolean isOnTarget() {
-        return components.getController().isOnTarget(angleToEncoderUnits(TOLERANCE));
+        return components.getController().isOnTarget(angleToEncoderUnits(ARC_MIN_ANGLE + TOLERANCE));
     }
 }
