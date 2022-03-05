@@ -13,6 +13,6 @@ public class DriverIntakeByDriveTrainAndLoadBallsOiBinder {
     public DriverIntakeByDriveTrainAndLoadBallsOiBinder(DriveTrainJoystickValueProvider joystickValueProvider, Intake intakeFront, Intake intakeBack,
                                                         Loader loader, BallTrigger ballTrigger, Trigger collect) {
         collect.whileActiveContinuous(new IntakeByDriveTrainAndLoadBalls(joystickValueProvider, intakeFront, intakeBack
-                , loader, ballTrigger, () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED, () -> INTAKE_SPEED));
+                , loader, ballTrigger, () -> LOADER_SPEED, () -> INTAKE_SPEED));
     }
 }

@@ -14,8 +14,7 @@ public class IntakeAndLoadBalls extends ParallelCommandGroup {
     public IntakeAndLoadBalls(Intake intake, BallTrigger ballTrigger, Loader loader,
                               DoubleSupplier loaderSpeedSupplier, DoubleSupplier ballTriggerSpeedSupplier,
                               DoubleSupplier intakeSpeedSupplier) {
-        super(new LoadBalls(loader, ballTrigger, loaderSpeedSupplier,
-                        ballTriggerSpeedSupplier),
+        super(new LoadBalls(loader, ballTrigger, loaderSpeedSupplier),
                 new OpenAndIntake(intake, intakeSpeedSupplier));
     }
 }
