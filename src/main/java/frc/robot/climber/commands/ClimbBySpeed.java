@@ -5,7 +5,6 @@ import frc.robot.climber.Climber;
 
 import java.util.function.DoubleSupplier;
 
-
 public class ClimbBySpeed extends CommandBase {
 
     private final Climber climber;
