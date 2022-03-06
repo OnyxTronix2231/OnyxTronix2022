@@ -12,17 +12,17 @@ public final class DriveTrainConstants {
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
+    static final double ROTATION_SENSITIVITY = 0.75;
     static final double SPEED_SENSITIVITY = 0.8;
-    static final double ROTATION_SENSITIVITY = 0.65;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
     static final double TRACKWIDTH_METERS = 0.68;
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
-    static final double KS = 0.71542; // TODO: calibrate
-    static final double KV = 0.026815; // TODO: calibrate
-    static final double KA = 0.0086527; // TODO: calibrate
+    static final double KS = 0.73449; // TODO: calibrate
+    static final double KV = 1.8886; // TODO: calibrate
+    static final double KA = 0.42078; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
     public static final class ComponentsConstants {
@@ -36,9 +36,9 @@ public final class DriveTrainConstants {
         static final double MAX_OUTPUT_FORWARD = 1;
         static final double MAX_OUTPUT_REVERSE = -1;
         static final double CURRENT_LIMIT = 40;
-        static final double TRIGGER_THRESHOLD_CURRENT = 40;
-        static final double TRIGGER_THRESHOLD_TIME = 0.03;
-        static final double RAMP_TIME = 0.3;
+        static final double TRIGGER_THRESHOLD_CURRENT = 0;
+        static final double TRIGGER_THRESHOLD_TIME = 0;
+        static final double RAMP_TIME = 0.4;
     }
 
     public static final class Calculations {
