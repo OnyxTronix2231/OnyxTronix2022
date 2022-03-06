@@ -23,12 +23,15 @@ public class Vision extends SubsystemBase {
         visionShuffleboard.init();
     }
 
+    public void setPipeline(int pipeline){
+        limelight.setPipeline(pipeline);
+        limelight.setLedMode(LimelightLedMode.forceOn);
+    }
+
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
         updateTurretToTargetVectorRTT();
-        limelight.setPipeline(PIPELINE);
-        limelight.setLedMode(LimelightLedMode.forceOn);
     }
 
     private double getDistanceLimelightFromTarget() {

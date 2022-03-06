@@ -46,6 +46,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
+import static frc.robot.Constants.VISION_PIPELINE;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -98,6 +99,7 @@ public class Robot extends TimedRobot {
             arcComponents = new ArcComponentsBase();
             shooterComponents = new ShooterComponentsBase();
             vision = new Vision();
+            vision.setPipeline(VISION_PIPELINE);
         } else {
             driveTrainComponents = null;
             intakeFrontComponents = null;
