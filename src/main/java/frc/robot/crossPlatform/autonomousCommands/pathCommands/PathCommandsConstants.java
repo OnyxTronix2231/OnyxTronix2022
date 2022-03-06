@@ -14,9 +14,9 @@ public class PathCommandsConstants {
     static final double X_FIRST_BALL_A = 8.943985451508386;
     static final double X_SECOND_BALL_A = 11.531;
     static final double X_THIRD_BALL_A = 15.522984492476057;
+    static final double X_SHOOTING_PLACE_A = 11.299;
     static final double X_FOURTH_BALL_A = 11.654308133342933;
     static final double X_ENEMY_BALL_A = 10.507200608251132;
-    static final double X_SHOOTING_PLACE_A = 9.922400693498448;
 
     static final double X_START_POSE_B = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_B = 8.943985451508386;
@@ -37,9 +37,9 @@ public class PathCommandsConstants {
     static final double Y_FIRST_BALL_A = 7.650;
     static final double Y_SECOND_BALL_A = 6.352;
     static final double Y_THIRD_BALL_A = 6.87;
+    static final double Y_SHOOTING_PLACE_A = 5.476;
     static final double Y_FOURTH_BALL_A = 2.022;
     static final double Y_ENEMY_BALL_A = 0.886;
-    static final double Y_SHOOTING_PLACE_A = 3.282;
 
     static final double Y_START_POSE_B = 5.960; // TODO: check
     static final double Y_FIRST_BALL_B = 7.650;
@@ -60,10 +60,10 @@ public class PathCommandsConstants {
     static final double ROTATION_START_POSE_A = -90;
     static final double ROTATION_FIRST_BALL_A = -153.335;
     static final double ROTATION_SECOND_BALL_A = 168.53;
-    static final double ROTATION_THIRD_BALL_A = 145.2863;
+    static final double ROTATION_THIRD_BALL_A = 161.626;
+    static final double ROTATION_SHOOTING_PLACE_A = -126.0368;
     static final double ROTATION_FOURTH_BALL_A = -44.72144;
     static final double ROTATION_ENEMY_BALL_A = -44.72144;
-    static final double ROTATION_SHOOTING_PLACE_A = -126.0368;
 
     static final double ROTATION_START_POSE_B = -90;
     static final double ROTATION_FIRST_BALL_B = -153.335;

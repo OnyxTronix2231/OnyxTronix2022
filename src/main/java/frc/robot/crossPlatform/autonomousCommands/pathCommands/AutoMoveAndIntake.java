@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.IntakeAndLoadBalls;
@@ -11,7 +12,7 @@ import frc.robot.intake.Intake;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
 
-public class AutoMoveAndIntake extends ParallelCommandGroup {
+public class AutoMoveAndIntake extends ParallelDeadlineGroup {
 
     public AutoMoveAndIntake(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                              BallTrigger ballTrigger, Path path) {

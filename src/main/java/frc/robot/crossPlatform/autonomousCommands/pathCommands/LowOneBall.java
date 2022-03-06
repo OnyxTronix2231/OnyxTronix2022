@@ -24,7 +24,7 @@ public class LowOneBall extends SequentialCommandGroup {
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_D),
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_D_FIRST_BALL),
 
-                new ShootBallByDistanceAndAngleRTR(shooter, arc,turret, loader, ballTrigger, distanceProvider, angleProvider)
+                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider, angleProvider)
         );
     }
 }

@@ -24,7 +24,7 @@ public class Upper1BallAnd1EnemyBall extends SequentialCommandGroup {
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_C),
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_C_FIRST_BALL),
 
-                new ShootBallByDistanceAndAngleRTR(shooter, arc,turret, loader, ballTrigger, distanceProvider,
+                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider,
                         angleProvider),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_C_ENEMY_BALL)

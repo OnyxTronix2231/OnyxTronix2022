@@ -25,12 +25,12 @@ public class UpperTwoBalls extends SequentialCommandGroup {
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_FIRST_BALL),
 
-                new ShootBallByDistanceAndAngleRTR(shooter, arc, turret, loader, ballTrigger, distanceProvider,
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_SECOND_BALL),
 
-                new ShootBallByDistanceAndAngleRTR(shooter, arc, turret, loader, ballTrigger, distanceProvider,
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)
         );
     }
