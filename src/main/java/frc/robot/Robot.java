@@ -136,7 +136,8 @@ public class Robot extends TimedRobot {
 
         new DeputyOi()
                 .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
-                .withArcCalibration(arc)
+                .withArcCalibration(arc).withLoader(loader).withBallTrigger(ballTrigger).withShootToEjectBalls(shooter,
+                        arc, loader, ballTrigger)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);

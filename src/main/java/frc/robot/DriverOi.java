@@ -54,8 +54,9 @@ public class DriverOi {
                                             BallTrigger ballTrigger, Loader loader, DoubleSupplier distanceSupplier,
                                             DoubleSupplier angleSupplier, BooleanSupplier conditionSupplier) {
         Trigger shoot = new JoystickAxis(controller, controller.getRightTrigger());
+        Trigger shootCloseToHighTarget = new JoystickAxis(controller, controller.getLeftTrigger());
         new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, vision, yawControl,distanceSupplier,
-                angleSupplier, conditionSupplier, shoot);
+                angleSupplier, conditionSupplier, shoot, shootCloseToHighTarget);
         return this;
     }
 
