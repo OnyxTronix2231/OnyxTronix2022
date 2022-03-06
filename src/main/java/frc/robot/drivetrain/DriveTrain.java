@@ -15,8 +15,8 @@ import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
-    public double forwardSpeedValue;
     private final Field2d field2d;
+    public double forwardSpeedValue;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double speed, double rotation) {
-        forwardSpeedValue = speed * SPEED_SENSITIVITY;
+        forwardSpeedValue = -speed * SPEED_SENSITIVITY;
         driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
     }
 
@@ -86,13 +86,17 @@ public class DriveTrain extends SubsystemBase {
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
     }
 
-    public double getAngleToTargetByPose() {
+    public double getAngleToAPose(Pose2d pose2d) {
         Pose2d currentPos = getPose();
-        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - TARGET_POSE_Y) /
-                (currentPos.getX() - TARGET_POSE_X)));
-        if (currentPos.getX() > TARGET_POSE_X)
+        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - pose2d.getY()) /
+                (currentPos.getX() - pose2d.getX())));
+        if (currentPos.getX() > pose2d.getX())
             angle += DEG_IN_HALF_CIRCLE;
         return angle;
+    }
+
+    public double getAngleToTargetByPose() {
+        return getAngleToAPose(new Pose2d(TARGET_POSE_X, TARGET_POSE_Y, new Rotation2d()));
     }
 
     public Field2d getField() {

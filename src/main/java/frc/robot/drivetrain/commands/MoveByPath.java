@@ -15,9 +15,9 @@ import static frc.robot.drivetrain.commands.DriveTrainCommandConstants.*;
 public class MoveByPath extends CommandBase {
 
     private final DriveTrain driveTrain;
+    private final Path currentPath;
     private Trajectory trajectory;
     private RamseteCommand command;
-    private final Path currentPath;
 
     public MoveByPath(DriveTrain driveTrain, Path path) {
         this.driveTrain = driveTrain;

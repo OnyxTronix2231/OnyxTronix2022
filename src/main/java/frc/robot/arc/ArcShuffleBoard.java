@@ -27,8 +27,10 @@ public class ArcShuffleBoard {
 
         Shuffleboard.getTab("Arc").addNumber("current encoderUnits pos",
                 () -> arc.getComponents().getCounter().getCount());
+
         Shuffleboard.getTab("Arc").addNumber("current angle",
                 () -> encoderUnitsToAngle(arc.getComponents().getCounter().getCount()));
+
         Shuffleboard.getTab("Arc").addNumber("Current velocity",
                 () -> arc.getComponents().getCounter().getRate());
 
@@ -36,17 +38,19 @@ public class ArcShuffleBoard {
                 () -> arc.getComponents().getController().getCurrentError());
 
         Shuffleboard.getTab("Arc").addNumber("Current error angle",
-                () -> encoderUnitsToAngle(arc.getComponents().getController().getCurrentError()) - ARC_MIN_ANGLE);
+                () -> encoderUnitsToAngle(arc.getComponents().getController().getCurrentError()));
 
         setAngle = Shuffleboard.getTab("Arc").add("setAngle", ARC_MIN_ANGLE).getEntry();
         percentageOutput = Shuffleboard.getTab("Arc").add("percentageOutput", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 percentageOutput.getDouble(0)));
+
         Shuffleboard.getTab("Arc").add("MoveTo30", new MoveArcToAngle(arc,
                 () -> 30));
 
-        Shuffleboard.getTab("Arc").add("Calibrate", new CalibrateArc(arc));
+        Shuffleboard.getTab("Arc").add("Calibrate", new CalibrateArc(arc, ()-> -0.3));
+
         Shuffleboard.getTab("Arc").add("MoveTo45", new MoveArcToAngle(arc,
                 () -> 45));
 
