@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
@@ -22,12 +23,20 @@ public class UpperTwoBalls extends SequentialCommandGroup {
         super(
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_B),
 
+                new WaitCommand(2.5),
+
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_FIRST_BALL),
+
+                new WaitCommand(2.5),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider),
 
+                new WaitCommand(2.5),
+
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_SECOND_BALL),
+
+                new WaitCommand(2.5),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)

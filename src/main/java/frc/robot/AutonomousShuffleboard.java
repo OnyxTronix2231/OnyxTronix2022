@@ -21,6 +21,12 @@ public class AutonomousShuffleboard {
         autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
+
+        Shuffleboard.getTab("path chooser").addNumber("x", () -> driveTrain.getPose().getX());
+        Shuffleboard.getTab("path chooser").addNumber("y", () -> driveTrain.getPose().getY());
+        Shuffleboard.getTab("path chooser").addNumber("hedding", driveTrain::getHeading);
+
+
     }
 
     public Command getSelectedCommand() {
