@@ -17,7 +17,7 @@ public class AngleProvider implements DoubleSupplier {
 
     @Override
     public double getAsDouble() {
-        return vision.hasTarget() ? vision.getHorizontalAngleTurretToTargetRTR(yawControl)
+        return vision.hasTarget() ? -vision.getHorizontalAngleTurretToTargetRTT()
                 : yawControl.getAngleRTRToTarget();
     }
 }

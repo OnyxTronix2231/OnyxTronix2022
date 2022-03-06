@@ -1,12 +1,11 @@
 package frc.robot.arc;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.shooter.ShooterConstants;
 
-import static frc.robot.arc.ArcConstants.ArcCalculations.angleToEncoderUnits;
-import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
+import static frc.robot.arc.ArcConstants.ArcCalculations.*;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MAX_ANGLE;
 import static frc.robot.arc.ArcConstants.ComponentsConstants.ARC_MIN_ANGLE;
-import static frc.robot.arc.ArcConstants.TIME_OUT;
 import static frc.robot.arc.ArcConstants.TOLERANCE;
 
 public class Arc extends SubsystemBase {
@@ -33,6 +32,10 @@ public class Arc extends SubsystemBase {
         components.getController().enable();
     }
 
+    public double getSetpoint(){
+        return angleToEncoderUnits(components.getController().getSetpoint());
+    }
+
     public void updateMoveToAngle(double angle) {
         components.getController().update(angleToEncoderUnits(angle));
     }
@@ -54,8 +57,7 @@ public class Arc extends SubsystemBase {
     }
 
     public void resetEncoderByAbsoluteValue() {
-        components.getMotor().getSensorCollection().setPulseWidthPosition(0, TIME_OUT);
-        components.getMotor().setSelectedSensorPosition(0);
+        components.getMotor().setSelectedSensorPosition(angleToEncoderUnits(ARC_MIN_ANGLE));
     }
 
     public void stop() {
@@ -70,6 +72,10 @@ public class Arc extends SubsystemBase {
     public void enableSoftLimitSwitch(boolean enable) {
         components.getMotor().configForwardSoftLimitEnable(enable);
         components.getMotor().configReverseSoftLimitEnable(enable);
+    }
+
+    public double getCurrentAngle(){
+        return encoderUnitsToAngle(components.getCounter().getCount());
     }
 
     public boolean isOnTarget() {

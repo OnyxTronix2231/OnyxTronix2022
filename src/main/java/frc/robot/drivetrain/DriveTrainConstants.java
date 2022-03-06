@@ -12,8 +12,8 @@ public final class DriveTrainConstants {
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
+    static final double ROTATION_SENSITIVITY = 0.75;
     static final double SPEED_SENSITIVITY = 0.8;
-    static final double ROTATION_SENSITIVITY = 0.65;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
@@ -36,9 +36,9 @@ public final class DriveTrainConstants {
         static final double MAX_OUTPUT_FORWARD = 1;
         static final double MAX_OUTPUT_REVERSE = -1;
         static final double CURRENT_LIMIT = 40;
-        static final double TRIGGER_THRESHOLD_CURRENT = 40;
-        static final double TRIGGER_THRESHOLD_TIME = 0.03;
-        static final double RAMP_TIME = 0.3;
+        static final double TRIGGER_THRESHOLD_CURRENT = 0;
+        static final double TRIGGER_THRESHOLD_TIME = 0;
+        static final double RAMP_TIME = 0.4;
     }
 
     public static final class Calculations {
