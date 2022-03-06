@@ -165,6 +165,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        vision.ledsOff();
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {

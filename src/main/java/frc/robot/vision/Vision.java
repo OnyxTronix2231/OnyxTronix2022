@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.turret.Turret;
 import frc.robot.yawControl.YawControl;
 import vision.limelight.Limelight;
+import vision.limelight.enums.LimelightLedMode;
 import vision.limelight.target.LimelightTarget;
 
 import static frc.robot.vision.VisionConstants.*;
@@ -26,7 +27,8 @@ public class Vision extends SubsystemBase {
     public void periodic() {
         limelightTarget = limelight.getTarget();
         updateTurretToTargetVectorRTT();
-        visionShuffleboard.periodic();
+        limelight.setPipeline(PIPELINE);
+        limelight.setLedMode(LimelightLedMode.forceOn);
     }
 
     private double getDistanceLimelightFromTarget() {
@@ -92,5 +94,9 @@ public class Vision extends SubsystemBase {
             }
         }
         return null;
+    }
+
+    public void ledsOff(){
+        limelight.setLedMode(LimelightLedMode.forceOff);
     }
 }
