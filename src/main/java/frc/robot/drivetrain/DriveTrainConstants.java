@@ -20,9 +20,9 @@ public final class DriveTrainConstants {
     static final double TRACKWIDTH_METERS = 0.68;
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
-    static final double KS = 0.71542; // TODO: calibrate
-    static final double KV = 0.026815; // TODO: calibrate
-    static final double KA = 0.0086527; // TODO: calibrate
+    static final double KS = 0.73449; // TODO: calibrate
+    static final double KV = 1.8886; // TODO: calibrate
+    static final double KA = 0.42078; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
     public static final class ComponentsConstants {
