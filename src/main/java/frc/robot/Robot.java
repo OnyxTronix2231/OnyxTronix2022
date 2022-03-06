@@ -46,6 +46,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
+import static frc.robot.Constants.VISION_PIPELINE;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -98,6 +99,7 @@ public class Robot extends TimedRobot {
             arcComponents = new ArcComponentsBase();
             shooterComponents = new ShooterComponentsBase();
             vision = new Vision();
+            vision.setPipeline(VISION_PIPELINE);
         } else {
             driveTrainComponents = null;
             intakeFrontComponents = null;
@@ -165,6 +167,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        if(vision != null) {
+            vision.ledsOff();
+        }
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -182,7 +188,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        driveTrain.setNeutralModeToBrake();
+        if(driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
@@ -197,7 +205,14 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        driveTrain.setNeutralModeToBrake();
+        if(driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
+
+        if(vision != null) {
+            vision.ledsOn();
+        }
+
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
