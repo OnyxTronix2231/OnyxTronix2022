@@ -4,6 +4,7 @@ public final class LoaderConstants {
 
     static final double IDENTIFY_BALL_MIN = 1.3;
     static final double LOADER_SPEED = 0.8;
+    static final double EJECT_BALLS_LOADER_SPEED = -0.8;
 
     public static class ComponentsConstant {
 
