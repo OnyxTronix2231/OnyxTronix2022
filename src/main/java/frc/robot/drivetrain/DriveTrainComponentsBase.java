@@ -34,8 +34,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
 
-        new StatusFrameConfig(leftMasterMotor).disablePID1();
-
         leftSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configAllSettings(getFalconConfiguration());
@@ -45,15 +43,11 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_1_General, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
 
-        new StatusFrameConfig(leftSlaveMotor).disablePID1().disableFollowerCAN();
-
         rightMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);
         rightMasterMotor.configFactoryDefault();
         rightMasterMotor.configAllSettings(getFalconConfiguration());
         rightMasterMotor.setInverted(true);
         rightMasterMotor.setNeutralMode(NeutralMode.Brake);
-
-        new StatusFrameConfig(rightMasterMotor).disablePID1();
 
         rightSlaveMotor = new WPI_TalonFX(LEFT_SLAVE_MOTOR_PORT);
         rightSlaveMotor.follow(rightMasterMotor);
@@ -61,8 +55,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.setInverted(true);
         rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
         rightSlaveMotor.follow(rightMasterMotor);
-
-        new StatusFrameConfig(rightSlaveMotor).disablePID1().disableFollowerCAN();
 
         leftEncoder = new TalonEncoder(leftMasterMotor);
         rightEncoder = new TalonEncoder(rightMasterMotor);
