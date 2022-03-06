@@ -100,11 +100,13 @@ public class PathCommandsConstants {
     static final double INTAKE_SPEED_SUPPLIER = 0.5;
 
     public static final class StartPoses {
+        //94
+        //86
 
         public static final Pose2d START_POSE_A = new Pose2d(X_START_POSE_A, Y_START_POSE_A,
                 Rotation2d.fromDegrees(ROTATION_START_POSE_A));
-        public static final Pose2d START_POSE_B = new Pose2d(X_START_POSE_B, Y_START_POSE_B,
-                Rotation2d.fromDegrees(ROTATION_START_POSE_B));
+        public static final Pose2d START_POSE_B = new Pose2d(9.457, 6.02,
+                Rotation2d.fromDegrees(-90));
         public static final Pose2d START_POSE_C = new Pose2d(X_START_POSE_C, Y_START_POSE_C,
                 Rotation2d.fromDegrees(ROTATION_START_POSE_C));
         public static final Pose2d START_POSE_D = new Pose2d(X_START_POSE_D, Y_START_POSE_D,
@@ -117,7 +119,7 @@ public class PathCommandsConstants {
 
         public static final Path METER_FORWARD = new Path(
                 List.of(),
-                new Pose2d(1, 0, Rotation2d.fromDegrees(0)),
+                new Pose2d(1, 2, Rotation2d.fromDegrees(0)),
                 new MaxVelocityConstraint(2),
                 new CentripetalAccelerationConstraint(2)
         );
@@ -166,14 +168,14 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_FIRST_BALL = new Path(
                 List.of(),
-                new Pose2d(X_FIRST_BALL_B, Y_FIRST_BALL_B, Rotation2d.fromDegrees(ROTATION_FIRST_BALL_B)),
+                new Pose2d(9.443071650167077, 8.219544642013952, Rotation2d.fromDegrees(-90)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         ).setReversed();
 
         public static final Path PATH_B_SECOND_BALL = new Path(
                 List.of(),
-                new Pose2d(X_SECOND_BALL_B, Y_SECOND_BALL_B, Rotation2d.fromDegrees(ROTATION_SECOND_BALL_B)),
+                new Pose2d(11.878199878396064, 7.964432847522264, Rotation2d.fromDegrees(0)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );

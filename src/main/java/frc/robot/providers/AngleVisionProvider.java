@@ -4,7 +4,7 @@ import frc.robot.vision.Vision;
 
 import java.util.function.DoubleSupplier;
 
-public class AngleVisionProvider implements DoubleSupplier {
+public class AngleVisionProvider implements AngleProvider {
 
     private final Vision vision;
     private double lastAngle;

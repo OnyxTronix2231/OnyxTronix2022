@@ -9,7 +9,9 @@ import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
+import frc.robot.providers.AngleProviderWithVisionAndOdemetry;
 import frc.robot.providers.DistanceProvider;
+import frc.robot.providers.DistanceProviderWithVisionAndOdemetry;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
@@ -25,8 +27,7 @@ public class Upper5Balls extends SequentialCommandGroup {
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_A_FIRST_BALL),
 
 
-                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider,
-                        angleProvider),
+                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider, angleProvider),
 
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_A_SECOND_BALL),
@@ -39,6 +40,6 @@ public class Upper5Balls extends SequentialCommandGroup {
                 new MoveByPath(driveTrain, PATH_A_SHOOTING_PLACE),
 
                 new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider,
-                                angleProvider));
+                        angleProvider));
     }
 }

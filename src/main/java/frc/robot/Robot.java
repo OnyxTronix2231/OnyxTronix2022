@@ -29,9 +29,7 @@ import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
-import frc.robot.providers.AngleVisionProvider;
-import frc.robot.providers.DistanceVisionProvider;
-import frc.robot.providers.ShootBallConditionalsProviderAndVision;
+import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
@@ -66,8 +64,8 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     boolean firstEnable = false;
-    DoubleSupplier distanceSupplier;
-    DoubleSupplier angleSupplier;
+    DistanceProvider distanceSupplier;
+    AngleProvider angleSupplier;
     BooleanSupplier conditionSupplier;
 
     /**
@@ -121,24 +119,32 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
 
 
-        distanceSupplier = new DistanceVisionProvider(vision);
-        angleSupplier = new AngleVisionProvider(vision);
+        distanceSupplier = new DistanceProviderWithVisionAndOdemetry(driveTrain, vision);
+        angleSupplier = new AngleProviderByOdemetry(turret);
         conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
 
-        new DriverOi().withDriveTrain(driveTrain)
-                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
-                        angleSupplier, conditionSupplier)
-                .withArcCalibration(arc);
+        new DriverOi()
+//                .withDriveTrain(driveTrain)
+                .withDriveTrainCalb(driveTrain, intakeFront, intakeBack, loader,
+                ballTrigger, turret, shooter, arc, distanceSupplier, angleSupplier)
+                .withTurretByOdometry(turret, angleSupplier)
+//                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+//                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+//                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
+//                        angleSupplier, conditionSupplier)
 
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
-                .withArcCalibration(arc)
+//                .withArcCalibration(arc)
         ;
 
+//        new DeputyOi()
+//                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
+//                .withArcCalibration(arc)
+//        ;
+
+
         new DriversShuffleboard(vision, shooter, arc, turret);
-        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
+        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
+                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceSupplier, angleSupplier);
 
         firstEnable = true;
     }

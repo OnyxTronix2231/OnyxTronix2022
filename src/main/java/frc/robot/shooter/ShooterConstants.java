@@ -49,6 +49,7 @@ public class ShooterConstants {
             if (distance == 0){
                 return 0;
             }
+
             return 3.9908 * distance + 2471.5;
 }
 

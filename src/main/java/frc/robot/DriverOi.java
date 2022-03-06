@@ -1,30 +1,39 @@
 package frc.robot;
 
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
+import frc.robot.crossPlatform.autonomousCommands.pathCommands.UpperThreeBalls;
+import frc.robot.crossPlatform.autonomousCommands.pathCommands.UpperTwoBalls;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverShootBallOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
+import frc.robot.providers.AngleProvider;
+import frc.robot.providers.AngleProviderWithVisionAndOdemetry;
+import frc.robot.providers.DistanceProvider;
+import frc.robot.providers.DistanceProviderWithVisionAndOdemetry;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.Turret;
+import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
-import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
-import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
+import static frc.robot.Constants.*;
 
 public class DriverOi {
 
@@ -74,6 +83,23 @@ public class DriverOi {
     public DriverOi withArcCalibration(Arc arc){
         Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
         new CalibrateArcOiBinder(arc, calibrate);
+        return this;
+    }
+
+    public DriverOi withDriveTrainCalb(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
+                                       BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                                       DistanceProvider distanceProvider, AngleProvider angleProvider){
+        Trigger calibrate = new JoystickButton(controller, controller.getButtonUp());
+//        calibrate.whileActiveOnce(new UpperThreeBalls(driveTrain, frontIntake, backIntake, loader,
+//                ballTrigger, turret,shooter,arc, distanceProvider, angleProvider));
+        calibrate.whenActive(new InstantCommand(() ->
+                driveTrain.resetOdometryToPose(new Pose2d(TARGET_POSE_X, TARGET_POSE_Y, driveTrain.getPose().getRotation()))));
+        return this;
+    }
+
+    public DriverOi withTurretByOdometry(YawControl turret, AngleProvider angleProvider) {
+        Trigger trigger = new JoystickButton(controller, controller.getBumperLeft());
+        trigger.whileActiveOnce(new SmartRotateByAngle(turret, angleProvider));
         return this;
     }
 }
