@@ -80,77 +80,77 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        DriveTrainComponents driveTrainComponents;
-        IntakeComponents intakeFrontComponents;
-        IntakeComponents intakeBackComponents;
-        LoaderComponents loaderComponents;
-        BallTriggerComponents ballTriggerComponents;
-        DriveTrainJoystickValueProvider joystickValueProvider;
-        TurretComponents turretComponents;
-        ArcComponents arcComponents;
-        ShooterComponents shooterComponents;
+//        DriveTrainComponents driveTrainComponents;
+//        IntakeComponents intakeFrontComponents;
+//        IntakeComponents intakeBackComponents;
+//        LoaderComponents loaderComponents;
+//        BallTriggerComponents ballTriggerComponents;
+//        DriveTrainJoystickValueProvider joystickValueProvider;
+//        TurretComponents turretComponents;
+//        ArcComponents arcComponents;
+//        ShooterComponents shooterComponents;
         ClimberComponents climberComponents;
 
         LiveWindow.disableAllTelemetry();
 
         if (Robot.isReal()) {
-            driveTrainComponents = new DriveTrainComponentsBase();
-            intakeFrontComponents = new IntakeFrontComponentsBase();
-            intakeBackComponents = new IntakeBackComponentsBase();
-            loaderComponents = new LoaderComponentsBase();
-            ballTriggerComponents = new BallTriggerComponentsBase();
-            turretComponents = new TurretComponentsBase();
-            arcComponents = new ArcComponentsBase();
-            shooterComponents = new ShooterComponentsBase();
+//            driveTrainComponents = new DriveTrainComponentsBase();
+//            intakeFrontComponents = new IntakeFrontComponentsBase();
+//            intakeBackComponents = new IntakeBackComponentsBase();
+//            loaderComponents = new LoaderComponentsBase();
+//            ballTriggerComponents = new BallTriggerComponentsBase();
+//            turretComponents = new TurretComponentsBase();
+//            arcComponents = new ArcComponentsBase();
+//            shooterComponents = new ShooterComponentsBase();
             climberComponents = new ClimberComponentsBase();
             vision = new Vision();
         } else {
-            driveTrainComponents = null;
-            intakeFrontComponents = null;
-            intakeBackComponents = null;
-            loaderComponents = null;
-            ballTriggerComponents = null;
-            turretComponents = null;
-            arcComponents = null;
-            shooterComponents = null;
+//            driveTrainComponents = null;
+//            intakeFrontComponents = null;
+//            intakeBackComponents = null;
+//            loaderComponents = null;
+//            ballTriggerComponents = null;
+//            turretComponents = null;
+//            arcComponents = null;
+//            shooterComponents = null;
             climberComponents = null;
             vision = null;
         }
 
-        driveTrain = new DriveTrain(driveTrainComponents);
-        intakeFront = new Intake(intakeFrontComponents, "Front");
-        intakeBack = new Intake(intakeBackComponents, "Back");
-        loader = new Loader(loaderComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-        turret = new YawControl(turretComponents, driveTrain);
-        arc = new Arc(arcComponents);
-        shooter = new Shooter(shooterComponents);
+//        driveTrain = new DriveTrain(driveTrainComponents);
+//        intakeFront = new Intake(intakeFrontComponents, "Front");
+//        intakeBack = new Intake(intakeBackComponents, "Back");
+//        loader = new Loader(loaderComponents);
+//        ballTrigger = new BallTrigger(ballTriggerComponents);
+//        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
+//        turret = new YawControl(turretComponents, driveTrain);
+//        arc = new Arc(arcComponents);
+//        shooter = new Shooter(shooterComponents);
         climber = new Climber(climberComponents);
 
 
         new DeputyOi().withClimber(climber);
 
-        distanceSupplier = new DistanceVisionProvider(vision);
-        angleSupplier = new AngleVisionProvider(vision);
-        conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
+//        distanceSupplier = new DistanceVisionProvider(vision);
+//        angleSupplier = new AngleVisionProvider(vision);
+//        conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
+//
+//        new DriverOi().withDriveTrain(driveTrain)
+//                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+//                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+//                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
+//                        angleSupplier, conditionSupplier)
+//                .withArcCalibration(arc);
+//
+//        new DeputyOi()
+//                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
+//                .withArcCalibration(arc)
+//        ;
 
-        new DriverOi().withDriveTrain(driveTrain)
-                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
-                        angleSupplier, conditionSupplier)
-                .withArcCalibration(arc);
-
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
-                .withArcCalibration(arc)
-        ;
-
-        new DriversShuffleboard(vision, shooter, arc, turret);
-        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
-
-        firstEnable = true;
+//        new DriversShuffleboard(vision, shooter, arc, turret);
+//        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain);
+//
+//        firstEnable = true;
     }
 
     /**
@@ -175,12 +175,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (isDisabled()) driveTrain.setNeutralModeToCoast();
-            }
-        }, 3000);
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+//            }
+//        }, 3000);
     }
 
     @Override
@@ -192,10 +192,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().schedule();
-        }
+//        driveTrain.setNeutralModeToBrake();
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().schedule();
+//        }
     }
 
     /**
@@ -207,14 +207,14 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        driveTrain.setNeutralModeToBrake();
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().cancel();
-        }
-        if (firstEnable) {
-            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
-            firstEnable = false;
-        }
+//        driveTrain.setNeutralModeToBrake();
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().cancel();
+//        }
+//        if (firstEnable) {
+//            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+//            firstEnable = false;
+//        }
     }
 
     /**
