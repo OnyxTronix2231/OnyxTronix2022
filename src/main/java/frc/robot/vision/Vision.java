@@ -99,7 +99,11 @@ public class Vision extends SubsystemBase {
         return null;
     }
 
-    public void ledsOff(){
+    public void ledsOff() {
         limelight.setLedMode(LimelightLedMode.forceOff);
+    }
+
+    public void ledsOn() {
+        limelight.setLedMode(LimelightLedMode.forceOn);
     }
 }

@@ -167,7 +167,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        vision.ledsOff();
+        if(vision != null) {
+            vision.ledsOff();
+        }
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -185,7 +188,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        driveTrain.setNeutralModeToBrake();
+        if(driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
@@ -200,7 +205,14 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        driveTrain.setNeutralModeToBrake();
+        if(driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
+
+        if(vision != null) {
+            vision.ledsOn();
+        }
+
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
