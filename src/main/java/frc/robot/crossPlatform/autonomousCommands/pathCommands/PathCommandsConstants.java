@@ -20,7 +20,7 @@ public class PathCommandsConstants {
 
     static final double X_START_POSE_B = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_B = 8.943985451508386;
-    static final double X_SECOND_BALL_B = 11.531;
+    static final double X_SECOND_BALL_B = 11.2;
 
     static final double X_START_POSE_C = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_C = 8.943985451508386;
@@ -41,7 +41,7 @@ public class PathCommandsConstants {
     static final double Y_FOURTH_BALL_A = 2.022;
     static final double Y_ENEMY_BALL_A = 0.886;
 
-    static final double Y_START_POSE_B = 5.960; // TODO: check
+    static final double Y_START_POSE_B = 5.35; // TODO: check
     static final double Y_FIRST_BALL_B = 7.650;
     static final double Y_SECOND_BALL_B = 6.352;
 
@@ -105,7 +105,7 @@ public class PathCommandsConstants {
 
         public static final Pose2d START_POSE_A = new Pose2d(X_START_POSE_A, Y_START_POSE_A,
                 Rotation2d.fromDegrees(ROTATION_START_POSE_A));
-        public static final Pose2d START_POSE_B = new Pose2d(9.457, 6.02,
+        public static final Pose2d START_POSE_B = new Pose2d(X_START_POSE_B, Y_START_POSE_B,
                 Rotation2d.fromDegrees(-90));
         public static final Pose2d START_POSE_C = new Pose2d(X_START_POSE_C, Y_START_POSE_C,
                 Rotation2d.fromDegrees(ROTATION_START_POSE_C));
@@ -168,14 +168,14 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_FIRST_BALL = new Path(
                 List.of(),
-                new Pose2d(9.443071650167077, 8.219544642013952, Rotation2d.fromDegrees(-90)),
+                new Pose2d(X_FIRST_BALL_B, Y_FIRST_BALL_B, Rotation2d.fromDegrees(-90)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         ).setReversed();
 
         public static final Path PATH_B_SECOND_BALL = new Path(
                 List.of(),
-                new Pose2d(11.878199878396064, 7.964432847522264, Rotation2d.fromDegrees(0)),
+                new Pose2d(X_SECOND_BALL_B, Y_SECOND_BALL_B, Rotation2d.fromDegrees(0)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );
