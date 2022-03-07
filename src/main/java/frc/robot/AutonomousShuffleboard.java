@@ -36,7 +36,12 @@ public class AutonomousShuffleboard {
 //        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
 //        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
         autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
+
         autonomousChooser.addOption("nothing", new InstantCommand());
+
+        autonomousChooser.addOption("down three balls", new DownThreeBalls(driveTrain, frontIntake,
+                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
         Shuffleboard.getTab("path chooser").addNumber("X",
