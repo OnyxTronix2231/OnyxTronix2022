@@ -90,7 +90,7 @@ public class Robot extends TimedRobot {
         turretComponents = new TurretComponentsBase();
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
-        
+
         vision = new Vision();
         vision.setPipeline(VISION_PIPELINE);
 
@@ -122,21 +122,20 @@ public class Robot extends TimedRobot {
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry, shootBallsConditions)
+                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry, shootBallsConditions)
                 .withArcCalibration(arc)
         ;
 
         new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, angleProviderByVision, angleProviderByOdometry)
+                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry)
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withShootToEjectBalls(shooter,
-                        arc, loader, ballTrigger)
+                .withShootToEjectBalls(shooter, arc, loader, ballTrigger)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);
+
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
                 angleProviderByVisionAndOdometry);
