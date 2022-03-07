@@ -8,6 +8,7 @@
 package frc.robot;
 
 import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -74,6 +75,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        ///stream.mjpg
+        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
         IntakeComponents intakeFrontComponents;
@@ -142,7 +146,7 @@ public class Robot extends TimedRobot {
                 .withClimber(climber)
         ;
 
-        new DriversShuffleboard(vision, shooter, arc, turret);
+        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,

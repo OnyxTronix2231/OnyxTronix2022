@@ -11,10 +11,10 @@ public class CameraComponentsA implements CameraComponents {
     private final UsbCamera camera2;
 
     public CameraComponentsA(){
-        camera1 = CameraServer.getInstance().startAutomaticCapture();
+        camera1 = CameraServer.startAutomaticCapture();
         setCameraConfiguration(camera1);
 
-        camera2 = CameraServer.getInstance().startAutomaticCapture();
+        camera2 = CameraServer.startAutomaticCapture();
         setCameraConfiguration(camera2);
     }
 
