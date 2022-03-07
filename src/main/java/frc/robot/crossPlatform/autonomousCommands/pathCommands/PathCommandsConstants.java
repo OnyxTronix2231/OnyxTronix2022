@@ -27,7 +27,7 @@ public class PathCommandsConstants {
     static final double X_ENEMY_BALL_C = 7.568;
 
     static final double X_START_POSE_D = 10; // TODO: check
-    static final double X_FIRST_BALL_D = 11.654308133342933;
+    static final double X_FIRST_BALL_D = 11.339;
 
     static final double X_START_POSE_E = 10; // TODO: check
     static final double X_FIRST_BALL_E = 11.654308133342933;
@@ -41,7 +41,7 @@ public class PathCommandsConstants {
     static final double Y_FOURTH_BALL_A = 2.022;
     static final double Y_ENEMY_BALL_A = 0.886;
 
-    static final double Y_START_POSE_B = 5.65; // TODO: check
+    static final double Y_START_POSE_B = 6.15; // TODO: check
     static final double Y_FIRST_BALL_B = 7.650;
     static final double Y_SECOND_BALL_B = 6.352;
 
@@ -50,7 +50,7 @@ public class PathCommandsConstants {
     static final double Y_ENEMY_BALL_C = 7.826;
 
     static final double Y_START_POSE_D = 3; // TODO: check
-    static final double Y_FIRST_BALL_D = 2.022;
+    static final double Y_FIRST_BALL_D = 2.168;
 
     static final double Y_START_POSE_E = 3; // TODO: check
     static final double Y_FIRST_BALL_E = 2.022;
