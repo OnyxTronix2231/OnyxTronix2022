@@ -20,6 +20,7 @@ public class PathCommandsConstants {
 
     static final double X_START_POSE_B_BLUE = 7.606;
     static final double X_FIRST_BALL_B_BLUE = 7.606;
+    static final double X_SECOND_BALL_B_BLUE = 5.3;
 
     static final double X_START_POSE_B_RED = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_B_RED = 8.943985451508386;
@@ -46,6 +47,7 @@ public class PathCommandsConstants {
 
     static final double Y_START_POSE_B_BLUE = 2.050;
     static final double Y_FIRST_BALL_B_BLUE = 0.55;
+    static final double Y_SECOND_BALL_B_BLUE = 1.707;
 
     static final double Y_START_POSE_B_RED = 6.15; // TODO: check
     static final double Y_FIRST_BALL_B_RED = 7.650;
@@ -186,11 +188,10 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_BLUE_SECOND_BALL = new Path(
                 List.of(),
-                new Pose2d(X_FIRST_BALL_B_BLUE, Y_FIRST_BALL_B_BLUE, Rotation2d.fromDegrees(90)),
+                new Pose2d(X_FIRST_BALL_B_BLUE, Y_FIRST_BALL_B_BLUE, Rotation2d.fromDegrees(0)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
-        ).setReversed();
-
+        );
 
         public static final Path PATH_B_FIRST_BALL = new Path(
                 List.of(),
