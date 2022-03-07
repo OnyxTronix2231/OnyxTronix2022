@@ -31,7 +31,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
+        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {

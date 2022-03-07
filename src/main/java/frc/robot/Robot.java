@@ -26,9 +26,9 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
 import frc.robot.intake.Intake;
-import frc.robot.intake.IntakeBackComponentsBase;
-import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.providers.AngleVisionProvider;
 import frc.robot.providers.DistanceVisionProvider;
 import frc.robot.providers.ShootBallConditionalsProviderAndVision;
@@ -78,8 +78,8 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         DriveTrainComponents driveTrainComponents;
-        IntakeComponents intakeFrontComponents;
         IntakeComponents intakeBackComponents;
+        IntakeComponents intakeFrontComponents;
         LoaderComponents loaderComponents;
         BallTriggerComponents ballTriggerComponents;
         DriveTrainJoystickValueProvider joystickValueProvider;
@@ -121,7 +121,6 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
-
 
         distanceSupplier = new DistanceVisionProvider(vision);
         angleSupplier = new AngleVisionProvider(vision);
