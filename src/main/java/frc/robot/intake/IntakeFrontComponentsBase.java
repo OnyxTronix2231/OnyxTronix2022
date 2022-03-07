@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.StatusFrameConfig;
 
-import static frc.robot.intake.IntakeConstant.FrontComponentsConstants.*;
+import static frc.robot.intake.IntakeConstant.FrontComponentConstants.*;
 
 public class IntakeFrontComponentsBase implements IntakeComponents {
 
@@ -22,8 +22,6 @@ public class IntakeFrontComponentsBase implements IntakeComponents {
         motor.setInverted(false);
 
         new StatusFrameConfig(motor).disablePID1().disableFollowerCAN();
-
-        new StatusFrameConfig(motor);
 
         solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, FRONT_SOLENOID_FORWARD_CHANNEL,
                 FRONT_SOLENOID_REVERSE_CHANNEL);
@@ -41,7 +39,7 @@ public class IntakeFrontComponentsBase implements IntakeComponents {
 
     private TalonFXConfiguration getFalconConfiguration() {
         final TalonFXConfiguration config = new TalonFXConfiguration();
-        config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT_FRONT;
+        config.supplyCurrLimit.currentLimit = CURRENT_LIMIT_ENABLED_FRONT;
         config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT_FRONT;
         config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME_FRONT;
         config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED_FRONT;

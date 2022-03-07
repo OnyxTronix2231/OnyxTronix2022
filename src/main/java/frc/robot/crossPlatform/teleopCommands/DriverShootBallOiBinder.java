@@ -15,8 +15,11 @@ public class DriverShootBallOiBinder {
 
     public DriverShootBallOiBinder(Shooter shooter, Arc arc, BallTrigger ballTrigger, Loader loader,
                                    Vision vision, YawControl yawControl, DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier,
-                                   BooleanSupplier conditionsSupplier, Trigger shoot) {
+                                   BooleanSupplier conditionsSupplier, Trigger shoot, Trigger shootCloseToHighTarget) {
         shoot.whileActiveContinuous(new ShootBallByDistanceAndAngle(shooter, arc, yawControl, loader, ballTrigger,
                 distanceSupplier, angleSupplier, conditionsSupplier));
+
+        shootCloseToHighTarget.whileActiveContinuous(new ShootBallCloseToHighTarget(shooter, arc, yawControl, loader,
+                ballTrigger));
     }
 }

@@ -4,6 +4,7 @@ public final class BallTriggerConstants {
 
     static final double IDENTIFIED_VOLTAGE = 0.6;
     static final double BALLTRIGGER_SPEED = 0.6;
+    static final double EJECT_BALLTRIGGER_SPEED = -0.6;
     static final double THRESHOLD_BLUENESS = 0.3;
     static final double THRESHOLD_REDNESS = 0.35;
 

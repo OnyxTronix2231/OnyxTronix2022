@@ -36,6 +36,10 @@ public class Path {
         return this;
     }
 
+    public boolean isReversed() {
+        return config.isReversed();
+    }
+
     public Trajectory toTrajectory(Pose2d startPose) {
         return TrajectoryGenerator.generateTrajectory(startPose, middlePoints, endPose, config);
     }
