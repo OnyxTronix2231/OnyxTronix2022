@@ -22,7 +22,6 @@ public class MoveByPath extends CommandBase {
     public MoveByPath(DriveTrain driveTrain, Path path) {
         this.driveTrain = driveTrain;
         currentPath = path;
-        trajectory = currentPath.toTrajectory(driveTrain.getPose());
         addRequirements(driveTrain);
     }
 
