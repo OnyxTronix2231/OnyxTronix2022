@@ -15,6 +15,7 @@ import frc.robot.crossPlatform.teleopCommands.DriverShootBallOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
+import frc.robot.intake.commands.OpenPiston;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
@@ -47,10 +48,10 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withTurret(YawControl yawControl, Arc arc){
+    public DriverOi withGetReadyToClime(YawControl yawControl, Arc arc, Intake intakeForward){
         Trigger moveTo0 = new JoystickButton(controller, controller.getButtonLeft());
         moveTo0.whenActive(new RotateToAngleRTR(yawControl, ()-> 180).alongWith(
-                new MoveArcToAngle(arc, ()-> 15)));
+                new MoveArcToAngle(arc, ()-> 15), new OpenPiston(intakeForward)));
         return this;
 
     }

@@ -20,8 +20,8 @@ public class DriversShuffleboard {
 
         Shuffleboard.getTab("Main").addNumber("vision distance", vision::getHorizontalDistanceTurretToTarget);
         Shuffleboard.getTab("Main").addNumber("vision angle", vision::getHorizontalAngleTurretToTargetRTT);
-        Shuffleboard.getTab("Main").addNumber("shooter target", shooter::getSetpoint);
-        Shuffleboard.getTab("Main").addNumber("arc target", arc::getSetpoint);
+        //Shuffleboard.getTab("Main").addNumber("shooter target", shooter::getSetpoint);
+        //Shuffleboard.getTab("Main").addNumber("arc target", arc::getSetpoint);
         Shuffleboard.getTab("Main").addNumber("shooter RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Main").addNumber("arc angle", arc::getCurrentAngle);
 

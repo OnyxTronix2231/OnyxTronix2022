@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry, shootBallsConditions)
                 .withArcCalibration(arc)
-                .withTurret(turret, arc);
+                .withGetReadyToClime(turret, arc, intakeFront);
         ;
 
         new DeputyOi()

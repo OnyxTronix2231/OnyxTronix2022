@@ -188,7 +188,7 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_BLUE_SECOND_BALL = new Path(
                 List.of(),
-                new Pose2d(X_FIRST_BALL_B_BLUE, Y_FIRST_BALL_B_BLUE, Rotation2d.fromDegrees(0)),
+                new Pose2d(X_FIRST_BALL_B_BLUE, Y_FIRST_BALL_B_BLUE, Rotation2d.fromDegrees(180)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );
