@@ -41,7 +41,7 @@ public class PathCommandsConstants {
     static final double Y_FOURTH_BALL_A = 2.022;
     static final double Y_ENEMY_BALL_A = 0.886;
 
-    static final double Y_START_POSE_B = 5.35; // TODO: check
+    static final double Y_START_POSE_B = 5.65; // TODO: check
     static final double Y_FIRST_BALL_B = 7.650;
     static final double Y_SECOND_BALL_B = 6.352;
 
