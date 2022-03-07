@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.climber.Climber;
+import frc.robot.climber.DeputeClimberOiBinder;
 import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -14,7 +16,9 @@ import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
+import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import java.util.function.DoubleSupplier;
 
@@ -26,6 +30,17 @@ public class DeputyOi {
 
     public DeputyOi() {
         controller = new OnyxXboxController(DEPUTY_JOYSTICK_PORT);
+    }
+
+    public DeputyOi withClimber(Climber climber){
+        JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
+        Trigger open = new JoystickButton(controller, controller.getButtonUp());
+        Trigger down = new JoystickButton(controller, controller.getButtonDown());
+        Trigger moveRightArmSlow = new JoystickButton(controller, controller.getButtonRight());
+        Trigger moveLeftArmSlow = new JoystickButton(controller, controller.getButtonLeft());
+        JoystickAxis moveLeftArm = new JoystickAxis(controller, controller.getAxisRightY());
+        new DeputeClimberOiBinder(climber, down, open, climb, moveRightArmSlow, moveLeftArmSlow, moveLeftArm);
+        return this;
     }
 
     public DeputyOi withGetReadyToShoot(Shooter shooter, Arc arc, YawControl yawControl,
