@@ -65,8 +65,6 @@ public class Robot extends TimedRobot {
     Vision vision;
     boolean firstEnable = false;
     DistanceProvider distanceSupplier;
-    AngleProvider angleSupplier;
-    BooleanSupplier conditionSupplier;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -119,15 +117,17 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
 
 
-        distanceSupplier = new DistanceProviderWithVisionAndOdemetry(driveTrain, vision);
-        angleSupplier = new AngleProviderByOdemetry(turret);
+
+
+        var distanceProviderWithVisionAndOdemetry = new DistanceProviderWithVisionAndOdemetry(driveTrain, vision);
+        angleSupplier = new AngleProviderWithVisionAndOdemetry(vision, turret);
         conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
 
         new DriverOi()
-//                .withDriveTrain(driveTrain)
+                .withDriveTrain(driveTrain)
                 .withDriveTrainCalb(driveTrain, intakeFront, intakeBack, loader,
                 ballTrigger, turret, shooter, arc, distanceSupplier, angleSupplier)
-                .withTurretByOdometry(turret, angleSupplier)
+//                .withTurretByOdometry(turret, angleSupplier)
 //                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
 //                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
 //                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,

@@ -90,7 +90,7 @@ public class DriveTrain extends SubsystemBase {
         Pose2d currentPos = getPose();
         double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - pose2d.getY()) /
                 (currentPos.getX() - pose2d.getX())));
-        if (currentPos.getX() > pose2d.getX())
+        if (currentPos.getX() < pose2d.getX())
             angle += DEG_IN_HALF_CIRCLE;
         return angle;
     }

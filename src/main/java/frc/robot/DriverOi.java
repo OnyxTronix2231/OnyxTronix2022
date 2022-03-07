@@ -23,6 +23,7 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.providers.DistanceProviderWithVisionAndOdemetry;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
+import frc.robot.turret.commands.RotateToAngleRTR;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
@@ -90,10 +91,11 @@ public class DriverOi {
                                        BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                        DistanceProvider distanceProvider, AngleProvider angleProvider){
         Trigger calibrate = new JoystickButton(controller, controller.getButtonUp());
-//        calibrate.whileActiveOnce(new UpperThreeBalls(driveTrain, frontIntake, backIntake, loader,
-//                ballTrigger, turret,shooter,arc, distanceProvider, angleProvider));
-        calibrate.whenActive(new InstantCommand(() ->
-                driveTrain.resetOdometryToPose(new Pose2d(TARGET_POSE_X, TARGET_POSE_Y, driveTrain.getPose().getRotation()))));
+        calibrate.whileActiveOnce(new UpperThreeBalls(driveTrain, frontIntake, backIntake, loader,
+                ballTrigger, turret,shooter,arc, distanceProvider, angleProvider));
+//        calibrate.whenActive(new InstantCommand(() ->
+//                driveTrain.resetOdometryToPose(new Pose2d(TARGET_POSE_X, TARGET_POSE_Y, driveTrain.getPose().getRotation()))));
+
         return this;
     }
 
