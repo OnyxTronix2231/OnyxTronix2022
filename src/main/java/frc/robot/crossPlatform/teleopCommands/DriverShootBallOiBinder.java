@@ -20,7 +20,6 @@ public class DriverShootBallOiBinder {
                 distanceSupplier, angleSupplier, conditionsSupplier));
 
         shootCloseToHighTarget.whileActiveContinuous(new ShootBallCloseToHighTarget(shooter, arc, yawControl, loader,
-                ballTrigger, conditionsSupplier));
-
+                ballTrigger));
     }
 }
