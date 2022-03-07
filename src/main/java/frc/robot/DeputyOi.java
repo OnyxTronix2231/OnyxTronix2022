@@ -14,6 +14,7 @@ import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.commands.RotateToAngleRTR;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -34,8 +35,8 @@ public class DeputyOi {
 
     public DeputyOi withClimber(Climber climber){
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
-        Trigger moveRightArmSlow = new JoystickButton(controller, controller.getButtonRight());
-        Trigger moveLeftArmSlow = new JoystickButton(controller, controller.getButtonLeft());
+        Trigger moveRightArmSlow = new JoystickAxis(controller, controller.getRightTrigger());
+        Trigger moveLeftArmSlow = new JoystickAxis(controller, controller.getLeftTrigger());
         JoystickAxis moveLeftArm = new JoystickAxis(controller, controller.getAxisRightY());
         new DeputeClimberOiBinder(climber, climb, moveRightArmSlow, moveLeftArmSlow, moveLeftArm);
         return this;

@@ -1,6 +1,7 @@
 package frc.robot;
 
-import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
+import frc.robot.arc.commands.MoveArcToAngle;
+import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
@@ -18,6 +19,7 @@ import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
+import frc.robot.turret.commands.RotateToAngleRTR;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
@@ -43,6 +45,14 @@ public class DriverOi {
         JoystickAxis rightJoystick = new JoystickAxis(controller, controller.getAxisRightX());
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
         return this;
+    }
+
+    public DriverOi withTurret(YawControl yawControl, Arc arc){
+        Trigger moveTo0 = new JoystickButton(controller, controller.getButtonLeft());
+        moveTo0.whenActive(new RotateToAngleRTR(yawControl, ()-> 180).alongWith(
+                new MoveArcToAngle(arc, ()-> 15)));
+        return this;
+
     }
 
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,

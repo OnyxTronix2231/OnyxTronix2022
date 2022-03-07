@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -26,6 +25,7 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry, shootBallsConditions)
                 .withArcCalibration(arc)
+                .withTurret(turret, arc);
         ;
 
         new DeputyOi()
