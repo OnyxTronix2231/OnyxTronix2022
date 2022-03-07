@@ -10,7 +10,7 @@ public class DeputeClimberOiBinder {
 
     public DeputeClimberOiBinder(Climber climber, JoystickAxis climb,
                                  Trigger moveRightArmSlow, Trigger moveLeftArmSlow, JoystickAxis moveLeftArm) {
-        climb.whileActiveContinuous(new ClimbBySpeed(climber, () -> climb.getRawAxis() / 2));
+        climb.whileActiveContinuous(new ClimbBySpeed(climber, () -> climb.getRawAxis()));
         moveLeftArmSlow.whileActiveContinuous(new MoveLeftArmBySpeed(climber, () -> SLOW_ARM_SPEED));
         moveRightArmSlow.whileActiveContinuous(new MoveRightArmBySpeed(climber, () -> -SLOW_ARM_SPEED));
         moveLeftArm.whileActiveContinuous(new MoveLeftArmBySpeed(climber, () -> -moveLeftArm.getRawAxis()));

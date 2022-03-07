@@ -26,12 +26,12 @@ public class AutonomousShuffleboard {
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
 
-        autonomousChooser.setDefaultOption("1 ball from low point", new LowOneBall(driveTrain, frontIntake,
+        autonomousChooser.setDefaultOption("1 ball from RED point", new LowOneBall(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
 //        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
-        autonomousChooser.addOption("2 balls from upper start point", new UpperTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("2 balls from RED start point", new UpperTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls from upper start point", new UpperThreeBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
 //        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
 //        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
@@ -39,7 +39,7 @@ public class AutonomousShuffleboard {
 
         autonomousChooser.addOption("nothing", new InstantCommand());
 
-        autonomousChooser.addOption("down three balls", new DownThreeBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
 
 
