@@ -23,7 +23,7 @@ public class UpperTwoBalls extends SequentialCommandGroup {
         super(
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_B),
 
-                new WaitCommand(0.3),
+                new WaitCommand(0.1),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_FIRST_BALL)
                 ,
