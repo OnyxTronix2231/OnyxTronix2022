@@ -28,19 +28,19 @@ public class AutonomousShuffleboard {
 
         autonomousChooser.setDefaultOption("1 ball from RED point", new LowOneBall(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-//        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
         autonomousChooser.addOption("2 balls from RED start point", new UpperTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-//        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
-//        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
-        autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
-
-        autonomousChooser.addOption("nothing", new InstantCommand());
-
+        autonomousChooser.addOption("Blue one ball", new DownTwoBalls(driveTrain, frontIntake, backIntake,
+                loader, ballTrigger, turret,shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("BLUE four balls", new DownFourBalls(driveTrain, frontIntake,
+                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("RED four balls", new UpperFourBalls(driveTrain, frontIntake,
+                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("nothing", new InstantCommand());
 
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);

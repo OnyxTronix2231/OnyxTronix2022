@@ -21,10 +21,14 @@ public class PathCommandsConstants {
     static final double X_START_POSE_B_BLUE = 7.606;
     static final double X_FIRST_BALL_B_BLUE = 7.606;
     static final double X_SECOND_BALL_B_BLUE = 5.3;
+    static final double X_THIRD_BALL_B_BLUE = 1.499;
+    static final double X_B_SHOOTING_BLUE = 4.772;
 
     static final double X_START_POSE_B_RED = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_B_RED = 8.943985451508386;
     static final double X_SECOND_BALL_B_RED = 11.2;
+    static final double X_THIRD_BALL_B_RED = 15.208;
+    static final double X_B_SHOOTING_PLACE = 11.418;
 
     static final double X_START_POSE_C = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_C = 8.943985451508386;
@@ -48,10 +52,14 @@ public class PathCommandsConstants {
     static final double Y_START_POSE_B_BLUE = 2.050;
     static final double Y_FIRST_BALL_B_BLUE = 0.55;
     static final double Y_SECOND_BALL_B_BLUE = 1.707;
+    static final double Y_THIRD_BALL_B_BLUE = 1.179;
+    static final double Y_B_SHOOTING_BALL = 2.641;
 
     static final double Y_START_POSE_B_RED = 6.15; // TODO: check
     static final double Y_FIRST_BALL_B_RED = 7.650;
     static final double Y_SECOND_BALL_B_RED = 6.352;
+    static final double Y_THIRD_BALL_B_RED = 7.184;
+    static final double Y_B_SHOOTING_PLACE = 5.509;
 
     static final double Y_START_POSE_C = 5.960; // TODO: check
     static final double Y_FIRST_BALL_C = 7.650;
@@ -75,10 +83,12 @@ public class PathCommandsConstants {
 
     static final double ROTATION_START_POSE_B_BLUE = 90;
     static final double ROTATION_FIRST_BALL_B_BLUE = 153.335;
+    static final double ROTATION_THIRD_BALL_B_BLUE = 11.47;
 
     static final double ROTATION_START_POSE_B_RED = -90;
     static final double ROTATION_FIRST_BALL_B_RED = -153.335;
     static final double ROTATION_SECOND_BALL_B_RED = -153.335;
+    static final double ROTATION_THIRD_BALL_B_RED = 11.47;
 
     static final double ROTATION_START_POSE_C = -90;
     static final double ROTATION_FIRST_BALL_C = 7.289;
@@ -193,6 +203,20 @@ public class PathCommandsConstants {
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );
 
+        public static final Path PATH_B_BLUE_THIRD_BALL = new Path(
+                List.of(),
+                new Pose2d(X_THIRD_BALL_B_BLUE, Y_THIRD_BALL_B_BLUE, Rotation2d.fromDegrees(-11.47)),
+                new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
+                new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
+        );
+
+        public static final Path PATH_B_SHOOTING_PLACE_BLUE = new Path(
+                List.of(),
+                new Pose2d(X_B_SHOOTING_PLACE, Y_B_SHOOTING_PLACE, Rotation2d.fromDegrees(-11.47)),
+                new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
+                new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
+        );
+
         public static final Path PATH_B_FIRST_BALL = new Path(
                 List.of(),
                 new Pose2d(X_FIRST_BALL_B_RED, Y_FIRST_BALL_B_RED, Rotation2d.fromDegrees(-90)),
@@ -203,6 +227,20 @@ public class PathCommandsConstants {
         public static final Path PATH_B_SECOND_BALL = new Path(
                 List.of(),
                 new Pose2d(X_SECOND_BALL_B_RED, Y_SECOND_BALL_B_RED, Rotation2d.fromDegrees(0)),
+                new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
+                new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
+        );
+
+        public static final Path PATH_B_THIRD_BALL = new Path(
+                List.of(),
+                new Pose2d(X_THIRD_BALL_B_RED, Y_THIRD_BALL_B_RED, Rotation2d.fromDegrees(11.47)),
+                new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
+                new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
+        );
+
+        public static final Path PATH_B_SHOOTING_PLACE = new Path(
+                List.of(),
+                new Pose2d(X_B_SHOOTING_PLACE, Y_B_SHOOTING_PLACE, Rotation2d.fromDegrees(0)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );
