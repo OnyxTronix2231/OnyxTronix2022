@@ -22,8 +22,8 @@ public final class Constants {
 
     public static final int LOW_PRIORITY_STATUS_FRAME_PERIODIC = 255;
 
-    public static final double TARGET_POSE_X = 8.275;
-    public static final double TARGET_POSE_Y = 4.115;
+    public static final double TARGET_POSE_X = 9.457;
+    public static final double TARGET_POSE_Y = 4.3;
 
     public static final double ARC_CALIBRATION_SPEED = -0.3;
 

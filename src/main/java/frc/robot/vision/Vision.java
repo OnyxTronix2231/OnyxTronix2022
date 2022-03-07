@@ -21,6 +21,8 @@ public class Vision extends SubsystemBase {
         limelight = Limelight.getInstance();
         visionShuffleboard = new VisionShuffleboard(this);
         visionShuffleboard.init();
+        limelight.setPipeline(PIPELINE);
+        limelight.setLedMode(LimelightLedMode.forceOn);
     }
 
     public void setPipeline(int pipeline){
