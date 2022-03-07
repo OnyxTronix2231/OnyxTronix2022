@@ -4,12 +4,12 @@ import frc.robot.vision.Vision;
 
 import java.util.function.DoubleSupplier;
 
-public class DistanceVisionProvider implements DistanceProvider {
+public class DistanceProviderByVision implements DistanceProvider {
 
     private final Vision vision;
     private double lastDistance;
 
-    public DistanceVisionProvider(Vision vision) {
+    public DistanceProviderByVision(Vision vision) {
         this.vision = vision;
     }
 

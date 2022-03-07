@@ -9,9 +9,7 @@ import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
-import frc.robot.providers.AngleProviderWithVisionAndOdemetry;
 import frc.robot.providers.DistanceProvider;
-import frc.robot.providers.DistanceProviderWithVisionAndOdemetry;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 

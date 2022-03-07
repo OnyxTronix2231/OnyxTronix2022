@@ -40,8 +40,6 @@ import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 
@@ -64,7 +62,6 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     boolean firstEnable = false;
-    DistanceProvider distanceSupplier;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -119,14 +116,21 @@ public class Robot extends TimedRobot {
 
 
 
-        var distanceProviderWithVisionAndOdemetry = new DistanceProviderWithVisionAndOdemetry(driveTrain, vision);
-        angleSupplier = new AngleProviderWithVisionAndOdemetry(vision, turret);
-        conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
+        var distanceProviderByVision = new DistanceProviderByVision(vision);
+        var distanceProviderByOdemetry = new DistanceProviderByOdemetry(driveTrain);
+        var distanceProviderByVisionAndOdemetry = new DistanceProviderByVisionAndOdemetry
+                (vision, distanceProviderByVision, distanceProviderByOdemetry);
+
+
+        var angleProviderByVision = new AngleProviderByVision(vision);
+        var angleProviderByOdemetry = new AngleProviderByOdemetry(turret);
+        var angleProviderByVisionAndOdemetry = new AngleProviderByVisionAndOdemetry
+                (vision, angleProviderByVision, angleProviderByOdemetry);
 
         new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withDriveTrainCalb(driveTrain, intakeFront, intakeBack, loader,
-                ballTrigger, turret, shooter, arc, distanceSupplier, angleSupplier)
+                ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdemetry, angleProviderByVisionAndOdemetry)
 //                .withTurretByOdometry(turret, angleSupplier)
 //                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
 //                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
@@ -144,7 +148,8 @@ public class Robot extends TimedRobot {
 
         new DriversShuffleboard(vision, shooter, arc, turret);
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
-                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceSupplier, angleSupplier);
+                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdemetry,
+                angleProviderByVisionAndOdemetry);
 
         firstEnable = true;
     }
