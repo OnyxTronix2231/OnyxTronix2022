@@ -25,6 +25,11 @@ public class Vision extends SubsystemBase {
         limelight.setLedMode(LimelightLedMode.forceOn);
     }
 
+    public void setPipeline(int pipeline){
+        limelight.setPipeline(pipeline);
+        limelight.setLedMode(LimelightLedMode.forceOn);
+    }
+
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
@@ -94,5 +99,13 @@ public class Vision extends SubsystemBase {
             }
         }
         return null;
+    }
+
+    public void ledsOff() {
+        limelight.setLedMode(LimelightLedMode.forceOff);
+    }
+
+    public void ledsOn() {
+        limelight.setLedMode(LimelightLedMode.forceOn);
     }
 }

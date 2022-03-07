@@ -26,4 +26,6 @@ public final class Constants {
     public static final double TARGET_POSE_Y = 4.3;
 
     public static final double ARC_CALIBRATION_SPEED = -0.3;
+
+    public static final int VISION_PIPELINE = 2;
 }
