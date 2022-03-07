@@ -29,8 +29,6 @@ import frc.robot.intake.Intake;
 import frc.robot.intake.IntakeFrontComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeBackComponentsBase;
-import frc.robot.providers.AngleVisionProvider;
-import frc.robot.providers.DistanceVisionProvider;
 import frc.robot.providers.ShootBallConditionalsProviderAndVision;
 import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
@@ -129,20 +127,24 @@ public class Robot extends TimedRobot {
         var angleProviderByVisionAndOdemetry = new AngleProviderByVisionAndOdemetry
                 (vision, angleProviderByVision, angleProviderByOdemetry);
 
+
+        var conditionSupplier = new ShootBallConditionalsProviderAndVision(shooter, turret, arc, vision);
+
         new DriverOi()
                 .withDriveTrain(driveTrain)
-                .withDriveTrainCalb(driveTrain, intakeFront, intakeBack, loader,
-                ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdemetry, angleProviderByVisionAndOdemetry)
-//                .withTurretByOdometry(turret, angleSupplier)
-//                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-//                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-//                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceSupplier,
-//                        angleSupplier, conditionSupplier)
+                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdemetry,
+                        angleProviderByVisionAndOdemetry, conditionSupplier)
+                .withArcCalibration(arc)
+        ;
 
-//                .withArcCalibration(arc)
         new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
-                .withArcCalibration(arc).withLoader(loader).withBallTrigger(ballTrigger).withShootToEjectBalls(shooter,
+                .withGetReadyToShoot(shooter, arc, turret, angleProviderByVision, angleProviderByOdemetry)
+                .withArcCalibration(arc)
+                .withLoader(loader)
+                .withBallTrigger(ballTrigger)
+                .withShootToEjectBalls(shooter,
                         arc, loader, ballTrigger)
         ;
 
@@ -225,7 +227,7 @@ public class Robot extends TimedRobot {
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
-        if (firstEnable) {
+        if (firstEnable && arc != null) {
             CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
         }
