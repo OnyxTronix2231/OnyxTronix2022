@@ -26,6 +26,7 @@ import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
+import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import java.util.function.BooleanSupplier;
@@ -38,7 +39,7 @@ public class DriverOi {
     final ConsoleController controller;
 
     public DriverOi() {
-        controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
+        controller = new OnyxXboxController(DRIVE_JOYSTICK_PORT);
     }
 
     public DriverOi withDriveTrain(DriveTrain driveTrain) {

@@ -7,10 +7,12 @@ import static frc.robot.climber.ClimberConstants.*;
 public class Climber extends SubsystemBase {
 
     protected final ClimberComponents components;
+    private final ClimberShuffleBoard climberShuffleBoard;
 
     public Climber(ClimberComponents components) {
         this.components = components;
-        //new ClimberShuffleBoard(this);
+        climberShuffleBoard = new ClimberShuffleBoard(this);
+        climberShuffleBoard.init();
     }
 
     public void moveBySpeed(double speed) {

@@ -133,7 +133,6 @@ public class Robot extends TimedRobot {
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry, shootBallsConditions)
                 .withArcCalibration(arc)
                 .withGetReadyToClime(turret, arc, intakeFront);
         ;
@@ -143,8 +142,7 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withShootToEjectBalls(shooter, arc, loader, ballTrigger)
-                .withClimber(climber)
+                .withClimber(climber);
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
