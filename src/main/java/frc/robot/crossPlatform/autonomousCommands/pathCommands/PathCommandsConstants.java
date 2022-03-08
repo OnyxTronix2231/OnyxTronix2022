@@ -26,8 +26,8 @@ public class PathCommandsConstants {
 
     static final double X_START_POSE_B_RED = 8.943985451508386; // TODO: check
     static final double X_FIRST_BALL_B_RED = 8.943985451508386;
-    static final double X_SECOND_BALL_B_RED = 11.2;
-    static final double X_THIRD_BALL_B_RED = 15.208;
+    static final double X_SECOND_BALL_B_RED = 11.126;
+    static final double X_THIRD_BALL_B_RED = 15.25;
     static final double X_B_SHOOTING_PLACE = 11.418;
 
     static final double X_START_POSE_C = 8.943985451508386; // TODO: check
@@ -57,8 +57,8 @@ public class PathCommandsConstants {
 
     static final double Y_START_POSE_B_RED = 6.15; // TODO: check
     static final double Y_FIRST_BALL_B_RED = 7.650;
-    static final double Y_SECOND_BALL_B_RED = 6.352;
-    static final double Y_THIRD_BALL_B_RED = 7.184;
+    static final double Y_SECOND_BALL_B_RED = 6.408;
+    static final double Y_THIRD_BALL_B_RED = 6.959;
     static final double Y_B_SHOOTING_PLACE = 5.509;
 
     static final double Y_START_POSE_C = 5.960; // TODO: check
@@ -212,7 +212,7 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_SHOOTING_PLACE_BLUE = new Path(
                 List.of(),
-                new Pose2d(X_B_SHOOTING_PLACE, Y_B_SHOOTING_PLACE, Rotation2d.fromDegrees(-11.47)),
+                new Pose2d(X_B_SHOOTING_PLACE, Y_B_SHOOTING_PLACE, Rotation2d.fromDegrees(-45)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );
@@ -233,7 +233,7 @@ public class PathCommandsConstants {
 
         public static final Path PATH_B_THIRD_BALL = new Path(
                 List.of(),
-                new Pose2d(X_THIRD_BALL_B_RED, Y_THIRD_BALL_B_RED, Rotation2d.fromDegrees(11.47)),
+                new Pose2d(X_THIRD_BALL_B_RED, Y_THIRD_BALL_B_RED, Rotation2d.fromDegrees(45)),
                 new MaxVelocityConstraint(VELOCITY_CONSTRAINT_B),
                 new CentripetalAccelerationConstraint(CENTRIPETAL_ACCELERATION_CONSTRAINT_B)
         );

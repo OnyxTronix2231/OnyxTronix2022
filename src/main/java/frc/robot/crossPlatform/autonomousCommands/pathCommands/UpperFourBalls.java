@@ -22,13 +22,13 @@ public class UpperFourBalls extends SequentialCommandGroup {
                 new UpperThreeBalls(driveTrain, frontIntake, backIntake, loader,
                         ballTrigger, turret, shooter, arc, distanceProvider, angleProvider),
 
-                        new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_THIRD_BALL),
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_THIRD_BALL),
 
                 new WaitCommand(0.3),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_SHOOTING_PLACE),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
-                angleProvider));
+                        angleProvider));
     }
 }
