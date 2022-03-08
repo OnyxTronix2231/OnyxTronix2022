@@ -8,14 +8,14 @@ import static frc.robot.camera.CameraConstants.*;
 public class CameraComponentsA implements CameraComponents {
 
     private final UsbCamera camera1;
-    //private final UsbCamera camera2;
+    private final UsbCamera camera2;
 
     public CameraComponentsA(){
         camera1 = CameraServer.startAutomaticCapture();
         setCameraConfiguration(camera1);
 
-//        camera2 = CameraServer.startAutomaticCapture();
-//        setCameraConfiguration(camera2);
+        camera2 = CameraServer.startAutomaticCapture();
+        setCameraConfiguration(camera2);
     }
 
     public static void setCameraConfiguration(UsbCamera camera){
@@ -29,8 +29,8 @@ public class CameraComponentsA implements CameraComponents {
         return camera1;
     }
 
-//    @Override
-//    public UsbCamera getSecondCamera() {
-//        return camera2;
-//    }
+    @Override
+    public UsbCamera getSecondCamera() {
+        return camera2;
+    }
 }

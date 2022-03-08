@@ -6,6 +6,6 @@ public interface CameraComponents {
 
     UsbCamera getFirstCamera();
 
-   // UsbCamera getSecondCamera();
+   UsbCamera getSecondCamera();
 
 }
