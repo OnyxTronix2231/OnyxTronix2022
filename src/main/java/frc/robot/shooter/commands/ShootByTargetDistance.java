@@ -17,6 +17,7 @@ public class ShootByTargetDistance extends CommandBase {
 
     @Override
     public void initialize() {
+        System.out.println(distanceSupplier.getAsDouble());
         shooter.initShootByDistance(distanceSupplier.getAsDouble());
     }
 
@@ -28,5 +29,6 @@ public class ShootByTargetDistance extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         shooter.stop();
+        System.out.println(shooter.getCurrentRPM());
     }
 }

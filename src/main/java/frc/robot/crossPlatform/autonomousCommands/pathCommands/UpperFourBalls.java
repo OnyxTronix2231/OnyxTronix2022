@@ -24,7 +24,7 @@ public class UpperFourBalls extends SequentialCommandGroup {
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_THIRD_BALL),
 
-                new WaitCommand(0.1),
+                new WaitCommand(0.3),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_SHOOTING_PLACE),
 
