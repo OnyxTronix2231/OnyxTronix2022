@@ -22,7 +22,7 @@ public class DownThreeBalls extends SequentialCommandGroup {
         super(
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_B_BLUE),
 
-                new WaitCommand(0.3),
+                new WaitCommand(0.1),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_BLUE_FIRST_BALL)
                 ,

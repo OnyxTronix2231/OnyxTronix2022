@@ -13,8 +13,14 @@ import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootBallByDistanceAndAngle;
+import frc.robot.providers.AngleProviderByVision;
+import frc.robot.providers.DistanceProviderByVision;
+import frc.robot.providers.ShootBallConditionsProvider;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.Turret;
 import frc.robot.turret.commands.RotateToAngleRTR;
+import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -35,10 +41,10 @@ public class DeputyOi {
 
     public DeputyOi withClimber(Climber climber){
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY(),  0.2);
-        Trigger moveRightArmSlow = new JoystickAxis(controller, controller.getRightTrigger());
-        Trigger moveLeftArmSlow = new JoystickAxis(controller, controller.getLeftTrigger());
+        //Trigger moveRightArmSlow = new JoystickAxis(controller, controller.getRightTrigger());
+        //Trigger moveLeftArmSlow = new JoystickAxis(controller, controller.getLeftTrigger());
         JoystickAxis moveLeftArm = new JoystickAxis(controller, controller.getAxisRightY());
-        new DeputeClimberOiBinder(climber, climb, moveRightArmSlow, moveLeftArmSlow, moveLeftArm);
+        new DeputeClimberOiBinder(climber, climb, moveLeftArm);
         return this;
     }
 
@@ -66,6 +72,14 @@ public class DeputyOi {
         Trigger ejectTriggerBalls = new JoystickButton(controller, controller.getButtonLeft());
         Trigger feedShooterWithBalls = new JoystickButton(controller, controller.getButtonUp());
         new DeputyBallTriggerOiBinder(ballTrigger, feedShooterWithBalls, ejectTriggerBalls);
+        return this;
+    }
+
+    public DeputyOi withSHOOTER(Vision vision, Shooter shooter, Arc arc,
+                                BallTrigger ballTrigger, Loader loader, Turret turret){
+        Trigger BUUT = new JoystickButton(controller, controller.getLeftTrigger());
+        BUUT.whileActiveContinuous(new ShootBallByDistanceAndAngle(shooter, arc, turret, loader, ballTrigger,new DistanceProviderByVision(vision),
+                new AngleProviderByVision(vision), new ShootBallConditionsProvider(shooter, turret, arc)));
         return this;
     }
 

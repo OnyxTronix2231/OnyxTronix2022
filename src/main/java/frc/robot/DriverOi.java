@@ -1,6 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.arc.commands.MoveArcToAngle;
+import frc.robot.conveyor.commands.MoveConveyor;
 import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -94,6 +96,13 @@ public class DriverOi {
         return this;
     }
 
+
+    public DriverOi withConveyor(Shooter shooter){
+        Trigger buttom = new JoystickButton(controller, controller.getButtonUp());
+        buttom.whenActive(new InstantCommand(()-> shooter.press = true));
+        buttom.whenInactive(new InstantCommand(()-> shooter.press = false));
+        return this;
+    }
     public DriverOi withDriveTrainCalb(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                        BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                        DistanceProvider distanceProvider, AngleProvider angleProvider){

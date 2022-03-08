@@ -1,8 +1,10 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.arc.Arc;
+import frc.robot.camera.CameraComponentsA;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -25,7 +27,10 @@ public class DriversShuffleboard {
         Shuffleboard.getTab("Main").addNumber("shooter RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Main").addNumber("arc angle", arc::getCurrentAngle);
 
-        Shuffleboard.getTab("Main").add("LL", limeLightFeed).withPosition(6,1).withSize(3,3)
-                .withProperties(Map.of("Show Crosshair", false, "Show Controls", false));
+//        Shuffleboard.getTab("Main").add("LL", limeLightFeed).withPosition(6,1).withSize(3,3)
+//                .withProperties(Map.of("Show Crosshair", false, "Show Controls", false));
+
+        Shuffleboard.getTab("Main").add("cam 1", (new CameraComponentsA()).getFirstCamera());
+
     }
 }

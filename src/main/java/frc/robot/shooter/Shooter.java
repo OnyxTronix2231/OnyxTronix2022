@@ -9,6 +9,7 @@ public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
     //private final ShooterShuffleBoard shuffleBoard;
+    public boolean press = false;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
@@ -67,5 +68,9 @@ public class Shooter extends SubsystemBase {
 
     public ShooterComponents getComponents() {
         return components;
+    }
+
+    public boolean isPress() {
+        return press;
     }
 }

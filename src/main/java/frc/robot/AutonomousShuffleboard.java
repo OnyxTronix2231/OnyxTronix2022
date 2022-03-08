@@ -32,7 +32,7 @@ public class AutonomousShuffleboard {
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("Blue one ball", new DownTwoBalls(driveTrain, frontIntake, backIntake,
+        autonomousChooser.addOption("Blue two far from clime balls", new DownTwoBalls(driveTrain, frontIntake, backIntake,
                 loader, ballTrigger, turret,shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));

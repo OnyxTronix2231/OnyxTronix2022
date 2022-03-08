@@ -8,8 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
@@ -127,22 +129,24 @@ public class Robot extends TimedRobot {
 
         joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
 
-        var shootBallsConditions = new ShootBallConditionalsWithVisionProvider(shooter, turret, arc, vision);
+        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
         new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront);
-        ;
+                .withGetReadyToClime(turret, arc, intakeFront).withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
+                angleProviderByVisionAndOdometry, shootBallsConditions).withConveyor(shooter)
+;
 
         new DeputyOi()
                 .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry)
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(climber);
+                .withClimber(climber)
+        .withSHOOTER(vision, shooter, arc, ballTrigger, loader, turret);
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
@@ -199,6 +203,9 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
+        }
+        if (vision != null) {
+            vision.ledsOn();
         }
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
