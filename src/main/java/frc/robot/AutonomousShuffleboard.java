@@ -17,11 +17,13 @@ import frc.robot.turret.Turret;
 public class AutonomousShuffleboard {
 
     private final SendableChooser<Command> autonomousChooser;
+    private final SendableChooser<Command> allianceChooser;
 
     public AutonomousShuffleboard(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
+        allianceChooser = new SendableChooser<>();
 
 //        autonomousChooser.setDefaultOption("1 ball from low point", new LowOneBall(driveTrain));
 //        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
@@ -31,6 +33,7 @@ public class AutonomousShuffleboard {
 //        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
         autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
 
+        Shuffleboard.getTab("path chooser").add(allianceChooser);
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
         Shuffleboard.getTab("path chooser").addNumber("X",
                 () -> driveTrain.getPose().getX());
