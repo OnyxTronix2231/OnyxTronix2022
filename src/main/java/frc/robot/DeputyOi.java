@@ -77,7 +77,7 @@ public class DeputyOi {
 
     public DeputyOi withSHOOTER(Vision vision, Shooter shooter, Arc arc,
                                 BallTrigger ballTrigger, Loader loader, Turret turret){
-        Trigger BUUT = new JoystickButton(controller, controller.getLeftTrigger());
+        Trigger BUUT = new JoystickAxis(controller, controller.getLeftTrigger());
         BUUT.whileActiveContinuous(new ShootBallByDistanceAndAngle(shooter, arc, turret, loader, ballTrigger,new DistanceProviderByVision(vision),
                 new AngleProviderByVision(vision), new ShootBallConditionsProvider(shooter, turret, arc)));
         return this;
