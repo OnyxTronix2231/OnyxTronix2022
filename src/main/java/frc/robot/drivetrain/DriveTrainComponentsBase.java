@@ -29,12 +29,12 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private final Field2d field2d;
 
     public DriveTrainComponentsBase() {
-        leftMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);
+        leftMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
         leftMasterMotor.configFactoryDefault();
-        leftMasterMotor.configAllSettings(getFalconConfiguration());
+        // leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
 
-        leftSlaveMotor = new WPI_TalonFX(LEFT_SLAVE_MOTOR_PORT);
+        leftSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
         leftSlaveMotor.follow(leftMasterMotor);
         leftSlaveMotor.configAllSettings(getFalconConfiguration());
         leftSlaveMotor.setNeutralMode(NeutralMode.Brake);
@@ -43,13 +43,13 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_1_General, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
         leftSlaveMotor.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, LOW_PRIORITY_STATUS_FRAME_PERIODIC);
 
-        rightMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
+        rightMasterMotor = new WPI_TalonFX(LEFT_MASTER_MOTOR_PORT);
         rightMasterMotor.configFactoryDefault();
         rightMasterMotor.configAllSettings(getFalconConfiguration());
         rightMasterMotor.setInverted(true);
         rightMasterMotor.setNeutralMode(NeutralMode.Brake);
 
-        rightSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
+        rightSlaveMotor = new WPI_TalonFX(LEFT_SLAVE_MOTOR_PORT);
         rightSlaveMotor.follow(rightMasterMotor);
         rightSlaveMotor.configAllSettings(getFalconConfiguration());
         rightSlaveMotor.setInverted(true);
