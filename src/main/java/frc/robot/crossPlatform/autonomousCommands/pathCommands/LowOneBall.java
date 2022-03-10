@@ -1,5 +1,7 @@
 package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -13,6 +15,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_D_FIRST_BALL;
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
 
 public class LowOneBall extends SequentialCommandGroup {
 
@@ -23,7 +26,9 @@ public class LowOneBall extends SequentialCommandGroup {
                 new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_D),
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_D_FIRST_BALL),
 
-                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider, angleProvider)
+                new ShootWithDelay(shooter, arc,turret, loader, ballTrigger, distanceProvider, angleProvider),
+
+                new ResetOdometryToPose(driveTrain, new Pose2d(X_FIRST_BALL_D , Y_FIRST_BALL_D, Rotation2d.fromDegrees(ROTATION_FIRST_BALL_D)))
         );
     }
 }

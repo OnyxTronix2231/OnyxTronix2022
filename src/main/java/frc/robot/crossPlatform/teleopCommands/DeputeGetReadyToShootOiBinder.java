@@ -9,8 +9,8 @@ import java.util.function.DoubleSupplier;
 
 public class DeputeGetReadyToShootOiBinder {
 
-    public DeputeGetReadyToShootOiBinder(Shooter shooter, Arc arc, YawControl yawControl, Trigger getReady,
-                                         DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
+    public DeputeGetReadyToShootOiBinder(Shooter shooter, Arc arc, YawControl yawControl,
+                                         DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier, Trigger getReady) {
         getReady.whileActiveOnce(new GetReadyToShoot(shooter, arc, yawControl, distanceSupplier, angleSupplier));
     }
 }

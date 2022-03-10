@@ -14,7 +14,7 @@ public class ClimberConstants {
 
     static final double OPEN_CLIMBER_SPEED = 0.8;
     static final double CLOSE_CLIMBER_SPEED = 0.6;
-    static final double SLOW_ARM_SPEED = 0.2;
+    static final double SLOW_ARM_SPEED = 1;
     static final double SUPPLY_CURRENT_LIMIT = 20;
     static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;
     static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0;

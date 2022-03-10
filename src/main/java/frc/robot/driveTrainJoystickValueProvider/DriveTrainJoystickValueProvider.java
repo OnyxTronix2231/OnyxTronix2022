@@ -1,9 +1,9 @@
-package driveTrainJoystickValueProvider;
+package frc.robot.driveTrainJoystickValueProvider;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.drivetrain.DriveTrain;
 
-import static driveTrainJoystickValueProvider.driveTrainJoystickValueProviderConstants.DEADBAND;
+import static frc.robot.driveTrainJoystickValueProvider.driveTrainJoystickValueProviderConstants.DEADBAND;
 
 public class DriveTrainJoystickValueProvider extends SubsystemBase {
 
