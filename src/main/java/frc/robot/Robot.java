@@ -16,9 +16,6 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
@@ -65,7 +62,6 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
-    Climber climber;
     boolean firstEnable = false;
 
     /**
@@ -83,7 +79,6 @@ public class Robot extends TimedRobot {
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
-        ClimberComponents climberComponents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -95,7 +90,6 @@ public class Robot extends TimedRobot {
         turretComponents = new TurretComponentsBase();
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
-        climberComponents = new ClimberComponentsBase();
 
         vision = new Vision();
         vision.setPipeline(VISION_PIPELINE);
@@ -108,7 +102,6 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
-        climber = new Climber(climberComponents);
 
         var distanceProviderByVision = new DistanceProviderByVision(vision);
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
@@ -139,7 +132,6 @@ public class Robot extends TimedRobot {
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withShootToEjectBalls(shooter, arc, loader, ballTrigger)
-                .withClimber(climber)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);
