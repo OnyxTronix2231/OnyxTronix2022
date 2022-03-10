@@ -132,7 +132,7 @@ public class Robot extends TimedRobot {
         new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withDriveTrainCalb(driveTrain, intakeFront, intakeBack, loader,
-                ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdemetry, angleProviderByVisionAndOdemetry)
+                        ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdemetry, angleProviderByVisionAndOdemetry)
 //                .withTurretByOdometry(turret, angleSupplier)
 //                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
 //                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
@@ -143,7 +143,7 @@ public class Robot extends TimedRobot {
         new DeputyOi()
                 .withGetReadyToShoot(shooter, arc, turret, distanceSupplier, angleSupplier)
                 .withArcCalibration(arc).withLoader(loader).withBallTrigger(ballTrigger).withShootToEjectBalls(shooter,
-                        arc, loader, ballTrigger)
+                arc, loader, ballTrigger)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret);

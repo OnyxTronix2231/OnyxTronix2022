@@ -14,7 +14,9 @@ import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
+import humanControls.JoystickAxis;
 import humanControls.OnyxXboxController;
+import humanControls.PlayStation5Controller;
 
 import java.util.function.DoubleSupplier;
 
