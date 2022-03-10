@@ -20,6 +20,6 @@ public class ShootBallConditionsProvider implements BooleanSupplier {
 
     @Override
     public boolean getAsBoolean() {
-        return (shooter.isOnTarget() && turret.isOnTarget() && arc.isOnTarget()) || shooter.isPress();
+        return (shooter.isOnTarget() && turret.isOnTarget() && arc.isOnTarget()) || shooter.isRealeBallsButtonpress();
     }
 }

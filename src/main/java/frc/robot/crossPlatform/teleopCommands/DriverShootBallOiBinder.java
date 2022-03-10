@@ -1,5 +1,6 @@
 package frc.robot.crossPlatform.teleopCommands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -14,12 +15,16 @@ import java.util.function.DoubleSupplier;
 public class DriverShootBallOiBinder {
 
     public DriverShootBallOiBinder(Shooter shooter, Arc arc, BallTrigger ballTrigger, Loader loader,
-                                   Vision vision, YawControl yawControl, DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier,
-                                   BooleanSupplier conditionsSupplier, Trigger shoot, Trigger shootCloseToHighTarget) {
+                                   Vision vision, YawControl yawControl, DoubleSupplier distanceSupplier,
+                                   DoubleSupplier angleSupplier, BooleanSupplier conditionsSupplier, Trigger shoot,
+                                   Trigger shootCloseToHighTarget, Trigger realiseBalls) {
         shoot.whileActiveContinuous(new ShootBallByDistanceAndAngle(shooter, arc, yawControl, loader, ballTrigger,
                 distanceSupplier, angleSupplier, conditionsSupplier));
 
         shootCloseToHighTarget.whileActiveContinuous(new ShootBallCloseToHighTarget(shooter, arc, yawControl, loader,
                 ballTrigger));
+
+        realiseBalls.whenActive(new InstantCommand(() -> shooter.setRealeBallsButtonpress(true)));
+        realiseBalls.whenInactive(new InstantCommand(() -> shooter.setRealeBallsButtonpress(false)));
     }
 }

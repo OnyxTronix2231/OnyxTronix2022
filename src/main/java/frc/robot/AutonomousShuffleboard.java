@@ -12,10 +12,8 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
-import frc.robot.providers.DistanceProviderByVisionAndOdemetry;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
-import frc.robot.vision.Vision;
 
 public class AutonomousShuffleboard {
 
@@ -32,8 +30,8 @@ public class AutonomousShuffleboard {
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("Blue two far from clime balls", new DownTwoBalls(driveTrain, frontIntake, backIntake,
-                loader, ballTrigger, turret,shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("Blue two far from clime balls", new DownTwoBalls(driveTrain, frontIntake,
+                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.setDefaultOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("BLUE four balls", new DownFourBalls(driveTrain, frontIntake,
@@ -49,7 +47,7 @@ public class AutonomousShuffleboard {
         Shuffleboard.getTab("path chooser").addNumber("Y",
                 () -> driveTrain.getPose().getY());
         Shuffleboard.getTab("path chooser").addNumber("heading",
-                () -> driveTrain.getHeading());
+                driveTrain::getHeading);
     }
 
     public Command getSelectedCommand() {

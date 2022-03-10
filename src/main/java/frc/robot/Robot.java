@@ -8,10 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
-import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.arc.Arc;
@@ -27,7 +25,6 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -77,7 +74,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        ///stream.mjpg
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 
         DriveTrainComponents driveTrainComponents;
@@ -85,7 +81,6 @@ public class Robot extends TimedRobot {
         IntakeComponents intakeFrontComponents;
         LoaderComponents loaderComponents;
         BallTriggerComponents ballTriggerComponents;
-        DriveTrainJoystickValueProvider joystickValueProvider;
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
@@ -127,8 +122,6 @@ public class Robot extends TimedRobot {
         var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
                 (vision, angleProviderByVision, angleProviderByOdometry);
 
-        joystickValueProvider = new DriveTrainJoystickValueProvider(driveTrain);
-
         var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
         new DriverOi()
@@ -136,17 +129,19 @@ public class Robot extends TimedRobot {
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront).withShootBallOnlyVision(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                angleProviderByVisionAndOdometry, shootBallsConditions).withConveyor(shooter)
-;
+                .withGetReadyToClime(turret, arc, intakeFront).
+                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
+                        angleProviderByVisionAndOdometry, shootBallsConditions)
+        ;
 
         new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry)
+                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
+                        angleProviderByVisionAndOdometry)
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(climber)
-        .withSHOOTER(vision, shooter, arc, ballTrigger, loader, turret);
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
