@@ -6,6 +6,7 @@ import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.autonomousPaths.PathBlueUpperTwoBalls;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
@@ -16,16 +17,17 @@ import frc.robot.turret.Turret;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_B_BLUE_FIRST_BALL;
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_B_BLUE_SECOND_BALL;
 
-public class DownTwoBalls extends SequentialCommandGroup {
-    public DownTwoBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                          BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                          DistanceProvider distanceProvider, AngleProvider angleProvider) {
-        super(
-                new ResetOdometryToPose(driveTrain, PathCommandsConstants.StartPoses.START_POSE_B_BLUE),
+public class BlueUpperTwoBalls extends SequentialCommandGroup {
+    public BlueUpperTwoBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
+                             BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                             DistanceProvider distanceProvider, AngleProvider angleProvider) {
+        PathBlueUpperTwoBalls p = new PathBlueUpperTwoBalls();
+        addCommands(
+                new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
                 new WaitCommand(0.3),
 
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, PATH_B_BLUE_FIRST_BALL)
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1))
                 ,
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
