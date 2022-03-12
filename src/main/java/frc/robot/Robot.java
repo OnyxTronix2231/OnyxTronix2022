@@ -142,8 +142,6 @@ public class Robot extends TimedRobot {
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 
-        new Compressor(PneumaticsModuleType.CTREPCM).disable();
-
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
                 angleProviderByVisionAndOdometry);
