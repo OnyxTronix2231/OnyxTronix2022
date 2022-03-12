@@ -30,8 +30,8 @@ public final class DriveTrainConstants {
     public static final double LAUNCH_PAD_POSITION_RED_Y = 2.776;
     public static final double LAUNCH_PAD_RED_DEGREE = 180;
     public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.58;
-    public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
     public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.486;
+    public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
 
     public static final class ComponentsConstants {
 
@@ -70,6 +70,5 @@ public final class DriveTrainConstants {
         static double getAverageSpeed(double leftSpeed, double rightSpeed) {
             return (leftSpeed + rightSpeed) / 2;
         }
-
     }
 }

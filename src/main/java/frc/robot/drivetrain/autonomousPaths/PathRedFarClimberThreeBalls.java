@@ -40,6 +40,6 @@ public class PathRedFarClimberThreeBalls implements AutonomousPaths{
 
     @Override
     public Path getPath(int pathNumber) {
-        return paths.get(pathNumber-1);
+        return paths.get(pathNumber - 1);
     }
 }

@@ -141,9 +141,6 @@ public class Robot extends TimedRobot {
                 .withResetOdometry(driveTrain)
         ;
 
-
-
-
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,

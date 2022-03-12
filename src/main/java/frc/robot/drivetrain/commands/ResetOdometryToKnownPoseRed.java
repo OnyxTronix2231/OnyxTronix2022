@@ -10,4 +10,3 @@ public class ResetOdometryToKnownPoseRed extends ResetOdometryByKnownPose {
         super(driveTrain, LAUNCH_PAD_POSITION_RED_X, LAUNCH_PAD_POSITION_RED_Y, LAUNCH_PAD_RED_DEGREE);
     }
 }
-
