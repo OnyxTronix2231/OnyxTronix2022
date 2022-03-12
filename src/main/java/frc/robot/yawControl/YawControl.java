@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
+import frc.robot.turret.commands.RotateByAngle;
 
 import static frc.robot.Constants.TARGET_POSE_X;
 import static frc.robot.Constants.TARGET_POSE_Y;
@@ -23,12 +24,17 @@ public class YawControl extends Turret {
     }
 
     public double getRTFToRTRAngle(double angleRTF) {
-        return angleRTF + driveTrain.getHeading(); //TODO: find if rotating to same direction
+        return angleRTF - driveTrain.getHeading(); //TODO: find if rotating to same direction
     }
 
     public double getAngleRTRToTarget() {
         return getRTFToRTRAngle(driveTrain.getAngleToTargetByPose());
     }
+
+    public double getAngleRTFToTarget() {
+        return driveTrain.getAngleToTargetByPose();
+    }
+
 
     public double getAngleToEjectBall() {
         Pose2d currentPos = driveTrain.getPose();

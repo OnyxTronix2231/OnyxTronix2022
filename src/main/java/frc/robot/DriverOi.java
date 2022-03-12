@@ -21,6 +21,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.DriverYawControlOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;

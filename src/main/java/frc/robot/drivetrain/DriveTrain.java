@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -88,7 +89,7 @@ public class DriveTrain extends SubsystemBase {
 
     public double getAngleToAPose(Pose2d pose2d) {
         Pose2d currentPos = getPose();
-        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - pose2d.getY()) /
+        double angle = Math.toDegrees(Math.atan((currentPos.getY() - pose2d.getY()) /
                 (currentPos.getX() - pose2d.getX())));
         if (currentPos.getX() < pose2d.getX())
             angle += DEG_IN_HALF_CIRCLE;
