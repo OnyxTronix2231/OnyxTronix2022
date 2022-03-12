@@ -14,7 +14,6 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
-import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.Paths.PATH_B_SECOND_BALL;
 
 public class RedDownTwoBalls extends SequentialCommandGroup {
 
