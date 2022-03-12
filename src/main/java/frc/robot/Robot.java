@@ -141,8 +141,12 @@ public class Robot extends TimedRobot {
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(climber)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                .withResetOdometry(driveTrain)
         ;
+
+
+
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 

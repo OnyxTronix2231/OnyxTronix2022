@@ -6,7 +6,7 @@ import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.autonomousPaths.PathBlueLowTarmacStraightLine;
+import frc.robot.drivetrain.autonomousPaths.PathBlueCloseClimberStraightLine;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
@@ -14,11 +14,11 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
-public class BlueDownStrightLine extends SequentialCommandGroup {
-    public BlueDownStrightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                               BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                               DistanceProvider distanceProvider, AngleProvider angleProvider) {
-        PathBlueLowTarmacStraightLine p = new PathBlueLowTarmacStraightLine();
+public class BlueCloseClimberStrightLine extends SequentialCommandGroup {
+    public BlueCloseClimberStrightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
+                                       BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                                       DistanceProvider distanceProvider, AngleProvider angleProvider) {
+        PathBlueCloseClimberStraightLine p = new PathBlueCloseClimberStraightLine();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 

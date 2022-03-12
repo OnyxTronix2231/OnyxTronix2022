@@ -6,7 +6,7 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.autonomousCommands.pathCommands.RedUpperThreeBalls;
+import frc.robot.crossPlatform.autonomousCommands.pathCommands.RedFarClimberThreeBalls;
 import frc.robot.crossPlatform.teleopCommands.DriverGetReadyToClimeOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
@@ -101,7 +101,7 @@ public class DriverOi {
                                        BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                        DistanceProvider distanceProvider, AngleProvider angleProvider) {
         Trigger calibrate = new JoystickButton(controller, controller.getButtonUp());
-        calibrate.whileActiveOnce(new RedUpperThreeBalls(driveTrain, frontIntake, backIntake, loader,
+        calibrate.whileActiveOnce(new RedFarClimberThreeBalls(driveTrain, frontIntake, backIntake, loader,
                 ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         return this;
     }

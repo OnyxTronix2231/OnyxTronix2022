@@ -12,6 +12,8 @@ import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
+import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -71,6 +73,12 @@ public class DeputyOi {
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
         new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
                 shootWithVision);
+        return this;
+    }
+
+    public DeputyOi withResetOdometry(DriveTrain driveTrain) {
+        Trigger resetOdometry = new JoystickButton(controller, controller.getCenterLeft());
+        new DeputyDriveTrainOiBinder(driveTrain, resetOdometry);
         return this;
     }
 }

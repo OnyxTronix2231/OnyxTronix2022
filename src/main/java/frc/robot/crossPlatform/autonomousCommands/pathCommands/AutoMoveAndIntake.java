@@ -11,8 +11,6 @@ import frc.robot.drivetrain.Path;
 import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.intake.Intake;
 
-import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
-
 public class AutoMoveAndIntake extends ParallelDeadlineGroup {
     static final double LOADER_SPEED_SUPPLIER = 0.5;
     static final double BALL_TRIGGER_SPEED_SUPPLIER = 0.5;

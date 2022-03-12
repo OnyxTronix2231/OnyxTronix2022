@@ -9,7 +9,7 @@ import frc.robot.drivetrain.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathBlueDownTwoBalls implements AutonomousPaths {
+public class PathBlueCloseClimberTwoBalls implements AutonomousPaths {
 
     static final double X_START_POSE = 6.976;
     static final double X_FIRST_BALL = 5.266;
@@ -20,9 +20,9 @@ public class PathBlueDownTwoBalls implements AutonomousPaths {
     private final Pose2d startPose;
     private final Path firstPath;
 
-    ArrayList<Path> paths;
+    ArrayList<Path> paths = new ArrayList<>();
 
-    public PathBlueDownTwoBalls(){
+    public PathBlueCloseClimberTwoBalls() {
         startPose = new Pose2d(X_START_POSE, Y_START_POSE, Rotation2d.fromDegrees(-30.591));
 
         firstPath = new Path(

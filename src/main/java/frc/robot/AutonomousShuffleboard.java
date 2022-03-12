@@ -24,15 +24,15 @@ public class AutonomousShuffleboard {
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
 
-        autonomousChooser.addOption("1 ball from RED point", new RedDownTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("1 ball from RED point", new RedCloseClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("2 balls from RED start point", new RedUpperTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("2 balls from RED start point", new RedFarClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls from RED start point", new RedUpperThreeBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("3 balls from RED start point", new RedFarClimberThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("Blue two far from clime balls", new BlueUpperTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("Blue two far from clime balls", new BlueFarClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.setDefaultOption("BLUE three balls", new BlueUpperThreeBalls(driveTrain, frontIntake,
+        autonomousChooser.setDefaultOption("BLUE three balls", new BlueFarClimberThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("nothing", new InstantCommand());
 
