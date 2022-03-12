@@ -24,19 +24,15 @@ public class AutonomousShuffleboard {
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
 
-        autonomousChooser.addOption("1 ball from RED point", new LowOneBall(driveTrain, frontIntake,
+        autonomousChooser.addOption("1 ball from RED point", new RedCloseClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("2 balls from RED start point", new UpperTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("2 balls from RED start point", new RedFarClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("3 balls from RED start point", new RedFarClimberThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("Blue two far from clime balls", new DownTwoBalls(driveTrain, frontIntake,
+        autonomousChooser.addOption("Blue two far from clime balls", new BlueFarClimberTwoBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.setDefaultOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("BLUE four balls", new DownFourBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("RED four balls", new UpperFourBalls(driveTrain, frontIntake,
+        autonomousChooser.setDefaultOption("BLUE three balls", new BlueFarClimberThreeBalls(driveTrain, frontIntake,
                 backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("nothing", new InstantCommand());
 

@@ -137,7 +137,8 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                .withResetOdometry(driveTrain)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
