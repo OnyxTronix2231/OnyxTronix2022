@@ -67,7 +67,6 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
-    //Climber climber;
     boolean firstEnable = false;
 
     /**
@@ -86,7 +85,6 @@ public class Robot extends TimedRobot {
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
-        ClimberComponents climberComponents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -98,7 +96,6 @@ public class Robot extends TimedRobot {
         turretComponents = new TurretComponentsBase();
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
-        //climberComponents = new ClimberComponentsBase();
 
         driveTrain = new DriveTrain(driveTrainComponents);
         vision = new Vision(driveTrain);
@@ -110,7 +107,6 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
-        //climber = new Climber(climberComponents);
 
         var distanceProviderByVision = new DistanceProviderByVision(vision);
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
@@ -141,7 +137,6 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                //.withClimber(climber)
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
         ;
 
