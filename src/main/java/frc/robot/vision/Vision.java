@@ -2,25 +2,29 @@ package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.yawControl.YawControl;
 import vision.limelight.Limelight;
 import vision.limelight.enums.LimelightLedMode;
 import vision.limelight.target.LimelightTarget;
 
+import static frc.robot.Constants.*;
 import static frc.robot.vision.VisionConstants.*;
 
 public class Vision extends SubsystemBase {
 
     private final Limelight limelight;
     private final VisionShuffleboard visionShuffleboard;
+    private final DriveTrain driveTrain;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
 
-    public Vision() {
+    public Vision(DriveTrain driveTrain) {
         limelight = Limelight.getInstance();
+        this.driveTrain = driveTrain;
         visionShuffleboard = new VisionShuffleboard(this);
-       // visionShuffleboard.init();
+        visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
         limelight.setLedMode(LimelightLedMode.forceOn);
     }
@@ -33,6 +37,7 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
+        visionShuffleboard.periodic();
         updateTurretToTargetVectorRTT();
     }
 
@@ -78,27 +83,29 @@ public class Vision extends SubsystemBase {
         return limelight.targetFound();
     }
 
-    public double getRobotToTargetAngleRTF(YawControl yawControl) {
+    /*
+    public double getRobotToTargetAngleRTF() {
         if (turretToTargetVectorRTT != null) {
             return getHorizontalAngleTurretToTargetRTT() + yawControl.getTurretAngleRTF();
         }
         return TARGET_NOT_FOUND;
     }
+    */
 
-    public Translation2d getXAndY(YawControl yawControl) {
-        double robotToTargetAngleRTF = getRobotToTargetAngleRTF(yawControl);
-        double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF));
-        double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF));
+    public Translation2d getXAndY() {
+        double robotToTargetAngleRTF = driveTrain.getHeading();
+        double x = TARGET_POSE_X - Math.cos(Math.toRadians(robotToTargetAngleRTF));
+        double y = TARGET_POSE_Y - Math.sin(Math.toRadians(robotToTargetAngleRTF));
         return new Translation2d(x, y);
     }
 
-    public Translation2d getXAndYAuto(YawControl yawControl) {
+    public Translation2d getXAndYAuto() {
         if (hasTarget()) {
             if (Math.abs(getHorizontalAngleTurretToTargetRTT()) < TURRET_TOLERANCE) {
-                return getXAndY(yawControl);
+                return getXAndY();
             }
         }
-        return null;
+        return new Translation2d(TARGET_NOT_FOUND, TARGET_NOT_FOUND);
     }
 
     public void ledsOff() {
@@ -107,5 +114,9 @@ public class Vision extends SubsystemBase {
 
     public void ledsOn() {
         limelight.setLedMode(LimelightLedMode.forceOn);
+    }
+
+    public DriveTrain getDriveTrain() {
+        return driveTrain;
     }
 }

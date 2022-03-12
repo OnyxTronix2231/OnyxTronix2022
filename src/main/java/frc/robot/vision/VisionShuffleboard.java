@@ -1,16 +1,26 @@
 package frc.robot.vision;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class VisionShuffleboard {
     private final Vision vision;
+    private Translation2d temp;
 
     public VisionShuffleboard(Vision vision) {
         this.vision = vision;
     }
 
     public void init() {
+        temp = vision.getXAndYAuto();
         Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("Vision").addNumber("Angle", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("Vision").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("Vision").addNumber("Heading", () -> vision.getDriveTrain().getHeading());
+        Shuffleboard.getTab("Vision").addNumber("X vision", temp::getX);
+        Shuffleboard.getTab("Vision").addNumber("Y vision", temp::getY);
+    }
+
+    public void periodic(){
+        temp = vision.getXAndYAuto();
     }
 }

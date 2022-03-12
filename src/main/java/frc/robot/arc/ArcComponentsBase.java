@@ -36,7 +36,7 @@ public class ArcComponentsBase implements ArcComponents {
                 MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
 
         reverseMicroswitch = new TalonSrxReverseMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyOpen);
+                LimitSwitchNormal.NormallyClosed);
     }
 
     @Override

@@ -10,7 +10,7 @@ public final class VisionConstants {
     static final double TURRET_TOLERANCE = 0.5;
     static final Vector2dEx LIMELIGHT_TO_TURRET_VECTOR_RTT =
             Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
-    static final double TARGET_NOT_FOUND = 0;
+    static final double TARGET_NOT_FOUND = -999;
     static final double TARGET_X_RTF = 800;  //TODO: check and change
     static final double TARGET_Y_RTF = 500;  //TODO: check and change
     static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 30;

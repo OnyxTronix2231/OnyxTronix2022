@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -20,6 +21,9 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
+        resetOdometryToPose(new Pose2d(0, 0, new Rotation2d()));
+        Shuffleboard.getTab("Vision").addNumber("X odo", ()->this.getPose().getX());
+        Shuffleboard.getTab("Vision").addNumber("Y odo", ()->this.getPose().getY());
         field2d = new Field2d();
     }
 
