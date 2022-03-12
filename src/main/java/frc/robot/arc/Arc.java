@@ -53,7 +53,7 @@ public class Arc extends SubsystemBase {
     }
 
     public boolean hasHitReverseMicroSwitch() {
-        return components.getReverseMicroSwitch().isOpen();
+        return ! components.getReverseMicroSwitch().isOpen();
     }
 
     public void resetEncoderByAbsoluteValue() {

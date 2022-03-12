@@ -67,7 +67,6 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
-    Climber climber;
     boolean firstEnable = false;
 
     /**
@@ -86,7 +85,6 @@ public class Robot extends TimedRobot {
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
-        ClimberComponents climberComponents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -98,12 +96,10 @@ public class Robot extends TimedRobot {
         turretComponents = new TurretComponentsBase();
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
-        climberComponents = new ClimberComponentsBase();
-
-        vision = new Vision();
-        vision.setPipeline(VISION_PIPELINE);
 
         driveTrain = new DriveTrain(driveTrainComponents);
+        vision = new Vision(driveTrain);
+        vision.setPipeline(VISION_PIPELINE);
         intakeFront = new Intake(intakeFrontComponents, "Front");
         intakeBack = new Intake(intakeBackComponents, "Back");
         loader = new Loader(loaderComponents);
@@ -111,7 +107,6 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
-        climber = new Climber(climberComponents);
 
         var distanceProviderByVision = new DistanceProviderByVision(vision);
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
@@ -142,7 +137,6 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(climber)
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
         ;
 
@@ -155,6 +149,8 @@ public class Robot extends TimedRobot {
                 angleProviderByVisionAndOdometry);
 
         firstEnable = true;
+
+        new Compressor(PneumaticsModuleType.CTREPCM).disable();
     }
 
     /**
