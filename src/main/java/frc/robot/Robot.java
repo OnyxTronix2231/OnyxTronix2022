@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -145,6 +147,8 @@ public class Robot extends TimedRobot {
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
+
+        new Compressor(PneumaticsModuleType.CTREPCM).disable();
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
