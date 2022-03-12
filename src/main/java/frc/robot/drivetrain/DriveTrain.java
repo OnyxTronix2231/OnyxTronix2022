@@ -88,7 +88,7 @@ public class DriveTrain extends SubsystemBase {
 
     public double getAngleToAPose(Pose2d pose2d) {
         Pose2d currentPos = getPose();
-        double angle = Math.toDegrees(Math.atan(-(currentPos.getY() - pose2d.getY()) /
+        double angle = Math.toDegrees(Math.atan((currentPos.getY() - pose2d.getY()) /
                 (currentPos.getX() - pose2d.getX())));
         if (currentPos.getX() < pose2d.getX())
             angle += DEG_IN_HALF_CIRCLE;

@@ -23,7 +23,7 @@ public class YawControl extends Turret {
     }
 
     public double getRTFToRTRAngle(double angleRTF) {
-        return angleRTF + driveTrain.getHeading(); //TODO: find if rotating to same direction
+        return angleRTF - driveTrain.getHeading(); //TODO: find if rotating to same direction
     }
 
     public double getAngleRTRToTarget() {
