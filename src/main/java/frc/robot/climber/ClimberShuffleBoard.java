@@ -2,10 +2,7 @@ package frc.robot.climber;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.climber.commands.*;
-
-import static frc.robot.climber.ClimberConstants.CLOSE_CLIMBER_SPEED;
-import static frc.robot.climber.ClimberConstants.OPEN_CLIMBER_SPEED;
+import frc.robot.climber.commands.MoveArmsBySpeed;
 
 public class ClimberShuffleBoard {
 
@@ -18,7 +15,7 @@ public class ClimberShuffleBoard {
         this.climber = climber;
     }
 
-    public void init(){
+    public void init() {
         /*Shuffleboard.getTab("Climber").addNumber("leftEncoderUnits", climber::getLeftEncoderUnits);
         Shuffleboard.getTab("Climber").addNumber("rightEncoderUnits", climber::getRightEncoderUnits);
         Shuffleboard.getTab("Climber").addBoolean("climber reached fourth bar",
@@ -31,18 +28,9 @@ public class ClimberShuffleBoard {
         //Shuffleboard.getTab("Climber").add("openPiston", new OpenPistons(climber));
         //Shuffleboard.getTab("Climber").add("closePiston", new ClosePistons(climber));
 
-        Shuffleboard.getTab("Climber").add("ClimbBySpeed",
-                new ClimbBySpeed(climber, () -> setSpeed.getDouble(0)));
 
-        //Shuffleboard.getTab("Climber").add("openClimberArms",
-        //   new ClimbBySpeed(climber, () -> OPEN_CLIMBER_SPEED));
-        //Shuffleboard.getTab("Climber").add("closeClimberArms",
-        //  new ClimbBySpeed(climber, () -> CLOSE_CLIMBER_SPEED));
-
-        Shuffleboard.getTab("Climber").add("Move Arm Left by Speed", new MoveLeftArmBySpeed(climber,
+        Shuffleboard.getTab("Climber").add("Move Arms by Speed", new MoveArmsBySpeed(climber,
                 () -> setSpeedLeft.getDouble(0)));
-        Shuffleboard.getTab("Climber").add("Move Arm Right by Speed", new MoveRightArmBySpeed(climber,
-                () -> setSpeedRight.getDouble(0)));
 
     }
 }

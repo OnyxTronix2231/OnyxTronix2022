@@ -2,7 +2,6 @@ package frc.robot.advancedClimber.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import frc.robot.advancedClimber.AdvancedClimber;
-import frc.robot.climber.commands.ClimbBySpeed;
 
 import java.util.function.DoubleSupplier;
 

@@ -5,24 +5,22 @@ import frc.robot.climber.Climber;
 
 import java.util.function.DoubleSupplier;
 
-public class MoveRightArmBySpeed extends CommandBase {
+public class MoveStabilizerBySpeed extends CommandBase {
+    private final Climber climber;
+    private final DoubleSupplier speedSupplier;
 
-    private Climber climber;
-    private DoubleSupplier speedSupplier;
-
-    public MoveRightArmBySpeed(Climber climber, DoubleSupplier speedSupplier) {
+    public MoveStabilizerBySpeed(Climber climber, DoubleSupplier speedSupplier) {
         this.climber = climber;
         this.speedSupplier = speedSupplier;
-        addRequirements(climber);
     }
 
     @Override
     public void execute() {
-        climber.moveRightArmBySpeed(speedSupplier.getAsDouble());
+        climber.moveStabilizerMotorBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopRightArm();
+        climber.stopStabilizer();
     }
 }

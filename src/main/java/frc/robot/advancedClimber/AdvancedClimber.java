@@ -15,10 +15,6 @@ public class AdvancedClimber extends Climber {
         this.driveTrain = driveTrain;
     }
 
-    public boolean hasReachedFourthBar() {
-        return isLeftEncoderOnTarget() && isRightEncoderOnTarget() && isOnDesiredPitchAngle();
-    }
-
     public boolean isOnDesiredPitchAngle() {
         return driveTrain.getPitch() >= DESIRED_PITCH_ANGLE;
     }

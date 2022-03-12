@@ -2,7 +2,7 @@ package frc.robot.climber;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.climber.ClimberConstants.*;
+import static frc.robot.climber.ClimberConstants.DESIRED_STABILIZER_MOTOR_ENCODER_UNITS;
 
 public class Climber extends SubsystemBase {
 
@@ -12,55 +12,33 @@ public class Climber extends SubsystemBase {
     public Climber(ClimberComponents components) {
         this.components = components;
         climberShuffleBoard = new ClimberShuffleBoard(this);
-        //climberShuffleBoard.init();
     }
 
-    public void moveBySpeed(double speed) {
-        components.getRightMotor().set(speed);
-        components.getLeftMotor().set(-speed);
+    public void moveArmsBySpeed(double speed) {
+        components.getMasterMotor().set(speed);
     }
 
-    public void moveLeftArmBySpeed(double speed) {
-        components.getLeftMotor().set(speed);
+    public void stopArms() {
+        moveArmsBySpeed(0);
     }
 
-    public void moveRightArmBySpeed(double speed) {
-        components.getRightMotor().set(speed);
+    public void moveStabilizerMotorBySpeed(double speed) {
+        components.getStabilizerMotor().set(speed);
     }
 
-    public void stop() {
-        moveBySpeed(0);
+    public void stopStabilizer() {
+        moveStabilizerMotorBySpeed(0);
     }
 
-    public void stopLeftArm() {
-        moveLeftArmBySpeed(0);
+    public double getArmsEncoderUnits() {
+        return components.getMasterMotorEncoder().getCount();
     }
 
-    public void stopRightArm() {
-        moveRightArmBySpeed(0);
+    public boolean isStabilizerMotorEncoderOnTarget(int desiredPosition) {
+        return getStabilizerMotorEncoderUnits() >= desiredPosition;
     }
 
-    public double getLeftEncoderUnits() {
-        return components.getLeftEncoder().getCount();
-    }
-
-    public double getRightEncoderUnits() {
-        return components.getRightEncoder().getCount();
-    }
-
-    public void openPistons() {
-        components.getDoubleSolenoid().set(SOLENOID_OPEN_VALUE);
-    }
-
-    public void closePistons() {
-        components.getDoubleSolenoid().set(SOLENOID_CLOSE_VALUE);
-    }
-
-    public boolean isRightEncoderOnTarget() {
-        return getRightEncoderUnits() >= DESIRED_ENCODER_UNITS;
-    }
-
-    public boolean isLeftEncoderOnTarget() {
-        return getLeftEncoderUnits() >= DESIRED_ENCODER_UNITS;
+    public double getStabilizerMotorEncoderUnits() {
+        return components.getStabilizerMotorEncoder().getCount();
     }
 }

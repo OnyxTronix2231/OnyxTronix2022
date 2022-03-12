@@ -1,18 +1,15 @@
 package frc.robot.climber;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import sensors.counter.TalonEncoder;
 
 public interface ClimberComponents {
 
-    WPI_TalonFX getRightMotor();
+    WPI_TalonFX getMasterMotor();
 
-    WPI_TalonFX getLeftMotor();
+    TalonEncoder getMasterMotorEncoder();
 
-    DoubleSolenoid getDoubleSolenoid();
+    WPI_TalonFX getStabilizerMotor();
 
-    TalonEncoder getLeftEncoder();
-
-    TalonEncoder getRightEncoder();
+    TalonEncoder getStabilizerMotorEncoder();
 }
