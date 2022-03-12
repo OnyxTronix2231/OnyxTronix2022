@@ -21,9 +21,6 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        resetOdometryToPose(new Pose2d(0, 0, new Rotation2d()));
-        Shuffleboard.getTab("Vision").addNumber("X odo", ()->this.getPose().getX());
-        Shuffleboard.getTab("Vision").addNumber("Y odo", ()->this.getPose().getY());
         field2d = new Field2d();
     }
 

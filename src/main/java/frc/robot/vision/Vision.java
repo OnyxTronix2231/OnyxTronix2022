@@ -86,8 +86,8 @@ public class Vision extends SubsystemBase {
     public Translation2d getXAndY() {
         double robotToTargetAngleRTF = driveTrain.getHeading();
         double distance = getHorizontalDistanceTurretToTarget();
-        double x = TARGET_POSE_X - (Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance) / 100;
-        double y = TARGET_POSE_Y - (Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance) / 100;
+        double x = TARGET_POSE_X - (Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance) / CM_TO_METERS;
+        double y = TARGET_POSE_Y - (Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance) / CM_TO_METERS;
         return new Translation2d(x, y);
     }
 
@@ -106,9 +106,5 @@ public class Vision extends SubsystemBase {
 
     public void ledsOn() {
         limelight.setLedMode(LimelightLedMode.forceOn);
-    }
-
-    public DriveTrain getDriveTrain() {
-        return driveTrain;
     }
 }

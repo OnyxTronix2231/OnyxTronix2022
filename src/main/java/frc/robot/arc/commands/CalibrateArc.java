@@ -17,7 +17,6 @@ public class CalibrateArc extends MoveArcBySpeed {
     @Override
     public void initialize()
     {
-        System.out.println("working arc");
         arc.enableSoftLimitSwitch(false);
     }
 

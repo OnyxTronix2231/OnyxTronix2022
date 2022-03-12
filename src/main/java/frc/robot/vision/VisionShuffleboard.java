@@ -13,7 +13,6 @@ public class VisionShuffleboard {
     public void init() {
         Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
         Shuffleboard.getTab("Vision").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
-        Shuffleboard.getTab("Vision").addNumber("Heading", () -> vision.getDriveTrain().getHeading());
         Shuffleboard.getTab("Vision").addNumber("X vision", ()->vision.getXAndYAuto().getX());
         Shuffleboard.getTab("Vision").addNumber("Y vision", ()->vision.getXAndYAuto().getY());
     }

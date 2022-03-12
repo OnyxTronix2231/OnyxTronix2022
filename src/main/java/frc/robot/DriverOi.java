@@ -83,12 +83,6 @@ public class DriverOi {
 
     }
 
-    public DriverOi withYawControl(YawControl yawControl) {
-        Trigger byPose = new JoystickButton(controller, controller.getButtonRight());
-        new DriverYawControlOiBinder(yawControl, byPose);
-        return this;
-    }
-
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,
                                                        Intake intakeFront, Intake intakeBack, Loader loader,
                                                        BallTrigger ballTrigger) {
