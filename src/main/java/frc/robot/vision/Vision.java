@@ -83,19 +83,11 @@ public class Vision extends SubsystemBase {
         return limelight.targetFound();
     }
 
-    /*
-    public double getRobotToTargetAngleRTF() {
-        if (turretToTargetVectorRTT != null) {
-            return getHorizontalAngleTurretToTargetRTT() + yawControl.getTurretAngleRTF();
-        }
-        return TARGET_NOT_FOUND;
-    }
-    */
-
     public Translation2d getXAndY() {
         double robotToTargetAngleRTF = driveTrain.getHeading();
-        double x = TARGET_POSE_X - Math.cos(Math.toRadians(robotToTargetAngleRTF));
-        double y = TARGET_POSE_Y - Math.sin(Math.toRadians(robotToTargetAngleRTF));
+        double distance = getHorizontalDistanceTurretToTarget();
+        double x = TARGET_POSE_X - (Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance) / 100;
+        double y = TARGET_POSE_Y - (Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance) / 100;
         return new Translation2d(x, y);
     }
 
