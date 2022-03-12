@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
-    Climber climber;
+    //Climber climber;
     boolean firstEnable = false;
 
     /**
