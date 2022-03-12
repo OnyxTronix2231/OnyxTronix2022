@@ -22,9 +22,6 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         field2d = new Field2d();
-        Shuffleboard.getTab("Turret").addNumber("drivex", () -> this.getPose().getX());
-        Shuffleboard.getTab("Turret").addNumber("drivey", () -> this.getPose().getY());
-
     }
 
     public void resetEncoders() {
