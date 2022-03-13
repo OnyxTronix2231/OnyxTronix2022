@@ -11,7 +11,7 @@ public class RGBComponentsBase {
     public RGBComponentsBase() {
         led = new AddressableLED(9);
 
-        ledBuffer = new AddressableLEDBuffer(120);
+        ledBuffer = new AddressableLEDBuffer(32);
 
         led.setLength(ledBuffer.getLength());
         led.setData(ledBuffer);
