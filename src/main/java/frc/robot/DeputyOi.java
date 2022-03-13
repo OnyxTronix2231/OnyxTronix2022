@@ -12,6 +12,8 @@ import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
+import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -52,25 +54,29 @@ public class DeputyOi {
     }
 
     public DeputyOi withLoader(Loader loader) {
-        Trigger ejectLoaderBalls = new JoystickButton(controller, controller.getButtonRight());
-        Trigger feedBallTriggerWithBalls = new JoystickButton(controller, controller.getButtonDown());
-        new DeputyLoaderOiBinder(loader, feedBallTriggerWithBalls, ejectLoaderBalls);
+        Trigger ejectLoaderBalls = new JoystickButton(controller, controller.getButtonDown());
+        new DeputyLoaderOiBinder(loader, ejectLoaderBalls);
         return this;
     }
 
     public DeputyOi withBallTrigger(BallTrigger ballTrigger) {
-        Trigger ejectTriggerBalls = new JoystickButton(controller, controller.getButtonLeft());
-        Trigger feedShooterWithBalls = new JoystickButton(controller, controller.getButtonUp());
-        new DeputyBallTriggerOiBinder(ballTrigger, feedShooterWithBalls, ejectTriggerBalls);
+        Trigger moveBallFromBallTriggerToLoader = new JoystickButton(controller, controller.getButtonUp());
+        new DeputyBallTriggerOiBinder(ballTrigger, moveBallFromBallTriggerToLoader);
         return this;
     }
 
     public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
                                 Turret turret, Vision vision) {
-        Trigger shootToEjectBalls = new JoystickButton(controller, controller.getRightTrigger());
+        Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
         new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
                 shootWithVision);
+        return this;
+    }
+
+    public DeputyOi withResetOdometry(DriveTrain driveTrain) {
+        Trigger resetOdometry = new JoystickButton(controller, controller.getCenterLeft());
+        new DeputyDriveTrainOiBinder(driveTrain, resetOdometry);
         return this;
     }
 }
