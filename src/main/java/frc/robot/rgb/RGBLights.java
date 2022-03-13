@@ -2,38 +2,24 @@ package frc.robot.rgb;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class RGB extends SubsystemBase {
+public class RGBLights extends SubsystemBase {
 
     private RGBComponentsBase ledComponents;
     private LedShuffleBoard shuffleBoard;
 
-    public RGB(RGBComponentsBase ledComponents) {
+    public RGBLights(RGBComponentsBase ledComponents) {
         this.ledComponents = ledComponents;
         shuffleBoard = new LedShuffleBoard(this);
         shuffleBoard.init();
     }
 
-    public void perodic() {
+    public void periodic() {
 
     }
 
-    public void setToRed() {
+    public void setToColor(int[] color) {
         for (int i = 0; i < ledComponents.getLedBuffer().getLength(); i++) {
-            ledComponents.getLedBuffer().setRGB(i, 255, 0, 0);
-        }
-        ledComponents.getLed().setData(ledComponents.getLedBuffer());
-    }
-
-    public void setToGreen() {
-        for (int i = 0; i < ledComponents.getLedBuffer().getLength(); i++) {
-            ledComponents.getLedBuffer().setRGB(i, 0, 255, 0);
-        }
-        ledComponents.getLed().setData(ledComponents.getLedBuffer());
-    }
-
-    public void setToBlue() {
-        for (int i = 0; i < ledComponents.getLedBuffer().getLength(); i++) {
-            ledComponents.getLedBuffer().setRGB(i, 0, 0, 255);
+            ledComponents.getLedBuffer().setRGB(i, color[0], color[1], color[2]);
         }
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
@@ -49,12 +35,12 @@ public class RGB extends SubsystemBase {
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
 
-    public void halfsies() {
+    public void halfsies(int[] color1, int[] color2) {
         for (int i = 0; i < ledComponents.getLedBuffer().getLength() / 2; i++) {
-          ledComponents.getLedBuffer().setRGB(i, 255, 0, 0);
+          ledComponents.getLedBuffer().setRGB(i, color1[0], color1[1], color1[2]);
         }
         for (int i = ledComponents.getLedBuffer().getLength() / 2; i < ledComponents.getLedBuffer().getLength(); i++) {
-            ledComponents.getLedBuffer().setRGB(i, 0, 0, 255);
+            ledComponents.getLedBuffer().setRGB(i, color2[0], color2[1], color2[2]);
         }
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }

@@ -1,11 +1,11 @@
 package frc.robot.rgb.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.rgb.RGB;
+import frc.robot.rgb.RGBLights;
 
 public class SetToRainbow extends InstantCommand {
 
-    public SetToRainbow(RGB rgb) {
+    public SetToRainbow(RGBLights rgb) {
         super(rgb::rainbow, rgb);
     }
 }
