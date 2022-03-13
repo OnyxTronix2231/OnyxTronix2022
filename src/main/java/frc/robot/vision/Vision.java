@@ -1,6 +1,7 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
@@ -27,6 +28,8 @@ public class Vision extends SubsystemBase {
         visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
         limelight.setLedMode(LimelightLedMode.forceOn);
+        Shuffleboard.getTab("Vision").addNumber("disdence", this::getDistanceLimelightFromTarget);
+        Shuffleboard.getTab("Vision").addNumber("angel", this::getHorizontalAngleTurretToTargetRTT);
     }
 
     public void setPipeline(int pipeline){
@@ -37,7 +40,9 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
+        limelight.setLedMode(LimelightLedMode.forceOn);
         visionShuffleboard.periodic();
+
         updateTurretToTargetVectorRTT();
     }
 
@@ -98,7 +103,7 @@ public class Vision extends SubsystemBase {
         return new Translation2d(x, y);
     }
 
-    public Translation2d getXAndYAuto() {
+    public Translation2d getXAndYAuto(YawControl yawControl) {
         if (hasTarget()) {
             return getXAndY(yawControl);
         }
