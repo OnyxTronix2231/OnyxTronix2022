@@ -82,7 +82,7 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl){
+    public DriverOi withYawControl(YawControl yawControl) {
         new DriverYawControlOiBinder(yawControl);
         return this;
     }
