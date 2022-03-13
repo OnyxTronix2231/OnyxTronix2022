@@ -8,6 +8,7 @@ import vision.limelight.Limelight;
 import vision.limelight.enums.LimelightLedMode;
 import vision.limelight.target.LimelightTarget;
 
+import static frc.robot.Constants.*;
 import static frc.robot.vision.VisionConstants.*;
 
 public class Vision extends SubsystemBase {
@@ -87,18 +88,19 @@ public class Vision extends SubsystemBase {
 
     public Translation2d getXAndY(YawControl yawControl) {
         double robotToTargetAngleRTF = getRobotToTargetAngleRTF(yawControl);
-        double x = TARGET_X_RTF - Math.cos(Math.toRadians(robotToTargetAngleRTF));
-        double y = TARGET_Y_RTF - Math.sin(Math.toRadians(robotToTargetAngleRTF));
+        double distance = getHorizontalDistanceTurretToTarget() / 100;
+        double x = TARGET_POSE_X + Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance;
+        double y = TARGET_POSE_Y + Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance;
         return new Translation2d(x, y);
     }
 
     public Translation2d getXAndYAuto(YawControl yawControl) {
         if (hasTarget()) {
-            if (Math.abs(getHorizontalAngleTurretToTargetRTT()) < TURRET_TOLERANCE) {
+            //if (Math.abs(getHorizontalAngleTurretToTargetRTT()) < TURRET_TOLERANCE) {
                 return getXAndY(yawControl);
-            }
+            //}
         }
-        return null;
+        return new Translation2d(999, 999);
     }
 
     public void ledsOff() {

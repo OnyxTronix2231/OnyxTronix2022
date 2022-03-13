@@ -7,7 +7,7 @@ import static frc.robot.turret.TurretConstants.MIDDLE_ANGLE;
 
 public class DriverYawControlOiBinder {
 
-    public DriverYawControlOiBinder(YawControl yawControl, Trigger rotateAngleRTF) {
-        rotateAngleRTF.toggleWhenActive(new RotateToAngleRTF(yawControl, () -> MIDDLE_ANGLE));
+    public DriverYawControlOiBinder(YawControl yawControl) {
+        yawControl.setDefaultCommand(new RotateToAngleRTF(yawControl, yawControl::getAngleRTFToTarget));
     }
 }
