@@ -83,21 +83,26 @@ public class Vision extends SubsystemBase {
         return limelight.targetFound();
     }
 
-    public Translation2d getXAndY() {
-        double robotToTargetAngleRTF = driveTrain.getHeading();
-        double distance = getHorizontalDistanceTurretToTarget();
-        double x = TARGET_POSE_X - (Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance) / CM_TO_METERS;
-        double y = TARGET_POSE_Y - (Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance) / CM_TO_METERS;
+    public double getRobotToTargetAngleRTF(YawControl yawControl) {
+        if (turretToTargetVectorRTT != null) {
+            return getHorizontalAngleTurretToTargetRTT() + yawControl.getTurretAngleRTF();
+        }
+        return TARGET_NOT_FOUND;
+    }
+
+    public Translation2d getXAndY(YawControl yawControl) {
+        double robotToTargetAngleRTF = getRobotToTargetAngleRTF(yawControl);
+        double distance = getHorizontalDistanceTurretToTarget() / CM_IN_METER;
+        double x = TARGET_POSE_X + Math.cos(Math.toRadians(robotToTargetAngleRTF)) * distance;
+        double y = TARGET_POSE_Y + Math.sin(Math.toRadians(robotToTargetAngleRTF)) * distance;
         return new Translation2d(x, y);
     }
 
     public Translation2d getXAndYAuto() {
         if (hasTarget()) {
-            if (Math.abs(getHorizontalAngleTurretToTargetRTT()) < TURRET_TOLERANCE) {
-                return getXAndY();
-            }
+            return getXAndY(yawControl);
         }
-        return new Translation2d(TARGET_NOT_FOUND, TARGET_NOT_FOUND);
+        return DEFAULT_POSE;
     }
 
     public void ledsOff() {

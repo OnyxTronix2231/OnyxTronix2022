@@ -1,7 +1,10 @@
 package frc.robot.vision;
 
+import edu.wpi.first.math.geometry.Translation2d;
+
 public final class VisionConstants {
 
+    static final double CM_IN_METER = 100;
     static final double TARGET_HEIGHT_CM = 266;
     static final double LIMELIGHT_HEIGHT_TO_FLOOR_CM = 108.5;
     static final double LIMELIGHT_TO_TARGET_CM = TARGET_HEIGHT_CM - LIMELIGHT_HEIGHT_TO_FLOOR_CM;
@@ -15,5 +18,6 @@ public final class VisionConstants {
     static final double TARGET_Y_RTF = 500;  //TODO: check and change
     static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 30;
     static final int PIPELINE = 2;
+    static final Translation2d DEFAULT_POSE = new Translation2d(999, 999);
     static final double CM_TO_METERS = 100;
 }
