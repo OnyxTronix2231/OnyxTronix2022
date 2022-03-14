@@ -7,8 +7,8 @@ import frc.robot.rgb.RGBLights;
 
 public class BlinkYouStupidFatPigHeadedDick extends SequentialCommandGroup {
 
-    public BlinkYouStupidFatPigHeadedDick(Colors color, double time) {
-        super(new SetColor(color), new WaitCommand(time), new TurnOff(), new WaitCommand(time));
+    public BlinkYouStupidFatPigHeadedDick(RGBLights led, Colors color, double time) {
+        super(new SetColor(led, color), new WaitCommand(time), new TurnOff(led), new WaitCommand(time));
     }
 
     @Override

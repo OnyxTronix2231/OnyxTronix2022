@@ -8,10 +8,10 @@ import frc.robot.rgb.RGBLights;
 
 public class BlinkOnce extends SequentialCommandGroup {
 
-    public BlinkOnce(Colors color, double time) {
+    public BlinkOnce(RGBLights led, Colors color, double time) {
         super(new WaitCommand(time),
-                new SetColor(color),
+                new SetColor(led, color),
                 new WaitCommand(time),
-                new TurnOff());
+                new TurnOff(led));
     }
 }

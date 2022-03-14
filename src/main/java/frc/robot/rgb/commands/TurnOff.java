@@ -5,7 +5,7 @@ import frc.robot.rgb.RGBLights;
 
 public class TurnOff extends SetColor {
 
-    public TurnOff() {
-        super(Colors.black);
+    public TurnOff(RGBLights led) {
+        super(led, Colors.black);
     }
 }

@@ -5,21 +5,14 @@ import frc.robot.rgb.commands.BlinkYouStupidFatPigHeadedDick;
 
 public class RGBLights extends SubsystemBase {
 
-    private static RGBComponentsBase ledComponents;
-    private static LedShuffleBoard shuffleBoard;
-    private static RGBLights rgbLights = null;
+    private RGBComponentsBase ledComponents;
+    private LedShuffleBoard shuffleBoard;
 
-    public static RGBLights getInstance() {
-        if (rgbLights == null) {
-            ledComponents = new RGBComponentsBase();
-            rgbLights = new RGBLights();
-            shuffleBoard = new LedShuffleBoard();
-            shuffleBoard.init();
-        }
-        return rgbLights;
-    }
 
-    public RGBLights() {
+    public RGBLights(RGBComponentsBase ledComponents) {
+        this.ledComponents = ledComponents;
+        shuffleBoard = new LedShuffleBoard();
+        shuffleBoard.init();
     }
 
     public void setToColor(int red, int green, int blue) {

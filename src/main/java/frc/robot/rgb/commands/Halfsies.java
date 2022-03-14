@@ -6,7 +6,7 @@ import frc.robot.rgb.RGBLights;
 
 public class Halfsies extends InstantCommand {
 
-    public Halfsies(Colors color1, Colors color2) {
-        super(() -> RGBLights.getInstance().halfsies(color1.value, color2.value));
+    public Halfsies(RGBLights led, Colors color1, Colors color2) {
+        super(() -> led.halfsies(color1.value, color2.value));
     }
 }

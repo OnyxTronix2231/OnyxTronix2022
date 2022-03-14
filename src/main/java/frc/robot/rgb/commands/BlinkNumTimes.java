@@ -8,8 +8,8 @@ public class BlinkNumTimes extends BlinkOnce {
     private final int repeat;
     private int counter;
 
-    public BlinkNumTimes(Colors color, double time, int repeat) {
-        super(color, time);
+    public BlinkNumTimes(RGBLights led, Colors color, double time, int repeat) {
+        super(led, color, time);
         this.repeat = repeat;
         counter = repeat;
     }

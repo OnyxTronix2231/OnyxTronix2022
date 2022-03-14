@@ -57,6 +57,8 @@ import static frc.robot.Constants.VISION_PIPELINE;
  */
 public class Robot extends TimedRobot {
 
+    RGBLights led;
+
 //    DriveTrain driveTrain;
 //    Arc arc;
 //    Shooter shooter;
@@ -79,6 +81,10 @@ public class Robot extends TimedRobot {
 //        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 //
 //
+        RGBComponentsBase ledComponents;
+        ledComponents = new RGBComponentsBase();
+        led = new RGBLights(ledComponents);
+
 //        DriveTrainComponents driveTrainComponents;
 //        IntakeComponents intakeBackComponents;
 //        IntakeComponents intakeFrontComponents;
@@ -148,7 +154,6 @@ public class Robot extends TimedRobot {
 //                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
 //        ;
 //
-            RGBLights.getInstance();
 //        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 //
 //        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,

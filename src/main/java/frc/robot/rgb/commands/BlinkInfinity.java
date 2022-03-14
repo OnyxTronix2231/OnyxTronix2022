@@ -5,8 +5,8 @@ import frc.robot.rgb.RGBLights;
 
 public class BlinkInfinity extends BlinkOnce{
 
-    public BlinkInfinity(Colors color, double time) {
-        super(color, time);
+    public BlinkInfinity(RGBLights led, Colors color, double time) {
+        super(led, color, time);
     }
 
     @Override
