@@ -35,6 +35,7 @@ public class Vision extends SubsystemBase {
     public void periodic() {
         limelightTarget = limelight.getTarget();
         updateTurretToTargetVectorRTT();
+        visionShuffleboard.periodic();
     }
 
     private double getDistanceLimelightFromTarget() {
