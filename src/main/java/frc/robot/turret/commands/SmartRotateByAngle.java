@@ -1,6 +1,7 @@
 package frc.robot.turret.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.providers.IsLoadBallButtonPress;
 import frc.robot.turret.Turret;
 
 import java.util.function.DoubleSupplier;
@@ -28,6 +29,8 @@ public class SmartRotateByAngle extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        turret.stop();
+        if (!IsLoadBallButtonPress.isPress()) {
+            turret.stop();
+        }
     }
 }
