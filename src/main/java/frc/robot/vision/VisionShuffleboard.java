@@ -11,8 +11,8 @@ public class VisionShuffleboard {
     }
 
     public void init() {
-        Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("Vision").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("odo").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
+        Shuffleboard.getTab("odo").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
     }
 
     public void periodic(){}

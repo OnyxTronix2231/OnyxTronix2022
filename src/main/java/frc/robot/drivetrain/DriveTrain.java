@@ -23,7 +23,10 @@ public class DriveTrain extends SubsystemBase {
         this.driveTrainComponents = driveTrainComponents;
         field2d = new Field2d();
         resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
-   }
+        Shuffleboard.getTab("odo").addNumber("odo x", () -> getPose().getX());
+        Shuffleboard.getTab("odo").addNumber("odo y", () -> getPose().getY());
+
+    }
 
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
