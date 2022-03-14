@@ -33,7 +33,7 @@ import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
 import frc.robot.providers.*;
-import frc.robot.rgb.RGB;
+import frc.robot.rgb.RGBLights;
 import frc.robot.rgb.RGBComponentsBase;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
@@ -57,7 +57,7 @@ import static frc.robot.Constants.VISION_PIPELINE;
  */
 public class Robot extends TimedRobot {
 
-    RGB led;
+    RGBLights led;
 
 //    DriveTrain driveTrain;
 //    Arc arc;
@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
 //        vision = new Vision();
 //        vision.setPipeline(VISION_PIPELINE);
 
-        led = new RGB(rgbComponentsBase);
+        led = new RGBLights(rgbComponentsBase);
 
 //        driveTrain = new DriveTrain(driveTrainComponents);
 //        intakeFront = new Intake(intakeFrontComponents, "Front");

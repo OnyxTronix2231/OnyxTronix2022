@@ -1,11 +1,13 @@
 package frc.robot.rgb;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.rgb.commands.BlinkYouStupidFatPigHeadedDick;
 
 public class RGBLights extends SubsystemBase {
 
     private RGBComponentsBase ledComponents;
     private LedShuffleBoard shuffleBoard;
+    private int count = 0;
 
     public RGBLights(RGBComponentsBase ledComponents) {
         this.ledComponents = ledComponents;
@@ -14,7 +16,6 @@ public class RGBLights extends SubsystemBase {
     }
 
     public void periodic() {
-
     }
 
     public void setToColor(int[] color) {
