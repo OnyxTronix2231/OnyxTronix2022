@@ -11,6 +11,6 @@ public class TeleopCommandsConstants {
     static final double CLIME_TURRET_ANGLE = 180;
     static final double SHOOT_CLOSE_TO_HIGH_TARGET_RPM = 4000;
     static final double ARC_CLOSE_TO_HIGH_TARGET_ANGLE = 23;
-    static final double TURRET_CLOSE_TO_HIGH_TARGET_ANGLE = 0;
+    static final double TURRET_CLOSE_TO_HIGH_TARGET_ANGLE = 180;
 
 }
