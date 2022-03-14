@@ -14,6 +14,6 @@ public class AngleProviderByOdemetry implements AngleProvider {
 
     @Override
     public double getAsDouble() {
-        return (-yawControl.getAngleRTRToTarget() - yawControl.getCurrentAngleRTR());
+        return (yawControl.getAngleRTFToTarget());
     }
 }

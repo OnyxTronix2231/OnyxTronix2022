@@ -82,8 +82,8 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl) {
-        new DriverYawControlOiBinder(yawControl);
+    public DriverOi withYawControl(YawControl yawControl, DoubleSupplier angle) {
+        new DriverYawControlOiBinder(yawControl, angle);
         return this;
     }
 

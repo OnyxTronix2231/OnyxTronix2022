@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -27,6 +28,7 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateFuncs;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -49,6 +51,7 @@ import java.util.TimerTask;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 import static frc.robot.Constants.VISION_PIPELINE;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateFuncs.updateOdometryByVision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -77,6 +80,8 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+
+        new UpdateFuncs();
 
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
@@ -129,8 +134,8 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withGetReadyToClime(turret, arc, intakeFront).
                 withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry, shootBallsConditions)
-                .withYawControl(turret)
+                        distanceProviderByVisionAndOdometry, shootBallsConditions)
+                .withYawControl(turret, angleProviderByOdometry)
         ;
 
         new DeputyOi()
@@ -172,6 +177,7 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
         SmartDashboard.updateValues();
+        updateOdometryByVision(driveTrain, turret, vision);
     }
 
     /**

@@ -25,7 +25,9 @@ public class DriveTrain extends SubsystemBase {
         resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
         Shuffleboard.getTab("Vision").addNumber("odo x", ()-> getPose().getX());
         Shuffleboard.getTab("Vision").addNumber("odo y", ()-> getPose().getY());
-   }
+        Shuffleboard.getTab("Vision").addNumber("Heading", this::getHeading);
+        Shuffleboard.getTab("Vision").addNumber("odo dist", this::getDistanceFromTargetByEncoders);
+    }
 
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
