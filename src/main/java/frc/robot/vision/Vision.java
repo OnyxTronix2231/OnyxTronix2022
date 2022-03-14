@@ -1,6 +1,7 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
@@ -15,6 +16,7 @@ import static frc.robot.vision.VisionConstants.*;
 public class Vision extends SubsystemBase {
 
     private final Limelight limelight;
+    private final VisionShuffleboard visionShuffleboard;
     private final DriveTrain driveTrain;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
@@ -22,8 +24,12 @@ public class Vision extends SubsystemBase {
     public Vision(DriveTrain driveTrain) {
         limelight = Limelight.getInstance();
         this.driveTrain = driveTrain;
+        visionShuffleboard = new VisionShuffleboard(this);
+        visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
         limelight.setLedMode(LimelightLedMode.forceOn);
+        Shuffleboard.getTab("Vision").addNumber("disdence", this::getDistanceLimelightFromTarget);
+        Shuffleboard.getTab("Vision").addNumber("angel", this::getHorizontalAngleTurretToTargetRTT);
     }
 
     public void setPipeline(int pipeline){
@@ -34,13 +40,15 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
+        limelight.setLedMode(LimelightLedMode.forceOn);
+        visionShuffleboard.periodic();
+
         updateTurretToTargetVectorRTT();
     }
 
     private double getDistanceLimelightFromTarget() {
-        LimelightTarget tempLimelightTarget = limelightTarget;
-        if (tempLimelightTarget != null) {
-            double verticalAngleLimelightToTarget = tempLimelightTarget.getVerticalOffsetToCrosshair();
+        if (hasTarget()) {
+            double verticalAngleLimelightToTarget = limelightTarget.getVerticalOffsetToCrosshair();
             double verticalAngleRobotToTarget = LIMELIGHT_ANGLE_TO_HORIZON_DEG + verticalAngleLimelightToTarget;
             return LIMELIGHT_TO_TARGET_CM / Math.tan(Math.toRadians(verticalAngleRobotToTarget));
         }
@@ -48,15 +56,11 @@ public class Vision extends SubsystemBase {
     }
 
     private void updateTurretToTargetVectorRTT() {
-        LimelightTarget tempLimelightTarget = limelightTarget;
-        if (tempLimelightTarget != null) {
-            double limelightOffsetFromTarget = tempLimelightTarget.getHorizontalOffsetToCrosshair();
-            double limelightDistanceFromTarget = getDistanceLimelightFromTarget();
-            if(limelightDistanceFromTarget != TARGET_NOT_FOUND) {
-                turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(limelightDistanceFromTarget,
-                        limelightOffsetFromTarget);
-                turretToTargetVectorRTT.subtract(LIMELIGHT_TO_TURRET_VECTOR_RTT);
-            }
+        if (hasTarget()) {
+            double limelightOffsetFromTarget = limelightTarget.getHorizontalOffsetToCrosshair();
+            turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(getDistanceLimelightFromTarget(),
+                    limelightOffsetFromTarget);
+            turretToTargetVectorRTT.subtract(LIMELIGHT_TO_TURRET_VECTOR_RTT);
         } else {
             turretToTargetVectorRTT = null;
         }
