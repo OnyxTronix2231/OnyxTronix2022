@@ -14,5 +14,6 @@ public class MoveStabilizerBackAndForth extends SequentialCommandGroup {
 
         super(new MoveStabilizerUntilOnPosition(climber, forwardSpeedSupplier, backwardDesiredPosition),
                 new MoveStabilizerUntilOnPosition(climber,backwardSpeedSupplier,backwardDesiredPosition));
+
     }
 }

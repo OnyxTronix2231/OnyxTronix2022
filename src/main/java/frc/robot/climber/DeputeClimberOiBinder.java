@@ -7,6 +7,5 @@ public class DeputeClimberOiBinder {
 
     public DeputeClimberOiBinder(Climber climber, JoystickAxis climb) {
         climb.whileActiveContinuous(new MoveArmsBySpeed(climber, climb::getRawAxis));
-
     }
 }
