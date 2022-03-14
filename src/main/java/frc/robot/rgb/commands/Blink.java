@@ -1,9 +1,10 @@
 package frc.robot.rgb.commands;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.rgb.Colors;
 import frc.robot.rgb.RGBLights;
 
-public class Blink {
+public class Blink extends CommandBase {
 
     private RGBLights rgb;
     private Colors color;
