@@ -7,7 +7,15 @@ import frc.robot.rgb.RGBLights;
 
 public class BlinkYouStupidFatPigHeadedDick extends SequentialCommandGroup {
 
-    public BlinkYouStupidFatPigHeadedDick(RGBLights rgb, Colors color) {
-        super(new SetToRainbow(rgb), new WaitCommand(0.5), new TurnOff(rgb), new WaitCommand(0.5), new SetToRainbow(rgb), new WaitCommand(0.5), new TurnOff(rgb), new WaitCommand(0.5), new SetToRainbow(rgb), new WaitCommand(0.5), new TurnOff(rgb));
+    public BlinkYouStupidFatPigHeadedDick(Colors color, double time) {
+        super(new SetColor(color), new WaitCommand(time), new TurnOff(), new WaitCommand(time));
+    }
+
+    @Override
+    public boolean isFinished() {
+        if(super.isFinished()) {
+            initialize();
+        }
+        return false;
     }
 }

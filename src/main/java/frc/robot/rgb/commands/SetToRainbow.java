@@ -5,7 +5,7 @@ import frc.robot.rgb.RGBLights;
 
 public class SetToRainbow extends InstantCommand {
 
-    public SetToRainbow(RGBLights rgb) {
-        super(rgb::rainbow, rgb);
+    public SetToRainbow() {
+        super(RGBLights.getInstance()::rainbow);
     }
 }
