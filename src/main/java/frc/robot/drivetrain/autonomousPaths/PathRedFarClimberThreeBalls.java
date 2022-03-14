@@ -12,10 +12,10 @@ import java.util.List;
 public class PathRedFarClimberThreeBalls implements AutonomousPaths{
 
     static final double X_START_POSE = 8.943985451508386;
-    static final double X_SECOND_BALL = 11.126;
+    static final double X_SECOND_BALL = 10.968;
 
     static final double Y_START_POSE = 6.15;
-    static final double Y_SECOND_BALL = 6.408;
+    static final double Y_SECOND_BALL = 6.374;
 
     static final double START_DEGREE = -90;
     static final double SPOT_DEGREE = 0;
