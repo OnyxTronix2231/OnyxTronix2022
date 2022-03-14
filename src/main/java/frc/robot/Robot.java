@@ -41,6 +41,7 @@ import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.vision.VisionShuffleboard;
 import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
@@ -129,6 +130,7 @@ public class Robot extends TimedRobot {
                 .withGetReadyToClime(turret, arc, intakeFront).
                 withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
                         angleProviderByVisionAndOdometry, shootBallsConditions)
+                .withYawControl(turret)
         ;
 
         new DeputyOi()
@@ -150,6 +152,9 @@ public class Robot extends TimedRobot {
         firstEnable = true;
 
         new Compressor(PneumaticsModuleType.CTREPCM).disable();
+
+        VisionShuffleboard visionShuffleboard = new VisionShuffleboard(vision, turret);
+        visionShuffleboard.init();
     }
 
     /**
