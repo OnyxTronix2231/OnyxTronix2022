@@ -20,7 +20,7 @@ public class YawControl extends Turret {
     }
 
     public double getTurretAngleRTF() {
-        return getCurrentAngleRTR() - driveTrain.getHeading();
+        return getCurrentAngleRTR() + driveTrain.getHeading();
     }
 
     public double getRTFToRTRAngle(double angleRTF) {
@@ -34,7 +34,10 @@ public class YawControl extends Turret {
     public double getAngleRTFToTarget() {
         return driveTrain.getAngleToTargetByPose();
     }
-
+  
+    public double getRobotAngleRTF(){
+        return driveTrain.getHeading();
+    }
 
     public double getAngleToEjectBall() {
         Pose2d currentPos = driveTrain.getPose();

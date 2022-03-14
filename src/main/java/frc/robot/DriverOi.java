@@ -80,7 +80,11 @@ public class DriverOi {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
         new DriverGetReadyToClimeOiBinder(turret, arc, intakeForward, buttonLeft);
         return this;
+    }
 
+    public DriverOi withYawControl(YawControl yawControl) {
+        new DriverYawControlOiBinder(yawControl);
+        return this;
     }
 
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,

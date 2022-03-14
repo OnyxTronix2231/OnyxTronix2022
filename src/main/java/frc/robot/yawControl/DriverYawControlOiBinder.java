@@ -6,7 +6,7 @@ import frc.robot.yawControl.Commands.RotateToAngleRTF;
 
 public class DriverYawControlOiBinder {
 
-    public DriverYawControlOiBinder(YawControl yawControl, Trigger rotateAngleRTF) {
-        rotateAngleRTF.toggleWhenActive(new RotateToAngleRTF(yawControl, yawControl::getAngleRTFToTarget));
+    public DriverYawControlOiBinder(YawControl yawControl) {
+        yawControl.setDefaultCommand(new RotateToAngleRTF(yawControl, yawControl::getAngleRTFToTarget));
     }
 }
