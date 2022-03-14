@@ -11,11 +11,11 @@ import java.util.List;
 
 public class PathBlueFarClimberThreeBalls implements AutonomousPaths{
 
-    static final double X_SECOND_BALL = 5.3;
+    static final double X_SECOND_BALL = 5.154;
 
-    static final double Y_SECOND_BALL = 1.707;
+    static final double Y_SECOND_BALL = 1.454;
 
-    static final double SPOT_DEGREE = 180;
+    static final double SPOT_DEGREE = 150;
 
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
     static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
