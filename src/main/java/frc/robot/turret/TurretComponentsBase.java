@@ -26,7 +26,7 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setNeutralMode(NeutralMode.Brake);
 
         WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
-        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() - ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
+        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() + ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
         new StatusFrameConfig(motor).disablePID1();
 
