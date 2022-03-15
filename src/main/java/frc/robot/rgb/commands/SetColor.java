@@ -8,7 +8,7 @@ import frc.robot.rgb.RGBLights;
 public class SetColor extends InstantCommand {
 
     public SetColor(RGBLights led, Colors color) {
-        this(led, color.value[0], color.value[1], color.value[2]);
+        this(led, color.value.getRed(), color.value.getGreen(), color.value.getBlue());
     }
 
     public SetColor(RGBLights led, RGB rgb) {

@@ -1,7 +1,6 @@
 package frc.robot.rgb;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.rgb.commands.BlinkYouStupidFatPigHeadedDick;
 
 public class RGBLights extends SubsystemBase {
 
@@ -11,7 +10,7 @@ public class RGBLights extends SubsystemBase {
 
     public RGBLights(RGBComponentsBase ledComponents) {
         this.ledComponents = ledComponents;
-        shuffleBoard = new LedShuffleBoard();
+        shuffleBoard = new LedShuffleBoard(this);
         shuffleBoard.init();
     }
 
@@ -33,12 +32,12 @@ public class RGBLights extends SubsystemBase {
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
 
-    public void halfsies(int[] color1, int[] color2) {
+    public void halfsies(int red1, int green1, int blue1, int red2, int green2, int blue2) {
         for (int i = 0; i < ledComponents.getLedBuffer().getLength() / 2; i++) {
-          ledComponents.getLedBuffer().setRGB(i, color1[0], color1[1], color1[2]);
+          ledComponents.getLedBuffer().setRGB(i, red1, green1, blue1);
         }
         for (int i = ledComponents.getLedBuffer().getLength() / 2; i < ledComponents.getLedBuffer().getLength(); i++) {
-            ledComponents.getLedBuffer().setRGB(i, color2[0], color2[1], color2[2]);
+            ledComponents.getLedBuffer().setRGB(i, red2, green2, blue2);
         }
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
