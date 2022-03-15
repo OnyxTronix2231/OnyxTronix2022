@@ -20,13 +20,13 @@ public class PathBlueFarClimberThreeBalls implements AutonomousPaths{
     ArrayList<Path> paths = new ArrayList<>();
 
     public PathBlueFarClimberThreeBalls(){
-        firstPath =  new Path(
-                List.of(),
-                new Pose2d(X_SECOND_BALL, Y_SECOND_BALL, Rotation2d.fromDegrees(180)),
-                new MaxVelocityConstraint(2),
-                new CentripetalAccelerationConstraint(2)
-        );
-        paths.add(firstPath);
+       firstPath =  new Path(
+               List.of(),
+               new Pose2d(X_SECOND_BALL, Y_SECOND_BALL, Rotation2d.fromDegrees(180)),
+               new MaxVelocityConstraint(2),
+               new CentripetalAccelerationConstraint(2)
+       );
+       paths.add(firstPath);
     }
     @Override
     public Pose2d getStartPose() {
