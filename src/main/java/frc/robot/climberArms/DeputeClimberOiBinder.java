@@ -1,11 +1,11 @@
-package frc.robot.climber;
+package frc.robot.climberArms;
 
-import frc.robot.climber.commands.MoveArmsBySpeed;
+import frc.robot.climberArms.commands.MoveArmsBySpeed;
 import humanControls.JoystickAxis;
 
 public class DeputeClimberOiBinder {
 
-    public DeputeClimberOiBinder(Climber climber, JoystickAxis climb) {
+    public DeputeClimberOiBinder(ClimberArms climber, JoystickAxis climb) {
         climb.whileActiveContinuous(new MoveArmsBySpeed(climber, climb::getRawAxis));
     }
 }

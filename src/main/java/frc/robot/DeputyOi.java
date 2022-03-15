@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
-import frc.robot.climber.Climber;
-import frc.robot.climber.DeputeClimberOiBinder;
+import frc.robot.climberArms.ClimberArms;
+import frc.robot.climberArms.DeputeClimberOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
@@ -32,7 +32,7 @@ public class DeputyOi {
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
-    public DeputyOi withClimber(Climber climber) {
+    public DeputyOi withClimber(ClimberArms climber) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         new DeputeClimberOiBinder(climber, climb);
         return this;

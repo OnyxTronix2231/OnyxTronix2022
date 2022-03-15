@@ -1,15 +1,11 @@
-package frc.robot.climber;
+package frc.robot.climberArms;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.counter.TalonEncoder;
 
-public interface ClimberComponents {
+public interface ClimberArmsComponents {
 
     WPI_TalonFX getMasterMotor();
 
     TalonEncoder getMasterMotorEncoder();
-
-    WPI_TalonFX getStabilizerMotor();
-
-    TalonEncoder getStabilizerMotorEncoder();
 }

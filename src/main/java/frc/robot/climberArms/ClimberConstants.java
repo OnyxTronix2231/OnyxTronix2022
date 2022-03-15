@@ -1,10 +1,9 @@
-package frc.robot.climber;
+package frc.robot.climberArms;
 
 public class ClimberConstants {
 
     static final int MASTER_ARM_MOTOR_DEVICE_NUMBER = 14;
     static final int SLAVE_ARM_MOTOR_DEVICE_NUMBER = 15;
-    static final int STABILIZER_MOTOR_DEVICE_NUMBER = 16;
     static final int DESIRED_STABILIZER_MOTOR_ENCODER_UNITS = 0;
     static final double OPEN_ARMS_SPEED = 0.8;
     static final double CLOSE_ARMS_SPEED = 0.6;
