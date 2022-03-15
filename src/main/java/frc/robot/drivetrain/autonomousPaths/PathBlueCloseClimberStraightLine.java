@@ -16,12 +16,6 @@ public class PathBlueCloseClimberStraightLine implements AutonomousPaths {
     private static final double Y_START_POSE = 3.912;
     private static final double Y_FIRST_POINT = 3.979;
 
-    static final double START_DEGREE = 180;
-    static final double SPOT_DEGREE = 180;
-
-    static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
-    static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
-
     private final Pose2d startPose;
     private final Path firstPath;
 
@@ -29,12 +23,12 @@ public class PathBlueCloseClimberStraightLine implements AutonomousPaths {
 
     public PathBlueCloseClimberStraightLine() {
         startPose = new Pose2d(X_START_POSE, Y_START_POSE,
-                Rotation2d.fromDegrees(START_DEGREE));
+                Rotation2d.fromDegrees(180));
         firstPath = new Path(
                 List.of(),
-                new Pose2d(X_FIRST_POINT, Y_FIRST_POINT, Rotation2d.fromDegrees(SPOT_DEGREE)),
-                new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
-                new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
+                new Pose2d(X_FIRST_POINT, Y_FIRST_POINT, Rotation2d.fromDegrees(180)),
+                new MaxVelocityConstraint(2),
+                new CentripetalAccelerationConstraint(2)
         );
         paths.add(firstPath);
     }
