@@ -9,7 +9,7 @@ import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
 import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpdaterConstants.FIXABLE_ANGLE_OFFSET;
-import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpdaterConstants.ODO_UPDATE_PERIOD;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpdaterConstants.ODOMETRY_UPDATE_PERIOD;
 
 public class UpdateOdometryByVision {
 
@@ -24,7 +24,7 @@ public class UpdateOdometryByVision {
         double currentTime = Timer.getFPGATimestamp();
         double dt = currentTime - lastTime;
         if (shouldUpdate) {
-            if (dt > ODO_UPDATE_PERIOD && Math.abs(vision.getHorizontalAngleTurretToTargetRTT()) < FIXABLE_ANGLE_OFFSET) {
+            if (dt > ODOMETRY_UPDATE_PERIOD && Math.abs(vision.getHorizontalAngleTurretToTargetRTT()) < FIXABLE_ANGLE_OFFSET) {
                 lastTime = currentTime;
                 Translation2d visionTrans = vision.getXAndYAuto(yawControl);
                 Rotation2d robotRotation = driveTrain.getPose().getRotation();
