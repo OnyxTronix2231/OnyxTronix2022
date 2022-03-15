@@ -22,7 +22,7 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         field2d = new Field2d();
-    }
+   }
 
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
