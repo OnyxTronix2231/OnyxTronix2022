@@ -132,12 +132,10 @@ public class Robot extends TimedRobot {
         ;
 
         DeputyOi deputyOi = new DeputyOi()
-                //.withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        //angleProviderByVisionAndOdometry)
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                //.withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;
 

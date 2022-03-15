@@ -40,13 +40,6 @@ public class DeputyOi {
         return this;
     }
 
-    public DeputyOi withGetReadyToShoot(Shooter shooter, Arc arc, YawControl yawControl,
-                                        DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
-        Trigger getReady = new JoystickButton(controller, controller.getBumperLeft());
-        new DeputeGetReadyToShootOiBinder(shooter, arc, yawControl, distanceSupplier, angleSupplier, getReady);
-        return this;
-    }
-
     public DeputyOi withArcCalibration(Arc arc) {
         Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
         new CalibrateArcOiBinder(arc, calibrate);
