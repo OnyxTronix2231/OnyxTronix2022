@@ -9,7 +9,6 @@ public class ShootByTargetDistance extends CommandBase {
 
     private final Shooter shooter;
     private final DoubleSupplier distanceSupplier;
-    private boolean shouldEnd = false;
 
     public ShootByTargetDistance(Shooter shooter, DoubleSupplier distanceSupplier) {
         this.shooter = shooter;
