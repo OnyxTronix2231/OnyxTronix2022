@@ -25,7 +25,6 @@ public class BlueFarClimberThreeBalls extends SequentialCommandGroup {
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)
-
         );
     }
 }
