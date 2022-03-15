@@ -3,15 +3,17 @@ package frc.robot.rgb;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
+import static frc.robot.rgb.RGBConstants.*;
+
 public class RGBComponentsBase {
 
-    private AddressableLED led;
-    private AddressableLEDBuffer ledBuffer;
+    private final AddressableLED led;
+    private final AddressableLEDBuffer ledBuffer;
 
     public RGBComponentsBase() {
-        led = new AddressableLED(9);
+        led = new AddressableLED(RGB_PORT);
 
-        ledBuffer = new AddressableLEDBuffer(32);
+        ledBuffer = new AddressableLEDBuffer(LED_LENGTH);
 
         led.setLength(ledBuffer.getLength());
         led.setData(ledBuffer);

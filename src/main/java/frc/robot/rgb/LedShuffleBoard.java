@@ -17,8 +17,8 @@ public class LedShuffleBoard {
         Shuffleboard.getTab("RGBLights").add("setRainbow", new SetToRainbow(led));
         Shuffleboard.getTab("RGBLights").add("setToHalf", new Halfsies(led, Colors.red, Colors.blue));
         Shuffleboard.getTab("RGBLights").add("turnOff", new TurnOff(led));
-        Shuffleboard.getTab("RGBLights").add("blin", new BlinkYouStupidFatPigHeadedDick(led, Colors.red, 2));
         Shuffleboard.getTab("RGBLights").add("blink", new BlinkOnce(led, Colors.red, 1));
+        Shuffleboard.getTab("RGBLights").add("blinkForever", new BlinkInfinity(led, Colors.red, 0.3));
         Shuffleboard.getTab("RGBLights").add("blinkTimes", new BlinkNumTimes(led, Colors.red, 0.2, 4));
     }
 }

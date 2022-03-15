@@ -82,8 +82,6 @@ public class Robot extends TimedRobot {
 //
 //
         RGBComponentsBase ledComponents;
-        ledComponents = new RGBComponentsBase();
-        led = new RGBLights(ledComponents);
 
 //        DriveTrainComponents driveTrainComponents;
 //        IntakeComponents intakeBackComponents;
@@ -98,6 +96,8 @@ public class Robot extends TimedRobot {
 //        LiveWindow.disableAllTelemetry();
 //
 //
+        ledComponents = new RGBComponentsBase();
+
 //        driveTrainComponents = new DriveTrainComponentsBase();
 //        intakeFrontComponents = new IntakeFrontComponentsBase();
 //        intakeBackComponents = new IntakeBackComponentsBase();
@@ -110,6 +110,8 @@ public class Robot extends TimedRobot {
 //
 //        vision = new Vision();
 //        vision.setPipeline(VISION_PIPELINE);
+
+        led = new RGBLights(ledComponents);
 
 //        driveTrain = new DriveTrain(driveTrainComponents);
 //        intakeFront = new Intake(intakeFrontComponents, "Front");
