@@ -9,7 +9,7 @@ import frc.robot.drivetrain.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathRedFarClimberThreeBalls implements AutonomousPaths {
+public class PathRedFarClimberThreeBalls implements AutonomousPaths{
 
     static final double X_START_POSE = 8.943985451508386;
     static final double X_SECOND_BALL = 11.126;
@@ -22,7 +22,7 @@ public class PathRedFarClimberThreeBalls implements AutonomousPaths {
 
     ArrayList<Path> paths = new ArrayList<>();
 
-    public PathRedFarClimberThreeBalls() {
+    public PathRedFarClimberThreeBalls(){
         startPose = new Pose2d(X_START_POSE, Y_START_POSE,
                 Rotation2d.fromDegrees(-90));
         firstPath = new Path(
@@ -33,7 +33,6 @@ public class PathRedFarClimberThreeBalls implements AutonomousPaths {
         );
         paths.add(firstPath);
     }
-
     @Override
     public Pose2d getStartPose() {
         return startPose;
