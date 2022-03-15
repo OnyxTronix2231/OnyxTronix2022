@@ -18,6 +18,9 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arc.commands.CalibrateArc;
+import frc.robot.climber.Climber;
+import frc.robot.climber.ClimberComponents;
+import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
@@ -39,7 +42,6 @@ import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
-import frc.robot.vision.VisionShuffleboard;
 import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
