@@ -1,17 +1,24 @@
 package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Logger;
 
-public class Loader extends SubsystemBase {
+public class Loader extends SubsystemBase{
 
     private final LoaderComponents components;
     private final LoaderShuffleboard loaderShuffleboard;
+    private final Logger logger;
 
     public Loader(LoaderComponents components) {
         this.components = components;
         this.loaderShuffleboard = new LoaderShuffleboard(this);
+        this.logger = new Logger("loader");
+        this.logger.addBooleanListener("test", ()-> identifiedBall(), 20);
+        this.logger.update();
         //loaderShuffleboard.init();
     }
+
+
 
     public void moveLoaderBySpeed(double speed) {
         components.getMotor().set(speed);

@@ -29,7 +29,7 @@ public class Logger {
     }
 
     public void addBooleanListener(String methodName, BooleanSupplier condition, int miliSec) {
-        BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, condition.getAsBoolean());
+        BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, condition.getAsBoolean(),convertMiliSecondsToUnits(miliSec));
     }
 
     public class BooleanFollower {
@@ -37,11 +37,11 @@ public class Logger {
         private final String name;
         private final BooleanSupplier booleanSupplier;
         private boolean lastCondition;
-        private int counter;
+        private int updateInterval;
 
-        public BooleanFollower(String name, BooleanSupplier booleanSupplier, boolean lastCondition, int counter) {
+        public BooleanFollower(String name, BooleanSupplier booleanSupplier, boolean lastCondition, int updateInterval) {
             this.name = name;
-            this.counter = counter;
+            this.updateInterval = updateInterval;
             this.booleanSupplier = booleanSupplier;
             this.lastCondition = lastCondition;
         }
@@ -63,7 +63,7 @@ public class Logger {
         }
 
         public int getCounter(){
-            return counter;
+            return updateInterval;
         }
     }
 }
