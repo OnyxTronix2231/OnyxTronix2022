@@ -18,6 +18,7 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
@@ -82,8 +83,8 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl, DoubleSupplier angle) {
-        new DriverYawControlOiBinder(yawControl, angle);
+    public DriverOi withYawControl(YawControl yawControl, DoubleSupplier angleSupplier) {
+        new DriverYawControlOiBinder(yawControl, angleSupplier);
         return this;
     }
 

@@ -8,6 +8,9 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdaterConstants.FIXABLE_ANGLE_OFFSET;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdaterConstants.ODO_UPDATE_PERIOD;
+
 public class UpdateFuncs {
 
     private static double lastTime;
@@ -21,10 +24,9 @@ public class UpdateFuncs {
         double currentTime = Timer.getFPGATimestamp();
         double dt = currentTime - lastTime;
         if (shouldUpdate) {
-            if (dt > 0.3 && Math.abs(vision.getHorizontalAngleTurretToTargetRTT()) < 50) {
-                System.out.println("update");
+            if (dt > ODO_UPDATE_PERIOD && Math.abs(vision.getHorizontalAngleTurretToTargetRTT()) < FIXABLE_ANGLE_OFFSET) {
                 lastTime = currentTime;
-                Translation2d visionTrans = new Translation2d(vision.getXAndYAuto(yawControl).getX(), vision.getXAndYAuto(yawControl).getY());
+                Translation2d visionTrans = vision.getXAndYAuto(yawControl);
                 Rotation2d robotRotation = driveTrain.getPose().getRotation();
                 driveTrain.resetOdometryToPose(new Pose2d(visionTrans, robotRotation));
             }

@@ -44,8 +44,8 @@ public final class TurretConstants {
         static final int ENCODER_DEFAULT_ERROR = 114; // out of 4096
         static final double ENCODER_OFFSET = 1;
         static final double CONVERSION_RATE = 1.0 / 75;
-        static final double MAX_DEG = 350; //TODO: Correct the number
-        static final double MIN_DEG = -30; //TODO: Correct the number
+        static final double MAX_DEG = 370; //TODO: Correct the number
+        static final double MIN_DEG = -20; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
 

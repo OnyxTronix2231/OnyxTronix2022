@@ -1,7 +1,5 @@
 package frc.robot.providers;
 
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
 public class AngleProviderByOdemetry implements AngleProvider {

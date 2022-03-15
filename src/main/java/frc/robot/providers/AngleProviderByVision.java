@@ -15,11 +15,6 @@ public class AngleProviderByVision implements AngleProvider {
 
     @Override
     public double getAsDouble() {
-//        if (vision.hasTarget()){
-//            lastAngle = -vision.getHorizontalAngleTurretToTargetRTT();
-//        }
-        //return lastAngle;
         return lastAngle = -vision.getHorizontalAngleTurretToTargetRTT();
-
     }
 }

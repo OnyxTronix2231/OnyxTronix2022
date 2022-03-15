@@ -9,9 +9,8 @@ import static frc.robot.turret.TurretConstants.DEFAULT_TURRET_SPEED;
 
 public class DriverTurretOiBinder {
 
-    public DriverTurretOiBinder(Turret turret, Vision vision, Trigger moveLeft, Trigger moveRight, Trigger byVision) {
+    public DriverTurretOiBinder(Turret turret, Trigger moveLeft, Trigger moveRight) {
         moveLeft.whileActiveContinuous(new RotateBySpeed(turret, () -> DEFAULT_TURRET_SPEED));
         moveRight.whileActiveContinuous(new RotateBySpeed(turret, () -> -DEFAULT_TURRET_SPEED));
-        byVision.whileActiveContinuous(new RotateByVision(turret, vision));
     }
 }

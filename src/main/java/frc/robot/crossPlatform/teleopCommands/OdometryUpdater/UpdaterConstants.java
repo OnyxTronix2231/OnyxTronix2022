@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.crossPlatform.teleopCommands.OdometryUpdater;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -15,17 +15,8 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class UpdaterConstants {
 
-    public static final int DRIVE_JOYSTICK_PORT = 0;
-    public static final int DEPUTY_JOYSTICK_PORT = 1;
-
-    public static final int LOW_PRIORITY_STATUS_FRAME_PERIODIC = 255;
-
-    public static final double TARGET_POSE_X = 9.457;
-    public static final double TARGET_POSE_Y = 4.3;
-
-    public static final double ARC_CALIBRATION_SPEED = -0.3;
-
-    public static final int VISION_PIPELINE = 2;
+    static final double ODO_UPDATE_PERIOD = 0.3;
+    static final double FIXABLE_ANGLE_OFFSET = 50;
 }
