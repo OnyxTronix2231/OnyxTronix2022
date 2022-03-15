@@ -18,9 +18,6 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
@@ -121,24 +118,26 @@ public class Robot extends TimedRobot {
 
         var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
-        new DriverOi()
+        DriverOi driverOi = new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront).
-                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry, shootBallsConditions)
+                .withGetReadyToClime(turret, arc, intakeFront)
+                .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
         ;
 
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry)
+        DeputyOi deputyOi = new DeputyOi()
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
+        ;
+
+        new CombineOi(driverOi, deputyOi)
+                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
+                        angleProviderByVisionAndOdometry)
         ;
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
