@@ -83,11 +83,6 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl, DoubleSupplier angleSupplier) {
-        new DriverYawControlOiBinder(yawControl, angleSupplier);
-        return this;
-    }
-
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,
                                                        Intake intakeFront, Intake intakeBack, Loader loader,
                                                        BallTrigger ballTrigger) {

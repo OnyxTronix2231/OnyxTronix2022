@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -19,16 +18,13 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateFuncs;
+import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -51,7 +47,7 @@ import java.util.TimerTask;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 import static frc.robot.Constants.VISION_PIPELINE;
-import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateFuncs.updateOdometryByVision;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision.updateOdometryByVision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -81,7 +77,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 
-        new UpdateFuncs();
+        new UpdateOdometryByVision();
 
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
@@ -135,7 +131,6 @@ public class Robot extends TimedRobot {
                 .withGetReadyToClime(turret, arc, intakeFront).
                 withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
                         angleProviderByVisionAndOdometry, shootBallsConditions)
-                .withYawControl(turret, angleProviderByOdometry)
         ;
 
         new DeputyOi()
@@ -157,9 +152,6 @@ public class Robot extends TimedRobot {
         firstEnable = true;
 
         new Compressor(PneumaticsModuleType.CTREPCM).disable();
-
-        VisionShuffleboard visionShuffleboard = new VisionShuffleboard(vision, turret);
-        visionShuffleboard.init();
     }
 
     /**

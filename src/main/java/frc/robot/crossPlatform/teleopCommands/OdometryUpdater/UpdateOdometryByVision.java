@@ -8,14 +8,14 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
-import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdaterConstants.FIXABLE_ANGLE_OFFSET;
-import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdaterConstants.ODO_UPDATE_PERIOD;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpdaterConstants.FIXABLE_ANGLE_OFFSET;
+import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpdaterConstants.ODO_UPDATE_PERIOD;
 
-public class UpdateFuncs {
+public class UpdateOdometryByVision {
 
     private static double lastTime;
 
-    public UpdateFuncs() {
+    public UpdateOdometryByVision() {
         lastTime = Timer.getFPGATimestamp();
     }
 
