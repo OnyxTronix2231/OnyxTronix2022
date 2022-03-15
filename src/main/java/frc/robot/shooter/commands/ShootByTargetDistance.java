@@ -1,7 +1,6 @@
 package frc.robot.shooter.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.providers.IsLoadBallButtonPress;
 import frc.robot.shooter.Shooter;
 
 import java.util.function.DoubleSupplier;
@@ -10,6 +9,7 @@ public class ShootByTargetDistance extends CommandBase {
 
     private final Shooter shooter;
     private final DoubleSupplier distanceSupplier;
+    private boolean shouldEnd = false;
 
     public ShootByTargetDistance(Shooter shooter, DoubleSupplier distanceSupplier) {
         this.shooter = shooter;
@@ -28,8 +28,6 @@ public class ShootByTargetDistance extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        if (!IsLoadBallButtonPress.isPress()) {
-            shooter.stop();
-        }
+        shooter.stop();
     }
 }

@@ -121,25 +121,29 @@ public class Robot extends TimedRobot {
 
         var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
-        new DriverOi()
+        DriverOi driverOi = new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront).
-                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
+                .withGetReadyToClime(turret, arc, intakeFront)
+                .withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
                         angleProviderByVisionAndOdometry, shootBallsConditions)
         ;
 
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry)
+        DeputyOi deputyOi = new DeputyOi()
+                //.withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
+                        //angleProviderByVisionAndOdometry)
                 .withArcCalibration(arc)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                //.withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;
+
+        new CombineOi(driverOi, deputyOi).withGetReady(shooter, arc, turret,
+                distanceProviderByVisionAndOdometry, angleProviderByVisionAndOdometry,
+                shootBallsConditions, loader, ballTrigger);
 
         new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 
