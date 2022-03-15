@@ -61,11 +61,11 @@ public class DriverOi {
 
     public DriverOi withShootBalls(Shooter shooter, Arc arc, YawControl yawControl,
                                    BallTrigger ballTrigger, Loader loader, BooleanSupplier conditionSupplier) {
-        Trigger releaseBallsWhenReady = new JoystickAxis(controller, controller.getRightTrigger());
+        Trigger shootBall = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootCloseToHighTarget = new JoystickAxis(controller, controller.getLeftTrigger());
         Trigger realiseBalls = new JoystickButton(controller, controller.getButtonUp());
         new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, yawControl, conditionSupplier,
-                releaseBallsWhenReady, shootCloseToHighTarget, realiseBalls);
+                shootBall, shootCloseToHighTarget, realiseBalls);
         return this;
     }
 

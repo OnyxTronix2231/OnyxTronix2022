@@ -10,9 +10,9 @@ import java.util.function.BooleanSupplier;
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.BALL_TRIGGER_SPEED;
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.LOADER_SPEED;
 
-public class WhenReadyReleaseBall extends SequentialCommandGroup {
+public class WhenSubsystemsReadyReleaseBall extends SequentialCommandGroup {
 
-    public WhenReadyReleaseBall(BooleanSupplier conditions, Loader loader, BallTrigger ballTrigger) {
+    public WhenSubsystemsReadyReleaseBall(BooleanSupplier conditions, Loader loader, BallTrigger ballTrigger) {
         super(new WaitUntilReadyToShoot(conditions),
                 new MoveConveyor(loader, ballTrigger, () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED));
     }
