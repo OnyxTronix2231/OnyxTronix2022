@@ -5,12 +5,10 @@ import frc.robot.Logger;
 
 public class Logging extends SubsystemBase {
      private final LoggingCompoents components;
-     private final Logging logging;
      private final Logger log;
 
-    public Logging(LoggingCompoents components, Logging logging, Logger log) {
+    public Logging(LoggingCompoents components, Logger log) {
         this.components = components;
-        this.logging = logging;
         this.log = new Logger("loader");
         this.log.addBooleanListener("test", ()-> isOpen(), 20);
         this.log.update();
