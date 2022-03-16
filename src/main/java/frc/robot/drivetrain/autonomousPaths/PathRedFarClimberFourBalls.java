@@ -20,8 +20,8 @@ public class PathRedFarClimberFourBalls implements AutonomousPaths{
     static final double Y_SHOOTING_POSE = 5.497;
 
     static final double START_DEGREE = -90;
-    static final double POSE_DEGREE = 29;
-    static final double SHOOTING_POSE_DEGREE = 180;
+    static final double DESTINATION_DEGREE = 29;
+    static final double SHOOTING_DESTINATION_DEGREE = 180;
 
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
     static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
@@ -38,7 +38,7 @@ public class PathRedFarClimberFourBalls implements AutonomousPaths{
 
         firstPath = new Path(
                 List.of(),
-                new Pose2d(X_BALL_POSE, Y_BALL_POSE, Rotation2d.fromDegrees(POSE_DEGREE)),
+                new Pose2d(X_BALL_POSE, Y_BALL_POSE, Rotation2d.fromDegrees(DESTINATION_DEGREE)),
                 new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
                 new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
         );
@@ -46,7 +46,7 @@ public class PathRedFarClimberFourBalls implements AutonomousPaths{
 
         shootingPlace = new Path(
                 List.of(),
-                new Pose2d(X_SHOOTING_POSE, Y_SHOOTING_POSE, Rotation2d.fromDegrees(SHOOTING_POSE_DEGREE)),
+                new Pose2d(X_SHOOTING_POSE, Y_SHOOTING_POSE, Rotation2d.fromDegrees(SHOOTING_DESTINATION_DEGREE)),
                 new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
                 new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
         );

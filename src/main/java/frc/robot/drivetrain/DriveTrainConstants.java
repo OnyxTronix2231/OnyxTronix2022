@@ -1,7 +1,6 @@
 package frc.robot.drivetrain;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
 public final class DriveTrainConstants {

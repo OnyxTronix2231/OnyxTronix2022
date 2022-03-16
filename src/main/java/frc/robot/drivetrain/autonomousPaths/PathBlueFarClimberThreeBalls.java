@@ -15,7 +15,7 @@ public class PathBlueFarClimberThreeBalls implements AutonomousPaths{
 
     static final double Y_SECOND_BALL = 1.454;
 
-    static final double SPOT_DEGREE = 150;
+    static final double DESTINATION_DEGREE = 150;
 
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
     static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
@@ -27,7 +27,7 @@ public class PathBlueFarClimberThreeBalls implements AutonomousPaths{
     public PathBlueFarClimberThreeBalls(){
        firstPath =  new Path(
                List.of(),
-               new Pose2d(X_SECOND_BALL, Y_SECOND_BALL, Rotation2d.fromDegrees(SPOT_DEGREE)),
+               new Pose2d(X_SECOND_BALL, Y_SECOND_BALL, Rotation2d.fromDegrees(DESTINATION_DEGREE)),
                new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
                new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
        );
