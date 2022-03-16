@@ -79,8 +79,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 
-        new UpdateOdometryByVision();
-
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
         IntakeComponents intakeFrontComponents;

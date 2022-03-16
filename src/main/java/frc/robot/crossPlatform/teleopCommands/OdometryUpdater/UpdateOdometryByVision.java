@@ -13,11 +13,7 @@ import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.OdometryUpd
 
 public class UpdateOdometryByVision {
 
-    private static double lastTime;
-
-    public UpdateOdometryByVision() {
-        lastTime = Timer.getFPGATimestamp();
-    }
+    private static double lastTime = Timer.getFPGATimestamp();
 
     public static void updateOdometryByVision(DriveTrain driveTrain, YawControl yawControl, Vision vision) {
         boolean shouldUpdate = vision.hasTarget();
