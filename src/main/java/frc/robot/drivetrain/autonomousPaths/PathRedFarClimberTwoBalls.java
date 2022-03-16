@@ -47,7 +47,8 @@ public class PathRedFarClimberTwoBalls implements AutonomousPaths{
     }
 
     @Override
-    public Path getPath(int pathNumber){
+    public Path
+    getPath(int pathNumber){
         return paths.get(pathNumber - 1);
     }
 }

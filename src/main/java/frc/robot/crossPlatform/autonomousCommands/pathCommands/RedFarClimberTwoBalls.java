@@ -9,10 +9,13 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathRedFarClimberTwoBalls;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
+import frc.robot.intake.commands.OpenAndIntake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
+
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutoMoveAndIntake.INTAKE_SPEED_SUPPLIER;
 
 
 public class RedFarClimberTwoBalls extends SequentialCommandGroup {
@@ -25,6 +28,8 @@ public class RedFarClimberTwoBalls extends SequentialCommandGroup {
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
                 new WaitCommand(0.3),
+
+                new OpenAndIntake(backIntake, () -> INTAKE_SPEED_SUPPLIER),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 

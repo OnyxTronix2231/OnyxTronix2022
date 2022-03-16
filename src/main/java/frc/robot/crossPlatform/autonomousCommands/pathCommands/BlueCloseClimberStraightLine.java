@@ -14,10 +14,10 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
-public class BlueCloseClimberStrightLine extends SequentialCommandGroup {
-    public BlueCloseClimberStrightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                       BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                                       DistanceProvider distanceProvider, AngleProvider angleProvider) {
+public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
+    public BlueCloseClimberStraightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
+                                        BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                                        DistanceProvider distanceProvider, AngleProvider angleProvider) {
         PathBlueCloseClimberStraightLine p = new PathBlueCloseClimberStraightLine();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),

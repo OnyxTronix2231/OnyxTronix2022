@@ -37,7 +37,7 @@ public class PathBlueCloseClimberThreeBalls implements AutonomousPaths{
                 new Pose2d(X_FIRST_BALL, Y_FIRST_BALL, Rotation2d.fromDegrees(DESTINATION_DEGREE)),
                 new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
                 new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
-        ).setReversed();
+        );
         paths.add(firstPath);
     }
 
