@@ -1,6 +1,5 @@
 package frc.robot.vision;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class VisionShuffleboard {
@@ -14,6 +13,4 @@ public class VisionShuffleboard {
         Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
         Shuffleboard.getTab("Vision").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
     }
-
-    public void periodic(){}
 }

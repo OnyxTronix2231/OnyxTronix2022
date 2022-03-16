@@ -1,9 +1,7 @@
 package frc.robot.vision;
 
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.yawControl.YawControl;
 import vision.limelight.Limelight;
@@ -16,20 +14,14 @@ import static frc.robot.vision.VisionConstants.*;
 public class Vision extends SubsystemBase {
 
     private final Limelight limelight;
-    private final VisionShuffleboard visionShuffleboard;
-    private final DriveTrain driveTrain;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
 
-    public Vision(DriveTrain driveTrain) {
+    public Vision() {
         limelight = Limelight.getInstance();
-        this.driveTrain = driveTrain;
-        visionShuffleboard = new VisionShuffleboard(this);
+        VisionShuffleboard visionShuffleboard = new VisionShuffleboard(this);
         visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
-        limelight.setLedMode(LimelightLedMode.forceOn);
-        Shuffleboard.getTab("Vision").addNumber("disdence", this::getDistanceLimelightFromTarget);
-        Shuffleboard.getTab("Vision").addNumber("angel", this::getHorizontalAngleTurretToTargetRTT);
     }
 
     public void setPipeline(int pipeline){
@@ -41,7 +33,6 @@ public class Vision extends SubsystemBase {
     public void periodic() {
         limelightTarget = limelight.getTarget();
         limelight.setLedMode(LimelightLedMode.forceOn);
-        visionShuffleboard.periodic();
 
         updateTurretToTargetVectorRTT();
     }
@@ -69,12 +60,6 @@ public class Vision extends SubsystemBase {
     public double getHorizontalAngleTurretToTargetRTT() {
         if (turretToTargetVectorRTT != null)
             return turretToTargetVectorRTT.direction();
-        return TARGET_NOT_FOUND;
-    }
-
-    public double getHorizontalAngleTurretToTargetRTR(Turret turret) {
-        if (turretToTargetVectorRTT != null)
-            return turretToTargetVectorRTT.direction() + turret.getCurrentAngleRTR();
         return TARGET_NOT_FOUND;
     }
 
