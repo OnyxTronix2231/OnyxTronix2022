@@ -21,6 +21,7 @@ public class Logger {
     }
 
     public void update() {
+
         for (var booleanFollower :
                 booleanFollowers) {
             if (booleanFollower.getValue() != booleanFollower.getLastValue()) {
@@ -37,7 +38,7 @@ public class Logger {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
 
-                System.out.println(tag + "setPoint was changed");
+                System.out.println(tag + " setPoint was changed");
                 doubleFollower.setLastValue();
             }
         }
@@ -46,10 +47,12 @@ public class Logger {
     public void addBooleanListener(String methodName, BooleanSupplier condition, int miliSec) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, condition.getAsBoolean(),
                 convertMiliSecondsToUnits(miliSec));
+        booleanFollowers.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, DoubleSupplier setPoint, int delay, int tolerace) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, setPoint, delay, tolerace);
+        doubleFollowers.add(doubleFollower);
     }
 
     public class BooleanFollower {

@@ -58,17 +58,17 @@ import static frc.robot.Constants.VISION_PIPELINE;
  */
 public class Robot extends TimedRobot {
 
-    DriveTrain driveTrain;
-    Arc arc;
-    Shooter shooter;
-    AutonomousShuffleboard autonomousShuffleboard;
-    BallTrigger ballTrigger;
-    Loader loader;
-    Intake intakeFront;
-    Intake intakeBack;
-    YawControl turret;
-    Vision vision;
-    Climber climber;
+//    DriveTrain driveTrain;
+//    Arc arc;
+//    Shooter shooter;
+//    AutonomousShuffleboard autonomousShuffleboard;
+//    BallTrigger ballTrigger;
+//    Loader loader;
+//    Intake intakeFront;
+//    Intake intakeBack;
+//    YawControl turret;
+//    Vision vision;
+//    Climber climber;
     Logging logging;
     Logger logger;
     boolean firstEnable = false;
@@ -79,30 +79,30 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
-
-        DriveTrainComponents driveTrainComponents;
-        IntakeComponents intakeBackComponents;
-        IntakeComponents intakeFrontComponents;
-        LoaderComponents loaderComponents;
-        BallTriggerComponents ballTriggerComponents;
-        TurretComponents turretComponents;
-        ArcComponents arcComponents;
-        ShooterComponents shooterComponents;
-        ClimberComponents climberComponents;
+//        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+//
+//        DriveTrainComponents driveTrainComponents;
+//        IntakeComponents intakeBackComponents;
+//        IntakeComponents intakeFrontComponents;
+//        LoaderComponents loaderComponents;
+//        BallTriggerComponents ballTriggerComponents;
+//        TurretComponents turretComponents;
+//        ArcComponents arcComponents;
+//        ShooterComponents shooterComponents;
+//        ClimberComponents climberComponents;
         LoggingCompoents loggingCompoents;
 
-        LiveWindow.disableAllTelemetry();
+        //  LiveWindow.disableAllTelemetry();
 
-        driveTrainComponents = new DriveTrainComponentsBase();
-        intakeFrontComponents = new IntakeFrontComponentsBase();
-        intakeBackComponents = new IntakeBackComponentsBase();
-        loaderComponents = new LoaderComponentsBase();
-        ballTriggerComponents = new BallTriggerComponentsBase();
-        turretComponents = new TurretComponentsBase();
-        arcComponents = new ArcComponentsBase();
-        shooterComponents = new ShooterComponentsBase();
-        climberComponents = new ClimberComponentsBase();
+//        driveTrainComponents = new DriveTrainComponentsBase();
+//        intakeFrontComponents = new IntakeFrontComponentsBase();
+//        intakeBackComponents = new IntakeBackComponentsBase();
+//        loaderComponents = new LoaderComponentsBase();
+//        ballTriggerComponents = new BallTriggerComponentsBase();
+//        turretComponents = new TurretComponentsBase();
+//        arcComponents = new ArcComponentsBase();
+//        shooterComponents = new ShooterComponentsBase();
+//        climberComponents = new ClimberComponentsBase();
         loggingCompoents = new LoggingCompoentsBase();
 
 //        vision = new Vision();
@@ -117,7 +117,7 @@ public class Robot extends TimedRobot {
 //        arc = new Arc(arcComponents);
 //        shooter = new Shooter(shooterComponents);
 //        climber = new Climber(climberComponents);
-          logging = new Logging(loggingCompoents,logger);
+        logging = new Logging(loggingCompoents, logger);
 //        var distanceProviderByVision = new DistanceProviderByVision(vision);
 //        var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
 //        var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
@@ -151,13 +151,14 @@ public class Robot extends TimedRobot {
 //                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
         ;
 
-        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
+        //  new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
 //
 //        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
 //                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
 //                angleProviderByVisionAndOdometry);
 
-        firstEnable = true;
+//        firstEnable = true;
+//    }
     }
 
     /**
@@ -182,16 +183,16 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        if (vision != null) {
-            vision.ledsOff();
-        }
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (isDisabled()) driveTrain.setNeutralModeToCoast();
-            }
-        }, 3000);
+//        if (vision != null) {
+//            vision.ledsOff();
+//        }
+//
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+//            }
+//        }, 3000);
     }
 
     @Override
@@ -203,15 +204,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        if (driveTrain != null) {
-            driveTrain.setNeutralModeToBrake();
-        }
-        if (vision != null) {
-            vision.ledsOn();
-        }
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().schedule();
-        }
+//        if (driveTrain != null) {
+//            driveTrain.setNeutralModeToBrake();
+//        }
+//        if (vision != null) {
+//            vision.ledsOn();
+//        }
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().schedule();
+//        }
     }
 
     /**
@@ -223,21 +224,21 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        if (driveTrain != null) {
-            driveTrain.setNeutralModeToBrake();
-        }
-
-        if (vision != null) {
-            vision.ledsOn();
-        }
-
-        if (autonomousShuffleboard.getSelectedCommand() != null) {
-            autonomousShuffleboard.getSelectedCommand().cancel();
-        }
-        if (firstEnable && arc != null) {
-            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
-            firstEnable = false;
-        }
+//        if (driveTrain != null) {
+//            driveTrain.setNeutralModeToBrake();
+//        }
+//
+//        if (vision != null) {
+//            vision.ledsOn();
+//        }
+//
+//        if (autonomousShuffleboard.getSelectedCommand() != null) {
+//            autonomousShuffleboard.getSelectedCommand().cancel();
+//        }
+//        if (firstEnable && arc != null) {
+//            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+//            firstEnable = false;
+//        }
     }
 
     /**
