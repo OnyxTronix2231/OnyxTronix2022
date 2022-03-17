@@ -59,14 +59,13 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withShootBalls(Vision vision, Shooter shooter, Arc arc, YawControl yawControl,
-                                   BallTrigger ballTrigger, Loader loader, DoubleSupplier distanceSupplier,
-                                   DoubleSupplier angleSupplier, BooleanSupplier conditionSupplier) {
-        Trigger shoot = new JoystickAxis(controller, controller.getRightTrigger());
+    public DriverOi withShootBalls(Shooter shooter, Arc arc, YawControl yawControl,
+                                   BallTrigger ballTrigger, Loader loader, BooleanSupplier conditionSupplier) {
+        Trigger shootBall = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootCloseToHighTarget = new JoystickAxis(controller, controller.getLeftTrigger());
         Trigger realiseBalls = new JoystickButton(controller, controller.getButtonUp());
-        new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, vision, yawControl, distanceSupplier,
-                angleSupplier, conditionSupplier, shoot, shootCloseToHighTarget, realiseBalls);
+        new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, yawControl, conditionSupplier,
+                shootBall, shootCloseToHighTarget, realiseBalls);
         return this;
     }
 
@@ -88,7 +87,7 @@ public class DriverOi {
         new DriverTurretOiBinder(yawControl, left, right);
         return this;
     }
-
+    
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,
                                                        Intake intakeFront, Intake intakeBack, Loader loader,
                                                        BallTrigger ballTrigger) {

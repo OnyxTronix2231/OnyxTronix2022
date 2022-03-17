@@ -86,7 +86,7 @@ public class Vision extends SubsystemBase {
 
     public double getRobotToTargetAngleRTF(YawControl yawControl) {
         if (turretToTargetVectorRTT != null) {
-            return getHorizontalAngleTurretToTargetRTT() + yawControl.getTurretAngleRTF();
+            return -getHorizontalAngleTurretToTargetRTT() + yawControl.getTurretAngleRTF();
         }
         return TARGET_NOT_FOUND;
     }

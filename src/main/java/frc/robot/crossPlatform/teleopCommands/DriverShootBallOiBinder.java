@@ -6,20 +6,16 @@ import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.shooter.Shooter;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
 import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
 
 public class DriverShootBallOiBinder {
 
     public DriverShootBallOiBinder(Shooter shooter, Arc arc, BallTrigger ballTrigger, Loader loader,
-                                   Vision vision, YawControl yawControl, DoubleSupplier distanceSupplier,
-                                   DoubleSupplier angleSupplier, BooleanSupplier conditionsSupplier, Trigger shoot,
-                                   Trigger shootCloseToHighTarget, Trigger realiseBalls) {
-        shoot.whileActiveContinuous(new ShootBallByDistanceAndAngle(shooter, arc, yawControl, loader, ballTrigger,
-                distanceSupplier, angleSupplier, conditionsSupplier));
+                                   YawControl yawControl, BooleanSupplier conditionsSupplier,
+                                   Trigger releaseBallsWhenReady, Trigger shootCloseToHighTarget, Trigger realiseBalls) {
+        releaseBallsWhenReady.whileActiveContinuous(new WhenSubsystemsReadyReleaseBall(conditionsSupplier, loader, ballTrigger));
 
         shootCloseToHighTarget.whileActiveContinuous(new ShootBallCloseToHighTarget(shooter, arc, yawControl, loader,
                 ballTrigger));
