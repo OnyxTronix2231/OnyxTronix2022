@@ -81,13 +81,13 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl) {
+    public DriverOi withTurret(Turret yawControl) {
         Trigger left = new JoystickButton(controller, controller.getButtonDown());
         Trigger right = new JoystickButton(controller, controller.getButtonRight());
         new DriverTurretOiBinder(yawControl, left, right);
         return this;
     }
-    
+
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,
                                                        Intake intakeFront, Intake intakeBack, Loader loader,
                                                        BallTrigger ballTrigger) {
