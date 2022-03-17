@@ -1,15 +1,15 @@
-package frc.robot.climberArms;
+package frc.robot.arms;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ClimberArms extends SubsystemBase {
+public class Arms extends SubsystemBase {
 
-    protected final ClimberArmsComponents components;
-    private final ClimberShuffleBoard climberShuffleBoard;
+    protected final ArmsComponents components;
+    private final ArmsShuffleBoard climberShuffleBoard;
 
-    public ClimberArms(ClimberArmsComponents components) {
+    public Arms(ArmsComponents components) {
         this.components = components;
-        climberShuffleBoard = new ClimberShuffleBoard(this);
+        climberShuffleBoard = new ArmsShuffleBoard(this);
     }
 
     public void moveArmsBySpeed(double speed) {

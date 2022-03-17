@@ -1,28 +1,28 @@
-package frc.robot.climberArms.commands;
+package frc.robot.arms.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.climberArms.ClimberArms;
+import frc.robot.arms.Arms;
 
 import java.util.function.DoubleSupplier;
 
 public class MoveArmsBySpeed extends CommandBase {
 
-    private final ClimberArms climber;
+    private final Arms arms;
     private final DoubleSupplier speedSupplier;
 
-    public MoveArmsBySpeed(ClimberArms climber, DoubleSupplier speedSupplier) {
-        this.climber = climber;
+    public MoveArmsBySpeed(Arms arms, DoubleSupplier speedSupplier) {
+        this.arms = arms;
         this.speedSupplier = speedSupplier;
-        addRequirements(climber);
+        addRequirements(arms);
     }
 
     @Override
     public void execute() {
-        climber.moveArmsBySpeed(speedSupplier.getAsDouble());
+        arms.moveArmsBySpeed(speedSupplier.getAsDouble());
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber.stopArms();
+        arms.stopArms();
     }
 }

@@ -1,17 +1,17 @@
-package frc.robot.climberArms;
+package frc.robot.arms;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.climberArms.commands.MoveArmsBySpeed;
+import frc.robot.arms.commands.MoveArmsBySpeed;
 
-public class ClimberShuffleBoard {
+public class ArmsShuffleBoard {
 
-    private final ClimberArms climber;
+    private final Arms climber;
     private NetworkTableEntry setSpeed;
     private NetworkTableEntry setSpeedLeft;
     private NetworkTableEntry setSpeedRight;
 
-    public ClimberShuffleBoard(ClimberArms climber) {
+    public ArmsShuffleBoard(Arms climber) {
         this.climber = climber;
     }
 

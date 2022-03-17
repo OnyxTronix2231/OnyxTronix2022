@@ -1,16 +1,16 @@
 package frc.robot.advancedClimber;
 
-import frc.robot.ClimberStabilizers.ClimberStabilizers;
-import frc.robot.ClimberStabilizers.ClimberStabilizersComponents;
+import frc.robot.stabilizers.Stabilizers;
+import frc.robot.stabilizers.StabilizersComponents;
 import frc.robot.drivetrain.DriveTrain;
 
 import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_PITCH_ANGLE;
 
-public class AdvancedClimber extends ClimberStabilizers {
+public class AdvancedClimber extends Stabilizers {
 
     private final DriveTrain driveTrain;
 
-    public AdvancedClimber(ClimberStabilizersComponents components, DriveTrain driveTrain) {
+    public AdvancedClimber(StabilizersComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
     }

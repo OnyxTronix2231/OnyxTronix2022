@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
-import frc.robot.climberArms.ClimberArms;
-import frc.robot.climberArms.DeputeClimberOiBinder;
+import frc.robot.arms.Arms;
+import frc.robot.arms.DeputeArmsOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
@@ -13,6 +13,8 @@ import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.shooter.Shooter;
+import frc.robot.stabilizers.DeputeStabilizersOiBinder;
+import frc.robot.stabilizers.Stabilizers;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
@@ -32,9 +34,11 @@ public class DeputyOi {
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
-    public DeputyOi withClimber(ClimberArms climber) {
+    public DeputyOi withClimber(Arms arms, Stabilizers stabilizers) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
-        new DeputeClimberOiBinder(climber, climb);
+        JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
+        new DeputeArmsOiBinder(arms, climb);
+        new DeputeStabilizersOiBinder(stabilizers, moveStabilizers);
         return this;
     }
 

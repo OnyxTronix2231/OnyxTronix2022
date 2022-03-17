@@ -1,25 +1,39 @@
-package frc.robot.ClimberStabilizers;
+package frc.robot.arms;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.counter.TalonEncoder;
 
-import static frc.robot.ClimberStabilizers.ClimberStabilizersConstants.*;
+import static frc.robot.arms.ArmsConstants.*;
 
-public class ClimberStabilizersComponentsBase implements ClimberStabilizersComponents{
+public class ArmsComponentsBase implements ArmsComponents {
 
-    private WPI_TalonFX motor;
-    private TalonEncoder encoder;
+    private final WPI_TalonFX masterMotor;
+    private final WPI_TalonFX slaveMotor;
+    private final TalonEncoder masterMotorEncoder;
 
-    public ClimberStabilizersComponentsBase() {
-        motor = new WPI_TalonFX(STABILIZER_MOTOR_DEVICE_NUMBER);
-        motor.configFactoryDefault();
-        motor.configAllSettings(getFalconConfiguration());
-        motor.setNeutralMode(NeutralMode.Brake);
+    public ArmsComponentsBase() {
+        masterMotor = new WPI_TalonFX(SLAVE_ARM_MOTOR_DEVICE_NUMBER);
+        masterMotor.configFactoryDefault();
+        masterMotor.configAllSettings(getFalconConfiguration());
+        slaveMotor = new WPI_TalonFX(MASTER_ARM_MOTOR_DEVICE_NUMBER);
+        slaveMotor.configFactoryDefault();
+        slaveMotor.configAllSettings(getFalconConfiguration());
+        slaveMotor.follow(masterMotor);
+        slaveMotor.setNeutralMode(NeutralMode.Brake);
+        masterMotorEncoder = new TalonEncoder(slaveMotor);
+        masterMotorEncoder.reset();
+    }
 
-        encoder = new TalonEncoder(motor);
-        encoder.reset();
+    @Override
+    public WPI_TalonFX getMasterMotor() {
+        return masterMotor;
+    }
+
+    @Override
+    public TalonEncoder getMasterMotorEncoder() {
+        return masterMotorEncoder;
     }
 
     private TalonFXConfiguration getFalconConfiguration() {
@@ -35,15 +49,5 @@ public class ClimberStabilizersComponentsBase implements ClimberStabilizersCompo
         config.openloopRamp = OPEN_LOOP_RAMP;
         config.closedloopRamp = CLOSE_LOOP_RAMP;
         return config;
-    }
-
-    @Override
-    public WPI_TalonFX getMotor() {
-        return motor;
-    }
-
-    @Override
-    public TalonEncoder getEncoder() {
-        return encoder;
     }
 }

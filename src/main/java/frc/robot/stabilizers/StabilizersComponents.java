@@ -1,9 +1,9 @@
-package frc.robot.ClimberStabilizers;
+package frc.robot.stabilizers;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.counter.TalonEncoder;
 
-public interface ClimberStabilizersComponents {
+public interface StabilizersComponents {
 
     WPI_TalonFX getMotor();
 
