@@ -8,7 +8,7 @@ public interface BallTriggerComponents {
 
     WPI_TalonFX getMotor();
 
-//    ColorSensorV3 getColorSensor();
+    ColorSensorV3 getColorSensor();
 
     TriangulatingRangefinder getAnalogSensor();
 }

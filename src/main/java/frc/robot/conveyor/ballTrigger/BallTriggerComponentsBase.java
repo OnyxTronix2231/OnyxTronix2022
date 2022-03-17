@@ -12,7 +12,7 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsCons
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonFX motor;
-    //public final ColorSensorV3 colorSensor;
+    public final ColorSensorV3 colorSensor;
     public final TriangulatingRangefinder analogSensor;
 
     public BallTriggerComponentsBase() {
@@ -22,7 +22,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(false);
 
-//        colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+        colorSensor = new ColorSensorV3(I2C.Port.kMXP);
         analogSensor = new TriangulatingRangefinder(ANALOG_ID);
     }
 
@@ -31,10 +31,10 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         return motor;
     }
 
-//    @Override
-//    public ColorSensorV3 getColorSensor() {
-//        return colorSensor;
-//    }
+    @Override
+    public ColorSensorV3 getColorSensor() {
+        return colorSensor;
+    }
 
     @Override
     public TriangulatingRangefinder getAnalogSensor() {
