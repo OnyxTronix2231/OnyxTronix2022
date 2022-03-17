@@ -1,6 +1,5 @@
 package frc.robot.conveyor.ballTrigger;
 
-import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallTrigger extends SubsystemBase {

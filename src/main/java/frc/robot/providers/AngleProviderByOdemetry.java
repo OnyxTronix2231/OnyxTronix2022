@@ -1,7 +1,5 @@
 package frc.robot.providers;
 
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 
 public class AngleProviderByOdemetry implements AngleProvider {
@@ -14,6 +12,6 @@ public class AngleProviderByOdemetry implements AngleProvider {
 
     @Override
     public double getAsDouble() {
-        return (-yawControl.getAngleRTRToTarget() - yawControl.getCurrentAngleRTR());
+        return yawControl.getAngleRTFToTarget();
     }
 }
