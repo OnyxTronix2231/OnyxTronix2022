@@ -25,10 +25,9 @@ public class TurretComponentsBase implements TurretComponents {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
         motor.configFactoryDefault();
         motor.configAllSettings(getTalonFxConfiguration());
-        motor.setNeutralMode(NeutralMode.Coast);
+        motor.setNeutralMode(NeutralMode.Brake);
 
         DutyCycleEncoder roboRIOEncoder = new DutyCycleEncoder(TURRET_ENCODER_ID);
-        Shuffleboard.getTab("Turret").addNumber("robo enc", () -> roboRIOEncoder.getAbsolutePosition()*4096);
         motor.setSelectedSensorPosition((roboRIOEncoder.getAbsolutePosition() * 4096 + ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
         new StatusFrameConfig(motor).disablePID1();
