@@ -183,6 +183,9 @@ public class Robot extends TimedRobot {
         if (vision != null) {
             vision.ledsOff();
         }
+        if (turret != null) {
+            turret.setNeutralModeCoast();
+        }
 
         new Timer().schedule(new TimerTask() {
             @Override
@@ -207,6 +210,9 @@ public class Robot extends TimedRobot {
         if (vision != null) {
             vision.ledsOn();
         }
+        if (turret != null) {
+            turret.setNeutralModeBrake();
+        }
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
@@ -224,11 +230,12 @@ public class Robot extends TimedRobot {
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
         }
-
         if (vision != null) {
             vision.ledsOn();
         }
-
+        if (turret != null) {
+            turret.setNeutralModeBrake();
+        }
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
