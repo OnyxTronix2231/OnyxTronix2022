@@ -28,7 +28,8 @@ public class TurretComponentsBase implements TurretComponents {
         motor.setNeutralMode(NeutralMode.Brake);
 
         DutyCycleEncoder roboRIOEncoder = new DutyCycleEncoder(TURRET_ENCODER_ID);
-        motor.setSelectedSensorPosition((roboRIOEncoder.getAbsolutePosition() * 4096 + ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
+        motor.setSelectedSensorPosition((roboRIOEncoder.getAbsolutePosition() * OUTER_ENCODER_UNITS_IN_ROTATION +
+                ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
         new StatusFrameConfig(motor).disablePID1();
 

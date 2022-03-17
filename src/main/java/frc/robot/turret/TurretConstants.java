@@ -39,6 +39,7 @@ public final class TurretConstants {
 
         /*mechanic values*/
         static final int ENCODER_UNITS_IN_ROTATION = 2048;
+        static final int OUTER_ENCODER_UNITS_IN_ROTATION = 4096;
         static final int TURRET_MOTOR_ID = 9;
         static final int TURRET_ENCODER_ID = 0;
         static final int ENCODER_DEFAULT_ERROR = 54; // out of 4096
