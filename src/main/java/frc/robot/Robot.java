@@ -49,7 +49,6 @@ import java.util.TimerTask;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 import static frc.robot.Constants.VISION_PIPELINE;
-import static frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision.updateOdometryByVision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -69,6 +68,7 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
+    UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = false;
 
     /**
@@ -79,7 +79,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 
-        new UpdateOdometryByVision();
 
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
@@ -111,6 +110,8 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
+
+        updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
         var distanceProviderByVision = new DistanceProviderByVision(vision);
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
@@ -171,7 +172,7 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
         SmartDashboard.updateValues();
-        updateOdometryByVision(driveTrain, turret, vision);
+        updateOdometryByVision.updateOdometry();
     }
 
     /**
