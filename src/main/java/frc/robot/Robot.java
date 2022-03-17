@@ -98,7 +98,7 @@ public class Robot extends TimedRobot {
         shooterComponents = new ShooterComponentsBase();
 
         driveTrain = new DriveTrain(driveTrainComponents);
-        vision = new Vision(driveTrain);
+        vision = new Vision();
         vision.setPipeline(VISION_PIPELINE);
         intakeFront = new Intake(intakeFrontComponents, "Front");
         intakeBack = new Intake(intakeBackComponents, "Back");
