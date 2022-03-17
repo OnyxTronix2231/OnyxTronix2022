@@ -18,6 +18,7 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
@@ -47,13 +48,13 @@ public class DriverOi {
     }
 
     public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getBumperRight());
+        Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 
     public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getBumperLeft());
+        Trigger load = new JoystickButton(controller, controller.getBumperRight());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
@@ -77,6 +78,13 @@ public class DriverOi {
     public DriverOi withGetReadyToClime(Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
         new DriverGetReadyToClimeOiBinder(turret, arc, intakeForward, buttonLeft);
+        return this;
+    }
+
+    public DriverOi withTurret(Turret yawControl) {
+        Trigger left = new JoystickButton(controller, controller.getButtonDown());
+        Trigger right = new JoystickButton(controller, controller.getButtonRight());
+        new DriverTurretOiBinder(yawControl, left, right);
         return this;
     }
 
