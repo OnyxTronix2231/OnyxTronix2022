@@ -21,7 +21,6 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.DriverYawControlOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -78,11 +77,6 @@ public class DriverOi {
     public DriverOi withGetReadyToClime(Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
         new DriverGetReadyToClimeOiBinder(turret, arc, intakeForward, buttonLeft);
-        return this;
-    }
-
-    public DriverOi withYawControl(YawControl yawControl) {
-        new DriverYawControlOiBinder(yawControl);
         return this;
     }
 
