@@ -22,7 +22,6 @@ import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.DriverYawControlOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -84,7 +83,6 @@ public class DriverOi {
     }
 
     public DriverOi withYawControl(YawControl yawControl) {
-        new DriverYawControlOiBinder(yawControl);
         Trigger left = new JoystickButton(controller, controller.getButtonDown());
         Trigger right = new JoystickButton(controller, controller.getButtonRight());
         new DriverTurretOiBinder(yawControl, left, right);

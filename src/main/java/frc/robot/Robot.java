@@ -129,7 +129,6 @@ public class Robot extends TimedRobot {
                 .withGetReadyToClime(turret, arc, intakeFront).
                 withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
                         angleProviderByVisionAndOdometry, shootBallsConditions)
-                .withYawControl(turret)
         ;
 
         new DeputyOi()
