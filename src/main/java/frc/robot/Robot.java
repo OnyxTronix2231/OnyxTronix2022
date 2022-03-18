@@ -7,48 +7,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.LoggingTest.Logging;
-import frc.robot.LoggingTest.LoggingCompoents;
-import frc.robot.LoggingTest.LoggingCompoentsBase;
-import frc.robot.arc.Arc;
-import frc.robot.arc.ArcComponents;
-import frc.robot.arc.ArcComponentsBase;
-import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
-import frc.robot.conveyor.ballTrigger.BallTrigger;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
-import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
-import frc.robot.conveyor.loader.Loader;
-import frc.robot.conveyor.loader.LoaderComponents;
-import frc.robot.conveyor.loader.LoaderComponentsBase;
-import frc.robot.drivetrain.DriveTrain;
-import frc.robot.drivetrain.DriveTrainComponents;
-import frc.robot.drivetrain.DriveTrainComponentsBase;
-import frc.robot.intake.Intake;
-import frc.robot.intake.IntakeBackComponentsBase;
-import frc.robot.intake.IntakeComponents;
-import frc.robot.intake.IntakeFrontComponentsBase;
-import frc.robot.providers.*;
-import frc.robot.shooter.Shooter;
-import frc.robot.shooter.ShooterComponents;
-import frc.robot.shooter.ShooterComponentsBase;
-import frc.robot.turret.TurretComponents;
-import frc.robot.turret.TurretComponentsBase;
-import frc.robot.vision.Vision;
-import frc.robot.yawControl.YawControl;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
-import static frc.robot.Constants.VISION_PIPELINE;
+import frc.robot.TronixLogger.LoggingTest.Logging;
+import frc.robot.TronixLogger.LoggingTest.LoggingCompoents;
+import frc.robot.TronixLogger.LoggingTest.LoggingCompoentsBase;
+import frc.robot.TronixLogger.Logging.Logger;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to

@@ -1,7 +1,7 @@
-package frc.robot.LoggingTest;
+package frc.robot.TronixLogger.LoggingTest;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Logger;
+import frc.robot.TronixLogger.Logging.Logger;
 
 public class Logging extends SubsystemBase {
      private final LoggingCompoents components;

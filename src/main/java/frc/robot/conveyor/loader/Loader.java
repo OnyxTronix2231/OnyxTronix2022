@@ -1,7 +1,7 @@
 package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Logger;
+import frc.robot.TronixLogger.Logging.Logger;
 
 public class Loader extends SubsystemBase{
 

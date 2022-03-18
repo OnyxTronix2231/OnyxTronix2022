@@ -1,4 +1,4 @@
-package frc.robot.LoggingTest;
+package frc.robot.TronixLogger.LoggingTest;
 
 import sensors.Switch.Microswitch;
 
