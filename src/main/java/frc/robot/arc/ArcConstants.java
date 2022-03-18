@@ -39,7 +39,7 @@ public class ArcConstants {
             return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION);
         }
 
-        static double distanceToAngle(double distance) {
+        public static double distanceToAngle(double distance) {
             if (distance == 0) {
                 return 20;
             }

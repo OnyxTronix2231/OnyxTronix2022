@@ -81,7 +81,7 @@ public class DriveTrain extends SubsystemBase {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
     }
 
-    public double getDistanceFromTargetByEncoders() {
+    public double getDistanceFromTargetByPose() {
         Pose2d currentPose = getPose();
         return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));

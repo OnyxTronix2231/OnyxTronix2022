@@ -11,6 +11,7 @@ import frc.robot.crossPlatform.teleopCommands.DriverGetReadyToClimeOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverShootBallOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootWhileDriving.DriverSWDOiBinder;
 import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
@@ -27,6 +28,7 @@ import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
 
+import javax.sql.rowset.Joinable;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
@@ -81,10 +83,12 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withTurret(Turret yawControl) {
+    public DriverOi withTurret(DriveTrain driveTrain, YawControl yawControl, Shooter shooter, Arc arc) {
         Trigger left = new JoystickButton(controller, controller.getButtonDown());
         Trigger right = new JoystickButton(controller, controller.getButtonRight());
         new DriverTurretOiBinder(yawControl, left, right);
+        Trigger swd = new JoystickButton(controller, controller.getCenterLeft());
+        new DriverSWDOiBinder(driveTrain, yawControl, shooter, arc, swd);
         return this;
     }
 

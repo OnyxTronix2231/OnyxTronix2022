@@ -45,15 +45,18 @@ public class ShooterConstants {
             return (encoderUnits * DECI_SECONDS_PER_MINUTE) / ENCODER_UNITS_PER_ROUND;
         }
 
-        static double distanceToRPM(double distance) {
+        public static double distanceToRPM(double distance) {
             if (distance == 0){
                 return 0;
             }
             return 3.9908 * distance + 2471.5;
 }
+        public static double RPMToMPS(double RPM) {
+            return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN) * RPM;
+        }
 
-        static double RPMToMPS(double RPM) {
-            return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * RPM);
+        public static double MPSToRPM(double MPS) {
+            return (SEC_IN_MIN / (2 * Math.PI * SHOOTER_MOTOR_RADIUS)) * MPS;
         }
     }
 }

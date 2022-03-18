@@ -130,7 +130,7 @@ public class Robot extends TimedRobot {
                 .withArcCalibration(arc)
                 .withGetReadyToClime(turret, arc, intakeFront)
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
-                .withTurret(turret)
+                .withTurret(driveTrain, turret, shooter, arc)
         ;
 
         DeputyOi deputyOi = new DeputyOi()

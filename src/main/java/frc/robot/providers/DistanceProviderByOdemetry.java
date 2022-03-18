@@ -1,7 +1,6 @@
 package frc.robot.providers;
 
 import frc.robot.drivetrain.DriveTrain;
-import frc.robot.vision.Vision;
 
 public class DistanceProviderByOdemetry implements DistanceProvider {
 
@@ -13,6 +12,6 @@ public class DistanceProviderByOdemetry implements DistanceProvider {
 
     @Override
     public double getAsDouble() {
-        return driveTrain.getDistanceFromTargetByEncoders();
+        return driveTrain.getDistanceFromTargetByPose();
     }
 }
