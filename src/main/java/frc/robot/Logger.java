@@ -12,14 +12,17 @@ public class Logger {
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
 
-    LocalTime localTime = LocalTime.now();
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
-    String formattedTime = localTime.format(format);
-
     public Logger(String tag) {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         this.tag = tag;
+    }
+
+    public String Time() {
+        LocalTime localTime = LocalTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedTime = localTime.format(format);
+        return formattedTime;
     }
 
     public int convertMiliSecondsToUnits(int miliSeconds) {
@@ -31,7 +34,7 @@ public class Logger {
         for (var booleanFollower :
                 booleanFollowers) {
             if (booleanFollower.getValue() != booleanFollower.getLastValue()) {
-                System.out.println(formattedTime + " - " + tag + "was changed toz");
+                System.out.println(Time() + " - " + tag + "was changed toz");
                 booleanFollower.setLastValue();
             }
         }
@@ -44,7 +47,7 @@ public class Logger {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
 
-                System.out.println(formattedTime + " - " + tag + " setPoint was changed");
+                System.out.println(Time() + " - " + tag + " setPoint was changed");
                 doubleFollower.setLastValue();
             }
         }
