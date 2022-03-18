@@ -1,5 +1,6 @@
 package frc.robot.turret;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.turret.TurretConstants.Calculation.*;
@@ -65,5 +66,13 @@ public class Turret extends SubsystemBase {
 
     public boolean isOnTarget() {
         return components.getController().isOnTarget(degreesToEncoderUnits(TOLERANCE_DEGREES));
+    }
+
+    public void setNeutralModeCoast() {
+        components.getMotor().setNeutralMode(NeutralMode.Coast);
+    }
+
+    public void setNeutralModeBrake() {
+        components.getMotor().setNeutralMode(NeutralMode.Brake);
     }
 }

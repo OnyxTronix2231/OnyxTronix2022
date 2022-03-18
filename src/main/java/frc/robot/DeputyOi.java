@@ -10,19 +10,17 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
+import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.stabilizers.DeputeStabilizersOiBinder;
 import frc.robot.stabilizers.Stabilizers;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
-
-import java.util.function.DoubleSupplier;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
@@ -39,13 +37,6 @@ public class DeputyOi {
         JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
         new DeputeArmsOiBinder(arms, climb);
         new DeputeStabilizersOiBinder(stabilizers, moveStabilizers);
-        return this;
-    }
-
-    public DeputyOi withGetReadyToShoot(Shooter shooter, Arc arc, YawControl yawControl,
-                                        DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
-        Trigger getReady = new JoystickButton(controller, controller.getBumperLeft());
-        new DeputeGetReadyToShootOiBinder(shooter, arc, yawControl, distanceSupplier, angleSupplier, getReady);
         return this;
     }
 
@@ -73,6 +64,12 @@ public class DeputyOi {
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
         new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
                 shootWithVision);
+        return this;
+    }
+
+    public DeputyOi withResetOdometry(DriveTrain driveTrain) {
+        Trigger resetOdometry = new JoystickButton(controller, controller.getCenterLeft());
+        new DeputyDriveTrainOiBinder(driveTrain, resetOdometry);
         return this;
     }
 }
