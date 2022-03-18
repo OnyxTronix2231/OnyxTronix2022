@@ -1,8 +1,10 @@
 package frc.robot.vision;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import frc.robot.yawControl.YawControl;
 
 public class VisionShuffleboard {
+
     private final Vision vision;
 
     public VisionShuffleboard(Vision vision) {
