@@ -18,10 +18,10 @@ public class DistanceProviderByVision implements DistanceProvider {
         if (vision.hasTarget()) {
 
             lastDistance = vision.getHorizontalDistanceTurretToTarget();
-            if (lastDistance >= 580) {
-                lastDistance += 20;
-            }
-            lastDistance += 20;
+//            if (lastDistance >= 580) {
+//                lastDistance += 20;
+//            }
+//            lastDistance += 20;
 
         }
         return lastDistance;
