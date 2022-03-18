@@ -17,10 +17,12 @@ public class ArmsComponentsBase implements ArmsComponents {
         masterMotor = new WPI_TalonFX(SLAVE_ARM_MOTOR_DEVICE_NUMBER);
         masterMotor.configFactoryDefault();
         masterMotor.configAllSettings(getFalconConfiguration());
+        masterMotor.setNeutralMode(NeutralMode.Brake);
         slaveMotor = new WPI_TalonFX(MASTER_ARM_MOTOR_DEVICE_NUMBER);
         slaveMotor.configFactoryDefault();
         slaveMotor.configAllSettings(getFalconConfiguration());
         slaveMotor.follow(masterMotor);
+        slaveMotor.setInverted(true);
         slaveMotor.setNeutralMode(NeutralMode.Brake);
         masterMotorEncoder = new TalonEncoder(slaveMotor);
         masterMotorEncoder.reset();
