@@ -46,8 +46,8 @@ public class Logger {
                 doubleFollowers) {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
-
-                System.out.println(TimeStamp() + " - " + tag + "");
+ 
+                System.out.println(TimeStamp() + " - " + tag +" "+doubleFollower.getName() +" setPoint was changed to " + doubleFollower.getValue());
                 doubleFollower.setLastValue();
             }
         }
