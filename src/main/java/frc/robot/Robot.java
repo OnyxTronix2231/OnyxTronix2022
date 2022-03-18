@@ -40,6 +40,7 @@ import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
+import org.littletonrobotics.junction.LoggedRobot;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,7 +54,7 @@ import static frc.robot.Constants.VISION_PIPELINE;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
+public class Robot extends LoggedRobot {
 
     DriveTrain driveTrain;
     Arc arc;
