@@ -7,13 +7,44 @@
 
 package frc.robot;
 
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.TronixLogger.LoggingTest.Logging;
 import frc.robot.TronixLogger.LoggingTest.LoggingCompoents;
 import frc.robot.TronixLogger.LoggingTest.LoggingCompoentsBase;
 import frc.robot.TronixLogger.Logging.Logger;
+import frc.robot.arc.Arc;
+import frc.robot.arc.ArcComponents;
+import frc.robot.arc.ArcComponentsBase;
+import frc.robot.climber.Climber;
+import frc.robot.climber.ClimberComponents;
+import frc.robot.climber.ClimberComponentsBase;
+import frc.robot.conveyor.ballTrigger.BallTrigger;
+import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
+import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
+import frc.robot.conveyor.loader.Loader;
+import frc.robot.conveyor.loader.LoaderComponents;
+import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.drivetrain.DriveTrain;
+import frc.robot.drivetrain.DriveTrainComponents;
+import frc.robot.drivetrain.DriveTrainComponentsBase;
+import frc.robot.intake.Intake;
+import frc.robot.intake.IntakeBackComponentsBase;
+import frc.robot.intake.IntakeComponents;
+import frc.robot.intake.IntakeFrontComponentsBase;
+import frc.robot.providers.*;
+import frc.robot.shooter.Shooter;
+import frc.robot.shooter.ShooterComponents;
+import frc.robot.shooter.ShooterComponentsBase;
+import frc.robot.turret.TurretComponents;
+import frc.robot.turret.TurretComponentsBase;
+import frc.robot.vision.Vision;
+import frc.robot.yawControl.YawControl;
+
+import static frc.robot.Constants.VISION_PIPELINE;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,17 +54,17 @@ import frc.robot.TronixLogger.Logging.Logger;
  */
 public class Robot extends TimedRobot {
 
-//    DriveTrain driveTrain;
-//    Arc arc;
-//    Shooter shooter;
-//    AutonomousShuffleboard autonomousShuffleboard;
-//    BallTrigger ballTrigger;
-//    Loader loader;
-//    Intake intakeFront;
-//    Intake intakeBack;
-//    YawControl turret;
-//    Vision vision;
-//    Climber climber;
+    DriveTrain driveTrain;
+    Arc arc;
+    Shooter shooter;
+    AutonomousShuffleboard autonomousShuffleboard;
+    BallTrigger ballTrigger;
+    Loader loader;
+    Intake intakeFront;
+    Intake intakeBack;
+    YawControl turret;
+    Vision vision;
+    Climber climber;
     Logging logging;
     Logger logger;
     boolean firstEnable = false;
@@ -44,66 +75,66 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-//        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
-//
-//        DriveTrainComponents driveTrainComponents;
-//        IntakeComponents intakeBackComponents;
-//        IntakeComponents intakeFrontComponents;
-//        LoaderComponents loaderComponents;
-//        BallTriggerComponents ballTriggerComponents;
-//        TurretComponents turretComponents;
-//        ArcComponents arcComponents;
-//        ShooterComponents shooterComponents;
-//        ClimberComponents climberComponents;
+        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+
+        DriveTrainComponents driveTrainComponents;
+        IntakeComponents intakeBackComponents;
+        IntakeComponents intakeFrontComponents;
+        LoaderComponents loaderComponents;
+        BallTriggerComponents ballTriggerComponents;
+        TurretComponents turretComponents;
+        ArcComponents arcComponents;
+        ShooterComponents shooterComponents;
+        ClimberComponents climberComponents;
         LoggingCompoents loggingCompoents;
 
-        //  LiveWindow.disableAllTelemetry();
+          LiveWindow.disableAllTelemetry();
 
-//        driveTrainComponents = new DriveTrainComponentsBase();
-//        intakeFrontComponents = new IntakeFrontComponentsBase();
-//        intakeBackComponents = new IntakeBackComponentsBase();
-//        loaderComponents = new LoaderComponentsBase();
-//        ballTriggerComponents = new BallTriggerComponentsBase();
-//        turretComponents = new TurretComponentsBase();
-//        arcComponents = new ArcComponentsBase();
-//        shooterComponents = new ShooterComponentsBase();
-//        climberComponents = new ClimberComponentsBase();
+        driveTrainComponents = new DriveTrainComponentsBase();
+        intakeFrontComponents = new IntakeFrontComponentsBase();
+        intakeBackComponents = new IntakeBackComponentsBase();
+        loaderComponents = new LoaderComponentsBase();
+        ballTriggerComponents = new BallTriggerComponentsBase();
+        turretComponents = new TurretComponentsBase();
+        arcComponents = new ArcComponentsBase();
+        shooterComponents = new ShooterComponentsBase();
+        climberComponents = new ClimberComponentsBase();
         loggingCompoents = new LoggingCompoentsBase();
 
-//        vision = new Vision();
-//        vision.setPipeline(VISION_PIPELINE);
-//
-//        driveTrain = new DriveTrain(driveTrainComponents);
-//        intakeFront = new Intake(intakeFrontComponents, "Front");
-//        intakeBack = new Intake(intakeBackComponents, "Back");
-//        loader = new Loader(loaderComponents);
-//        ballTrigger = new BallTrigger(ballTriggerComponents);
-//        turret = new YawControl(turretComponents, driveTrain);
-//        arc = new Arc(arcComponents);
-//        shooter = new Shooter(shooterComponents);
-//        climber = new Climber(climberComponents);
+        vision = new Vision();
+        vision.setPipeline(VISION_PIPELINE);
+
+        driveTrain = new DriveTrain(driveTrainComponents);
+        intakeFront = new Intake(intakeFrontComponents, "Front");
+        intakeBack = new Intake(intakeBackComponents, "Back");
+        loader = new Loader(loaderComponents);
+        ballTrigger = new BallTrigger(ballTriggerComponents);
+        turret = new YawControl(turretComponents, driveTrain);
+        arc = new Arc(arcComponents);
+        shooter = new Shooter(shooterComponents);
+        climber = new Climber(climberComponents);
         logging = new Logging(loggingCompoents, logger);
-//        var distanceProviderByVision = new DistanceProviderByVision(vision);
-//        var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
-//        var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
-//                (vision, distanceProviderByVision, distanceProviderByOdometry);
-//
-//
-//        var angleProviderByVision = new AngleProviderByVision(vision);
-//        var angleProviderByOdometry = new AngleProviderByOdemetry(turret);
-//        var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
-//                (vision, angleProviderByVision, angleProviderByOdometry);
-//
-//        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
+        var distanceProviderByVision = new DistanceProviderByVision(vision);
+        var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
+        var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
+                (vision, distanceProviderByVision, distanceProviderByOdometry);
+
+
+        var angleProviderByVision = new AngleProviderByVision(vision);
+        var angleProviderByOdometry = new AngleProviderByOdemetry(turret);
+        var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
+                (vision, angleProviderByVision, angleProviderByOdometry);
+
+        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
         new DriverOi()
-//                .withDriveTrain(driveTrain)
-//                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-//                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-//                .withArcCalibration(arc)
-//                .withGetReadyToClime(turret, arc, intakeFront).
-//                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-//                        angleProviderByVisionAndOdometry, shootBallsConditions)
+                .withDriveTrain(driveTrain)
+                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+                .withArcCalibration(arc)
+                .withGetReadyToClime(turret, arc, intakeFront).
+                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
+                        angleProviderByVisionAndOdometry, shootBallsConditions)
         ;
 
         new DeputyOi()

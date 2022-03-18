@@ -17,7 +17,7 @@ public class Shooter extends SubsystemBase {
         this.components = components;
         //shuffleBoard = new ShooterShuffleBoard(this);
         this.log = new Logger("shooter");
-        this.log.addDoubleListener("RPM", this::getSetpoint, 1000, 200);
+        this.log.addDoubleListener("RPM", this::getCurrentRPM, 100, 200);
         //this.log.addDoubleListener("getSetPoint", this::getSetpoint, 1000, 10);
     }
 
