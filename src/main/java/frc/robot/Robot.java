@@ -41,6 +41,11 @@ import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import org.littletonrobotics.junction.LoggedRobot;
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.inputs.LoggedNetworkTables;
+import org.littletonrobotics.junction.io.ByteLogReceiver;
+import org.littletonrobotics.junction.io.ByteLogReplay;
+import org.littletonrobotics.junction.io.LogSocketServer;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,6 +82,20 @@ public class Robot extends LoggedRobot {
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
 
+        setUseTiming(isReal()); // Run as fast as possible during replay
+        LoggedNetworkTables.getInstance().addTable("/SmartDashboard"); // Log & replay "SmartDashboard" values (no tables are logged by default).
+        Logger.getInstance().recordMetadata("ProjectName", "MyProject"); // Set a metadata value
+
+        if (isReal()) {
+            Logger.getInstance().addDataReceiver(new ByteLogReceiver("/media/sda1/")); // Log to USB stick (name will be selected automatically)
+            Logger.getInstance().addDataReceiver(new LogSocketServer(5800)); // Provide log data over the network, viewable in Advantage Scope.
+        } else {
+            String path = ByteLogReplay.promptForPath(); // Prompt the user for a file path on the command line
+            Logger.getInstance().setReplaySource(new ByteLogReplay(path)); // Read log file for replay
+            Logger.getInstance().addDataReceiver(new ByteLogReceiver(ByteLogReceiver.addPathSuffix(path, "_sim"))); // Save replay results to a new log with the "_sim" suffix
+        }
+
+        Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
 
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
