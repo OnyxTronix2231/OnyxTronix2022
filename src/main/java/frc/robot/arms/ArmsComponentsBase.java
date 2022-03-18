@@ -22,6 +22,7 @@ public class ArmsComponentsBase implements ArmsComponents {
         slaveMotor.configAllSettings(getFalconConfiguration());
         slaveMotor.follow(masterMotor);
         slaveMotor.setNeutralMode(NeutralMode.Brake);
+        slaveMotor.setInverted(true);
         masterMotorEncoder = new TalonEncoder(slaveMotor);
         masterMotorEncoder.reset();
     }
