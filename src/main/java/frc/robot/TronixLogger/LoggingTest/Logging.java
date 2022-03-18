@@ -20,6 +20,6 @@ public class Logging extends SubsystemBase {
 
     @Override
     public void periodic() {
-        log.update();
+      //  log.update();
     }
 }
