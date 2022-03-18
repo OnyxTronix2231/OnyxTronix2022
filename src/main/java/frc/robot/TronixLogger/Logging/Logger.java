@@ -18,7 +18,7 @@ public class Logger {
         this.tag = tag;
     }
 
-    public String TimeProvider() {
+    public String TimeStamp() {
         LocalTime localTime = LocalTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
         return localTime.format(format);
@@ -33,7 +33,7 @@ public class Logger {
         for (var booleanFollower :
                 booleanFollowers) {
             if (booleanFollower.getValue() != booleanFollower.getLastValue()) {
-                System.out.println(TimeProvider() + " - " + tag + "was changed toz");
+                System.out.println(TimeStamp() + " - " + tag + "was changed toz");
                 booleanFollower.setLastValue();
             }
         }
@@ -46,7 +46,7 @@ public class Logger {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
 
-                System.out.println(TimeProvider() + " - " + tag + " setPoint was changed");
+                System.out.println(TimeStamp() + " - " + tag + " setPoint was changed");
                 doubleFollower.setLastValue();
             }
         }
