@@ -25,7 +25,8 @@ public class Logger {
     }
 
     public int convertMileSecondsToUnits(int milliSeconds) {
-        return milliSeconds /= 20;
+        return milliSeconds /= 20
+                ;
     }
 
     public void update() {

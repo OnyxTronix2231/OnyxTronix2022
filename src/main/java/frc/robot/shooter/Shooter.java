@@ -1,6 +1,7 @@
 package frc.robot.shooter;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.TronixLogger.Logging.Logger;
 
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.*;
 import static frc.robot.shooter.ShooterConstants.TOLERANCE;
@@ -10,14 +11,19 @@ public class Shooter extends SubsystemBase {
     private final ShooterComponents components;
     //private final ShooterShuffleBoard shuffleBoard;
     private boolean isRealeBallsButtonpress = false;
+    private final Logger log;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
         //shuffleBoard = new ShooterShuffleBoard(this);
+        this.log = new Logger("shooter");
+        this.log.addDoubleListener("RPM", this::getSetpoint, 1000, 200);
+        //this.log.addDoubleListener("getSetPoint", this::getSetpoint, 1000, 10);
     }
 
     public void periodic() {
         //shuffleBoard.update();
+        log.updateDoubleFollower();
     }
 
     public void setSpeed(double speed) {
