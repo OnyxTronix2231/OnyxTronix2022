@@ -43,8 +43,8 @@ public class ArcConstants {
             if (distance == 0) {
                 return 20;
             }
-            return (-9 * Math.pow(10, -5)) * Math.pow(distance, 2)
-                    + 0.1342 * distance + 8.5273;
+
+            return -9e-05 * Math.pow(distance, 2) + 0.129 * distance + 10.012;
         }
     }
 }

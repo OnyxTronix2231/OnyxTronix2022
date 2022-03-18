@@ -49,8 +49,8 @@ public class ShooterConstants {
             if (distance == 0){
                 return 0;
             }
-            return 3.9908 * distance + 2471.5;
-}
+            return 3.8243 * distance + 2532.8;
+        }
 
         static double RPMToMPS(double RPM) {
             return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * RPM);
