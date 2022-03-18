@@ -3,7 +3,7 @@ package frc.robot.turret;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import frc.robot.StatusFrameConfig;
 import pid.CtreMotionMagicController;
 import pid.PIDFTerms;
@@ -25,8 +25,9 @@ public class TurretComponentsBase implements TurretComponents {
         motor.configAllSettings(getTalonFxConfiguration());
         motor.setNeutralMode(NeutralMode.Brake);
 
-        WPI_TalonSRX motor2 = new WPI_TalonSRX(TALON_ENCODER_ID);
-        motor.setSelectedSensorPosition((motor2.getSensorCollection().getPulseWidthPosition() - ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
+        DutyCycleEncoder roboRIOEncoder = new DutyCycleEncoder(TURRET_ENCODER_ID);
+        motor.setSelectedSensorPosition((roboRIOEncoder.getAbsolutePosition() * OUTER_ENCODER_UNITS_RESOLUTION +
+                ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
         new StatusFrameConfig(motor).disablePID1();
 

@@ -1,6 +1,7 @@
 package frc.robot.drivetrain;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
 public final class DriveTrainConstants {
@@ -25,7 +26,15 @@ public final class DriveTrainConstants {
     static final double KA = 0.25181; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
+    public static final double LAUNCH_PAD_POSITION_RED_X = 12.97;
+    public static final double LAUNCH_PAD_POSITION_RED_Y = 2.776;
+    public static final double LAUNCH_PAD_RED_DEGREE = 180;
+    public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.58;
+    public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.486;
+    public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
+
     public static final class ComponentsConstants {
+
 
         static final int RIGHT_MASTER_MOTOR_PORT = 1;
         static final int RIGHT_SLAVE_MOTOR_PORT = 2;
@@ -40,7 +49,6 @@ public final class DriveTrainConstants {
         static final double TRIGGER_THRESHOLD_TIME = 0;
         static final double RAMP_TIME = 0.4;
     }
-
     public static final class Calculations {
 
         static double encoderUnitsToMeter(double encodeUnits) {
