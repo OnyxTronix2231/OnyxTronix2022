@@ -10,7 +10,7 @@ public class Logging extends SubsystemBase {
     public Logging(LoggingCompoents components, Logger log) {
         this.components = components;
         this.log = new Logger("loader");
-        this.log.addBooleanListener("test", ()-> isOpen(), 20);
+        this.log.addBooleanListener("test", this::isOpen, 20);
 //        this.log.update();
     }
 
