@@ -20,7 +20,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         motor.configFactoryDefault();
         motor.configAllSettings(getTalonConfiguration());
         motor.setNeutralMode(NeutralMode.Coast);
-        motor.setInverted(false);
+        motor.setInverted(true);
 
         colorSensor = new ColorSensorV3(I2C.Port.kMXP);
         analogSensor = new TriangulatingRangefinder(ANALOG_ID);
