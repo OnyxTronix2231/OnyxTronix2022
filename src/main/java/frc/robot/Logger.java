@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
@@ -9,6 +11,10 @@ public class Logger {
     private final String tag;
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
+
+    LocalTime localTime = LocalTime.now();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+    String formattedTime = localTime.format(format);
 
     public Logger(String tag) {
         booleanFollowers = new ArrayList<>();
@@ -25,7 +31,7 @@ public class Logger {
         for (var booleanFollower :
                 booleanFollowers) {
             if (booleanFollower.getValue() != booleanFollower.getLastValue()) {
-                System.out.println(tag + "was changed toz");
+                System.out.println(formattedTime + " - " + tag + "was changed toz");
                 booleanFollower.setLastValue();
             }
         }
@@ -38,7 +44,7 @@ public class Logger {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
 
-                System.out.println(tag + " setPoint was changed");
+                System.out.println(formattedTime + " - " + tag + " setPoint was changed");
                 doubleFollower.setLastValue();
             }
         }
