@@ -24,6 +24,7 @@ public class ArmsComponentsBase implements ArmsComponents {
         slaveMotor.follow(masterMotor);
         slaveMotor.setInverted(true);
         slaveMotor.setNeutralMode(NeutralMode.Brake);
+        slaveMotor.setInverted(true);
         masterMotorEncoder = new TalonEncoder(slaveMotor);
         masterMotorEncoder.reset();
     }
