@@ -8,8 +8,7 @@ public class BooleanFollower {
     private boolean lastCondition;
     private final int updateInterval;
 
-    public BooleanFollower(
-            String name, BooleanSupplier booleanSupplier, boolean lastCondition, int updateInterval) {
+    public BooleanFollower(String name, BooleanSupplier booleanSupplier, boolean lastCondition, int updateInterval) {
         this.name = name;
         this.updateInterval = updateInterval;
         this.booleanSupplier = booleanSupplier;

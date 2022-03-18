@@ -18,15 +18,14 @@ public class Logger {
         this.tag = tag;
     }
 
-    public String Time() {
+    public String TimeProvider() {
         LocalTime localTime = LocalTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formattedTime = localTime.format(format);
-        return formattedTime;
+        return localTime.format(format);
     }
 
-    public int convertMileSecondsToUnits(int mileSeconds) {
-        return mileSeconds /= 20;
+    public int convertMileSecondsToUnits(int milliSeconds) {
+        return milliSeconds /= 20;
     }
 
     public void update() {
@@ -34,7 +33,7 @@ public class Logger {
         for (var booleanFollower :
                 booleanFollowers) {
             if (booleanFollower.getValue() != booleanFollower.getLastValue()) {
-                System.out.println(Time() + " - " + tag + "was changed toz");
+                System.out.println(TimeProvider() + " - " + tag + "was changed toz");
                 booleanFollower.setLastValue();
             }
         }
@@ -47,20 +46,20 @@ public class Logger {
             if (doubleFollower.getValue() > doubleFollower.getLastValue() + doubleFollower.getTolerance() ||
                     doubleFollower.getValue() < doubleFollower.getLastValue() - doubleFollower.getTolerance()) {
 
-                System.out.println(Time() + " - " + tag + " setPoint was changed");
+                System.out.println(TimeProvider() + " - " + tag + " setPoint was changed");
                 doubleFollower.setLastValue();
             }
         }
     }
 
-    public void addBooleanListener(String methodName, BooleanSupplier condition, int miliSec) {
+    public void addBooleanListener(String methodName, BooleanSupplier condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, condition.getAsBoolean(),
-                convertMileSecondsToUnits(miliSec));
+                convertMileSecondsToUnits(delayInMS));
         booleanFollowers.add(booleanFollower);
     }
 
-    public void addDoubleListener(String methodName, DoubleSupplier setPoint, int delay, int tolerace) {
-        DoubleFollower doubleFollower = new DoubleFollower(methodName, setPoint, delay, tolerace);
+    public void addDoubleListener(String methodName, DoubleSupplier setPoint, int delayInMS, int tolerance) {
+        DoubleFollower doubleFollower = new DoubleFollower(methodName, setPoint, delayInMS, tolerance);
         doubleFollowers.add(doubleFollower);
     }
 }
