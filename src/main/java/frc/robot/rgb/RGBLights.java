@@ -7,7 +7,6 @@ public class RGBLights extends SubsystemBase {
     private RGBComponentsBase ledComponents;
     private LedShuffleBoard shuffleBoard;
 
-
     public RGBLights(RGBComponentsBase ledComponents) {
         this.ledComponents = ledComponents;
         shuffleBoard = new LedShuffleBoard(this);

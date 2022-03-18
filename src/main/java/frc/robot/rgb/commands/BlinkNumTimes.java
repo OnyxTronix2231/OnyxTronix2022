@@ -27,6 +27,6 @@ public class BlinkNumTimes extends BlinkOnce {
             System.out.println(counter);
             super.initialize();
         }
-        return counter == 0;
+        return counter <= 0;
     }
 }

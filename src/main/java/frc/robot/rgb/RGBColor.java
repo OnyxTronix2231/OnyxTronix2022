@@ -1,12 +1,12 @@
 package frc.robot.rgb;
 
-public class RGB {
+public class RGBColor {
 
     private int red;
     private int green;
     private int blue;
 
-    public RGB(int red, int green, int blue) {
+    public RGBColor(int red, int green, int blue) {
         this.red = red;
         this.green = green;
         this.blue = blue;
