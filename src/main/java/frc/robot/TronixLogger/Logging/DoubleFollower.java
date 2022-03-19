@@ -9,8 +9,8 @@ public class DoubleFollower extends FollowerBase<Double> {
     private final double tolerance;
     private final Consumer<DoubleFollower> doubleConsumer;
 
-    public DoubleFollower(String name, Supplier<Double> supplier, int counter, Consumer<DoubleFollower> doubleConsumer, double tolerance) {
-        super(name, supplier, counter);
+    public DoubleFollower(String name, Supplier<Double> supplier, int delayInMS, Consumer<DoubleFollower> doubleConsumer, double tolerance) {
+        super(name, supplier, delayInMS);
         this.tolerance = tolerance;
         this.doubleConsumer = doubleConsumer;
     }

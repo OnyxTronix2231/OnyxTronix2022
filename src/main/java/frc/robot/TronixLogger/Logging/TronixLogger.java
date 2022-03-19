@@ -3,8 +3,6 @@ package frc.robot.TronixLogger.Logging;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
 public class TronixLogger {
@@ -28,14 +26,10 @@ public class TronixLogger {
         return localTime.format(format);
     }
 
-    public int convertMileSecondsToUnits(int milliSeconds) {
-        return milliSeconds / 20;
-    }
-
     public void update() {
-        for (var followerBases :followerBases) {
-            booleanFollower.update();
-            doubleFollower.update();
+        for (var followerBases : followerBases) {
+            booleanFollower.updateByDelay();
+            doubleFollower.updateByDelay();
         }
     }
 

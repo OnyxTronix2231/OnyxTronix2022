@@ -10,7 +10,11 @@ public interface Follower<T> {
 
     String getName();
 
-    int getCounter();
+    int getDelay();
 
     void update();
+
+    void updateByDelay();
+
+    int convertMileSecondsToUnits(int delayInMS);
 }
