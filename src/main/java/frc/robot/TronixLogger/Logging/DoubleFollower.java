@@ -1,45 +1,28 @@
 package frc.robot.TronixLogger.Logging;
 
-import java.util.function.DoubleSupplier;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-public class DoubleFollower {
+public class DoubleFollower extends FollowerBase<Double> {
 
-    private final String name;
-    private final DoubleSupplier doubleSupplier;
-    private double lastValue;
-    private final int updateInterval;
+
     private final double tolerance;
+    private final Consumer<DoubleFollower> doubleConsumer;
 
-    public DoubleFollower(String name, DoubleSupplier doubleSupplier, int updateInterval, double tolerance) {
-        this.name = name;
-        this.updateInterval = updateInterval;
-        this.doubleSupplier = doubleSupplier;
+    public DoubleFollower(String name, Supplier<Double> supplier, int counter, Consumer<DoubleFollower> doubleConsumer, double tolerance) {
+        super(name, supplier, counter);
         this.tolerance = tolerance;
-    }
-
-    public double getValue() {
-        return doubleSupplier.getAsDouble();
-    }
-
-    public double getLastValue() {
-        return lastValue;
-    }
-
-    public void setLastValue() {
-        lastValue = doubleSupplier.getAsDouble();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCounter() {
-        return updateInterval;
+        this.doubleConsumer = doubleConsumer;
     }
 
     public double getTolerance() {
         return tolerance;
     }
 
-
+    public void update() {
+        if (Math.abs(getValue()) > Math.abs(getLastValue()) + getTolerance()) {
+            doubleConsumer.accept(this);
+            updateLastValue();
+        }
+    }
 }

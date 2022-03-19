@@ -1,37 +1,23 @@
 package frc.robot.TronixLogger.Logging;
 
-import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-public class BooleanFollower {
-    private final String name;
-    private final BooleanSupplier booleanSupplier;
-    private boolean lastCondition;
-    private final int updateInterval;
+public class BooleanFollower extends FollowerBase<Boolean> {
 
-    public BooleanFollower(String name, BooleanSupplier booleanSupplier, boolean lastCondition, int updateInterval) {
-        this.name = name;
-        this.updateInterval = updateInterval;
-        this.booleanSupplier = booleanSupplier;
-        this.lastCondition = lastCondition;
+    private final Consumer<BooleanFollower> booleanConsumer;
+
+    public BooleanFollower(String name, Supplier<Boolean> supplier, int counter, Consumer<BooleanFollower> booleanConsumer) {
+        super(name, supplier, counter);
+        this.booleanConsumer = booleanConsumer;
     }
 
-    public boolean getValue() {
-        return booleanSupplier.getAsBoolean();
-    }
+    @Override
+    public void update() {
+        if (getValue() != getLastValue()) {
+            booleanConsumer.accept(this);
+            updateLastValue();
+        }
 
-    public boolean getLastValue() {
-        return lastCondition;
-    }
-
-    public void setLastValue() {
-        lastCondition = booleanSupplier.getAsBoolean();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCounter() {
-        return updateInterval;
     }
 }

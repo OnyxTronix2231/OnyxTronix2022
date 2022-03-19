@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.TronixLogger.Logging.Logger;
+import frc.robot.TronixLogger.Logging.TronixLogger;
 import frc.robot.TronixLogger.LoggingTest.Logging;
 import frc.robot.TronixLogger.LoggingTest.LoggingCompoents;
 import frc.robot.TronixLogger.LoggingTest.LoggingCompoentsBase;
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
     Vision vision;
     Climber climber;
     Logging logging;
-    Logger logger;
+    TronixLogger logger;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = false;
 
