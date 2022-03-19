@@ -13,6 +13,7 @@ public class AdvancedClimber extends Stabilizers {
     public AdvancedClimber(StabilizersComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
+        new AdvancedClimberShuffleBoard(this);
     }
 
     public boolean isOnDesiredPitchAngle() {
@@ -21,5 +22,13 @@ public class AdvancedClimber extends Stabilizers {
 
     public double getCurrentPitch() {
         return driveTrain.getPitch();
+    }
+
+    public double getCurrentRoll() {
+        return driveTrain.getRoll();
+    }
+
+    public double getCurrentYaw() {
+        return driveTrain.getHeading();
     }
 }

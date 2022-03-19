@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
@@ -121,6 +122,7 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
         stabilizers = new Stabilizers(stabilizersComponents);
+        new AdvancedClimber(stabilizersComponents, driveTrain);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
