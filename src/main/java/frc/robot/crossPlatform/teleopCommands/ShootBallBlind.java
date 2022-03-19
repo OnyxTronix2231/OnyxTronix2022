@@ -24,7 +24,7 @@ public class ShootBallBlind extends ParallelCommandGroup {
                 new ShootByRPM(shooter, speedSupplier),
                 new MoveArcToAngle(arc, arcAngle),
                 new RotateToAngleRTR(turret, turretAngle),
-                new WaitUntilReadyToShoot(shooter::isOnTarget, arc::isOnTarget).andThen(
+                new WaitUntilReadyToShoot(shooter::isOnTarget, arc::isOnTarget, turret::isOnTarget).andThen(
                         new MoveConveyor(loader, ballTrigger, () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED)));
     }
 }

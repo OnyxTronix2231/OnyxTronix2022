@@ -21,7 +21,7 @@ public class ShooterShuffleBoard {
     public ShooterShuffleBoard(Shooter shooter) {
         this.shooter = shooter;
 
-        Shuffleboard.getTab("shoot").addNumber("RPM", shooter::getCurrentRPM);
+        Shuffleboard.getTab("Shooter").addNumber("RPM", shooter::getCurrentRPM);
         Shuffleboard.getTab("Shooter").addNumber("EncoderUnits", shooter::getEncoderUnits);
         Shuffleboard.getTab("Shooter").addNumber("encoderErr", shooter::getError);
         Shuffleboard.getTab("Shooter").addNumber("err", () -> encUnitsDecisecToRPM(shooter.getError()));

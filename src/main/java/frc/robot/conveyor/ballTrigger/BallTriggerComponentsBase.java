@@ -49,7 +49,6 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
         config.openloopRamp = OPEN_LOOP_RAMP;
         config.closedloopRamp = CLOSE_LOOP_RAMP;
-
         return config;
     }
 }

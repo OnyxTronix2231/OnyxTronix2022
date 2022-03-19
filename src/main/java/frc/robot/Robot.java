@@ -135,10 +135,7 @@ public class Robot extends TimedRobot {
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
                 .withTurret(turret)
         ;
-        NetworkTableEntry speed = Shuffleboard.getTab("shoot").add("speed", 0).getEntry();
-        NetworkTableEntry angle = Shuffleboard.getTab("shoot").add("angle", 0).getEntry();
-        Shuffleboard.getTab("shoot").add(new ShootBallBlind(shooter, arc, turret, loader, ballTrigger,
-                ()->   speed.getDouble(0), ()->  angle.getDouble(0), ()-> 180) );
+
         DeputyOi deputyOi = new DeputyOi()
                 .withArcCalibration(arc)
                 .withLoader(loader)
