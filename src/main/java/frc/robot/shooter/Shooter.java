@@ -11,18 +11,13 @@ public class Shooter extends SubsystemBase {
     private final ShooterComponents components;
     //private final ShooterShuffleBoard shuffleBoard;
     private boolean isRealeBallsButtonpress = false;
-    private final TronixLogger log;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
-        //shuffleBoard = new ShooterShuffleBoard(this);
-        this.log = new TronixLogger("shooter");
-        this.log.addDoubleListener("RPM", this::getCurrentRPM, 100, 200);
     }
 
     public void periodic() {
         //shuffleBoard.update();
-        log.update();
     }
 
     public void setSpeed(double speed) {

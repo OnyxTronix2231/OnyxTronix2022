@@ -7,17 +7,23 @@ import java.util.function.Supplier;
 
 public class TronixLogger {
 
-    private final String tag;
+    public static TronixLogger tronixLoggerInstance;
     BooleanFollower booleanFollower;
     DoubleFollower doubleFollower;
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
     ArrayList<FollowerBase> followerBases;
 
-    public TronixLogger(String tag) {
+    private TronixLogger() {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
-        this.tag = tag;
+    }
+
+    public static TronixLogger getInstance() {
+        if(tronixLoggerInstance == null) {
+            tronixLoggerInstance = new TronixLogger();
+        }
+        return tronixLoggerInstance;
     }
 
     public String timeStamp() {
@@ -35,7 +41,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> System.out.println(timeStamp() + " - " + tag + "was changed to" + d.getValue()));
+                d-> System.out.println(timeStamp() + " - " + "was changed to" + d.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
@@ -43,7 +49,7 @@ public class TronixLogger {
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
                 d -> System.out.println(
-                        timeStamp() + " - " + tag + " " + d.getName() + " was changed to " + d.getValue()),
+                        timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),
                         tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);

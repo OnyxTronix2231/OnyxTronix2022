@@ -180,6 +180,7 @@ public class Robot extends TimedRobot {
         CommandScheduler.getInstance().run();
         SmartDashboard.updateValues();
         updateOdometryByVision.updateOdometry();
+        TronixLogger.getInstance().update();
     }
 
     /**

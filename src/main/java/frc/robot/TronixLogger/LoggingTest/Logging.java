@@ -4,22 +4,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.TronixLogger.Logging.TronixLogger;
 
 public class Logging extends SubsystemBase {
-     private final LoggingCompoents components;
-     private TronixLogger log;
+    private final LoggingCompoents components;
 
     public Logging(LoggingCompoents components, TronixLogger log) {
         this.components = components;
-       // this.log = new TronixLogger("loader");
-      //  this.log.addBooleanListener("test", this::isOpen, 20);
-//        this.log.update();
+        TronixLogger.getInstance().addBooleanListener("Switch", this::isOpen, 420);
+        TronixLogger.getInstance().addDoubleListener("RPM",this::rpm,69,420);
     }
 
-    public boolean isOpen(){
+    public boolean isOpen() {
         return components.getMicroSwitch().isOpen();
     }
 
-    @Override
-    public void periodic() {
-      //  log.update();
+    public double rpm(){
+        double rpm = 0;
+        return rpm;
     }
+
+
 }
