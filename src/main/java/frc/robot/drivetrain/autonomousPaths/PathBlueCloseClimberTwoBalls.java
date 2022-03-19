@@ -1,15 +1,6 @@
 package frc.robot.drivetrain.autonomousPaths;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.constraint.CentripetalAccelerationConstraint;
-import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
-import frc.robot.drivetrain.Path;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class PathBlueCloseClimberTwoBalls implements AutonomousPaths {
+public class PathBlueCloseClimberTwoBalls extends AbstractPath {
 
     static final double X_START_POSE = 6.571;
     static final double X_FIRST_BALL = 4.715;
@@ -23,30 +14,9 @@ public class PathBlueCloseClimberTwoBalls implements AutonomousPaths {
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
     static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
 
-    private final Pose2d startPose;
-    private final Path firstPath;
-
-    ArrayList<Path> paths = new ArrayList<>();
-
     public PathBlueCloseClimberTwoBalls() {
-        startPose = new Pose2d(X_START_POSE, Y_START_POSE, Rotation2d.fromDegrees(START_DEGREE));
-
-        firstPath = new Path(
-                List.of(),
-                new Pose2d(X_FIRST_BALL, Y_FIRST_BALL, Rotation2d.fromDegrees(DESTINATION_DEGREE)),
-                new MaxVelocityConstraint(MAX_VELOCITY_METERS_PER_SECOND),
-                new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ)
-        ).setReversed();
-        paths.add(firstPath);
-    }
-
-    @Override
-    public Pose2d getStartPose() {
-        return startPose;
-    }
-
-    @Override
-    public Path getPath(int pathNumber){
-        return paths.get(pathNumber - 1);
+        setStartPose(X_START_POSE, Y_START_POSE, START_DEGREE);
+        addPath(X_FIRST_BALL,Y_FIRST_BALL,DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
+                MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
     }
 }
