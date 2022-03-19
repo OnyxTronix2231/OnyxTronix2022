@@ -34,7 +34,6 @@ public final class DriveTrainConstants {
 
     public static final class ComponentsConstants {
 
-
         static final int RIGHT_MASTER_MOTOR_PORT = 1;
         static final int RIGHT_SLAVE_MOTOR_PORT = 2;
         static final int LEFT_MASTER_MOTOR_PORT = 3;
@@ -47,6 +46,7 @@ public final class DriveTrainConstants {
         static final double TRIGGER_THRESHOLD_CURRENT = 0;
         static final double TRIGGER_THRESHOLD_TIME = 0;
         static final double RAMP_TIME = 0.4;
+        static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = true;
     }
     public static final class Calculations {
 
