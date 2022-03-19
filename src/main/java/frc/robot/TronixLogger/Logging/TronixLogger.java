@@ -20,7 +20,7 @@ public class TronixLogger {
         this.tag = tag;
     }
 
-    public String TimeStamp() {
+    public String timeStamp() {
         LocalTime localTime = LocalTime.now();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
         return localTime.format(format);
@@ -35,7 +35,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> System.out.println(TimeStamp() + " - " + tag + "was changed to" + d.getValue()));
+                d-> System.out.println(timeStamp() + " - " + tag + "was changed to" + d.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
@@ -43,7 +43,7 @@ public class TronixLogger {
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
                 d -> System.out.println(
-                        TimeStamp() + " - " + tag + " " + d.getName() + " was changed to " + d.getValue()),
+                        timeStamp() + " - " + tag + " " + d.getName() + " was changed to " + d.getValue()),
                         tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
