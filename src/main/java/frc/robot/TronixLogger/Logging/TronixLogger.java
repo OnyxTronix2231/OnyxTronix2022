@@ -35,7 +35,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> System.out.println(TimeStamp() + " - " + tag + "was changed toz"));
+                d-> System.out.println(TimeStamp() + " - " + tag + "was changed to" + d.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
