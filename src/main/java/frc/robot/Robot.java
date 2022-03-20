@@ -15,9 +15,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.TronixLogger.Logging.TronixLogger;
-import frc.robot.TronixLogger.LoggingTest.Logging;
-import frc.robot.TronixLogger.LoggingTest.LoggingCompoents;
-import frc.robot.TronixLogger.LoggingTest.LoggingCompoentsBase;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
@@ -73,7 +70,6 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     Climber climber;
-    Logging logging;
     TronixLogger logger;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = false;
@@ -96,7 +92,6 @@ public class Robot extends TimedRobot {
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
         ClimberComponents climberComponents;
-        LoggingCompoents loggingCompoents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -109,7 +104,6 @@ public class Robot extends TimedRobot {
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
         climberComponents = new ClimberComponentsBase();
-        loggingCompoents = new LoggingCompoentsBase();
 
         driveTrain = new DriveTrain(driveTrainComponents);
         vision = new Vision();
@@ -122,7 +116,6 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         climber = new Climber(climberComponents);
-        logging = new Logging(loggingCompoents, logger);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 

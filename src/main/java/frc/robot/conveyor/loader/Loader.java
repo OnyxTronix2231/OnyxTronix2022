@@ -11,8 +11,8 @@ public class Loader extends SubsystemBase{
     public Loader(LoaderComponents components) {
         this.components = components;
         this.loaderShuffleboard = new LoaderShuffleboard(this);
-        TronixLogger.tronixLoggerInstance.addBooleanListener("loader is", this::identifiedBall,1000);
-        TronixLogger.tronixLoggerInstance.addDoubleListener("loader double", this::getDistanceFront, 100,10);
+        TronixLogger.getInstance().addBooleanListener("loader is", this::identifiedBall,1000);
+        TronixLogger.getInstance().addDoubleListener("loader double", this::getDistanceFront, 100,10);
         //loaderShuffleboard.init();
     }
 
