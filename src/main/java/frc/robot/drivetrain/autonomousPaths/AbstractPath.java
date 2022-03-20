@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class AbstractPath implements AutonomousPaths {
 
     protected ArrayList<Path> paths = new ArrayList<>();
+    protected ArrayList<Path> pathReversed = new ArrayList<>();
     protected Pose2d startPose;
 
     @Override
@@ -22,6 +23,15 @@ public abstract class AbstractPath implements AutonomousPaths {
                 new MaxVelocityConstraint(maxVelocityConstraint),
                 new CentripetalAccelerationConstraint(accelerationConstraint)
         ));
+    }
+
+    public void addPathReverse(double x, double y, double degree, double maxVelocityConstraint, double accelerationConstraint) {
+        paths.add(new Path(
+                List.of(),
+                new Pose2d(x, y, Rotation2d.fromDegrees(degree)),
+                new MaxVelocityConstraint(maxVelocityConstraint),
+                new CentripetalAccelerationConstraint(accelerationConstraint)
+        ).setReversed());
     }
 
     @Override
@@ -36,7 +46,7 @@ public abstract class AbstractPath implements AutonomousPaths {
     }
 
     @Override
-    public Path getPath(int pathNumber){
+    public Path getPath(int pathNumber) {
         return paths.get(pathNumber - 1);
     }
 }
