@@ -153,10 +153,6 @@ public class Robot extends TimedRobot {
                 angleProviderByVisionAndOdometry);
 
         firstEnable = true;
-
-        new Compressor(PneumaticsModuleType.CTREPCM);
-
-
     }
 
     /**
@@ -186,12 +182,13 @@ public class Robot extends TimedRobot {
             vision.ledsOff();
         }
         if (turret != null) {
+
             turret.setNeutralModeCoast();
         }
 
-        if( driveTrain != null) {
-            driveTrain.setNeutralModeToCoast();
-        }
+//        if( driveTrain != null) {
+//            driveTrain.setNeutralModeToCoast();
+//        }
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -215,10 +212,10 @@ public class Robot extends TimedRobot {
         if (vision != null) {
             vision.ledsOn();
         }
-        //if (firstEnable && arc != null) {
-          //  CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
-            //firstEnable = false;
-       // }
+        if (firstEnable && arc != null) {
+            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+            firstEnable = false;
+        }
         if (turret != null) {
             turret.setNeutralModeBrake();
         }
