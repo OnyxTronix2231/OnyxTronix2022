@@ -44,13 +44,13 @@ public class AutonomousShuffleboard {
         
         autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 
-        Shuffleboard.getTab("path chooser").add(autonomousChooser);
-        Shuffleboard.getTab("path chooser").addNumber("X",
-                () -> driveTrain.getPose().getX());
-        Shuffleboard.getTab("path chooser").addNumber("Y",
-                () -> driveTrain.getPose().getY());
-        Shuffleboard.getTab("path chooser").addNumber("heading",
-                driveTrain::getHeading);
+//        Shuffleboard.getTab("path chooser").add(autonomousChooser);
+//        Shuffleboard.getTab("path chooser").addNumber("X",
+//                () -> driveTrain.getPose().getX());
+//        Shuffleboard.getTab("path chooser").addNumber("Y",
+//                () -> driveTrain.getPose().getY());
+//        Shuffleboard.getTab("path chooser").addNumber("heading",
+//                driveTrain::getHeading);
     }
 
     public Command getSelectedCommand() {

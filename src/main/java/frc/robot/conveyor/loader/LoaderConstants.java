@@ -19,7 +19,7 @@ public final class LoaderConstants {
         static final double STATOR_TRIGGER_THRESHOLD_CURRENT = 0;
         static final double STATOR_TRIGGER_THRESHOLD_TIME = 0;
         static final boolean STATOR_CURRENT_LIMIT_ENABLED = false;
-        static final double OPEN_LOOP_RAMP = 0;
+        static final double OPEN_LOOP_RAMP = 0.1;
         static final double CLOSE_LOOP_RAMP = 0;
     }
 }

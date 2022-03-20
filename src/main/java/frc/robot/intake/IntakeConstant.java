@@ -23,7 +23,7 @@ public class IntakeConstant {
         static final double STATOR_TRIGGER_THRESHOLD_CURRENT_FRONT = 0;
         static final double STATOR_TRIGGER_THRESHOLD_TIME_FRONT = 0;
         static final boolean STATOR_CURRENT_LIMIT_ENABLED_FRONT = false;
-        static final double OPEN_LOOP_RAMP_FRONT = 0;
+        static final double OPEN_LOOP_RAMP_FRONT = 0.1;
         static final double CLOSE_LOOP_RAMP_FRONT = 0;
     }
 
@@ -40,7 +40,7 @@ public class IntakeConstant {
         static final double STATOR_TRIGGER_THRESHOLD_CURRENT_BACK = 0;
         static final double STATOR_TRIGGER_THRESHOLD_TIME_BACK = 0;
         static final boolean STATOR_CURRENT_LIMIT_ENABLED_BACK = false;
-        static final double OPEN_LOOP_RAMP_BACK = 0;
+        static final double OPEN_LOOP_RAMP_BACK = 0.1;
         static final double CLOSE_LOOP_RAMP_BACK = 0;
     }
 }
