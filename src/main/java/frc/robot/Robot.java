@@ -182,13 +182,12 @@ public class Robot extends TimedRobot {
             vision.ledsOff();
         }
         if (turret != null) {
-
             turret.setNeutralModeCoast();
         }
 
-//        if( driveTrain != null) {
-//            driveTrain.setNeutralModeToCoast();
-//        }
+        if( driveTrain != null) {
+            driveTrain.setNeutralModeToCoast();
+        }
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {

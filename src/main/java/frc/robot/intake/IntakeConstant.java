@@ -6,7 +6,7 @@ public class IntakeConstant {
 
     static final DoubleSolenoid.Value PISTON_OPEN = DoubleSolenoid.Value.kForward;
     static final DoubleSolenoid.Value PISTON_CLOSE = DoubleSolenoid.Value.kReverse;
-    static final double INTAKE_SPEED = 0.6;
+    static final double INTAKE_SPEED = 0.8;
     static double JOYSTICK_VALUE = 0;
     public static double OPEN_INTAKE_WITH_DELAY_SECONDS = 0.1;
 
