@@ -18,8 +18,9 @@ public class AutoMoveAndIntake extends ParallelDeadlineGroup {
 
     public AutoMoveAndIntake(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                              BallTrigger ballTrigger, Path path) {
-        super(new MoveByPath(driveTrain, path).andThen(new WaitCommand(1))
-                ,
+        super(
+                new MoveByPath(driveTrain, path).andThen(new WaitCommand(0.4)),
+
                 new IntakeAndLoadBalls(path.isReversed() ? backIntake : frontIntake,
                         ballTrigger, loader, () -> LOADER_SPEED_SUPPLIER, () -> BALL_TRIGGER_SPEED_SUPPLIER,
                         () -> INTAKE_SPEED_SUPPLIER)

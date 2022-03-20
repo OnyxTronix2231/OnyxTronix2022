@@ -9,7 +9,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import frc.robot.StatusFrameConfig;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
@@ -56,8 +55,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
         rightSlaveMotor.follow(rightMasterMotor);
 
-        leftEncoder = new TalonEncoder(leftMasterMotor);
-        rightEncoder = new TalonEncoder(rightMasterMotor);
+        leftEncoder = new TalonEncoder(leftMasterMotor, 0, 300);
+        rightEncoder = new TalonEncoder(rightMasterMotor, 0, 300);
 
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(0));
         odometry.resetPosition(new Pose2d(), new Rotation2d());
@@ -120,7 +119,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
         config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
         config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
-        config.supplyCurrLimit.enable = true;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
         config.openloopRamp = RAMP_TIME;
         return config;
     }

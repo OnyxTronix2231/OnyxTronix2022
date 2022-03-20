@@ -1,40 +1,23 @@
 package frc.robot.drivetrain.autonomousPaths;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.constraint.CentripetalAccelerationConstraint;
-import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
-import frc.robot.drivetrain.Path;
+public class PathBlueFarClimberThreeBalls extends AbstractPath{
 
-import java.util.ArrayList;
-import java.util.List;
+    static final double X_DESTINATION_MIDDLE_POINT = 6.605;
+    static final double X_SECOND_BALL = 5.03;
 
-public class PathBlueFarClimberThreeBalls implements AutonomousPaths{
+    static final double Y_DESTINATION_MIDDLE_POINT = 1.595;
+    static final double Y_SECOND_BALL = 1.662;
 
-    static final double X_SECOND_BALL = 5.3;
+    static final double MIDDLE_DESTINATION_POINT_DEGREE = -170;
+    static final double DESTINATION_DEGREE = 180;
 
-    static final double Y_SECOND_BALL = 1.707;
-
-    private final Path firstPath;
-
-    ArrayList<Path> paths = new ArrayList<>();
+    static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
+    static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
 
     public PathBlueFarClimberThreeBalls(){
-       firstPath =  new Path(
-               List.of(),
-               new Pose2d(X_SECOND_BALL, Y_SECOND_BALL, Rotation2d.fromDegrees(180)),
-               new MaxVelocityConstraint(2),
-               new CentripetalAccelerationConstraint(2)
-       );
-       paths.add(firstPath);
-    }
-    @Override
-    public Pose2d getStartPose() {
-        return null;
-    }
-
-    @Override
-    public Path getPath(int pathNumber){
-        return paths.get(pathNumber - 1);
+        addPath(X_DESTINATION_MIDDLE_POINT,Y_DESTINATION_MIDDLE_POINT,MIDDLE_DESTINATION_POINT_DEGREE,
+                MAX_VELOCITY_METERS_PER_SECOND, MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
+        addPath(X_SECOND_BALL, Y_SECOND_BALL, DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
+               MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
     }
 }
