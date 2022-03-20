@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 public class DoubleFollower extends FollowerBase<Double> {
 
-
     private final double tolerance;
     private final Consumer<DoubleFollower> doubleConsumer;
 

@@ -1,6 +1,7 @@
 package frc.robot.conveyor.loader;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.TronixLogger.Logging.TronixLogger;
 
 public class Loader extends SubsystemBase{
 
@@ -10,6 +11,8 @@ public class Loader extends SubsystemBase{
     public Loader(LoaderComponents components) {
         this.components = components;
         this.loaderShuffleboard = new LoaderShuffleboard(this);
+        TronixLogger.tronixLoggerInstance.addBooleanListener("loader is", this::identifiedBall,1000);
+        TronixLogger.tronixLoggerInstance.addDoubleListener("loader double", this::getDistanceFront, 100,10);
         //loaderShuffleboard.init();
     }
 
