@@ -23,14 +23,14 @@ public class ColorProvider extends SubsystemBase {
 
     @Override
     public void periodic() {
-        currentColor = ballTriggerComponents.getColorSensor().getColor();
-        if(foundBall()) {
-            currentColor = isBlueBall() ? Color.kBlue : Color.kRed;
-            if(lastSeenColor != currentColor) {
-                lastSeenColor = currentColor;
-                colorsDetected.add(lastSeenColor);
-            }
-        }
+        //currentColor = ballTriggerComponents.getColorSensor().getColor();
+//        if(foundBall()) {
+//            currentColor = isBlueBall() ? Color.kBlue : Color.kRed;
+//            if(lastSeenColor != currentColor) {
+//                lastSeenColor = currentColor;
+//                colorsDetected.add(lastSeenColor);
+//            }
+//        }
     }
 
     private boolean foundBall() {
