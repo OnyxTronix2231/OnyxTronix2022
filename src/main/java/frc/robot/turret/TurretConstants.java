@@ -38,21 +38,22 @@ public final class TurretConstants {
     public static class ComponentsConstants {
 
         /*mechanic values*/
-        static final int ENCODER_UNITS_IN_ROTATION = 2048;
+        static final int ENCODER_UNITS_RESOLUTION = 2048;
+        static final int OUTER_ENCODER_UNITS_RESOLUTION = 4096;
         static final int TURRET_MOTOR_ID = 9;
-        static final int TALON_ENCODER_ID = 8;
-        static final int ENCODER_DEFAULT_ERROR = 190;
+        static final int TURRET_ENCODER_ID = 0;
+        static final int ENCODER_DEFAULT_ERROR = 54; // out of 4096
         static final double ENCODER_OFFSET = 1;
         static final double CONVERSION_RATE = 1.0 / 75;
-        static final double MAX_DEG = 359; //TODO: Correct the number
-        static final double MIN_DEG = -30; //TODO: Correct the number
+        static final double MAX_DEG = 360; //TODO: Correct the number
+        static final double MIN_DEG = -40; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
     }
 
     public static final class Calculation {
 
         static int degreesToEncoderUnits(double degree) {
-            return (int) ((degree * ENCODER_UNITS_IN_ROTATION) / DEG_IN_TURRET_ROTATION);
+            return (int) ((degree * ENCODER_UNITS_RESOLUTION) / DEG_IN_TURRET_ROTATION);
         }
 
         static int degreesToAbsoluteEncoderUnits(double degree) {
@@ -60,7 +61,7 @@ public final class TurretConstants {
         }
 
         public static double encoderUnitsToDegrees(double encoderUnits) {
-            return (encoderUnits * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_IN_ROTATION;
+            return (encoderUnits * DEG_IN_TURRET_ROTATION) / ENCODER_UNITS_RESOLUTION;
         }
 
         public static double absoluteEncoderUnitsToDegrees(double encoderUnits) {

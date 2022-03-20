@@ -18,10 +18,10 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
+import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.DriverYawControlOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -48,25 +48,24 @@ public class DriverOi {
     }
 
     public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
-        Trigger load = new JoystickButton(controller, controller.getBumperRight());
-        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
-        return this;
-    }
-
-    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
         return this;
     }
 
-    public DriverOi withShootBalls(Vision vision, Shooter shooter, Arc arc, YawControl yawControl,
-                                   BallTrigger ballTrigger, Loader loader, DoubleSupplier distanceSupplier,
-                                   DoubleSupplier angleSupplier, BooleanSupplier conditionSupplier) {
-        Trigger shoot = new JoystickAxis(controller, controller.getRightTrigger());
+    public DriverOi withIntakeBackAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
+        Trigger load = new JoystickButton(controller, controller.getBumperRight());
+        new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
+        return this;
+    }
+
+    public DriverOi withShootBalls(Shooter shooter, Arc arc, YawControl yawControl,
+                                   BallTrigger ballTrigger, Loader loader, BooleanSupplier conditionSupplier) {
+        Trigger shootBall = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootCloseToHighTarget = new JoystickAxis(controller, controller.getLeftTrigger());
         Trigger realiseBalls = new JoystickButton(controller, controller.getButtonUp());
-        new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, vision, yawControl, distanceSupplier,
-                angleSupplier, conditionSupplier, shoot, shootCloseToHighTarget, realiseBalls);
+        new DriverShootBallOiBinder(shooter, arc, ballTrigger, loader, yawControl, conditionSupplier,
+                shootBall, shootCloseToHighTarget, realiseBalls);
         return this;
     }
 
@@ -82,8 +81,10 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withYawControl(YawControl yawControl) {
-        new DriverYawControlOiBinder(yawControl);
+    public DriverOi withTurret(Turret yawControl) {
+        Trigger left = new JoystickButton(controller, controller.getButtonDown());
+        Trigger right = new JoystickButton(controller, controller.getButtonRight());
+        new DriverTurretOiBinder(yawControl, left, right);
         return this;
     }
 

@@ -1,8 +1,8 @@
 package frc.robot.conveyor.ballTrigger;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import sensors.triangulatingRangefinder.TriangulatingRangefinder;
@@ -11,42 +11,42 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsCons
 
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
-    private final WPI_TalonSRX motor;
-    //public final ColorSensorV3 colorSensor;
+    private final WPI_TalonFX motor;
+    public final ColorSensorV3 colorSensor;
     public final TriangulatingRangefinder analogSensor;
 
     public BallTriggerComponentsBase() {
-        motor = new WPI_TalonSRX(MOTOR_ID);
+        motor = new WPI_TalonFX(MOTOR_ID);
         motor.configFactoryDefault();
         motor.configAllSettings(getTalonConfiguration());
         motor.setNeutralMode(NeutralMode.Coast);
-        motor.setInverted(false);
-        motor.enableCurrentLimit(SUPPLY_CURRENT_LIMIT_ENABLED);
+        motor.setInverted(true);
 
-        //colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+        colorSensor = new ColorSensorV3(I2C.Port.kMXP);
         analogSensor = new TriangulatingRangefinder(ANALOG_ID);
     }
 
     @Override
-    public WPI_TalonSRX getMotor() {
+    public WPI_TalonFX getMotor() {
         return motor;
     }
 
-//    @Override
-//    public ColorSensorV3 getColorSensor() {
-//        return colorSensor;
-//    }
+    @Override
+    public ColorSensorV3 getColorSensor() {
+        return colorSensor;
+    }
 
     @Override
     public TriangulatingRangefinder getAnalogSensor() {
         return analogSensor;
     }
 
-    private TalonSRXConfiguration getTalonConfiguration() {
-        final TalonSRXConfiguration config = new TalonSRXConfiguration();
-        config.continuousCurrentLimit = SUPPLY_CURRENT_LIMIT;
-        config.peakCurrentLimit = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
-        config.peakCurrentDuration = SUPPLY_TRIGGER_THRESHOLD_TIME;
+    private TalonFXConfiguration getTalonConfiguration() {
+        final TalonFXConfiguration config = new TalonFXConfiguration();
+        config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT;
+        config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
+        config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
         config.openloopRamp = OPEN_LOOP_RAMP;
         config.closedloopRamp = CLOSE_LOOP_RAMP;
         return config;

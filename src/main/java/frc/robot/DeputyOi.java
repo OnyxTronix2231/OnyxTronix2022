@@ -10,19 +10,15 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DeputeGetReadyToShootOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
-
-import java.util.function.DoubleSupplier;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
@@ -37,13 +33,6 @@ public class DeputyOi {
     public DeputyOi withClimber(Climber climber) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         new DeputeClimberOiBinder(climber, climb);
-        return this;
-    }
-
-    public DeputyOi withGetReadyToShoot(Shooter shooter, Arc arc, YawControl yawControl,
-                                        DoubleSupplier distanceSupplier, DoubleSupplier angleSupplier) {
-        Trigger getReady = new JoystickButton(controller, controller.getBumperLeft());
-        new DeputeGetReadyToShootOiBinder(shooter, arc, yawControl, distanceSupplier, angleSupplier, getReady);
         return this;
     }
 
