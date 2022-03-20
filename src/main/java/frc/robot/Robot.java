@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     UpdateOdometryByVision updateOdometryByVision;
-    boolean firstEnable = false;
+    boolean firstEnable = true;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -153,7 +153,6 @@ public class Robot extends TimedRobot {
                 angleProviderByVisionAndOdometry);
 
         firstEnable = true;
-
     }
 
     /**
@@ -185,6 +184,9 @@ public class Robot extends TimedRobot {
             turret.setNeutralModeCoast();
         }
 
+        if( driveTrain != null) {
+            driveTrain.setNeutralModeToCoast();
+        }
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -207,6 +209,10 @@ public class Robot extends TimedRobot {
         }
         if (vision != null) {
             vision.ledsOn();
+        }
+        if (firstEnable && arc != null) {
+            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+            firstEnable = false;
         }
         if (turret != null) {
             turret.setNeutralModeBrake();

@@ -31,7 +31,11 @@ public class NormalizedPigeonIMU extends PigeonIMU implements Sendable {
     }
 
     public void reset() {
-        this.setYaw(0);
+        this.setYaw(0, 300);
+    }
+
+    public void reset(int timeoutMs) {
+        this.setYaw(0, timeoutMs);
     }
 
     public double getNormalizedYaw() {
