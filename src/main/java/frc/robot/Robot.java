@@ -8,8 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -40,8 +38,8 @@ import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
-import frc.robot.stabilizers.StabilizersComponents;
-import frc.robot.stabilizers.StabilizersComponentsBase;
+import frc.robot.stabilizers.StabilizerComponents;
+import frc.robot.stabilizers.StabilizerComponentsBase;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -94,7 +92,7 @@ public class Robot extends TimedRobot {
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
         ArmsComponents armsComponents;
-        StabilizersComponents stabilizersComponents;
+        StabilizerComponents stabilizerComponents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -107,7 +105,7 @@ public class Robot extends TimedRobot {
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
         armsComponents = new ArmsComponentsBase();
-        stabilizersComponents = new StabilizersComponentsBase();
+        stabilizerComponents = new StabilizerComponentsBase();
 
         driveTrain = new DriveTrain(driveTrainComponents);
         vision = new Vision();
@@ -120,7 +118,7 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
-        stabilizers = new AdvancedClimber(stabilizersComponents, driveTrain);
+        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 

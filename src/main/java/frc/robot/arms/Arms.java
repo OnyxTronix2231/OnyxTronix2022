@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Arms extends SubsystemBase {
 
     protected final ArmsComponents components;
-    private final ArmsShuffleBoard climberShuffleBoard;
+    //private final ArmsShuffleBoard climberShuffleBoard;
 
     public Arms(ArmsComponents components) {
         this.components = components;
-        climberShuffleBoard = new ArmsShuffleBoard(this);
+        //climberShuffleBoard = new ArmsShuffleBoard(this);
     }
 
     public void moveArmsBySpeed(double speed) {

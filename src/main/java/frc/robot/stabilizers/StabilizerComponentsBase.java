@@ -5,14 +5,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import sensors.counter.TalonEncoder;
 
-import static frc.robot.stabilizers.StabilizersConstants.*;
+import static frc.robot.stabilizers.StabilizerConstants.*;
 
-public class StabilizersComponentsBase implements StabilizersComponents {
+public class StabilizerComponentsBase implements StabilizerComponents {
 
     private WPI_TalonFX motor;
     private TalonEncoder encoder;
 
-    public StabilizersComponentsBase() {
+    public StabilizerComponentsBase() {
         motor = new WPI_TalonFX(STABILIZER_MOTOR_DEVICE_NUMBER);
         motor.configFactoryDefault();
         motor.configAllSettings(getFalconConfiguration());

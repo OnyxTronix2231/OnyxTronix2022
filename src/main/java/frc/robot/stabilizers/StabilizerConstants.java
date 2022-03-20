@@ -1,6 +1,6 @@
 package frc.robot.stabilizers;
 
-public class StabilizersConstants {
+public class StabilizerConstants {
 
     static final int STABILIZER_MOTOR_DEVICE_NUMBER = 16;
     static final double OPEN_STABILIZER_SPEED = 0.8;

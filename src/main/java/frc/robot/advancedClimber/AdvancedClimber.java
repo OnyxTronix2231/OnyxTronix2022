@@ -1,19 +1,19 @@
 package frc.robot.advancedClimber;
 
 import frc.robot.drivetrain.DriveTrain;
-import frc.robot.stabilizers.Stabilizers;
-import frc.robot.stabilizers.StabilizersComponents;
+import frc.robot.stabilizers.Stabilizer;
+import frc.robot.stabilizers.StabilizerComponents;
 
 import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ROLL_ANGLE;
 
-public class AdvancedClimber extends Stabilizers {
+public class AdvancedClimber extends Stabilizer {
 
     private final DriveTrain driveTrain;
 
-    public AdvancedClimber(StabilizersComponents components, DriveTrain driveTrain) {
+    public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
-        new AdvancedClimberShuffleBoard(this);
+        //new AdvancedClimberShuffleBoard(this);
     }
 
     public boolean isOnDesiredRollAngle() {

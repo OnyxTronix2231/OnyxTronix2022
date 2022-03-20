@@ -2,20 +2,20 @@ package frc.robot.stabilizers;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Stabilizers extends SubsystemBase {
+public class Stabilizer extends SubsystemBase {
 
-    private final StabilizersComponents components;
+    private final StabilizerComponents components;
 
-    public Stabilizers(StabilizersComponents components) {
+    public Stabilizer(StabilizerComponents components) {
         this.components = components;
     }
 
-    public void moveMotorBySpeed(double speed) {
+    public void moveStabilizerBySpeed(double speed) {
         components.getMotor().set(speed);
     }
 
     public void stopMotor() {
-        moveMotorBySpeed(0);
+        moveStabilizerBySpeed(0);
     }
 
     public boolean isEncoderOnTarget(int desiredPosition) {
