@@ -20,7 +20,7 @@ public class Vision extends SubsystemBase {
     public Vision() {
         limelight = Limelight.getInstance();
         VisionShuffleboard visionShuffleboard = new VisionShuffleboard(this);
-        visionShuffleboard.init();
+        //visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
     }
 
@@ -32,7 +32,6 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
-        limelight.setLedMode(LimelightLedMode.forceOn);
         updateTurretToTargetVectorRTT();
     }
 

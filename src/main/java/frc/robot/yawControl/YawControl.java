@@ -1,11 +1,13 @@
 package frc.robot.yawControl;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.commands.RotateByAngle;
 import frc.robot.yawControl.Commands.RotateToAngleRTF;
+import frc.robot.yawControl.Commands.StopAutoTurret;
 
 import static frc.robot.Constants.TARGET_POSE_X;
 import static frc.robot.Constants.TARGET_POSE_Y;
@@ -18,7 +20,8 @@ public class YawControl extends Turret {
     public YawControl(TurretComponents turretComponents, DriveTrain driveTrain) {
         super(turretComponents);
         this.driveTrain = driveTrain;
-       // setDefaultCommand(new RotateToAngleRTF(this, driveTrain::getAngleToTargetByPose));
+        setDefaultCommand(new RotateToAngleRTF(this, driveTrain::getAngleToTargetByPose));
+        Shuffleboard.getTab("main").add("STOP odometry", new StopAutoTurret(this));
     }
 
     public double getTurretAngleRTF() {

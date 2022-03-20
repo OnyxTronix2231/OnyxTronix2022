@@ -18,6 +18,7 @@ public class TurretComponentsBase implements TurretComponents {
     private final WPI_TalonFX motor;
     private final TalonEncoder encoder;
     private final CtreMotionMagicController controller;
+    private final DutyCycleEncoder roboRIOEncoder;
 
     public TurretComponentsBase() {
         motor = new WPI_TalonFX(TURRET_MOTOR_ID);
@@ -25,7 +26,7 @@ public class TurretComponentsBase implements TurretComponents {
         motor.configAllSettings(getTalonFxConfiguration());
         motor.setNeutralMode(NeutralMode.Brake);
 
-        DutyCycleEncoder roboRIOEncoder = new DutyCycleEncoder(TURRET_ENCODER_ID);
+        roboRIOEncoder = new DutyCycleEncoder(TURRET_ENCODER_ID);
         motor.setSelectedSensorPosition((roboRIOEncoder.getAbsolutePosition() * OUTER_ENCODER_UNITS_RESOLUTION +
                 ENCODER_DEFAULT_ERROR) / (CONVERSION_RATE * 2));
 
@@ -60,5 +61,9 @@ public class TurretComponentsBase implements TurretComponents {
     @Override
     public CtreMotionMagicController getController() {
         return controller;
+    }
+
+    public DutyCycleEncoder getRoboRIOEncoder() {
+        return roboRIOEncoder;
     }
 }
