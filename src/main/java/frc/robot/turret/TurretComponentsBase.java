@@ -63,7 +63,6 @@ public class TurretComponentsBase implements TurretComponents {
         return controller;
     }
 
-
     public DutyCycleEncoder getRoboRIOEncoder() {
         return roboRIOEncoder;
     }
