@@ -13,4 +13,5 @@ public interface TurretComponents {
 
     CtreMotionMagicController getController();
 
-    DutyCycleEncoder getRoboRIOEncoder(); }
+    DutyCycleEncoder getRoboRIOEncoder();
+}
