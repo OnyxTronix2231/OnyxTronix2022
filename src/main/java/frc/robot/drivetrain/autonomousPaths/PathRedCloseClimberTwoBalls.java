@@ -16,7 +16,7 @@ public class PathRedCloseClimberTwoBalls extends AbstractPath {
 
     public PathRedCloseClimberTwoBalls(){
         setStartPose(X_START_POSE, Y_START_POSE, START_DEGREE);
-        addPath(X_FIRST_BALL,Y_FIRST_BALL,DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
+        addPathReverse(X_FIRST_BALL,Y_FIRST_BALL,DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
                 MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
     }
 }

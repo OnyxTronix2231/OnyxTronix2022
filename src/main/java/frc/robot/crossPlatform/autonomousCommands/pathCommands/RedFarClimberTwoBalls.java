@@ -29,8 +29,6 @@ public class RedFarClimberTwoBalls extends SequentialCommandGroup {
 
                 new WaitCommand(0.3),
 
-                new OpenAndIntake(backIntake, () -> INTAKE_SPEED_SUPPLIER),
-
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
