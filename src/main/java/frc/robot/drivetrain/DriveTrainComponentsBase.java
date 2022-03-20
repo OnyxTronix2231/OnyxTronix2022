@@ -31,7 +31,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
         leftMasterMotor.configFactoryDefault();
-        // leftMasterMotor.configAllSettings(getFalconConfiguration());
+        leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
 
         leftSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);

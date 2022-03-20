@@ -36,7 +36,7 @@ public class DriveTrain extends SubsystemBase {
                 Rotation2d.fromDegrees(getHeading()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
-        getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
+      //  getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
     }
 
     public void arcadeDrive(double speed, double rotation) {

@@ -14,21 +14,16 @@ public class BallTrigger extends SubsystemBase {
         //ballTriggerShuffleboard.init();
     }
 
-    @Override
-    public void periodic() {
-        currentAnalogVoltage = components.getAnalogSensor().getVoltage();
-    }
-
     public void moveTriggerBySpeed(double speed) {
         components.getMotor().set(speed);
     }
 
     public boolean isBallIdentified() {
-        return currentAnalogVoltage >= ballTriggerShuffleboard.getIdentifiedBallValueEntry();
+        return components.getAnalogSensor().getVoltage() >= ballTriggerShuffleboard.getIdentifiedBallValueEntry();
     }
 
     public double getAnalogSensorVoltage(){
-        return currentAnalogVoltage;
+        return components.getAnalogSensor().getVoltage();
     }
 
     public void stop() {
