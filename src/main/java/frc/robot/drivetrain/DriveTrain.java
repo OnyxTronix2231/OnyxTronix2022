@@ -70,7 +70,11 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getPitch() {
-        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawPitch();
+    }
+
+    public double getRoll() {
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawRoll();
     }
 
     public void resetOdometryToPose(Translation2d translation) {

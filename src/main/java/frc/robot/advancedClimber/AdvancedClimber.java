@@ -1,29 +1,34 @@
 package frc.robot.advancedClimber;
 
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
 import frc.robot.drivetrain.DriveTrain;
+import frc.robot.stabilizers.Stabilizer;
+import frc.robot.stabilizers.StabilizerComponents;
 
-import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_PITCH_ANGLE;
+import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ROLL_ANGLE;
 
-public class AdvancedClimber extends Climber {
+public class AdvancedClimber extends Stabilizer {
 
     private final DriveTrain driveTrain;
 
-    public AdvancedClimber(ClimberComponents components, DriveTrain driveTrain) {
+    public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
+        //new AdvancedClimberShuffleBoard(this);
     }
 
-    public boolean hasReachedFourthBar() {
-        return isLeftEncoderOnTarget() && isRightEncoderOnTarget() && isOnDesiredPitchAngle();
-    }
-
-    public boolean isOnDesiredPitchAngle() {
-        return driveTrain.getPitch() >= DESIRED_PITCH_ANGLE;
+    public boolean isOnDesiredRollAngle() {
+        return driveTrain.getRoll() >= DESIRED_ROLL_ANGLE;
     }
 
     public double getCurrentPitch() {
         return driveTrain.getPitch();
+    }
+
+    public double getCurrentRoll() {
+        return driveTrain.getRoll();
+    }
+
+    public double getCurrentYaw() {
+        return driveTrain.getHeading();
     }
 }
