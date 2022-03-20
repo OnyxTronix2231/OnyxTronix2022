@@ -1,10 +1,11 @@
 package frc.robot.TronixLogger.Logging;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class FollowerBase<T> implements Follower<T> {
 
-    private T value;
+    private Supplier<T> supplier;
     private T lastValue;
     private final String name;
     private final int delayInMS;
@@ -13,11 +14,18 @@ public abstract class FollowerBase<T> implements Follower<T> {
     public FollowerBase(String name, Supplier<T> supplier, int delayInMS) {
         this.name = name;
         this.delayInMS = delayInMS;
+        this.supplier = supplier;
+        lastValue = supplier.get();
     }
 
     @Override
     public T getValue() {
-        return value;
+        return supplier.get();
+    }
+
+    @Override
+    public void updateLastValue() {
+        lastValue = supplier.get();
     }
 
     @Override
@@ -28,11 +36,6 @@ public abstract class FollowerBase<T> implements Follower<T> {
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public void updateLastValue() {
-        lastValue = value;
     }
 
     @Override

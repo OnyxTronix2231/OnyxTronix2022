@@ -17,6 +17,7 @@ public class TronixLogger {
     private TronixLogger() {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
+        followerBases = new ArrayList<>();
     }
 
     public static TronixLogger getInstance() {
@@ -34,8 +35,7 @@ public class TronixLogger {
 
     public void update() {
         for (var followerBases : followerBases) {
-            booleanFollower.updateByDelay();
-            doubleFollower.updateByDelay();
+           followerBases.updateByDelay();
         }
     }
 

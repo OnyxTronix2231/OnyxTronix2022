@@ -19,7 +19,7 @@ public class DoubleFollower extends FollowerBase<Double> {
     }
 
     public void update() {
-        if (Math.abs(getValue()) > Math.abs(getLastValue()) + getTolerance()) {
+        if (Math.abs(getValue()) > (Math.abs(getLastValue()) + getTolerance())) {
             doubleConsumer.accept(this);
             updateLastValue();
         }

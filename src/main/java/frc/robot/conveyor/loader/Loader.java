@@ -13,7 +13,7 @@ public class Loader extends SubsystemBase{
         this.loaderShuffleboard = new LoaderShuffleboard(this);
         TronixLogger.getInstance().addBooleanListener("loader is", this::identifiedBall,1000);
         TronixLogger.getInstance().addDoubleListener("loader double", this::getDistanceFront, 100,10);
-        //loaderShuffleboard.init();
+        loaderShuffleboard.init();
     }
 
 
