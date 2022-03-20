@@ -32,6 +32,7 @@ public class AutonomousShuffleboard {
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+
         autonomousChooser.addOption("2 balls from BLUE close climber point", new BlueCloseClimberTwoBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("2 balls BLUE far from climber point", new BlueFarClimberTwoBalls(driveTrain,
@@ -40,8 +41,8 @@ public class AutonomousShuffleboard {
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        
         autonomousChooser.setDefaultOption("nothing", new InstantCommand());
-
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
         Shuffleboard.getTab("path chooser").addNumber("X",
