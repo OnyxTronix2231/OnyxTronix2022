@@ -4,7 +4,7 @@ import frc.robot.stabilizers.Stabilizers;
 import frc.robot.stabilizers.StabilizersComponents;
 import frc.robot.drivetrain.DriveTrain;
 
-import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_PITCH_ANGLE;
+import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ROLL_ANGLE;
 
 public class AdvancedClimber extends Stabilizers {
 
@@ -16,8 +16,8 @@ public class AdvancedClimber extends Stabilizers {
         new AdvancedClimberShuffleBoard(this);
     }
 
-    public boolean isOnDesiredPitchAngle() {
-        return driveTrain.getPitch() >= DESIRED_PITCH_ANGLE;
+    public boolean isOnDesiredRollAngle() {
+        return driveTrain.getRoll() >= DESIRED_ROLL_ANGLE;
     }
 
     public double getCurrentPitch() {

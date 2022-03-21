@@ -9,6 +9,6 @@ import java.util.function.DoubleSupplier;
 public class ClimbUntilReachedPitch extends ParallelDeadlineGroup {
 
     public ClimbUntilReachedPitch(AdvancedClimber advancedClimber, DoubleSupplier speedSupplier) {
-        super(new WaitUntilClimbedByPitch(advancedClimber), new MoveStabilizerBySpeed(advancedClimber, speedSupplier));
+        super(new WaitUntilClimbedByRoll(advancedClimber), new MoveStabilizerBySpeed(advancedClimber, speedSupplier));
     }
 }

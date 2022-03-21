@@ -5,6 +5,8 @@ public class TeleopCommandsConstants {
     static final double LOADER_SPEED = 0.8;
     static final double BALL_TRIGGER_SPEED = 0.8;
     static final double INTAKE_SPEED = 0.8;
+    static final double ARMS_SPEED = 0.8;
+    static final double STABILIZERS_SPEED = 0.8;
     static final double EJECT_BALL_SHOOT_RPM = 1200;
     static final double EJECT_BALL_ARC_ANGLE = 30;
     static final double CLIME_ARC_ANGLE = 15;
