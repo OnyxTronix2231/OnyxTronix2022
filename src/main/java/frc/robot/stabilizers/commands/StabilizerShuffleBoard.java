@@ -2,8 +2,6 @@ package frc.robot.stabilizers.commands;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.arms.Arms;
-import frc.robot.arms.commands.MoveArmsBySpeed;
 import frc.robot.stabilizers.Stabilizers;
 
 public class StabilizerShuffleBoard {
