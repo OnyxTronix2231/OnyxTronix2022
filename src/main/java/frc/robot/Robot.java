@@ -19,6 +19,8 @@ import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arms.Arms;
 import frc.robot.arms.ArmsComponents;
 import frc.robot.arms.ArmsComponentsBase;
+import frc.robot.camera.CameraComponents;
+import frc.robot.camera.CameraComponentsA;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
@@ -80,7 +82,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.11:5801");
-
+        CameraComponents cameraComponents = new CameraComponentsA();
 
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
@@ -158,7 +160,7 @@ public class Robot extends TimedRobot {
                         angleProviderByVisionAndOdometry)
         ;
 
-        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
+        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed, cameraComponents);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
