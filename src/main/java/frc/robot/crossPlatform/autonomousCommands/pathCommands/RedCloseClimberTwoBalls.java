@@ -16,6 +16,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutoMoveAndIntake.INTAKE_SPEED_SUPPLIER;
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutonomousConstants.RESET_TIME_DELAY;
 
 
 public class RedCloseClimberTwoBalls extends SequentialCommandGroup {
@@ -27,7 +28,7 @@ public class RedCloseClimberTwoBalls extends SequentialCommandGroup {
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
-                new WaitCommand(1),
+                new WaitCommand(RESET_TIME_DELAY),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 

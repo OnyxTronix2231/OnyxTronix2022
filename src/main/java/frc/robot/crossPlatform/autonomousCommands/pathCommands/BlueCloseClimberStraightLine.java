@@ -15,6 +15,8 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
+import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutonomousConstants.RESET_TIME_DELAY;
+
 public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
     public BlueCloseClimberStraightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                         BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
@@ -22,7 +24,7 @@ public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
         PathBlueCloseClimberStraightLine p = new PathBlueCloseClimberStraightLine();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
-                new WaitCommand(1),
+                new WaitCommand(RESET_TIME_DELAY),
                 new MoveByPath(driveTrain, p.getPath(1)),
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
         );
