@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     Arms arms;
-    Stabilizers stabilizers;
+    AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = false;
 
@@ -121,8 +121,7 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
-        stabilizers = new Stabilizers(stabilizersComponents);
-        new AdvancedClimber(stabilizersComponents, driveTrain);
+        stabilizers = new AdvancedClimber(stabilizersComponents, driveTrain);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 

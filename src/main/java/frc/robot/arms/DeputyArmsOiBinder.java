@@ -3,9 +3,9 @@ package frc.robot.arms;
 import frc.robot.arms.commands.MoveArmsBySpeed;
 import humanControls.JoystickAxis;
 
-public class DeputeArmsOiBinder {
+public class DeputyArmsOiBinder {
 
-    public DeputeArmsOiBinder(Arms climber, JoystickAxis climb) {
+    public DeputyArmsOiBinder(Arms climber, JoystickAxis climb) {
         climb.whileActiveContinuous(new MoveArmsBySpeed(climber, climb::getRawAxis));
     }
 }
