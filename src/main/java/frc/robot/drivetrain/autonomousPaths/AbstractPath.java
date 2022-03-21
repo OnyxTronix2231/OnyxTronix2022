@@ -32,6 +32,7 @@ public abstract class AbstractPath implements AutonomousPaths {
                 new MaxVelocityConstraint(maxVelocityConstraint),
                 new CentripetalAccelerationConstraint(accelerationConstraint)
         ).setReversed());
+        System.out.println("Added reverse path");
     }
 
     @Override
@@ -47,6 +48,7 @@ public abstract class AbstractPath implements AutonomousPaths {
 
     @Override
     public Path getPath(int pathNumber) {
+        System.out.println("Added reverse path");
         return paths.get(pathNumber - 1);
     }
 }

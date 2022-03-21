@@ -7,6 +7,7 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathBlueCloseClimberStraightLine;
+import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
@@ -21,11 +22,8 @@ public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
         PathBlueCloseClimberStraightLine p = new PathBlueCloseClimberStraightLine();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
-
-                new WaitCommand(0.3),
-
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
-
+                new WaitCommand(1),
+                new MoveByPath(driveTrain, p.getPath(1)),
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
         );
     }
