@@ -13,7 +13,7 @@ public class AdvancedClimber extends Stabilizer {
     public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain) {
         super(components);
         this.driveTrain = driveTrain;
-        new AdvancedClimberShuffleBoard(this);
+        //new AdvancedClimberShuffleBoard(this);
     }
 
     public boolean isOnDesiredRollAngle() {

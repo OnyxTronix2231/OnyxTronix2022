@@ -18,6 +18,7 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.stabilizers.DeputyStabilizersOiBinder;
 import frc.robot.turret.Turret;
+import frc.robot.turret.commands.RotateToAngleRTR;
 import frc.robot.vision.Vision;
 import frc.robot.yawControl.Commands.DontRotateTurret;
 import frc.robot.yawControl.Commands.StopAutoTurret;
@@ -66,7 +67,7 @@ public class DeputyOi {
 
     public DeputyOi withStopLookingAtTarget(YawControl yawControl){ //todo check
         Trigger centerLeft = new JoystickButton(controller, controller.getCenterRight());
-        centerLeft.whenActive(new StopAutoTurret(yawControl));
+        centerLeft.whenActive(new RotateToAngleRTR(yawControl, ()-> 180));
         return this;
     }
     public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,

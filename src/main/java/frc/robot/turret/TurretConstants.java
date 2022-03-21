@@ -42,7 +42,7 @@ public final class TurretConstants {
         static final int OUTER_ENCODER_UNITS_RESOLUTION = 4096;
         static final int TURRET_MOTOR_ID = 9;
         static final int TURRET_ENCODER_ID = 0;
-        static final int ENCODER_DEFAULT_ERROR = -33; // out of 4096
+        static final int ENCODER_DEFAULT_ERROR = 480; // out of 4096
         static final double ENCODER_OFFSET = 1;
         static final double CONVERSION_RATE = 1.0 / 75;
         static final double MAX_DEG = 330; //TODO: Correct the number

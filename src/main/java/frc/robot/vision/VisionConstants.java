@@ -5,7 +5,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 public final class VisionConstants {
 
     static final double CM_IN_METER = 100;
-    static final double TARGET_HEIGHT_CM = 266;
+    static final double TARGET_HEIGHT_CM = 260; // 266
     static final double LIMELIGHT_HEIGHT_TO_FLOOR_CM = 108;
     static final double LIMELIGHT_TO_TARGET_CM = TARGET_HEIGHT_CM - LIMELIGHT_HEIGHT_TO_FLOOR_CM;
     static final double LIMELIGHT_TO_TURRET_CM = 21.4;

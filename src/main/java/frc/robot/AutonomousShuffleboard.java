@@ -44,7 +44,7 @@ public class AutonomousShuffleboard {
         
         autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 
-//        Shuffleboard.getTab("path chooser").add(autonomousChooser);
+        Shuffleboard.getTab("path chooser").add(autonomousChooser);
 //        Shuffleboard.getTab("path chooser").addNumber("X",
 //                () -> driveTrain.getPose().getX());
 //        Shuffleboard.getTab("path chooser").addNumber("Y",

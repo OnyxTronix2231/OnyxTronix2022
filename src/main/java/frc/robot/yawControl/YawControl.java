@@ -20,7 +20,7 @@ public class YawControl extends Turret {
     public YawControl(TurretComponents turretComponents, DriveTrain driveTrain) {
         super(turretComponents);
         this.driveTrain = driveTrain;
-        //setDefaultCommand(new RotateToAngleRTF(this, driveTrain::getAngleToTargetByPose));
+        setDefaultCommand(new RotateToAngleRTF(this, driveTrain::getAngleToTargetByPose));
         //Shuffleboard.getTab("main").add("STOP odometry", new StopAutoTurret(this));
     }
 

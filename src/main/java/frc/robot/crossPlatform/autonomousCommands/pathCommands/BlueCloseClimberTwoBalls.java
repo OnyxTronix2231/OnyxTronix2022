@@ -25,7 +25,7 @@ public class BlueCloseClimberTwoBalls extends SequentialCommandGroup {
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
-                new WaitCommand(0.3),
+                new WaitCommand(1),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 

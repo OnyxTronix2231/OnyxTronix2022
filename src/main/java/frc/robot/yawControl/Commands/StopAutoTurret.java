@@ -6,6 +6,6 @@ import frc.robot.yawControl.YawControl;
 public class StopAutoTurret extends InstantCommand {
 
     public StopAutoTurret(YawControl yawControl){
-        super(()-> yawControl.setDefaultCommand(new DontRotateTurret(yawControl)));
+        yawControl.setDefaultCommand(new DontRotateTurret(yawControl));
     }
 }
