@@ -40,7 +40,6 @@ import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
-import frc.robot.stabilizers.Stabilizers;
 import frc.robot.stabilizers.StabilizersComponents;
 import frc.robot.stabilizers.StabilizersComponentsBase;
 import frc.robot.turret.TurretComponents;
