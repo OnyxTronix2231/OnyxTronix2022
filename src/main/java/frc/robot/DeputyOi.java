@@ -19,6 +19,9 @@ import frc.robot.shooter.Shooter;
 import frc.robot.stabilizers.DeputyStabilizersOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.Commands.DontRotateTurret;
+import frc.robot.yawControl.Commands.StopAutoTurret;
+import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
@@ -43,11 +46,11 @@ public class DeputyOi {
         return this;
     }
 
-    public DeputyOi withArcCalibration(Arc arc) {
-        Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
-        new CalibrateArcOiBinder(arc, calibrate);
-        return this;
-    }
+//    public DeputyOi withArcCalibration(Arc arc) {
+//        Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
+//        new CalibrateArcOiBinder(arc, calibrate);
+//        return this;
+//    }
 
     public DeputyOi withLoader(Loader loader) {
         Trigger ejectLoaderBalls = new JoystickButton(controller, controller.getButtonDown());
@@ -61,6 +64,11 @@ public class DeputyOi {
         return this;
     }
 
+    public DeputyOi withStopLookingAtTarget(YawControl yawControl){ //todo check
+        Trigger centerLeft = new JoystickButton(controller, controller.getCenterRight());
+        centerLeft.whenActive(new StopAutoTurret(yawControl));
+        return this;
+    }
     public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
                                 Turret turret, Vision vision) {
         Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());

@@ -146,7 +146,7 @@ public class Robot extends TimedRobot {
         ;
 
         DeputyOi deputyOi = new DeputyOi()
-                .withArcCalibration(arc)
+                .withStopLookingAtTarget(turret)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(arms, stabilizers)
