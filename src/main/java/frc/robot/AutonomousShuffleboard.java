@@ -28,19 +28,21 @@ public class AutonomousShuffleboard {
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(driveTrain,
+        autonomousChooser.addOption("straight line close climber blue", new BlueCloseClimberStraightLine(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+//        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(driveTrain,
+//                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+//        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
+//                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
 
         autonomousChooser.addOption("2 balls from BLUE close climber point", new BlueCloseClimberTwoBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         autonomousChooser.addOption("2 balls BLUE far from climber point", new BlueFarClimberTwoBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls BLUE far climber point", new BlueFarClimberThreeBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+//        autonomousChooser.addOption("3 balls BLUE far climber point", new BlueFarClimberThreeBalls(driveTrain,
+//                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+//        autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
+//                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         
         autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 

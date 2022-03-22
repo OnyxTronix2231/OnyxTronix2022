@@ -7,6 +7,7 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathBlueCloseClimberTwoBalls;
+import frc.robot.drivetrain.commands.DriveBySpeed;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
 import frc.robot.intake.commands.OpenAndIntake;
@@ -28,9 +29,13 @@ public class BlueCloseClimberTwoBalls extends SequentialCommandGroup {
 
                 new WaitCommand(RESET_TIME_DELAY),
 
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                //new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
-                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
-        );
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider),
+
+                (new DriveBySpeed(driveTrain, ()-> 0.5, ()-> 0).alongWith(
+                        new OpenAndIntake(backIntake, ()-> 0.8))).withTimeout(2.5),
+
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider));
     }
 }

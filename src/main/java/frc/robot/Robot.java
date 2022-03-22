@@ -41,6 +41,7 @@ import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.stabilizers.StabilizerComponents;
 import frc.robot.stabilizers.StabilizerComponentsBase;
+import frc.robot.stabilizers.commands.MoveStabilizerBySpeed;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -141,7 +142,7 @@ public class Robot extends TimedRobot {
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 //.withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront)
+                .withGetReadyToClime(stabilizers, turret, arc, intakeFront)
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
                 .withTurret(turret)
         ;
@@ -160,7 +161,7 @@ public class Robot extends TimedRobot {
                         angleProviderByVisionAndOdometry)
         ;
 
-        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed, cameraComponents);
+        new DriversShuffleboard(loader, vision, shooter, arc, turret, limeLightFeed, cameraComponents);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
@@ -235,6 +236,9 @@ public class Robot extends TimedRobot {
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
+        if(stabilizers != null){
+            CommandScheduler.getInstance().schedule(new MoveStabilizerBySpeed(stabilizers, ()-> 0.07));
+        }
     }
 
     /**
@@ -262,6 +266,9 @@ public class Robot extends TimedRobot {
 //            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
 //            firstEnable = false;
 //        }
+        if(stabilizers != null){
+            CommandScheduler.getInstance().schedule(new MoveStabilizerBySpeed(stabilizers, ()-> 0.07));
+        }
     }
 
     /**
