@@ -4,14 +4,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
-import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.arms.Arms;
 import frc.robot.arms.DeputyArmsOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.teleopCommands.DeputyAutoClimbOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
 import frc.robot.drivetrain.DriveTrain;
@@ -20,8 +18,7 @@ import frc.robot.stabilizers.DeputyStabilizersOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.RotateToAngleRTR;
 import frc.robot.vision.Vision;
-import frc.robot.yawControl.Commands.DontRotateTurret;
-import frc.robot.yawControl.Commands.StopAutoTurret;
+import frc.robot.yawControl.DeputyStopLookingAtTargetOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
@@ -67,7 +64,7 @@ public class DeputyOi {
 
     public DeputyOi withStopLookingAtTarget(YawControl yawControl){ //todo check
         Trigger centerLeft = new JoystickButton(controller, controller.getCenterRight());
-        centerLeft.whenActive(new RotateToAngleRTR(yawControl, ()-> 180));
+        new DeputyStopLookingAtTargetOiBinder(yawControl, centerLeft);
         return this;
     }
     public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,

@@ -28,14 +28,9 @@ public class BlueFarClimberTwoBalls extends SequentialCommandGroup {
 
                 new WaitCommand(RESET_TIME_DELAY),
 
-                //new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
-                        angleProvider),
-
-                (new DriveBySpeed(driveTrain, () -> 0.5, () -> 0).alongWith(
-                        new OpenAndIntake(backIntake, () -> 0.8))).withTimeout(2.5),
-
-                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider));
+                        angleProvider));
     }
 }

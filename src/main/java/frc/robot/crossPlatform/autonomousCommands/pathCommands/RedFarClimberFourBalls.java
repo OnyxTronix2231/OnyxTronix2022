@@ -15,17 +15,17 @@ import frc.robot.turret.Turret;
 public class RedFarClimberFourBalls extends SequentialCommandGroup {
 
     public RedFarClimberFourBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                  BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                                  DistanceProvider distanceProvider, AngleProvider angleProvider) {
         PathRedFarClimberFourBalls p = new PathRedFarClimberFourBalls();
         addCommands(
                 new RedFarClimberThreeBalls(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter,
                         arc, distanceProvider, angleProvider),
 
-               // new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
-               // new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(2)),
-                
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(2)),
+
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
         );
     }

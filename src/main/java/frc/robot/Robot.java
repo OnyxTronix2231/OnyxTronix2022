@@ -41,7 +41,7 @@ import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.stabilizers.StabilizerComponents;
 import frc.robot.stabilizers.StabilizerComponentsBase;
-import frc.robot.stabilizers.commands.MoveStabilizerBySpeed;
+import frc.robot.stabilizers.commands.KeepStabilizerInPlace;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -161,7 +161,7 @@ public class Robot extends TimedRobot {
                         angleProviderByVisionAndOdometry)
         ;
 
-        new DriversShuffleboard(loader, vision, shooter, arc, turret, limeLightFeed, cameraComponents);
+        new DriversShuffleboard(limeLightFeed, cameraComponents);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
@@ -237,7 +237,7 @@ public class Robot extends TimedRobot {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
         if(stabilizers != null){
-            CommandScheduler.getInstance().schedule(new MoveStabilizerBySpeed(stabilizers, ()-> 0.07));
+            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
         }
     }
 
@@ -267,7 +267,7 @@ public class Robot extends TimedRobot {
 //            firstEnable = false;
 //        }
         if(stabilizers != null){
-            CommandScheduler.getInstance().schedule(new MoveStabilizerBySpeed(stabilizers, ()-> 0.07));
+            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
         }
     }
 

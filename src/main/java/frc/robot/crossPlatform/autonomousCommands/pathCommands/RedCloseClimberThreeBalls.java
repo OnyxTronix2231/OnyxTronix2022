@@ -21,7 +21,7 @@ public class RedCloseClimberThreeBalls extends SequentialCommandGroup {
                 new RedCloseClimberTwoBalls(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter,
                         arc, distanceProvider, angleProvider),
 
-                //new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
         );
