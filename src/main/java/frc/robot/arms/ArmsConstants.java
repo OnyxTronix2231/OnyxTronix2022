@@ -7,7 +7,7 @@ public class ArmsConstants {
     static final int DESIRED_STABILIZER_MOTOR_ENCODER_UNITS = 0;
     static final double OPEN_ARMS_SPEED = 0.8;
     static final double CLOSE_ARMS_SPEED = 0.6;
-    static final double SUPPLY_CURRENT_LIMIT = 20;
+    static final double SUPPLY_CURRENT_LIMIT = 40;
     static final double SUPPLY_TRIGGER_THRESHOLD_CURRENT = 0;
     static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0;
     static final double STATOR_CURRENT_LIMIT = 0;

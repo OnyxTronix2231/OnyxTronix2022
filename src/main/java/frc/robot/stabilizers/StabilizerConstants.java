@@ -1,7 +1,10 @@
 package frc.robot.stabilizers;
 
+import frc.robot.stabilizers.commands.KeepStabilizerInPlace;
+
 public class StabilizerConstants {
 
+    public static double KEEP_STABILIZER_IN_PLACE_SPEED = 0.7;
     static final int STABILIZER_MOTOR_DEVICE_NUMBER = 16;
     static final double OPEN_STABILIZER_SPEED = 0.8;
     static final double CLOSE_STABILIZER_SPEED = 0.6;

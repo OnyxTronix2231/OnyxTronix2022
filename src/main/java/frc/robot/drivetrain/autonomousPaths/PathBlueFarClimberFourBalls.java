@@ -11,7 +11,7 @@ public class PathBlueFarClimberFourBalls extends AbstractPath{
     static final double Y_SHOOTING_POSE = 2.798;
 
     static final double START_DEGREE = 90;
-    static final double DESTINATION_DEGREE = -29;
+    static final double DESTINATION_DEGREE = -160;
     static final double SHOOTING_DESTINATION_DEGREE = 0;
 
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;

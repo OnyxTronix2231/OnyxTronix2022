@@ -8,8 +8,8 @@ public class PathBlueCloseClimberThreeBalls extends AbstractPath{
     static final double Y_START_POSE = 5.306;
     static final double Y_FIRST_BALL = 1.505;
 
-    static final double START_DEGREE = -140;
-    static final double DESTINATION_DEGREE = 120;
+    static final double START_DEGREE = -30;
+    static final double DESTINATION_DEGREE = -160;
 
     static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
     static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;

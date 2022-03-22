@@ -21,7 +21,7 @@ public class RedFarClimberThreeBalls extends SequentialCommandGroup {
         PathRedFarClimberThreeBalls p = new PathRedFarClimberThreeBalls();
         addCommands(
                 new RedFarClimberTwoBalls(driveTrain, frontIntake, backIntake, loader,
-                        ballTrigger, turret,shooter,arc, distanceProvider, angleProvider),
+                        ballTrigger, turret, shooter, arc, distanceProvider, angleProvider),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
