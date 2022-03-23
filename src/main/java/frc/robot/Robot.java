@@ -139,10 +139,10 @@ public class Robot extends TimedRobot {
 
         DriverOi driverOi = new DriverOi()
                 .withDriveTrain(driveTrain)
-                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+                //.withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+                //.withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 //.withArcCalibration(arc)
-                .withGetReadyToClime(stabilizers, turret, arc, intakeFront)
+                //.withGetReadyToClime(stabilizers, turret, arc, intakeFront)
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
                 .withTurret(turret)
         ;
