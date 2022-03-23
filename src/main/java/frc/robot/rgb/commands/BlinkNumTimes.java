@@ -1,15 +1,14 @@
 package frc.robot.rgb.commands;
 
 import frc.robot.rgb.Colors;
-import frc.robot.rgb.RGBLights;
 
 public class BlinkNumTimes extends BlinkOnce {
 
     private final int repeat;
     private int counter;
 
-    public BlinkNumTimes(RGBLights led, Colors color, double time, int repeat) {
-        super(led, color, time);
+    public BlinkNumTimes(Colors color, double time, int repeat) {
+        super(color, time);
         this.repeat = repeat;
         counter = repeat;
     }

@@ -5,24 +5,21 @@ import frc.robot.rgb.commands.*;
 
 public class LedShuffleBoard {
 
-    private final RGBLights led;
-
-    public LedShuffleBoard(RGBLights led) {
-        this.led = led;
+    public LedShuffleBoard() {
     }
 
     public void init() {
-        Shuffleboard.getTab("RGBLights").add("SetRed", new SetColor(led, Colors.red));
-        Shuffleboard.getTab("RGBLights").add("SetGreen", new SetColor(led, Colors.green));
-        Shuffleboard.getTab("RGBLights").add("SetBlue", new SetColor(led, Colors.blue));
-        Shuffleboard.getTab("RGBLights").add("SetPurple", new SetColor(led, Colors.purple));
-        Shuffleboard.getTab("RGBLights").add("SetYellow", new SetColor(led, Colors.yellow));
-        Shuffleboard.getTab("RGBLights").add("SetOrange", new SetColor(led, Colors.orange));
-        Shuffleboard.getTab("RGBLights").add("setRainbow", new SetToRainbow(led));
-        Shuffleboard.getTab("RGBLights").add("setToHalf", new Halfsies(led, Colors.red, Colors.blue));
-        Shuffleboard.getTab("RGBLights").add("turnOff", new TurnOff(led));
-        Shuffleboard.getTab("RGBLights").add("blink", new BlinkOnce(led, Colors.red, 1));
-        Shuffleboard.getTab("RGBLights").add("blinkForever", new BlinkInfinity(led, Colors.red, 0.3));
-        Shuffleboard.getTab("RGBLights").add("blinkTimes", new BlinkNumTimes(led, Colors.red, 0.2, 4));
+        Shuffleboard.getTab("RGBLights").add("SetRed", new SetColor(Colors.red));
+        Shuffleboard.getTab("RGBLights").add("SetGreen", new SetColor(Colors.green));
+        Shuffleboard.getTab("RGBLights").add("SetBlue", new SetColor(Colors.blue));
+        Shuffleboard.getTab("RGBLights").add("SetPurple", new SetColor(Colors.purple));
+        Shuffleboard.getTab("RGBLights").add("SetYellow", new SetColor(Colors.yellow));
+        Shuffleboard.getTab("RGBLights").add("SetOrange", new SetColor(Colors.orange));
+        Shuffleboard.getTab("RGBLights").add("setRainbow", new SetToRainbow());
+        Shuffleboard.getTab("RGBLights").add("setToHalf", new Halfsies(Colors.red, Colors.blue));
+        Shuffleboard.getTab("RGBLights").add("turnOff", new TurnOff());
+        Shuffleboard.getTab("RGBLights").add("blink", new BlinkOnce(Colors.red, 1));
+        Shuffleboard.getTab("RGBLights").add("blinkForever", new BlinkInfinity(Colors.red, 0.3));
+        Shuffleboard.getTab("RGBLights").add("blinkTimes", new BlinkNumTimes(Colors.red, 0.2, 4));
     }
 }
