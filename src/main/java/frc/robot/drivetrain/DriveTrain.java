@@ -19,7 +19,7 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-   }
+    }
 
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();

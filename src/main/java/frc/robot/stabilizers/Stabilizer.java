@@ -11,7 +11,7 @@ public class Stabilizer extends SubsystemBase {
     }
 
     public void moveStabilizerBySpeed(double speed) {
-        components.getMotor().set(speed);
+        components.getMotor().set(0);
     }
 
     public void stopMotor() {
