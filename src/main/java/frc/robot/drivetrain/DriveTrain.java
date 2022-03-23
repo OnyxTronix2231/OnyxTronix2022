@@ -19,8 +19,9 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-    }
-
+        resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
+   }
+   
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
