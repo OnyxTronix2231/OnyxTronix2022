@@ -12,6 +12,7 @@ import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverShootBallOiBinder;
 import frc.robot.crossPlatform.teleopCommands.ShootWhileDriving.DriverSWDOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootWhileDriving.LoadBallsOiBinder;
 import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
@@ -72,11 +73,11 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withArcCalibration(Arc arc) {
-        Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
-        new CalibrateArcOiBinder(arc, calibrate);
-        return this;
-    }
+   //public DriverOi withArcCalibration(Arc arc) {
+   //    Trigger calibrate = new JoystickButton(controller, controller.getCenterRight());
+   //    new CalibrateArcOiBinder(arc, calibrate);
+   //    return this;
+   //}
 
     public DriverOi withGetReadyToClime(Stabilizer stabilizer, Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
@@ -84,13 +85,18 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withTurret(DriveTrain driveTrain, YawControl yawControl, Shooter shooter, Arc arc) {
+    public DriverOi withTurret(DriveTrain driveTrain, YawControl yawControl, Shooter shooter, Arc arc, BallTrigger ballTrigger, Loader loader) {
         Trigger left = new JoystickButton(controller, controller.getButtonDown());
         Trigger right = new JoystickButton(controller, controller.getButtonRight());
         new DriverTurretOiBinder(yawControl, left, right);
+
         Trigger swd = new JoystickButton(controller, controller.getCenterLeft());
         new DriverSWDOiBinder(driveTrain, yawControl, shooter, arc, swd);
-        return this;
+
+        Trigger load = new JoystickButton(controller, controller.getCenterRight());
+        new LoadBallsOiBinder(ballTrigger, loader, load);
+        return  this;
+
     }
 
     public DriverOi withIntakeByDriveTrainAndLoadBalls(DriveTrainJoystickValueProvider joystickValueProvider,

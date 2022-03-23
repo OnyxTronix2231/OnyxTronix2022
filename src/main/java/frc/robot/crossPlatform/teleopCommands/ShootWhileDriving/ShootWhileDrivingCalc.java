@@ -89,7 +89,7 @@ public class ShootWhileDrivingCalc {
     public Vector2dEx getCorrectTrajectory() {
         Vector2dEx turretVector = getXZVector();
         Vector2dEx movementVector = getMovementVector();
-        turretVector.subtract(movementVector);
+        turretVector.add(movementVector);
         return turretVector.clone();
     }
 

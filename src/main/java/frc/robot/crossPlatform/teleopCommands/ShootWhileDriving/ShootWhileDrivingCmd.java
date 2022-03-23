@@ -14,7 +14,8 @@ public class ShootWhileDrivingCmd extends ParallelCommandGroup {
 
     public ShootWhileDrivingCmd(YawControl yawControl, Arc arc, Shooter shooter, ShootWhileDrivingCalc SWDControl) {
         super(
-                new RotateToAngleRTF(yawControl, SWDControl::getTurretFixedDirection)
+                new RotateToAngleRTF(yawControl, SWDControl::getTurretFixedDirection),
+                new ShootByRPM(shooter, () -> 3000)
                 //new MoveArcToAngle(arc, SWDControl::getArcFixedDirection),
                 //new ShootByRPM(shooter, () -> MPSToRPM(SWDControl.getShooterFixedSpeedMPS()))
         );
