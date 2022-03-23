@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/class-diagram
+!includeurl https://raw.githubusercontent.com/matthewjosephtaylor/plantuml-style/40c705da84ef9e1c12591094c75f511e2a41c137/style.pu
+
+abstract class SubsystemBase
+abstract class CommandBase
+abstract class ParallelCommandGroup
+abstract class ParallelDeadlineGroup
+
+ClimberComponentsBase --* Climber
+ClimberComponents -|> ClimberComponentsBase
+SubsystemBase --|> Climber
+Climber --o ClimbBySpeed
+Climber --o WaitUntilLeftEncoderPosition
+Climber --o WaitUntilRightEncoderPosition
+WaitUntilLeftEncoderPosition --o WaitUntilEncoderPosition
+WaitUntilRightEncoderPosition --o WaitUntilEncoderPosition
+Climber --o OpenSolenoid
+Climber --o CloseSolenoid
+Climber --o ClimbUntilEncoderPosition
+WaitUntilEncoderPosition --o ClimbUntilEncoderPosition
+CommandBase --|> ClimbBySpeed
+CommandBase --|> WaitUntilLeftEncoderPosition
+CommandBase ---|> WaitUntilRightEncoderPosition
+ParallelDeadlineGroup -----|> ClimbUntilEncoderPosition
+ParallelCommandGroup ----|> WaitUntilEncoderPosition
+
+class Climber {
+    ClimberComponents Components
+    void MoveBySpeed()
+    double getLeftEncoderUnits()
+    double getRightEncoderUnits()
+    void openSolenoid()
+    void closeSolenoid()
+}
+
+class ClimberComponentsBase {
+    WPI_TalonFX leftMotor;
+    WPI_TalonFX rightMotor;
+    DoubleSolenoid doubleSolenoid;
+    TalonEncoder leftEncoder;
+    TalonEncoder rightEncoder;
+}
+
+interface ClimberComponents {
+    WPI_TalonFX getRightMotor();
+    WPI_TalonFX getLeftMotor();
+    DoubleSolenoid getDoubleSolenoid();
+    TalonEncoder getLeftEncoder();
+    TalonEncoder getRightEncoder();
+}
+
+class ClimbBySpeed {
+    Climber climber
+    DoubleSupplier speedSupplier
+    void execute()
+    void end()
+}
+
+class ClimbUntilEncoderPosition {
+
+}
+
+class CloseSolenoid {
+
+}
+
+class OpenSolenoid {
+
+}
+
+class WaitUntilEncoderPosition {
+
+}
+
+class WaitUntilLeftEncoderPosition {
+    Climber climber
+    boolean isFinished()
+}
+
+class WaitUntilRightEncoderPosition {
+    Climber climber
+    boolean isFinished()
+}
+
+@enduml

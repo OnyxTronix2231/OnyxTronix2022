@@ -1,8 +1,10 @@
 package frc.robot.vision;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import frc.robot.yawControl.YawControl;
 
 public class VisionShuffleboard {
+
     private final Vision vision;
 
     public VisionShuffleboard(Vision vision) {
@@ -11,6 +13,6 @@ public class VisionShuffleboard {
 
     public void init() {
         Shuffleboard.getTab("Vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("Vision").addNumber("Angle", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("Vision").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
     }
 }

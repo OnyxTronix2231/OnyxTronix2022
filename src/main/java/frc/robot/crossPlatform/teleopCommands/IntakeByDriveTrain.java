@@ -1,6 +1,6 @@
 package frc.robot.crossPlatform.teleopCommands;
 
-import driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
+import frc.robot.driveTrainJoystickValueProvider.DriveTrainJoystickValueProvider;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.intake.Intake;

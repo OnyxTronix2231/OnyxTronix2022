@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
@@ -25,13 +26,25 @@ public class AutonomousShuffleboard {
         autonomousChooser = new SendableChooser<>();
         allianceChooser = new SendableChooser<>();
 
-//        autonomousChooser.setDefaultOption("1 ball from low point", new LowOneBall(driveTrain));
-//        autonomousChooser.addOption("5 balls from upper start point", new Upper5Balls(driveTrain));
-        autonomousChooser.addOption("2 balls from upper start point", new UpperTwoBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-//        autonomousChooser.addOption("1 ball and 1 enemy ball from upper start", new Upper1BallAnd1EnemyBall(driveTrain));
-//        autonomousChooser.addOption("1 ball and 1 enemy ball from low point", new Low1BallAndEnemyBall(driveTrain));
-        autonomousChooser.addOption("one meter forward", new MeterForwardTest(driveTrain));
+        autonomousChooser.addOption("2 ball from RED close climber point", new RedCloseClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+
+        autonomousChooser.addOption("2 balls from BLUE close climber point", new BlueCloseClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("2 balls BLUE far from climber point", new BlueFarClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("3 balls BLUE far climber point", new BlueFarClimberThreeBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        
+        autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 
         Shuffleboard.getTab("path chooser").add(allianceChooser);
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
@@ -40,7 +53,7 @@ public class AutonomousShuffleboard {
         Shuffleboard.getTab("path chooser").addNumber("Y",
                 () -> driveTrain.getPose().getY());
         Shuffleboard.getTab("path chooser").addNumber("heading",
-                () -> driveTrain.getHeading());
+                driveTrain::getHeading);
     }
 
     public Command getSelectedCommand() {

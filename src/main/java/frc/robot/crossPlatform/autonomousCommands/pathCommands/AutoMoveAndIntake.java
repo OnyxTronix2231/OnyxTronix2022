@@ -11,15 +11,17 @@ import frc.robot.drivetrain.Path;
 import frc.robot.drivetrain.commands.MoveByPath;
 import frc.robot.intake.Intake;
 
-import static frc.robot.crossPlatform.autonomousCommands.pathCommands.PathCommandsConstants.*;
-
 public class AutoMoveAndIntake extends ParallelDeadlineGroup {
+    static final double LOADER_SPEED_SUPPLIER = 0.5;
+    static final double BALL_TRIGGER_SPEED_SUPPLIER = 0.5;
+    static final double INTAKE_SPEED_SUPPLIER = 0.5;
 
     public AutoMoveAndIntake(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                              BallTrigger ballTrigger, Path path) {
-        super(new MoveByPath(driveTrain, path).andThen(new WaitCommand(0.5))
-                ,
-                new IntakeAndLoadBalls(!path.isReversed() ? backIntake : frontIntake,
+        super(
+                new MoveByPath(driveTrain, path).andThen(new WaitCommand(0.4)),
+
+                new IntakeAndLoadBalls(path.isReversed() ? backIntake : frontIntake,
                         ballTrigger, loader, () -> LOADER_SPEED_SUPPLIER, () -> BALL_TRIGGER_SPEED_SUPPLIER,
                         () -> INTAKE_SPEED_SUPPLIER)
         );

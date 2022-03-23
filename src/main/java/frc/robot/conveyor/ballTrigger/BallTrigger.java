@@ -11,12 +11,7 @@ public class BallTrigger extends SubsystemBase {
     public BallTrigger(BallTriggerComponents components) {
         this.components = components;
         this.ballTriggerShuffleboard = new BallTriggerShuffleboard(this);
-        ballTriggerShuffleboard.init();
-    }
-
-    @Override
-    public void periodic() {
-        currentAnalogVoltage = components.getAnalogSensor().getVoltage();
+        //ballTriggerShuffleboard.init();
     }
 
     public void moveTriggerBySpeed(double speed) {
@@ -24,41 +19,14 @@ public class BallTrigger extends SubsystemBase {
     }
 
     public boolean isBallIdentified() {
-        return currentAnalogVoltage >= ballTriggerShuffleboard.getIdentifiedBallValueEntry();
+        return components.getAnalogSensor().getVoltage() >= ballTriggerShuffleboard.getIdentifiedBallValueEntry();
     }
 
     public double getAnalogSensorVoltage(){
-        return currentAnalogVoltage;
+        return components.getAnalogSensor().getVoltage();
     }
 
     public void stop() {
         moveTriggerBySpeed(0);
     }
-
-//    public double getRed() {
-//        return components.getColorSensor().getColor().red;
-//    }
-//
-//    public double getBlue() {
-//        return components.getColorSensor().getColor().blue;
-//    }
-//
-//    public boolean isRed() {
-//        return components.getColorSensor().getColor().red >= ballTriggerShuffleboard.getIsRedEntry();
-//    }
-//
-//    public boolean isBlue() {
-//        return components.getColorSensor().getColor().blue >= ballTriggerShuffleboard.getIsBlueEntry();
-//    }
-
-//    public boolean isBlueAlliance() {
-//        return DriverStation.getAlliance() == DriverStation.Alliance.Blue;
-//    }
-
-//    public boolean isBlueAndNotRed(){
-//        return components.getColorSensor().getColor().blue > components.getColorSensor().getColor().red;
-//    }
-//    public boolean isBallIsTheSameColorAsTeam(){
-//        return isBlueAlliance() == isBlueAndNotRed();
-//    }
 }

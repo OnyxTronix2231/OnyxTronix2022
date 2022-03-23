@@ -9,7 +9,7 @@ public interface ArcComponents {
 
     WPI_TalonSRX getMotor();
 
-    TalonSrxReverseMicroswitch getReverseMicroSwitch();
+    //TalonSrxReverseMicroswitch getReverseMicroSwitch();
 
     Counter getCounter();
 

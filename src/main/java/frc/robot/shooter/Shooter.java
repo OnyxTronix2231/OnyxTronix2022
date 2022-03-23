@@ -9,6 +9,7 @@ public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
     //private final ShooterShuffleBoard shuffleBoard;
+    private boolean isRealeBallsButtonpress = false;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
@@ -67,5 +68,13 @@ public class Shooter extends SubsystemBase {
 
     public ShooterComponents getComponents() {
         return components;
+    }
+
+    public boolean isRealeBallsButtonpress() {
+        return isRealeBallsButtonpress;
+    }
+
+    public void setRealeBallsButtonpress(boolean press){
+        isRealeBallsButtonpress = press;
     }
 }

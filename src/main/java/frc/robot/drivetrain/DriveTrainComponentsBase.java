@@ -9,7 +9,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import frc.robot.StatusFrameConfig;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
@@ -31,7 +30,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
         leftMasterMotor.configFactoryDefault();
-       // leftMasterMotor.configAllSettings(getFalconConfiguration());
+        leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
 
         leftSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
@@ -120,7 +119,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         config.supplyCurrLimit.currentLimit = CURRENT_LIMIT;
         config.supplyCurrLimit.triggerThresholdCurrent = TRIGGER_THRESHOLD_CURRENT;
         config.supplyCurrLimit.triggerThresholdTime = TRIGGER_THRESHOLD_TIME;
-        config.supplyCurrLimit.enable = true;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
         config.openloopRamp = RAMP_TIME;
         return config;
     }

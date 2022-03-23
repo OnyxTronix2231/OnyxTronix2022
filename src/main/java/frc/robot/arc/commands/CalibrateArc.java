@@ -15,14 +15,15 @@ public class CalibrateArc extends MoveArcBySpeed {
     }
 
     @Override
-    public void initialize() {
+    public void initialize()
+    {
         arc.enableSoftLimitSwitch(false);
     }
 
-    @Override
-    public boolean isFinished() {
-        return arc.hasHitReverseMicroSwitch();
-    }
+//    @Override
+//    public boolean isFinished() {
+//        return arc.hasHitReverseMicroSwitch();
+//    }
 
     @Override
     public void end(boolean interrupted) {
