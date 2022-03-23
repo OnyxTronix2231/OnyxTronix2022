@@ -86,6 +86,7 @@ public class ShootWhileDrivingCalc {
      * magnitude -> new & fixed horizontal speed of shooting system (m/s)
      * direction -> new & fixed turret's direction
      */
+
     public Vector2dEx getCorrectTrajectory() {
         Vector2dEx turretVector = getXZVector();
         Vector2dEx movementVector = getMovementVector();
