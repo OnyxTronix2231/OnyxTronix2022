@@ -37,8 +37,6 @@ import frc.robot.intake.IntakeBackComponentsBase;
 import frc.robot.intake.IntakeComponents;
 import frc.robot.intake.IntakeFrontComponentsBase;
 import frc.robot.providers.*;
-import frc.robot.rgb.RGBLights;
-import frc.robot.rgb.RGBComponentsBase;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
@@ -63,8 +61,6 @@ import static frc.robot.Constants.VISION_PIPELINE;
  * project.
  */
 public class Robot extends TimedRobot {
-
-    RGBLights led;
 
     DriveTrain driveTrain;
     Arc arc;
@@ -197,7 +193,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-
         if (vision != null) {
             vision.ledsOff();
         }
@@ -225,7 +220,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
         }
@@ -256,7 +250,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
         }
