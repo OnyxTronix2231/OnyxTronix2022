@@ -20,6 +20,10 @@ public class RGBLights extends SubsystemBase {
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
 
+    public void turnOff() {
+        setToColor(0, 0, 0);
+    }
+
     public void rainbow() {
         double m_rainbowFirstPixelHue = 50;
         for (var i = 0; i < ledComponents.getLedBuffer().getLength(); i++) {
@@ -41,4 +45,3 @@ public class RGBLights extends SubsystemBase {
         ledComponents.getLed().setData(ledComponents.getLedBuffer());
     }
 }
-

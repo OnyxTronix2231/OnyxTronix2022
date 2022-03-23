@@ -1,6 +1,7 @@
 package frc.robot.rgb;
 
 public enum Colors {
+
     red(new RGBColor(255, 0, 0)),
     green(new RGBColor(0, 255, 0)),
     blue(new RGBColor(0, 0, 255)),
