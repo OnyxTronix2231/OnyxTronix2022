@@ -19,8 +19,9 @@ public class DriveTrain extends SubsystemBase {
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-    }
-
+        resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
+   }
+   
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
@@ -37,7 +38,7 @@ public class DriveTrain extends SubsystemBase {
 
     public void arcadeDrive(double speed, double rotation) {
         forwardSpeedValue = -speed * SPEED_SENSITIVITY;
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, Math.signum(rotation) * rotation * ROTATION_SENSITIVITY, false);
     }
 
     public void stop() {
