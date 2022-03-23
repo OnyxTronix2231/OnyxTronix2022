@@ -90,9 +90,6 @@ public class Robot extends TimedRobot {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.11:5801");
         CameraComponents cameraComponents = new CameraComponentsA();
 
-
-        RGBComponentsBase ledComponents;
-
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
         IntakeComponents intakeFrontComponents;
@@ -105,9 +102,6 @@ public class Robot extends TimedRobot {
         StabilizerComponents stabilizerComponents;
 
         LiveWindow.disableAllTelemetry();
-
-
-        ledComponents = new RGBComponentsBase();
 
         driveTrainComponents = new DriveTrainComponentsBase();
         intakeFrontComponents = new IntakeFrontComponentsBase();
@@ -123,7 +117,6 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain(driveTrainComponents);
         vision = new Vision();
         vision.setPipeline(VISION_PIPELINE);
-        led = new RGBLights(ledComponents);
         intakeFront = new Intake(intakeFrontComponents, "Front");
         intakeBack = new Intake(intakeBackComponents, "Back");
         loader = new Loader(loaderComponents);
@@ -140,7 +133,6 @@ public class Robot extends TimedRobot {
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
         var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
                 (vision, distanceProviderByVision, distanceProviderByOdometry);
-
 
         var angleProviderByVision = new AngleProviderByVision(vision);
         var angleProviderByOdometry = new AngleProviderByOdemetry(turret);

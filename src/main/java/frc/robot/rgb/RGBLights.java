@@ -6,11 +6,20 @@ public class RGBLights extends SubsystemBase {
 
     private RGBComponentsBase ledComponents;
     private LedShuffleBoard shuffleBoard;
+    private static RGBLights instance;
 
-    public RGBLights(RGBComponentsBase ledComponents) {
+    private RGBLights(RGBComponentsBase ledComponents) {
         this.ledComponents = ledComponents;
         shuffleBoard = new LedShuffleBoard(this);
         shuffleBoard.init();
+
+    }
+
+    public static RGBLights getInstance() {
+        if(instance == null) {
+            instance = new RGBLights(new RGBComponentsBase());
+        }
+        return instance;
     }
 
     public void setToColor(int red, int green, int blue) {
