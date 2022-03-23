@@ -12,7 +12,6 @@ import static frc.robot.conveyor.ballTrigger.BallTriggerConstants.ComponentsCons
 public class BallTriggerComponentsBase implements BallTriggerComponents {
 
     private final WPI_TalonFX motor;
-    public final ColorSensorV3 colorSensor;
     public final TriangulatingRangefinder analogSensor;
 
     public BallTriggerComponentsBase() {
@@ -22,18 +21,12 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         motor.setNeutralMode(NeutralMode.Coast);
         motor.setInverted(true);
 
-        colorSensor = new ColorSensorV3(I2C.Port.kMXP);
         analogSensor = new TriangulatingRangefinder(ANALOG_ID);
     }
 
     @Override
     public WPI_TalonFX getMotor() {
         return motor;
-    }
-
-    @Override
-    public ColorSensorV3 getColorSensor() {
-        return colorSensor;
     }
 
     @Override
@@ -46,6 +39,7 @@ public class BallTriggerComponentsBase implements BallTriggerComponents {
         config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT;
         config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
         config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
         config.openloopRamp = OPEN_LOOP_RAMP;
         config.closedloopRamp = CLOSE_LOOP_RAMP;
         return config;

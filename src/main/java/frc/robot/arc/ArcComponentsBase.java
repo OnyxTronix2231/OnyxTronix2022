@@ -18,7 +18,7 @@ public class ArcComponentsBase implements ArcComponents {
 
     private final WPI_TalonSRX motor;
     private final TalonEncoder encoder;
-    private final TalonSrxReverseMicroswitch reverseMicroswitch;
+    //private final TalonSrxReverseMicroswitch reverseMicroswitch;
     private final CtreMotionMagicController controller;
 
     public ArcComponentsBase() {
@@ -35,14 +35,14 @@ public class ArcComponentsBase implements ArcComponents {
         controller = new CtreMotionMagicController(motor, encoder, new PIDFTerms(KP, KI, KD, KF),
                 MAX_ACC, CRUISE_VELOCITY, ACC_SMOOTHING);
 
-        reverseMicroswitch = new TalonSrxReverseMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
-                LimitSwitchNormal.NormallyClosed);
+//        reverseMicroswitch = new TalonSrxReverseMicroswitch(motor, LimitSwitchSource.FeedbackConnector,
+//                LimitSwitchNormal.NormallyClosed);
     }
 
-    @Override
-    public TalonSrxReverseMicroswitch getReverseMicroSwitch() {
-        return reverseMicroswitch;
-    }
+//    @Override
+//    public TalonSrxReverseMicroswitch getReverseMicroSwitch() {
+//        return reverseMicroswitch;
+//    }
 
     @Override
     public WPI_TalonSRX getMotor() {

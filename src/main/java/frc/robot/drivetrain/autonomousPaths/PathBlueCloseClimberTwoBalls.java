@@ -1,46 +1,22 @@
 package frc.robot.drivetrain.autonomousPaths;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.constraint.CentripetalAccelerationConstraint;
-import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
-import frc.robot.drivetrain.Path;
+public class PathBlueCloseClimberTwoBalls extends AbstractPath {
 
-import java.util.ArrayList;
-import java.util.List;
+    static final double X_START_POSE = 6.571;
+    static final double X_FIRST_BALL = 4.715;
 
-public class PathBlueCloseClimberTwoBalls implements AutonomousPaths {
+    static final double Y_START_POSE = 5.306;
+    static final double Y_FIRST_BALL = 6.419;
 
-    static final double X_START_POSE = 6.976;
-    static final double X_FIRST_BALL = 5.266;
+    static final double START_DEGREE = -30;
+    static final double DESTINATION_DEGREE = -30;
 
-    static final double Y_START_POSE = 5.014;
-    static final double Y_FIRST_BALL = 6.060;
-
-    private final Pose2d startPose;
-    private final Path firstPath;
-
-    ArrayList<Path> paths = new ArrayList<>();
+    static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
+    static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
 
     public PathBlueCloseClimberTwoBalls() {
-        startPose = new Pose2d(X_START_POSE, Y_START_POSE, Rotation2d.fromDegrees(-30.591));
-
-        firstPath = new Path(
-                List.of(),
-                new Pose2d(X_FIRST_BALL, Y_FIRST_BALL, Rotation2d.fromDegrees(-30.591)),
-                new MaxVelocityConstraint(2),
-                new CentripetalAccelerationConstraint(2)
-        ).setReversed();
-        paths.add(firstPath);
-    }
-
-    @Override
-    public Pose2d getStartPose() {
-        return startPose;
-    }
-
-    @Override
-    public Path getPath(int pathNumber){
-        return paths.get(pathNumber - 1);
+        setStartPose(X_START_POSE, Y_START_POSE, START_DEGREE);
+        addPathReverse(X_FIRST_BALL,Y_FIRST_BALL,DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
+                MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
     }
 }

@@ -19,6 +19,7 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
+import frc.robot.stabilizers.Stabilizer;
 import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
@@ -77,9 +78,9 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withGetReadyToClime(Turret turret, Arc arc, Intake intakeForward) {
+    public DriverOi withGetReadyToClime(Stabilizer stabilizer, Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverGetReadyToClimeOiBinder(turret, arc, intakeForward, buttonLeft);
+        new DriverGetReadyToClimeOiBinder(stabilizer, turret, arc, intakeForward, buttonLeft);
         return this;
     }
 
