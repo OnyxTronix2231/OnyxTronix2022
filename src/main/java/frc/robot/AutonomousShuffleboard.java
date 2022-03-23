@@ -18,13 +18,11 @@ import frc.robot.turret.Turret;
 public class AutonomousShuffleboard {
 
     private final SendableChooser<Command> autonomousChooser;
-    private final SendableChooser<Command> allianceChooser;
 
     public AutonomousShuffleboard(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
-        allianceChooser = new SendableChooser<>();
 
         autonomousChooser.addOption("2 ball from RED close climber point", new RedCloseClimberTwoBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
