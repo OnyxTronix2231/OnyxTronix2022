@@ -12,19 +12,22 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
-import frc.robot.arc.commands.CalibrateArc;
-import frc.robot.climber.Climber;
-import frc.robot.climber.ClimberComponents;
-import frc.robot.climber.ClimberComponentsBase;
+import frc.robot.arms.Arms;
+import frc.robot.arms.ArmsComponents;
+import frc.robot.arms.ArmsComponentsBase;
+import frc.robot.camera.CameraComponents;
+import frc.robot.camera.CameraComponentsA;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponents;
 import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -38,6 +41,9 @@ import frc.robot.rgb.RGBComponentsBase;
 import frc.robot.shooter.Shooter;
 import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
+import frc.robot.stabilizers.StabilizerComponents;
+import frc.robot.stabilizers.StabilizerComponentsBase;
+import frc.robot.stabilizers.commands.KeepStabilizerInPlace;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -69,8 +75,10 @@ public class Robot extends TimedRobot {
     Intake intakeBack;
     YawControl turret;
     Vision vision;
-    Climber climber;
-    boolean firstEnable = false;
+    Arms arms;
+    AdvancedClimber stabilizers;
+    UpdateOdometryByVision updateOdometryByVision;
+    boolean firstEnable = true;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -78,7 +86,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.11:5801");
+        CameraComponents cameraComponents = new CameraComponentsA();
 
 
         RGBComponentsBase ledComponents;
@@ -91,7 +100,8 @@ public class Robot extends TimedRobot {
         TurretComponents turretComponents;
         ArcComponents arcComponents;
         ShooterComponents shooterComponents;
-        ClimberComponents climberComponents;
+        ArmsComponents armsComponents;
+        StabilizerComponents stabilizerComponents;
 
         LiveWindow.disableAllTelemetry();
 
@@ -106,14 +116,13 @@ public class Robot extends TimedRobot {
         turretComponents = new TurretComponentsBase();
         arcComponents = new ArcComponentsBase();
         shooterComponents = new ShooterComponentsBase();
-        climberComponents = new ClimberComponentsBase();
-
-        vision = new Vision();
-        vision.setPipeline(VISION_PIPELINE);
-
-        led = new RGBLights(ledComponents);
+        armsComponents = new ArmsComponentsBase();
+        stabilizerComponents = new StabilizerComponentsBase();
 
         driveTrain = new DriveTrain(driveTrainComponents);
+        vision = new Vision();
+        vision.setPipeline(VISION_PIPELINE);
+        led = new RGBLights(ledComponents);
         intakeFront = new Intake(intakeFrontComponents, "Front");
         intakeBack = new Intake(intakeBackComponents, "Back");
         loader = new Loader(loaderComponents);
@@ -121,7 +130,10 @@ public class Robot extends TimedRobot {
         turret = new YawControl(turretComponents, driveTrain);
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
-        climber = new Climber(climberComponents);
+        arms = new Arms(armsComponents);
+        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain);
+
+        updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
         var distanceProviderByVision = new DistanceProviderByVision(vision);
         var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
@@ -136,27 +148,31 @@ public class Robot extends TimedRobot {
 
         var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
 
-        new DriverOi()
+        DriverOi driverOi = new DriverOi()
                 .withDriveTrain(driveTrain)
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront).
-                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry, shootBallsConditions)
+                //.withArcCalibration(arc)
+                .withGetReadyToClime(stabilizers, turret, arc, intakeFront)
+                .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
+                .withTurret(turret)
         ;
 
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry)
-                .withArcCalibration(arc)
+        DeputyOi deputyOi = new DeputyOi()
+                .withStopLookingAtTarget(turret)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(climber)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
+                .withClimber(arms, stabilizers)
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                .withResetOdometry(driveTrain)
         ;
 
-        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
+        new CombineOi(driverOi, deputyOi)
+                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
+                        angleProviderByVisionAndOdometry)
+        ;
+
+        new DriversShuffleboard(limeLightFeed, cameraComponents);
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
@@ -179,7 +195,8 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
-        //SmartDashboard.updateValues();
+        SmartDashboard.updateValues();
+        updateOdometryByVision.updateOdometry();
     }
 
     /**
@@ -187,16 +204,23 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-//        if (vision != null) {
-//            vision.ledsOff();
-//        }
-//
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                if (isDisabled()) driveTrain.setNeutralModeToCoast();
-//            }
-//        }, 3000);
+
+        if (vision != null) {
+            vision.ledsOff();
+        }
+        if (turret != null) {
+            turret.setNeutralModeCoast();
+        }
+
+        if( driveTrain != null) {
+            driveTrain.setNeutralModeToCoast();
+        }
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (isDisabled()) driveTrain.setNeutralModeToCoast();
+            }
+        }, 3000);
     }
 
     @Override
@@ -208,15 +232,26 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-//        if (driveTrain != null) {
-//            driveTrain.setNeutralModeToBrake();
+
+        if (driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
+        if (vision != null) {
+            vision.ledsOn();
+        }
+//        if (firstEnable && arc != null) {
+//            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+//            firstEnable = false;
 //        }
-//        if (vision != null) {
-//            vision.ledsOn();
-//        }
-//        if (autonomousShuffleboard.getSelectedCommand() != null) {
-//            autonomousShuffleboard.getSelectedCommand().schedule();
-//        }
+        if (turret != null) {
+            turret.setNeutralModeBrake();
+        }
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().schedule();
+        }
+        if(stabilizers != null){
+            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+        }
     }
 
     /**
@@ -228,21 +263,26 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-//        if (driveTrain != null) {
-//            driveTrain.setNeutralModeToBrake();
-//        }
-//
-//        if (vision != null) {
-//            vision.ledsOn();
-//        }
-//
-//        if (autonomousShuffleboard.getSelectedCommand() != null) {
-//            autonomousShuffleboard.getSelectedCommand().cancel();
-//        }
-//        if (firstEnable && arc != null) {
+
+        if (driveTrain != null) {
+            driveTrain.setNeutralModeToBrake();
+        }
+        if (vision != null) {
+            vision.ledsOn();
+        }
+        if (turret != null) {
+            turret.setNeutralModeBrake();
+        }
+        if (autonomousShuffleboard.getSelectedCommand() != null) {
+            autonomousShuffleboard.getSelectedCommand().cancel();
+        }
+        //        if (firstEnable && arc != null) {
 //            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
 //            firstEnable = false;
 //        }
+        if(stabilizers != null){
+            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+        }
     }
 
     /**

@@ -16,6 +16,6 @@ public class ShootWithDelay extends ParallelDeadlineGroup {
         super(new ShootBallByDistanceAndAngle(shooter, arc, turret, loader, ballTrigger,
                 distanceProvider,
                 angleProvider
-                , new ShootBallConditionsProvider(shooter, turret, arc)).withTimeout(3));
+                , new ShootBallConditionsProvider(shooter, turret, arc)).withTimeout(2.5));
     }
 }

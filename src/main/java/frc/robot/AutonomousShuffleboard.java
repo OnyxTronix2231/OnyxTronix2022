@@ -18,29 +18,35 @@ import frc.robot.turret.Turret;
 public class AutonomousShuffleboard {
 
     private final SendableChooser<Command> autonomousChooser;
+    private final SendableChooser<Command> allianceChooser;
 
     public AutonomousShuffleboard(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
         autonomousChooser = new SendableChooser<>();
+        allianceChooser = new SendableChooser<>();
 
-        autonomousChooser.addOption("1 ball from RED point", new LowOneBall(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("2 balls from RED start point", new UpperTwoBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("3 balls from RED start point", new UpperThreeBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("Blue two far from clime balls", new DownTwoBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.setDefaultOption("BLUE three balls", new DownThreeBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("BLUE four balls", new DownFourBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("RED four balls", new UpperFourBalls(driveTrain, frontIntake,
-                backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("nothing", new InstantCommand());
+        autonomousChooser.addOption("2 ball from RED close climber point", new RedCloseClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
 
+        autonomousChooser.addOption("2 balls from BLUE close climber point", new BlueCloseClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("2 balls BLUE far from climber point", new BlueFarClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("3 balls BLUE far climber point", new BlueFarClimberThreeBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+        
+        autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 
+        Shuffleboard.getTab("path chooser").add(allianceChooser);
         Shuffleboard.getTab("path chooser").add(autonomousChooser);
         Shuffleboard.getTab("path chooser").addNumber("X",
                 () -> driveTrain.getPose().getX());

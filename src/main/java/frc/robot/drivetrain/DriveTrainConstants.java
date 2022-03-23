@@ -20,10 +20,17 @@ public final class DriveTrainConstants {
     static final double TRACKWIDTH_METERS = 0.68;
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
-    static final double KS = 0.73449; // TODO: calibrate
-    static final double KV = 1.8886; // TODO: calibrate
-    static final double KA = 0.25181; // TODO: calibrate
+    static final double KS = 0.65334; // TODO: calibrate
+    static final double KV = 2.1853; // TODO: calibrate
+    static final double KA = 0.052353; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
+
+    public static final double LAUNCH_PAD_POSITION_RED_X = 12.86;
+    public static final double LAUNCH_PAD_POSITION_RED_Y = 2.731;
+    public static final double LAUNCH_PAD_RED_DEGREE = 180;
+    public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.738;
+    public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.525;
+    public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
 
     public static final class ComponentsConstants {
 
@@ -39,8 +46,8 @@ public final class DriveTrainConstants {
         static final double TRIGGER_THRESHOLD_CURRENT = 0;
         static final double TRIGGER_THRESHOLD_TIME = 0;
         static final double RAMP_TIME = 0.4;
+        static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = true;
     }
-
     public static final class Calculations {
 
         static double encoderUnitsToMeter(double encodeUnits) {
