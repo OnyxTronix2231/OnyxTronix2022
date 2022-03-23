@@ -52,9 +52,9 @@ public class Arc extends SubsystemBase {
         components.getMotor().set(speed);
     }
 
-//    public boolean hasHitReverseMicroSwitch() {
-//        return ! components.getReverseMicroSwitch().isOpen();
-//    }
+    public boolean hasHitReverseMicroSwitch() {
+        return !components.getReverseMicroSwitch().isOpen();
+    }
 
     public void resetEncoderByAbsoluteValue() {
         components.getMotor().setSelectedSensorPosition(angleToEncoderUnits(ARC_MIN_ANGLE));
