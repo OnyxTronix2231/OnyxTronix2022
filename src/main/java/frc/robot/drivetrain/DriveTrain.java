@@ -5,7 +5,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -116,6 +115,10 @@ public class DriveTrain extends SubsystemBase {
         resetEncoders();
         driveTrainComponents.getOdometry().resetPosition(pose, pose.getRotation());
         driveTrainComponents.getNormalizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
+    }
+
+    public boolean isStopped() {
+        return Math.abs(forwardSpeedValue) < STOPPING_SPEED_TOLERANCE;
     }
 
     public double getForwardSpeedValue() {

@@ -15,6 +15,7 @@ public final class DriveTrainConstants {
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
     static final double ROTATION_SENSITIVITY = 0.65;
     static final double SPEED_SENSITIVITY = 0.8;
+    static final double STOPPING_SPEED_TOLERANCE = 0.05;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
