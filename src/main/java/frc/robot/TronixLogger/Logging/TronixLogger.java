@@ -15,7 +15,6 @@ public class TronixLogger {
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
     ArrayList<FollowerBase> followerBases;
-    DataLogManager dataLogManager;
 
     private TronixLogger() {
         booleanFollowers = new ArrayList<>();
@@ -52,8 +51,7 @@ public class TronixLogger {
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
-                d -> System.out.println(
-                        timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),
+                d -> DataLogManager.log(timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),//System.out.println(timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),
                         tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
