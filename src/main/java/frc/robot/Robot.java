@@ -59,18 +59,18 @@ public class Robot extends TimedRobot {
 
     RGBLights led;
 
-    DriveTrain driveTrain;
-    Arc arc;
-    Shooter shooter;
-    AutonomousShuffleboard autonomousShuffleboard;
-    BallTrigger ballTrigger;
-    Loader loader;
-    Intake intakeFront;
-    Intake intakeBack;
-    YawControl turret;
-    Vision vision;
-    Climber climber;
-    boolean firstEnable = false;
+//    DriveTrain driveTrain;
+//    Arc arc;
+//    Shooter shooter;
+//    AutonomousShuffleboard autonomousShuffleboard;
+//    BallTrigger ballTrigger;
+//    Loader loader;
+//    Intake intakeFront;
+//    Intake intakeBack;
+//    YawControl turret;
+//    Vision vision;
+//    Climber climber;
+//    boolean firstEnable = false;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -78,7 +78,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.10:5800");
+       // HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.11:5800");
 
 
         RGBComponentsBase ledComponents;
@@ -93,76 +93,76 @@ public class Robot extends TimedRobot {
         ShooterComponents shooterComponents;
         ClimberComponents climberComponents;
 
-        LiveWindow.disableAllTelemetry();
+        //LiveWindow.disableAllTelemetry();
 
 
         ledComponents = new RGBComponentsBase();
 
-        driveTrainComponents = new DriveTrainComponentsBase();
-        intakeFrontComponents = new IntakeFrontComponentsBase();
-        intakeBackComponents = new IntakeBackComponentsBase();
-        loaderComponents = new LoaderComponentsBase();
-        ballTriggerComponents = new BallTriggerComponentsBase();
-        turretComponents = new TurretComponentsBase();
-        arcComponents = new ArcComponentsBase();
-        shooterComponents = new ShooterComponentsBase();
-        climberComponents = new ClimberComponentsBase();
+//        driveTrainComponents = new DriveTrainComponentsBase();
+//        intakeFrontComponents = new IntakeFrontComponentsBase();
+//        intakeBackComponents = new IntakeBackComponentsBase();
+//        loaderComponents = new LoaderComponentsBase();
+//        ballTriggerComponents = new BallTriggerComponentsBase();
+//        turretComponents = new TurretComponentsBase();
+//        arcComponents = new ArcComponentsBase();
+//        shooterComponents = new ShooterComponentsBase();
+//        climberComponents = new ClimberComponentsBase();
 
-        vision = new Vision();
-        vision.setPipeline(VISION_PIPELINE);
+//        vision = new Vision();
+//        vision.setPipeline(VISION_PIPELINE);
 
         led = new RGBLights(ledComponents);
 
-        driveTrain = new DriveTrain(driveTrainComponents);
-        intakeFront = new Intake(intakeFrontComponents, "Front");
-        intakeBack = new Intake(intakeBackComponents, "Back");
-        loader = new Loader(loaderComponents);
-        ballTrigger = new BallTrigger(ballTriggerComponents);
-        turret = new YawControl(turretComponents, driveTrain);
-        arc = new Arc(arcComponents);
-        shooter = new Shooter(shooterComponents);
-        climber = new Climber(climberComponents);
-
-        var distanceProviderByVision = new DistanceProviderByVision(vision);
-        var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
-        var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
-                (vision, distanceProviderByVision, distanceProviderByOdometry);
-
-
-        var angleProviderByVision = new AngleProviderByVision(vision);
-        var angleProviderByOdometry = new AngleProviderByOdemetry(turret);
-        var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
-                (vision, angleProviderByVision, angleProviderByOdometry);
-
-        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
-
-        new DriverOi()
-                .withDriveTrain(driveTrain)
-                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
-                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
-                .withArcCalibration(arc)
-                .withGetReadyToClime(turret, arc, intakeFront).
-                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry, shootBallsConditions)
-        ;
-
-        new DeputyOi()
-                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry)
-                .withArcCalibration(arc)
-                .withLoader(loader)
-                .withBallTrigger(ballTrigger)
-                .withClimber(climber)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
-        ;
-
-        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
-
-        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
-                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
-                angleProviderByVisionAndOdometry);
-
-        firstEnable = true;
+//        driveTrain = new DriveTrain(driveTrainComponents);
+//        intakeFront = new Intake(intakeFrontComponents, "Front");
+//        intakeBack = new Intake(intakeBackComponents, "Back");
+//        loader = new Loader(loaderComponents);
+//        ballTrigger = new BallTrigger(ballTriggerComponents);
+//        turret = new YawControl(turretComponents, driveTrain);
+//        arc = new Arc(arcComponents);
+//        shooter = new Shooter(shooterComponents);
+//        climber = new Climber(climberComponents);
+//
+//        var distanceProviderByVision = new DistanceProviderByVision(vision);
+//        var distanceProviderByOdometry = new DistanceProviderByOdemetry(driveTrain);
+//        var distanceProviderByVisionAndOdometry = new DistanceProviderByVisionAndOdemetry
+//                (vision, distanceProviderByVision, distanceProviderByOdometry);
+//
+//
+//        var angleProviderByVision = new AngleProviderByVision(vision);
+//        var angleProviderByOdometry = new AngleProviderByOdemetry(turret);
+//        var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
+//                (vision, angleProviderByVision, angleProviderByOdometry);
+//
+//        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
+//
+//        new DriverOi()
+//                .withDriveTrain(driveTrain)
+//                .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
+//                .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
+//                .withArcCalibration(arc)
+//                .withGetReadyToClime(turret, arc, intakeFront).
+//                withShootBalls(vision, shooter, arc, turret, ballTrigger, loader, distanceProviderByVisionAndOdometry,
+//                        angleProviderByVisionAndOdometry, shootBallsConditions)
+//        ;
+//
+//        new DeputyOi()
+//                .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
+//                        angleProviderByVisionAndOdometry)
+//                .withArcCalibration(arc)
+//                .withLoader(loader)
+//                .withBallTrigger(ballTrigger)
+//                .withClimber(climber)
+//                .withShooter(shooter, arc, loader, ballTrigger, turret, vision);
+//        ;
+//
+//        new DriversShuffleboard(vision, shooter, arc, turret, limeLightFeed);
+//
+//        autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
+//                intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
+//                angleProviderByVisionAndOdometry);
+//
+//        firstEnable = true;
     }
 
     /**
