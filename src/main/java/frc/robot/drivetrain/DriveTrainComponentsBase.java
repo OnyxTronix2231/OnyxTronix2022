@@ -61,6 +61,7 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         odometry.resetPosition(new Pose2d(), new Rotation2d());
 
         pigeonIMU = new NormalizedPigeonIMU(PIGEON_PORT);
+        pigeonIMU.configFactoryDefault();
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);

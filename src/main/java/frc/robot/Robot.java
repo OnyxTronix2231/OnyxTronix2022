@@ -186,7 +186,6 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
         SmartDashboard.updateValues();
-        updateOdometryByVision.updateOdometry();
     }
 
     /**
@@ -199,10 +198,6 @@ public class Robot extends TimedRobot {
         }
         if (turret != null) {
             turret.setNeutralModeCoast();
-        }
-
-        if( driveTrain != null) {
-            driveTrain.setNeutralModeToCoast();
         }
         new Timer().schedule(new TimerTask() {
             @Override
@@ -223,6 +218,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
+            driveTrain.setReset(false);
         }
         if (vision != null) {
             vision.ledsOn();
@@ -277,6 +273,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        updateOdometryByVision.updateOdometry();
     }
 
     @Override

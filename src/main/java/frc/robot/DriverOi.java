@@ -47,7 +47,7 @@ public class DriverOi {
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
         return this;
     }
-
+    
     public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);

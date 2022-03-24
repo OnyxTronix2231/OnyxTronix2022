@@ -1,9 +1,11 @@
 package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
+import frc.robot.crossPlatform.teleopCommands.GetReadyToShoot;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathRedFarClimberThreeBalls;
 import frc.robot.intake.Intake;
@@ -23,7 +25,7 @@ public class RedFarClimberThreeBalls extends SequentialCommandGroup {
                 new RedFarClimberTwoBalls(driveTrain, frontIntake, backIntake, loader,
                         ballTrigger, turret, shooter, arc, distanceProvider, angleProvider),
 
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                        new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)
