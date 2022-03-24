@@ -4,4 +4,5 @@ public final class OdometryUpdaterConstants {
 
     static final double ODOMETRY_UPDATE_PERIOD = 0.5;
     static final double FIXABLE_ANGLE_OFFSET = 3;
+    static final double VISION_FOCUS_TIME = 0.3;
 }

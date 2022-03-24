@@ -28,6 +28,7 @@ import frc.robot.conveyor.ballTrigger.BallTriggerComponentsBase;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
+import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.CalibrateAtStart;
 import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
@@ -239,6 +240,9 @@ public class Robot extends TimedRobot {
         }
         if(stabilizers != null){
             CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+        }
+        if (driveTrain != null && turret != null && vision != null){
+           CommandScheduler.getInstance().schedule(new CalibrateAtStart(driveTrain, turret, vision));
         }
     }
 
