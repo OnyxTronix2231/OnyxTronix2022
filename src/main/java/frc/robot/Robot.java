@@ -11,6 +11,7 @@ import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
@@ -46,6 +47,7 @@ import frc.robot.stabilizers.commands.KeepStabilizerInPlace;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
+import frc.robot.yawControl.Commands.RotateToAngleRTF;
 import frc.robot.yawControl.YawControl;
 
 import java.util.Timer;
@@ -161,6 +163,9 @@ public class Robot extends TimedRobot {
                 .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
                         angleProviderByVisionAndOdometry)
         ;
+
+
+        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret, driveTrain::getAngleToTargetByPose));
 
         new DriversShuffleboard(limeLightFeed, cameraComponents);
 
