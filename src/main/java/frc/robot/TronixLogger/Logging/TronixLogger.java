@@ -20,7 +20,6 @@ public class TronixLogger {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         followerBases = new ArrayList<>();
-        DataLogManager.start();
     }
 
     public static TronixLogger getInstance() {
