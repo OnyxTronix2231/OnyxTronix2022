@@ -21,7 +21,7 @@ public class TronixLogger {
     }
 
     public static TronixLogger getInstance() {
-        if(tronixLoggerInstance == null) {
+        if (tronixLoggerInstance == null) {
             tronixLoggerInstance = new TronixLogger();
         }
         return tronixLoggerInstance;
@@ -35,21 +35,21 @@ public class TronixLogger {
 
     public void update() {
         for (var followerBases : followerBases) {
-           followerBases.updateByDelay();
+            followerBases.updateByDelay();
         }
     }
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> DataLogManager.log(timeStamp() + " - " + "was changed to" + d.getValue()));
+                d -> DataLogManager.log(timeStamp() + " - " + "was changed to" + d.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
-        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
-                d -> DataLogManager.log(timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),
-                        tolerance);
+        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
+                d -> DataLogManager.log(timeStamp() + " - " + " " + d.getName() + " was changed to " + d.getValue()),
+                tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
     }

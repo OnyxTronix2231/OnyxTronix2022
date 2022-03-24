@@ -5,10 +5,10 @@ import java.util.function.Supplier;
 
 public abstract class FollowerBase<T> implements Follower<T> {
 
-    private Supplier<T> supplier;
-    private T lastValue;
     private final String name;
     private final int delayInMS;
+    private Supplier<T> supplier;
+    private T lastValue;
     private int count = 0;
 
     public FollowerBase(String name, Supplier<T> supplier, int delayInMS) {
