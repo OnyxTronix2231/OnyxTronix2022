@@ -1,6 +1,7 @@
 package frc.robot.TronixLogger.Logging;
 
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +19,8 @@ public class TronixLogger {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         followerBases = new ArrayList<>();
+
+        //matchInfo();
     }
 
     public static TronixLogger getInstance() {
@@ -25,6 +28,10 @@ public class TronixLogger {
             tronixLoggerInstance = new TronixLogger();
         }
         return tronixLoggerInstance;
+    }
+
+    private void matchInfo() {
+        DataLogManager.log(DriverStation.getEventName() + "-" + DriverStation.getMatchType());
     }
 
     public String timeStamp() {
@@ -41,15 +48,15 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                log-> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
+                log -> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
-        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
-                log -> DataLogManager.log(timeStamp() + " - "  + " " + log.getName() + " was changed to " + log.getValue()),
-                        tolerance);
+        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
+                log -> DataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
+                tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
     }
