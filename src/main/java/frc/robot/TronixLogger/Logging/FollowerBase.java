@@ -1,6 +1,5 @@
 package frc.robot.TronixLogger.Logging;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class FollowerBase<T> implements Follower<T> {
