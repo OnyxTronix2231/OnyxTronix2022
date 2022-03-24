@@ -12,7 +12,7 @@ public final class DriveTrainConstants {
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
-    static final double ROTATION_SENSITIVITY = 0.65;
+    static final double ROTATION_SENSITIVITY = 0.5;
     static final double SPEED_SENSITIVITY = 0.8;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
@@ -25,11 +25,11 @@ public final class DriveTrainConstants {
     static final double KA = 0.052353; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
-    public static final double LAUNCH_PAD_POSITION_RED_X = 12.97;
-    public static final double LAUNCH_PAD_POSITION_RED_Y = 2.776;
+    public static final double LAUNCH_PAD_POSITION_RED_X = 12.86;
+    public static final double LAUNCH_PAD_POSITION_RED_Y = 2.731;
     public static final double LAUNCH_PAD_RED_DEGREE = 180;
-    public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.58;
-    public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.486;
+    public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.738;
+    public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.525;
     public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
 
     public static final class ComponentsConstants {
