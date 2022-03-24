@@ -1,9 +1,11 @@
 package frc.robot.conveyor.loader;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.TronixLogger.Logging.TronixLogger;
 
-public class Loader extends SubsystemBase{
+public class Loader extends SubsystemBase implements Sendable {
 
     private final LoaderComponents components;
     private final LoaderShuffleboard loaderShuffleboard;
@@ -16,8 +18,11 @@ public class Loader extends SubsystemBase{
         loaderShuffleboard.init();
     }
 
-
-
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("nimi");
+        builder.addDoubleProperty("test", this::getVoltageBack, null);
+    }
     public void moveLoaderBySpeed(double speed) {
         components.getMotor().set(speed);
     }
