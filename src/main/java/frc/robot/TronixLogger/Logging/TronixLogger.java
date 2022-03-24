@@ -1,6 +1,8 @@
 package frc.robot.TronixLogger.Logging;
 
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotController;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +20,7 @@ public class TronixLogger {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         followerBases = new ArrayList<>();
+        init();
     }
 
     public static TronixLogger getInstance() {
@@ -25,6 +28,16 @@ public class TronixLogger {
             tronixLoggerInstance = new TronixLogger();
         }
         return tronixLoggerInstance;
+    }
+
+    public void init() {
+        DataLogManager.log("OS Version"+ System.getProperty("os.version"));
+        DataLogManager.log("Match Type"+ DriverStation.getMatchType().toString());
+        DataLogManager.log("Match Number"+ "" + DriverStation.getMatchNumber());
+        DataLogManager.log("Match Time"+ "s"+ DriverStation.getMatchTime());
+        DataLogManager.log("Battery Voltage"+ "V"+ RobotController.getBatteryVoltage());
+        DataLogManager.log("Alliance"+ DriverStation.getAlliance().name());
+        DataLogManager.log("Event Name"+ DriverStation.getEventName());
     }
 
     public String timeStamp() {
@@ -41,15 +54,15 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                log-> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
+                log -> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
-        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
-                log -> DataLogManager.log(timeStamp() + " - "  + " " + log.getName() + " was changed to " + log.getValue()),
-                        tolerance);
+        DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
+                log -> DataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
+                tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
     }
