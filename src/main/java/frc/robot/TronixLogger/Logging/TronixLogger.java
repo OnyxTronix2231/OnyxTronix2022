@@ -41,14 +41,14 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> DataLogManager.log(timeStamp() + " - " + "was changed to" + d.getValue()));
+                log-> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier ,delayInMS,
-                d -> DataLogManager.log(timeStamp() + " - "  + " " + d.getName() + " was changed to " + d.getValue()),
+                log -> DataLogManager.log(timeStamp() + " - "  + " " + log.getName() + " was changed to " + log.getValue()),
                         tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
