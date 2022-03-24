@@ -37,7 +37,6 @@ public class TronixLogger {
         OnyxDataLogManager.log("Match Number - " + "" + DriverStation.getMatchNumber());
         OnyxDataLogManager.log("Match Time - " + "s" + DriverStation.getMatchTime());
         OnyxDataLogManager.log("Alliance - " + DriverStation.getAlliance().name());
-        OnyxDataLogManager.log("CAN Status - " + RobotController.getCANStatus());
         OnyxDataLogManager.log("Battery Voltage - " + "V" + RobotController.getBatteryVoltage());
     }
 
