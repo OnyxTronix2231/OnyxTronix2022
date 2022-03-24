@@ -1,7 +1,7 @@
 package frc.robot.shooter;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.TronixLogger.Logging.TronixLogger;
+import frc.robot.TronixLogger.Logging.OnyxLogger;
 
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.*;
 import static frc.robot.shooter.ShooterConstants.TOLERANCE;
@@ -14,6 +14,7 @@ public class Shooter extends SubsystemBase {
 
     public Shooter(ShooterComponents components) {
         this.components = components;
+        OnyxLogger.getInstance().addDoubleListener("ShooterRPM", this::getCurrentRPM, 100, 50);
     }
 
     public void periodic() {

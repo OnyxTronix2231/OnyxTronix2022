@@ -8,29 +8,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class TronixLogger {
+public class OnyxLogger {
 
-    public static TronixLogger tronixLoggerInstance;
+    public static OnyxLogger tronixLoggerInstance;
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
     ArrayList<FollowerBase<?>> followerBases;
 
-    private TronixLogger() {
+    private OnyxLogger() {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         followerBases = new ArrayList<>();
         init();
     }
 
-    public static TronixLogger getInstance() {
+    public static OnyxLogger getInstance() {
         if (tronixLoggerInstance == null) {
-            tronixLoggerInstance = new TronixLogger();
+            tronixLoggerInstance = new OnyxLogger();
         }
         return tronixLoggerInstance;
     }
 
     private void init() {
-        OnyxDataLogManager.log("TronixLogger V 0.0.1 - ");
+        OnyxDataLogManager.log("OnyxLogger V 0.0.1 - ");
         OnyxDataLogManager.log("OS Version - " + System.getProperty("os.version"));
         OnyxDataLogManager.log("Event Name - " + DriverStation.getEventName());
         OnyxDataLogManager.log("Match Type - " + DriverStation.getMatchType().toString());
@@ -54,13 +54,13 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                log -> OnyxDataLogManager.log(timeStamp() + " - " + "was changed to " + log.getValue()));
+                log -> OnyxDataLogManager.log(timeStamp() +log.getName()+ " - " + "was changed to " + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
 
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS,
-                                  int tolerance) {
+                                  double tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
                 log -> OnyxDataLogManager.log
                         (timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()), tolerance);

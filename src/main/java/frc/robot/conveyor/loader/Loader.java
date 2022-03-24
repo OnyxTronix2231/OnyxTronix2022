@@ -3,7 +3,7 @@ package frc.robot.conveyor.loader;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.TronixLogger.Logging.TronixLogger;
+import frc.robot.TronixLogger.Logging.OnyxLogger;
 
 public class Loader extends SubsystemBase implements Sendable {
 
@@ -13,8 +13,7 @@ public class Loader extends SubsystemBase implements Sendable {
     public Loader(LoaderComponents components) {
         this.components = components;
         this.loaderShuffleboard = new LoaderShuffleboard(this);
-        TronixLogger.getInstance().addBooleanListener("loader is", this::identifiedBall,1000);
-        TronixLogger.getInstance().addDoubleListener("loader double", this::getDistanceFront, 100,10);
+        OnyxLogger.getInstance().addBooleanListener("loader is", this::identifiedBall,1000);
         loaderShuffleboard.init();
     }
 

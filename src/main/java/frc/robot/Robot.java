@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.TronixLogger.Logging.TronixLogger;
+import frc.robot.TronixLogger.Logging.OnyxLogger;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
     YawControl turret;
     Vision vision;
     Climber climber;
-    TronixLogger logger;
+    OnyxLogger logger;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = false;
 
@@ -173,7 +173,7 @@ public class Robot extends TimedRobot {
         CommandScheduler.getInstance().run();
         SmartDashboard.updateValues();
         updateOdometryByVision.updateOdometry();
-        TronixLogger.getInstance().update();
+        OnyxLogger.getInstance().update();
     }
 
     /**
