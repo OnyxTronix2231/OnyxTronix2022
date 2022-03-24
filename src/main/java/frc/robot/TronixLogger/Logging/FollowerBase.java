@@ -7,7 +7,7 @@ public abstract class FollowerBase<T> implements Follower<T> {
 
     private final String name;
     private final int delayInMS;
-    private Supplier<T> supplier;
+    private final Supplier<T> supplier;
     private T lastValue;
     private int count = 0;
 

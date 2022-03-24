@@ -13,7 +13,7 @@ public class TronixLogger {
     public static TronixLogger tronixLoggerInstance;
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
-    ArrayList<FollowerBase> followerBases;
+    ArrayList<FollowerBase<?>> followerBases;
 
     private TronixLogger() {
         booleanFollowers = new ArrayList<>();
