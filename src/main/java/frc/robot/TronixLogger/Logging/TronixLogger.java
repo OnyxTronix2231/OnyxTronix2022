@@ -1,6 +1,5 @@
 package frc.robot.TronixLogger.Logging;
 
-import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotController;
 
@@ -31,15 +30,15 @@ public class TronixLogger {
     }
 
     public void init() {
-        DataLogManager.log("TronixLogger V 0.0.1 - ");
-        DataLogManager.log("OS Version - " + System.getProperty("os.version"));
-        DataLogManager.log("Event Name - " + DriverStation.getEventName());
-        DataLogManager.log("Match Type - " + DriverStation.getMatchType().toString());
-        DataLogManager.log("Match Number - " + "" + DriverStation.getMatchNumber());
-        DataLogManager.log("Match Time - " + "s" + DriverStation.getMatchTime());
-        DataLogManager.log("Alliance - " + DriverStation.getAlliance().name());
-        DataLogManager.log("CAN Status"+RobotController.getCANStatus());
-        DataLogManager.log("Battery Voltage - " + "V" + RobotController.getBatteryVoltage());
+        OnyxDataLogManager.log("TronixLogger V 0.0.1 - ");
+        OnyxDataLogManager.log("OS Version - " + System.getProperty("os.version"));
+        OnyxDataLogManager.log("Event Name - " + DriverStation.getEventName());
+        OnyxDataLogManager.log("Match Type - " + DriverStation.getMatchType().toString());
+        OnyxDataLogManager.log("Match Number - " + "" + DriverStation.getMatchNumber());
+        OnyxDataLogManager.log("Match Time - " + "s" + DriverStation.getMatchTime());
+        OnyxDataLogManager.log("Alliance - " + DriverStation.getAlliance().name());
+        OnyxDataLogManager.log("CAN Status"+RobotController.getCANStatus());
+        OnyxDataLogManager.log("Battery Voltage - " + "V" + RobotController.getBatteryVoltage());
     }
 
     public String timeStamp() {
@@ -56,7 +55,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                log -> DataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
+                log -> OnyxDataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
@@ -64,7 +63,7 @@ public class TronixLogger {
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS,
                                   int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
-                log -> DataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
+                log -> OnyxDataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
                 tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
