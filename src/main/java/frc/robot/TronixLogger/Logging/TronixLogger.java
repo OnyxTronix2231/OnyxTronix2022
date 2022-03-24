@@ -29,7 +29,7 @@ public class TronixLogger {
         return tronixLoggerInstance;
     }
 
-    public void init() {
+    private void init() {
         OnyxDataLogManager.log("TronixLogger V 0.0.1 - ");
         OnyxDataLogManager.log("OS Version - " + System.getProperty("os.version"));
         OnyxDataLogManager.log("Event Name - " + DriverStation.getEventName());
