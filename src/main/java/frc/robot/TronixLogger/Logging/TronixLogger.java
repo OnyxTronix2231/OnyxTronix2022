@@ -32,12 +32,12 @@ public class TronixLogger {
 
     public void init() {
         DataLogManager.log("OS Version" + System.getProperty("os.version"));
+        DataLogManager.log("Event Name" + DriverStation.getEventName());
         DataLogManager.log("Match Type" + DriverStation.getMatchType().toString());
         DataLogManager.log("Match Number" + "" + DriverStation.getMatchNumber());
         DataLogManager.log("Match Time" + "s" + DriverStation.getMatchTime());
-        DataLogManager.log("Battery Voltage" + "V" + RobotController.getBatteryVoltage());
         DataLogManager.log("Alliance" + DriverStation.getAlliance().name());
-        DataLogManager.log("Event Name" + DriverStation.getEventName());
+        DataLogManager.log("Battery Voltage" + "V" + RobotController.getBatteryVoltage());
     }
 
     public String timeStamp() {
