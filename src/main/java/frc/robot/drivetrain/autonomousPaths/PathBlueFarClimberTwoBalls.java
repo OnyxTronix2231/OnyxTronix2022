@@ -1,15 +1,6 @@
 package frc.robot.drivetrain.autonomousPaths;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.constraint.CentripetalAccelerationConstraint;
-import edu.wpi.first.math.trajectory.constraint.MaxVelocityConstraint;
-import frc.robot.drivetrain.Path;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class PathBlueFarClimberTwoBalls implements  AutonomousPaths {
+public class PathBlueFarClimberTwoBalls extends AbstractPath {
 
     static final double X_START_POSE = 7.606;
     static final double X_FIRST_BALL = 7.606;
@@ -17,31 +8,15 @@ public class PathBlueFarClimberTwoBalls implements  AutonomousPaths {
     static final double Y_START_POSE = 2.050;
     static final double Y_FIRST_BALL = 0.55;
 
-    private final Pose2d startPose;
-    private final Path firstPath;
+    static final double START_DEGREE = 90;
+    static final double DESTINATION_DEGREE = 90;
 
-    ArrayList<Path> paths = new ArrayList<>();
+    static final double MAX_VELOCITY_METERS_PER_SECOND = 2;
+    static final double MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ = 2;
 
     public PathBlueFarClimberTwoBalls(){
-        startPose = new Pose2d(X_START_POSE, Y_START_POSE,
-                Rotation2d.fromDegrees(90));
-
-        firstPath = new Path(
-                List.of(),
-                new Pose2d(X_FIRST_BALL, Y_FIRST_BALL, Rotation2d.fromDegrees(90)),
-                new MaxVelocityConstraint(2),
-                new CentripetalAccelerationConstraint(2)
-        ).setReversed();
-        paths.add(firstPath);
-    }
-
-    @Override
-    public Pose2d getStartPose() {
-        return startPose;
-    }
-
-    @Override
-    public Path getPath(int pathNumber){
-        return paths.get(pathNumber - 1);
+        setStartPose(X_START_POSE, Y_START_POSE, START_DEGREE);
+        addPathReverse(X_FIRST_BALL,Y_FIRST_BALL,DESTINATION_DEGREE, MAX_VELOCITY_METERS_PER_SECOND,
+                MAX_CENTRIPETAL_ACCELERATION_METERS_PER_SECOND_SQ);
     }
 }

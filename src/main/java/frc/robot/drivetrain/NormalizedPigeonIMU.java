@@ -30,8 +30,18 @@ public class NormalizedPigeonIMU extends PigeonIMU implements Sendable {
         return Math.IEEEremainder(yawPitchRoll[1], 360);
     }
 
+    public double getRawRoll() {
+        double[] yawPitchRoll = new double[3];
+        getYawPitchRoll(yawPitchRoll);
+        return Math.IEEEremainder(yawPitchRoll[2], 360);
+    }
+
     public void reset() {
         this.setYaw(0);
+    }
+
+    public void reset(int timeoutMs) {
+        this.setYaw(0, timeoutMs);
     }
 
     public double getNormalizedYaw() {

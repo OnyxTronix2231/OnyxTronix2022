@@ -10,7 +10,7 @@ import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.*;
 public class DriverIntakeAndLoadBallsOiBinder{
 
     public DriverIntakeAndLoadBallsOiBinder(Intake intake, Loader loader, BallTrigger ballTrigger, Trigger load) {
-        load.whileActiveContinuous(new IntakeAndLoadBalls(intake, ballTrigger, loader,
+        load.whileActiveContinuous(new DelayedIntakeAndLoadBalls(intake, ballTrigger, loader,
                 () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED, () -> INTAKE_SPEED));
     }
 }

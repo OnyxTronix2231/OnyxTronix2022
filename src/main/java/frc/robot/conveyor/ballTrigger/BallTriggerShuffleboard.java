@@ -14,11 +14,11 @@ public class BallTriggerShuffleboard {
     private NetworkTableEntry isBlueEntry;
 
     private final BallTrigger ballTrigger;
-    private SendableChooser<String> isOurBall;
+    //private SendableChooser<String> isOurBall;
 
     public BallTriggerShuffleboard(BallTrigger ballTrigger) {
         this.ballTrigger = ballTrigger;
-        isOurBall = new SendableChooser<>();
+        //isOurBall = new SendableChooser<>();
     }
 
     public void init() {
@@ -26,10 +26,10 @@ public class BallTriggerShuffleboard {
         identifiedBallValueEntry = Shuffleboard.getTab("BallTrigger").add("IdentifiedValue",
                 IDENTIFIED_VOLTAGE).getEntry();
 
-        isRedEntry = Shuffleboard.getTab("BallTrigger").add("isRedValue",
-                THRESHOLD_REDNESS).getEntry();
-        isBlueEntry = Shuffleboard.getTab("BallTrigger").add("isBlueValue",
-                THRESHOLD_BLUENESS).getEntry();
+//        isRedEntry = Shuffleboard.getTab("BallTrigger").add("isRedValue",
+//                THRESHOLD_REDNESS).getEntry();
+//        isBlueEntry = Shuffleboard.getTab("BallTrigger").add("isBlueValue",
+//                THRESHOLD_BLUENESS).getEntry();
 
         NetworkTableEntry ballTriggerSpeed = Shuffleboard.getTab("BallTrigger").add("BallTriggerSpeed",
                 BALLTRIGGER_SPEED).getEntry();
@@ -50,7 +50,7 @@ public class BallTriggerShuffleboard {
 
         Shuffleboard.getTab("BallTrigger").addBoolean("IsBallInPlace", ballTrigger::isBallIdentified);
 
-        Shuffleboard.getTab("BallTrigger").add(isOurBall);
+        //Shuffleboard.getTab("BallTrigger").add(isOurBall);
     }
 
     public double getIdentifiedBallValueEntry() {
