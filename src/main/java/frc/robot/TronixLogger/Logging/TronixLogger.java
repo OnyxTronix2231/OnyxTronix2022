@@ -21,7 +21,7 @@ public class TronixLogger {
     }
 
     public static TronixLogger getInstance() {
-        if(tronixLoggerInstance == null) {
+        if (tronixLoggerInstance == null) {
             tronixLoggerInstance = new TronixLogger();
         }
         return tronixLoggerInstance;
@@ -35,7 +35,7 @@ public class TronixLogger {
 
     public void update() {
         for (var followerBases : followerBases) {
-           followerBases.updateByDelay();
+            followerBases.updateByDelay();
         }
     }
 
