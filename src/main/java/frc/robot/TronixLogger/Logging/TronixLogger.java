@@ -1,5 +1,7 @@
 package frc.robot.TronixLogger.Logging;
 
+import edu.wpi.first.wpilibj.DataLogManager;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,11 +15,13 @@ public class TronixLogger {
     ArrayList<BooleanFollower> booleanFollowers;
     ArrayList<DoubleFollower> doubleFollowers;
     ArrayList<FollowerBase> followerBases;
+    DataLogManager dataLogManager;
 
     private TronixLogger() {
         booleanFollowers = new ArrayList<>();
         doubleFollowers = new ArrayList<>();
         followerBases = new ArrayList<>();
+        DataLogManager.start();
     }
 
     public static TronixLogger getInstance() {
@@ -41,7 +45,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                d-> System.out.println(timeStamp() + " - " + "was changed to" + d.getValue()));
+                d-> DataLogManager.log(timeStamp() + " - " + "was changed to" + d.getValue()));  //System.out.println(timeStamp() + " - " + "was changed to" + d.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
