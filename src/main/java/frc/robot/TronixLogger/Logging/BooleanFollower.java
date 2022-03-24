@@ -18,6 +18,5 @@ public class BooleanFollower extends FollowerBase<Boolean> {
             booleanConsumer.accept(this);
             updateLastValue();
         }
-
     }
 }
