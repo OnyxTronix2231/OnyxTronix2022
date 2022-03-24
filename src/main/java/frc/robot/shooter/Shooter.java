@@ -9,11 +9,12 @@ import static frc.robot.shooter.ShooterConstants.TOLERANCE;
 public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
-    //private final ShooterShuffleBoard shuffleBoard;
+    private final ShooterShuffleBoard shuffleBoard;
     private boolean isRealeBallsButtonpress = false;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
+        shuffleBoard = new ShooterShuffleBoard(this);
         OnyxLogger.getInstance().addDoubleListener("ShooterRPM", this::getCurrentRPM, 100, 50);
     }
 
