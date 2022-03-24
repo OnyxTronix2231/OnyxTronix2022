@@ -31,12 +31,14 @@ public class TronixLogger {
     }
 
     public void init() {
+        DataLogManager.log("TronixLogger V 0.0.1 - ");
         DataLogManager.log("OS Version - " + System.getProperty("os.version"));
         DataLogManager.log("Event Name - " + DriverStation.getEventName());
         DataLogManager.log("Match Type - " + DriverStation.getMatchType().toString());
         DataLogManager.log("Match Number - " + "" + DriverStation.getMatchNumber());
         DataLogManager.log("Match Time - " + "s" + DriverStation.getMatchTime());
         DataLogManager.log("Alliance - " + DriverStation.getAlliance().name());
+        DataLogManager.log("CAN Status"+RobotController.getCANStatus());
         DataLogManager.log("Battery Voltage - " + "V" + RobotController.getBatteryVoltage());
     }
 
