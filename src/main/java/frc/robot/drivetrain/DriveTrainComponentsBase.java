@@ -25,12 +25,11 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private final NormalizedPigeonIMU pigeonIMU;
     private final TalonEncoder leftEncoder;
     private final TalonEncoder rightEncoder;
-    private final Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
         leftMasterMotor.configFactoryDefault();
-        // leftMasterMotor.configAllSettings(getFalconConfiguration());
+        leftMasterMotor.configAllSettings(getFalconConfiguration());
         leftMasterMotor.setNeutralMode(NeutralMode.Brake);
 
         leftSlaveMotor = new WPI_TalonFX(RIGHT_SLAVE_MOTOR_PORT);
@@ -55,8 +54,8 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
         rightSlaveMotor.follow(rightMasterMotor);
 
-        leftEncoder = new TalonEncoder(leftMasterMotor, 0, 300);
-        rightEncoder = new TalonEncoder(rightMasterMotor, 0, 300);
+        leftEncoder = new TalonEncoder(leftMasterMotor);
+        rightEncoder = new TalonEncoder(rightMasterMotor);
 
         odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(0));
         odometry.resetPosition(new Pose2d(), new Rotation2d());
@@ -65,8 +64,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);
-
-        field2d = new Field2d();
     }
 
     @Override
