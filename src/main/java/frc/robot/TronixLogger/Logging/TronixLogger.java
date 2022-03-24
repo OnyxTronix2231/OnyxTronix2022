@@ -54,7 +54,7 @@ public class TronixLogger {
 
     public void addBooleanListener(String methodName, Supplier<Boolean> condition, int delayInMS) {
         BooleanFollower booleanFollower = new BooleanFollower(methodName, condition, delayInMS,
-                log -> OnyxDataLogManager.log(timeStamp() + " - " + "was changed to" + log.getValue()));
+                log -> OnyxDataLogManager.log(timeStamp() + " - " + "was changed to " + log.getValue()));
         booleanFollowers.add(booleanFollower);
         followerBases.add(booleanFollower);
     }
@@ -62,8 +62,8 @@ public class TronixLogger {
     public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS,
                                   int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
-                log -> OnyxDataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
-                tolerance);
+                log -> OnyxDataLogManager.log
+                        (timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()), tolerance);
         doubleFollowers.add(doubleFollower);
         followerBases.add(doubleFollower);
     }
