@@ -2,8 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project
 package frc.robot.TronixLogger.Logging;
+
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.util.datalog.IntegerLogEntry;
 import edu.wpi.first.util.datalog.StringLogEntry;
@@ -48,7 +48,7 @@ public final class OnyxDataLogManager {
     private static final ZoneId m_utc = ZoneId.of("UTC");
     private static final DateTimeFormatter m_timeFormatter =
             DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss").withZone(m_utc);
-    private static boolean m_ntLoggerEnabled = true;
+    private static boolean m_ntLoggerEnabled = false;
     private static int m_ntEntryLogger;
     private static int m_ntConnLogger;
     private static StringLogEntry m_messageLog;
@@ -125,7 +125,7 @@ public final class OnyxDataLogManager {
         }
 
         m_log = new DataLog(m_logDir, makeLogFilename(filename), period);
-        m_messageLog = new StringLogEntry(m_log, "messages");
+        m_messageLog = new StringLogEntry(m_log, "OnyxLogger");
         m_thread.start();
 
         // Log all NT entries and connections
@@ -337,44 +337,18 @@ public final class OnyxDataLogManager {
                     // match info comes through TCP, so we need to double-check we've
                     // actually received it
                     DriverStation.MatchType matchType = DriverStation.getMatchType();
-                    if (matchType != DriverStation.MatchType.None) {
-                        // rename per match info
-                        char matchTypeChar;
-                        switch (matchType) {
-                            case Practice:
-                                matchTypeChar = 'P';
-                                break;
-                            case Qualification:
-                                matchTypeChar = 'Q';
-                                break;
-                            case Elimination:
-                                matchTypeChar = 'E';
-                                break;
-                            default:
-                                matchTypeChar = '_';
-                                break;
-                        }
-                        m_log.setFilename(
-                                "FRC_"
-                                        + m_timeFormatter.format(LocalDateTime.now(m_utc))
-                                        + "_"
-                                        + DriverStation.getEventName()
-                                        + "_"
-                                        + matchTypeChar
-                                        + DriverStation.getMatchNumber()
-                                        + ".wpilog");
-                        fmsRenamed = true;
-                        dsRenamed = true; // don't override FMS rename
-                    }
+                    m_log.setFilename(
+                            "FRC_"
+                                    + "OnyxLogger"
+                                    + "_"
+                                    + DriverStation.getEventName()
+                                    + "_"
+                                    + ".wpilog");
+                    fmsRenamed = true;
+                    dsRenamed = true; // don't override FMS rename
                 }
-            }
-
-            // Write system time every ~5 seconds
-            sysTimeCount++;
-            if (sysTimeCount >= 250) {
-                sysTimeCount = 0;
-                sysTimeEntry.append(WPIUtilJNI.getSystemTime(), WPIUtilJNI.now());
             }
         }
     }
 }
+
