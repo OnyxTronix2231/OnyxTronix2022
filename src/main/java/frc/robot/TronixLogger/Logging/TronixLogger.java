@@ -31,13 +31,13 @@ public class TronixLogger {
     }
 
     public void init() {
-        DataLogManager.log("OS Version"+ System.getProperty("os.version"));
-        DataLogManager.log("Match Type"+ DriverStation.getMatchType().toString());
-        DataLogManager.log("Match Number"+ "" + DriverStation.getMatchNumber());
-        DataLogManager.log("Match Time"+ "s"+ DriverStation.getMatchTime());
-        DataLogManager.log("Battery Voltage"+ "V"+ RobotController.getBatteryVoltage());
-        DataLogManager.log("Alliance"+ DriverStation.getAlliance().name());
-        DataLogManager.log("Event Name"+ DriverStation.getEventName());
+        DataLogManager.log("OS Version" + System.getProperty("os.version"));
+        DataLogManager.log("Match Type" + DriverStation.getMatchType().toString());
+        DataLogManager.log("Match Number" + "" + DriverStation.getMatchNumber());
+        DataLogManager.log("Match Time" + "s" + DriverStation.getMatchTime());
+        DataLogManager.log("Battery Voltage" + "V" + RobotController.getBatteryVoltage());
+        DataLogManager.log("Alliance" + DriverStation.getAlliance().name());
+        DataLogManager.log("Event Name" + DriverStation.getEventName());
     }
 
     public String timeStamp() {
@@ -59,7 +59,8 @@ public class TronixLogger {
         followerBases.add(booleanFollower);
     }
 
-    public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS, int tolerance) {
+    public void addDoubleListener(String methodName, Supplier<Double> doubleSupplier, int delayInMS,
+                                  int tolerance) {
         DoubleFollower doubleFollower = new DoubleFollower(methodName, doubleSupplier, delayInMS,
                 log -> DataLogManager.log(timeStamp() + " - " + " " + log.getName() + " was changed to " + log.getValue()),
                 tolerance);
