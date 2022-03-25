@@ -15,14 +15,13 @@ import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
 
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
-    private final Field2d field2d;
     public double forwardSpeedValue;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
-        field2d = new Field2d();
+        resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
    }
-
+   
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
@@ -35,12 +34,11 @@ public class DriveTrain extends SubsystemBase {
                 Rotation2d.fromDegrees(getHeading()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getLeftMasterMotor().getSelectedSensorPosition()),
                 Calculations.encoderUnitsToMeters(driveTrainComponents.getRightMasterMotor().getSelectedSensorPosition()));
-        getField().setRobotPose(driveTrainComponents.getOdometry().getPoseMeters());
     }
 
     public void arcadeDrive(double speed, double rotation) {
         forwardSpeedValue = -speed * SPEED_SENSITIVITY;
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, Math.signum(rotation) * rotation * ROTATION_SENSITIVITY, false);
     }
 
     public void stop() {
@@ -73,7 +71,11 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public double getPitch() {
-        return driveTrainComponents.getNormalizedPigeonIMU().getRawYaw();
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawPitch();
+    }
+
+    public double getRoll() {
+        return driveTrainComponents.getNormalizedPigeonIMU().getRawRoll();
     }
 
     public void resetOdometryToPose(Translation2d translation) {
@@ -97,10 +99,6 @@ public class DriveTrain extends SubsystemBase {
 
     public double getAngleToTargetByPose() {
         return getAngleToAPose(new Pose2d(TARGET_POSE_X, TARGET_POSE_Y, new Rotation2d()));
-    }
-
-    public Field2d getField() {
-        return field2d;
     }
 
     public void setNeutralModeToCoast() {
