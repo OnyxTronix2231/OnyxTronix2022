@@ -16,10 +16,10 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.RELEASE_ARMS_TI
 
 public class AutoClimb extends SequentialCommandGroup {
 
-    public AutoClimb(AdvancedClimber advancedClimber, Arms arms, Vision vision) {
-        super(new ClimbWithArmsStageOneUntilPitch(advancedClimber, arms),
-                new ClimbWithStabilizersAndArmsStageTwoUntilPitch(advancedClimber, arms),
-                new ReleaseArmsStageThree(advancedClimber, arms).withTimeout(RELEASE_ARMS_TIMEOUT),
+    public AutoClimb(AdvancedClimber advancedClimber, Arms arms, Vision vision,DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo) {
+        super(new ClimbWithArmsStageOneUntilPitch(advancedClimber, arms, desiredPitchAngleStageOne),
+                //new ClimbWithStabilizersAndArmsStageTwoUntilPitch(advancedClimber, arms, desiredPitchAngleStageTwo),
+//                new ReleaseArmsStageThree(advancedClimber, arms).withTimeout(RELEASE_ARMS_TIMEOUT),
                 new EveryoneClaps(vision));
     }
 }

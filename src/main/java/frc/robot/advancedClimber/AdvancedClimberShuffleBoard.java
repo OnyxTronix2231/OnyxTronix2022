@@ -5,14 +5,16 @@ import frc.robot.advancedClimber.commands.AutoClimb;
 import frc.robot.arms.Arms;
 import frc.robot.vision.Vision;
 
+import java.util.function.DoubleSupplier;
+
 public class AdvancedClimberShuffleBoard {
 
-    public AdvancedClimberShuffleBoard(AdvancedClimber advancedClimber, Arms arms, Vision vision) {
+    public AdvancedClimberShuffleBoard(AdvancedClimber advancedClimber, Arms arms, Vision vision, DoubleSupplier desiredPitchAngle) {
         Shuffleboard.getTab("Climber").addNumber("current pitch", advancedClimber::getCurrentPitch);
         Shuffleboard.getTab("Climber").addNumber("current yaw", advancedClimber::getCurrentYaw);
         Shuffleboard.getTab("Climber").addNumber("current roll", advancedClimber::getCurrentRoll);
         Shuffleboard.getTab("Climber").addNumber("Current stabilizers encoder units", advancedClimber::getEncoderUnits);
-        Shuffleboard.getTab("Climber").add(new AutoClimb(advancedClimber,arms, vision));
+        Shuffleboard.getTab("Climber").add(new AutoClimb(advancedClimber,arms, vision, desiredPitchAngle, desiredPitchAngle));
 //        Shuffleboard.getTab("Climber").addBoolean("is on desired angle and encoder position",
 //                advancedClimber::hasReachedFourthBar);
     }

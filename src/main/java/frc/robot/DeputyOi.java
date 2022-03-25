@@ -10,6 +10,7 @@ import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
+import frc.robot.crossPlatform.teleopCommands.DeputyAutoClimbOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
 import frc.robot.drivetrain.DriveTrain;
@@ -24,6 +25,8 @@ import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
 
+import java.util.function.DoubleSupplier;
+
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
 public class DeputyOi {
@@ -34,13 +37,15 @@ public class DeputyOi {
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
-    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber) {
+    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber, Vision vision,
+                                DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
-        //Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
+        Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
-        //new DeputyAutoClimbOiBinder(advancedClimber, arms, autoClimb); // TODO Test AutoClimb
+        new DeputyAutoClimbOiBinder(advancedClimber, arms, vision, autoClimb, desiredPitchAngleStageOne,
+                desiredPitchAngleStageTwo); // TODO Test AutoClimb
         return this;
     }
 

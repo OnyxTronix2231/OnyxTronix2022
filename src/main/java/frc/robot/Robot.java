@@ -8,8 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.advancedClimber.AdvancedClimber;
@@ -17,6 +19,7 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
 import frc.robot.arc.ArcComponentsBase;
 import frc.robot.arc.commands.CalibrateArc;
+import frc.robot.arc.commands.MoveArcBySpeed;
 import frc.robot.arms.Arms;
 import frc.robot.arms.ArmsComponents;
 import frc.robot.arms.ArmsComponentsBase;
@@ -42,7 +45,6 @@ import frc.robot.shooter.ShooterComponents;
 import frc.robot.shooter.ShooterComponentsBase;
 import frc.robot.stabilizers.StabilizerComponents;
 import frc.robot.stabilizers.StabilizerComponentsBase;
-import frc.robot.stabilizers.commands.KeepStabilizerInPlace;
 import frc.robot.turret.TurretComponents;
 import frc.robot.turret.TurretComponentsBase;
 import frc.robot.vision.Vision;
@@ -76,6 +78,8 @@ public class Robot extends TimedRobot {
     AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = true;
+    private NetworkTableEntry desiredPitchAngleStageOne;
+    private NetworkTableEntry desiredPitchAngleStageTwo;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -121,7 +125,13 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
-        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms, vision);
+        desiredPitchAngleStageOne = Shuffleboard.getTab("Climber").add("Pitch angle stage one", 0).getEntry();
+        desiredPitchAngleStageTwo = Shuffleboard.getTab("Climber").add("Pitch angle stage two", 0).getEntry();
+
+        Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
+                desiredPitchAngleStageOne.getDouble(0)));
+
+        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms, vision, () -> desiredPitchAngleStageOne.getDouble(0));
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
@@ -152,7 +162,8 @@ public class Robot extends TimedRobot {
                 .withStopLookingAtTarget(turret)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(arms, stabilizers)
+                .withClimber(arms, stabilizers, vision, () -> desiredPitchAngleStageOne.getDouble(0),
+                        () -> desiredPitchAngleStageTwo.getDouble(0))
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;
@@ -237,9 +248,6 @@ public class Robot extends TimedRobot {
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
-        if(stabilizers != null){
-            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
-        }
     }
 
     /**
@@ -266,9 +274,6 @@ public class Robot extends TimedRobot {
         if (firstEnable && arc != null) {
             CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
-        }
-        if(stabilizers != null){
-            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
         }
     }
 

@@ -6,12 +6,15 @@ import frc.robot.advancedClimber.commands.AutoClimb;
 import frc.robot.arms.Arms;
 import frc.robot.vision.Vision;
 
+import java.util.function.DoubleSupplier;
+
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.ARMS_SPEED;
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.STABILIZERS_SPEED;
 
 public class DeputyAutoClimbOiBinder {
 
-    public DeputyAutoClimbOiBinder(AdvancedClimber advancedClimber, Arms arms, Vision vision, Trigger autoClimb) {
-        autoClimb.whenActive(new AutoClimb(advancedClimber, arms, vision));
+    public DeputyAutoClimbOiBinder(AdvancedClimber advancedClimber, Arms arms, Vision vision, Trigger autoClimb,
+                                   DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo) {
+        autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, vision, desiredPitchAngleStageOne, desiredPitchAngleStageTwo));
     }
 }

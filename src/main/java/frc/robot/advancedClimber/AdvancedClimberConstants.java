@@ -4,9 +4,13 @@ public class AdvancedClimberConstants {
 
     static final double DESIRED_ROLL_ANGLE = -10;
 
+    // STAGE ZERO //
+
+
+
     // STAGE ONE //
     public static final double DESIRED_PITCH_ANGLE_STAGE_ONE = 60; // TODO CHANGE
-    public static final double DESIRED_ARMS_SPEED_STAGE_ONE = 0.5; // TODO CHANGE
+    public static final double DESIRED_ARMS_SPEED_STAGE_ONE = 0.3; // TODO CHANGE
 
     // STAGE TWO //
 
