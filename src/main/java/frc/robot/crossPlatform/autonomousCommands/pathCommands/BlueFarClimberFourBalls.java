@@ -10,12 +10,12 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
-import frc.robot.turret.Turret;
+import frc.robot.yawControl.YawControl;
 
 public class BlueFarClimberFourBalls extends SequentialCommandGroup {
 
     public BlueFarClimberFourBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
+                                   BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
                                    DistanceProvider distanceProvider, AngleProvider angleProvider) {
         PathBlueFarClimberFourBalls p = new PathBlueFarClimberFourBalls();
         addCommands(
