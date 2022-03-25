@@ -32,7 +32,7 @@ public class ShooterConstants {
         static final int MASTER_MOTOR_ID = 11;
         static final int SLAVE_MOTOR_ID = 12;
         static final double ENCODER_UNITS_PER_ROUND = 2048;
-        static final double SHOOTER_MOTOR_RADIUS = 5.08;
+        static final double SHOOTER_MOTOR_RADIUS = 0.1016;
     }
 
     public static class ShooterCalculations {
