@@ -13,17 +13,22 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
 public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
     public BlueCloseClimberStraightLine(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                         BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                        DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                        DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
+                                        BooleanSupplier shooterConditions) {
         PathBlueCloseClimberStraightLine p = new PathBlueCloseClimberStraightLine();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
-                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider,
+                        shooterConditions)
         );
     }
 }

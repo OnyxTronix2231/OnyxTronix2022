@@ -13,8 +13,9 @@ import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
-import frc.robot.turret.Turret;
 import frc.robot.yawControl.YawControl;
+
+import java.util.function.BooleanSupplier;
 
 public class AutonomousShuffleboard {
 
@@ -22,33 +23,49 @@ public class AutonomousShuffleboard {
 
     public AutonomousShuffleboard(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                  DistanceProvider distanceProvider, AngleProvider angleProvider, AngleProvider turretAngleProvider) {
+                                  DistanceProvider distanceProvider, AngleProvider angleProvider,
+                                  AngleProvider turretAngleProvider, BooleanSupplier shooterConditions) {
         autonomousChooser = new SendableChooser<>();
 
         autonomousChooser.addOption("straight line from RED close climber point", new RedCloseClimberStraightLine(
                 driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
-                angleProvider));
-        autonomousChooser.addOption("2 ball from RED close climber point", new RedCloseClimberTwoBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider, turretAngleProvider));
-        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider, turretAngleProvider));
-        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider, turretAngleProvider));
+                angleProvider, shooterConditions));
 
-        autonomousChooser.addOption("straight line from BLUE close climber point", new BlueCloseClimberStraightLine(
+        autonomousChooser.addOption("2 ball from RED close climber point", new RedCloseClimberTwoBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
+                shooterConditions));
+
+        autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(
                 driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
-                angleProvider));
+                angleProvider, turretAngleProvider, shooterConditions));
+
+        autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(
+                driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
+                angleProvider, turretAngleProvider, shooterConditions));
+
+        autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
+                turretAngleProvider, shooterConditions));
+
+        autonomousChooser.addOption("straight line from BLUE close climber point",
+                new BlueCloseClimberStraightLine(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
+                        shooter, arc, distanceProvider, angleProvider, shooterConditions));
+
         autonomousChooser.addOption("2 balls from BLUE close climber point", new BlueCloseClimberTwoBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider, shooterConditions));
+
         autonomousChooser.addOption("2 balls BLUE far from climber point", new BlueFarClimberTwoBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
+                shooterConditions));
+
         autonomousChooser.addOption("3 balls BLUE far climber point", new BlueFarClimberThreeBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
+                shooterConditions));
+
         autonomousChooser.addOption("4 balls BLUE far climber point", new BlueFarClimberFourBalls(driveTrain,
-                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
-        
+                frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
+                shooterConditions));
+
         autonomousChooser.setDefaultOption("nothing", new InstantCommand());
 
         Shuffleboard.getTab("path chooser").add(autonomousChooser);

@@ -12,19 +12,23 @@ import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
 public class BlueFarClimberThreeBalls extends SequentialCommandGroup {
     public BlueFarClimberThreeBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                     BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                    DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                    DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
+                                    BooleanSupplier shooterConditions) {
         PathBlueFarClimberThreeBalls p = new PathBlueFarClimberThreeBalls();
         addCommands(
                 new BlueFarClimberTwoBalls(driveTrain, frontIntake, backIntake,loader,ballTrigger,turret, shooter, arc,
-                        distanceProvider, angleProvider),
+                        distanceProvider, angleProvider, shooterConditions),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
-                        angleProvider)
+                        angleProvider, shooterConditions)
         );
     }
 }

@@ -16,13 +16,15 @@ import frc.robot.turret.Turret;
 import frc.robot.yawControl.Commands.RotateToAngleRTF;
 import frc.robot.yawControl.YawControl;
 
+import java.util.function.DoubleSupplier;
+
 public class AutoMoveAndIntakeAndTurret extends ParallelDeadlineGroup {
     static final double LOADER_SPEED_SUPPLIER = 0.5;
     static final double BALL_TRIGGER_SPEED_SUPPLIER = 0.5;
     static final double INTAKE_SPEED_SUPPLIER = 0.5;
 
     public AutoMoveAndIntakeAndTurret(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                      BallTrigger ballTrigger, YawControl turret, AngleProvider angleProvider, Path path) {
+                                      BallTrigger ballTrigger, YawControl turret, DoubleSupplier angleProvider, Path path) {
         super(
                 new MoveByPath(driveTrain, path).andThen(new WaitCommand(0.6)),
 

@@ -7,26 +7,29 @@ import frc.robot.conveyor.loader.Loader;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathBlueFarClimberFourBalls;
 import frc.robot.intake.Intake;
-import frc.robot.providers.AngleProvider;
-import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
+
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 
 public class BlueFarClimberFourBalls extends SequentialCommandGroup {
 
     public BlueFarClimberFourBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                    BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                   DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
+                                   BooleanSupplier shooterConditions) {
         PathBlueFarClimberFourBalls p = new PathBlueFarClimberFourBalls();
         addCommands(
                 new BlueFarClimberThreeBalls(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter,
-                         arc, distanceProvider, angleProvider),
+                        arc, distanceProvider, angleProvider, shooterConditions),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(2)),
 
-                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider)
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider,
+                        shooterConditions)
         );
     }
 }

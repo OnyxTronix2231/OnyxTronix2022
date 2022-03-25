@@ -8,18 +8,19 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.autonomousPaths.PathRedCloseClimberTwoBalls;
 import frc.robot.drivetrain.commands.ResetOdometryToPose;
 import frc.robot.intake.Intake;
-import frc.robot.providers.AngleProvider;
-import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 
 
 public class RedCloseClimberTwoBalls extends SequentialCommandGroup {
 
     public RedCloseClimberTwoBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                    BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                   DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
+                                   BooleanSupplier shooterConditions) {
         PathRedCloseClimberTwoBalls p = new PathRedCloseClimberTwoBalls();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
@@ -27,7 +28,7 @@ public class RedCloseClimberTwoBalls extends SequentialCommandGroup {
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
-                        angleProvider)
+                        angleProvider, shooterConditions)
         );
     }
 }
