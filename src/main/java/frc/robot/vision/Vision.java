@@ -29,6 +29,10 @@ public class Vision extends SubsystemBase {
         limelight.setLedMode(LimelightLedMode.forceOn);
     }
 
+    public void setLedMode(LimelightLedMode limelightLedMode) {
+        limelight.setLedMode(limelightLedMode);
+    }
+
     @Override
     public void periodic() {
         limelightTarget = limelight.getTarget();
