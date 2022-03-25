@@ -90,12 +90,10 @@ public class DriverOi {
         Trigger right = new JoystickButton(controller, controller.getButtonRight());
         new DriverTurretOiBinder(yawControl, left, right);
 
-        Trigger swd = new JoystickButton(controller, controller.getCenterLeft());
-        new DriverSWDOiBinder(driveTrain, yawControl, shooter, arc, swd);
-
         Trigger load = new JoystickButton(controller, controller.getCenterRight());
         new LoadBallsOiBinder(ballTrigger, loader, load);
         return  this;
+
 
     }
 

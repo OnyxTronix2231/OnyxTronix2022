@@ -11,6 +11,8 @@ import frc.robot.conveyor.ballTrigger.DeputyBallTriggerOiBinder;
 import frc.robot.conveyor.loader.DeputyLoaderOiBinder;
 import frc.robot.conveyor.loader.Loader;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootWhileDriving.DriverSWDOiBinder;
+import frc.robot.crossPlatform.teleopCommands.ShootWhileDriving.LoadBallsOiBinder;
 import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
@@ -62,11 +64,12 @@ public class DeputyOi {
         return this;
     }
 
-    public DeputyOi withStopLookingAtTarget(YawControl yawControl){ //todo check
+    public DeputyOi withStopLookingAtTarget(YawControl yawControl) { //todo check
         Trigger centerLeft = new JoystickButton(controller, controller.getCenterRight());
         new DeputyStopLookingAtTargetOiBinder(yawControl, centerLeft);
         return this;
     }
+
     public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
                                 Turret turret, Vision vision) {
         Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());
@@ -80,5 +83,15 @@ public class DeputyOi {
         Trigger resetOdometry = new JoystickButton(controller, controller.getCenterLeft());
         new DeputyDriveTrainOiBinder(driveTrain, resetOdometry);
         return this;
+    }
+
+    public DeputyOi withTurret(DriveTrain driveTrain, YawControl yawControl, Shooter shooter, Arc arc, BallTrigger ballTrigger, Loader loader) {
+
+        Trigger swd = new JoystickButton(controller, controller.getButtonRight());
+        new DriverSWDOiBinder(driveTrain, yawControl, shooter, arc, swd);
+
+
+        return this;
+
     }
 }

@@ -154,6 +154,7 @@ public class Robot extends TimedRobot {
                 .withClimber(arms, stabilizers)
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
+                .withTurret(driveTrain, turret, shooter, arc, ballTrigger, loader)
         ;
 
         new CombineOi(driverOi, deputyOi)
