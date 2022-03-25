@@ -1,7 +1,7 @@
 package frc.robot.drivetrain.autonomousPaths;
 
 public class PathBlueCloseClimberStraightLine extends AbstractPath { // NEEDS CHECKING
-    private static final double X_START_POSE= 6.29;
+    private static final double X_START_POSE= 5.784;
     private static final double X_FIRST_POINT = 4.468;
 
     private static final double Y_START_POSE = 3.912;
