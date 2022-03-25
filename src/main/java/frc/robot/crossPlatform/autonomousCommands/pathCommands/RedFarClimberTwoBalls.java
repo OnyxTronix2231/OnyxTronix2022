@@ -14,6 +14,7 @@ import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
+import frc.robot.yawControl.YawControl;
 
 import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutoMoveAndIntake.INTAKE_SPEED_SUPPLIER;
 
@@ -21,13 +22,13 @@ import static frc.robot.crossPlatform.autonomousCommands.pathCommands.AutoMoveAn
 public class RedFarClimberTwoBalls extends SequentialCommandGroup {
 
     public RedFarClimberTwoBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                 BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                                 DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                 BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
+                                 DistanceProvider distanceProvider, AngleProvider angleProvider, AngleProvider turretAngleProvider) {
         PathRedFarClimberTwoBalls p = new PathRedFarClimberTwoBalls();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, turretAngleProvider,  p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)

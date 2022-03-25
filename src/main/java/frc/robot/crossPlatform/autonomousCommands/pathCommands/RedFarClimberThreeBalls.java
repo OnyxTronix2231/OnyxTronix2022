@@ -13,19 +13,20 @@ import frc.robot.providers.AngleProvider;
 import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
+import frc.robot.yawControl.YawControl;
 
 
 public class RedFarClimberThreeBalls extends SequentialCommandGroup {
 
     public RedFarClimberThreeBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                   BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                                   DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                   BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
+                                   DistanceProvider distanceProvider, AngleProvider angleProvider, AngleProvider turretAngleProvider) {
         PathRedFarClimberThreeBalls p = new PathRedFarClimberThreeBalls();
         addCommands(
                 new RedFarClimberTwoBalls(driveTrain, frontIntake, backIntake, loader,
-                        ballTrigger, turret, shooter, arc, distanceProvider, angleProvider),
+                        ballTrigger, turret, shooter, arc, distanceProvider, angleProvider, turretAngleProvider ),
 
-                        new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+                        new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, turretAngleProvider, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider)
