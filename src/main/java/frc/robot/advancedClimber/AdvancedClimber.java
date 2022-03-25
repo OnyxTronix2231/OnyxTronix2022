@@ -28,6 +28,10 @@ public class AdvancedClimber extends Stabilizer {
         return driveTrain.getPitch() >= angle;
     }
 
+    public boolean isOnDesiredPitchAngleStageTwo(double angle) {
+        return driveTrain.getPitch() <= angle;
+    }
+
     public double getCurrentPitch() {
         return driveTrain.getPitch();
     }

@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
-        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain);
+        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms, vision);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 

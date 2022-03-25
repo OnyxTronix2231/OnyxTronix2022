@@ -11,7 +11,7 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.*;
 public class ClimbWithStabilizersAndArmsStageTwoUntilPitch extends ParallelDeadlineGroup {
 
     public ClimbWithStabilizersAndArmsStageTwoUntilPitch(AdvancedClimber advancedClimber, Arms arms) {
-        super(new WaitUntilClimbedByPitch(advancedClimber, () -> DESIRED_PITCH_ANGLE_STAGE_TWO),
+        super(new WaitUntilClimbedByPitchStageTwo(advancedClimber, () -> DESIRED_PITCH_ANGLE_STAGE_TWO),
                 new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_STAGE_TWO),
                     new MoveStabilizerBySpeed(advancedClimber, () -> DESIRED_STABILIZER_SPEED_STAGE_TWO));
     }
