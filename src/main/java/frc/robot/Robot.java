@@ -153,7 +153,7 @@ public class Robot extends TimedRobot {
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(arms, stabilizers)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision, driveTrain)
                 .withResetOdometry(driveTrain)
         ;
 

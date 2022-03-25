@@ -106,7 +106,8 @@ public class DriverOi {
 
     public DriverOi withDriveTrainCalb(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                        BallTrigger ballTrigger, Turret turret, Shooter shooter, Arc arc,
-                                       DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                                       DistanceProvider distanceProvider, AngleProvider angleProvider,
+                                       BooleanSupplier shooterCondisions) {
         Trigger calibrate = new JoystickButton(controller, controller.getButtonUp());
         calibrate.whileActiveOnce(new RedFarClimberThreeBalls(driveTrain, frontIntake, backIntake, loader,
                 ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
