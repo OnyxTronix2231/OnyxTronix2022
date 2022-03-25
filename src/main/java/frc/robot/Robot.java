@@ -198,9 +198,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        if (vision != null) {
-            vision.ledsOff();
-        }
+        //if (vision != null) {
+        //    vision.ledsOff();
+        //}
         if (turret != null) {
             turret.setNeutralModeCoast();
         }

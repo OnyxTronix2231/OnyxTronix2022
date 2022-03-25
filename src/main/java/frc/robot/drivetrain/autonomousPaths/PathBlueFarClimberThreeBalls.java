@@ -3,7 +3,7 @@ package frc.robot.drivetrain.autonomousPaths;
 public class PathBlueFarClimberThreeBalls extends AbstractPath { // CHECKED
 
     static final double X_DESTINATION_MIDDLE_POINT = 6.605;
-    static final double X_SECOND_BALL = 5.053;
+    static final double X_SECOND_BALL = 5.075;
 
     static final double Y_DESTINATION_MIDDLE_POINT = 1.595;
     static final double Y_SECOND_BALL = 1.617;
