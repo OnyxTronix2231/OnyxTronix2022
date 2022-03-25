@@ -9,7 +9,7 @@ public class AdvancedClimberConstants {
 
 
     // STAGE ONE //
-    public static final double DESIRED_PITCH_ANGLE_STAGE_ONE = 60; // TODO CHANGE
+    public static final double DESIRED_PITCH_ANGLE_STAGE_ONE = 70; // TODO WORKING
     public static final double DESIRED_ARMS_SPEED_STAGE_ONE = 0.3; // TODO CHANGE
 
     // STAGE TWO //
