@@ -20,16 +20,16 @@ public class OnyxRGB extends SubsystemBase {
     private static OnyxRGB instance;
 
     private OnyxRGB() {
-            canifier = new CANifier(LED_ID);
-            canifier.setPWMOutput(RGB_CONTROLLER_CHANNEL.value, DUTY_CYCLES);
-            canifier.enablePWMOutput(RGB_CONTROLLER_CHANNEL.value, true);
+        canifier = new CANifier(LED_ID);
+        canifier.setPWMOutput(RGB_CONTROLLER_CHANNEL.value, DUTY_CYCLES);
+        canifier.enablePWMOutput(RGB_CONTROLLER_CHANNEL.value, true);
 
-            RGB = new float[RGB_ARRAY_SIZE];
-            new RGBShuffleboard();
+        RGB = new float[RGB_ARRAY_SIZE];
+        // new RGBShuffleboard();
     }
 
     public static OnyxRGB getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new OnyxRGB();
         }
         return instance;
