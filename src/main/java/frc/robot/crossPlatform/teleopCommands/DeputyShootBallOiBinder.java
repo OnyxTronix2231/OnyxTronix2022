@@ -13,8 +13,8 @@ public class DeputyShootBallOiBinder {
 
     public DeputyShootBallOiBinder(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
                                    Vision vision, Turret turret, Trigger shootToEjectEnemyBalls,
-                                   Trigger shootByVision, DriveTrain driveTrain) {
+                                   Trigger shootByVision) {
         shootToEjectEnemyBalls.whileActiveContinuous(new EjectEnemyBall(shooter, arc, loader, ballTrigger));
-        shootByVision.whileActiveContinuous(new ShootByVision(shooter, arc, turret, loader, ballTrigger, vision, driveTrain));
+        shootByVision.whileActiveContinuous(new ShootByVision(shooter, arc, turret, loader, ballTrigger, vision));
     }
 }

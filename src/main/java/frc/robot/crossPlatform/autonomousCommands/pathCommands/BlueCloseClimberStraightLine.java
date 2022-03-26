@@ -26,6 +26,6 @@ public class BlueCloseClimberStraightLine extends SequentialCommandGroup {
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
                 new WaitCommand(RESET_TIME_DELAY),
                 new MoveByPath(driveTrain, p.getPath(1)),
-                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider, driveTrain));
+                new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider, angleProvider));
     }
 }

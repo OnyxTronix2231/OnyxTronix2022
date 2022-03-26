@@ -72,7 +72,7 @@ public class DeputyOi {
         Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
         new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
-                shootWithVision, driveTrain);
+                shootWithVision);
         return this;
     }
 
