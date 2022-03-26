@@ -1,6 +1,7 @@
 package frc.robot.providers;
 
 import frc.robot.arc.Arc;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
@@ -9,8 +10,9 @@ public class ShootBallConditionalsWithVisionProvider extends ShootBallConditions
 
     private final Vision vision;
 
-    public ShootBallConditionalsWithVisionProvider(Shooter shooter, Turret turret, Arc arc, Vision vision) {
-        super(shooter, turret, arc);
+    public ShootBallConditionalsWithVisionProvider(Shooter shooter, Turret turret, Arc arc, Vision vision,
+                                                   DriveTrain driveTrain) {
+        super(shooter, turret, arc, driveTrain);
         this.vision = vision;
     }
 
