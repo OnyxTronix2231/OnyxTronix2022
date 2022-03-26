@@ -8,7 +8,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
