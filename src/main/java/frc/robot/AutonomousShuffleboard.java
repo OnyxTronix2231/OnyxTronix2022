@@ -16,6 +16,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.yawControl.YawControl;
 
 import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 
 public class AutonomousShuffleboard {
 
@@ -23,8 +24,8 @@ public class AutonomousShuffleboard {
 
     public AutonomousShuffleboard(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                  DistanceProvider distanceProvider, AngleProvider angleProvider,
-                                  AngleProvider turretAngleProvider, BooleanSupplier shooterConditions) {
+                                  DistanceProvider distanceProvider,
+                                  DoubleSupplier angleProvider, BooleanSupplier shooterConditions) {
         autonomousChooser = new SendableChooser<>();
 
         autonomousChooser.addOption("straight line from RED close climber point", new RedCloseClimberStraightLine(
@@ -37,15 +38,15 @@ public class AutonomousShuffleboard {
 
         autonomousChooser.addOption("2 balls from RED far climber start point", new RedFarClimberTwoBalls(
                 driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
-                angleProvider, turretAngleProvider, shooterConditions));
+                angleProvider, shooterConditions));
 
         autonomousChooser.addOption("3 balls from RED far climber start point", new RedFarClimberThreeBalls(
                 driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
-                angleProvider, turretAngleProvider, shooterConditions));
+                angleProvider, shooterConditions));
 
         autonomousChooser.addOption("4 balls RED far climber start point", new RedFarClimberFourBalls(driveTrain,
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
-                turretAngleProvider, shooterConditions));
+                shooterConditions));
 
         autonomousChooser.addOption("straight line from BLUE close climber point",
                 new BlueCloseClimberStraightLine(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,

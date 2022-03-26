@@ -171,7 +171,7 @@ public class Robot extends TimedRobot {
 
         autonomousShuffleboard = new AutonomousShuffleboard(driveTrain, intakeFront,
                 intakeBack, loader, ballTrigger, turret, shooter, arc, distanceProviderByVisionAndOdometry,
-                angleProviderByVisionAndOdometry, angleProviderByOdometry, shootBallsConditions);
+                angleProviderByVisionAndOdometry, shootBallsConditions);
 
         firstEnable = true;
     }

@@ -19,13 +19,13 @@ public class RedFarClimberTwoBalls extends SequentialCommandGroup {
     public RedFarClimberTwoBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                  BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
                                  DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
-                                 DoubleSupplier turretAngleProvider, BooleanSupplier shooterConditions) {
+                                 BooleanSupplier shooterConditions) {
         PathRedFarClimberTwoBalls p = new PathRedFarClimberTwoBalls();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
                 new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
-                        turretAngleProvider, p.getPath(1)),
+                        angleProvider, p.getPath(1)),
 
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider, shooterConditions)

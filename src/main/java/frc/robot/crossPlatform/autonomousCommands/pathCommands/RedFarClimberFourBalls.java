@@ -18,11 +18,11 @@ public class RedFarClimberFourBalls extends SequentialCommandGroup {
     public RedFarClimberFourBalls(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
                                   BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
                                   DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
-                                  DoubleSupplier turretAngleProvider, BooleanSupplier shooterConditions) {
+                                  BooleanSupplier shooterConditions) {
         PathRedFarClimberFourBalls p = new PathRedFarClimberFourBalls();
         addCommands(
                 new RedFarClimberThreeBallsWithoutStoping(driveTrain, frontIntake, backIntake, loader, ballTrigger,
-                        turret, shooter, arc, distanceProvider, angleProvider, turretAngleProvider, shooterConditions),
+                        turret, shooter, arc, distanceProvider, angleProvider, angleProvider, shooterConditions),
 
                 new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
