@@ -121,6 +121,10 @@ public class DriveTrain extends SubsystemBase {
         reset = true;
     }
 
+    public boolean isStopped() {
+        return Math.abs(forwardSpeedValue) < STOPPING_SPEED_TOLERANCE;
+    }
+
     public double getForwardSpeedValue() {
         return forwardSpeedValue;
     }
