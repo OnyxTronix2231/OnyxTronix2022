@@ -19,7 +19,10 @@ public class DriversShuffleboard {
         Shuffleboard.getTab("Main").add("LL", limeLightFeed).withProperties(
                 Map.of("Show Crosshair", false, "Show Controls", false)).withWidget("Camera Stream");
 
-        Shuffleboard.getTab("Main").add("Camera1", cameraComponents.getFirstCamera()).withProperties(
+        Shuffleboard.getTab("Main").add("Back Camera", cameraComponents.getFirstCamera()).withProperties(
+                Map.of("Show Crosshair", false, "Show Controls", false)).withWidget("Camera Stream");
+
+        Shuffleboard.getTab("Main").add("Front Camera", cameraComponents.getSecondCamera()).withProperties(
                 Map.of("Show Crosshair", false, "Show Controls", false)).withWidget("Camera Stream");
     }
 }
