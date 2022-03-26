@@ -13,7 +13,6 @@ import java.util.List;
 public abstract class AbstractPath implements AutonomousPaths {
 
     protected ArrayList<Path> paths = new ArrayList<>();
-    protected ArrayList<Path> pathReversed = new ArrayList<>();
     protected Pose2d startPose;
 
     @Override
