@@ -165,8 +165,8 @@ public class Robot extends TimedRobot {
         ;
 
 
-//        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
-//                driveTrain::getAngleToTargetByPose));
+        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
+                driveTrain::getAngleToTargetByPose));
 
         new DriversShuffleboard(limeLightFeed, cameraComponents);
 
