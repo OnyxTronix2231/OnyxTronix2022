@@ -2,6 +2,16 @@ package frc.robot.advancedClimber;
 
 public class AdvancedClimberConstants {
 
+    // DESIRED PITCH ANGLE STAGE 0NE 25
+    // DESIRED PITCH ANGLE STAGE ZERO 72
+    //desiredPitchAngleStageTwo 5
+    // KEEP STABILIZER SPEED 0.2
+    // STABILIZED SETPOINT -80000
+    // ARMS DELTA 20000
+    // ARMS SPEED 0.3
+    // DELTA FOR STABILIZER FINISH 30000
+
+
     static final double DESIRED_ROLL_ANGLE = -10;
 
     // STAGE ZERO //

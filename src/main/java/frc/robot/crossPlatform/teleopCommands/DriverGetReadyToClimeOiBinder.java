@@ -8,9 +8,13 @@ import frc.robot.intake.Intake;
 import frc.robot.stabilizers.Stabilizer;
 import frc.robot.turret.Turret;
 
+import java.util.function.IntSupplier;
+
 public class DriverGetReadyToClimeOiBinder {
 
-    public DriverGetReadyToClimeOiBinder(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward, Trigger getReady){
-        getReady.whenActive(new GetReadyToClime(advancedClimber, turret, arc, intakeForward));
+    public DriverGetReadyToClimeOiBinder(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward,
+                                         IntSupplier startLoadPosition, IntSupplier startReleasePosition,
+                                         Trigger getReady){
+        getReady.whenActive(new GetReadyToClime(advancedClimber, turret, arc, intakeForward, startLoadPosition, startReleasePosition));
     }
 }

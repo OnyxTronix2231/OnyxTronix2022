@@ -10,8 +10,8 @@ import java.util.function.IntSupplier;
 public class MoveStabilizerUntilOnPosition extends ParallelDeadlineGroup {
 
     public MoveStabilizerUntilOnPosition(AdvancedClimber advancedClimber, DoubleSupplier speedSupplier,
-                                         IntSupplier positionSupplier, int stage) {
-        super(new WaitUntilStabilizersOnPositionByEncoder(advancedClimber, positionSupplier, stage),
+                                         IntSupplier positionSupplier) {
+        super(new WaitUntilStabilizersOnPositionByEncoder(advancedClimber, positionSupplier),
                 new MoveStabilizerBySpeed(advancedClimber, speedSupplier));
     }
 }

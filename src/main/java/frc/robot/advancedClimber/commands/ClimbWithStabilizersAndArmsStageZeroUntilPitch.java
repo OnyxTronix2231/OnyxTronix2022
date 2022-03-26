@@ -6,6 +6,7 @@ import frc.robot.arms.Arms;
 import frc.robot.arms.commands.MoveArmsBySpeed;
 import frc.robot.stabilizers.commands.MoveStabilizerBySpeed;
 import frc.robot.stabilizers.commands.MoveStabilizerUntilOnPosition;
+import frc.robot.stabilizers.commands.MoveStabilizerUntilOnPositionStages;
 
 import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
@@ -19,7 +20,7 @@ public class ClimbWithStabilizersAndArmsStageZeroUntilPitch extends ParallelDead
     public ClimbWithStabilizersAndArmsStageZeroUntilPitch(AdvancedClimber advancedClimber, Arms arms,
                                                           DoubleSupplier desiredPitchAngleStageZero,
                                                           IntSupplier positionStabilizer) {
-        super(new MoveStabilizerUntilOnPosition(advancedClimber, () ->
+        super(new MoveStabilizerUntilOnPositionStages(advancedClimber, () ->
                         DESIRED_STABILIZER_SPEED_STAGE_ZERO,
                 positionStabilizer, 1),
                 new MoveArmsUntilOnPitch(advancedClimber,arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE, desiredPitchAngleStageZero)

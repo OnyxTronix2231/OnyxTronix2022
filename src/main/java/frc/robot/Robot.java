@@ -86,6 +86,8 @@ public class Robot extends TimedRobot {
     private NetworkTableEntry desiredArmsDelta;
     private NetworkTableEntry keepStabilizerSpeed;
     private NetworkTableEntry deltaForStabilizerFinish;
+    private NetworkTableEntry startReleasePosition;
+    private NetworkTableEntry startLoadPosition;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -139,6 +141,8 @@ public class Robot extends TimedRobot {
         desiredArmsDelta = Shuffleboard.getTab("Climber").add("Arms delta", 0).getEntry();
         keepStabilizerSpeed = Shuffleboard.getTab("Climber").add("Keep stabilizer speed", 0).getEntry();
         deltaForStabilizerFinish = Shuffleboard.getTab("Climber").add("deltaForStabilizerFinish", 0).getEntry();
+        startLoadPosition = Shuffleboard.getTab("Climber").add("startLoadPosition", 0).getEntry();
+        startReleasePosition = Shuffleboard.getTab("Climber").add("startReleasePosition", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 desiredPitchAngleStageOne.getDouble(0)));
@@ -165,7 +169,8 @@ public class Robot extends TimedRobot {
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(stabilizers, turret, arc, intakeFront)
+                .withGetReadyToClime(stabilizers, turret, arc, intakeFront, ()-> (int)(startLoadPosition.getDouble(0)),
+                        ()-> (int)(startReleasePosition.getDouble(0)))
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
                 .withTurret(turret)
         ;

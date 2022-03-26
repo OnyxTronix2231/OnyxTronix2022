@@ -31,6 +31,7 @@ import humanControls.PlayStation5Controller;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
+import java.util.function.IntSupplier;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -77,9 +78,11 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withGetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward) {
+    public DriverOi withGetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward,
+                                        IntSupplier startLoadPosition, IntSupplier startReleasePosition) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverGetReadyToClimeOiBinder(advancedClimber, turret, arc, intakeForward, buttonLeft);
+        new DriverGetReadyToClimeOiBinder(advancedClimber, turret, arc, intakeForward, startLoadPosition, startReleasePosition,
+                buttonLeft);
         return this;
     }
 
