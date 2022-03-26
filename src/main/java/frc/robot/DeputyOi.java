@@ -67,11 +67,11 @@ public class DeputyOi {
         new DeputyStopLookingAtTargetOiBinder(yawControl, centerLeft);
         return this;
     }
-    public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
+    public DeputyOi withShooter(DriveTrain driveTrain, Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
                                 Turret turret, Vision vision) {
         Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
-        new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
+        new DeputyShootBallOiBinder(driveTrain, shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
                 shootWithVision);
         return this;
     }
