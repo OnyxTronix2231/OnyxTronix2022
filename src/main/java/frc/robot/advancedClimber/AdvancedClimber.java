@@ -14,6 +14,8 @@ public class AdvancedClimber extends Stabilizer {
 
     private final DriveTrain driveTrain;
     private int stage = 0;
+    private double pitchOffset;
+    private boolean firstCalibrate = true;
 
     public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain, Arms arms, Vision vision
     ,DoubleSupplier desiredPitch) {
@@ -22,16 +24,27 @@ public class AdvancedClimber extends Stabilizer {
         new AdvancedClimberShuffleBoard(this, arms, vision, desiredPitch);
     }
 
+    public void calibratePitch() {
+        if(firstCalibrate) {
+            pitchOffset = getCurrentPitch();
+            firstCalibrate = false;
+        }
+    }
+
+    public double getPitchWithOffset() {
+        return getCurrentPitch() - Math.abs(pitchOffset);
+    }
+
     public boolean isOnDesiredRollAngle() {
         return driveTrain.getRoll() >= DESIRED_ROLL_ANGLE;
     }
 
     public boolean isOnDesiredPitchAngle(double angle) {
-        return driveTrain.getPitch() >= angle;
+        return getPitchWithOffset() >= angle;
     }
 
     public boolean isOnDesiredPitchAngleStageTwo(double angle) {
-        return driveTrain.getPitch() <= angle;
+        return getPitchWithOffset() <= angle;
     }
 
     public double getCurrentPitch() {
