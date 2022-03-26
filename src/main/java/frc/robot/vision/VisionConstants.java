@@ -16,7 +16,7 @@ public final class VisionConstants {
     static final double TARGET_NOT_FOUND = -999;
     static final double TARGET_X_RTF = 800;  //TODO: check and change
     static final double TARGET_Y_RTF = 500;  //TODO: check and change
-    static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 30.1;
+    static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 29.6; // 29.6
     static final int PIPELINE = 0;
     static final Translation2d DEFAULT_POSE = new Translation2d(999, 999);
     static final double CM_TO_METERS = 100;
