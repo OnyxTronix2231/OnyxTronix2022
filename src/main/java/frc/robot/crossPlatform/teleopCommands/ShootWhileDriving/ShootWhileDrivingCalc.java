@@ -32,7 +32,7 @@ public class ShootWhileDrivingCalc {
      */
     public Vector2dEx getShooterOnlyVector() {
         double distance = drivetrain.getDistanceFromTargetByPose();
-        double magnitude = distance;
+        double magnitude = RPMToMPS((distanceToRPM(distance)));
         double direction = distanceToAngle(distance);
         return Vector2dEx.fromMagnitudeDirection(magnitude, direction);
     }
