@@ -76,7 +76,6 @@ public class Robot extends TimedRobot {
     Arms arms;
     AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
-    OnyxRGB rgb;
     boolean firstEnable = true;
 
     /**
@@ -124,7 +123,6 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
         stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain);
-        rgb = OnyxRGB.getInstance();
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
@@ -166,8 +164,8 @@ public class Robot extends TimedRobot {
         ;
 
 
-        //CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
-        //        driveTrain::getAngleToTargetByPose));
+        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
+                driveTrain::getAngleToTargetByPose));
 
         new DriversShuffleboard(limeLightFeed, cameraComponents);
 
@@ -206,9 +204,7 @@ public class Robot extends TimedRobot {
         if (turret != null) {
             turret.setNeutralModeCoast();
         }
-        if (rgb != null) {
-            rgb.turnOff();
-        }
+        OnyxRGB.getInstance().turnOff();
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -270,7 +266,7 @@ public class Robot extends TimedRobot {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
         if (firstEnable && arc != null) {
-            //CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
         }
         if(stabilizers != null){
