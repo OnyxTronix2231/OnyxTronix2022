@@ -5,6 +5,8 @@ import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.advancedClimber.commands.AutoClimb;
 import frc.robot.advancedClimber.commands.ReleaseArmsStageThree;
 import frc.robot.arms.Arms;
+import frc.robot.providers.ButtonProvider;
+import frc.robot.providers.ReleaseArmsButtonClicked;
 import frc.robot.vision.Vision;
 
 import java.util.function.DoubleSupplier;
@@ -19,9 +21,11 @@ public class DeputyAutoClimbOiBinder {
                                    DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
                                    DoubleSupplier desiredPitchAngleStageZero, IntSupplier stabilizerPosition,
                                    DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta, DoubleSupplier keepStabilizerSpeed,
-                                   Trigger releaseArms, IntSupplier deltaForStabilizerFinish) {
+                                   Trigger releaseArms, IntSupplier deltaForStabilizerFinish, ButtonProvider buttonProvider) {
         autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, vision, desiredPitchAngleStageOne, desiredPitchAngleStageTwo,
-                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed));
-        releaseArms.whileActiveContinuous(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish));
+                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, buttonProvider));
+        releaseArms.whenActive(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish).beforeStarting(
+                new ReleaseArmsButtonClicked(buttonProvider))
+        );
     }
 }

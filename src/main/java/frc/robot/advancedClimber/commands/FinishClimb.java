@@ -16,6 +16,6 @@ public class FinishClimb extends ParallelCommandGroup {
 
         public FinishClimb(AdvancedClimber advancedClimber, Arms arms, IntSupplier deltaForStabilizerFinish) {
             super(new MoveStabilizerUntilOnDeltaPosition(advancedClimber, () -> DESIRED_STABILIZER_SPEED_STAGE_FOUR, deltaForStabilizerFinish),
-                    new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_STAGE_THREE).withTimeout(1));
+                    new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_STAGE_THREE).withTimeout(0.5));
         }
     }

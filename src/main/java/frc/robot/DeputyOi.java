@@ -14,6 +14,7 @@ import frc.robot.crossPlatform.teleopCommands.DeputyAutoClimbOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DeputyShootBallOiBinder;
 import frc.robot.drivetrain.DeputyDriveTrainOiBinder;
 import frc.robot.drivetrain.DriveTrain;
+import frc.robot.providers.ButtonProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.stabilizers.DeputyStabilizersOiBinder;
 import frc.robot.turret.Turret;
@@ -48,11 +49,13 @@ public class DeputyOi {
         Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
         Trigger releaseArms = new JoystickButton(controller, controller.getButtonLeft());
 
+        ButtonProvider releaseArmsProvider = new ButtonProvider(releaseArms);
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
         new DeputyAutoClimbOiBinder(advancedClimber, arms, vision, autoClimb, desiredPitchAngleStageOne,
                 desiredPitchAngleStageTwo, desiredPitchAngleStageZero, desiredStablizerPosition,
-                desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, releaseArms, deltaForStabilizerFinish); // TODO Test AutoClimb
+                desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, releaseArms, deltaForStabilizerFinish,
+                releaseArmsProvider); // TODO Test AutoClimb
         return this;
     }
 

@@ -9,7 +9,6 @@ import java.util.function.IntSupplier;
 public class WaitUntilStabilizersOnDeltaPositionByEncoder extends CommandBase {
 
     private final IntSupplier positionSupplier;
-    private int currentPosition;
     private final AdvancedClimber advancedClimber;
 
     public WaitUntilStabilizersOnDeltaPositionByEncoder(AdvancedClimber advancedClimber, IntSupplier positionInEncoderUnitsSupplier) {
@@ -17,14 +16,12 @@ public class WaitUntilStabilizersOnDeltaPositionByEncoder extends CommandBase {
         this.advancedClimber = advancedClimber;
     }
 
-    @Override
     public void initialize() {
-        System.out.println("Value stabilizer:" + advancedClimber.getEncoderUnits());
-        currentPosition = (int)(advancedClimber.getEncoderUnits()) - positionSupplier.getAsInt();
+        advancedClimber.initEncoderUnits();
     }
 
     @Override
     public boolean isFinished() {
-        return advancedClimber.isEncoderOnTargetPositive(currentPosition);
+        return advancedClimber.isEncoderOnTargetPositive(positionSupplier.getAsInt());
     }
 }
