@@ -28,7 +28,7 @@ public class ArcShuffleBoard {
         Shuffleboard.getTab("Arc").addNumber("current encoderUnits pos",
                 () -> arc.getComponents().getCounter().getCount());
 
-        Shuffleboard.getTab("Arc").addNumber("current angle",
+        Shuffleboard.getTab("shoot").addNumber("current angle",
                 () -> encoderUnitsToAngle(arc.getComponents().getCounter().getCount()));
 
         Shuffleboard.getTab("Arc").addNumber("Current velocity",
