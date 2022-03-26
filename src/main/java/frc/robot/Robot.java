@@ -8,8 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.advancedClimber.AdvancedClimber;
@@ -29,6 +31,7 @@ import frc.robot.conveyor.loader.Loader;
 import frc.robot.conveyor.loader.LoaderComponents;
 import frc.robot.conveyor.loader.LoaderComponentsBase;
 import frc.robot.crossPlatform.teleopCommands.OdometryUpdater.UpdateOdometryByVision;
+import frc.robot.crossPlatform.teleopCommands.ShootBallBlind;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriveTrainComponents;
 import frc.robot.drivetrain.DriveTrainComponentsBase;
@@ -148,6 +151,9 @@ public class Robot extends TimedRobot {
                 .withTurret(turret)
         ;
 
+        NetworkTableEntry speed = Shuffleboard.getTab("shoot").add("speed", 0).getEntry();
+        NetworkTableEntry angle = Shuffleboard.getTab("shoot").add("angle", 0).getEntry();
+        Shuffleboard.getTab("shoot").add(new ShootBallBlind(shooter, arc, turret, loader, ballTrigger, ()-> speed.getDouble(0), ()-> angle.getDouble(0), ()-> 180 ));
         DeputyOi deputyOi = new DeputyOi()
                 .withStopLookingAtTarget(turret)
                 .withLoader(loader)

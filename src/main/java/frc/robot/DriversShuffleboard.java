@@ -21,5 +21,6 @@ public class DriversShuffleboard {
 
         Shuffleboard.getTab("Main").add("Camera1", cameraComponents.getFirstCamera()).withProperties(
                 Map.of("Show Crosshair", false, "Show Controls", false)).withWidget("Camera Stream");
+
     }
 }

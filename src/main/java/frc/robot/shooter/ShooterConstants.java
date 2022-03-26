@@ -7,12 +7,12 @@ public class ShooterConstants {
 
     static final int SEC_IN_MIN = 60;
     static final double DECI_SECONDS_PER_MINUTE = 600;
-    static final double KP = 0.25;
+    static final double KP = 0.19;
     static final double KI = 0.0004;
-    static final double KD = 15;
+    static final double KD = 10;
     static final double INTEGRAL_ZONE = 40;
     static final double CLOSE_LOOP_OUTPUT = 1023;
-    static final double MAX_VELOCITY = 14450 * 1.25;
+    static final double MAX_VELOCITY = 14850 * 1.25;
     static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
     static final double TOLERANCE = 100;
     static final double SPEED = 0;
@@ -46,7 +46,7 @@ public class ShooterConstants {
         }
 
         static double distanceToRPM(double distance) {
-            return 0.0031 * Math.pow(distance, 2) + 1.0414 * distance + 3136.8;
+            return 0.62* (0.0031 * Math.pow(distance, 2) + 1.0414 * distance + 3136.8);
         }
 
         static double RPMToMPS(double RPM) {
