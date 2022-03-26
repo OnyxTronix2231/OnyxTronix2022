@@ -15,24 +15,22 @@ public class UpdateOdometryByVision {
 
     private final DriveTrain driveTrain;
     private final YawControl yawControl;
-    private final Vision vision;
     private double lastTime;
 
-    public UpdateOdometryByVision(DriveTrain driveTrain, YawControl yawControl, Vision vision) {
+    public UpdateOdometryByVision(DriveTrain driveTrain, YawControl yawControl) {
         this.driveTrain = driveTrain;
         this.yawControl = yawControl;
-        this.vision = vision;
         lastTime = Timer.getFPGATimestamp();
     }
 
     public void updateOdometry() {
-        boolean shouldUpdate = vision.hasTarget();
+        boolean shouldUpdate = Vision.getInstance().hasTarget();
         double currentTime = Timer.getFPGATimestamp();
         double dt = currentTime - lastTime;
         if (shouldUpdate) {
-            if (dt > ODOMETRY_UPDATE_PERIOD && Math.abs(vision.getHorizontalAngleTurretToTargetRTT()) < FIXABLE_ANGLE_OFFSET) {
+            if (dt > ODOMETRY_UPDATE_PERIOD && Math.abs(Vision.getInstance().getHorizontalAngleTurretToTargetRTT()) < FIXABLE_ANGLE_OFFSET) {
                 lastTime = currentTime;
-                Translation2d visionTrans = vision.getXAndYAuto(yawControl);
+                Translation2d visionTrans = Vision.getInstance().getXAndYAuto(yawControl);
                 Rotation2d robotRotation = driveTrain.getPose().getRotation();
                 driveTrain.resetOdometryToPose(new Pose2d(visionTrans, robotRotation));
             }

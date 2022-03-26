@@ -6,14 +6,11 @@ import java.util.function.DoubleSupplier;
 
 public class AngleProviderByVision implements AngleProvider {
 
-    private final Vision vision;
-
-    public AngleProviderByVision(Vision vision) {
-        this.vision = vision;
+    public AngleProviderByVision() {
     }
 
     @Override
     public double getAsDouble() {
-        return -vision.getHorizontalAngleTurretToTargetRTT();
+        return -Vision.getInstance().getHorizontalAngleTurretToTargetRTT();
     }
 }
