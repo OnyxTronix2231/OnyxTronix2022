@@ -165,7 +165,8 @@ public class Robot extends TimedRobot {
         ;
 
 
-        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret, driveTrain::getAngleToTargetByPose));
+        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
+                driveTrain::getAngleToTargetByPose));
 
         new DriversShuffleboard(limeLightFeed, cameraComponents);
 
@@ -198,9 +199,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        //if (vision != null) {
-        //    vision.ledsOff();
-        //}
+        if (vision != null) {
+            vision.ledsOff();
+        }
         if (turret != null) {
             turret.setNeutralModeCoast();
         }

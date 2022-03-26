@@ -47,7 +47,7 @@ public class DriverOi {
         new DriverDriveTrainOiBinders(driveTrain, leftJoystick, rightJoystick);
         return this;
     }
-    
+
     public DriverOi withIntakeFrontAndLoadBallsPlanB(Intake intake, Loader loader, BallTrigger ballTrigger) {
         Trigger load = new JoystickButton(controller, controller.getBumperLeft());
         new DriverIntakeAndLoadBallsOiBinder(intake, loader, ballTrigger, load);
@@ -101,15 +101,6 @@ public class DriverOi {
     public DriverOi withTurretByOdometry(YawControl turret, AngleProvider angleProvider) {
         Trigger trigger = new JoystickButton(controller, controller.getBumperLeft());
         trigger.whileActiveOnce(new SmartRotateByAngle(turret, angleProvider));
-        return this;
-    }
-
-    public DriverOi withDriveTrainCalb(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,
-                                       BallTrigger ballTrigger, YawControl turret, Shooter shooter, Arc arc,
-                                       DistanceProvider distanceProvider, AngleProvider angleProvider) {
-        Trigger calibrate = new JoystickButton(controller, controller.getButtonUp());
-//        calibrate.whileActiveOnce(new RedFarClimberThreeBalls(driveTrain, frontIntake, backIntake, loader,
-//                ballTrigger, turret, shooter, arc, distanceProvider, angleProvider));
         return this;
     }
 }
