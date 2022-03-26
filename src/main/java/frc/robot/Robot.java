@@ -136,7 +136,7 @@ public class Robot extends TimedRobot {
         var angleProviderByVisionAndOdometry = new AngleProviderByVisionAndOdemetry
                 (vision, angleProviderByVision, angleProviderByOdometry);
 
-        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc);
+        var shootBallsConditions = new ShootBallConditionsProvider(shooter, turret, arc, driveTrain);
 
         DriverOi driverOi = new DriverOi()
                 .withDriveTrain(driveTrain)
@@ -153,7 +153,7 @@ public class Robot extends TimedRobot {
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(arms, stabilizers)
-                .withShooter(shooter, arc, loader, ballTrigger, turret, vision, driveTrain)
+                .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;
 

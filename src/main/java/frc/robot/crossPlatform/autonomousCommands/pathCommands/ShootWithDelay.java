@@ -9,7 +9,6 @@ import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
-
 public class ShootWithDelay extends ParallelDeadlineGroup {
 
     public ShootWithDelay(Shooter shooter, Arc arc, Turret turret, Loader loader, BallTrigger ballTrigger,
