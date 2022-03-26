@@ -14,13 +14,16 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.*;
 
 public class ClimbWithStabilizersAndArmsStageZeroUntilPitch extends ParallelDeadlineGroup {
 
+    private final AdvancedClimber advancedClimber;
+
     public ClimbWithStabilizersAndArmsStageZeroUntilPitch(AdvancedClimber advancedClimber, Arms arms,
                                                           DoubleSupplier desiredPitchAngleStageZero,
                                                           IntSupplier positionStabilizer) {
         super(new MoveStabilizerUntilOnPosition(advancedClimber, () ->
                         DESIRED_STABILIZER_SPEED_STAGE_ZERO,
-                positionStabilizer),
+                positionStabilizer, 1),
                 new MoveArmsUntilOnPitch(advancedClimber,arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE, desiredPitchAngleStageZero)
                );
+        this.advancedClimber = advancedClimber;
     }
 }

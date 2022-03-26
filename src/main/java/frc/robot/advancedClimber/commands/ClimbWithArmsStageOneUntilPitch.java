@@ -12,8 +12,12 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_PITCH_A
 
 public class ClimbWithArmsStageOneUntilPitch extends ParallelDeadlineGroup {
 
+    private final AdvancedClimber advancedClimber;
+
     public ClimbWithArmsStageOneUntilPitch(AdvancedClimber advancedClimber, Arms arms, DoubleSupplier desiredPitchAngleStageOne) {
-        super(new WaitUntilClimbedByPitch(advancedClimber, desiredPitchAngleStageOne),
+        super(new WaitUntilClimbedByPitchStages(advancedClimber, desiredPitchAngleStageOne, 0),
                 new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE));
+        this.advancedClimber = advancedClimber;
     }
+
 }

@@ -8,11 +8,11 @@ import java.util.function.IntSupplier;
 
 public class MoveStabilizerBackAndForth extends SequentialCommandGroup {
 
-    public MoveStabilizerBackAndForth(Stabilizer climberStabilizer, DoubleSupplier forwardSpeedSupplier,
-                                      DoubleSupplier backwardSpeedSupplier, IntSupplier forwardDesiredPosition,
-                                      IntSupplier backwardDesiredPosition) {
-        super(new MoveStabilizerUntilOnPosition(climberStabilizer, forwardSpeedSupplier, backwardDesiredPosition),
-                new MoveStabilizerUntilOnPosition(climberStabilizer, backwardSpeedSupplier, backwardDesiredPosition));
-
-    }
+//    public MoveStabilizerBackAndForth(Stabilizer climberStabilizer, DoubleSupplier forwardSpeedSupplier,
+//                                      DoubleSupplier backwardSpeedSupplier, IntSupplier forwardDesiredPosition,
+//                                      IntSupplier backwardDesiredPosition) {
+//        super(new MoveStabilizerUntilOnPosition(climberStabilizer, forwardSpeedSupplier, backwardDesiredPosition),
+//                new MoveStabilizerUntilOnPosition(climberStabilizer, backwardSpeedSupplier, backwardDesiredPosition));
+//
+//    }
 }

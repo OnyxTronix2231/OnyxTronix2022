@@ -17,8 +17,8 @@ public class DeputyAutoClimbOiBinder {
     public DeputyAutoClimbOiBinder(AdvancedClimber advancedClimber, Arms arms, Vision vision, Trigger autoClimb,
                                    DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
                                    DoubleSupplier desiredPitchAngleStageZero, IntSupplier stabilizerPosition,
-                                   DoubleSupplier desiredArmsSpeed) {
+                                   DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta) {
         autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, vision, desiredPitchAngleStageOne, desiredPitchAngleStageTwo,
-                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed));
+                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta));
     }
 }

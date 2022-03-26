@@ -13,6 +13,7 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ROLL_AN
 public class AdvancedClimber extends Stabilizer {
 
     private final DriveTrain driveTrain;
+    private int stage = 0;
 
     public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain, Arms arms, Vision vision
     ,DoubleSupplier desiredPitch) {
@@ -43,5 +44,13 @@ public class AdvancedClimber extends Stabilizer {
 
     public double getCurrentYaw() {
         return driveTrain.getHeading();
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 }

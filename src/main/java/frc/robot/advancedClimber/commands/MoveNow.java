@@ -13,10 +13,11 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_STABILI
 
 public class MoveNow extends ParallelDeadlineGroup {
 
+
     public MoveNow(AdvancedClimber advancedClimber, Arms arms,
                    DoubleSupplier desiredPitchAngleStageZero
     ) {
-        super(new MoveArmsUntilOnPitch(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE, desiredPitchAngleStageZero)
+        super(new MoveArmsUntilOnPitchStages(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE, desiredPitchAngleStageZero,2)
         );
     }
 }

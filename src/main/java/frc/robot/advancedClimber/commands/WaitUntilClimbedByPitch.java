@@ -7,8 +7,8 @@ import java.util.function.DoubleSupplier;
 
 public class WaitUntilClimbedByPitch extends CommandBase {
 
-    private final AdvancedClimber advancedClimber;
-    private final DoubleSupplier pitchAngleSupplier;
+    protected final AdvancedClimber advancedClimber;
+    protected final DoubleSupplier pitchAngleSupplier;
 
     public WaitUntilClimbedByPitch(AdvancedClimber advancedClimber, DoubleSupplier pitchAngleSupplier) {
         this.advancedClimber = advancedClimber;

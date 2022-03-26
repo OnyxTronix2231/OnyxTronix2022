@@ -1,28 +1,43 @@
 package frc.robot.arms.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arms.Arms;
-import frc.robot.stabilizers.Stabilizer;
 
 import java.util.function.IntSupplier;
 
     public class WaitUntilArmsOnPositionByEncoder extends CommandBase {
 
         private final Arms arms;
-        private int positionSupplier;
+        private final IntSupplier positionSupplier;
+        private int currentPosition;
+        private final int stage;
+        private final AdvancedClimber advancedClimber;
 
-        public WaitUntilArmsOnPositionByEncoder(Arms arms, IntSupplier positionInEncoderUnitsSupplier) {
+        public WaitUntilArmsOnPositionByEncoder(AdvancedClimber advancedClimber, Arms arms, IntSupplier positionInEncoderUnitsSupplier, int stage) {
             this.arms = arms;
-            this.positionSupplier = positionInEncoderUnitsSupplier.getAsInt();
+            this.stage = stage;
+            this.positionSupplier = positionInEncoderUnitsSupplier;
+            this.advancedClimber = advancedClimber;
         }
 
         @Override
         public void initialize() {
-            positionSupplier += (int)(arms.getEncoderUnits());
+            System.out.println("value:" + arms.getEncoderUnits());
+            currentPosition = (int)(arms.getEncoderUnits()) + positionSupplier.getAsInt();
+            arms.setMaxClimbUnits(currentPosition);
         }
 
         @Override
         public boolean isFinished() {
-            return arms.isEncoderOnTarget(positionSupplier);
+            return arms.isEncoderOnTarget(currentPosition) || advancedClimber.getStage() != stage;
+        }
+
+        @Override
+        public void end(boolean interrupted) {
+            if(stage == advancedClimber.getStage() && arms.isEncoderOnTarget(currentPosition)) {
+                advancedClimber.setStage(stage + 1);
+                System.out.println("Stage" + stage);
+            }
         }
     }
