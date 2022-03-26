@@ -14,7 +14,7 @@ public final class BallTriggerConstants {
         static final int ANALOG_ID= 2;
         static final int SUPPLY_CURRENT_LIMIT = 20;
         static final int SUPPLY_TRIGGER_THRESHOLD_CURRENT = 30;
-        static final int SUPPLY_TRIGGER_THRESHOLD_TIME = 50;
+        static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0.05;
         static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = true;
         static final double OPEN_LOOP_RAMP = 0.1;
         static final double CLOSE_LOOP_RAMP = 0;
