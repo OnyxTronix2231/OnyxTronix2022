@@ -3,6 +3,7 @@ package frc.robot.crossPlatform.teleopCommands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.advancedClimber.commands.AutoClimb;
+import frc.robot.advancedClimber.commands.ReleaseArmsStageThree;
 import frc.robot.arms.Arms;
 import frc.robot.vision.Vision;
 
@@ -17,8 +18,10 @@ public class DeputyAutoClimbOiBinder {
     public DeputyAutoClimbOiBinder(AdvancedClimber advancedClimber, Arms arms, Vision vision, Trigger autoClimb,
                                    DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
                                    DoubleSupplier desiredPitchAngleStageZero, IntSupplier stabilizerPosition,
-                                   DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta) {
+                                   DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta, DoubleSupplier keepStabilizerSpeed,
+                                   Trigger releaseArms, IntSupplier deltaForStabilizerFinish) {
         autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, vision, desiredPitchAngleStageOne, desiredPitchAngleStageTwo,
-                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta));
+                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed));
+        releaseArms.whileActiveContinuous(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish));
     }
 }

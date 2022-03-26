@@ -84,6 +84,8 @@ public class Robot extends TimedRobot {
     private NetworkTableEntry desiredPositionStabilizerStageZero;
     private NetworkTableEntry desiredArmsSpeed;
     private NetworkTableEntry desiredArmsDelta;
+    private NetworkTableEntry keepStabilizerSpeed;
+    private NetworkTableEntry deltaForStabilizerFinish;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -135,6 +137,8 @@ public class Robot extends TimedRobot {
         desiredPitchAngleStageTwo = Shuffleboard.getTab("Climber").add("Pitch angle stage two", 0).getEntry();
         desiredArmsSpeed = Shuffleboard.getTab("Climber").add("ArmsSpeed", 0).getEntry();
         desiredArmsDelta = Shuffleboard.getTab("Climber").add("Arms delta", 0).getEntry();
+        keepStabilizerSpeed = Shuffleboard.getTab("Climber").add("Keep stabilizer speed", 0).getEntry();
+        deltaForStabilizerFinish = Shuffleboard.getTab("Climber").add("deltaForStabilizerFinish", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 desiredPitchAngleStageOne.getDouble(0)));
@@ -173,7 +177,8 @@ public class Robot extends TimedRobot {
                 .withClimber(arms, stabilizers, vision, () -> desiredPitchAngleStageOne.getDouble(0),
                         () -> desiredPitchAngleStageTwo.getDouble(0), () -> desiredPitchAngleStageZero.getDouble(0),
                         () -> (int)(desiredPositionStabilizerStageZero.getDouble(0)),
-                        () -> desiredArmsSpeed.getDouble(0), () -> (int)(desiredArmsDelta.getDouble(0)))
+                        () -> desiredArmsSpeed.getDouble(0), () -> (int)(desiredArmsDelta.getDouble(0)),
+                        () -> keepStabilizerSpeed.getDouble(0), () -> (int)(deltaForStabilizerFinish.getDouble(0)))
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;

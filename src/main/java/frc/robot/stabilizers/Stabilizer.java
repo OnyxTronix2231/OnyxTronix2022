@@ -22,6 +22,10 @@ public class Stabilizer extends SubsystemBase {
         return Math.abs(getEncoderUnits()) >= Math.abs(desiredPosition);
     }
 
+    public boolean isEncoderOnTargetPositive(int desiredPosition) {
+        return Math.abs(getEncoderUnits()) <= Math.abs(desiredPosition);
+    }
+
     public double getEncoderUnits() {
         return components.getEncoder().getCount();
     }

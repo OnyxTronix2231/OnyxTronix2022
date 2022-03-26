@@ -16,7 +16,8 @@ import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.CLI
 public class GetReadyToClime extends ParallelCommandGroup {
 
     public GetReadyToClime(Stabilizer stabilizer, Turret turret, Arc arc, Intake intakeForward) {
-        super(new RotateToAngleRTR(turret, () -> CLIME_TURRET_ANGLE),
+        super(
+                new RotateToAngleRTR(turret, () -> CLIME_TURRET_ANGLE),
                 new MoveArcToAngle(arc, () -> CLIME_ARC_ANGLE),
                 new MoveStabilizerBySpeed(stabilizer, ()-> 0),
                 new OpenPiston(intakeForward));

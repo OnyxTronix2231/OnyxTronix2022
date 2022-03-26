@@ -27,5 +27,6 @@ public class AdvancedClimberConstants {
 
     // STAGE FOUR //
 
+    public static final double DESIRED_STABILIZER_SPEED_STAGE_FOUR = -0.2; // TODO CHANGE
 
 }

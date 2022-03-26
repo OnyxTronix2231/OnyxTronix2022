@@ -20,14 +20,14 @@ public class AutoClimb extends SequentialCommandGroup {
     public AutoClimb(AdvancedClimber advancedClimber, Arms arms, Vision vision, DoubleSupplier desiredPitchAngleStageOne,
                      DoubleSupplier desiredPitchAngleStageTwo, DoubleSupplier desiredPitchAngleStageZero,
                      IntSupplier stabilizerPosition, DoubleSupplier desiredArmsSpeed,
-                     IntSupplier desiredArmsDelta) {
+                     IntSupplier desiredArmsDelta, DoubleSupplier keepStabilizerSpeed) {
         super(
                 new ClimbWithArmsStageOneUntilPitch(advancedClimber, arms, desiredPitchAngleStageOne),
                 new ClimbWithStabilizersAndArmsStageZeroUntilPitch(advancedClimber, arms, desiredPitchAngleStageZero, stabilizerPosition),
                 new MoveNow(advancedClimber, arms, desiredPitchAngleStageZero),
 //                new MoveArmsUntilOnPosition(advancedClimber, arms, desiredArmsSpeed, desiredArmsDelta),
                 new ClimbWithStabilizersAndArmsStageTwoUntilPitch(advancedClimber, desiredPitchAngleStageTwo),
-                new ReleaseArmsStageThree(advancedClimber, arms).withTimeout(RELEASE_ARMS_TIMEOUT),
+                new KeepPowerStabilizer(advancedClimber,keepStabilizerSpeed),
                 new EveryoneClaps(vision));
     }
 }

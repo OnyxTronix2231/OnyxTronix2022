@@ -41,15 +41,18 @@ public class DeputyOi {
     public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber, Vision vision,
                                 DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
                                 DoubleSupplier desiredPitchAngleStageZero, IntSupplier desiredStablizerPosition,
-                                DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta) {
+                                DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta,
+                                DoubleSupplier keepStabilizerSpeed, IntSupplier deltaForStabilizerFinish) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
         Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
+        Trigger releaseArms = new JoystickButton(controller, controller.getButtonLeft());
+
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
         new DeputyAutoClimbOiBinder(advancedClimber, arms, vision, autoClimb, desiredPitchAngleStageOne,
                 desiredPitchAngleStageTwo, desiredPitchAngleStageZero, desiredStablizerPosition,
-                desiredArmsSpeed, desiredArmDelta); // TODO Test AutoClimb
+                desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, releaseArms, deltaForStabilizerFinish); // TODO Test AutoClimb
         return this;
     }
 
