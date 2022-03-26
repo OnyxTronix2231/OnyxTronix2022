@@ -11,8 +11,8 @@ import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.RGB.OnyxRGB;
 import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
@@ -53,8 +53,7 @@ import frc.robot.yawControl.YawControl;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
-import static frc.robot.Constants.VISION_PIPELINE;
+import static frc.robot.Constants.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -77,6 +76,7 @@ public class Robot extends TimedRobot {
     Arms arms;
     AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
+    OnyxRGB rgb;
     boolean firstEnable = true;
 
     /**
@@ -124,6 +124,7 @@ public class Robot extends TimedRobot {
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
         stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain);
+        rgb = OnyxRGB.getInstance();
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret, vision);
 
@@ -165,8 +166,8 @@ public class Robot extends TimedRobot {
         ;
 
 
-        CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
-                driveTrain::getAngleToTargetByPose));
+        //CommandScheduler.getInstance().setDefaultCommand(turret, new RotateToAngleRTF(turret,
+        //        driveTrain::getAngleToTargetByPose));
 
         new DriversShuffleboard(limeLightFeed, cameraComponents);
 
@@ -204,6 +205,9 @@ public class Robot extends TimedRobot {
         }
         if (turret != null) {
             turret.setNeutralModeCoast();
+        }
+        if (rgb != null) {
+            rgb.turnOff();
         }
         new Timer().schedule(new TimerTask() {
             @Override
@@ -266,7 +270,7 @@ public class Robot extends TimedRobot {
             autonomousShuffleboard.getSelectedCommand().cancel();
         }
         if (firstEnable && arc != null) {
-            CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
+            //CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
         }
         if(stabilizers != null){
