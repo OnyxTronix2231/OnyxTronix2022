@@ -26,6 +26,7 @@ import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
 
 import java.util.function.DoubleSupplier;
+import java.util.function.IntSupplier;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
@@ -38,14 +39,17 @@ public class DeputyOi {
     }
 
     public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber, Vision vision,
-                                DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo) {
+                                DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
+                                DoubleSupplier desiredPitchAngleStageZero, IntSupplier desiredStablizerPosition,
+                                DoubleSupplier desiredArmsSpeed) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
         Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
         new DeputyAutoClimbOiBinder(advancedClimber, arms, vision, autoClimb, desiredPitchAngleStageOne,
-                desiredPitchAngleStageTwo); // TODO Test AutoClimb
+                desiredPitchAngleStageTwo, desiredPitchAngleStageZero, desiredStablizerPosition,
+                desiredArmsSpeed); // TODO Test AutoClimb
         return this;
     }
 

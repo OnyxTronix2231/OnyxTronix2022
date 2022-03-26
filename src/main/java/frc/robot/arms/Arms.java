@@ -12,6 +12,15 @@ public class Arms extends SubsystemBase {
         //climberShuffleBoard = new ArmsShuffleBoard(this);
     }
 
+    public boolean isEncoderOnTarget(int desiredPosition) {
+        return Math.abs(getEncoderUnits()) >= Math.abs(desiredPosition);
+    }
+
+    public double getEncoderUnits() {
+        return components.getMasterMotorEncoder().getCount();
+    }
+
+
     public void moveArmsBySpeed(double speed) {
         components.getMasterMotor().set(speed);
     }

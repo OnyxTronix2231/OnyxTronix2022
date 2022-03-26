@@ -80,6 +80,9 @@ public class Robot extends TimedRobot {
     boolean firstEnable = true;
     private NetworkTableEntry desiredPitchAngleStageOne;
     private NetworkTableEntry desiredPitchAngleStageTwo;
+    private NetworkTableEntry desiredPitchAngleStageZero;
+    private NetworkTableEntry desiredPositionStabilizerStageZero;
+    private NetworkTableEntry desiredArmsSpeed;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -125,8 +128,11 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
+        desiredPitchAngleStageZero= Shuffleboard.getTab("Climber").add("Pitch angle stage zero", 0).getEntry();
+        desiredPositionStabilizerStageZero= Shuffleboard.getTab("Climber").add("StablizerPosition set", 0).getEntry();
         desiredPitchAngleStageOne = Shuffleboard.getTab("Climber").add("Pitch angle stage one", 0).getEntry();
         desiredPitchAngleStageTwo = Shuffleboard.getTab("Climber").add("Pitch angle stage two", 0).getEntry();
+        desiredArmsSpeed = Shuffleboard.getTab("Climber").add("ArmsSpeed", 0).getEntry();
 
         Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
                 desiredPitchAngleStageOne.getDouble(0)));
@@ -163,7 +169,9 @@ public class Robot extends TimedRobot {
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
                 .withClimber(arms, stabilizers, vision, () -> desiredPitchAngleStageOne.getDouble(0),
-                        () -> desiredPitchAngleStageTwo.getDouble(0))
+                        () -> desiredPitchAngleStageTwo.getDouble(0), () -> desiredPitchAngleStageZero.getDouble(0),
+                        () -> (int)(desiredPositionStabilizerStageZero.getDouble(0)),
+                        () -> desiredArmsSpeed.getDouble(0))
                 .withShooter(shooter, arc, loader, ballTrigger, turret, vision)
                 .withResetOdometry(driveTrain)
         ;
