@@ -25,7 +25,7 @@ public class GetReadyToClime extends ParallelCommandGroup {
         super(  new CalibratePitch(advancedClimber),
                 new RotateToAngleRTR(turret, () -> CLIME_TURRET_ANGLE),
                 new MoveArcToAngle(arc, () -> CLIME_ARC_ANGLE),
-                new StartClimb(advancedClimber, startLoadPosition, startReleasePosition),
+//                new StartClimb(advancedClimber, startLoadPosition, startReleasePosition),
                 new OpenPiston(intakeForward));
     }
 }

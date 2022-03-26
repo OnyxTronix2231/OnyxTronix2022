@@ -24,8 +24,6 @@ public class DeputyAutoClimbOiBinder {
                                    Trigger releaseArms, IntSupplier deltaForStabilizerFinish, ButtonProvider buttonProvider) {
         autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, vision, desiredPitchAngleStageOne, desiredPitchAngleStageTwo,
                 desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, buttonProvider));
-        releaseArms.whenActive(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish).beforeStarting(
-                new ReleaseArmsButtonClicked(buttonProvider))
-        );
+        releaseArms.whenActive(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish));
     }
 }

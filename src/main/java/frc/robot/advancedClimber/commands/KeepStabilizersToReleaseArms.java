@@ -9,12 +9,13 @@ import frc.robot.stabilizers.commands.MoveStabilizerBySpeed;
 
 import java.util.function.DoubleSupplier;
 
+import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ARMS_SPEED_RELEASE;
 import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ARMS_SPEED_STAGE_THREE;
 
 public class KeepStabilizersToReleaseArms extends ParallelCommandGroup {
 
     public KeepStabilizersToReleaseArms(AdvancedClimber advancedClimber, Arms arms, DoubleSupplier keepStabilizersSpeed) {
         super(new MoveStabilizerBySpeed(advancedClimber, keepStabilizersSpeed),
-                new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_STAGE_THREE));
+                new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_RELEASE));
     }
 }

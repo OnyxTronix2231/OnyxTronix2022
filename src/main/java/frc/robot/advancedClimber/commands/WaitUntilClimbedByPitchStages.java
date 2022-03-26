@@ -15,7 +15,7 @@ public class WaitUntilClimbedByPitchStages extends WaitUntilClimbedByPitch {
 
     @Override
     public boolean isFinished() {
-        return super.isFinished() || stage != advancedClimber.getStage();
+        return advancedClimber.isOnDesiredPitchAngle(pitchAngleSupplier.getAsDouble()) || stage != advancedClimber.getStage();
     }
 
     @Override
