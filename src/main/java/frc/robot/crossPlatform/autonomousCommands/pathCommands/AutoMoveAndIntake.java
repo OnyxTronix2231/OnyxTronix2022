@@ -23,10 +23,6 @@ public class AutoMoveAndIntake extends ParallelDeadlineGroup {
         super(
                 new MoveByPath(driveTrain, path).andThen(new WaitCommand(0.6)),
 
-//                new IntakeAndLoadBalls(path.isReversed() ? backIntake : frontIntake,
-//                        ballTrigger, loader, () -> LOADER_SPEED_SUPPLIER, () -> BALL_TRIGGER_SPEED_SUPPLIER,
-//                        () -> INTAKE_SPEED_SUPPLIER);
-
                 new ConditionalCommand(new DelayedIntakeAndLoadBalls(backIntake, ballTrigger, loader, ()-> LOADER_SPEED_SUPPLIER,
                 ()-> BALL_TRIGGER_SPEED_SUPPLIER, ()-> INTAKE_SPEED_SUPPLIER), new IntakeAndLoadBalls(frontIntake, ballTrigger, loader, ()-> LOADER_SPEED_SUPPLIER,
                 ()-> BALL_TRIGGER_SPEED_SUPPLIER, ()-> INTAKE_SPEED_SUPPLIER), path::isReversed)
