@@ -40,7 +40,7 @@ public class ArcConstants {
         }
 
         static double distanceToAngle(double distance) {
-            return Math.min(-7e-05 * Math.pow(distance, 2) + 0.129 * distance + 7.891, 62) ;
+            return Math.min(-6e-05 * Math.pow(distance, 2) + 0.1215 * distance - 1.2451, 62) ;
         }
     }
 }
