@@ -17,11 +17,10 @@ public class AdvancedClimber extends Stabilizer {
     private double pitchOffset;
     private boolean firstCalibrate = true;
 
-    public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain, Arms arms
-    ,DoubleSupplier desiredPitch) {
+    public AdvancedClimber(StabilizerComponents components, DriveTrain driveTrain, Arms arms) {
         super(components);
         this.driveTrain = driveTrain;
-        new AdvancedClimberShuffleBoard(this, arms, desiredPitch);
+        new AdvancedClimberShuffleBoard(this, arms);
     }
 
     public void calibratePitch() {

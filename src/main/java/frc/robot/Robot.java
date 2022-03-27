@@ -82,7 +82,6 @@ public class Robot extends TimedRobot {
     AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = true;
-    private NetworkTableEntry desiredPitchAngleStageOne;
     private NetworkTableEntry desiredPitchAngleStageTwo;
     private NetworkTableEntry desiredPitchAngleStageZero;
     private NetworkTableEntry desiredPositionStabilizerStageZero;
@@ -138,7 +137,6 @@ public class Robot extends TimedRobot {
         arms = new Arms(armsComponents);
         desiredPitchAngleStageZero= Shuffleboard.getTab("Climber").add("Pitch angle stage zero", 0).getEntry();
         desiredPositionStabilizerStageZero= Shuffleboard.getTab("Climber").add("StablizerPosition set", 0).getEntry();
-        desiredPitchAngleStageOne = Shuffleboard.getTab("Climber").add("Pitch angle stage one", 0).getEntry();
         desiredPitchAngleStageTwo = Shuffleboard.getTab("Climber").add("Pitch angle stage two", 0).getEntry();
         desiredArmsSpeed = Shuffleboard.getTab("Climber").add("ArmsSpeed", 0).getEntry();
         desiredArmsDelta = Shuffleboard.getTab("Climber").add("Arms delta", 0).getEntry();
@@ -147,10 +145,7 @@ public class Robot extends TimedRobot {
         startLoadPosition = Shuffleboard.getTab("Climber").add("startLoadPosition", 0).getEntry();
         startReleasePosition = Shuffleboard.getTab("Climber").add("startReleasePosition", 0).getEntry();
 
-        Shuffleboard.getTab("Arc").add("MoveArcBySpeed", new MoveArcBySpeed(arc, () ->
-                desiredPitchAngleStageOne.getDouble(0)));
-
-        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms, () -> desiredPitchAngleStageOne.getDouble(0));
+        stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret);
 
@@ -185,9 +180,7 @@ public class Robot extends TimedRobot {
                 .withStopLookingAtTarget(turret)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(arms, stabilizers, () -> desiredPitchAngleStageOne.getDouble(0),
-                        () -> desiredPitchAngleStageTwo.getDouble(0), () -> desiredPitchAngleStageZero.getDouble(0),
-                        () -> (int)(desiredPositionStabilizerStageZero.getDouble(0)),
+                .withClimber(arms, stabilizers,
                         () -> desiredArmsSpeed.getDouble(0), () -> (int)(desiredArmsDelta.getDouble(0)),
                         () -> keepStabilizerSpeed.getDouble(0), () -> (int)(deltaForStabilizerFinish.getDouble(0)))
                 .withShooter(driveTrain, shooter, arc, loader, ballTrigger, turret)

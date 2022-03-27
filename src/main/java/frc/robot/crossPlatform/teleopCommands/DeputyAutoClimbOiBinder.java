@@ -18,12 +18,9 @@ import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.STA
 public class DeputyAutoClimbOiBinder {
 
     public DeputyAutoClimbOiBinder(AdvancedClimber advancedClimber, Arms arms, Trigger autoClimb,
-                                   DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
-                                   DoubleSupplier desiredPitchAngleStageZero, IntSupplier stabilizerPosition,
                                    DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta, DoubleSupplier keepStabilizerSpeed,
                                    Trigger releaseArms, IntSupplier deltaForStabilizerFinish, ButtonProvider buttonProvider) {
-        autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, desiredPitchAngleStageOne, desiredPitchAngleStageTwo,
-                desiredPitchAngleStageZero, stabilizerPosition, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, buttonProvider));
+        autoClimb.whileActiveContinuous(new AutoClimb(advancedClimber, arms, desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, buttonProvider));
         releaseArms.whenActive(new ReleaseArmsStageThree(advancedClimber, arms, keepStabilizerSpeed, deltaForStabilizerFinish));
     }
 }

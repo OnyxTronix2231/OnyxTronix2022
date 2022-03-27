@@ -9,7 +9,7 @@ import java.util.function.DoubleSupplier;
 
 public class AdvancedClimberShuffleBoard {
 
-    public AdvancedClimberShuffleBoard(AdvancedClimber advancedClimber, Arms arms, DoubleSupplier desiredPitchAngle) {
+    public AdvancedClimberShuffleBoard(AdvancedClimber advancedClimber, Arms arms) {
         Shuffleboard.getTab("Climber").addNumber("current pitch", advancedClimber::getCurrentPitch);
         Shuffleboard.getTab("Climber").addNumber("current yaw", advancedClimber::getCurrentYaw);
         Shuffleboard.getTab("Climber").addNumber("current roll", advancedClimber::getCurrentRoll);
