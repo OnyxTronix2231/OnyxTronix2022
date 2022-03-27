@@ -82,15 +82,6 @@ public class Robot extends TimedRobot {
     AdvancedClimber stabilizers;
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = true;
-    private NetworkTableEntry desiredPitchAngleStageTwo;
-    private NetworkTableEntry desiredPitchAngleStageZero;
-    private NetworkTableEntry desiredPositionStabilizerStageZero;
-    private NetworkTableEntry desiredArmsSpeed;
-    private NetworkTableEntry desiredArmsDelta;
-    private NetworkTableEntry keepStabilizerSpeed;
-    private NetworkTableEntry deltaForStabilizerFinish;
-    private NetworkTableEntry startReleasePosition;
-    private NetworkTableEntry startLoadPosition;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -135,16 +126,6 @@ public class Robot extends TimedRobot {
         arc = new Arc(arcComponents);
         shooter = new Shooter(shooterComponents);
         arms = new Arms(armsComponents);
-        desiredPitchAngleStageZero= Shuffleboard.getTab("Climber").add("Pitch angle stage zero", 0).getEntry();
-        desiredPositionStabilizerStageZero= Shuffleboard.getTab("Climber").add("StablizerPosition set", 0).getEntry();
-        desiredPitchAngleStageTwo = Shuffleboard.getTab("Climber").add("Pitch angle stage two", 0).getEntry();
-        desiredArmsSpeed = Shuffleboard.getTab("Climber").add("ArmsSpeed", 0).getEntry();
-        desiredArmsDelta = Shuffleboard.getTab("Climber").add("Arms delta", 0).getEntry();
-        keepStabilizerSpeed = Shuffleboard.getTab("Climber").add("Keep stabilizer speed", 0).getEntry();
-        deltaForStabilizerFinish = Shuffleboard.getTab("Climber").add("deltaForStabilizerFinish", 0).getEntry();
-        startLoadPosition = Shuffleboard.getTab("Climber").add("startLoadPosition", 0).getEntry();
-        startReleasePosition = Shuffleboard.getTab("Climber").add("startReleasePosition", 0).getEntry();
-
         stabilizers = new AdvancedClimber(stabilizerComponents, driveTrain, arms);
 
         updateOdometryByVision = new UpdateOdometryByVision(driveTrain, turret);
@@ -260,6 +241,9 @@ public class Robot extends TimedRobot {
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
+        //        if (stabilizers != null) {
+//            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+//        }
     }
 
     /**
@@ -287,6 +271,10 @@ public class Robot extends TimedRobot {
             CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
         }
+
+        //        if (stabilizers != null) {
+//            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+//        }
     }
 
     /**

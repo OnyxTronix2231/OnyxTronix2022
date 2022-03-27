@@ -14,11 +14,10 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_STABILI
 
 public class MoveNow extends SequentialCommandGroup {
 
-
-    public MoveNow(AdvancedClimber advancedClimber, Arms arms,
-                   DoubleSupplier desiredPitchAngleStageZero
-    ) {
-        super(new MoveArmsUntilOnPitchStages(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE, desiredPitchAngleStageZero,2)
+    public MoveNow(AdvancedClimber advancedClimber, Arms arms,DoubleSupplier desiredPitchAngleStageZero) {
+        super(new MoveArmsUntilOnPitchStages(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ONE,
+                desiredPitchAngleStageZero,2)
         );
     }
+
 }
