@@ -21,7 +21,7 @@ public class ShootBallByDistanceAndAngle extends ParallelCommandGroup {
     public ShootBallByDistanceAndAngle(Shooter shooter, Arc arc, Turret turret, Loader loader, BallTrigger ballTrigger,
                                        DoubleSupplier distance, DoubleSupplier angle, BooleanSupplier conditions) {
         super(
-                new GetReadyToShoot(shooter, arc, turret, distance, angle),
+                new GetReadyToShoot(shooter, arc, turret, distance, angle, conditions),
                 new WaitUntilReadyToShoot(conditions).andThen(
                         new MoveConveyor(loader, ballTrigger, () -> LOADER_SPEED, () -> BALL_TRIGGER_SPEED))
         );
