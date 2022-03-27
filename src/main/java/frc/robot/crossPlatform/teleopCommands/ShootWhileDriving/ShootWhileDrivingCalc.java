@@ -31,7 +31,7 @@ public class ShootWhileDrivingCalc {
      * direction -> arc's direction (deg)
      */
     public Vector2dEx getShooterOnlyVector() {
-        double distance = drivetrain.getDistanceFromTargetByPose();
+        double distance = encUnitsDecisecToRPM(drivetrain.getDistanceFromTargetByEncoders());
         double magnitude = RPMToMPS((distanceToRPM(distance)));
         double direction = distanceToAngle(distance);
         return Vector2dEx.fromMagnitudeDirection(magnitude, direction);

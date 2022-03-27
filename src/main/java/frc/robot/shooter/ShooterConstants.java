@@ -41,7 +41,7 @@ public class ShooterConstants {
             return (rpm * ENCODER_UNITS_PER_ROUND) / DECI_SECONDS_PER_MINUTE;
         }
 
-        static double encUnitsDecisecToRPM(double encoderUnits) {
+        public static double encUnitsDecisecToRPM(double encoderUnits) {
             return (encoderUnits * DECI_SECONDS_PER_MINUTE) / ENCODER_UNITS_PER_ROUND;
         }
 
@@ -54,6 +54,10 @@ public class ShooterConstants {
 
         public static double MPSToRPM(double MPS) {
             return (SEC_IN_MIN / (2 * Math.PI * SHOOTER_MOTOR_RADIUS)) * MPS;
+        }
+
+        public static double RPMToMPS(double RPM) {
+            return ((2 * Math.PI * SHOOTER_MOTOR_RADIUS) / SEC_IN_MIN * RPM);
         }
     }
 }
