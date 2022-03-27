@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -30,6 +31,7 @@ import humanControls.PlayStation5Controller;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
+import java.util.function.IntSupplier;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
@@ -76,9 +78,9 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withGetReadyToClime(Stabilizer stabilizer, Turret turret, Arc arc, Intake intakeForward) {
+    public DriverOi withGetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverGetReadyToClimeOiBinder(stabilizer, turret, arc, intakeForward, buttonLeft);
+        new DriverGetReadyToClimeOiBinder(advancedClimber, turret, arc, intakeForward, buttonLeft);
         return this;
     }
 

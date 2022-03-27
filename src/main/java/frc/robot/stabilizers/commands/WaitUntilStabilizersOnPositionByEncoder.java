@@ -1,23 +1,24 @@
 package frc.robot.stabilizers.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.stabilizers.Stabilizer;
 
 import java.util.function.IntSupplier;
 
 public class WaitUntilStabilizersOnPositionByEncoder extends CommandBase {
 
-    private final Stabilizer climberStabilizer;
-    private final IntSupplier positionSupplier;
+    protected final AdvancedClimber advancedClimber;
+    protected final IntSupplier positionSupplier;
 
-    public WaitUntilStabilizersOnPositionByEncoder(Stabilizer climberStabilizer,
+    public WaitUntilStabilizersOnPositionByEncoder(AdvancedClimber advancedClimber,
                                                    IntSupplier positionInEncoderUnitsSupplier) {
-        this.climberStabilizer = climberStabilizer;
+        this.advancedClimber = advancedClimber;
         this.positionSupplier = positionInEncoderUnitsSupplier;
     }
 
     @Override
     public boolean isFinished() {
-        return climberStabilizer.isEncoderOnTarget(positionSupplier.getAsInt());
+        return advancedClimber.isEncoderOnTarget(positionSupplier.getAsInt());
     }
 }

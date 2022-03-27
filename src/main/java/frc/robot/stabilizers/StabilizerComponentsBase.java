@@ -18,6 +18,7 @@ public class StabilizerComponentsBase implements StabilizerComponents {
         motor.configAllSettings(getFalconConfiguration());
         motor.setInverted(true);
         motor.setNeutralMode(NeutralMode.Brake);
+        motor.setSelectedSensorPosition(0);
 
         encoder = new TalonEncoder(motor);
         encoder.reset();
