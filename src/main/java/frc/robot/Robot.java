@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RGB.OnyxRGB;
+import frc.robot.RGB.commands.SetToRainbow;
+import frc.robot.RGB.logicCommands.RGB_DefaultStaticColor;
 import frc.robot.advancedClimber.AdvancedClimber;
 import frc.robot.arc.Arc;
 import frc.robot.arc.ArcComponents;
@@ -157,7 +159,7 @@ public class Robot extends TimedRobot {
 
         new CombineOi(driverOi, deputyOi)
                 .withGetReadyToShoot(shooter, arc, turret, distanceProviderByVisionAndOdometry,
-                        angleProviderByVisionAndOdometry)
+                        angleProviderByVisionAndOdometry, shootBallsConditions)
         ;
 
 
@@ -232,9 +234,9 @@ public class Robot extends TimedRobot {
         if (autonomousShuffleboard.getSelectedCommand() != null) {
             autonomousShuffleboard.getSelectedCommand().schedule();
         }
-        if (stabilizers != null) {
-            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
-        }
+//        if (stabilizers != null) {
+//            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+//        }
     }
 
     /**
@@ -246,6 +248,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        //new SetToRainbow(0.1).schedule();
+        new RGB_DefaultStaticColor().schedule();
         if (driveTrain != null) {
             driveTrain.setNeutralModeToBrake();
         }
@@ -260,9 +264,9 @@ public class Robot extends TimedRobot {
             CommandScheduler.getInstance().schedule(new CalibrateArc(arc, () -> ARC_CALIBRATION_SPEED));
             firstEnable = false;
         }
-        if (stabilizers != null) {
-            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
-        }
+//        if (stabilizers != null) {
+//            CommandScheduler.getInstance().schedule(new KeepStabilizerInPlace(stabilizers));
+//        }
     }
 
     /**

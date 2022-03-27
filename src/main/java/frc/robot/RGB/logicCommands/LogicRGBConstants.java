@@ -4,7 +4,7 @@ import frc.robot.RGB.Color;
 
 public class LogicRGBConstants {
 
-    static final double DEFAULT_BLINK_TIME = 0.4;
+    static final double DEFAULT_BLINK_TIME = 0.2;
     static final Color DEFAULT_COLOR = Color.Red;
 
     /*Active intake*/
