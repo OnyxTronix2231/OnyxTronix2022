@@ -9,12 +9,14 @@ public class LogicRGBConstants {
 
     /*Active intake*/
     static final Color ACTIVE_INTAKE_CLR = Color.White;
+    static final double INTAKE_BLINK_TIME = 0.05;
+
 
     /*Search for target*/
     static final Color TARGET_LOCATE_CLR = Color.Green;
 
     /*Shooting*/
     static final Color SHOOTING_CLR = Color.Blue;
-    static final double SHOOTING_BLINK_TIME = 0.08;
+    static final double SHOOTING_BLINK_TIME = 0.03;
 
 }

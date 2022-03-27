@@ -24,11 +24,13 @@ public class RedFarClimberTwoBalls extends SequentialCommandGroup {
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
 
-                new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
-                        angleProvider, p.getPath(1)),
-
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider, shooterConditions)
+
+//                new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
+//                        angleProvider, p.getPath(1))
+
+
         );
     }
 }
