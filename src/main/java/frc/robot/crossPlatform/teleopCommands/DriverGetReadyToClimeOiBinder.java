@@ -13,8 +13,7 @@ import java.util.function.IntSupplier;
 public class DriverGetReadyToClimeOiBinder {
 
     public DriverGetReadyToClimeOiBinder(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward,
-                                         IntSupplier startLoadPosition, IntSupplier startReleasePosition,
-                                         Trigger getReady){
-        getReady.whenActive(new GetReadyToClime(advancedClimber, turret, arc, intakeForward, startLoadPosition, startReleasePosition));
+                                         Trigger getReady) {
+        getReady.whenActive(new GetReadyToClime(advancedClimber, turret, arc, intakeForward));
     }
 }

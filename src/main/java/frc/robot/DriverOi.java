@@ -78,11 +78,9 @@ public class DriverOi {
         return this;
     }
 
-    public DriverOi withGetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward,
-                                        IntSupplier startLoadPosition, IntSupplier startReleasePosition) {
+    public DriverOi withGetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward) {
         Trigger buttonLeft = new JoystickButton(controller, controller.getButtonLeft());
-        new DriverGetReadyToClimeOiBinder(advancedClimber, turret, arc, intakeForward, startLoadPosition, startReleasePosition,
-                buttonLeft);
+        new DriverGetReadyToClimeOiBinder(advancedClimber, turret, arc, intakeForward, buttonLeft);
         return this;
     }
 

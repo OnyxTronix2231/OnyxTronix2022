@@ -11,14 +11,17 @@ public class AdvancedClimberConstants {
     // ARMS SPEED 0.3
     // DELTA FOR STABILIZER FINISH 30000
 
+    // START CLIMB //
 
-    static final double DESIRED_ROLL_ANGLE = -10;
+    public static final int START_LOAD_POSITION = 2500;
+    public static final int START_RELEASE_POSITION = 10000;
+
 
     // STAGE ZERO //
 
     public static final double DESIRED_STABILIZER_SPEED_STAGE_ZERO = -0.2; // TODO CHANGE
     public static final double DESIRED_ARMS_SPEED_STAGE_ZERO = 72; // TODO CHANGE
-    public static final double STABILIZER_POSITION = 72; // TODO CHANGE
+    public static final int STABILIZER_POSITION_STAGE_ZERO = -80000; // TODO CHANGE
 
 
     // STAGE ONE //
@@ -37,9 +40,14 @@ public class AdvancedClimberConstants {
     public static final double DESIRED_ARMS_SPEED_STAGE_THREE = -DESIRED_ARMS_SPEED_STAGE_TWO; // TODO CHANGE
     public static final double DESIRED_STABILIZER_SPEED_STAGE_THREE = 0.2; // TODO CHANGE
 
+    // KEEP STABILIZER
+
+    public static final double KEEP_STABILIZER_SPEED = 0.3; // TODO CHANGE
+
     // STAGE FOUR //
 
     public static final double DESIRED_STABILIZER_SPEED_STAGE_FOUR = -0.2; // TODO CHANGE
     public static final double DESIRED_ARMS_SPEED_RELEASE = -0.4; // TODO CHANGE
+
 
 }

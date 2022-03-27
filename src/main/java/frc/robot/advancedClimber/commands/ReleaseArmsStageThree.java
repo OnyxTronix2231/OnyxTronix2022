@@ -12,12 +12,12 @@ import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
 
 import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ARMS_SPEED_STAGE_THREE;
+import static frc.robot.advancedClimber.AdvancedClimberConstants.KEEP_STABILIZER_SPEED;
 
 public class ReleaseArmsStageThree extends SequentialCommandGroup {
 
-    public ReleaseArmsStageThree(AdvancedClimber advancedClimber, Arms arms, DoubleSupplier keepStabilizersSpeed,
-                                 IntSupplier deltaForStabilizerFinish ) {
-        super(new KeepStabilizersToReleaseArms(advancedClimber, arms,keepStabilizersSpeed).withTimeout(0.5),
-                new FinishClimb(advancedClimber, arms, deltaForStabilizerFinish));
+    public ReleaseArmsStageThree(AdvancedClimber advancedClimber, Arms arms) {
+        super(new KeepStabilizersToReleaseArms(advancedClimber, arms,() -> KEEP_STABILIZER_SPEED).withTimeout(0.5),
+                new FinishClimb(advancedClimber, arms));
     }
 }

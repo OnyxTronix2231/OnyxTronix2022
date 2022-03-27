@@ -8,8 +8,6 @@ import frc.robot.vision.Vision;
 
 import java.util.function.DoubleSupplier;
 
-import static frc.robot.advancedClimber.AdvancedClimberConstants.DESIRED_ROLL_ANGLE;
-
 public class AdvancedClimber extends Stabilizer {
 
     private final DriveTrain driveTrain;
@@ -32,10 +30,6 @@ public class AdvancedClimber extends Stabilizer {
 
     public double getPitchWithOffset() {
         return getCurrentPitch() - Math.abs(pitchOffset);
-    }
-
-    public boolean isOnDesiredRollAngle() {
-        return driveTrain.getRoll() >= DESIRED_ROLL_ANGLE;
     }
 
     public boolean isOnDesiredPitchAngle(double angle) {

@@ -171,8 +171,7 @@ public class Robot extends TimedRobot {
                 .withIntakeBackAndLoadBallsPlanB(intakeBack, loader, ballTrigger)
                 .withIntakeFrontAndLoadBallsPlanB(intakeFront, loader, ballTrigger)
                 .withArcCalibration(arc)
-                .withGetReadyToClime(stabilizers, turret, arc, intakeFront, ()-> (int)(startLoadPosition.getDouble(0)),
-                        ()-> (int)(startReleasePosition.getDouble(0)))
+                .withGetReadyToClime(stabilizers, turret, arc, intakeFront)
                 .withShootBalls(shooter, arc, turret, ballTrigger, loader, shootBallsConditions)
                 .withTurret(turret);
 
@@ -180,9 +179,7 @@ public class Robot extends TimedRobot {
                 .withStopLookingAtTarget(turret)
                 .withLoader(loader)
                 .withBallTrigger(ballTrigger)
-                .withClimber(arms, stabilizers,
-                        () -> desiredArmsSpeed.getDouble(0), () -> (int)(desiredArmsDelta.getDouble(0)),
-                        () -> keepStabilizerSpeed.getDouble(0), () -> (int)(deltaForStabilizerFinish.getDouble(0)))
+                .withClimber(arms, stabilizers)
                 .withShooter(driveTrain, shooter, arc, loader, ballTrigger, turret)
                 .withResetOdometry(driveTrain);
 

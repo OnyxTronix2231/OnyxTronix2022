@@ -18,16 +18,15 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.*;
 
 public class AutoClimb extends SequentialCommandGroup {
 
-    public AutoClimb(AdvancedClimber advancedClimber, Arms arms, DoubleSupplier desiredArmsSpeed,
-                     IntSupplier desiredArmsDelta, DoubleSupplier keepStabilizerSpeed,
+    public AutoClimb(AdvancedClimber advancedClimber, Arms arms,
                      ButtonProvider buttonProvider) {
         super(
                 new ClimbWithArmsStageOneUntilPitch(advancedClimber, arms, () -> DESIRED_PITCH_ANGLE_STAGE_ONE),
-                new ClimbWithStabilizersAndArmsStageZeroUntilPitch(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ZERO, stabilizerPosition),
+                new ClimbWithStabilizersAndArmsStageZeroUntilPitch(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ZERO, () -> STABILIZER_POSITION_STAGE_ZERO),
                 new MoveNow(advancedClimber, arms, () -> DESIRED_ARMS_SPEED_STAGE_ZERO),
 //                new MoveArmsUntilOnPosition(advancedClimber, arms, desiredArmsSpeed, desiredArmsDelta),
                 new ClimbWithStabilizersAndArmsStageTwoUntilPitch(advancedClimber, () -> DESIRED_PITCH_ANGLE_STAGE_TWO),
-                new KeepPowerStabilizer(advancedClimber,keepStabilizerSpeed, buttonProvider),
+                new KeepPowerStabilizer(advancedClimber,() -> KEEP_STABILIZER_SPEED, buttonProvider),
                 new EveryoneClaps());
     }
 }

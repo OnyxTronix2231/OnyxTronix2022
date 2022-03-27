@@ -15,7 +15,7 @@ import static frc.robot.advancedClimber.AdvancedClimberConstants.*;
 
 public class FinishClimb extends ParallelCommandGroup {
 
-        public FinishClimb(AdvancedClimber advancedClimber, Arms arms, IntSupplier deltaForStabilizerFinish) {
+        public FinishClimb(AdvancedClimber advancedClimber, Arms arms) {
             super(new MoveStabilizerBySpeed(advancedClimber, () -> DESIRED_STABILIZER_SPEED_STAGE_FOUR).withTimeout(2),
                     new MoveArmsBySpeed(arms, () -> DESIRED_ARMS_SPEED_RELEASE).withTimeout(0.5));
         }

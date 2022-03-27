@@ -15,17 +15,18 @@ import frc.robot.turret.commands.RotateToAngleRTR;
 
 import java.util.function.IntSupplier;
 
+import static frc.robot.advancedClimber.AdvancedClimberConstants.START_LOAD_POSITION;
+import static frc.robot.advancedClimber.AdvancedClimberConstants.START_RELEASE_POSITION;
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.CLIME_ARC_ANGLE;
 import static frc.robot.crossPlatform.teleopCommands.TeleopCommandsConstants.CLIME_TURRET_ANGLE;
 
 public class GetReadyToClime extends ParallelCommandGroup {
 
-    public GetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward,
-                           IntSupplier startLoadPosition, IntSupplier startReleasePosition) {
+    public GetReadyToClime(AdvancedClimber advancedClimber, Turret turret, Arc arc, Intake intakeForward) {
         super(  new CalibratePitch(advancedClimber),
                 new RotateToAngleRTR(turret, () -> CLIME_TURRET_ANGLE),
                 new MoveArcToAngle(arc, () -> CLIME_ARC_ANGLE),
-//                new StartClimb(advancedClimber, startLoadPosition, startReleasePosition),
+                new StartClimb(advancedClimber, () -> START_LOAD_POSITION, () -> START_RELEASE_POSITION),
                 new OpenPiston(intakeForward));
     }
 }

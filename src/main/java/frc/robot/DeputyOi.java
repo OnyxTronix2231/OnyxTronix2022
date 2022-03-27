@@ -39,10 +39,7 @@ public class DeputyOi {
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
-    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber,
-                                IntSupplier desiredStablizerPosition,
-                                DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta,
-                                DoubleSupplier keepStabilizerSpeed, IntSupplier deltaForStabilizerFinish) {
+    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber) {
         JoystickAxis climb = new JoystickAxis(controller, controller.getAxisLeftY());
         JoystickAxis moveStabilizers = new JoystickAxis(controller, controller.getAxisRightY());
         Trigger autoClimb = new JoystickButton(controller, controller.getButtonRight());
@@ -51,9 +48,7 @@ public class DeputyOi {
         ButtonProvider releaseArmsProvider = new ButtonProvider(releaseArms);
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
-        new DeputyAutoClimbOiBinder(advancedClimber, arms, autoClimb,
-                desiredStablizerPosition,
-                desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, releaseArms, deltaForStabilizerFinish,
+        new DeputyAutoClimbOiBinder(advancedClimber, arms, autoClimb, releaseArms,
                 releaseArmsProvider); // TODO Test AutoClimb
         return this;
     }
