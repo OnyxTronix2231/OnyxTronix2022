@@ -1,7 +1,6 @@
 package frc.robot.shooter;
 
-import static frc.robot.shooter.ShooterConstants.ComponentsConstants.ENCODER_UNITS_PER_ROUND;
-import static frc.robot.shooter.ShooterConstants.ComponentsConstants.SHOOTER_MOTOR_RADIUS;
+import static frc.robot.shooter.ShooterConstants.ComponentsConstants.*;
 
 public class ShooterConstants {
 
@@ -10,9 +9,9 @@ public class ShooterConstants {
     static final double KP = 0.2;
     static final double KI = 0.001;
     static final double KD = 11;
-    static final double INTEGRAL_ZONE = 150;
+    static final double INTEGRAL_ZONE = 100;
     static final double CLOSE_LOOP_OUTPUT = 1023;
-    static final double MAX_VELOCITY = 14325 * 1.25;
+    static final double MAX_VELOCITY = 13400 * 1.25;
     static final double KF = CLOSE_LOOP_OUTPUT / MAX_VELOCITY;
     static final double TOLERANCE = 100;
     static final double SPEED = 0;
@@ -46,7 +45,7 @@ public class ShooterConstants {
         }
 
         static double distanceToRPM(double distance) {
-            return (0.0031 * Math.pow(distance, 2) + 1.0414 * distance + 3136.8);
+            return (0.002 * Math.pow(distance, 2) + 0.5741 * distance + 1661);
         }
 
         static double RPMToMPS(double RPM) {
