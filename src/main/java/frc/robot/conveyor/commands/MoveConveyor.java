@@ -15,7 +15,7 @@ public class MoveConveyor extends ParallelCommandGroup {
                         DoubleSupplier ballTriggerSpeed) {
         super(
                 new MoveBallTriggerBySpeed(ballTrigger, ballTriggerSpeed),
-                new WaitCommand(0.2).andThen(
+                new WaitCommand(0.3).andThen(
                 new MoveLoaderBySpeed(loader, loadSpeed))
         );
     }
