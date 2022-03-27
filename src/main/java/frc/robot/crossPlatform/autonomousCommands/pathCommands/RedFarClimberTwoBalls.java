@@ -27,6 +27,8 @@ public class RedFarClimberTwoBalls extends SequentialCommandGroup {
                 new ShootWithDelay(shooter, arc, turret, loader, ballTrigger, distanceProvider,
                         angleProvider, shooterConditions)
 
+
+                // TODO YOU CAN'T USE THIS ONE IN ORDER TO TAKE ONLY 2 BALLS FROM FAR
 //                new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
 //                        angleProvider, p.getPath(1))
 
