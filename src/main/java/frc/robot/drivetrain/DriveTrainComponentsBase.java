@@ -8,7 +8,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import sensors.counter.TalonEncoder;
 
 import static frc.robot.Constants.LOW_PRIORITY_STATUS_FRAME_PERIODIC;
@@ -25,7 +24,6 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
     private final NormalizedPigeonIMU pigeonIMU;
     private final TalonEncoder leftEncoder;
     private final TalonEncoder rightEncoder;
-    private final Field2d field2d;
 
     public DriveTrainComponentsBase() {
         leftMasterMotor = new WPI_TalonFX(RIGHT_MASTER_MOTOR_PORT);
@@ -62,11 +60,10 @@ public class DriveTrainComponentsBase implements DriveTrainComponents {
         odometry.resetPosition(new Pose2d(), new Rotation2d());
 
         pigeonIMU = new NormalizedPigeonIMU(PIGEON_PORT);
+        pigeonIMU.configFactoryDefault();
 
         differentialDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
         differentialDrive.setSafetyEnabled(false);
-
-        field2d = new Field2d();
     }
 
     @Override

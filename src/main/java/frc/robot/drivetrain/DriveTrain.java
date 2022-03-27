@@ -5,7 +5,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.TARGET_POSE_X;
@@ -16,13 +15,15 @@ import static frc.robot.turret.TurretConstants.DEG_IN_HALF_CIRCLE;
 public class DriveTrain extends SubsystemBase {
     private final DriveTrainComponents driveTrainComponents;
     public double forwardSpeedValue;
+    public boolean reset = false;
 
     public DriveTrain(DriveTrainComponents driveTrainComponents) {
         this.driveTrainComponents = driveTrainComponents;
         resetOdometryToPose(new Pose2d(2, 0, new Rotation2d(0)));
 
+        reset = false;
    }
-
+   
     public void resetEncoders() {
         driveTrainComponents.getLeftEncoder().reset();
         driveTrainComponents.getRightEncoder().reset();
@@ -39,7 +40,7 @@ public class DriveTrain extends SubsystemBase {
 
     public void arcadeDrive(double speed, double rotation) {
         forwardSpeedValue = -speed * SPEED_SENSITIVITY;
-        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, rotation * ROTATION_SENSITIVITY);
+        driveTrainComponents.getDifferentialDrive().arcadeDrive(forwardSpeedValue, Math.abs(rotation) * rotation * ROTATION_SENSITIVITY, false);
     }
 
     public void stop() {
@@ -83,7 +84,8 @@ public class DriveTrain extends SubsystemBase {
         resetOdometryToPose(new Pose2d(translation, this.getPose().getRotation()));
     }
 
-    public double getDistanceFromTargetByPose() {
+
+    public double getDistanceFromTargetByEncoders() {
         Pose2d currentPose = getPose();
         return (Math.sqrt(Math.pow((currentPose.getX() - TARGET_POSE_X), 2)
                 + Math.pow((currentPose.getY() - TARGET_POSE_Y), 2)));
@@ -114,9 +116,22 @@ public class DriveTrain extends SubsystemBase {
         resetEncoders();
         driveTrainComponents.getOdometry().resetPosition(pose, pose.getRotation());
         driveTrainComponents.getNormalizedPigeonIMU().setYaw(pose.getRotation().getDegrees());
+        reset = true;
+    }
+
+    public boolean isStopped() {
+        return Math.abs(forwardSpeedValue) < STOPPING_SPEED_TOLERANCE;
     }
 
     public double getForwardSpeedValue() {
         return forwardSpeedValue;
+    }
+
+    public boolean ableToShoot(){
+        return Math.abs(getRobotSpeedMPS()) < ABLE_TO_SHOOT_SPEED;
+    }
+
+    public void setReset(boolean isRested){
+        reset = isRested;
     }
 }

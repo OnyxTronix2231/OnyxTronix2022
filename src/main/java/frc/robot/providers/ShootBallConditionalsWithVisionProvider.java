@@ -1,21 +1,21 @@
 package frc.robot.providers;
 
 import frc.robot.arc.Arc;
+import frc.robot.drivetrain.DriveTrain;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import frc.robot.vision.Vision;
 
 public class ShootBallConditionalsWithVisionProvider extends ShootBallConditionsProvider{
 
-    private final Vision vision;
 
-    public ShootBallConditionalsWithVisionProvider(Shooter shooter, Turret turret, Arc arc, Vision vision) {
-        super(shooter, turret, arc);
-        this.vision = vision;
+    public ShootBallConditionalsWithVisionProvider(Shooter shooter, Turret turret, Arc arc,
+                                                   DriveTrain driveTrain) {
+        super(shooter, turret, arc, driveTrain);
     }
 
     @Override
     public boolean getAsBoolean() {
-        return super.getAsBoolean() && vision.hasTarget();
+        return super.getAsBoolean() && Vision.getInstance().hasTarget();
     }
 }

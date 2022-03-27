@@ -6,7 +6,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.vision.Vector2dEx;
 import frc.robot.yawControl.YawControl;
 
-import static frc.robot.arc.ArcConstants.ArcCalculations.distanceToAngle;
+import static frc.robot.arc.ArcConstants.ArcCalculations.*;
 import static frc.robot.shooter.ShooterConstants.ShooterCalculations.*;
 
 public class ShootWhileDrivingCalc {

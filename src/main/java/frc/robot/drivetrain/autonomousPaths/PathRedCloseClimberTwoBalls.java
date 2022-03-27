@@ -1,12 +1,12 @@
 package frc.robot.drivetrain.autonomousPaths;
 
-public class PathRedCloseClimberTwoBalls extends AbstractPath {
+public class PathRedCloseClimberTwoBalls extends AbstractPath { // CHECKED
 
-    static final double X_START_POSE = 10;
-    static final double X_FIRST_BALL = 11.801;
+    static final double X_START_POSE = 10.406;
+    static final double X_FIRST_BALL = 11.227;
 
-    static final double Y_START_POSE = 3;
-    static final double Y_FIRST_BALL = 1.944;
+    static final double Y_START_POSE = 2.742;
+    static final double Y_FIRST_BALL = 2.247;
 
     static final double START_DEGREE = 140;
     static final double DESTINATION_DEGREE = 140;

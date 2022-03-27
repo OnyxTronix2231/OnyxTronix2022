@@ -8,6 +8,7 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import humanControls.JoystickAxis;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class CombineOi {
@@ -21,11 +22,11 @@ public class CombineOi {
     }
 
     public CombineOi withGetReadyToShoot(Shooter shooter, Arc arc, Turret turret, DoubleSupplier distanceFromTargetSupplier,
-                                         DoubleSupplier angleSupplier) {
+                                         DoubleSupplier angleSupplier, BooleanSupplier con) {
         JoystickAxis driverButton = new JoystickAxis(driverOi.controller, driverOi.controller.getRightTrigger());
         Trigger deputeButton = new JoystickButton(deputyOi.controller, deputyOi.controller.getBumperLeft());
         new CombineGetReadyToShootOiBinder(driverButton, deputeButton, shooter, arc, turret, distanceFromTargetSupplier,
-                angleSupplier);
+                angleSupplier, con);
         return this;
     }
 }

@@ -25,8 +25,8 @@ public class ArcConstants {
         static final double CONVERSION_RATE = 1;
         static final double ENCODER_UNITS_PER_ROUND = 4096 * CONVERSION_RATE;
         static final double ANGLE_PER_MOTOR_ROTATION = 45;
-        static final double ARC_MIN_ANGLE = 15.33;
-        static final double ARC_MAX_ANGLE = 62;
+        static final double ARC_MIN_ANGLE = 22;
+        static final double ARC_MAX_ANGLE = 66;
     }
 
     public static class ArcCalculations {
@@ -39,12 +39,9 @@ public class ArcConstants {
             return ((encoderUnits / ENCODER_UNITS_PER_ROUND) * ANGLE_PER_MOTOR_ROTATION);
         }
 
+
         public static double distanceToAngle(double distance) {
-            if (distance == 0) {
-                return 20;
-            }
-            return (-9 * Math.pow(10, -5)) * Math.pow(distance, 2)
-                    + 0.1342 * distance + 8.5273;
+            return Math.min(-6e-05 * Math.pow(distance, 2) + 0.1215 * distance - 1.2451, 62) ;
         }
     }
 }

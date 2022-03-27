@@ -6,14 +6,15 @@ import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 import humanControls.JoystickAxis;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class CombineGetReadyToShootOiBinder {
 
     public CombineGetReadyToShootOiBinder(JoystickAxis driverButton, Trigger deputeButton, Shooter shooter, Arc arc,
                                           Turret turret, DoubleSupplier distanceFromTargetSupplier,
-                                          DoubleSupplier angleSupplier) {
+                                          DoubleSupplier angleSupplier, BooleanSupplier con) {
         driverButton.or(deputeButton).whileActiveContinuous(
-                new GetReadyToShoot(shooter, arc, turret, distanceFromTargetSupplier, angleSupplier));
+                new GetReadyToShoot(shooter, arc, turret, distanceFromTargetSupplier, angleSupplier, con ));
     }
 }
