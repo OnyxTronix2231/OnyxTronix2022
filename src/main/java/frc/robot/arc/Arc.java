@@ -11,11 +11,11 @@ import static frc.robot.arc.ArcConstants.TOLERANCE;
 public class Arc extends SubsystemBase {
 
     private final ArcComponents components;
-    //private final ArcShuffleBoard shuffleBoard;
+    private final ArcShuffleBoard shuffleBoard;
 
     public Arc(ArcComponents components) {
         this.components = components;
-       // shuffleBoard = new ArcShuffleBoard(this);
+       shuffleBoard = new ArcShuffleBoard(this);
         resetEncoderByAbsoluteValue();
         components.getMotor().configForwardSoftLimitThreshold(angleToEncoderUnits(ARC_MAX_ANGLE));
         components.getMotor().configReverseSoftLimitThreshold(angleToEncoderUnits(ARC_MIN_ANGLE));
@@ -24,7 +24,7 @@ public class Arc extends SubsystemBase {
 
     @Override
     public void periodic() {
-       // shuffleBoard.update();
+       shuffleBoard.update();
     }
 
     public void initMoveToAngle(double angle) {

@@ -1,7 +1,6 @@
 package frc.robot.shooter;
 
-import static frc.robot.shooter.ShooterConstants.ComponentsConstants.ENCODER_UNITS_PER_ROUND;
-import static frc.robot.shooter.ShooterConstants.ComponentsConstants.SHOOTER_MOTOR_RADIUS;
+import static frc.robot.shooter.ShooterConstants.ComponentsConstants.*;
 
 public class ShooterConstants {
 
