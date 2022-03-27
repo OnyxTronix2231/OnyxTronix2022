@@ -9,13 +9,17 @@ import frc.robot.providers.*;
 import frc.robot.shooter.Shooter;
 import frc.robot.turret.Turret;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
 public class ShootWithDelay extends ParallelDeadlineGroup {
 
     public ShootWithDelay(Shooter shooter, Arc arc, Turret turret, Loader loader, BallTrigger ballTrigger,
-                          DistanceProvider distanceProvider, AngleProvider angleProvider) {
+                          DoubleSupplier distanceProvider, DoubleSupplier angleProvider,
+                          BooleanSupplier shooterConditions) {
         super(new ShootBallByDistanceAndAngle(shooter, arc, turret, loader, ballTrigger,
                 distanceProvider,
                 angleProvider
-                , new ShootBallConditionsProvider(shooter, turret, arc)).withTimeout(2.5));
+                , shooterConditions).withTimeout(2.5));
     }
 }

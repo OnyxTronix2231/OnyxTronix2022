@@ -39,7 +39,7 @@ public class DeputyOi {
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
-    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber, Vision vision,
+    public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber,
                                 DoubleSupplier desiredPitchAngleStageOne, DoubleSupplier desiredPitchAngleStageTwo,
                                 DoubleSupplier desiredPitchAngleStageZero, IntSupplier desiredStablizerPosition,
                                 DoubleSupplier desiredArmsSpeed, IntSupplier desiredArmDelta,
@@ -52,7 +52,7 @@ public class DeputyOi {
         ButtonProvider releaseArmsProvider = new ButtonProvider(releaseArms);
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
-        new DeputyAutoClimbOiBinder(advancedClimber, arms, vision, autoClimb, desiredPitchAngleStageOne,
+        new DeputyAutoClimbOiBinder(advancedClimber, arms, autoClimb, desiredPitchAngleStageOne,
                 desiredPitchAngleStageTwo, desiredPitchAngleStageZero, desiredStablizerPosition,
                 desiredArmsSpeed, desiredArmDelta, keepStabilizerSpeed, releaseArms, deltaForStabilizerFinish,
                 releaseArmsProvider); // TODO Test AutoClimb
@@ -82,11 +82,11 @@ public class DeputyOi {
         new DeputyStopLookingAtTargetOiBinder(yawControl, centerLeft);
         return this;
     }
-    public DeputyOi withShooter(Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
-                                Turret turret, Vision vision) {
+    public DeputyOi withShooter(DriveTrain driveTrain, Shooter shooter, Arc arc, Loader loader, BallTrigger ballTrigger,
+                                Turret turret) {
         Trigger shootToEjectBalls = new JoystickAxis(controller, controller.getRightTrigger());
         Trigger shootWithVision = new JoystickAxis(controller, controller.getLeftTrigger());
-        new DeputyShootBallOiBinder(shooter, arc, loader, ballTrigger, vision, turret, shootToEjectBalls,
+        new DeputyShootBallOiBinder(driveTrain, shooter, arc, loader, ballTrigger, turret, shootToEjectBalls,
                 shootWithVision);
         return this;
     }

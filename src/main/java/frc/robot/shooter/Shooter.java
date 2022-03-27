@@ -8,16 +8,16 @@ import static frc.robot.shooter.ShooterConstants.TOLERANCE;
 public class Shooter extends SubsystemBase {
 
     private final ShooterComponents components;
-    //private final ShooterShuffleBoard shuffleBoard;
+//    private final ShooterShuffleBoard shuffleBoard;
     private boolean isRealeBallsButtonpress = false;
 
     public Shooter(ShooterComponents components) {
         this.components = components;
-        //shuffleBoard = new ShooterShuffleBoard(this);
+//        shuffleBoard = new ShooterShuffleBoard(this);
     }
 
     public void periodic() {
-        //shuffleBoard.update();
+//        shuffleBoard.update();
     }
 
     public void setSpeed(double speed) {

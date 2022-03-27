@@ -14,15 +14,16 @@ public final class DriveTrainConstants {
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
     static final double ROTATION_SENSITIVITY = 0.5;
     static final double SPEED_SENSITIVITY = 0.8;
+    static final double STOPPING_SPEED_TOLERANCE = 0.05;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check
     static final double MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3; // TODO: check
     static final double TRACKWIDTH_METERS = 0.68;
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
             new DifferentialDriveKinematics(TRACKWIDTH_METERS);
-    static final double KS = 0.65334; // TODO: calibrate
-    static final double KV = 2.1853; // TODO: calibrate
-    static final double KA = 0.052353; // TODO: calibrate
+    static final double KS = 0.64545; // TODO: calibrate
+    static final double KV = 2.1106; // TODO: calibrate
+    static final double KA = 0.057821; // TODO: calibrate
     public static final SimpleMotorFeedforward FEEDFORWARD = new SimpleMotorFeedforward(KS, KV, KA);
 
     public static final double LAUNCH_PAD_POSITION_RED_X = 12.86;
@@ -31,6 +32,7 @@ public final class DriveTrainConstants {
     public static final double LAUNCH_PAD_POSITION_BLUE_X = 3.738;
     public static final double LAUNCH_PAD_POSITION_BLUE_Y = 5.525;
     public static final double LAUNCH_PAD_BLUE_DEGREE = 0;
+    public static final double ABLE_TO_SHOOT_SPEED = 0; //todo find value mps
 
     public static final class ComponentsConstants {
 

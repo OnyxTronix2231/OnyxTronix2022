@@ -6,7 +6,7 @@ import vision.limelight.enums.LimelightLedMode;
 
 public class ChangeLimelightLedMode extends InstantCommand {
 
-    public ChangeLimelightLedMode(Vision vision, LimelightLedMode limelightLedMode) {
-        super(() -> vision.setLedMode(limelightLedMode));
+    public ChangeLimelightLedMode(LimelightLedMode limelightLedMode) {
+        super(() -> Vision.getInstance().setLedMode(limelightLedMode));
     }
 }

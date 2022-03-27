@@ -9,7 +9,7 @@ import vision.limelight.enums.LimelightLedMode;
 
 public class EveryoneClaps extends SequentialCommandGroup {
 
-    public EveryoneClaps(Vision vision) {
-        super(new ChangeLimelightLedMode(vision, LimelightLedMode.forceBlink));
+    public EveryoneClaps() {
+        super(new ChangeLimelightLedMode(LimelightLedMode.forceBlink));
     }
 }

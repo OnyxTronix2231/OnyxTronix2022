@@ -16,12 +16,20 @@ public class Vision extends SubsystemBase {
     private final Limelight limelight;
     private LimelightTarget limelightTarget;
     private Vector2dEx turretToTargetVectorRTT;
+    private static Vision instance;
 
-    public Vision() {
+    private Vision() {
         limelight = Limelight.getInstance();
         VisionShuffleboard visionShuffleboard = new VisionShuffleboard(this);
-        //visionShuffleboard.init();
+        visionShuffleboard.init();
         limelight.setPipeline(PIPELINE);
+    }
+
+    public static Vision getInstance() {
+        if(instance == null) {
+            instance = new Vision();
+        }
+        return instance;
     }
 
     public void setPipeline(int pipeline){
