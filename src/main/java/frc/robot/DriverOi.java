@@ -7,7 +7,6 @@ import frc.robot.arc.Arc;
 import frc.robot.arc.CalibrateArcOiBinder;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
-import frc.robot.crossPlatform.autonomousCommands.pathCommands.RedFarClimberThreeBalls;
 import frc.robot.crossPlatform.teleopCommands.DriverGetReadyToClimeOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeAndLoadBallsOiBinder;
 import frc.robot.crossPlatform.teleopCommands.DriverIntakeByDriveTrainAndLoadBallsOiBinder;
@@ -17,21 +16,16 @@ import frc.robot.drivetrain.DriveTrain;
 import frc.robot.drivetrain.DriverDriveTrainOiBinders;
 import frc.robot.intake.Intake;
 import frc.robot.providers.AngleProvider;
-import frc.robot.providers.DistanceProvider;
 import frc.robot.shooter.Shooter;
-import frc.robot.stabilizers.Stabilizer;
 import frc.robot.turret.DriverTurretOiBinder;
 import frc.robot.turret.Turret;
 import frc.robot.turret.commands.SmartRotateByAngle;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
 
 import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
-import java.util.function.IntSupplier;
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 

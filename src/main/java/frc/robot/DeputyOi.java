@@ -18,16 +18,11 @@ import frc.robot.providers.ButtonProvider;
 import frc.robot.shooter.Shooter;
 import frc.robot.stabilizers.DeputyStabilizersOiBinder;
 import frc.robot.turret.Turret;
-import frc.robot.turret.commands.RotateToAngleRTR;
-import frc.robot.vision.Vision;
 import frc.robot.yawControl.DeputyStopLookingAtTargetOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
-
-import java.util.function.DoubleSupplier;
-import java.util.function.IntSupplier;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
@@ -49,7 +44,7 @@ public class DeputyOi {
         new DeputyArmsOiBinder(arms, climb);
         new DeputyStabilizersOiBinder(advancedClimber, moveStabilizers);
         new DeputyAutoClimbOiBinder(advancedClimber, arms, autoClimb, releaseArms,
-                releaseArmsProvider); // TODO Test AutoClimb
+                releaseArmsProvider);
         return this;
     }
 
@@ -71,7 +66,7 @@ public class DeputyOi {
         return this;
     }
 
-    public DeputyOi withStopLookingAtTarget(YawControl yawControl){ //todo check
+    public DeputyOi withStopLookingAtTarget(YawControl yawControl){
         Trigger centerLeft = new JoystickButton(controller, controller.getCenterRight());
         new DeputyStopLookingAtTargetOiBinder(yawControl, centerLeft);
         return this;
