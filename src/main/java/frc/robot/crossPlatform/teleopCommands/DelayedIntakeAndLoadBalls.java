@@ -1,7 +1,11 @@
 package frc.robot.crossPlatform.teleopCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.*;
+import frc.robot.RGB.Color;
+import frc.robot.RGB.commands.BlinkInfinity;
+import frc.robot.RGB.commands.BlinkNumTimes;
+import frc.robot.RGB.commands.ChangeIntake;
+import frc.robot.RGB.commands.SetColor;
 import frc.robot.RGB.logicCommands.RGB_ActiveIntake;
 import frc.robot.RGB.logicCommands.RGB_DefaultStaticColor;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
@@ -15,11 +19,11 @@ import java.util.function.DoubleSupplier;
 public class DelayedIntakeAndLoadBalls extends ParallelCommandGroup {
 
     public DelayedIntakeAndLoadBalls(Intake intake, BallTrigger ballTrigger, Loader loader,
-                              DoubleSupplier loaderSpeedSupplier, DoubleSupplier ballTriggerSpeedSupplier,
-                              DoubleSupplier intakeSpeedSupplier) {
+                                     DoubleSupplier loaderSpeedSupplier, DoubleSupplier ballTriggerSpeedSupplier,
+                                     DoubleSupplier intakeSpeedSupplier) {
         super(new LoadBalls(loader, ballTrigger, loaderSpeedSupplier),
                 new OpenAndIntakeWithDelay(intake, intakeSpeedSupplier),
-                new RGB_ActiveIntake());
+                new SequentialCommandGroup(new WaitUntilCommand(()-> loader.identifiedBall() || ballTrigger.isBallIdentified()), new SetColor(Color.Yellow)));
     }
 
     @Override

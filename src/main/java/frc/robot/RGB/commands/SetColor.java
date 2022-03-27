@@ -9,4 +9,9 @@ public class SetColor extends InstantCommand {
     public SetColor(Color color) {
         super(() -> OnyxRGB.getInstance().setColor(color));
     }
+
+    @Override
+    public void end(boolean interrupted) {
+        System.out.println("Changed to color");
+    }
 }
