@@ -9,7 +9,7 @@ public final class VisionConstants {
     static final double LIMELIGHT_HEIGHT_TO_FLOOR_CM = 108;
     static final double LIMELIGHT_TO_TARGET_CM = TARGET_HEIGHT_CM - LIMELIGHT_HEIGHT_TO_FLOOR_CM;
     static final double LIMELIGHT_TO_TURRET_CM = 21.4;
-    static final double TARGET_RADIUS = 138.0 / 2;
+    static final double TARGET_RADIUS = 136.0 / 2;
     static final double TURRET_TOLERANCE = 2;
     static final Vector2dEx LIMELIGHT_TO_TURRET_VECTOR_RTT =
             Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);

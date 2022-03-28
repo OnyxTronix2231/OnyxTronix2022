@@ -36,7 +36,7 @@ public class AutonomousShuffleboard {
                 frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
                 shooterConditions));
 
-        autonomousChooser.addOption("2 balls from far climber start point", new RedFarClimberTwoBalls(
+        autonomousChooser.addOption("2 balls from far climber start point", new RealRedFarClimberTwoBalls(
                 driveTrain, frontIntake, backIntake, loader, ballTrigger, turret, shooter, arc, distanceProvider,
                 angleProvider, shooterConditions));
 
