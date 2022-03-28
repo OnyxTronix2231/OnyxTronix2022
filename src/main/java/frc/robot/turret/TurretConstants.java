@@ -48,6 +48,13 @@ public final class TurretConstants {
         static final double MAX_DEG = 320; //TODO: Correct the number
         static final double MIN_DEG = -60; //TODO: Correct the number
         static final double DEG_IN_TURRET_ROTATION = DEG_IN_CIRCLE * CONVERSION_RATE;
+
+        static final int SUPPLY_CURRENT_LIMIT = 20;
+        static final int SUPPLY_TRIGGER_THRESHOLD_CURRENT = 25;
+        static final double SUPPLY_TRIGGER_THRESHOLD_TIME = 0.05;
+        static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = true;
+        static final double OPEN_LOOP_RAMP = 0;
+        static final double CLOSE_LOOP_RAMP = 0;
     }
 
     public static final class Calculation {

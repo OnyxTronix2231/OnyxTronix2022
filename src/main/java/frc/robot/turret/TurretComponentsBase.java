@@ -45,6 +45,12 @@ public class TurretComponentsBase implements TurretComponents {
         config.reverseSoftLimitThreshold = degreesToAbsoluteEncoderUnits(MIN_DEG);
         config.reverseSoftLimitEnable = true;
         config.slot0.integralZone = INTEGRAL_ZONE;
+        config.supplyCurrLimit.currentLimit = SUPPLY_CURRENT_LIMIT;
+        config.supplyCurrLimit.triggerThresholdCurrent = SUPPLY_TRIGGER_THRESHOLD_CURRENT;
+        config.supplyCurrLimit.triggerThresholdTime = SUPPLY_TRIGGER_THRESHOLD_TIME;
+        config.supplyCurrLimit.enable = SUPPLY_CURRENT_LIMIT_ENABLED;
+        config.openloopRamp = OPEN_LOOP_RAMP;
+        config.closedloopRamp = CLOSE_LOOP_RAMP;
         return config;
     }
 

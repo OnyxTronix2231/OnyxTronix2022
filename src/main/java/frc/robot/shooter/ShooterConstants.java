@@ -23,7 +23,7 @@ public class ShooterConstants {
     static final double STATOR_CURRENT_LIMIT = 0;
     static final double STATOR_TRIGGER_THRESHOLD_CURRENT = 0;
     static final double STATOR_TRIGGER_THRESHOLD_TIME = 0;
-    static final double OFFSET = 40;
+    static final double OFFSET = 20;
     static final boolean SUPPLY_CURRENT_LIMIT_ENABLED = true;
     static final boolean STATOR_CURRENT_LIMIT_ENABLED = false;
 
@@ -46,13 +46,16 @@ public class ShooterConstants {
         }
 
         static double distanceToRPM(double distance) {
-            if(distance > 400) {
+//            if(distance > 400) {
+//                distance += OFFSET;
+//            }
+//            if (distance > 700){
+//                distance += OFFSET * 1.5;
+//            }
+            if (distance > 550){
                 distance += OFFSET;
             }
-            if (distance > 700){
-                distance += OFFSET * 1.5;
-            }
-            return (0.002 * Math.pow(distance, 2) + 0.5741 * distance + 1661);
+            return (0.002 * Math.pow(distance, 2) + 0.5741 * distance + 1661) - 50;
         }
 
         static double RPMToMPS(double RPM) {

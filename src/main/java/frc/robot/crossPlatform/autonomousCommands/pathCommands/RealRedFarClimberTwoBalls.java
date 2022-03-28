@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform.autonomousCommands.pathCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.arc.Arc;
 import frc.robot.conveyor.ballTrigger.BallTrigger;
 import frc.robot.conveyor.loader.Loader;
@@ -23,6 +24,8 @@ public class RealRedFarClimberTwoBalls extends SequentialCommandGroup {
         RealPathRedFarClimberTwoBalls p = new RealPathRedFarClimberTwoBalls();
         addCommands(
                 new ResetOdometryToPose(driveTrain, p.getStartPose()),
+
+                new WaitCommand(0.3),
 
                 new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
                         angleProvider, p.getPath(1)),

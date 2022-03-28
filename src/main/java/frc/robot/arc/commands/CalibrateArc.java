@@ -27,8 +27,12 @@ public class CalibrateArc extends MoveArcBySpeed {
 
     @Override
     public void end(boolean interrupted) {
-        if (!interrupted) {
+        if (isFinished()) {
             arc.resetEncoderByAbsoluteValue();
+            System.out.println("Calibrate");
+        }
+        else{
+            System.out.println("didnt Calibrate");
         }
         arc.enableSoftLimitSwitch(true);
         arc.stop();
