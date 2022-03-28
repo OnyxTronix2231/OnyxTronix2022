@@ -1,6 +1,7 @@
 package frc.robot.crossPlatform.teleopCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RGB.Color;
 import frc.robot.RGB.commands.SetColor;
 import frc.robot.advancedClimber.AdvancedClimber;
@@ -29,7 +30,7 @@ public class GetReadyToClime extends ParallelCommandGroup {
                 new CalibratePitch(advancedClimber),
                 new RotateToAngleRTR(turret, () -> CLIME_TURRET_ANGLE),
                 new MoveArcToAngle(arc, () -> CLIME_ARC_ANGLE),
-                new StartClimb(advancedClimber, () -> START_LOAD_POSITION, () -> START_RELEASE_POSITION),
+                new StartClimb(advancedClimber, () -> START_LOAD_POSITION, () -> START_RELEASE_POSITION).beforeStarting(new WaitCommand(0.5)),
                 new OpenPiston(intakeForward));
     }
 }
