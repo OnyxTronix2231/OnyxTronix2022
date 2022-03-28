@@ -20,7 +20,7 @@ public class AdvancedClimberConstants {
     // STAGE ZERO //
 
     public static final double DESIRED_STABILIZER_SPEED_STAGE_ZERO = -0.2; // TODO CHANGE
-    public static final double DESIRED_ARMS_SPEED_STAGE_ZERO = 72; // TODO CHANGE
+    public static final double DESIRED_ARMS_SPEED_STAGE_ZERO = 71; // TODO CHANGE
     public static final int STABILIZER_POSITION_STAGE_ZERO = -80000; // TODO CHANGE
 
 
@@ -48,6 +48,7 @@ public class AdvancedClimberConstants {
 
     public static final double DESIRED_STABILIZER_SPEED_STAGE_FOUR = -0.2; // TODO CHANGE
     public static final double DESIRED_ARMS_SPEED_RELEASE = -0.4; // TODO CHANGE
+    public static final double DESIRED_ARMS_SPEED_RELEASE_FINAL = -0.5; // TODO CHANGE
 
 
 }
