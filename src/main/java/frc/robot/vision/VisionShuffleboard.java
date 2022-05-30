@@ -12,7 +12,7 @@ public class VisionShuffleboard {
     }
 
     public void init() {
-        Shuffleboard.getTab("shoot").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("shoot").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
+        //Shuffleboard.getTab("vision").addNumber("Little angle", vision::getVerticalAngleOffset);
     }
 }

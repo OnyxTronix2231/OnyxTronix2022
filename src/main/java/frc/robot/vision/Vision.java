@@ -26,13 +26,13 @@ public class Vision extends SubsystemBase {
     }
 
     public static Vision getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Vision();
         }
         return instance;
     }
 
-    public void setPipeline(int pipeline){
+    public void setPipeline(int pipeline) {
         limelight.setPipeline(pipeline);
         limelight.setLedMode(LimelightLedMode.forceOn);
     }
@@ -50,10 +50,14 @@ public class Vision extends SubsystemBase {
     private double getDistanceLimelightFromTarget() {
         LimelightTarget tempLimelightTarget = limelightTarget;
         if (tempLimelightTarget != null) {
-            double verticalAngleLimelightToTarget = tempLimelightTarget.getVerticalOffsetToCrosshair();
+            // double verticalAngleLimelightToTarget = tempLimelightTarget.getVerticalOffsetToCrosshair();
+            double verticalAngleLimelightToTarget = getVerticalAngleOffset();
+            // System.out.println("HEIGHT " + limelightTarget.getShortSideOfFittedBoundingBox() + " ANGLE: " + verticalAngleLimelightToTarget + " lil ANGLE: " + getVerticalAngleOffset());
+            // verticalAngleLimelightToTarget += getVerticalAngleOffset();
             double verticalAngleRobotToTarget = LIMELIGHT_ANGLE_TO_HORIZON_DEG + verticalAngleLimelightToTarget;
             return LIMELIGHT_TO_TARGET_CM / Math.tan(Math.toRadians(verticalAngleRobotToTarget));
         }
+        System.out.println("NO TARGET");
         return TARGET_NOT_FOUND;
     }
 
@@ -62,7 +66,7 @@ public class Vision extends SubsystemBase {
         if (tempLimelightTarget != null) {
             double limelightOffsetFromTarget = tempLimelightTarget.getHorizontalOffsetToCrosshair();
             double limelightDistanceFromTarget = getDistanceLimelightFromTarget();
-            if(limelightDistanceFromTarget != TARGET_NOT_FOUND) {
+            if (limelightDistanceFromTarget != TARGET_NOT_FOUND) {
                 turretToTargetVectorRTT = Vector2dEx.fromMagnitudeDirection(limelightDistanceFromTarget,
                         limelightOffsetFromTarget);
                 turretToTargetVectorRTT.subtract(LIMELIGHT_TO_TURRET_VECTOR_RTT);
@@ -108,6 +112,20 @@ public class Vision extends SubsystemBase {
             return getXAndY(yawControl);
         }
         return DEFAULT_POSE;
+    }
+
+    public double getVerticalAngleOffset() {
+        double bigY = Math.tan(Math.toDegrees(limelightTarget.getVerticalOffsetToCrosshair()));
+        double bigNY = (bigY * 2) / VPH;
+        double bigPY = (SCREEN_HEIGHT / 2) - 0.5 - ((bigNY * 2) / SCREEN_HEIGHT);
+
+        double halfHeight = limelightTarget.getShortSideOfFittedBoundingBox() / 2;
+        double ny = (1 / (SCREEN_HEIGHT * 0.5)) * (bigPY + halfHeight);
+        double y = (VPH / 2) * ny;
+
+        //System.out.println("bigpy: " + bigPY + " half: " + halfHeight);
+
+        return Math.toDegrees(Math.atan2(1, y));
     }
 
     public void ledsOff() {
