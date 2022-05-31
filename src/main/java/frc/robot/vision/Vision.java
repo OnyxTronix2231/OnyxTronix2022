@@ -18,6 +18,40 @@ public class Vision extends SubsystemBase {
     private Vector2dEx turretToTargetVectorRTT;
     private static Vision instance;
 
+    private double middleTargetY;
+    private double normalizedMiddleTargetY;
+    private double pixelMiddleTargetY;
+
+    private double pixelTopTargetY;
+
+    private double normalizedTopTargetY;
+
+    public double getMiddleTargetY() {
+        return middleTargetY;
+    }
+
+    public double getNormalizedMiddleTargetY() {
+        return normalizedMiddleTargetY;
+    }
+
+    public double getPixelMiddleTargetY() {
+        return pixelMiddleTargetY;
+    }
+
+    public double getPixelTopTargetY() {
+        return pixelTopTargetY;
+    }
+
+    public double getNormalizedTopTargetY() {
+        return normalizedTopTargetY;
+    }
+
+    public double getTopTargetY() {
+        return topTargetY;
+    }
+
+    private double topTargetY;
+
     private Vision() {
         limelight = Limelight.getInstance();
         VisionShuffleboard visionShuffleboard = new VisionShuffleboard(this);
@@ -50,17 +84,10 @@ public class Vision extends SubsystemBase {
     private double getDistanceLimelightFromTarget() {
         LimelightTarget tempLimelightTarget = limelightTarget;
         if (tempLimelightTarget != null) {
-            double verticalAngleLimelightToTarget = tempLimelightTarget.getVerticalOffsetToCrosshair();
-            //double verticalAngleLimelightToTarget = getVerticalAngleOffset();
-
-            System.out.println(1 + "   " + verticalAngleLimelightToTarget);
-            System.out.println(2 + "   " + getVerticalAngleOffset());
-            // System.out.println("HEIGHT " + limelightTarget.getShortSideOfFittedBoundingBox() + " ANGLE: " + verticalAngleLimelightToTarget + " lil ANGLE: " + getVerticalAngleOffset());
-            // verticalAngleLimelightToTarget += getVerticalAngleOffset();
+            double verticalAngleLimelightToTarget = getVerticalAngleOffset();
             double verticalAngleRobotToTarget = LIMELIGHT_ANGLE_TO_HORIZON_DEG + verticalAngleLimelightToTarget;
             return LIMELIGHT_TO_TARGET_CM / Math.tan(Math.toRadians(verticalAngleRobotToTarget));
         }
-        System.out.println("NO TARGET");
         return TARGET_NOT_FOUND;
     }
 
@@ -118,17 +145,20 @@ public class Vision extends SubsystemBase {
     }
 
     public double getVerticalAngleOffset() {
-        double bigY = Math.tan(Math.toDegrees(limelightTarget.getVerticalOffsetToCrosshair()));
-        double bigNY = (bigY * 2) / VPH;
-        double bigPY = (SCREEN_HEIGHT / 2) - 0.5 - ((bigNY * 2) / SCREEN_HEIGHT);
+        if (limelight.targetFound()) {
+            LimelightTarget target = limelight.getTarget();
+            middleTargetY = Math.tan(Math.toRadians(target.getVerticalOffsetToCrosshair()));
+            normalizedMiddleTargetY = (2 * middleTargetY) / VPH;
+            pixelMiddleTargetY = (SCREEN_HEIGHT / 2) - (normalizedMiddleTargetY * (SCREEN_HEIGHT / 2));
 
-        System.out.println(bigPY);
+            pixelTopTargetY = pixelMiddleTargetY - (target.getShortSideOfFittedBoundingBox() / 2);
 
-        double halfHeight = limelightTarget.getShortSideOfFittedBoundingBox() / 2;
-        double ny = (1 / (SCREEN_HEIGHT * 0.5)) * (bigPY - halfHeight);
-        double y = (VPH / 2) * ny;
+            normalizedTopTargetY = ((SCREEN_HEIGHT / 2) - 0.5 - pixelTopTargetY) / ((SCREEN_HEIGHT / 2));
+            topTargetY = (VPH / 2) * normalizedTopTargetY;
 
-        return Math.toDegrees(Math.atan2(1, y));
+            return Math.toDegrees(Math.atan(topTargetY));
+        }
+        return -999;
     }
 
     public void ledsOff() {
@@ -137,5 +167,11 @@ public class Vision extends SubsystemBase {
 
     public void ledsOn() {
         limelight.setLedMode(LimelightLedMode.forceOn);
+    }
+
+    public double getLimelightVerticalAngle(){
+        if (limelight.targetFound())
+            return limelight.getTarget().getVerticalOffsetToCrosshair();
+        return -999;
     }
 }
