@@ -13,7 +13,7 @@ public final class VisionConstants {
     static final Vector2dEx LIMELIGHT_TO_TURRET_VECTOR_RTT =
             Vector2dEx.fromMagnitudeDirection(LIMELIGHT_TO_TURRET_CM, 0);
     static final double TARGET_NOT_FOUND = -999;
-    static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 30.2; // 28.4 // 30.1
+    static final double LIMELIGHT_ANGLE_TO_HORIZON_DEG = 30; // 28.4 // 30.1
     static final int PIPELINE = 0;
     static final Translation2d DEFAULT_POSE = new Translation2d(999, 999);
     static final double SCREEN_HEIGHT = 720;
