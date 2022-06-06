@@ -1,5 +1,6 @@
 package frc.robot;
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.arc.Arc;
@@ -33,14 +34,18 @@ import humanControls.PlayStation5Controller;
 import javax.sql.rowset.Joinable;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
+=======
+import edu.wpi.first.wpilibj.XboxController;
+>>>>>>> main
 
 import static frc.robot.Constants.DRIVE_JOYSTICK_PORT;
 
 public class DriverOi {
 
-    final ConsoleController controller;
+    final XboxController xboxController;
 
     public DriverOi() {
+<<<<<<< HEAD
         controller = new PlayStation5Controller(DRIVE_JOYSTICK_PORT);
     }
 
@@ -110,5 +115,8 @@ public class DriverOi {
         Trigger trigger = new JoystickButton(controller, controller.getBumperLeft());
         trigger.whileActiveOnce(new SmartRotateByAngle(turret, angleProvider));
         return this;
+=======
+        xboxController = new XboxController(DRIVE_JOYSTICK_PORT);
+>>>>>>> main
     }
 }

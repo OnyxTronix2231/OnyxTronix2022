@@ -1,5 +1,6 @@
 package frc.robot;
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.advancedClimber.AdvancedClimber;
@@ -25,14 +26,18 @@ import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
 import humanControls.PlayStation5Controller;
+=======
+import edu.wpi.first.wpilibj.XboxController;
+>>>>>>> main
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
 
 public class DeputyOi {
 
-    final ConsoleController controller;
+    final XboxController xboxController;
 
     public DeputyOi() {
+<<<<<<< HEAD
         controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
     }
 
@@ -93,5 +98,8 @@ public class DeputyOi {
 
         return this;
 
+=======
+        xboxController = new XboxController(Deputy_JOYSTICK_PORT);
+>>>>>>> main
     }
 }

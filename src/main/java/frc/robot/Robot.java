@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+<<<<<<< HEAD
 import frc.robot.RGB.OnyxRGB;
 import frc.robot.RGB.commands.SetToRainbow;
 import frc.robot.RGB.logicCommands.RGB_DefaultStaticColor;
@@ -60,6 +61,8 @@ import java.util.TimerTask;
 
 import static frc.robot.Constants.ARC_CALIBRATION_SPEED;
 import static frc.robot.Constants.VISION_PIPELINE;
+=======
+>>>>>>> main
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -69,6 +72,7 @@ import static frc.robot.Constants.VISION_PIPELINE;
  */
 public class Robot extends TimedRobot {
 
+<<<<<<< HEAD
     DriveTrain driveTrain;
     Arc arc;
     Shooter shooter;
@@ -83,6 +87,8 @@ public class Robot extends TimedRobot {
     UpdateOdometryByVision updateOdometryByVision;
     boolean firstEnable = true;
 
+=======
+>>>>>>> main
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -92,6 +98,7 @@ public class Robot extends TimedRobot {
         HttpCamera limeLightFeed = new HttpCamera("limelight", "http://10.22.31.11:5801");
         CameraComponents cameraComponents = new CameraComponentsA();
 
+<<<<<<< HEAD
         DriveTrainComponents driveTrainComponents;
         IntakeComponents intakeBackComponents;
         IntakeComponents intakeFrontComponents;
@@ -166,6 +173,14 @@ public class Robot extends TimedRobot {
                 .withResetOdometry(driveTrain)
                 .withTurret(driveTrain, turret, shooter, arc, ballTrigger, loader)
         ;
+=======
+        if (Robot.isReal()) {
+        } else {
+        }
+
+        new DriverOi();
+        new DeputyOi();
+>>>>>>> main
 
 
         new CombineOi(driverOi, deputyOi)
