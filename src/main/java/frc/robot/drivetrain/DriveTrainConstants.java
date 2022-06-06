@@ -12,8 +12,8 @@ public final class DriveTrainConstants {
     static final double WHEEL_DIAMETER_METER = 0.1524;
     static final double PERIMETER_METER = WHEEL_DIAMETER_METER * Math.PI;
     static final double ENCODER_UNITS_PER_ROTATION = ENCODER_UNITS * CONVERSION_RATE;
-    static final double ROTATION_SENSITIVITY = 0.3; // 0.5
-    static final double SPEED_SENSITIVITY = 0.3; // 0.8
+    static final double ROTATION_SENSITIVITY = 0.5;
+    static final double SPEED_SENSITIVITY = 0.8;
     static final double STOPPING_SPEED_TOLERANCE = 0.05;
 
     static final double MAX_SPEED_METERS_PER_SECOND = 4.5; // TODO: check

@@ -52,7 +52,8 @@ public class ShooterConstants {
             if (distance > 700){
                 distance += OFFSET * 1.5;
             }*/
-            return (0.00002 * Math.pow(distance, 3) + -0.0192 * Math.pow(distance, 2) + 7.651 * distance + 916.72);
+            return -7 * Math.pow(10, -6) * Math.pow(distance, 3) + 0.011 * Math.pow(distance, 2) - 2.4264 * distance
+                    + 1939;
         }
 
         static double RPMToMPS(double RPM) {
