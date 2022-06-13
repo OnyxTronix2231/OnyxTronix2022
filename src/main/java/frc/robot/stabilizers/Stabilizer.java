@@ -1,5 +1,6 @@
 package frc.robot.stabilizers;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Stabilizer extends SubsystemBase {
@@ -8,6 +9,7 @@ public class Stabilizer extends SubsystemBase {
 
     public Stabilizer(StabilizerComponents components) {
         this.components = components;
+        Shuffleboard.getTab("main").addNumber("pos" ,()-> components.getEncoder().getCount());
     }
 
     public void moveStabilizerBySpeed(double speed) {

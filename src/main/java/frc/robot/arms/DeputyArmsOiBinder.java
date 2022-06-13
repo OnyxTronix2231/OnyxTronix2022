@@ -6,6 +6,6 @@ import humanControls.JoystickAxis;
 public class DeputyArmsOiBinder {
 
     public DeputyArmsOiBinder(Arms climber, JoystickAxis climb) {
-        climb.whileActiveContinuous(new MoveArmsBySpeed(climber, climb::getRawAxis));
+        climb.whileActiveContinuous(new MoveArmsBySpeed(climber, () -> climb.getRawAxis() * 0.2));
     }
 }
