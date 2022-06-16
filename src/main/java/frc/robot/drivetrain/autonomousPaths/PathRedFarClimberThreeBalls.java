@@ -8,7 +8,7 @@ public class PathRedFarClimberThreeBalls extends  AbstractPath { // CHECKED
 
     static final double Y_FIRST_BALL = 7.54;
     static final double Y_DESTINATION_MIDDLE_POINT = 6.971;
-    static final double Y_POSE_BALL = 7;
+    static final double Y_POSE_BALL = 6;
 
     static final double DESTINATION_FIRST_DEGREE = -90;
     static final double DESTINATION_MIDDLE_POINT_DEGREE = -35; // TODO CHECK

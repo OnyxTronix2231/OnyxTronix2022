@@ -25,7 +25,7 @@ public class RedFarClimberThreeBalls extends SequentialCommandGroup {
                         ballTrigger, turret, shooter, arc, distanceProvider, angleProvider,
                         shooterConditions),
 
-                new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
+            //    new AutoMoveAndIntake(driveTrain, frontIntake, backIntake, loader, ballTrigger, p.getPath(1)),
 
                 new AutoMoveAndIntakeAndTurret(driveTrain, frontIntake, backIntake, loader, ballTrigger, turret,
                         angleProvider, p.getPath(2)),
