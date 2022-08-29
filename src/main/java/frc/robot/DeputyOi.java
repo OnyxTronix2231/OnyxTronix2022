@@ -22,6 +22,7 @@ import frc.robot.yawControl.DeputyStopLookingAtTargetOiBinder;
 import frc.robot.yawControl.YawControl;
 import humanControls.ConsoleController;
 import humanControls.JoystickAxis;
+import humanControls.OnyxXboxController;
 import humanControls.PlayStation5Controller;
 
 import static frc.robot.Constants.DEPUTY_JOYSTICK_PORT;
@@ -31,7 +32,8 @@ public class DeputyOi {
     final ConsoleController controller;
 
     public DeputyOi() {
-        controller = new PlayStation5Controller(DEPUTY_JOYSTICK_PORT);
+        controller = new OnyxXboxController(
+                DEPUTY_JOYSTICK_PORT);
     }
 
     public DeputyOi withClimber(Arms arms, AdvancedClimber advancedClimber) {

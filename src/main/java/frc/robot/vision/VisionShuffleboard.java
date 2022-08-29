@@ -12,7 +12,14 @@ public class VisionShuffleboard {
     }
 
     public void init() {
-        Shuffleboard.getTab("shoot").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
-        Shuffleboard.getTab("shoot").addNumber("Angle RTT", vision::getHorizontalAngleTurretToTargetRTT);
+        Shuffleboard.getTab("vision").addNumber("Distance", vision::getHorizontalDistanceTurretToTarget);
+        Shuffleboard.getTab("vision").addNumber("Angle", vision::getVerticalAngleOffset);
+        Shuffleboard.getTab("vision").addNumber("Limelight Angle", vision::getLimelightVerticalAngle);
+        Shuffleboard.getTab("vision").addNumber("middleTargetY", vision::getMiddleTargetY);
+        Shuffleboard.getTab("vision").addNumber("normalizedMiddleTargetY", vision::getNormalizedMiddleTargetY);
+        Shuffleboard.getTab("vision").addNumber("pixelMiddleTargetY", vision::getPixelMiddleTargetY);
+        Shuffleboard.getTab("vision").addNumber("pixelTopTargetY", vision::getPixelTopTargetY);
+        Shuffleboard.getTab("vision").addNumber("normalizedTopTargetY", vision::getNormalizedTopTargetY);
+        Shuffleboard.getTab("vision").addNumber("topTargetY", vision::getTopTargetY);
     }
 }

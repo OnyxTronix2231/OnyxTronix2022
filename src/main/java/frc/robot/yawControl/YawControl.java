@@ -1,6 +1,7 @@
 package frc.robot.yawControl;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.drivetrain.DriveTrain;
 import frc.robot.turret.Turret;
 import frc.robot.turret.TurretComponents;
@@ -17,6 +18,7 @@ public class YawControl extends Turret {
     public YawControl(TurretComponents turretComponents, DriveTrain driveTrain) {
         super(turretComponents);
         this.driveTrain = driveTrain;
+        Shuffleboard.getTab("vision").addBoolean("is on target", this::isOnTarget);
     }
 
     public double getTurretAngleRTF() {

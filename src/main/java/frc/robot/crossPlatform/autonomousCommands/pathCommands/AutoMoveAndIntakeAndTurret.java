@@ -19,8 +19,8 @@ import frc.robot.yawControl.YawControl;
 import java.util.function.DoubleSupplier;
 
 public class AutoMoveAndIntakeAndTurret extends ParallelDeadlineGroup {
-    static final double LOADER_SPEED_SUPPLIER = 0.5;
-    static final double BALL_TRIGGER_SPEED_SUPPLIER = 0.5;
+    static final double LOADER_SPEED_SUPPLIER = 0.8;
+    static final double BALL_TRIGGER_SPEED_SUPPLIER = 0.8;
     static final double INTAKE_SPEED_SUPPLIER = 0.5;
 
     public AutoMoveAndIntakeAndTurret(DriveTrain driveTrain, Intake frontIntake, Intake backIntake, Loader loader,

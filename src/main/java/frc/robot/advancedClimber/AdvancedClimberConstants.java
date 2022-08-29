@@ -13,16 +13,15 @@ public class AdvancedClimberConstants {
 
     // START CLIMB //
 
-    public static final int START_LOAD_POSITION = 2500;
+    public static final int START_LOAD_POSITION = 1500;
     public static final int START_RELEASE_POSITION = 10000;
 
 
     // STAGE ZERO //
 
     public static final double DESIRED_STABILIZER_SPEED_STAGE_ZERO = -0.2; // TODO CHANGE
-    public static final double DESIRED_ARMS_SPEED_STAGE_ZERO = 71; // TODO CHANGE
+    public static final double DESIRED_ARMS_SPEED_STAGE_ZERO = 77; // TODO CHANGE
     public static final int STABILIZER_POSITION_STAGE_ZERO = -80000; // TODO CHANGE
-
 
     // STAGE ONE //
     public static final double DESIRED_PITCH_ANGLE_STAGE_ONE = 25; // TODO WORKING
